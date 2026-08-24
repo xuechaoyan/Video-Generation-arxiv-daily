@@ -44,7 +44,7 @@ jobs:
     - name: Read and summarize top 10 papers with Cursor
       continue-on-error: true
       env:
-        CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+        CURSOR_API_KEY: ${{ secrets.PAPER_READING }}
         CURSOR_MODEL: ${{ vars.CURSOR_MODEL }}
         MAX_PAPERS: ${{ github.event_name == 'workflow_dispatch' && inputs.max_papers || '10' }}
       run: |
