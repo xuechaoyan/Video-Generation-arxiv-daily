@@ -1,4 +1,4 @@
-# Video-Generation-arxiv-daily configuration for paper-lab
+# Video generation arXiv tracker customized for paper-lab
 max_results: 30
 
 publish_readme: true
@@ -15,6 +15,7 @@ md_gitpage_path: './docs/index.md'
 json_wechat_path: './docs/vg-arxiv-daily-wechat.json'
 md_wechat_path: './docs/wechat.md'
 
+# Research tracks related to OmniDreams and FlashDreams
 keywords:
   "Video Generation":
     filters: ["Text-to-Video", "Text2Video", "image-to-video", "video diffusion model", "video generation model", "video synthesis"]
