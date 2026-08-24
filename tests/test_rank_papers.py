@@ -1,9 +1,11 @@
 import datetime as dt
 import unittest
+from unittest.mock import patch
 
+from cursor_summarize import extract_json_object
 from rank_papers import (
-    _extract_json_object,
     collect_recent_ids,
+    enrich_major_orgs,
     enforce_reading_budget,
     heuristic_assessment,
     render_markdown,
@@ -90,8 +92,33 @@ class RankPapersTests(unittest.TestCase):
         self.assertLess(assessed["score"], 48)
         self.assertEqual(assessed["priority"], "archive")
 
+    def test_major_company_gets_bounded_bonus_without_replacing_relevance(self):
+        paper = {
+            "id": "2408.00003",
+            "date": "2026-08-23",
+            "topics": ["Video Generation"],
+            "title": "Efficient Video Diffusion",
+            "abstract": "We introduce an efficient video diffusion model with experiments.",
+            "comment": "",
+            "authors": ["A. Author"],
+            "url": "https://arxiv.org/abs/2408.00003",
+            "categories": ["cs.CV"],
+        }
+
+        assessed = heuristic_assessment(paper)
+        original_score = assessed["score"]
+        with patch(
+            "rank_papers.fetch_arxiv_affiliations",
+            return_value="NVIDIA Research, Santa Clara, USA",
+        ):
+            enrich_major_orgs([assessed], scan_limit=1, bonus=10)
+
+        self.assertEqual(assessed["major_orgs"], ["NVIDIA"])
+        self.assertEqual(assessed["score"], min(100, original_score + 10))
+        self.assertIn("机构加分，不替代内容相关性", assessed["relevance_cn"])
+
     def test_extracts_json_from_fenced_response(self):
-        parsed = _extract_json_object('```json\n{"papers": []}\n```')
+        parsed = extract_json_object('```json\n{"papers": []}\n```')
         self.assertEqual(parsed, {"papers": []})
 
     def test_digest_warns_when_llm_is_not_configured(self):
@@ -113,7 +140,7 @@ class RankPapersTests(unittest.TestCase):
             [paper], "2026-08-24T00:00:00+00:00", used_llm=False
         )
 
-        self.assertIn("未配置模型 API Key", output)
+        self.assertIn("未配置 Cursor API Key", output)
         self.assertIn("快速浏览", output)
 
 

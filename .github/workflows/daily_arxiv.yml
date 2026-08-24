@@ -2,8 +2,8 @@ name: Daily arXiv Update
 
 on:
   schedule:
-    # Run at 00:00 and 12:00 UTC every day.
-    - cron: '0 */12 * * *'
+    # Run once per day at 00:00 UTC.
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -19,10 +19,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.11'
         cache: pip
@@ -34,11 +34,22 @@ jobs:
       run: python daily_arxiv.py
 
     - name: Build ranked research digest
-      env:
-        LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-        LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
-        LLM_MODEL: ${{ vars.LLM_MODEL }}
       run: python rank_papers.py
+
+    - name: Read and summarize top 10 papers with Cursor
+      continue-on-error: true
+      env:
+        CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+        CURSOR_MODEL: ${{ vars.CURSOR_MODEL }}
+      run: |
+        if [ -z "$CURSOR_API_KEY" ]; then
+          echo "CURSOR_API_KEY is not configured; keeping the rule-only digest."
+          exit 0
+        fi
+        python -m pip install cursor-sdk pypdf
+        python cursor_summarize.py \
+          --digest "docs/digests/$(date -u +'%F').json" \
+          --max-papers 10
 
     - name: Check for changes
       id: verify_diff

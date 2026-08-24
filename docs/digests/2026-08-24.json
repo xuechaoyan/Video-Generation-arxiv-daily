@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T07:52:55+00:00",
+  "generated_at": "2026-08-24T08:55:49+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -35,7 +35,8 @@
       "contribution_cn": "We present Omni-LiveAvatar, the first framework for minute-level, real-time streaming joint audio-video avatar generation.",
       "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, autoregressive, streaming, real-time, few-step, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.16354",
@@ -67,7 +68,8 @@
       "contribution_cn": "We propose DriveCache, a training-free, action-aware controller that uses planned motion to allocate reuse across scenes and dynamic programming to place it across denoising steps under a calibrated response budget.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, driving, simulation, acceleration, cache, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.10519",
@@ -96,7 +98,45 @@
       "contribution_cn": "We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting.",
       "relevance_cn": "匹配研究线：video generation, streaming video；关键词：autoregressive, sparse attention, video generation, text-to-video, image-to-video, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
+    },
+    {
+      "id": "2608.18077",
+      "date": "2026-08-18",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "abstract": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion. This shared visual interface enables generalist world modeling and control by learning action consequences across embodiments, tasks, environments, and video-generation backbones. Our best configuration achieves 90.4% lower robot-motion error and 60.2% lower object-motion error than our action-conditioned baseline, while supporting zero-shot composition and data-efficient adaptation. On the RoboLab benchmark, Hydra-0 achieves a Pearson correlation of r=0.96 between replayed and reference success rates. Finally, we uncover an emergent inverse mode of this interface: a world action model that predicts compatible robot motion from desired object flow transferred from a human demonstration. A trained action head maps the resulting latent features to executable actions without requiring task-specific expert robot demonstrations. Together, these results demonstrate the potential of action flow as a shared control interface connecting heterogeneous training data, open-loop policy evaluation, and robot control.",
+      "authors": [
+        "Hongyu Li",
+        "Bowen Wen",
+        "Xinghao Zhu",
+        "Yixuan Wang",
+        "Yilun Du",
+        "Yunzhu Li",
+        "George Konidaris",
+        "Stan Birchfield",
+        "Soha Pouya",
+        "Chenran Li",
+        "Yan Chang"
+      ],
+      "url": "http://arxiv.org/abs/2608.18077v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "Project page: https://nvidia-isaac.github.io/video_to_data/hydra-0/",
+      "score": 73,
+      "priority": "skim",
+      "summary_cn": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.",
+      "contribution_cn": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, efficient；大厂/重点实验室：NVIDIA（机构加分，不替代内容相关性）",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic",
+      "major_orgs": [
+        "NVIDIA"
+      ]
     },
     {
       "id": "2607.26694",
@@ -134,7 +174,8 @@
       "contribution_cn": "We present Visko Orbis 1.0, a Live Model for real-time, interactive long-video generation.",
       "relevance_cn": "匹配研究线：video generation, streaming video；关键词：interactive, streaming, long video, real-time, video generation, text-to-video",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.19556",
@@ -164,7 +205,8 @@
       "contribution_cn": "In this work, we propose Stream4D, which replaces the static critic with a feed-forward 4D reconstruction reward that explicitly models scene dynamics, allowing coherent motion to receive high consistency rewards.",
       "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, real-time, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.18484",
@@ -193,7 +235,8 @@
       "contribution_cn": "We introduce SparsePR, which combines Response-Coupled Partitioning with Probe-Fitted Residual Reconstruction.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, sparse attention, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.19085",
@@ -225,41 +268,8 @@
       "contribution_cn": "To bridge this gap, we propose DA-WAM, a framework that unifies predictive representation learning, action-conditioned future modeling, and trajectory scoring under a single decision-making objective.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, driving",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.18077",
-      "date": "2026-08-18",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
-      "abstract": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion. This shared visual interface enables generalist world modeling and control by learning action consequences across embodiments, tasks, environments, and video-generation backbones. Our best configuration achieves 90.4% lower robot-motion error and 60.2% lower object-motion error than our action-conditioned baseline, while supporting zero-shot composition and data-efficient adaptation. On the RoboLab benchmark, Hydra-0 achieves a Pearson correlation of r=0.96 between replayed and reference success rates. Finally, we uncover an emergent inverse mode of this interface: a world action model that predicts compatible robot motion from desired object flow transferred from a human demonstration. A trained action head maps the resulting latent features to executable actions without requiring task-specific expert robot demonstrations. Together, these results demonstrate the potential of action flow as a shared control interface connecting heterogeneous training data, open-loop policy evaluation, and robot control.",
-      "authors": [
-        "Hongyu Li",
-        "Bowen Wen",
-        "Xinghao Zhu",
-        "Yixuan Wang",
-        "Yilun Du",
-        "Yunzhu Li",
-        "George Konidaris",
-        "Stan Birchfield",
-        "Soha Pouya",
-        "Chenran Li",
-        "Yan Chang"
-      ],
-      "url": "http://arxiv.org/abs/2608.18077v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "Project page: https://nvidia-isaac.github.io/video_to_data/hydra-0/",
-      "score": 63,
-      "priority": "skim",
-      "summary_cn": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.",
-      "contribution_cn": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
       "id": "2608.19661",
@@ -285,39 +295,42 @@
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": []
     },
     {
-      "id": "2608.16143",
-      "date": "2026-08-17",
+      "id": "2608.20534",
+      "date": "2026-08-20",
       "topics": [
         "Video Generation"
       ],
-      "title": "AnyTalk: Speech Animation for Arbitrary Characters Leveraging a Video Generation Model",
-      "abstract": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data. While existing audio-driven 3D speech animation methods rely on character-specific training data or laborious rigging/re-meshing, AnyTalk circumvents these limitations by leveraging recent video diffusion models trained on extensive video datasets. We first adapt a pre-trained video diffusion model to a target character through our Character-specific Fine-tuning (\\textit{CsF}) technique. By fine-tuning on rendered images of the 3D character paired with zeroed-out audio embeddings (representing \"no motion\"), we eliminate the need for animation data while preserving the motion prior of large-scale video diffusion model. We then uplift the resulting talking-head video into a 3D speech animation by estimating blendshape parameters through a proposed optimization process. AnyTalk enables lip-synced animations across diverse face meshes and blendshape configurations, significantly reducing manual effort and data requirements. We further enhance usability by distilling AnyTalk into a streamlined network, $\\text{AnyTalk}_{RT}$, thereby enabling real-time performance. By leveraging talking-head video generation, our method broadens access to audio-driven speech animation technology for arbitrary characters. The code is publicly available at https://serin-yoon.github.io/projects/anytalk/.",
+      "title": "Grounded-Exo2Ego: Structured Semantic Grounding for Robust Exocentric-to-Egocentric Video Generation",
+      "abstract": "Generating egocentric video from a single exocentric video is an emerging and important topic for AR/VR and physical AI. Compared with conventional novel view synthesis, exo-to-ego generation is a significantly harder task because the standard geometric conditioning becomes highly unreliable under extreme view changes and large unobservable regions. We present Grounded-Exo2Ego, a principled framework that addresses these challenges at both the architectural and data levels. Architecturally, Grounded-Exo2Ego is a dual-branch video diffusion model that couples a geometric anchoring branch, which conditions the generation on the rendering of a 3D reconstruction, with a novel semantic grounding branch, which goes beyond the prevailing geometry-based approach and improves quality by synthesizing challenging regions based on object-level context. Additionally, we found that the overlooked issue of camera-reconstruction misalignment severely undermines exo-to-ego learning. We thus introduce a camera re-localization algorithm that resolves this issue and substantially improves quality across all metrics. We further develop a fully automated synthetic data engine that generates and renders rigged 3D characters in procedurally generated environments. Evaluation on the challenging EgoExo4D dataset shows that our method outperforms recent state-of-the-art approaches by large margins across all metrics. Detailed ablations validate improvements from each of our contributions at both the data and architectural level.",
       "authors": [
-        "Kwan Yun",
-        "Serin Yoon",
-        "Sunjin Jung",
-        "Jung Eun Yoo",
-        "Inyup Lee",
-        "Junyong Noh"
+        "Shengze Wang",
+        "Michael Stengel",
+        "Tianye Li",
+        "Seonwook Park",
+        "Amrita Mazumdar",
+        "Koki Nagano",
+        "Alex Trevithick",
+        "Shalini De Mello"
       ],
-      "url": "http://arxiv.org/abs/2608.16143v1",
+      "url": "http://arxiv.org/abs/2608.20534v1",
       "categories": [
-        "cs.GR",
-        "cs.CV",
-        "cs.MM",
-        "cs.SD"
+        "cs.CV"
       ],
-      "comment": "accepted to TVCG, Project page at https://serin-yoon.github.io/projects/anytalk/",
-      "score": 51,
+      "comment": "website url: https://research.nvidia.com/labs/amri/projects/grounded-exo2ego/",
+      "score": 52,
       "priority": "skim",
-      "summary_cn": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data.",
-      "contribution_cn": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：real-time, video generation, video diffusion",
+      "summary_cn": "Generating egocentric video from a single exocentric video is an emerging and important topic for AR/VR and physical AI.",
+      "contribution_cn": "We present Grounded-Exo2Ego, a principled framework that addresses these challenges at both the architectural and data levels.",
+      "relevance_cn": "匹配研究线：video generation；关键词：video generation, video diffusion；大厂/重点实验室：NVIDIA（机构加分，不替代内容相关性）",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "assessment_source": "heuristic",
+      "major_orgs": [
+        "NVIDIA"
+      ]
     }
   ]
 }
