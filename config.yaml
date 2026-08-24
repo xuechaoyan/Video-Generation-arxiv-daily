@@ -15,6 +15,15 @@ md_gitpage_path: './docs/index.md'
 json_wechat_path: './docs/vg-arxiv-daily-wechat.json'
 md_wechat_path: './docs/wechat.md'
 
+# Daily shortlist settings. The workflow still works without an LLM API key.
+digest:
+  output_dir: './docs/digests'
+  lookback_days: 7
+  candidate_limit: 60
+  llm_candidate_limit: 12
+  top_n: 10
+  must_read_count: 3
+
 # Research tracks related to OmniDreams and FlashDreams
 keywords:
   "Video Generation":

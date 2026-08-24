@@ -33,6 +33,13 @@ jobs:
     - name: Run daily update
       run: python daily_arxiv.py
 
+    - name: Build ranked research digest
+      env:
+        LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+        LLM_MODEL: ${{ vars.LLM_MODEL }}
+      run: python rank_papers.py
+
     - name: Check for changes
       id: verify_diff
       run: |
