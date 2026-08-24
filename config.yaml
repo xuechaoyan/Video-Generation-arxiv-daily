@@ -1,7 +1,6 @@
 # Video generation arXiv tracker customized for paper-lab
 max_results: 30
 
-# publishing flags
 publish_readme: true
 publish_gitpage: false
 publish_wechat: false
@@ -9,7 +8,6 @@ show_badge: false
 update_paper_links: false
 enable_github_search: false
 
-# file paths
 json_readme_path: './docs/vg-arxiv-daily.json'
 md_readme_path: 'README.md'
 json_gitpage_path: './docs/vg-arxiv-daily-web.json'
