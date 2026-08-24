@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T09:31:13+00:00",
+  "generated_at": "2026-08-24T12:12:07+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -31,14 +31,317 @@
       "comment": "",
       "score": 82,
       "priority": "must-read",
-      "summary_cn": "论文提出 Omni-LiveAvatar，旨在解决联合音频-视频扩散模型推理延迟高、生成时长短以及长时间运行时身份、场景和音画同步逐渐漂移的问题。方法分三阶段将 19B 双向 LTX-2 模型蒸馏为少步因果生成器：先进行双向少步蒸馏，再使用轨迹对齐的因果 ODE 回归，最后通过联合滚动强制训练减少误差累积。推理时，模型结合永久保留并周期性重新锚定的首个音视频宏块长期记忆与近期滚动 KV 缓存，以有限内存维持长期一致性；同时使用固定全局提示和随滚动窗口更新的局部语音提示，平滑安排不同时间尺度的语义。实验在 5 秒和 60 秒序列上进行，结果显示模型在单张 H200 上分别达到 19.57 FPS 和 21.99 FPS，并在多项视觉、音频、人体保真度、文本-视频对齐及音画同步指标上优于实时自回归基线。",
-      "contribution_cn": "1. 提出渐进式自回归蒸馏流程，通过双向少步蒸馏、轨迹对齐因果初始化和联合滚动强制，将大型双向联合音频-视频扩散模型转换为少步因果生成器，无需额外的音频汇聚 token、未来音频上下文或外部奖励模型等辅助稳定机制。2. 提出同步音频-视频长短期记忆机制，将首个音视频宏块作为长期身份、场景、音色和跨模态对应关系的稳定锚点，并结合近期滚动 KV 缓存保持动作和语音连续性；通过周期性 RoPE 重新锚定减小位置偏移。3. 提出分层滚动提示规划，将持续性的外观、背景和整体运动置于固定全局提示中，将语音内容分解为随宏块更新的局部提示，从而缓解滚动强制中的语义冲突、语音重叠和模糊问题。4. 构建分钟级实时联合音频-视频数字人生成系统，并通过消融实验验证各训练、记忆和提示规划组件的作用。",
-      "relevance_cn": "与研究重点高度相关。该工作直接研究视频扩散模型的自回归、因果化、流式和长视频生成，将双向多步扩散模型蒸馏为少步因果生成器；联合滚动强制、滚动 KV 缓存和长期记忆对应稀疏上下文利用与缓存复用；有界内存和周期性 RoPE 重新锚定针对长时闭环式生成中的误差和外观漂移；21.99 FPS 的分钟级生成速度也直接涉及实时生成和扩散蒸馏。虽然论文面向音频驱动数字人而非通用动作条件世界模型，但其长期一致性、跨模态状态记忆和持续语义规划机制对交互式视觉世界模型及闭环模拟具有参考价值。",
-      "limitations_cn": "论文的实验主要基于内部的 3.5 万条文本提示和单张 NVIDIA H200 GPU，数据集构成、训练数据偏差以及在其他硬件上的性能未充分说明。分钟级实验主要评估 60 秒序列，尚不能据此确认更长时长下的稳定性。方法依赖 LTX-2 这一 19B 教师模型、固定的宏块与滚动窗口配置，向不同模型规模、分辨率、说话人、语言或更复杂场景的泛化能力未明确验证。论文主要使用自动指标和定性结果，真实交互延迟、资源成本、失败案例以及对开放域实时音频输入的适应能力未充分讨论。除上述范围性限制外，论文未明确说明更系统的局限性。",
+      "summary_cn": "本文提出 Omni-LiveAvatar，旨在解决联合音视频扩散模型推理慢、只能生成短片段以及长时生成容易漂移的问题。方法通过三阶段渐进式蒸馏，将 19B 双向 LTX-2 转换为少步因果生成器；通过保留首个音视频宏块的长期记忆、近期滚动 KV 缓存及周期性 RoPE 重锚定，维持分钟级生成的一致性；通过固定全局提示和随窗口滚动的局部语音提示，协调视觉语义与语音内容。实验在 5 秒和 60 秒生成任务上表明，该方法可在单张 H200 上达到 21.99 FPS，并在视觉、音频、文本对齐、人物保真度和音画同步指标上优于实时自回归基线。",
+      "contribution_cn": "1. 提出渐进式自回归蒸馏流程，依次进行双向少步蒸馏、轨迹对齐的因果初始化和联合滚动强制，将大型双向联合音视频扩散模型转化为少步因果生成器，无需额外稳定机制。2. 提出同步音视频长短期记忆机制，结合永久可见的首个宏块长期记忆、近期滚动 KV 缓存和周期性 RoPE 重锚定，在有限内存下抑制长时漂移并保持音画对齐。3. 提出分层滚动提示规划，将持久的外观、背景和整体运动编码为全局提示，将语音内容划分为随滚动窗口更新的局部提示，从而实现平滑的长时语义演化和提示过渡。4. 在 5 秒和 60 秒音视频数字人生成实验中取得实时速度和较高质量，单张 H200 上相较 LTX-2 达到 33 倍加速。",
+      "relevance_cn": "与研究重点高度相关：该工作直接研究视频扩散模型的实时化、蒸馏、因果自回归生成、流式长视频生成和缓存复用。其联合滚动强制机制在有限窗口内进行双向交互后逐步输出，适用于低延迟流式生成；长短期 KV 记忆和 RoPE 重锚定对应长视频生成中的状态保持与缓存管理；渐进式蒸馏将多步双向扩散模型转换为少步因果模型，直接服务于实时生成。论文聚焦音频驱动数字人，而非动作条件视觉世界模型或闭环环境模拟，因此与后两者的关系主要体现在因果时序建模、持续状态记忆和长时一致性方面。",
+      "limitations_cn": "论文未明确说明系统在更长于 60 秒的视频、不同说话人和场景分布、复杂动作、非英语语音或真实交互闭环中的泛化能力。实验主要基于内部的 3.5 万条文本提示，并在单张 NVIDIA H200 GPU 上报告速度，因此硬件成本和跨硬件可复现性仍需进一步验证。论文也未报告与动作条件视觉世界模型或闭环控制任务相关的评估结果。",
       "assessment_source": "cursor:gpt-5.6-luna",
       "major_orgs": [],
-      "abstract_cn": "联合音频-视频生成模型是沉浸式、交互式数字人生成的基础。然而，现有大多数模型依赖双向注意力和多步去噪，并且只能生成较短片段，因此不适用于长时间的实时交互。我们提出 Omni-LiveAvatar，这是首个面向分钟级实时流式联合音频-视频数字人生成的框架。具体而言，我们提出：（1）渐进式自回归蒸馏流程，在无需辅助稳定机制的情况下，将大型双向联合音频-视频扩散模型迁移为少步自回归生成器；（2）同步音频-视频长短期记忆机制，在有界内存预算下保持全局一致性；（3）分层滚动提示规划策略，实现连贯的语义演化和无缝的提示词过渡。大量实验表明，Omni-LiveAvatar能够实时生成高质量、音画同步的分钟级数字人视频。在速度方面，在单张 NVIDIA H200 GPU 上，相比其教师模型 LTX-2 实现了 33 倍的生成加速；在生成质量方面，在视觉质量、音频质量、跨模态同步和人体保真度等方面均优于加速基线模型。我们的代码已发布于 https://github.com/Aoko955/Omni-LiveAvatar。"
+      "abstract_cn": "联合音视频生成模型是沉浸式、交互式数字人生成的基础。然而，现有大多数模型依赖双向注意力和多步去噪，并且只能生成较短片段，因此不适合长时间的实时交互。我们提出 Omni-LiveAvatar，据我们所知，这是首个能够进行分钟级、实时流式联合音视频数字人生成的框架。具体而言，我们提出：（1）渐进式自回归蒸馏流程，在不使用额外稳定机制的情况下，将大型双向联合音视频扩散模型迁移为少步自回归生成器；（2）同步音视频长短期记忆机制，在有限内存预算下保持全局一致性；（3）分层滚动提示规划策略，实现连贯的语义演化与无缝的提示切换。大量实验表明，Omni-LiveAvatar能够实时生成高质量、音画同步的分钟级数字人视频。在速度方面，在单张 NVIDIA H200 GPU 上，其生成速度相比教师模型 LTX-2 提升了 33 倍；在生成质量方面，它在视觉质量、音频质量、跨模态同步和人类主体保真度等方面均优于加速基线。我们的代码已开源于 https://github.com/Aoko955/Omni-LiveAvatar。"
+    },
+    {
+      "id": "2608.16354",
+      "date": "2026-08-17",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "DriveCache: Action-Aware Caching for Driving World Model Inference",
+      "abstract": "Driving video generation models support autonomous-driving development by predicting controllable future scenes for simulation, planning evaluation, and offline data generation. Diffusion-based driving generators repeatedly evaluate large backbones across denoising steps, which limits generation throughput. Existing diffusion acceleration methods reduce this cost, but general-purpose designs omit driving signals available before generation, such as ego speed and planned trajectories. Experiments across driving motions show that cache tolerance varies with ego translation and rotation, denoising progress, and consecutive reuse length. We propose DriveCache, a training-free, action-aware controller that uses planned motion to allocate reuse across scenes and dynamic programming to place it across denoising steps under a calibrated response budget. A causal drift check refreshes features and replans the remaining schedule when generation departs from calibration. Across three generator configurations, DriveCache improves the overall fidelity-efficiency trade-off over evaluated cache methods. Our code will be publicly available.",
+      "authors": [
+        "Jianchun Yang",
+        "Jian Liang",
+        "Xianda Guo",
+        "Pinhan Fu",
+        "Yanlun Peng",
+        "Conglang Zhang",
+        "Wenke Huang",
+        "Mang Ye"
+      ],
+      "url": "http://arxiv.org/abs/2608.16354v1",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "9 pages, 7 figures, 4 tables",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文研究驾驶视频扩散模型的推理加速问题。作者发现，自车的规划平移和旋转运动能够在去噪开始前预测场景对特征缓存误差的容忍度。DriveCache 使用低运动和转弯运动两个锚点进行免训练校准，根据规划运动为场景分配缓存复用预算，再通过联合建模去噪位置与缓存年龄的响应代价，利用动态规划确定复用时机；推理时还通过因果输入漂移检查拒绝不可靠的复用，并刷新缓存、重新规划剩余步骤。在 Wan2.2 5B、Wan2.2 A14B 和 Epona 上的实验显示，该方法在相近计算量下取得更好的视频保真度、轨迹一致性和效率权衡，并在约 2 倍加速时相较 TeaCache 提升 PSNR。",
+      "contribution_cn": "1. 首次提出并验证将生成前可获得的规划自车运动作为驾驶视频扩散缓存的先验，证明自车平移和旋转能够预测场景级缓存容忍度。2. 提出无需训练的 DriveCache 控制器，利用双运动锚点估计场景级复用预算，建模连续复用产生的联合响应，并通过精确动态规划在去噪步骤中安排复用。3. 引入因果漂移检查，在生成状态偏离校准范围时刷新特征并重新规划未执行的后缀，同时保持已执行前缀不变。4. 在 Wan2.2 5B、Wan2.2 A14B 和 Epona 等多个驾驶视频生成器上验证了更优的质量—效率权衡；在 Wan2.2 A14B 约 2 倍加速时，PSNR 比 TeaCache 高 2.036 dB。",
+      "relevance_cn": "该工作直接对应视频扩散加速、缓存复用、实时生成和动作条件世界模型等研究方向。它利用规划轨迹和自车运动这一动作条件信号，在生成前进行场景自适应的稀疏计算分配，并在去噪过程中通过动态规划和缓存年龄建模降低骨干网络调用次数。因果漂移校验使缓存策略能够根据闭环生成状态进行纠偏，适用于自动驾驶仿真、规划评估和在线预测。方法保持原有生成器权重和采样步骤不变，属于训练无关的推理加速；在实验中最高达到约 1.84 倍（Wan2.2 5B）、1.97 倍（A14B）和 1.89 倍（Epona）的加速，并改善了轨迹质量、ADE 或 DTW 等驾驶相关指标。",
+      "limitations_cn": "论文的校准主要依赖两个运动锚点，并且对超出校准支持范围的场景采用完整推理回退，因此对更复杂、多样或分布外运动的泛化能力有限。实验范围集中于 Wan2.2 5B、Wan2.2 A14B 和 Epona，以及 DrivingGen 和 nuScenes 场景，尚未证明对其他生成架构、数据集或传感器条件的普适性。该方法需要针对每种模型配置进行离线校准，校准在 H20 上约需 4 至 16 分钟，并涉及额外的 Jacobian-vector product 计算。论文还指出，缓存策略必须遵守模型特定的专家边界和可复用区域，因而并非完全通用。除上述实验设置外，论文未明确说明更长时间跨度、极端动作、严重规划误差或真实部署环境中的性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "驾驶视频生成模型通过预测可控的未来场景，为自动驾驶开发提供支持，可用于仿真、规划评估和离线数据生成。基于扩散的驾驶生成器需要在多个去噪步骤中反复运行大型骨干网络，这限制了生成吞吐量。现有扩散加速方法能够降低这一成本，但通用设计忽略了生成前即可获得的驾驶信号，例如自车速度和规划轨迹。针对不同驾驶运动的实验表明，缓存容忍度会随自车平移与旋转、去噪进程以及连续复用长度而变化。我们提出 DriveCache，这是一种无需训练、具备动作感知能力的控制器：它利用规划运动为不同场景分配复用量，并在经过校准的响应预算下，利用动态规划将复用安排到不同去噪步骤中。当生成过程偏离校准状态时，因果漂移检查会刷新特征并重新规划剩余调度。在三种生成器配置上，DriveCache 相较于所评估的缓存方法改善了整体保真度—效率权衡。我们的代码将公开发布。"
+    },
+    {
+      "id": "2608.10519",
+      "date": "2026-08-20",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "SparSTAR: Sparse Attention for SpaceTime AutoRegressive Video Synthesis",
+      "abstract": "InfinityStar extends visual autoregressive generation to video through a sequence of image and clip pyramids. Its changing scale and cross-clip context, however, leave late-scale attention costly and make sparse patterns reused from diffusion or image VAR models unreliable. We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting. At each expensive scale and attention head, SparSTAR scores contiguous key blocks from the current query and key activations, retains required conditioning context, and executes the selected blocks through a forward-only sparse path. We analyze cross-scale consistency within a clip, pattern persistence across clip boundaries, and quality degradation as reuse spans increasingly distant scales. Across these analyses, important key blocks shift, showing that recomputing block selection at each target scale is more reliable than reusing a transferred mask. On 720p text-to-video and image-to-video generation, SparSTAR preserves every token and refinement scale while providing about a 1.6x end-to-end speedup and maintaining VBench and paired-output reconstruction fidelity close to dense InfinityStar.",
+      "authors": [
+        "Jongbeom Lee",
+        "Hyunwoo Yu",
+        "Jincheol Yang",
+        "Jaemin Choi",
+        "Suk-Ju Kang"
+      ],
+      "url": "http://arxiv.org/abs/2608.10519v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 73,
+      "priority": "must-read",
+      "summary_cn": "本文针对基于InfinityStar的时空自回归视频生成中的注意力瓶颈，提出无需训练的SparSTAR动态块稀疏注意力。作者发现跨尺度或跨片段复用注意力模式会造成显著的注意力质量损失，因此在每个高成本尺度和注意力头上，利用当前查询与键激活重新选择连续键块，并通过前向专用的FlexAttention路径执行。SparSTAR仅稀疏化高分辨率后期尺度，不删除令牌、不跳过细化尺度，也不压缩KV缓存。在720p文本到视频和图像到视频实验中，它分别获得约1.60倍和1.62倍加速，同时基本保持稠密模型的VBench表现和重建保真度；在480p十秒视频上也取得了1.31至1.36倍加速。",
+      "contribution_cn": "提出SparSTAR，一种面向STAR视频自回归生成的无需训练、片段感知的块稀疏注意力框架；系统分析片段内跨尺度及片段间注意力模式的一致性，证明直接复用模式会导致明显的注意力质量损失；设计基于当前查询和键激活的逐尺度、逐头聚合QK块选择器，并保留必要的条件上下文；实现仅前向的FastFlex稀疏执行路径，避免构建推理阶段不需要的反向索引；提出按尺度递减的密度调度，并在720p T2V/I2V及多片段视频上评估速度、VBench和稠密输出重建保真度。",
+      "relevance_cn": "该工作直接服务于视频生成和视频自回归生成的加速，尤其涉及长视频、多片段上下文、稀疏注意力和推理时动态模式选择。它针对InfinityStar这类逐尺度、逐片段生成架构，而不是固定分辨率、重复去噪的扩散Transformer；通过每个尺度重新选择键块，减少高分辨率注意力访问，同时保留全部令牌和细化步骤。其720p实验约实现1.6倍端到端加速，且VBench接近稠密基线；还可与关闭CFG分支等方法结合达到2.5倍加速，因此与实时生成和高效长视频生成密切相关。不过，论文并未直接研究动作条件视觉世界模型、闭环交互模拟或流式生成。",
+      "limitations_cn": "论文明确指出：仅评估了InfinityStar这一类模型，模型家族覆盖范围有限；更长的多片段视频生成仍需进一步验证；尚未充分研究块大小、密度调度和片段感知策略的敏感性及独立贡献；稀疏模式与时间一致性的交互仍有待研究；方法不压缩KV缓存，图像金字塔、早期视频尺度和非注意力模块保持不变，因此端到端加速受整体流水线中未优化部分限制；部分加速基线结果直接引用FastSTAR论文，硬件条件不匹配，不能进行严格的速度比较。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "InfinityStar通过一系列图像金字塔和片段金字塔，将视觉自回归生成扩展到视频领域。然而，其变化的尺度和跨片段上下文使后期尺度的注意力计算成本高昂，也使得从扩散模型或图像VAR模型中复用的稀疏模式不再可靠。我们提出SparSTAR，一种针对这一场景设计的、无需训练的块稀疏注意力方法。在每个计算成本较高的尺度和每个注意力头上，SparSTAR根据当前查询与键的激活对连续的键块进行评分，保留必要的条件上下文，并通过仅执行前向计算的稀疏路径处理选中的块。我们分析了片段内部的跨尺度一致性、跨片段边界的模式持续性，以及随着复用跨度延伸到更远尺度而产生的质量下降。在这些分析中，重要的键块会发生变化，这表明在每个目标尺度重新计算块选择，比复用迁移得到的掩码更加可靠。在720p文本到视频和图像到视频生成任务上，SparSTAR保留了所有令牌和细化尺度，同时实现了约1.6倍的端到端加速，并使VBench得分和成对输出重建保真度保持在接近稠密InfinityStar的水平。"
+    },
+    {
+      "id": "2608.18077",
+      "date": "2026-08-18",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+      "abstract": "We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion. This shared visual interface enables generalist world modeling and control by learning action consequences across embodiments, tasks, environments, and video-generation backbones. Our best configuration achieves 90.4% lower robot-motion error and 60.2% lower object-motion error than our action-conditioned baseline, while supporting zero-shot composition and data-efficient adaptation. On the RoboLab benchmark, Hydra-0 achieves a Pearson correlation of r=0.96 between replayed and reference success rates. Finally, we uncover an emergent inverse mode of this interface: a world action model that predicts compatible robot motion from desired object flow transferred from a human demonstration. A trained action head maps the resulting latent features to executable actions without requiring task-specific expert robot demonstrations. Together, these results demonstrate the potential of action flow as a shared control interface connecting heterogeneous training data, open-loop policy evaluation, and robot control.",
+      "authors": [
+        "Hongyu Li",
+        "Bowen Wen",
+        "Xinghao Zhu",
+        "Yixuan Wang",
+        "Yilun Du",
+        "Yunzhu Li",
+        "George Konidaris",
+        "Stan Birchfield",
+        "Soha Pouya",
+        "Chenran Li",
+        "Yan Chang"
+      ],
+      "url": "http://arxiv.org/abs/2608.18077v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "Project page: https://nvidia-isaac.github.io/video_to_data/hydra-0/",
+      "score": 73,
+      "priority": "skim",
+      "summary_cn": "本文提出Hydra-0，以相机图像平面中的可见机器人或物体点轨迹，即动作流，作为跨机器人具身形式的统一动作接口。模型从包含机器人、人手和不同操作设备的多源交互视频中学习，并将动作流注入预训练视频生成骨干网络，以预测动作导致的未来场景。通过自回归分块、KV缓存复用和少步蒸馏，模型支持高效的长时域生成。在多个多具身数据集上，Hydra-0显著降低了机器人和物体运动误差，并表现出零样本迁移和数据高效适应能力。其开环重放成功率与真实参考结果高度一致；此外，逆向世界动作模型还能根据人类示范中的物体运动生成机器人动作，并在一个柔性管道弯曲任务中完成真实机器人执行。",
+      "contribution_cn": "1. 提出运动学接地的图像平面动作流，将可执行机器人命令映射为带可见性信息的相机平面轨迹，并统一表示不同机器人、夹爪和人手的运动。2. 构建跨具身、跨视频生成骨干网络的通用动作流世界模型，结合视频跟踪、语义掩码、几何投影和特征传播进行条件建模。3. 通过多具身中间训练实现零样本迁移和数据高效的任务适应；最佳模型相较Cosmos 2.5动作条件基线将机器人运动误差降低90.40%、物体运动误差降低60.16%。4. 采用因果自回归转换、绝对时间偏移的动作流切片、KV缓存和DMD2少步蒸馏，将生成速度提升至约62帧/秒，达到相对双向教师模型16倍的生成阶段加速。5. 使用Hydra-0进行开环策略评估，在RoboLab上重放成功率与参考成功率达到Pearson相关系数0.96。6. 提出逆向世界动作模型，根据期望物体流推断相容的机器人运动，并通过动作头将潜在特征转换为可执行动作，无需任务特定的专家机器人示范。",
+      "relevance_cn": "该工作直接面向视频生成世界模型和动作条件视频预测，以像素级轨迹作为跨具身的统一视觉动作接口，适合学习机器人动作对场景和物体的视觉后果。它覆盖了研究重点中的动作条件视觉世界模型、机器人控制、开放环仿真和长视频生成；通过自回归因果建模、时间分块、KV缓存复用及少步蒸馏，明确针对长时域和实时生成效率进行了优化。模型还能进行跨人类示范与机器人执行的动作迁移，并用于策略成功率评估，但当前主要验证仍是开环的，尚未实现系统性的闭环交互仿真。",
+      "limitations_cn": "世界动作模型可能出现厘米级的抓取不精确，作者推测有限的深度感知可能是原因之一。生成轨迹中的抓取和接触状态存在歧义，例如无法明确判断物体是否已被成功抓牢。腕部相机实验仅是定性的DROID概念验证，尚未在腕部相机仿真、移动操作或更大范围相机运动场景中进行系统评估。当前评估局限于开环策略评估，闭环评估仍留待未来工作。推理速度结果只统计生成阶段，排除了引导和VAE/像素解码，且使用了较短的三分块时域，因此不代表端到端或长时域部署速度。逆向世界动作模型的真实机器人验证仅展示了一个柔性管道弯曲任务。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [
+        "NVIDIA"
+      ],
+      "abstract_cn": "我们提出Hydra-0，一种以动作流为条件的通用世界模型，将机器人动作表示为像素运动。这一共享视觉接口通过学习跨具身形式、任务、环境和视频生成骨干网络的动作后果，实现通用世界建模与控制。在最佳配置下，与动作条件基线相比，机器人运动误差降低90.4%，物体运动误差降低60.2%，同时支持零样本组合和数据高效适应。在RoboLab基准上，Hydra-0对重放成功率与参考成功率取得了Pearson相关系数r=0.96。最后，我们发现了该接口的一种涌现式逆向模式：世界动作模型能够根据从人类示范中迁移的期望物体流，预测相匹配的机器人运动。训练得到的动作头可将生成的潜在特征映射为可执行动作，而无需特定任务的专家机器人示范。总之，这些结果展示了动作流作为共享控制接口的潜力：它能够连接异构训练数据、开环策略评估和机器人控制。"
+    },
+    {
+      "id": "2607.26694",
+      "date": "2026-08-17",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Visko Orbis 1.0: A Live Model for Real-Time Interactive Long Video Generation",
+      "abstract": "We present Visko Orbis 1.0, a Live Model for real-time, interactive long-video generation. Users can change the prompt at any moment during generation, and the update becomes visible in real time. Visko Orbis 1.0 supports long-form text-to-video, image-to-video, and video continuation, with multilingual prompts and prompt switching while generation is in progress. A bounded multi-scale memory preserves subjects, scenes, and style across chunks, sustaining hour-scale rollouts without evident quality or color drift. Built on a distilled chunk-wise streaming generator and a streaming video upscaler, Visko Orbis 1.0 delivers real-time 4K video generation at 24 FPS using an optimized GPU serving engine. In long-form Arena comparisons, Visko Orbis 1.0 obtains the highest overall-preference and temporal-stability ratings among state-of-the-art real-time interactive video-generation systems.",
+      "authors": [
+        "Xiangbo Gao",
+        "Siyuan Yang",
+        "Ping He",
+        "Mingyang Wu",
+        "Yuheng Wu",
+        "Yushen Zuo",
+        "Jiongze Yu",
+        "Ryan Cui",
+        "Hongyuan Hua",
+        "Devin Ma",
+        "Xiao Jin",
+        "Yubo Yuan",
+        "Qing Yin",
+        "Jie Yang",
+        "Zhengzhong Tu"
+      ],
+      "url": "http://arxiv.org/abs/2607.26694v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "论文提出 Visko Orbis 1.0，将视频生成建模为持续运行、可实时控制的分块自回归视觉流。系统通过事件对齐的数据与训练、有界多尺度记忆、少步流蒸馏、奖励对齐、提示词版本控制、KV 缓存复用、多 GPU 序列并行、渐进式解码和流式超分辨率，实现了文本生成视频、图像生成视频、视频延续及生成中的提示词切换。原生 832×480 生成结果经流式超分辨率提升至 4K，并以 24 FPS 实时输出。论文报告的自动评测、物理合理性评测和人工长视频偏好评测显示，该系统在视觉质量、运动质量、物理 plausibility、总体偏好和长时段稳定性方面具有较强表现，尤其突出长视频连续性。",
+      "contribution_cn": "1. 提出统一的实时视频生成框架，将生成表示为持续的分块潜空间流；用户指令可在分块边界更新，且同一因果延续接口支持 T2V、I2V 和 V2V。2. 构建包含安全与质量筛选、分布再平衡、人工偏好筛选、单事件标注和事件对齐时间标注的多阶段数据与训练流程。3. 设计有界多尺度记忆：近期历史保留较高潜空间分辨率，较旧内容逐步压缩并写入固定容量的学习状态，从而使记忆和单块计算成本不随 rollout 时长增长。4. 提出结合引导蒸馏、轨迹一致性蒸馏、自强制分布匹配、GRPO 风格强化学习及潜空间世界模型评分的少步后训练方法，以降低推理成本并改善视觉、运动、文本视频对齐和物理合理性。5. 设计面向实时服务的系统协同，包括异步提示词编码、版本化状态失效、编译与融合 Transformer 执行、批量大小为一的多 GPU 序列并行、渐进式解码交付，以及参考感知的流式 4K 视频超分辨率。6. 提出内容自适应的长时段漂移稳定化控制，并通过事件级自动指标、物理合理性协议和人工 Arena 评测对完整视频流进行评估。",
+      "relevance_cn": "该工作与研究重点直接相关：它是面向实时生成的蒸馏式、分块流式视频扩散系统，使用因果自回归生成、历史 KV 缓存和有界多尺度记忆支持长视频与持续状态传递；提示词可以在 rollout 期间切换，体现了交互式闭环控制。其潜空间世界模型用于候选未来的预测一致性评分，可改善运动和物体动力学的物理合理性，与动作条件视觉世界模型和闭环模拟方向相近，但论文重点仍是提示词控制的视频生成，并未展示明确的动作输入控制策略或真实环境中的闭环代理实验。编译执行、少步流蒸馏、批量大小为一的序列并行、状态复用和渐进式解码则对应实时生成、蒸馏、稀疏或高效注意力以及缓存复用等方向。系统宣称在报告配置下以 24 FPS 实时输出 4K 视频，并使提示词更新平均在一秒内可见。",
+      "limitations_cn": "评测主要覆盖约 1 至 3 分钟、每个案例包含六个事件的视频；小时级生成主要作为诊断性展示，未提供同等规模的完整定量对比。部分提示词相关指标所使用的提示词套件在不同系统间并不匹配，因此论文明确将这些原始分数视为描述性结果，而非严格的跨系统排名。VBench-2.0 Physics 对 Visko Orbis 1.0 使用结构化 HTML 提示词、对其他系统使用官方英文提示词，比较的是模型与提示词配置的整体效果，并非完全受控的模型比较。人工 Arena 结果报告的是 Elo 点估计，论文未说明置信区间或显著性检验。系统原生生成分辨率为 832×480，4K 输出依赖独立的流式超分辨率模块，且该模块不能补足原生视频中缺失的语义状态。内容自适应漂移控制没有一种组合适用于所有内容类型，未修改路径仍被作为正确性和质量参考。论文未报告完整的计算资源、训练数据规模与来源比例、端到端延迟分解、吞吐成本或能耗。论文未明确说明在真实机器人闭环控制、显式动作条件输入以及更长时间尺度上的系统性失败率。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "我们提出 Visko Orbis 1.0，这是一种用于实时交互式长视频生成的 Live Model。用户可以在生成过程中的任意时刻修改提示词，更新内容会实时呈现在视频中。Visko Orbis 1.0 支持长篇文本生成视频、图像生成视频和视频延续，支持多语言提示词以及生成过程中的提示词切换。一个有界的多尺度记忆模块能够在不同视频块之间保持主体、场景和风格的一致性，使系统可以持续进行小时级生成，同时不出现明显的质量或色彩漂移。该系统建立在经过蒸馏的分块流式生成器和流式视频超分辨率模型之上，并通过优化的 GPU 服务引擎，以每秒 24 帧的速度实时生成 4K 视频。在长视频 Arena 对比中，Visko Orbis 1.0 在当前最先进的实时交互式视频生成系统中获得了最高的总体偏好和时间稳定性评价。"
+    },
+    {
+      "id": "2608.19556",
+      "date": "2026-08-20",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models",
+      "abstract": "Streaming autoregressive diffusion models enable real-time, long-horizon video generation, but their training objectives optimize local frame prediction rather than the geometry and dynamics of a coherent world: long rollouts accumulate geometric drift and degrade into static or unnatural motion. Recent bidirectional approaches address this problem using rewards signals built upon 3D Gaussian-Splatting reconstruction. However, a single rigid 3d reconstruction cannot model a dynamic scene, so this critic penalizes genuine object motion as reconstruction error and is maximized by freezing the video. This shortcut is especially detrimental in the AR setting, where each chunk can propagate an already-static configuration. In this work, we propose Stream4D, which replaces the static critic with a feed-forward 4D reconstruction reward that explicitly models scene dynamics, allowing coherent motion to receive high consistency rewards. To further guide motion magnitude and quality, we add a motion prior that rewards natural scene-flow magnitude while penalizing jitter and non-rigid artifacts. Our final recipe combines these two terms with a lightweight perceptual anchor. Across various autoregressive video backbones and various generation horizons, Stream4D improves 4D reconstruction quality, preserves motion more effectively, and achieves higher human-aligned preference. Project page: https://banyuanhao.github.io/Stream4D/",
+      "authors": [
+        "Yuanhao Ban",
+        "Jiaqi Feng",
+        "Hengguang Zhou",
+        "Xiaohuan Pei",
+        "Justin Cui",
+        "Cho-Jui Hsieh"
+      ],
+      "url": "http://arxiv.org/abs/2608.19556v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 66,
+      "priority": "skim",
+      "summary_cn": "本文研究流式自回归扩散视频模型在长时间生成中的几何漂移、物体身份不一致和运动退化问题。作者指出，基于刚性三维高斯泼溅重建的奖励会把真实物体运动当作误差，从而诱导模型冻结场景。Stream4D 使用 MoVieS 前馈式四维高斯泼溅重建计算动态一致性奖励，并结合目标中心化的运动幅度奖励、运动平滑与局部刚性约束，以及 HPSv2 感知锚点；这些奖励经过独立 z-score 标准化后，通过 DiffusionNFT 优化。实验覆盖 Self-Forcing、Causal-Forcing 和 LongLive 三种骨干网络及约 5 秒和 10.3 秒生成时域，在四维重建、运动保留、自动评价和人工偏好方面整体优于基础模型及静态三维奖励方法。",
+      "contribution_cn": "1. 识别并形式化了蒸馏流式自回归视频模型中的累积四维不一致问题，并将其转化为强化学习优化问题。2. 提出 Stream4D 奖励方案，以动态四维重建一致性、目标中心化的自然运动先验和感知锚点共同约束生成结果。3. 设计了包含运动幅度、高斯运动门控、时间平滑性和局部流场刚性的运动奖励，以避免静态坍缩、过度运动、抖动和融化伪影。4. 在三种蒸馏自回归骨干网络和短、长两种生成时域上验证了方法的可迁移性，四维 PSNR 最高提升 6.76 dB，同时保持运动和整体视频质量。",
+      "relevance_cn": "该工作直接针对视频扩散生成和流式、自回归、长视频生成场景，旨在改善逐片段生成时的误差累积和长期世界一致性。其四维高斯泼溅奖励显式建模几何、相机运动和物体动态，适合动作保持及动态场景建模；运动先验则直接约束运动强度、平滑性与空间一致性。方法在已蒸馏的流式 AR 模型上使用 LoRA 和 DiffusionNFT 进行强化学习，因此与实时生成、视频模型蒸馏和长时域 rollout 优化高度相关。论文还将此类模型视为潜在的视频世界模型，并指出未来可结合显式动作或相机输入用于具身控制，但当前实验并未实现动作条件闭环仿真。",
+      "limitations_cn": "论文明确指出，当前方法依赖预训练的前馈式 4D-GS 重建器和相机估计器，未来需要能够匹配 LongLive 原生时域的流式四维重建器。实验主要覆盖 5 秒和 10.3 秒生成窗口，尚未证明在更长时域上的效果。评测重点是经过筛选的 500 个高运动提示，随机提示上的结果仅在附录中报告，因此对低运动或更广泛场景的泛化证据有限。运动目标 m_nat 由基础模型 rollout 的每片段运动幅度中位数确定，对该校准方式的敏感性只在 Self-Forcing 上进行了实验。四维重建指标的提升并不等同于真实度量几何精度，论文也明确对此进行了限定。方法尚未使用显式动作或相机输入进行训练和评估，因此其对动作条件世界模型及闭环控制的能力仍未验证。论文未明确说明在更大规模模型、更多数据集或真实交互环境中的计算成本与可扩展性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "流式自回归扩散模型能够实现实时、长时域的视频生成，但其训练目标优化的是局部帧预测，而非连贯世界的几何结构与动态变化：长时间展开会累积几何漂移，并退化为静止或不自然的运动。近期的双向方法利用基于三维高斯泼溅重建的奖励信号来解决这一问题。然而，单一的刚性三维重建无法建模动态场景，因此会将真实的物体运动视为重建误差加以惩罚，最终通过冻结视频来最大化奖励。在自回归设置下，这一捷径尤其有害，因为每个片段都可能传播已经静止的场景配置。在本文中，我们提出 Stream4D，以前馈式四维重建奖励取代静态评价器，显式建模场景动态，使连贯运动能够获得较高的一致性奖励。为了进一步引导运动幅度与质量，我们加入运动先验：奖励自然的场景流幅度，同时惩罚抖动和非刚性伪影。最终方案将这两个项与一个轻量级感知锚点结合起来。在多种自回归视频骨干网络和不同生成时域上，Stream4D 提升了四维重建质量，更好地保留运动，并获得了更高的人类一致偏好。项目主页：https://banyuanhao.github.io/Stream4D/"
+    },
+    {
+      "id": "2608.18484",
+      "date": "2026-08-19",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models",
+      "abstract": "Training-free block-sparse attention can accelerate video transformers, but row-wise attention concentration does not by itself specify an executable sparse operator. Queries sharing a block route may have poorly overlapping supports, while retained attention mass alone does not determine the post-softmax error from skipped interactions. We show that partition geometry affects both pooled support and the predictability of the remaining residual from the sparse output. We introduce SparsePR, which combines Response-Coupled Partitioning with Probe-Fitted Residual Reconstruction. Sampled-query key responses form paired K/V groups, whose centroids induce query-response coordinates for shared routing. A small set of exact query rows then calibrates a call-specific affine correction from the sparse output within the output subspace observed in the probe residuals. Across four heterogeneous video generation and world models, SparsePR consistently reduces attention-reconstruction error. Ablations show that probe fitting accounts for most of this reduction, while response-coupled partitioning lowers hard-drop error and improves reconstruction under a finite probe budget. SparsePR preserves generation quality at 22.0-26.0% realized executed-pair density while achieving 1.48x-2.61x end-to-end speedups. Project page: https://pardistaghavi.github.io/SparsePR-website/",
+      "authors": [
+        "Pardis Taghavi",
+        "Reza Langari",
+        "Gaurav Pandey"
+      ],
+      "url": "http://arxiv.org/abs/2608.18484v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "22 pages, 5 figures. Project page: https://pardistaghavi.github.io/SparsePR-website/",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "论文研究视频生成模型和视频世界模型中的免训练块稀疏注意力，指出逐查询稀疏性、保留注意力质量并不能充分刻画共享块路由下的支持集和输出误差。SparsePR 通过当前注意力调用中的响应几何构造 K/V 与查询分区，并利用少量精确探针行拟合稀疏输出到跳过交互残差的仿射映射。实验覆盖 HunyuanVideo、Wan2.2、Cosmos-Predict2.5 和 Cosmos3-Nano，在 22%–26% 实际执行交互密度下接近密集模型质量，实现 1.48 倍–2.61 倍端到端加速。消融结果显示，残差探针拟合是主要的精度收益来源，响应耦合分区则进一步改善路由和重建效果。",
+      "contribution_cn": "1. 系统分析可执行块稀疏注意力中的三个关键依赖：逐查询注意力集中度不决定共享路由支持集，保留注意力质量不等价于较低的 softmax 后输出误差，且分区几何会改变残差对稀疏输出的仿射可表示性。 2. 提出 SparsePR 免训练稀疏注意力框架，其中响应耦合分区利用采样查询下的键响应构造配对 K/V 分组，再由 K/V 质心诱导查询分组。 3. 提出探针拟合残差重建，使用少量覆盖各查询组的精确查询行，在线拟合当前调用专属的仿射残差校正，并将特征相关校正限制在探针残差观测到的输出子空间内。 4. 在四个视频生成和物理世界预测模型上进行包含探针成本与在线开销的精确交互对统计和端到端评测，展示了接近密集基准的质量与显著加速。",
+      "relevance_cn": "与研究重点直接相关。该方法面向视频扩散/视频生成 Transformer 的长时空序列注意力瓶颈，通过块稀疏执行降低二次注意力成本，并在 HunyuanVideo 和 Wan2.2 等生成模型上验证。它还覆盖 Cosmos-Predict2.5 与 Cosmos3-Nano 等物理世界模型，涉及动作或条件驱动世界预测场景中的闭环仿真基础效率。响应耦合分区利用当前调用的注意力响应进行在线路由，适合不同条件和预测阶段产生变化的注意力结构；探针残差重建则补偿被跳过的交互。论文主要聚焦全序列注意力，而非自回归因果生成、KV 缓存复用、流式生成或蒸馏，但其在线稀疏路由和低密度精确执行对实时视频生成与长视频推理具有潜在价值。",
+      "limitations_cn": "论文未明确说明在自回归因果视频生成、流式生成或 KV 缓存压缩场景中的效果；实验主要基于单张 NVIDIA H100，硬件泛化性未得到验证。方法需要在线进行响应分区、路由、置换、探针精确计算和残差拟合，尽管这些开销已计入端到端计时，其在其他硬件或更短序列上的收益可能不同。探针残差仿射模型依赖有限数量的精确查询行和查询组覆盖，无法保证所有未探测查询的残差都能被准确预测。论文仅评估四个模型和有限的分辨率、帧数及推理设置，跨模型、长时长和更高分辨率的稳定性仍需进一步验证。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "免训练块稀疏注意力可以加速视频 Transformer，但逐行注意力集中度本身并不能确定一个可执行的稀疏算子。共享同一块路由的查询，其支持集可能重叠很少；而仅保留的注意力质量也无法决定跳过交互所导致的 softmax 后误差。我们证明，分区几何结构同时影响聚合后的支持集，以及根据稀疏输出预测剩余残差的能力。为此，我们提出 SparsePR，将响应耦合分区与探针拟合残差重建结合起来。采样查询下的键响应形成配对的 K/V 分组，其质心诱导出用于共享路由的查询—响应坐标。随后，少量精确查询行根据探针残差中观测到的输出子空间，从稀疏输出拟合出与当前调用相适应的仿射校正。在四个异构的视频生成和世界模型上，SparsePR 均能稳定降低注意力重建误差。消融实验表明，探针拟合贡献了大部分误差降低效果，而响应耦合分区能够降低直接丢弃交互时的误差，并在有限探针预算下改善重建效果。在实际执行的交互对密度为 22.0%–26.0% 时，SparsePR 能够保持生成质量，同时实现端到端 1.48 倍–2.61 倍加速。"
+    },
+    {
+      "id": "2608.19085",
+      "date": "2026-08-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "DA-WAM: Decision-Aligned Future Latents for Driving World Models",
+      "abstract": "Anticipating how scenes evolve under ego actions is fundamental to safe autonomous driving, yet the full potential of world models for decision-making remains unrealized. The critical challenge lies in ensuring that future modeling is not merely predictive, but decision-informative: the predicted future must directly shape which trajectory is selected. Existing approaches decouple future representation learning from planning optimization, or share predicted states across trajectory candidates, thereby diluting the action-specific consequences that ought to guide selection. To bridge this gap, we propose DA-WAM, a framework that unifies predictive representation learning, action-conditioned future modeling, and trajectory scoring under a single decision-making objective. DA-WAM maintains predictive supervision throughout planner optimization via an online encoder and a stable momentum target, allowing future representations to co-evolve with the driving task. An action-conditioned predictor generates a distinct future latent state per trajectory candidate, which is then evaluated by a future-latent-conditioned factorized scorer. For the expert-matched trajectory, the predicted future latent is supervised by the observed future representation, while safety-critical hard negatives provide additional supervision near planning boundaries. Extensive experiments on NAVSIM-v1 and NAVSIM-v2 demonstrate state-of-the-art performance, while ablations and diagnostic analyses validate the key components.",
+      "authors": [
+        "Ruiguo Zhong",
+        "Benshan Ma",
+        "Xiaolong Chen",
+        "Lang Zhang",
+        "Mingyue Feng",
+        "Yaonong Wang",
+        "Pei Liu",
+        "Jun Ma"
+      ],
+      "url": "http://arxiv.org/abs/2608.19085v2",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "论文提出面向自动驾驶规划的 DA-WAM，通过将预测表示学习、动作条件反事实未来建模和轨迹评分统一到同一决策目标中，解决未来预测与候选轨迹选择脱节的问题。模型使用 LoRA 适配的 V-JEPA 在线编码器和 EMA 目标编码器，为每条候选轨迹生成独立的未来潜表示，并将其与当前场景及动作共同输入因子化评分器，预测碰撞、可行驶区域、进度、碰撞时间和舒适度等因素以及整体效用。由于离线数据只提供专家轨迹对应的真实未来，论文仅对专家匹配候选施加未来表示监督，并利用几何上接近专家但安全性明显更差的困难负样本强化边界判别。在 NAVSIM-v1 和 NAVSIM-v2 上分别取得 93.7 PDMS 和 87.7 EPDMS，消融结果显示候选特定未来、EMA 目标编码器及困难负样本均有贡献。",
+      "contribution_cn": "1. 提出决策对齐的未来潜表示学习，为每条候选轨迹预测独立的动作条件未来，并利用其动作特定后果指导轨迹选择。2. 提出在规划器优化期间持续进行预测表示学习的统一训练框架，使潜空间能够适应驾驶决策目标，而不是在预训练后固定。3. 提出结合专家匹配未来目标与安全关键困难负样本的监督策略，在不将观测未来错误分配给未执行动作的前提下，提升模型区分几何相似但安全结果不同轨迹的能力。4. 在 NAVSIM-v1 和 NAVSIM-v2 上进行实验并通过消融和诊断分析验证主要设计。",
+      "relevance_cn": "论文与动作条件视觉世界模型和闭环模拟高度相关：它针对每个自车候选动作预测对应的未来场景潜状态，并用该状态直接进行轨迹决策。与视频生成或视频扩散不同，论文不生成像素级视频，也未采用扩散采样；其核心是基于 V-JEPA 的潜空间未来预测。候选级未来表示与安全评分可作为闭环驾驶系统中的反事实评估模块，用于比较碰撞、偏离车道和交通冲突等动作后果。在线编码器、动作条件预测器和评分器在推理时仅依赖当前观测与候选轨迹，具有面向实时规划的结构，但论文没有系统报告端到端延迟或吞吐量。",
+      "limitations_cn": "论文明确指出，离线驾驶日志只记录专家执行轨迹及其未来，因此未执行反事实轨迹缺乏真实未来表示监督；困难负样本的监督来自规划指标，而不是观测到的视觉未来。模型依赖外部模拟或规则生成的规划因子和效用标签，并依赖候选轨迹生成器及离线轨迹库。实验主要在 NAVSIM-v1 和 NAVSIM-v2 仿真基准以及摄像头输入上进行，论文未明确说明真实道路部署、跨域泛化和长时域预测能力。模型预测的是约 0.5 秒后的潜状态，论文未明确说明更长时间范围内的预测稳定性。论文未明确说明端到端实时延迟、计算资源需求与实际闭环驾驶表现。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "预测自车动作下场景如何演化，是实现安全自主驾驶的基础。然而，世界模型在决策中的全部潜力仍未得到发挥。关键挑战在于，未来建模不能只具有预测性，还必须能够提供决策信息：预测的未来应直接影响轨迹选择。现有方法要么将未来表示学习与规划优化解耦，要么在不同轨迹候选之间共享预测状态，从而削弱了本应引导轨迹选择的动作特定后果。为弥合这一差距，我们提出 DA-WAM，这是一个在统一决策目标下融合预测表示学习、动作条件未来建模和轨迹评分的框架。DA-WAM 通过在线编码器和稳定的动量目标，在规划器优化过程中持续保持预测监督，使未来表示能够与驾驶任务共同演化。动作条件预测器为每个轨迹候选生成独立的未来潜状态，随后由以未来潜状态为条件的因子化评分器进行评估。对于与专家轨迹匹配的候选，其预测未来潜状态由观测到的未来表示进行监督；同时，安全关键的困难负样本在规划边界附近提供额外监督。在 NAVSIM-v1 和 NAVSIM-v2 上的大量实验表明，该方法取得了当前最优性能；消融实验和诊断分析也验证了各关键组件的作用。"
+    },
+    {
+      "id": "2608.19661",
+      "date": "2026-08-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "World-Model-Grounded LLM Planning for AUV and ASV Navigation Near Offshore Wind Farms",
+      "abstract": "Large language models can turn a natural-language mission into a sequence of robot actions, but they do not have a sense of physics: they cannot judge how long a command should run, or whether it will make the robot drift into an obstacle. We proposed the use of a world model to expand the capabilities of Large Language model-based planners. Our method has three components: a physics-grounded neural world model, a three-phase gradient-based trajectory optimizer, and a Model Predictive Controller (MPC)-style closed-loop replanner with a trust-region guard. The language model decides what to do, and the world model decides how long, whether that means driving eight thrusters through 6 DOF or two differential thrusters through 3 DOF. We evaluate two marine vehicle classes operating near offshore wind infrastructure: a 6-DOF Autonomous Underwater Vehicle (AUV) and a 3-DOF differential-drive Autonomous Surface Vehicle (ASV). In five benchmark missions per platform, both vehicles reach every goal with zero predicted collisions, and both transfer to GazeboSim under ocean current, waves, and thruster dynamics, remaining collision-free and cutting GazeboSim goal-distance error versus the ungrounded baseline by 70-82% (ASV) and roughly 93% (AUV), after a residual fine-tuning pass that separately reduces surrogate rollout Root Mean Square Error (RMSE) by 60% (AUV) and 69% (ASV). For the ASV we further demonstrate a Vision language model (VLM)-assisted semantic-mapping pipeline that extracts obstacles and environmental context from satellite imagery, nautical charts, and forecast Application Programming Interface (API) instead of onboard sensors, reaching 96% navigability accuracy as a drop-in replacement for hand-specified obstacle geometry.",
+      "authors": [
+        "Markus Buchholz",
+        "Ignacio Carlucho",
+        "Yvan R. Petillot"
+      ],
+      "url": "http://arxiv.org/abs/2608.19661v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "This work has been accepted to the IEEE IROS 2026 AQ2UASIM workshop",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "本文提出一种以物理世界模型为基础的LLM海洋机器人规划框架，用于海上风电场附近的AUV和ASV导航。LLM仅生成不带时长的宏动作骨架，混合解析动力学与残差MLP组成的可微世界模型负责优化各动作时长，闭环MPC根据测量状态持续重规划，并通过信任区域机制抑制模型失配导致的异常计划。实验覆盖AUV三维和ASV二维任务，在解析模拟器中均实现无碰撞到达；迁移至GazeboSim后仍显著优于未接地基线。研究还为ASV引入基于卫星图像、航海图和天气海况数据的VLM语义地图流程。",
+      "contribution_cn": "提出适用于6自由度AUV和3自由度差分驱动ASV的物理约束混合世界模型，将Fossen解析动力学与学习残差结合；提出跨平台共享的三阶段轨迹时长优化器，以及带信任区域保护的MPC式闭环重规划器；分析LLM动作骨架的拓扑失败模式，并在ASV提示词中显式施加不可侧移约束；提出从卫星图像、航海图和预报数据中提取障碍物与环境上下文的VLM语义地图流程；在海上风电基础设施周边的多项任务中验证规划效果及向GazeboSim的迁移能力。",
+      "relevance_cn": "论文直接涉及物理世界模型、动作条件状态预测、闭环重规划和基于梯度的轨迹优化，与动作条件视觉世界模型和闭环仿真方向高度相关。其混合动力学模型通过给定机器人状态与宏动作预测后续状态，并用于规划动作持续时间；MPC式反馈机制支持执行中的在线修正。论文不以视频生成、视频扩散、视觉时序生成、因果或自回归视频建模、实时视频生成、蒸馏、稀疏注意力或缓存复用为重点，但其可微世界模型和GazeboSim迁移实验可为面向机器人控制的预测式世界模型研究提供参考。",
+      "limitations_cn": "论文明确指出，优化器只能在LLM给定的固定动作骨架内调整持续时间，无法修复真正错误的拓扑决策；LLM的职责被限定为选择有序宏动作序列，尚未承担数值推理或时间—风险等语义权衡。实验尚未包含真实世界AUV试验或ASV现场部署。世界模型与解析模拟器之间的部分误差来自训练与推理时的离散化差异，GazeboSim迁移仍不等同于真实硬件验证；ASV在GazeboSim中按1米目标距离阈值的成功率仅为20%，且样本量较小、方差较高。论文未明确说明该方法在视频观测输入、长时序生成、实时计算延迟或大规模复杂环境中的表现。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [],
+      "abstract_cn": "大型语言模型可以将自然语言任务转换为一系列机器人动作，但缺乏物理感知能力：它们无法判断指令应持续多久，也无法判断机器人是否会因漂移撞上障碍物。我们提出利用世界模型增强基于大型语言模型的规划器。该方法包含三个部分：物理约束神经世界模型、三阶段基于梯度的轨迹优化器，以及带信任区域保护的模型预测控制（MPC）式闭环重规划器。语言模型决定执行什么，世界模型决定动作持续多久；这一机制既适用于通过8个推进器实现6自由度运动的机器人，也适用于通过两个差分推进器实现3自由度运动的机器人。我们评估了在海上风电基础设施附近运行的两类海洋航行器：6自由度自主水下航行器（AUV）和3自由度差分驱动自主水面航行器（ASV）。在每个平台的5项基准任务中，两种航行器均到达所有目标且预测碰撞次数为零；在考虑海流、海浪和推进器动力学的GazeboSim中，两者也都保持无碰撞，并且相较于未接入世界模型的基线，GazeboSim目标距离误差分别降低了70%—82%（ASV）和约93%（AUV）。经过一次残差微调后，代理滚动预测的均方根误差（RMSE）分别降低了60%（AUV）和69%（ASV）。对于ASV，我们进一步展示了一个视觉语言模型（VLM）辅助的语义地图构建流程：该流程无需机载传感器，而是从卫星图像、航海图和预报应用程序接口（API）中提取障碍物及环境信息，在替代人工指定障碍物几何形状时达到96%的可通航性识别准确率。"
+    },
+    {
+      "id": "2608.20534",
+      "date": "2026-08-20",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "Grounded-Exo2Ego: Structured Semantic Grounding for Robust Exocentric-to-Egocentric Video Generation",
+      "abstract": "Generating egocentric video from a single exocentric video is an emerging and important topic for AR/VR and physical AI. Compared with conventional novel view synthesis, exo-to-ego generation is a significantly harder task because the standard geometric conditioning becomes highly unreliable under extreme view changes and large unobservable regions. We present Grounded-Exo2Ego, a principled framework that addresses these challenges at both the architectural and data levels. Architecturally, Grounded-Exo2Ego is a dual-branch video diffusion model that couples a geometric anchoring branch, which conditions the generation on the rendering of a 3D reconstruction, with a novel semantic grounding branch, which goes beyond the prevailing geometry-based approach and improves quality by synthesizing challenging regions based on object-level context. Additionally, we found that the overlooked issue of camera-reconstruction misalignment severely undermines exo-to-ego learning. We thus introduce a camera re-localization algorithm that resolves this issue and substantially improves quality across all metrics. We further develop a fully automated synthetic data engine that generates and renders rigged 3D characters in procedurally generated environments. Evaluation on the challenging EgoExo4D dataset shows that our method outperforms recent state-of-the-art approaches by large margins across all metrics. Detailed ablations validate improvements from each of our contributions at both the data and architectural level.",
+      "authors": [
+        "Shengze Wang",
+        "Michael Stengel",
+        "Tianye Li",
+        "Seonwook Park",
+        "Amrita Mazumdar",
+        "Koki Nagano",
+        "Alex Trevithick",
+        "Shalini De Mello"
+      ],
+      "url": "http://arxiv.org/abs/2608.20534v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "website url: https://research.nvidia.com/labs/amri/projects/grounded-exo2ego/",
+      "score": 52,
+      "priority": "skim",
+      "summary_cn": "论文研究从单个外视角视频和目标第一人称相机轨迹生成第一人称视频。作者指出，外视角到第一人称视角比常规新视角合成更困难，原因包括单目三维重建在大视角变化下存在错误和空洞，以及训练时真实相机位姿与重建坐标系不一致。为此，论文提出双分支视频扩散模型：几何锚定分支提供三维渲染结构，语义 grounding 分支从外视角提取场景描述、对象短语和分割掩码，并将对象语义按空间区域路由到视频 token。数据方面，论文提出相机重新定位方法以改善渲染与真实视频的对齐，并构建包含程序化场景、可绑定角色和动作的自动合成数据引擎。在 EgoExo4D 上，该方法在图像、视频和对象级指标上均优于 EgoX 及其他基线；消融实验显示，相机重新定位、序列拼接条件、对象 token、空间掩码和合成数据均有贡献。",
+      "contribution_cn": "1. 提出 Grounded-Exo2Ego 双分支视频扩散模型，将几何锚定与空间结构化的对象级语义 grounding 相结合，以修复几何重建失真或缺失区域。2. 提出相机重新定位方法，将真实第一人称相机轨迹调整到单目重建坐标系中，缓解训练时渲染条件与真实视频之间的不对齐。3. 构建全自动合成数据引擎，生成程序化环境、带绑定的三维角色和交互动作，提供准确标注并补充第一人称人际交互数据。4. 在 EgoExo4D 上进行全面评估和消融实验，证明各项架构与数据改进能够提升空间对齐、对象定位、视觉质量和时间一致性。",
+      "relevance_cn": "论文直接涉及视频扩散和视角条件视频生成：模型以外视角视频、三维重建渲染和目标相机轨迹为条件生成第一人称视频。其语义掩码引导的对象级跨注意力、几何条件与语义条件融合，以及对重建缺失区域的上下文补全，与结构化条件控制和视觉世界建模密切相关。相机轨迹条件使其具有一定的可控视角模拟能力，可用于为机器人和具身智能体生成第一人称训练数据。不过，论文主要关注离线的外视角到第一人称视频转换，并未研究闭环动作条件控制、交互式世界模型、实时生成或缓存复用。论文还提到一种用于生成更长视频的短片段自回归微调方向，说明其与长视频和自回归生成存在联系，但这不是主体方法。",
+      "limitations_cn": "视频长度受显存限制，当前方法主要生成较短视频；论文仅提到可采用分块去噪和短片段自回归微调来扩展时长。模型依赖现成的三维重建方法，而遮挡和外视角未观察到的内容难以重建；当第一人称视角中的重建大面积为空时，模型必须大量幻觉式补全，准确性会下降。论文使用第一帧分割掩码并沿时间广播，以降低计算和存储成本；作者指出完整视频分割可能进一步提升效果，但代价更高。即使性能显著优于基线，平均 PSNR 仍低于 20 dB，生成质量仍有较大提升空间。合成数据带来的收益主要在新动作、已见环境等设置中体现，论文未明确说明其对所有分布外场景的泛化程度。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "major_orgs": [
+        "NVIDIA"
+      ],
+      "abstract_cn": "从单个外视角视频生成第一人称视频，是增强现实/虚拟现实和物理人工智能领域一个新兴且重要的课题。与传统的新视角合成相比，外视角到第一人称视角的生成任务更加困难，因为在极端视角变化和大范围不可观测区域下，标准的几何条件会变得非常不可靠。我们提出 Grounded-Exo2Ego，这是一个在架构和数据层面同时应对这些挑战的系统性框架。在架构方面，Grounded-Exo2Ego 是一个双分支视频扩散模型，将几何锚定分支与新的语义 grounding 分支相结合。几何锚定分支根据三维重建的渲染结果对生成过程进行条件约束；语义 grounding 分支则超越现有的几何方法，利用对象级上下文合成具有挑战性的区域，从而提升生成质量。此外，我们发现一个此前被忽视的问题——相机与重建之间的不对齐——会严重削弱外视角到第一人称视角的学习效果。因此，我们引入相机重新定位算法来解决这一问题，并在所有指标上显著提升质量。我们还开发了一个全自动合成数据引擎，用于在程序化生成的环境中生成和渲染带绑定的三维角色。在具有挑战性的 EgoExo4D 数据集上的评估表明，我们的方法在所有指标上都以较大幅度超过近期最先进的方法。详细的消融实验验证了我们在数据和架构层面各项贡献所带来的改进。"
     }
   ],
-  "cursor_summaries_completed": 1
+  "cursor_summaries_completed": 10
 }
