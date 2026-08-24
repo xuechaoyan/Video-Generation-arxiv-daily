@@ -5,6 +5,11 @@ on:
     # Run once per day at 00:00 UTC.
     - cron: '0 0 * * *'
   workflow_dispatch:
+    inputs:
+      max_papers:
+        description: Number of full papers for the Cursor smoke test
+        required: true
+        default: '1'
 
 permissions:
   contents: write
@@ -41,6 +46,7 @@ jobs:
       env:
         CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
         CURSOR_MODEL: ${{ vars.CURSOR_MODEL }}
+        MAX_PAPERS: ${{ github.event_name == 'workflow_dispatch' && inputs.max_papers || '10' }}
       run: |
         if [ -z "$CURSOR_API_KEY" ]; then
           echo "CURSOR_API_KEY is not configured; keeping the rule-only digest."
@@ -49,7 +55,7 @@ jobs:
         python -m pip install cursor-sdk pypdf
         python cursor_summarize.py \
           --digest "docs/digests/$(date -u +'%F').json" \
-          --max-papers 10
+          --max-papers "$MAX_PAPERS"
 
     - name: Check for changes
       id: verify_diff
