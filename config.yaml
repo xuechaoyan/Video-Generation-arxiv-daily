@@ -20,7 +20,8 @@ digest:
   output_dir: './docs/digests'
   lookback_days: 7
   candidate_limit: 60
-  llm_candidate_limit: 12
+  affiliation_scan_limit: 30
+  major_org_bonus: 10
   top_n: 10
   must_read_count: 3
 

@@ -3,38 +3,36 @@
 The scheduled workflow writes two views:
 
 - `README.md`: the complete high-recall paper feed
-- `docs/digests/latest.md`: a shortlist capped at 3 must-read papers and 10
-  papers total
+- `docs/digests/index.md`: dated daily shortlists with 10 papers each
 
 ## Default mode
 
 No additional setup is required. `rank_papers.py` fetches abstracts for recent
-papers, applies deterministic research-track scoring, and creates the digest.
-This fallback keeps the workflow useful if an LLM provider is unavailable.
+papers, checks author affiliations for a bounded major-company bonus, applies
+deterministic research-track scoring, and creates the digest. A company name
+never bypasses the content relevance score.
 
-## Optional Chinese LLM summaries
+## Cursor full-paper summaries
 
 Add the following repository settings under **Settings → Secrets and variables
 → Actions**:
 
-| Type | Name | Required | Default |
-|---|---|---:|---|
-| Secret | `LLM_API_KEY` | Yes | none |
-| Variable | `LLM_BASE_URL` | No | `https://api.deepseek.com` |
-| Variable | `LLM_MODEL` | No | `deepseek-chat` |
+- Repository secret `CURSOR_API_KEY`: a Cursor user API key
+- Repository variable `CURSOR_MODEL`: optional; defaults to `gpt-5.6-luna`
 
-The endpoint must implement the OpenAI-compatible
-`POST /chat/completions` API. The workflow sends only titles, abstracts,
-matching topics, and heuristic scores. Never commit an API key to this
-repository.
+The workflow extracts text from the selected 10 PDFs, excluding references
+where possible and limiting each paper to 100,000 characters. Cursor reads the
+full extracted text, translates the abstract, and writes a Chinese summary,
+contributions, relevance, and supported limitations.
 
-If the request fails, the script logs a warning and publishes the
-rule-generated digest instead of failing the paper update.
+Never commit the API key. If the key, quota, PDF, or model call fails, the
+workflow keeps the rule-generated digest instead of losing the daily update.
 
 ## Reading policy
 
-- **Must-read**: at most 3 papers per run
-- **Skim**: inspect abstract, method figure, and main experiment table
+- **Must-read**: the highest-scoring 3 papers
+- **Skim**: the remaining 7 papers in the model reading budget
 - **Archive**: retained in the full feed for later search
 
-Tune limits in the `digest` section of `config.yaml`.
+The workflow runs once every 24 hours. Each day is stored as
+`docs/digests/YYYY-MM-DD.md`; previous days are retained.

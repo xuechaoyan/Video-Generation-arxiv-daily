@@ -1,7 +1,7 @@
 ## Updated on 2026.08.24
 > Welcome to Video Generation papers! 
 
-> [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
+> [Read the ranked daily research digests](docs/digests/index.md) for the recommended shortlist and relevance notes.
 
 <details>
   <summary>Table of Contents</summary>
