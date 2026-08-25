@@ -1,74 +1,7 @@
 {
-  "generated_at": "2026-08-24T12:19:19+00:00",
+  "generated_at": "2026-08-25T00:26:57+00:00",
   "assessment_mode": "heuristic",
   "papers": [
-    {
-      "id": "2608.13602",
-      "date": "2026-08-17",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "Omni-LiveAvatar: Minute-Level Real-Time Streaming Joint Audio-Video Avatar Generation",
-      "abstract": "Joint audio-video generative models serve as foundation for immersive and interactive digital-human generation. Nevertheless, most existing models rely on bidirectional attention and multi-step denoising and can generate only short clips, making them unsuitable for real-time interaction over extended durations. We present Omni-LiveAvatar, the first framework for minute-level, real-time streaming joint audio-video avatar generation. Specifically, we propose (1) a progressive autoregressive distillation pipeline that transfers a large bidirectional joint audio-video diffusion model into a few-step autoregressive generator without auxiliary stabilization mechanisms; (2) a synchronized audio-video long-short-term memory that preserves global consistency under a bounded memory budget; and (3) a hierarchical rolling prompt planning strategy that enables coherent semantic evolution and seamless prompt transitions. Extensive experiments show that Omni-LiveAvatar generates high-quality, synchronized minute-level avatars in real time. In terms of speed, it achieves a 33$\\times$ generation speedup over its teacher, LTX-2, on a single NVIDIA H200 GPU; in terms of generation quality, it outperforms accelerated baselines across visual quality, audio quality, cross-modal synchronization, and human fidelity. Our code is available at https://github.com/Aoko955/Omni-LiveAvatar.",
-      "authors": [
-        "Lunjie Zhu",
-        "Xingtong Ge",
-        "Fangyu Lin",
-        "Yi Zhang",
-        "Zhening Liu",
-        "Mengfei Li",
-        "Yumeng Zhang",
-        "Guanglu Song",
-        "Yu Liu",
-        "Jun Zhang"
-      ],
-      "url": "http://arxiv.org/abs/2608.13602v2",
-      "categories": [
-        "cs.MM",
-        "cs.CV",
-        "cs.SD"
-      ],
-      "comment": "",
-      "score": 82,
-      "priority": "must-read",
-      "summary_cn": "Joint audio-video generative models serve as foundation for immersive and interactive digital-human generation.",
-      "contribution_cn": "We present Omni-LiveAvatar, the first framework for minute-level, real-time streaming joint audio-video avatar generation.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, autoregressive, streaming, real-time, few-step, distillation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.16354",
-      "date": "2026-08-17",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "DriveCache: Action-Aware Caching for Driving World Model Inference",
-      "abstract": "Driving video generation models support autonomous-driving development by predicting controllable future scenes for simulation, planning evaluation, and offline data generation. Diffusion-based driving generators repeatedly evaluate large backbones across denoising steps, which limits generation throughput. Existing diffusion acceleration methods reduce this cost, but general-purpose designs omit driving signals available before generation, such as ego speed and planned trajectories. Experiments across driving motions show that cache tolerance varies with ego translation and rotation, denoising progress, and consecutive reuse length. We propose DriveCache, a training-free, action-aware controller that uses planned motion to allocate reuse across scenes and dynamic programming to place it across denoising steps under a calibrated response budget. A causal drift check refreshes features and replans the remaining schedule when generation departs from calibration. Across three generator configurations, DriveCache improves the overall fidelity-efficiency trade-off over evaluated cache methods. Our code will be publicly available.",
-      "authors": [
-        "Jianchun Yang",
-        "Jian Liang",
-        "Xianda Guo",
-        "Pinhan Fu",
-        "Yanlun Peng",
-        "Conglang Zhang",
-        "Wenke Huang",
-        "Mang Ye"
-      ],
-      "url": "http://arxiv.org/abs/2608.16354v1",
-      "categories": [
-        "cs.AI",
-        "cs.CV"
-      ],
-      "comment": "9 pages, 7 figures, 4 tables",
-      "score": 74,
-      "priority": "must-read",
-      "summary_cn": "Driving video generation models support autonomous-driving development by predicting controllable future scenes for simulation, planning evaluation, and offline data generation.",
-      "contribution_cn": "We propose DriveCache, a training-free, action-aware controller that uses planned motion to allocate reuse across scenes and dynamic programming to place it across denoising steps under a calibrated response budget.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, driving, simulation, acceleration, cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
     {
       "id": "2608.10519",
       "date": "2026-08-20",
@@ -95,44 +28,6 @@
       "summary_cn": "InfinityStar extends visual autoregressive generation to video through a sequence of image and clip pyramids.",
       "contribution_cn": "We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting.",
       "relevance_cn": "匹配研究线：video generation, streaming video；关键词：autoregressive, sparse attention, video generation, text-to-video, image-to-video, video synthesis",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2607.26694",
-      "date": "2026-08-17",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "Visko Orbis 1.0: A Live Model for Real-Time Interactive Long Video Generation",
-      "abstract": "We present Visko Orbis 1.0, a Live Model for real-time, interactive long-video generation. Users can change the prompt at any moment during generation, and the update becomes visible in real time. Visko Orbis 1.0 supports long-form text-to-video, image-to-video, and video continuation, with multilingual prompts and prompt switching while generation is in progress. A bounded multi-scale memory preserves subjects, scenes, and style across chunks, sustaining hour-scale rollouts without evident quality or color drift. Built on a distilled chunk-wise streaming generator and a streaming video upscaler, Visko Orbis 1.0 delivers real-time 4K video generation at 24 FPS using an optimized GPU serving engine. In long-form Arena comparisons, Visko Orbis 1.0 obtains the highest overall-preference and temporal-stability ratings among state-of-the-art real-time interactive video-generation systems.",
-      "authors": [
-        "Xiangbo Gao",
-        "Siyuan Yang",
-        "Ping He",
-        "Mingyang Wu",
-        "Yuheng Wu",
-        "Yushen Zuo",
-        "Jiongze Yu",
-        "Ryan Cui",
-        "Hongyuan Hua",
-        "Devin Ma",
-        "Xiao Jin",
-        "Yubo Yuan",
-        "Qing Yin",
-        "Jie Yang",
-        "Zhengzhong Tu"
-      ],
-      "url": "http://arxiv.org/abs/2607.26694v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 72,
-      "priority": "skim",
-      "summary_cn": "We present Visko Orbis 1.0, a Live Model for real-time, interactive long-video generation.",
-      "contribution_cn": "We present Visko Orbis 1.0, a Live Model for real-time, interactive long-video generation.",
-      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：interactive, streaming, long video, real-time, video generation, text-to-video",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -288,34 +183,129 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.16143",
-      "date": "2026-08-17",
+      "id": "2608.20065",
+      "date": "2026-08-20",
       "topics": [
-        "Video Generation"
+        "World Models"
       ],
-      "title": "AnyTalk: Speech Animation for Arbitrary Characters Leveraging a Video Generation Model",
-      "abstract": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data. While existing audio-driven 3D speech animation methods rely on character-specific training data or laborious rigging/re-meshing, AnyTalk circumvents these limitations by leveraging recent video diffusion models trained on extensive video datasets. We first adapt a pre-trained video diffusion model to a target character through our Character-specific Fine-tuning (\\textit{CsF}) technique. By fine-tuning on rendered images of the 3D character paired with zeroed-out audio embeddings (representing \"no motion\"), we eliminate the need for animation data while preserving the motion prior of large-scale video diffusion model. We then uplift the resulting talking-head video into a 3D speech animation by estimating blendshape parameters through a proposed optimization process. AnyTalk enables lip-synced animations across diverse face meshes and blendshape configurations, significantly reducing manual effort and data requirements. We further enhance usability by distilling AnyTalk into a streamlined network, $\\text{AnyTalk}_{RT}$, thereby enabling real-time performance. By leveraging talking-head video generation, our method broadens access to audio-driven speech animation technology for arbitrary characters. The code is publicly available at https://serin-yoon.github.io/projects/anytalk/.",
+      "title": "Orthogonal JEPA: Factorized Predictive States for Latent World Models",
+      "abstract": "World models construct latent states that support prediction, planning, and reasoning about an underlying system. Joint-embedding predictive architectures (JEPAs) offer a direct way to learn such states by predicting targets in representation space instead of reconstructing every detail of the observation. Standard JEPAs, however, organize all predictable content through one target embedding and one prediction pathway. In complex systems, this monolithic state can allocate redundant capacity to dominant signals while providing weak or conflicting gradients to less dominant predictive structure. We introduce \\method, a latent world-modeling framework based on orthogonal predictive factorization. Learned basis matrices analyze each target state into multiple components, and a dedicated prediction branch estimates each component from a shared context representation. Predictive regression preserves the factor magnitudes required for state synthesis, an orthogonality objective discourages repeated directions, factor-activity regularization maintains variation in projected targets, and online variance regularization discourages coordinate-wise encoder collapse. Predicted components are synthesized into a complete latent state that can be used by a readout, decoder, planner, or autoregressive rollout. The same predictive-state mechanism applies when the target is temporally future, spatially hidden, or another partial observation of the same system. Experiments on controlled vision, single-cell transcriptomics, longitudinal health records, continuous control, and molecular dynamics evaluate representation quality, forecasting, planning, and long-horizon stability.",
       "authors": [
-        "Kwan Yun",
-        "Serin Yoon",
-        "Sunjin Jung",
-        "Jung Eun Yoo",
-        "Inyup Lee",
-        "Junyong Noh"
+        "Taoyong Cui",
+        "Pheng Ann Heng",
+        "Wanli Ouyang"
       ],
-      "url": "http://arxiv.org/abs/2608.16143v1",
+      "url": "http://arxiv.org/abs/2608.20065v1",
       "categories": [
-        "cs.GR",
-        "cs.CV",
-        "cs.MM",
-        "cs.SD"
+        "cs.LG"
       ],
-      "comment": "accepted to TVCG, Project page at https://serin-yoon.github.io/projects/anytalk/",
-      "score": 51,
+      "comment": "",
+      "score": 50,
       "priority": "skim",
-      "summary_cn": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data.",
-      "contribution_cn": "We present AnyTalk, a novel method for generating 3D speech animations for arbitrary characters without requiring any animation data.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：real-time, video generation, video diffusion",
+      "summary_cn": "World models construct latent states that support prediction, planning, and reasoning about an underlying system.",
+      "contribution_cn": "We introduce \\method, a latent world-modeling framework based on orthogonal predictive factorization.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, autoregressive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.20974",
+      "date": "2026-08-21",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving",
+      "abstract": "Video Joint Embedding Predictive Architecture (V-JEPA) learns powerful spatiotemporal representations from video through self-supervised latent feature prediction. However, V-JEPA is built around random-mask completion and deterministic regression, making it fundamentally ill-suited for autonomous driving planning that demands future-directed prediction tightly coupled with action. To address this, we rethink the V-JEPA paradigm and present WA-JEPA, a V-JEPA-native world-action model designed for autonomous driving planning. Instead of random spatiotemporal masking, WA-JEPA employs hybrid future-masked pre-training, where the model infers future latents from observed context. Departing from deterministic regression, we recast future prediction as conditional flow matching over latent futures, which substantially improves the model's ability to generate plausible future latents for downstream planning. Finally, a joint future-action predictor is proposed to denoise future scene tokens and ego trajectories together in a unified spatiotemporal latent space, allowing action supervision to directly shape planning-relevant world representations. Pre-trained on nuPlan videos and fine-tuned on NAVSIM, WA-JEPA reaches 91.7 EPDMS on NAVSIM-v2, surpassing the strongest end-to-end and world-action baselines by 1.6 and 1.3 EPDMS, and, without HUGSIM-specific fine-tuning, attains the best HD-Score of 0.4462 on the closed-loop HUGSIM benchmark under the same evaluation protocol. These results validate V-JEPA-native world-action modeling as a powerful and scalable paradigm for autonomous driving planning. Code is available at https://github.com/AFARI-Research/WA-JEPA.",
+      "authors": [
+        "Xinlin Wang",
+        "Yujiao Xiang",
+        "Yuheng Zhou",
+        "Jingqi Wang",
+        "Minqing Huang",
+        "Jiajie Huang",
+        "Dongxu Wei",
+        "Tingguang Zhou",
+        "Xiyang Wang",
+        "Gong Chen",
+        "Zhi Xu",
+        "Feiyang Tan",
+        "Hangning Zhou",
+        "Mu Yang"
+      ],
+      "url": "http://arxiv.org/abs/2608.20974v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 49,
+      "priority": "skim",
+      "summary_cn": "Video Joint Embedding Predictive Architecture (V-JEPA) learns powerful spatiotemporal representations from video through self-supervised latent feature prediction.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：closed-loop, driving",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.20111",
+      "date": "2026-08-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Planning-Oriented End-to-End Autonomous Driving: Architectures, Evaluation, and Emerging Paradigms",
+      "abstract": "End-to-end autonomous driving has evolved from camera-to-control regression toward planning-oriented systems that use structured representations, trajectory-level outputs, and increasingly realistic evaluation protocols. This survey reviews this transition across behavior cloning, conditional imitation learning, privileged distillation, BEV and vectorized planning, unified perception-prediction-planning architectures, world-model-based planners, and vision-language-action systems. We argue that the key distinction in modern end-to-end driving is not whether intermediate representations are used, but whether they are learned, supervised, and evaluated to support safe, feasible, and route-compliant planning. To organize the literature, we synthesize existing methods along four axes: input representation, planning output, supervision signal, and evaluation protocol. We further examine the benchmark shift from open-loop trajectory matching to closed-loop simulation, non-reactive real-log evaluation, long-tail testing, and human-preference-aware metrics. Our analysis highlights that architectural progress is difficult to interpret without benchmark-consistent evaluation, and that displacement-based open-loop metrics alone provide limited evidence for safe and human-aligned driving. We conclude with open challenges in uncertainty-aware planning, learner-expert mismatch, runtime safety assurance, language-action grounding, world-model validation, and reproducible benchmarking.",
+      "authors": [
+        "Yanchen Guan",
+        "Xingcheng Liu",
+        "Bin Rao",
+        "Chengyue Wang",
+        "Guofa Li",
+        "Yunjian Li",
+        "Lishengsa Yue",
+        "Zhiyong Cui",
+        "Chengzhong Xu",
+        "Zhenning Li"
+      ],
+      "url": "http://arxiv.org/abs/2608.20111v1",
+      "categories": [
+        "cs.RO",
+        "cs.ET"
+      ],
+      "comment": "",
+      "score": 46,
+      "priority": "archive",
+      "summary_cn": "End-to-end autonomous driving has evolved from camera-to-control regression toward planning-oriented systems that use structured representations, trajectory-level outputs, and increasingly realistic evaluation protocols.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：closed-loop, driving, simulation, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.17769",
+      "date": "2026-08-18",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction",
+      "abstract": "The integration of sensing, communication, and intelligence is becoming a key enabler for sixth generation (6G) wireless systems, where intelligent terminals are expected to simultaneously support efficient link establishment and reliable environmental sensing. However, existing studies mainly exploit sensing information or communication information to address a single task, such as channel prediction or environment reconstruction. Motivated by the shared dependence of optical and radio-frequency signals on the surrounding environment, we propose the electromagnetic world model (EMWM), the first unified framework for joint environment reconstruction and channel prediction. EMWM learns a common electromagnetic representation with the potential to provide a modeling foundation for 6G tasks. Specifically, partial channel state information (CSI) and multi-view red-green-blue (RGB) images are encoded into CSI and visual tokens and jointly processed by a hierarchical world-model backbone with local and global aggregation. Based on the learned representation, a mixture-of-experts (MoE)-based CSI prediction head reconstructs the complete CSI, while a depth prediction head estimates multi-view depth maps that are further converted into three-dimensional (3D) point clouds. Moreover, a large-scale multi-modal dataset is constructed based on a campus digital twin. Experimental results show that EMWM outperforms conventional neural network and large language model (LLM) baselines in both CSI prediction and environment reconstruction, achieving a squared generalized cosine similarity (SGCS) of 0.9699 for CSI prediction while demonstrating robustness across different signal-to-noise ratio (SNR) conditions and zero-shot generalization at 28 GHz.",
+      "authors": [
+        "Yizhu Zhao",
+        "Li Yu",
+        "Jianhua Zhang",
+        "Yuxiang Zhang",
+        "Zhen Zhang",
+        "Guangyi Liu"
+      ],
+      "url": "http://arxiv.org/abs/2608.17769v1",
+      "categories": [
+        "eess.SP"
+      ],
+      "comment": "",
+      "score": 45,
+      "priority": "archive",
+      "summary_cn": "The integration of sensing, communication, and intelligence is becoming a key enabler for sixth generation (6G) wireless systems, where intelligent terminals are expected to simultaneously support efficient link establishment and reliable environmental sensing.",
+      "contribution_cn": "Motivated by the shared dependence of optical and radio-frequency signals on the surrounding environment, we propose the electromagnetic world model (EMWM), the first unified framework for joint environment reconstruction and channel prediction.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
