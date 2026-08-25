@@ -17,13 +17,16 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-24**|**FixAnything: 3D-Consistent Rendering Refinement via Video Generative Priors**|Khiem Vuong et.al.|[2608.23549](http://arxiv.org/abs/2608.23549)|null|
+|**2026-08-24**|**Loopy: Seamless Video Loop Generation via Anchored Looping Shift of Positional Embedding**|Haotian Dong et.al.|[2608.23090](http://arxiv.org/abs/2608.23090)|null|
+|**2026-08-22**|**GaussVid: Sparse-View Gaussian Splatting with 3D-Aware Video Diffusion Priors**|Xinhui Liu et.al.|[2608.21849](http://arxiv.org/abs/2608.21849)|null|
 |**2026-08-21**|**MotionPhys: Detecting AI-Generated Videos via Physical Consistency of Optical-Flow Trajectories**|Haojin He et.al.|[2608.20770](http://arxiv.org/abs/2608.20770)|null|
 |**2026-08-21**|**Identity-Preserving Text-to-Video Generation via Agentic Enhancement and Semantic Repair**|Jiayi Gao et.al.|[2608.20749](http://arxiv.org/abs/2608.20749)|null|
 |**2026-08-20**|**Grounded-Exo2Ego: Structured Semantic Grounding for Robust Exocentric-to-Egocentric Video Generation**|Shengze Wang et.al.|[2608.20534](http://arxiv.org/abs/2608.20534)|null|
 |**2026-08-20**|**4DAnyone: Create Anyone in 4D from a Casual Monocular Video**|Yudong Jin et.al.|[2608.20335](http://arxiv.org/abs/2608.20335)|null|
 |**2026-08-20**|**DreamHand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery**|Yufei Liu et.al.|[2608.20308](http://arxiv.org/abs/2608.20308)|null|
 |**2026-08-20**|**AvatarDynamizer: From Static to Dynamic Human Avatars via Generative Dynamic Textures**|Guoxing Sun et.al.|[2608.19900](http://arxiv.org/abs/2608.19900)|null|
-|**2026-08-20**|**VGI-BENCH: Probing Visual Intelligence in Video Generation Models**|Xuan He et.al.|[2608.19583](http://arxiv.org/abs/2608.19583)|null|
+|**2026-08-24**|**VGI-Bench: Probing Visual Intelligence in Video Generation Models**|Xuan He et.al.|[2608.19583](http://arxiv.org/abs/2608.19583)|null|
 |**2026-08-20**|**VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation**|Yinming Huang et.al.|[2608.18607](http://arxiv.org/abs/2608.18607)|null|
 |**2026-08-19**|**Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models**|Pardis Taghavi et.al.|[2608.18484](http://arxiv.org/abs/2608.18484)|null|
 |**2026-08-18**|**SemComp-Bench: Benchmarking Semantic Task Completion in Video Generation**|Keyu Tu et.al.|[2608.17426](http://arxiv.org/abs/2608.17426)|null|
@@ -1342,12 +1345,33 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-24**|**ReWorld: An Interactive World Model with Long-Horizon Memory**|Zhifei Chen et.al.|[2608.23565](http://arxiv.org/abs/2608.23565)|null|
+|**2026-08-24**|**Correcting a learned physical invariant improves world-model rollouts**|Richard Bao et.al.|[2608.23526](http://arxiv.org/abs/2608.23526)|null|
+|**2026-08-24**|**GeoWAM: Visual Geometry World Action Models for Autonomous Driving**|Yiren Lu et.al.|[2608.23486](http://arxiv.org/abs/2608.23486)|null|
+|**2026-08-24**|**Reward-Free Continual Adaptation for Resilient Space Robots**|Andrej Orsula et.al.|[2608.23452](http://arxiv.org/abs/2608.23452)|null|
+|**2026-08-24**|**Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds**|Nan Duan et.al.|[2608.23383](http://arxiv.org/abs/2608.23383)|null|
+|**2026-08-24**|**Future Querying: Can LLMs Serve as Implicit Medical World Models?**|Siri Willems et.al.|[2608.23248](http://arxiv.org/abs/2608.23248)|null|
+|**2026-08-24**|**EchoWM: Open and Enterable Omnimodal World Models**|Songchun Zhang et.al.|[2608.23189](http://arxiv.org/abs/2608.23189)|null|
+|**2026-08-24**|**From Generation to Simulation: How Far Are World Models from Being True Simulators?**|Tong Wang et.al.|[2608.23070](http://arxiv.org/abs/2608.23070)|null|
+|**2026-08-24**|**LpWM: A Case for Sparse Representations in World Models**|Yilun Kuang et.al.|[2608.22764](http://arxiv.org/abs/2608.22764)|null|
+|**2026-08-24**|**MOSH-WM: Mask-Grounded Soft-Hamiltonian Dynamics for Object-Centric World Models**|Zhekai Wang et.al.|[2608.22750](http://arxiv.org/abs/2608.22750)|null|
+|**2026-08-24**|**On the feasibility of model-based feedback control of vertical instability growth rate using out-vessel coils in ARC-like scenarios**|Arunav Kumar et.al.|[2608.22677](http://arxiv.org/abs/2608.22677)|null|
+|**2026-08-23**|**Mol-JEPA: A multimodal Joint Embedding Predictive Architecture for Molecules**|Florian Rottach et.al.|[2608.22642](http://arxiv.org/abs/2608.22642)|null|
+|**2026-08-23**|**Where World Models Break: Natural-Input Failure Discovery**|Zhanpeng Shi et.al.|[2608.22421](http://arxiv.org/abs/2608.22421)|null|
+|**2026-08-23**|**LD4WAM: Learning Latent Dynamics from Human Videos for World Action Models**|Zhenhao Shen et.al.|[2608.22403](http://arxiv.org/abs/2608.22403)|null|
+|**2026-08-23**|**WAM-OPD: On-Policy Distillation for World Action Models**|Liuhaichen Yang et.al.|[2608.22364](http://arxiv.org/abs/2608.22364)|null|
+|**2026-08-23**|**Tracing the Unlabeled Storm: Cross-Variable Transfer in a Lagrangian Atmospheric JEPA Framework**|K M Anirudh et.al.|[2608.22358](http://arxiv.org/abs/2608.22358)|null|
+|**2026-08-23**|**Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning**|Juntao Cheng et.al.|[2608.22294](http://arxiv.org/abs/2608.22294)|null|
+|**2026-08-23**|**DreamMimic: Learning Visuomotor Whole-Body Loco-Manipulation via World Model**|Jie Yin et.al.|[2608.22278](http://arxiv.org/abs/2608.22278)|null|
+|**2026-08-23**|**On the Capability Separation Between World-Model Policy Learning and Imitated World-Action Models**|Yang Yu et.al.|[2608.22197](http://arxiv.org/abs/2608.22197)|null|
+|**2026-08-22**|**Inferring Action from Future Latent State for Robotic Manipulation**|Fenghao Lei et.al.|[2608.22067](http://arxiv.org/abs/2608.22067)|null|
+|**2026-08-21**|**Reading the Room: Implicit Confusion Encoding in Recurrent World Model States**|Donald Aadithiyan et.al.|[2608.21582](http://arxiv.org/abs/2608.21582)|null|
 |**2026-08-21**|**CIVA: Critic-Induced Value-Subspace Attacks on Visual World-Model Agents**|Jiancheng Wang et.al.|[2608.21114](http://arxiv.org/abs/2608.21114)|null|
 |**2026-08-21**|**AudioWorldSim: Realistic Binaural Audio Datasets For World Models**|Luis Vitor Zerkowski et.al.|[2608.21075](http://arxiv.org/abs/2608.21075)|null|
 |**2026-08-21**|**WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving**|Xinlin Wang et.al.|[2608.20974](http://arxiv.org/abs/2608.20974)|null|
 |**2026-08-21**|**Graph-Operator World Models for Morphology-Parameter Generalization in Continuous Control**|Xu Yang et.al.|[2608.20936](http://arxiv.org/abs/2608.20936)|null|
 |**2026-08-21**|**IMU-Free Body-Frame State Estimation with Sparse Scene Flow for Quadcopters**|Daniel Grønhaug et.al.|[2608.20891](http://arxiv.org/abs/2608.20891)|null|
-|**2026-08-21**|**ForeTime-VLA: Causal Future-Token Distillation from a World Action Model for Conveyor-Belt Manipulation**|Siyuan Ma et.al.|[2608.20735](http://arxiv.org/abs/2608.20735)|null|
+|**2026-08-24**|**ForeTime-VLA: Causal Future-Token Distillation from a World Action Model for Conveyor-Belt Manipulation**|Siyuan Ma et.al.|[2608.20735](http://arxiv.org/abs/2608.20735)|null|
 |**2026-08-21**|**ResiliFlow: An Open Transport World Model for Infrastructure Perception and Disaster Resilience**|Junxiang Xu et.al.|[2608.20709](http://arxiv.org/abs/2608.20709)|null|
 |**2026-08-20**|**RISE: Adaptive Imagination for World Action Models**|Hongbo Lu et.al.|[2608.20430](http://arxiv.org/abs/2608.20430)|null|
 |**2026-08-20**|**Towards Surgical World-Action Modeling: A Preliminary Joint Visual-Trajectory Forecasting for Surgical Motion Planning**|Weiliang Huang et.al.|[2608.20284](http://arxiv.org/abs/2608.20284)|null|
@@ -1379,6 +1403,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-16**|**EditStream: A Unified Autoregressive Framework for Interactive Video Generation and Editing**|Yuqian Zhou et.al.|[2608.21424](http://arxiv.org/abs/2608.21424)|null|
 |**2026-08-21**|**InfinityEdit: Infinite Video Editing with a Lightweight Edit-Ignition Adapter**|Yunze Tong et.al.|[2608.20910](http://arxiv.org/abs/2608.20910)|null|
 |**2026-08-20**|**Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models**|Yuanhao Ban et.al.|[2608.19556](http://arxiv.org/abs/2608.19556)|null|
 |**2026-08-17**|**SIGMA-Lane: Scale-pyramId Gated MAmba for Temporally Consistent Video Lane Detection**|Tiancheng Zhang et.al.|[2608.16338](http://arxiv.org/abs/2608.16338)|null|

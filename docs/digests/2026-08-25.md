@@ -1,11 +1,21 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-08-25T00:26:57+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-08-25T12:19:50+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
 
-### 1. [SparSTAR: Sparse Attention for SpaceTime AutoRegressive Video Synthesis](http://arxiv.org/abs/2608.10519v2)
+### 1. [ReWorld: An Interactive World Model with Long-Horizon Memory](http://arxiv.org/abs/2608.23565v1)
+
+- **评分**：74/100
+- **作者**：Zhifei Chen, Luozhou Wang, Guibao Shen et al.
+- **方向**：World Models
+- **摘要摘录**：An interactive world model must follow the user's actions, remember the places it has shown, and stream in real time.
+- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
+- **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：world model, interactive, streaming, real-time, distillation, cache
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 2. [SparSTAR: Sparse Attention for SpaceTime AutoRegressive Video Synthesis](http://arxiv.org/abs/2608.10519v2)
 
 - **评分**：73/100
 - **作者**：Jongbeom Lee, Hyunwoo Yu, Jincheol Yang et al.
@@ -17,7 +27,17 @@
 
 ## 快速浏览
 
-### 1. [Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models](http://arxiv.org/abs/2608.19556v1)
+### 1. [DreamMimic: Learning Visuomotor Whole-Body Loco-Manipulation via World Model](http://arxiv.org/abs/2608.22278v1)
+
+- **评分**：71/100
+- **作者**：Jie Yin, Xingyu Lai
+- **方向**：World Models
+- **摘要摘录**：Vision-based whole-body loco-manipulation on humanoid robots is challenging due to partial observability, contact-rich dynamics, and the difficulty of learning long-horizon behaviors from high-dimensional visual inputs.
+- **核心贡献**：We present \href{https://github.com/DreamMimic/DreamMimic}{DreamMimic}, a framework that distills privileged teacher policies into vision-based humanoid controllers via world-model-assisted distillation.
+- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, distillation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 2. [Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models](http://arxiv.org/abs/2608.19556v1)
 
 - **评分**：66/100
 - **作者**：Yuanhao Ban, Jiaqi Feng, Hengguang Zhou et al.
@@ -27,7 +47,7 @@
 - **与你课题的关系**：匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, real-time, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models](http://arxiv.org/abs/2608.18484v1)
+### 3. [Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models](http://arxiv.org/abs/2608.18484v1)
 
 - **评分**：63/100
 - **作者**：Pardis Taghavi, Reza Langari, Gaurav Pandey
@@ -37,7 +57,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, sparse attention, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [DA-WAM: Decision-Aligned Future Latents for Driving World Models](http://arxiv.org/abs/2608.19085v2)
+### 4. [DA-WAM: Decision-Aligned Future Latents for Driving World Models](http://arxiv.org/abs/2608.19085v2)
 
 - **评分**：63/100
 - **作者**：Ruiguo Zhong, Benshan Ma, Xiaolong Chen et al.
@@ -47,17 +67,27 @@
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, driving
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 4. [Hydra-0: Action Flow for Generalist World Modeling and Control](http://arxiv.org/abs/2608.18077v1)
+### 5. [GeoWAM: Visual Geometry World Action Models for Autonomous Driving](http://arxiv.org/abs/2608.23486v1)
 
-- **评分**：63/100
-- **作者**：Hongyu Li, Bowen Wen, Xinghao Zhu et al.
+- **评分**：57/100
+- **作者**：Yiren Lu, Xin Ye, Jiaming Liu et al.
 - **方向**：World Models
-- **摘要摘录**：We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.
-- **核心贡献**：We introduce Hydra-0, a generalist world model conditioned on action flow, which represents robot actions as pixel motion.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, efficient
+- **摘要摘录**：World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving.
+- **核心贡献**：Building on this insight, we introduce \textbf{GeoWAM}, a visual geometry world action model for autonomous driving.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, closed-loop, driving
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 5. [World-Model-Grounded LLM Planning for AUV and ASV Navigation Near Offshore Wind Farms](http://arxiv.org/abs/2608.19661v1)
+### 6. [Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning](http://arxiv.org/abs/2608.22294v1)
+
+- **评分**：57/100
+- **作者**：Juntao Cheng, Jingkai Wang, Yijun Shen et al.
+- **方向**：World Models
+- **摘要摘录**：World models for physical interaction are typically trained to predict future observations or latent features; however, a planning-oriented model must answer a fundamentally different question: whether a candidate action produces a task-consistent future while preserving essential relations.Monolithic state representations obscure the underlying entities, while standard instance-level object slots merely identify \emph{what} is present without specifying \emph{what role} each entity plays in the task context.
+- **核心贡献**：To bridge this gap, we present the Semantically Rich World Model (SR-WM), a task-conditioned world model structured around five functional roles: gripper, target, goal, relation, and phase.Within SR-WM, a visual entity encoder extracts soft entity hypotheses from pretrained patch features, allowing segmentation masks to serve as optional proposal priors without mandating them as required state representations or inference inputs.A role binder subsequently maps these hypotheses to task-specific roles, while an ac...
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, simulation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 7. [World-Model-Grounded LLM Planning for AUV and ASV Navigation Near Offshore Wind Farms](http://arxiv.org/abs/2608.19661v1)
 
 - **评分**：57/100
 - **作者**：Markus Buchholz, Ignacio Carlucho, Yvan R. Petillot
@@ -67,44 +97,12 @@
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, closed-loop, driving
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 6. [Orthogonal JEPA: Factorized Predictive States for Latent World Models](http://arxiv.org/abs/2608.20065v1)
+### 8. [Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds](http://arxiv.org/abs/2608.23383v1)
 
-- **评分**：50/100
-- **作者**：Taoyong Cui, Pheng Ann Heng, Wanli Ouyang
+- **评分**：56/100
+- **作者**：Nan Duan, Haoyang Huang, Weiyang Jin et al.
 - **方向**：World Models
-- **摘要摘录**：World models construct latent states that support prediction, planning, and reasoning about an underlying system.
-- **核心贡献**：We introduce \method, a latent world-modeling framework based on orthogonal predictive factorization.
-- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, autoregressive
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 7. [WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving](http://arxiv.org/abs/2608.20974v1)
-
-- **评分**：49/100
-- **作者**：Xinlin Wang, Yujiao Xiang, Yuheng Zhou et al.
-- **方向**：World Models
-- **摘要摘录**：Video Joint Embedding Predictive Architecture (V-JEPA) learns powerful spatiotemporal representations from video through self-supervised latent feature prediction.
-- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
-- **与你课题的关系**：匹配研究线：world model；关键词：closed-loop, driving
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-## 低优先级 / 归档
-
-### 1. [Planning-Oriented End-to-End Autonomous Driving: Architectures, Evaluation, and Emerging Paradigms](http://arxiv.org/abs/2608.20111v1)
-
-- **评分**：46/100
-- **作者**：Yanchen Guan, Xingcheng Liu, Bin Rao et al.
-- **方向**：World Models
-- **摘要摘录**：End-to-end autonomous driving has evolved from camera-to-control regression toward planning-oriented systems that use structured representations, trajectory-level outputs, and increasingly realistic evaluation protocols.
-- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：closed-loop, driving, simulation, distillation
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 2. [Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction](http://arxiv.org/abs/2608.17769v1)
-
-- **评分**：45/100
-- **作者**：Yizhu Zhao, Li Yu, Jianhua Zhang et al.
-- **方向**：World Models
-- **摘要摘录**：The integration of sensing, communication, and intelligence is becoming a key enabler for sixth generation (6G) wireless systems, where intelligent terminals are expected to simultaneously support efficient link establishment and reliable environmental sensing.
-- **核心贡献**：Motivated by the shared dependence of optical and radio-frequency signals on the surrounding environment, we propose the electromagnetic world model (EMWM), the first unified framework for joint environment reconstruction and channel prediction.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, efficient
+- **摘要摘录**：Video generation is progressing beyond isolated clips toward long-form narratives and interactive worlds, requiring models to preserve identities, follow user controls, and remain stable over extended rollouts.
+- **核心贡献**：We present JoyAI-Echo-1.5, a unified audio-visual generation system with two purpose-built variants.
+- **与你课题的关系**：匹配研究线：efficient generation, video generation；关键词：interactive, few-step, efficient, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
