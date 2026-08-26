@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-08-26T00:27:51+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-08-26T12:21:47+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
@@ -15,14 +15,14 @@
 - **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：world model, interactive, streaming, real-time, distillation, cache
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [SparSTAR: Sparse Attention for SpaceTime AutoRegressive Video Synthesis](http://arxiv.org/abs/2608.10519v2)
+### 2. [NVIDIA Cosmos-H-Dreams: Real-Time Generative Physics Simulation for Surgical Robotics](http://arxiv.org/abs/2608.24199v1)
 
-- **评分**：73/100
-- **作者**：Jongbeom Lee, Hyunwoo Yu, Jincheol Yang et al.
-- **方向**：Video Generation, Autoregressive and Streaming Video
-- **摘要摘录**：InfinityStar extends visual autoregressive generation to video through a sequence of image and clip pyramids.
-- **核心贡献**：We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting.
-- **与你课题的关系**：匹配研究线：video generation, streaming video；关键词：autoregressive, sparse attention, video generation, text-to-video, image-to-video, video synthesis
+- **评分**：72/100
+- **作者**：Javier Gamazo Tejero, Lukas Zbinden, Keyur Sheth et al.
+- **方向**：World Models
+- **摘要摘录**：Generative simulation for surgical robotics still lacks real-time interaction.
+- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
+- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, interactive, simulation, streaming
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
 ## 快速浏览
@@ -37,47 +37,27 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, distillation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [Stream4D: 4D-Consistency for Streaming Autoregressive Diffusion Video Models](http://arxiv.org/abs/2608.19556v1)
+### 2. [TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks](http://arxiv.org/abs/2608.24101v1)
 
-- **评分**：66/100
-- **作者**：Yuanhao Ban, Jiaqi Feng, Hengguang Zhou et al.
-- **方向**：Autoregressive and Streaming Video
-- **摘要摘录**：Streaming autoregressive diffusion models enable real-time, long-horizon video generation, but their training objectives optimize local frame prediction rather than the geometry and dynamics of a coherent world: long rollouts accumulate geometric drift and degrade into static or unnatural motion.
-- **核心贡献**：In this work, we propose Stream4D, which replaces the static critic with a feed-forward 4D reconstruction reward that explicitly models scene dynamics, allowing coherent motion to receive high consistency rewards.
-- **与你课题的关系**：匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, real-time, video generation
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 3. [DA-WAM: Decision-Aligned Future Latents for Driving World Models](http://arxiv.org/abs/2608.19085v2)
-
-- **评分**：63/100
-- **作者**：Ruiguo Zhong, Benshan Ma, Xiaolong Chen et al.
+- **评分**：59/100
+- **作者**：Zhi Cao, Howard Ji, Kevin Zhang et al.
 - **方向**：World Models
-- **摘要摘录**：Anticipating how scenes evolve under ego actions is fundamental to safe autonomous driving, yet the full potential of world models for decision-making remains unrealized.
-- **核心贡献**：To bridge this gap, we propose DA-WAM, a framework that unifies predictive representation learning, action-conditioned future modeling, and trajectory scoring under a single decision-making objective.
-- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, driving
+- **摘要摘录**：Robot actions are inherently embodiment-specific and only weakly aligned with image-space visual changes, limiting their effectiveness as conditioning signals for robot world models.
+- **核心贡献**：Building on this observation, we propose TrAct, a world-model-based robot decision-making framework that uses visual tracks as an intermediate interface between control and prediction.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, simulation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 4. [Partition the Support, Reconstruct the Residual: Training-Free Sparse Attention for Video Generation and World Models](http://arxiv.org/abs/2608.18484v1)
+### 3. [LeFlow: Generative Latent Flow Planning for World Models](http://arxiv.org/abs/2608.24855v1)
 
-- **评分**：63/100
-- **作者**：Pardis Taghavi, Reza Langari, Gaurav Pandey
-- **方向**：Video Generation, World Models
-- **摘要摘录**：Training-free block-sparse attention can accelerate video transformers, but row-wise attention concentration does not by itself specify an executable sparse operator.
-- **核心贡献**：We introduce SparsePR, which combines Response-Coupled Partitioning with Probe-Fitted Residual Reconstruction.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, sparse attention, video generation
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 5. [GeoWAM: Visual Geometry World Action Models for Autonomous Driving](http://arxiv.org/abs/2608.23486v1)
-
-- **评分**：57/100
-- **作者**：Yiren Lu, Xin Ye, Jiaming Liu et al.
+- **评分**：58/100
+- **作者**：Hsiang-Wei Huang, Jianxu Shangguan, Junbin Lu et al.
 - **方向**：World Models
-- **摘要摘录**：World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving.
-- **核心贡献**：Building on this insight, we introduce \textbf{GeoWAM}, a visual geometry world action model for autonomous driving.
-- **与你课题的关系**：匹配研究线：world model；关键词：world model, closed-loop, driving
+- **摘要摘录**：Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator.
+- **核心贡献**：We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model.
+- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, autoregressive
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 6. [Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning](http://arxiv.org/abs/2608.22294v1)
+### 4. [Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning](http://arxiv.org/abs/2608.22294v1)
 
 - **评分**：57/100
 - **作者**：Juntao Cheng, Jingkai Wang, Yijun Shen et al.
@@ -87,17 +67,17 @@
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, simulation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 7. [World-Model-Grounded LLM Planning for AUV and ASV Navigation Near Offshore Wind Farms](http://arxiv.org/abs/2608.19661v1)
+### 5. [GeoWAM: Visual Geometry World Action Models for Autonomous Driving](http://arxiv.org/abs/2608.23486v2)
 
 - **评分**：57/100
-- **作者**：Markus Buchholz, Ignacio Carlucho, Yvan R. Petillot
+- **作者**：Yiren Lu, Xin Ye, Jiaming Liu et al.
 - **方向**：World Models
-- **摘要摘录**：Large language models can turn a natural-language mission into a sequence of robot actions, but they do not have a sense of physics: they cannot judge how long a command should run, or whether it will make the robot drift into an obstacle.
-- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
+- **摘要摘录**：World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving.
+- **核心贡献**：Building on this insight, we introduce \textbf{GeoWAM}, a visual geometry world action model for autonomous driving.
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, closed-loop, driving
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 8. [Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds](http://arxiv.org/abs/2608.23383v1)
+### 6. [Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds](http://arxiv.org/abs/2608.23383v2)
 
 - **评分**：56/100
 - **作者**：Nan Duan, Haoyang Huang, Weiyang Jin et al.
@@ -105,4 +85,24 @@
 - **摘要摘录**：Video generation is progressing beyond isolated clips toward long-form narratives and interactive worlds, requiring models to preserve identities, follow user controls, and remain stable over extended rollouts.
 - **核心贡献**：We present JoyAI-Echo-1.5, a unified audio-visual generation system with two purpose-built variants.
 - **与你课题的关系**：匹配研究线：efficient generation, video generation；关键词：interactive, few-step, efficient, video generation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 7. [Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning](http://arxiv.org/abs/2608.24885v1)
+
+- **评分**：56/100
+- **作者**：Sixiang Chen, Jiaming Liu, Jixian Wu et al.
+- **方向**：World Models
+- **摘要摘录**：Action-conditioned world models are increasingly used as learned simulators for policy evaluation and improvement, yet their effectiveness rests on an unverified assumption: generated futures faithfully reflect arbitrary valid actions.
+- **核心贡献**：To address this gap, we introduce WorldEcho, which probes action following over a broader action distribution using visual integrity and SE(3) trajectory alignment.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 8. [From Generation to Simulation: How Far Are World Models from Being True Simulators?](http://arxiv.org/abs/2608.23070v1)
+
+- **评分**：56/100
+- **作者**：Tong Wang, Huan Deng, Mucheng Yang et al.
+- **方向**：World Models
+- **摘要摘录**：With the rapid progress of diffusion models and large-scale video generation, generative world models are increasingly expected to replace traditional simulators, including physics engines, game engines, and reinforcement-learning environments.
+- **核心贡献**：We present a capability-based study using an external yardstick: eight capabilities of a traditional simulator, namely asset construction, physics engine, interaction, controllability, stability, state feedback, diversity, and evaluation metrics.
+- **与你课题的关系**：匹配研究线：world model, video generation；关键词：world model, simulation, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
