@@ -1,7 +1,34 @@
 {
-  "generated_at": "2026-08-27T21:20:13+00:00",
+  "generated_at": "2026-08-28T07:09:54+00:00",
   "assessment_mode": "heuristic",
   "papers": [
+    {
+      "id": "2608.27406",
+      "date": "2026-08-27",
+      "topics": [
+        "World Models"
+      ],
+      "title": "CLAP: Cross-Embodiment Video World Models are Zero-Shot Physical Simulators",
+      "abstract": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich signals for learning generalizable physics. To bridge this gap, we introduce CLAP, a framework for cross-embodiment action-conditioned video generation capable of being trained on diverse, internet-scale videos across human and robotic agents. CLAP is grounded in the insight that universal physical laws govern spatiotemporal dynamics regardless of the actor. However, cross-embodiment learning is non-trivial because action representations vary sharply across robot platforms and are typically absent in human videos. CLAP addresses this fundamental challenge through the following core contributions. First, CLAP reconciles disparate action spaces using end-effector poses, language instructions, and latent actions. Second, to resolve their individual limitations, CLAP introduces a curriculum-based cross-embodiment learning recipe that first learns foundational physical priors across unlabeled video data using latent actions and subsequently grounds them in end-effector action spaces for zero-shot deployment to real-world tasks. Crucially, CLAP approaches or surpasses state-of-the-art single-embodiment video models in challenging environments like DROID. These performance advantages compound via few-shot adaptation to establish a novel paradigm for training single-embodiment video world models. Ultimately, CLAP delivers the most comprehensive suite of action-conditioned video world models to date - spanning diverse action-conditioning spaces (end-effector, language, and latent) and robot morphologies (including cross-embodiment, DROID, Bridge, bimanual YAM robots, and G1 humanoids). We open-source all code and models. Project Website at https://omni-clap.github.io .",
+      "authors": [
+        "Kechen Liu",
+        "Ola Shorinwa"
+      ],
+      "url": "http://arxiv.org/abs/2608.27406v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 77,
+      "priority": "must-read",
+      "summary_cn": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich signals for learning generalizable physics.",
+      "contribution_cn": "To bridge this gap, we introduce CLAP, a framework for cross-embodiment action-conditioned video generation capable of being trained on diverse, internet-scale videos across human and robotic agents.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, action-conditioned, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
     {
       "id": "2608.23565",
       "date": "2026-08-24",
@@ -37,8 +64,56 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.25479",
+      "id": "2608.26239",
       "date": "2026-08-26",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WALL-SS: Scaling Long-horizon World Models via Next-Scale Autoregression",
+      "abstract": "Generative world models provide robots with predictive models of how the world evolves under interaction, with growing potential for simulation, planning, policy evaluation, and robot learning. Beyond clip-level future prediction, a unified generative formulation should relate actions to consequences, support flexible horizons and continuous interaction, and enable reward-driven optimization. We introduce WALL-SS, a world model that generates visual futures through Scale-wise autoregressive Scaling, enabling action-controllable and long-horizon robotic simulation. WALL-SS represents embodied trajectories as causal sequences of temporally interleaved observations and actions, making action-dependent state transitions explicit while naturally supporting variable-length generation, streaming extension through reusable causal states, and direct optimization through sequence probabilities. To make this formulation effective over long horizons, we generate each future observation in a coarse-to-fine manner and develop three complementary components within the same hierarchy. Action-conditioned next-scale prediction injects scale-aligned action representations to improve action-future coupling and model both successful and failed behaviors. Scale-compressed long-horizon memory retains recent interactions at fine resolution while compressing distant observations and actions, with scale-wise dream forcing enhancing robustness to self-generated context. Finally, on-policy alignment optimizes autoregressive visual dynamics with action-following and long-term consistency rewards while preserving the pretrained visual distribution. Experiments show that WALL-SS improves action following and trajectory accuracy, supports coherent minute-long streaming rollout under bounded memory, and consistently benefits from on-policy alignment in reducing action drift and long-horizon inconsistency.",
+      "authors": [
+        "Maeve Zhang",
+        "Rain Sun",
+        "Xiang Wang",
+        "Cyril Zhang",
+        "Shalfun Li",
+        "Meng Cao",
+        "Howard Lu",
+        "Ethan Chen",
+        "Harry Jhou",
+        "KZ Zheng",
+        "Lights Shi",
+        "Regis Cheng",
+        " Lorenzin",
+        "Robert Wang",
+        "Victor Yao",
+        "Gody Li",
+        "Elise Mon",
+        "Yohann Tang",
+        "Ryan Yu",
+        "PS Zhang",
+        "Vincent Chen",
+        "Hang Su",
+        "Roy Gan",
+        "Hao Wang",
+        "Qian Wang"
+      ],
+      "url": "http://arxiv.org/abs/2608.26239v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "Generative world models provide robots with predictive models of how the world evolves under interaction, with growing potential for simulation, planning, policy evaluation, and robot learning.",
+      "contribution_cn": "We introduce WALL-SS, a world model that generates visual futures through Scale-wise autoregressive Scaling, enabling action-controllable and long-horizon robotic simulation.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, simulation, embodied, autoregressive, streaming",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.25479",
+      "date": "2026-08-27",
       "topics": [
         "Video Generation",
         "World Models"
@@ -54,14 +129,14 @@
         "Rui Chen",
         "Yixin Zhu"
       ],
-      "url": "http://arxiv.org/abs/2608.25479v1",
+      "url": "http://arxiv.org/abs/2608.25479v2",
       "categories": [
         "cs.CV",
         "cs.AI"
       ],
       "comment": "23 pages",
       "score": 73,
-      "priority": "must-read",
+      "priority": "skim",
       "summary_cn": "Generative video models now synthesize footage nearly indistinguishable from reality.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, interactive, closed-loop, embodied, streaming, long video",
@@ -70,7 +145,7 @@
     },
     {
       "id": "2608.24199",
-      "date": "2026-08-25",
+      "date": "2026-08-27",
       "topics": [
         "World Models"
       ],
@@ -88,13 +163,13 @@
         "Mahdi Azizian",
         "Sean D. Huver"
       ],
-      "url": "http://arxiv.org/abs/2608.24199v1",
+      "url": "http://arxiv.org/abs/2608.24199v2",
       "categories": [
         "cs.RO"
       ],
       "comment": "",
       "score": 72,
-      "priority": "must-read",
+      "priority": "skim",
       "summary_cn": "Generative simulation for surgical robotics still lacks real-time interaction.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, interactive, simulation, streaming",
@@ -102,27 +177,61 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.22278",
-      "date": "2026-08-23",
+      "id": "2608.27328",
+      "date": "2026-08-27",
       "topics": [
         "World Models"
       ],
-      "title": "DreamMimic: Learning Visuomotor Whole-Body Loco-Manipulation via World Model",
-      "abstract": "Vision-based whole-body loco-manipulation on humanoid robots is challenging due to partial observability, contact-rich dynamics, and the difficulty of learning long-horizon behaviors from high-dimensional visual inputs. We present \\href{https://github.com/DreamMimic/DreamMimic}{DreamMimic}, a framework that distills privileged teacher policies into vision-based humanoid controllers via world-model-assisted distillation. Instead of using a Dreamer-style RSSM for planning, we repurpose it to learn predictive latent dynamics that serve as both a representation space and an action-conditioned multi-step supervision signal, while exposing compact predictive features to the student policy to reduce long-term drift. Beyond standard reconstruction objectives for proprioceptive and visual observations, we add auxiliary prediction heads for privileged state, contact, object state, and reward estimation. These heads provide additional supervision related to agent--object interaction and task progress, encouraging the latent representation to retain signals that are useful for contact-rich loco-manipulation. We further introduce Performance-Conditioned Guidance (PCG), a reward-driven adaptive distillation schedule that computes performance scores for both teacher and student to dynamically balance guidance and exploration. PCG prevents both premature teacher annealing and excessive teacher interference in challenging visual settings. Experiments on OMOMO and BEHAVE show improved tracking-based loco-manipulation performance over strong vision-based baselines, without exposing online privileged interaction states to the student at deployment. Qualitative simulations further examine morphology and simulator changes. These results suggest that world models can provide a useful mechanism for stabilizing visual policy distillation in contact-rich humanoid behaviors.",
+      "title": "R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models",
+      "abstract": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little. This ambiguity makes absolute revisit scores sensitive to rendering stability, repetitive content, and failed motion. We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency. For every detected return, R2M-Bench compares the revisit pair with two controls from the same rollout: a gap-matched non-revisit pair that measures generic temporal stability and a short-range pair that estimates short-horizon consistency. These comparisons produce \\emph{MemoryGain} (MG), the revisit advantage over the temporal baseline, and the \\emph{Normalized Memory Ratio} (NMR), which normalizes this advantage by the short-to-baseline dynamic range. R2M-Bench combines 100 reference scenes with three leave-and-return trajectories to form 300 instances and evaluates appearance fidelity, scene and object identity, local geometry, and persistent state. Across seven action-conditioned video world models, Overall NMR correlates with human consistency judgments at Spearman's $ρ=0.547$ (95\\% CI $[0.45,0.63]$). Its within-model correlation magnitude with generated motion is $0.072$, compared with $0.207$ for raw revisit similarity, indicating that relative calibration substantially reduces the slow-motion shortcut. DreamX-World-Memo achieves the highest Overall NMR among the evaluated video models. Together, these results support same-rollout relative calibration as a practical way to distinguish revisit-specific consistency from generic temporal stability.",
       "authors": [
-        "Jie Yin",
-        "Xingyu Lai"
+        "Qiwen Gu",
+        "Bingjie Gao",
+        "Rui Chen",
+        "Geng Li",
+        "Jifan Li",
+        "Qishuai Wen",
+        "Li Niu",
+        "Jing Tang",
+        "Xiangxiang Chu",
+        "Junqiao Zhao"
       ],
-      "url": "http://arxiv.org/abs/2608.22278v1",
+      "url": "http://arxiv.org/abs/2608.27328v1",
       "categories": [
-        "cs.RO"
+        "cs.CV"
       ],
-      "comment": "accepted to IROS2026",
-      "score": 71,
+      "comment": "Code: https://github.com/AMAP-ML/R2MBench",
+      "score": 70,
       "priority": "skim",
-      "summary_cn": "Vision-based whole-body loco-manipulation on humanoid robots is challenging due to partial observability, contact-rich dynamics, and the difficulty of learning long-horizon behaviors from high-dimensional visual inputs.",
-      "contribution_cn": "We present \\href{https://github.com/DreamMimic/DreamMimic}{DreamMimic}, a framework that distills privileged teacher policies into vision-based humanoid controllers via world-model-assisted distillation.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, distillation",
+      "summary_cn": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little.",
+      "contribution_cn": "We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned, interactive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.26671",
+      "date": "2026-08-27",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "RECAP-Forcing: Retaining Content Appearances for Long Video Generation",
+      "abstract": "Long autoregressive video generation faces a fundamental memory challenge: with a finite attention window, a model must decide which information from an ever-expanding history to retain. Existing methods organize memory temporally, preserving recent frames while compressing or discarding older ones. We instead propose RECAP-Forcing, organizing memory by appearance novelty. A long video is not merely a sequence of frames, but an evolving cast of subjects, objects, and scenes whose identities must remain consistent over time. We organize memory by retaining the KV cache associated with newly appearing content--such as entering subjects, disoccluded regions, and newly introduced scenes--at the moment it first becomes visible, prioritizing novelty over recency. Memory should scale with the amount of newly introduced content, rather than with video length. This appearance-indexed memory makes long-range consistency an explicit property of the memory structure. Our framework unifies two mechanisms under this single principle. At the beginning of a video, when all visible content is novel, an attention sink preserves the initial scene. As the video evolves, an optical-flow-based novelty bank extends the same principle by selectively retaining newly revealed content. As a training-free inference method with no additional learnable parameters, RECAP-Forcing consistently improves visual quality and semantic fidelity across multiple strong baselines and outperforms existing memory methods.",
+      "authors": [
+        "Haiyang Xu",
+        "Zheng Ding",
+        "Zhuowen Tu"
+      ],
+      "url": "http://arxiv.org/abs/2608.26671v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://xxuhaiyang.github.io/RECAP-Forcing/",
+      "score": 68,
+      "priority": "skim",
+      "summary_cn": "Long autoregressive video generation faces a fundamental memory challenge: with a finite attention window, a model must decide which information from an ever-expanding history to retain.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, long video, cache, kv cache, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -181,124 +290,41 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.24101",
-      "date": "2026-08-25",
+      "id": "2608.27033",
+      "date": "2026-08-27",
       "topics": [
         "World Models"
       ],
-      "title": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
-      "abstract": "Robot actions are inherently embodiment-specific and only weakly aligned with image-space visual changes, limiting their effectiveness as conditioning signals for robot world models. In contrast, visual tracks provide an embodiment-agnostic representation of how task-relevant points move through a scene, offering dense image-space guidance for accurate and spatially precise future video prediction. Building on this observation, we propose TrAct, a world-model-based robot decision-making framework that uses visual tracks as an intermediate interface between control and prediction. TrAct consists of three components: a Vision-Language-Action-and-Track model (VLAT) that jointly predicts candidate actions and corresponding visual tracks from the current observation and language instruction; a track-conditioned world model (TWM) that predicts future visual outcomes conditioned on the proposed tracks; and a vision-language reward model (VLAC) that scores the predicted outcomes. At inference time, VLAT generates candidate action-track pairs, TWM rolls out their visual consequences, and VLAC selects the track whose predicted outcome best satisfies the instruction; the action paired with the selected track is then executed by the robot. Experiments on the proposed LIBERO-INTEGRAL benchmark and real-world Franka manipulation show that TrAct improves success rates from 27% to 55% in simulation and from 49% to 76% on real-world tasks compared with the strong VLA baseline $π_{0.5}$. Furthermore, TWM consistently improves video prediction quality over the action-conditioned world model (AWM). These results demonstrate that visual tracks provide an effective shared interface between robot control and visual prediction, enabling more accurate world modeling and stronger robot generalization.",
+      "title": "Riemann-1.0: An Embodied World Action Model for Physical AI",
+      "abstract": "We introduce Riemann-1.0, a fully causal autoregressive World Action Model for embodied intelligence. Riemann-1.0 jointly models multi-view visual observations, robot states, and embodiment-specific actions within a unified causal autoregressive sequence, representing robot actions and world evolution as causal state transitions. Unlike existing WAMs based on joint generation, video-first prediction, or decoupled modeling paradigms, Riemann-1.0 unifies online robot policy execution and action-conditioned world simulation within a single model, enabling it to function as both an executable robot policy and a multi-embodiment visual world simulator. To scale embodied experience across heterogeneous data sources, we further develop a progressive embodied pretraining framework that unifies learning from egocentric human videos, handheld-gripper demonstrations, and heterogeneous robot trajectories under a shared World Action Modeling objective. Built upon 200K+ hours of interaction data, Riemann-1.0 progressively transfers large-scale embodied experience into executable robot manipulation capabilities. Riemann-1.0 achieves state-of-the-art performance across both simulation benchmarks and real-world manipulation tasks. It achieves success rates of 94.3% on RoboTwin2.0, 99.0% on LIBERO, and 62.6% on the long-horizon compositional benchmark RoboCasa-365, outperforming the previous best method by 8.4% On long-horizon real-world manipulation tasks, Riemann-1.0 achieves a Success Rate (SR) of 85.0% and a Progress Success Rate (PSR) of 94.4%, exceeding the strongest open-source baseline by 15% in SR. These results demonstrate that unified World Action Modeling together with progressive embodied pretraining effectively transforms large-scale embodied experience into generalizable robot manipulation capabilities.",
       "authors": [
-        "Zhi Cao",
-        "Howard Ji",
-        "Kevin Zhang",
-        "Kuangzhi Ge",
-        "Li Fei-Fei",
-        "Jiajun Wu",
-        "Huang Huang"
+        "Haofeng Sun",
+        "Jiangbo Pei",
+        "Fei Kang",
+        "Zexiang Liu",
+        "Yaokun Li",
+        "Boyi Jiang",
+        "Hua Xue",
+        "Cindy Zhou",
+        "Wei Li",
+        "Yichen Wei",
+        "Mengyin An",
+        "Fanliang Zhao",
+        "Biao Jiang",
+        "Zile Wang",
+        "Yang Liu",
+        "Yangguang Li"
       ],
-      "url": "http://arxiv.org/abs/2608.24101v1",
+      "url": "http://arxiv.org/abs/2608.27033v1",
       "categories": [
         "cs.RO"
       ],
       "comment": "",
-      "score": 59,
+      "score": 64,
       "priority": "skim",
-      "summary_cn": "Robot actions are inherently embodiment-specific and only weakly aligned with image-space visual changes, limiting their effectiveness as conditioning signals for robot world models.",
-      "contribution_cn": "Building on this observation, we propose TrAct, a world-model-based robot decision-making framework that uses visual tracks as an intermediate interface between control and prediction.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.24855",
-      "date": "2026-08-25",
-      "topics": [
-        "World Models"
-      ],
-      "title": "LeFlow: Generative Latent Flow Planning for World Models",
-      "abstract": "Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator. This approach pays the full iterative optimization cost anew at every replanning step and reuses no planning experience across queries. In this work, we ask whether planning itself can be amortized once a latent world model has been learned. We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model. LeFlow recasts planning as conditional latent trajectory generation: a rectified-flow model imagines a future latent path between the current and goal embeddings, an inverse dynamics decoder turns latent transitions into action chunks, and the frozen world model verifies each candidate by autoregressive rollout. Across four major goal-conditioned pixel-control benchmarks, LeFlow replaces iterative action-space optimization with amortized latent planning and fixed-budget rollout selection, achieving consistent success-rate gains with an order-of-magnitude reduction in planning time. Our results argue that latent world models should support not only prediction but reusable planning priors. Our code is available at https://github.com/hsiangwei0903/LeFlow.",
-      "authors": [
-        "Hsiang-Wei Huang",
-        "Jianxu Shangguan",
-        "Junbin Lu",
-        "Jenq-Neng Hwang"
-      ],
-      "url": "http://arxiv.org/abs/2608.24855v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "Latent world models are inherently strong encoders that transform image pixel to latent embedding, yet existing world models still rely on online trajectory optimization for action planning: for every state-goal pair, an iterative optimizer is run from scratch to search for optimal action sequences, treating the world model as a black-box simulator.",
-      "contribution_cn": "We present LeFlow, which learns a reusable latent trajectory prior operating directly in the latent dynamics space from the world model.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.22294",
-      "date": "2026-08-23",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning",
-      "abstract": "World models for physical interaction are typically trained to predict future observations or latent features; however, a planning-oriented model must answer a fundamentally different question: whether a candidate action produces a task-consistent future while preserving essential relations.Monolithic state representations obscure the underlying entities, while standard instance-level object slots merely identify \\emph{what} is present without specifying \\emph{what role} each entity plays in the task context. To bridge this gap, we present the Semantically Rich World Model (SR-WM), a task-conditioned world model structured around five functional roles: gripper, target, goal, relation, and phase.Within SR-WM, a visual entity encoder extracts soft entity hypotheses from pretrained patch features, allowing segmentation masks to serve as optional proposal priors without mandating them as required state representations or inference inputs.A role binder subsequently maps these hypotheses to task-specific roles, while an action-conditioned dynamics model predicts role transitions alongside fine-grained semantics, including grasp/contact, predicate establishment, relation preservation, fixture state, and phase change.Crucially, this unified role state grounds downstream multi-candidate action generation, stage-aware reranking, and violation-aware suffix resampling.Our comprehensive evaluation protocol spans all four LIBERO simulation suites, cross-suite transfer, perception diagnostics, and action-sensitivity analysis.Ultimately, this formulation transforms object-centric prediction into a semantic interface linking visual dynamics with planning-oriented decision making.",
-      "authors": [
-        "Juntao Cheng",
-        "Jingkai Wang",
-        "Yijun Shen",
-        "Xiansheng Chen",
-        "Zhiwei Yu"
-      ],
-      "url": "http://arxiv.org/abs/2608.22294v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 57,
-      "priority": "skim",
-      "summary_cn": "World models for physical interaction are typically trained to predict future observations or latent features; however, a planning-oriented model must answer a fundamentally different question: whether a candidate action produces a task-consistent future while preserving essential relations.Monolithic state representations obscure the underlying entities, while standard instance-level object slots merely identify \\emph{what} is present without specifying \\emph{what role} each entity plays in the task context.",
-      "contribution_cn": "To bridge this gap, we present the Semantically Rich World Model (SR-WM), a task-conditioned world model structured around five functional roles: gripper, target, goal, relation, and phase.Within SR-WM, a visual entity encoder extracts soft entity hypotheses from pretrained patch features, allowing segmentation masks to serve as optional proposal priors without mandating them as required state representations or inference inputs.A role binder subsequently maps these hypotheses to task-specific roles, while an ac...",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.23486",
-      "date": "2026-08-25",
-      "topics": [
-        "World Models"
-      ],
-      "title": "GeoWAM: Visual Geometry World Action Models for Autonomous Driving",
-      "abstract": "World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving. Most existing WAMs learn scene dynamics in pixel space by combining a video-generation backbone for future-observation prediction with an action head for ego-trajectory prediction. Pixels, however, provide only an indirect representation of these dynamics: they entangle geometry and motion with appearance, texture, and illumination, forcing the model to infer three-dimensional transformations from two-dimensional observations. We argue that geometry, represented by point clouds, offers a more natural state space for driving because it explicitly captures spatial structure and the rigid and non-rigid transformations that govern scene evolution while directly aligning with the space in which driving actions are executed. Building on this insight, we introduce \\textbf{GeoWAM}, a visual geometry world action model for autonomous driving. Rather than predicting future images, GeoWAM is pretrained to forecast future scene geometry, yielding representations that jointly encode spatial structure and temporal evolution. A geometry-conditioned action head then leverages these learned geometric dynamics to predict future ego trajectories. Extensive open-loop and closed-loop evaluations show that visual geometry world modeling yields substantially stronger driving policies than image-based alternatives, establishing future-geometry prediction as an effective pretraining objective for autonomous driving.",
-      "authors": [
-        "Yiren Lu",
-        "Xin Ye",
-        "Jiaming Liu",
-        "Philip Jacobson",
-        "Jin Yao",
-        "Yi-chung Chen",
-        "Liam Merino",
-        "Dhruva Dixith Kurra",
-        "Min Cai",
-        "Tom Lampo",
-        "Yu Yin",
-        "Danhua Guo",
-        "Burhan Yaman"
-      ],
-      "url": "http://arxiv.org/abs/2608.23486v2",
-      "categories": [
-        "cs.CV",
-        "cs.RO"
-      ],
-      "comment": "Project page: https://yiren-lu.com/project_pages/geowam/",
-      "score": 57,
-      "priority": "skim",
-      "summary_cn": "World action models (WAMs) have recently gained increasing attention as a framework for jointly modeling scene evolution and ego actions in autonomous driving.",
-      "contribution_cn": "Building on this insight, we introduce \\textbf{GeoWAM}, a visual geometry world action model for autonomous driving.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving",
+      "summary_cn": "We introduce Riemann-1.0, a fully causal autoregressive World Action Model for embodied intelligence.",
+      "contribution_cn": "We introduce Riemann-1.0, a fully causal autoregressive World Action Model for embodied intelligence.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：action-conditioned, simulation, embodied, autoregressive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
