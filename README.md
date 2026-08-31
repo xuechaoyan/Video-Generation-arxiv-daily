@@ -1,4 +1,4 @@
-## Updated on 2026.08.30
+## Updated on 2026.08.31
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
@@ -17,9 +17,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-28**|**How Far Can 5,500 Hours of Driving Take You? A Scaling Law Analysis of Video Diffusion Models**|Victor Besnier et.al.|[2608.28404](http://arxiv.org/abs/2608.28404)|null|
+|**2026-08-28**|**DensityKV: Density-Guided KV Cache Compression for Long Video Generation**|Wenqu Zhao et.al.|[2608.27922](http://arxiv.org/abs/2608.27922)|null|
 |**2026-08-27**|**PAWBench: How Far Are We from Probabilistically Aligned World Modeling?**|Yuandong Pu et.al.|[2608.27345](http://arxiv.org/abs/2608.27345)|null|
-|**2026-08-27**|**SpatialCrafter: Single Image World Modeling with Generative 3D Proxies**|Chuan Fang et.al.|[2608.27073](http://arxiv.org/abs/2608.27073)|null|
-|**2026-08-27**|**TempJail: Temporal Jailbreak Attacks against Image-to-Video Generation Models**|Qi Lu et.al.|[2608.26971](http://arxiv.org/abs/2608.26971)|null|
+|**2026-08-28**|**SpatialCrafter: Single Image World Modeling with Generative 3D Proxies**|Chuan Fang et.al.|[2608.27073](http://arxiv.org/abs/2608.27073)|null|
+|**2026-08-28**|**TempJail: Temporal Jailbreak Attacks against Image-to-Video Generation Models**|Qi Lu et.al.|[2608.26971](http://arxiv.org/abs/2608.26971)|null|
 |**2026-08-26**|**One Policy, Many Embodiments: Unified Camera-Centric Action Geometry Pre-training for Heterogeneous Embodied Manipulation**| Xiaomi Embodied Intelligence Team et.al.|[2608.26058](http://arxiv.org/abs/2608.26058)|null|
 |**2026-08-27**|**4DStreamCtrl: Interactive Video Generation with Online 4D Control**|Shiqian Li et.al.|[2608.25479](http://arxiv.org/abs/2608.25479)|null|
 |**2026-08-26**|**VGA-BenchV2: An Expanded Unified Benchmark and Multi-Model Framework for Evaluating Video Aesthetics and Generation Quality**|Longteng Jiang et.al.|[2608.25452](http://arxiv.org/abs/2608.25452)|null|
@@ -1349,18 +1351,25 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20260830>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260831>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-28**|**WALDO: One-Shot Exemplar-Conditioned Object Detection in Cluttered Scenes**|Kishor Datta Gupta et.al.|[2608.28216](http://arxiv.org/abs/2608.28216)|null|
+|**2026-08-28**|**Learning to Allocate Incentives for Incentivized Advertising via Offline Model-Based Reinforcement Learning**|Zilin Zhao et.al.|[2608.28065](http://arxiv.org/abs/2608.28065)|null|
+|**2026-08-28**|**Should I Use This Synthetic Dataset for Training? How to Test with Minimal Real Data**|Zhenyu Tao et.al.|[2608.27996](http://arxiv.org/abs/2608.27996)|null|
+|**2026-08-28**|**Anchored Scenario Coverage for Failure-Aware First-Hit Batch Inverse Design**|Chuhan Yang et.al.|[2608.27873](http://arxiv.org/abs/2608.27873)|null|
+|**2026-08-27**|**Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models**|Senqiao Yang et.al.|[2608.27550](http://arxiv.org/abs/2608.27550)|null|
+|**2026-08-27**|**Dandelion: A Spherical Flower for Neural Simulation of Planetary Dynamics**|Till Muser et.al.|[2608.27521](http://arxiv.org/abs/2608.27521)|null|
+|**2026-08-27**|**WM-R1: Training GUI Agents to Reason and leverage World Models with Reinforcement Learning**|Yu Han et.al.|[2608.27508](http://arxiv.org/abs/2608.27508)|null|
 |**2026-08-27**|**CLAP: Cross-Embodiment Video World Models are Zero-Shot Physical Simulators**|Kechen Liu et.al.|[2608.27406](http://arxiv.org/abs/2608.27406)|null|
 |**2026-08-27**|**Successive Capacity Growth: Task-Complexity-Driven Width and Depth Expansion for Vision Transformer Encoders in JEPA World Models**|Frederik Berenz et.al.|[2608.27367](http://arxiv.org/abs/2608.27367)|null|
 |**2026-08-27**|**PAWBench: How Far Are We from Probabilistically Aligned World Modeling?**|Yuandong Pu et.al.|[2608.27345](http://arxiv.org/abs/2608.27345)|null|
 |**2026-08-27**|**R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models**|Qiwen Gu et.al.|[2608.27328](http://arxiv.org/abs/2608.27328)|null|
 |**2026-08-27**|**Making Latent Evolution Explicit: Operator-Structured Transitions for World Action Models**|Xiaoxiao Lu et.al.|[2608.27259](http://arxiv.org/abs/2608.27259)|null|
-|**2026-08-27**|**SpatialCrafter: Single Image World Modeling with Generative 3D Proxies**|Chuan Fang et.al.|[2608.27073](http://arxiv.org/abs/2608.27073)|null|
+|**2026-08-28**|**SpatialCrafter: Single Image World Modeling with Generative 3D Proxies**|Chuan Fang et.al.|[2608.27073](http://arxiv.org/abs/2608.27073)|null|
 |**2026-08-27**|**Riemann-1.0: An Embodied World Action Model for Physical AI**|Haofeng Sun et.al.|[2608.27033](http://arxiv.org/abs/2608.27033)|null|
 |**2026-08-27**|**Decoupling Planning and Control for Instructable Agents**|Zineng Tang et.al.|[2608.26788](http://arxiv.org/abs/2608.26788)|null|
 |**2026-08-26**|**WALL-SS: Scaling Long-horizon World Models via Next-Scale Autoregression**|Maeve Zhang et.al.|[2608.26239](http://arxiv.org/abs/2608.26239)|null|
@@ -1443,12 +1452,14 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20260830>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260831>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-28**|**LayerRecall: A State-Conditioned Memory Router for Long-Horizon Consistency in Video Generation**|Yixuan Ding et.al.|[2608.28460](http://arxiv.org/abs/2608.28460)|null|
+|**2026-08-28**|**DensityKV: Density-Guided KV Cache Compression for Long Video Generation**|Wenqu Zhao et.al.|[2608.27922](http://arxiv.org/abs/2608.27922)|null|
 |**2026-08-27**|**Tether the Subject, Release the Scene: Query-Aware Memory Routing for Long-Horizon Autoregressive Video Generation**|Chen Li et.al.|[2608.26902](http://arxiv.org/abs/2608.26902)|null|
 |**2026-08-27**|**Ring Forcing: Towards Precise Long-Term Memory for Autoregressive Video Diffusion**|Bowen Xue et.al.|[2608.26794](http://arxiv.org/abs/2608.26794)|null|
 |**2026-08-27**|**RECAP-Forcing: Retaining Content Appearances for Long Video Generation**|Haiyang Xu et.al.|[2608.26671](http://arxiv.org/abs/2608.26671)|null|
@@ -1487,7 +1498,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20260830>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260831>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -1518,5 +1529,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20260830>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260831>back to top</a>)</p>
 

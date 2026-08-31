@@ -1,7 +1,40 @@
 {
-  "generated_at": "2026-08-30T15:31:06+00:00",
+  "generated_at": "2026-08-31T01:43:53+00:00",
   "assessment_mode": "heuristic",
   "papers": [
+    {
+      "id": "2608.27922",
+      "date": "2026-08-28",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "DensityKV: Density-Guided KV Cache Compression for Long Video Generation",
+      "abstract": "Autoregressive video diffusion models enable streaming generation through sliding-window attention, but each generated block is conditioned on previously generated content, causing appearance and motion errors to propagate recursively over time. Historical key-value (KV) memory preserves earlier subject and scene states and helps maintain long-horizon consistency. However, retaining every generated state creates a historical archive that grows continuously with the rollout, while recurrent states repeatedly add redundant coverage. To address this problem, we propose DensityKV, a training-free historical KV bank management strategy. DensityKV maintains a separate token-level KV bank for each attention head and measures local redundancy among the post-RoPE keys that directly parameterize attention routing using Soft-Riesz density. By constraining neighborhood-density growth after states enter the bank, DensityKV limits repeated historical accumulation while preserving coherent states from each completed generation block. Experiments across three autoregressive video generation backbones and multiple generation lengths show that, at the same upper bound on historical KV capacity, DensityKV improves long-horizon consistency and generation stability while keeping persistent historical storage bounded independently of rollout length.",
+      "authors": [
+        "Wenqu Zhao",
+        "Xuemin Chi",
+        "Xin Zhang",
+        "Guoqing Ma",
+        "Baorun Li",
+        "Jianjie Fang",
+        "Peizhi Tang",
+        "Chen Gao",
+        "Wei Wu"
+      ],
+      "url": "http://arxiv.org/abs/2608.27922v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "17 pages, 9 figures, 2 tables. Code: https://github.com/ZhaoWQQ/DensityKV",
+      "score": 79,
+      "priority": "must-read",
+      "summary_cn": "Autoregressive video diffusion models enable streaming generation through sliding-window attention, but each generated block is conditioned on previously generated content, causing appearance and motion errors to propagate recursively over time.",
+      "contribution_cn": "To address this problem, we propose DensityKV, a training-free historical KV bank management strategy.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, long video, cache, kv cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
     {
       "id": "2608.27406",
       "date": "2026-08-27",
@@ -26,40 +59,6 @@
       "summary_cn": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich signals for learning generalizable physics.",
       "contribution_cn": "To bridge this gap, we introduce CLAP, a framework for cross-embodiment action-conditioned video generation capable of being trained on diverse, internet-scale videos across human and robotic agents.",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, action-conditioned, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.23565",
-      "date": "2026-08-24",
-      "topics": [
-        "World Models"
-      ],
-      "title": "ReWorld: An Interactive World Model with Long-Horizon Memory",
-      "abstract": "An interactive world model must follow the user's actions, remember the places it has shown, and stream in real time. The tension is structural: control wants a short horizon, memory wants an unbounded one. ReWorld separates the two during training and bounds them at inference. Mixed per-head attention windows confine most heads to the recent past while a small set of global heads attends over the entire history, and random head routing keeps either capability from binding to particular heads; random chunk dropping makes sparse histories in-distribution. At inference the whole past lives under a fixed budget: a bounded KV cache backed by a pose-indexed landmark bank, from which the model retrieves the landmarks nearest the current pose. A metric-scale-aligned data engine places eight sources -- Unreal-rendered fly-throughs, game roaming, and real-world footage -- on one physical action scale, so the same key press moves the camera the same distance in every source, and palindrome trajectories supply the revisit evidence that memory training needs. Distribution-matching distillation confined to a LoRA adapter then compresses sampling to four steps: one backbone serves both a high-fidelity multi-step mode and a real-time interactive one, streaming 704x1280 video across photorealistic, game-style, and stylized worlds. Under a three-axis protocol covering action following, long-horizon recall, and video quality, against six recent interactive world models it attains the best control fidelity ($11.95^\\circ$ rotation error and the best camera-motion consistency) and the best generation quality; and on minute-long out-and-back rollouts ($64$\\,s, $384$ latents), its fixed 12-chunk cache still regenerates the starting view -- at rollout lengths where a sliding window has long evicted the evidence and full-KV attention runs out of memory.",
-      "authors": [
-        "Zhifei Chen",
-        "Luozhou Wang",
-        "Guibao Shen",
-        "Dongyu Yan",
-        "Shuai Yang",
-        "Tianshuo Xu",
-        "Yihua Du",
-        "Wei Wang",
-        "Tianyi Gui",
-        "Lianghua Huang",
-        "Yingcong Chen"
-      ],
-      "url": "http://arxiv.org/abs/2608.23565v1",
-      "categories": [
-        "cs.AI"
-      ],
-      "comment": "21 pages, 9 figures. Project page: https://zhifeichen097.github.io/ReWorld/",
-      "score": 74,
-      "priority": "must-read",
-      "summary_cn": "An interactive world model must follow the user's actions, remember the places it has shown, and stream in real time.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, streaming, real-time, distillation, cache",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
