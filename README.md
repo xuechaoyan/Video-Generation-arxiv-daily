@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-31**|**DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution**|Jiashu Zhu et.al.|[2608.31106](http://arxiv.org/abs/2608.31106)|null|
 |**2026-08-30**|**On the Resilience of Text-to-Video Diffusion Models to Hardware Faults**|Zachary Coalson et.al.|[2608.29598](http://arxiv.org/abs/2608.29598)|null|
 |**2026-08-29**|**Test-Time Scaling for Video Diffusion Models via Diagnosis-Guided Candidate Recycling**|Hangzhou He et.al.|[2608.29322](http://arxiv.org/abs/2608.29322)|null|
 |**2026-08-29**|**EpaCache: Error-Propagation-Aware Caching for Accelerating Diffusion-Based Visual Generation**|Yuhan Liu et.al.|[2608.29264](http://arxiv.org/abs/2608.29264)|null|
@@ -41,7 +42,7 @@
 |**2026-08-21**|**Identity-Preserving Text-to-Video Generation via Agentic Enhancement and Semantic Repair**|Jiayi Gao et.al.|[2608.20749](http://arxiv.org/abs/2608.20749)|null|
 |**2026-08-20**|**Grounded-Exo2Ego: Structured Semantic Grounding for Robust Exocentric-to-Egocentric Video Generation**|Shengze Wang et.al.|[2608.20534](http://arxiv.org/abs/2608.20534)|null|
 |**2026-08-20**|**4DAnyone: Create Anyone in 4D from a Casual Monocular Video**|Yudong Jin et.al.|[2608.20335](http://arxiv.org/abs/2608.20335)|null|
-|**2026-08-20**|**DreamHand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery**|Yufei Liu et.al.|[2608.20308](http://arxiv.org/abs/2608.20308)|null|
+|**2026-08-31**|**ACE-Ego-Hand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery**|Yufei Liu et.al.|[2608.20308](http://arxiv.org/abs/2608.20308)|null|
 |**2026-08-20**|**AvatarDynamizer: From Static to Dynamic Human Avatars via Generative Dynamic Textures**|Guoxing Sun et.al.|[2608.19900](http://arxiv.org/abs/2608.19900)|null|
 |**2026-08-26**|**VGI-Bench: Probing Visual Intelligence in Video Generation Models**|Xuan He et.al.|[2608.19583](http://arxiv.org/abs/2608.19583)|null|
 |**2026-08-20**|**VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation**|Yinming Huang et.al.|[2608.18607](http://arxiv.org/abs/2608.18607)|null|
@@ -1362,6 +1363,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-08-31**|**CAER: Causal Action Effect Reweighting for World Model Training**|Jianjie Fang et.al.|[2608.30897](http://arxiv.org/abs/2608.30897)|null|
+|**2026-08-31**|**Can Video World Models Track Unobserved World States?**|Joonghyuk Shin et.al.|[2608.30692](http://arxiv.org/abs/2608.30692)|null|
 |**2026-08-31**|**WebWorld: The Browser as a World Model for Self-Improving Web Code**|Jiajun Wu et.al.|[2608.30530](http://arxiv.org/abs/2608.30530)|null|
 |**2026-08-31**|**Motus2: A Self-Evolving General World Model for Dexterous Manipulation**|Hongzhe Bi et.al.|[2608.30237](http://arxiv.org/abs/2608.30237)|null|
 |**2026-08-30**|**How do World Models and Policies Compose in LLM Agents? A Joint Spectral and Behavioral Account**|Ruize Xu et.al.|[2608.30067](http://arxiv.org/abs/2608.30067)|null|

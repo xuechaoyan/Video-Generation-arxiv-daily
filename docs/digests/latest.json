@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T02:08:13+00:00",
+  "generated_at": "2026-09-01T15:36:43+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -99,6 +99,41 @@
       "summary_cn": "Interactive world models extend video generation from offline clip synthesis toward persistent simulation of interactive virtual worlds, enabling applications in games, robotics, embodied agents, and XR.",
       "contribution_cn": "Building upon Matrix-Game 3.0, we present Matrix-Game 3.5, as shown in Figure 1, which advances real-time interactive world generation toward geometry-aware and long-horizon consistent simulation through three key improvements.",
       "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, simulation, embodied, autoregressive, streaming",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.30897",
+      "date": "2026-08-31",
+      "topics": [
+        "World Models"
+      ],
+      "title": "CAER: Causal Action Effect Reweighting for World Model Training",
+      "abstract": "World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions. Yet existing models are commonly trained with space-time-uniform mean squared error, allowing abundant background tokens to dominate the gradient while sparse interaction dynamics remain under-optimized; such uniform fitting rewards reconstructing appearance rather than learning how actions change the world. We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action. CAER contrasts the model's own predictions with and without action conditioning to localize these tokens online, then normalizes the resulting effect map into a weight that preserves the total coefficient mass and changes only where it is spent. This online signal requires no external annotations or offline preprocessing, avoids additional data-processing time, and scales naturally with model and dataset size. Experiments across heterogeneous action-conditioned world-model tasks show that CAER converges to better solutions than uniform MSE training, with consistent improvements in the physical consistency, controllability, and visual quality of generated videos.",
+      "authors": [
+        "Jianjie Fang",
+        "Xvyuan Liu",
+        "Ziyou Wang",
+        "Rongze Tang",
+        "Zhaolu Wang",
+        "Zhuohang Li",
+        "Xin Zhang",
+        "Haisheng Su",
+        "Chen Gao",
+        "Wei Wu",
+        "Xinlei Chen",
+        "Yong Li"
+      ],
+      "url": "http://arxiv.org/abs/2608.30897v1",
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": "14 pages, 8 figures. Project page: https://manifoldai-research.github.io/CAER/",
+      "score": 75,
+      "priority": "skim",
+      "summary_cn": "World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions.",
+      "contribution_cn": "We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, embodied, efficient, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -323,32 +358,6 @@
       "summary_cn": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system.",
       "contribution_cn": "We present Motus2, a self-evolving general world model for dexterous manipulation.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, closed-loop, embodied, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.26671",
-      "date": "2026-08-27",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "RECAP-Forcing: Retaining Content Appearances for Long Video Generation",
-      "abstract": "Long autoregressive video generation faces a fundamental memory challenge: with a finite attention window, a model must decide which information from an ever-expanding history to retain. Existing methods organize memory temporally, preserving recent frames while compressing or discarding older ones. We instead propose RECAP-Forcing, organizing memory by appearance novelty. A long video is not merely a sequence of frames, but an evolving cast of subjects, objects, and scenes whose identities must remain consistent over time. We organize memory by retaining the KV cache associated with newly appearing content--such as entering subjects, disoccluded regions, and newly introduced scenes--at the moment it first becomes visible, prioritizing novelty over recency. Memory should scale with the amount of newly introduced content, rather than with video length. This appearance-indexed memory makes long-range consistency an explicit property of the memory structure. Our framework unifies two mechanisms under this single principle. At the beginning of a video, when all visible content is novel, an attention sink preserves the initial scene. As the video evolves, an optical-flow-based novelty bank extends the same principle by selectively retaining newly revealed content. As a training-free inference method with no additional learnable parameters, RECAP-Forcing consistently improves visual quality and semantic fidelity across multiple strong baselines and outperforms existing memory methods.",
-      "authors": [
-        "Haiyang Xu",
-        "Zheng Ding",
-        "Zhuowen Tu"
-      ],
-      "url": "http://arxiv.org/abs/2608.26671v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project page: https://xxuhaiyang.github.io/RECAP-Forcing/",
-      "score": 68,
-      "priority": "skim",
-      "summary_cn": "Long autoregressive video generation faces a fundamental memory challenge: with a finite attention window, a model must decide which information from an ever-expanding history to retain.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, long video, cache, kv cache, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

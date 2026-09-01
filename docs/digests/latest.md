@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-01T02:08:13+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-09-01T15:36:43+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
@@ -37,7 +37,17 @@
 
 ## 快速浏览
 
-### 1. [WALL-SS: Scaling Long-horizon World Models via Next-Scale Autoregression](http://arxiv.org/abs/2608.26239v1)
+### 1. [CAER: Causal Action Effect Reweighting for World Model Training](http://arxiv.org/abs/2608.30897v1)
+
+- **评分**：75/100
+- **作者**：Jianjie Fang, Xvyuan Liu, Ziyou Wang et al.
+- **方向**：World Models
+- **摘要摘录**：World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions.
+- **核心贡献**：We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action.
+- **与你课题的关系**：匹配研究线：world model, video generation；关键词：world model, action-conditioned, embodied, efficient, video generation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 2. [WALL-SS: Scaling Long-horizon World Models via Next-Scale Autoregression](http://arxiv.org/abs/2608.26239v1)
 
 - **评分**：74/100
 - **作者**：Maeve Zhang, Rain Sun, Xiang Wang et al.
@@ -47,7 +57,7 @@
 - **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, action-conditioned, simulation, embodied, autoregressive, streaming
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [4DStreamCtrl: Interactive Video Generation with Online 4D Control](http://arxiv.org/abs/2608.25479v2)
+### 3. [4DStreamCtrl: Interactive Video Generation with Online 4D Control](http://arxiv.org/abs/2608.25479v2)
 
 - **评分**：73/100
 - **作者**：Shiqian Li, Chenguo Lin, Zhiguang Liu et al.
@@ -57,7 +67,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, interactive, closed-loop, embodied, streaming, long video
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [NVIDIA Cosmos-H-Dreams: Real-Time Generative Physics Simulation for Surgical Robotics](http://arxiv.org/abs/2608.24199v2)
+### 4. [NVIDIA Cosmos-H-Dreams: Real-Time Generative Physics Simulation for Surgical Robotics](http://arxiv.org/abs/2608.24199v2)
 
 - **评分**：72/100
 - **作者**：Javier Gamazo Tejero, Lukas Zbinden, Keyur Sheth et al.
@@ -67,7 +77,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, interactive, simulation, streaming
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 4. [Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution](http://arxiv.org/abs/2608.28995v1)
+### 5. [Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution](http://arxiv.org/abs/2608.28995v1)
 
 - **评分**：71/100
 - **作者**：Mohammad Nazeri, Alexandyr Card, Samira Huber et al.
@@ -77,7 +87,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, closed-loop, real-time
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 5. [R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models](http://arxiv.org/abs/2608.27328v1)
+### 6. [R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models](http://arxiv.org/abs/2608.27328v1)
 
 - **评分**：70/100
 - **作者**：Qiwen Gu, Bingjie Gao, Rui Chen et al.
@@ -87,7 +97,7 @@
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, video world model, action-conditioned, interactive
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 6. [Motus2: A Self-Evolving General World Model for Dexterous Manipulation](http://arxiv.org/abs/2608.30237v1)
+### 7. [Motus2: A Self-Evolving General World Model for Dexterous Manipulation](http://arxiv.org/abs/2608.30237v1)
 
 - **评分**：70/100
 - **作者**：Hongzhe Bi, Zihao Zhou, Yihang Tang et al.
@@ -95,14 +105,4 @@
 - **摘要摘录**：General embodied agents should perceive, predict, act, evaluate, and improve within a unified system.
 - **核心贡献**：We present Motus2, a self-evolving general world model for dexterous manipulation.
 - **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, action-conditioned, closed-loop, embodied, autoregressive
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 7. [RECAP-Forcing: Retaining Content Appearances for Long Video Generation](http://arxiv.org/abs/2608.26671v1)
-
-- **评分**：68/100
-- **作者**：Haiyang Xu, Zheng Ding, Zhuowen Tu
-- **方向**：Autoregressive and Streaming Video
-- **摘要摘录**：Long autoregressive video generation faces a fundamental memory challenge: with a finite attention window, a model must decide which information from an ever-expanding history to retain.
-- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
-- **与你课题的关系**：匹配研究线：streaming video, efficient generation；关键词：autoregressive, long video, cache, kv cache, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
