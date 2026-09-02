@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T15:36:43+00:00",
+  "generated_at": "2026-09-02T01:30:48+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -99,6 +99,34 @@
       "summary_cn": "Interactive world models extend video generation from offline clip synthesis toward persistent simulation of interactive virtual worlds, enabling applications in games, robotics, embodied agents, and XR.",
       "contribution_cn": "Building upon Matrix-Game 3.0, we present Matrix-Game 3.5, as shown in Figure 1, which advances real-time interactive world generation toward geometry-aware and long-horizon consistent simulation through three key improvements.",
       "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, simulation, embodied, autoregressive, streaming",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.00610",
+      "date": "2026-09-01",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction",
+      "abstract": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency. This limits applications in interactive real-time scenarios. To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction. Unlike traditional frame-by-frame emission and delayed geometry recovery, Streaming4D generates temporal video blocks and immediately triggers reconstruction for each completed block, enabling parallel execution between synthesis and geometric updates. This approach allows the world representation to evolve online with the video stream, reducing feedback latency while preserving geometric fidelity. We instantiate \\textbf{Streaming4D} using a Self-Forcing-style autoregressive generator and an incremental reconstruction backend. Experiments show consistent runtime improvements across resolutions on a single RTX 4090 (1.24$\\times$ speedup), while maintaining high-quality 4D geometry and multi-view consistency.",
+      "authors": [
+        "Xiaoyan Liu",
+        "Jiaxin Liu",
+        "Kangrui Li",
+        "Sifan Zhou"
+      ],
+      "url": "http://arxiv.org/abs/2609.00610v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "skim",
+      "summary_cn": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency.",
+      "contribution_cn": "To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction.",
+      "relevance_cn": "匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -284,80 +312,47 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.27328",
-      "date": "2026-08-27",
+      "id": "2609.00776",
+      "date": "2026-09-01",
       "topics": [
         "World Models"
       ],
-      "title": "R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models",
-      "abstract": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little. This ambiguity makes absolute revisit scores sensitive to rendering stability, repetitive content, and failed motion. We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency. For every detected return, R2M-Bench compares the revisit pair with two controls from the same rollout: a gap-matched non-revisit pair that measures generic temporal stability and a short-range pair that estimates short-horizon consistency. These comparisons produce \\emph{MemoryGain} (MG), the revisit advantage over the temporal baseline, and the \\emph{Normalized Memory Ratio} (NMR), which normalizes this advantage by the short-to-baseline dynamic range. R2M-Bench combines 100 reference scenes with three leave-and-return trajectories to form 300 instances and evaluates appearance fidelity, scene and object identity, local geometry, and persistent state. Across seven action-conditioned video world models, Overall NMR correlates with human consistency judgments at Spearman's $ρ=0.547$ (95\\% CI $[0.45,0.63]$). Its within-model correlation magnitude with generated motion is $0.072$, compared with $0.207$ for raw revisit similarity, indicating that relative calibration substantially reduces the slow-motion shortcut. DreamX-World-Memo achieves the highest Overall NMR among the evaluated video models. Together, these results support same-rollout relative calibration as a practical way to distinguish revisit-specific consistency from generic temporal stability.",
+      "title": "Solaris: Towards Interfaces That Are Generated, Not Coded",
+      "abstract": "Digital interfaces are traditionally implemented through intermediate representations such as code, requiring their appearance and behavior to be specified in advance. We introduce Solaris, an interface world model that instead generates an interactive UI directly, frame by frame, in response to user actions. Solaris treats mouse interactions as conditioning signals and autoregressively synthesizes the resulting visual state at interactive speeds. To enable real-time generation while maintaining visual coherence over extended interactions, we combine autoregressive frame generation with few-step distillation and training on the model's own outputs. A language model complements the visual world model by interpreting user intent and specifying how interactions should affect the generated environment, separating high-level reasoning from visual rendering. By generating both the appearance and behavior of an interface dynamically, Solaris enables open-ended interactions that need not be explicitly programmed in advance. We view interface world models as a step toward a new paradigm for software, where interfaces are generated and adapted continuously around user intent rather than implemented as fixed collections of predefined states and",
       "authors": [
-        "Qiwen Gu",
-        "Bingjie Gao",
-        "Rui Chen",
-        "Geng Li",
-        "Jifan Li",
-        "Qishuai Wen",
-        "Li Niu",
-        "Jing Tang",
-        "Xiangxiang Chu",
-        "Junqiao Zhao"
+        "Yuval Alaluf",
+        "Omri Avrahami",
+        "Guy Bukchin Leshem",
+        "Michal Geyer",
+        "Kfir Goldberg",
+        "Elad Richardson",
+        "Diego Alarcón",
+        "Alejandro Alvarez",
+        "Cole Garry",
+        "Anastasis Germanidis",
+        "Tenaya Goldsen",
+        "Corina Gurau",
+        "Robin Kahlow",
+        "Joel Kwartler",
+        "Kathleen Lewis",
+        "Alejandro Matamala Ortiz",
+        "Eugene McMahon",
+        "Thon Prom",
+        "Sarah Saltonstall-Wurm",
+        "Jamie Umpherson",
+        "Hudson Yeo"
       ],
-      "url": "http://arxiv.org/abs/2608.27328v1",
+      "url": "http://arxiv.org/abs/2609.00776v1",
       "categories": [
-        "cs.CV"
-      ],
-      "comment": "Code: https://github.com/AMAP-ML/R2MBench",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little.",
-      "contribution_cn": "We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned, interactive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.30237",
-      "date": "2026-08-31",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Motus2: A Self-Evolving General World Model for Dexterous Manipulation",
-      "abstract": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system. World models have shown great promise in building such agents, yet existing models typically append an action output head to a world simulator, without coupling them into a closed decision-and-learning loop for policy improvement. We present Motus2, a self-evolving general world model for dexterous manipulation. Motus2 advances world modeling through model scaling and data scaling. For model scaling, a single model with shared weights exposes three control interfaces: a policy (world-action model), a simulator (action-conditioned world model), and an evaluator (value model). The policy proposes candidate action chunks, the simulator predicts their visual consequences, and the evaluator assesses the predicted outcomes. Their coupling forms a closed decision-and-learning loop for policy improvement. This formulation uses curated expert demonstrations for action learning, while failed and suboptimal interactions provide valuable evidence for dynamics modeling and value learning. For data scaling, Motus2 progresses from large-scale monocular egocentric data to synchronized stereo egocentric data, followed by robot-domain adaptation with robot trajectories and supplementary human-robot alignment data. Motus2 further studies global-autoregressive and hybrid-memory extensions of its sliding-window context, adds tactile feedback for contact-aware control, and is instantiated on a fully biomimetic platform with stereo vision, dual arms, dual dexterous hands, and tactile sensing. Together, egocentric data scaling and closed-loop general world model scaling provide a general path toward self-evolving dexterous manipulation.",
-      "authors": [
-        "Hongzhe Bi",
-        "Zihao Zhou",
-        "Yihang Tang",
-        "Jingrui Pang",
-        "Shuhe Huang",
-        "Haitian Liu",
-        "Runqing Wang",
-        "Shuai Huang",
-        "Yichen Wang",
-        "Yiming Cheng",
-        "Ruowen Zhao",
-        "Zhenghua Li",
-        "Hengkai Tan",
-        "Xiaolong Liu",
-        "Jinhui Wan",
-        "Jiabao Liu",
-        "Min Zhao",
-        "Fan Bao",
-        "Jun Zhu"
-      ],
-      "url": "http://arxiv.org/abs/2608.30237v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
         "cs.CV",
-        "cs.LG"
+        "cs.AI"
       ],
-      "comment": "",
+      "comment": "Project page: https://runway.com/news/research/introducing-solaris",
       "score": 70,
       "priority": "skim",
-      "summary_cn": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system.",
-      "contribution_cn": "We present Motus2, a self-evolving general world model for dexterous manipulation.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, closed-loop, embodied, autoregressive",
+      "summary_cn": "Digital interfaces are traditionally implemented through intermediate representations such as code, requiring their appearance and behavior to be specified in advance.",
+      "contribution_cn": "We introduce Solaris, an interface world model that instead generates an interactive UI directly, frame by frame, in response to user actions.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, autoregressive, real-time, few-step, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
