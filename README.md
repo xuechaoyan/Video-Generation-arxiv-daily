@@ -17,6 +17,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-02**|**Thinking in Pictures: A Systematic Benchmark for Reasoning-driven Image Generation**|Yutong Liu et.al.|[2609.02864](http://arxiv.org/abs/2609.02864)|null|
+|**2026-09-02**|**RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation**|Xiaolei Lang et.al.|[2609.02847](http://arxiv.org/abs/2609.02847)|null|
+|**2026-09-02**|**Spatially Aware World Action Model via Geometric Latent Diffusion**|Javier Alejandro Lopetegui Gonzalez et.al.|[2609.02531](http://arxiv.org/abs/2609.02531)|null|
+|**2026-09-02**|**The Missing Temporal Link: Temporal Context Routing for Script-Driven Audio-Video Generation**|Yichen Liu et.al.|[2609.02367](http://arxiv.org/abs/2609.02367)|null|
+|**2026-09-01**|**VirSqueezer: Generating Realistic Deformations and Squeezing Dynamics in VR from Fine-Grained Squeezing Controls**|Qian Zhang et.al.|[2609.01698](http://arxiv.org/abs/2609.01698)|null|
 |**2026-09-01**|**CameraEditor: Camera-Controlled Image Editing via Video-Prior Sequential Modeling**|Xin Shen et.al.|[2609.01479](http://arxiv.org/abs/2609.01479)|null|
 |**2026-08-31**|**DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution**|Jiashu Zhu et.al.|[2608.31106](http://arxiv.org/abs/2608.31106)|null|
 |**2026-08-30**|**On the Resilience of Text-to-Video Diffusion Models to Hardware Faults**|Zachary Coalson et.al.|[2608.29598](http://arxiv.org/abs/2608.29598)|null|
@@ -1364,6 +1369,18 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-02**|**SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models**|Junchao Huang et.al.|[2609.02886](http://arxiv.org/abs/2609.02886)|null|
+|**2026-09-02**|**Discriminative World Models for Web Agents**|Kelvin Li et.al.|[2609.02885](http://arxiv.org/abs/2609.02885)|null|
+|**2026-09-02**|**Do Better Imagined Rollouts Mean Better Robot Control? A Controlled Study of World-Model Evaluation Under Feedback**|Dharini Raghavan et.al.|[2609.02811](http://arxiv.org/abs/2609.02811)|null|
+|**2026-09-02**|**Dutch Books for Language Models**|Isaiah Andrews et.al.|[2609.02797](http://arxiv.org/abs/2609.02797)|null|
+|**2026-09-02**|**From Proxy Learning to Driving Decisions: A Transfer-Based Framework for Evaluating Future-Aware Autonomous Driving Planners**|Yikai Wu et.al.|[2609.02688](http://arxiv.org/abs/2609.02688)|null|
+|**2026-09-02**|**World-Model-Augmented Visual Locomotion for Humanoids on Foothold-Constrained Terrain**|Yuxi Liu et.al.|[2609.02542](http://arxiv.org/abs/2609.02542)|null|
+|**2026-09-02**|**Spatially Aware World Action Model via Geometric Latent Diffusion**|Javier Alejandro Lopetegui Gonzalez et.al.|[2609.02531](http://arxiv.org/abs/2609.02531)|null|
+|**2026-09-02**|**AGI Maze Prediction Datasets: A Compact Benchmark for Learning World Dynamics with Transformers**|Alexey Potapov et.al.|[2609.02339](http://arxiv.org/abs/2609.02339)|null|
+|**2026-09-02**|**World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models**|Chuhan Zhang et.al.|[2609.02159](http://arxiv.org/abs/2609.02159)|null|
+|**2026-09-02**|**Modeling What Changes: Sparse, Residual World Models for Object-Centric Manipulation**|Param Thakkar et.al.|[2609.02046](http://arxiv.org/abs/2609.02046)|null|
+|**2026-09-01**|**Grounded, Compute-Efficient LLM Policy Agents for Energy-Poverty Equity in Physically-Constrained Peer-to-Peer Energy Markets**|Kunal Jadhav et.al.|[2609.01918](http://arxiv.org/abs/2609.01918)|null|
+|**2026-09-01**|**Belief-Calibrated Optimization: An Explicit World Model for Agentic Optimization**|Yuhan Chen et.al.|[2609.01861](http://arxiv.org/abs/2609.01861)|null|
 |**2026-09-01**|**H3-World: Turning Language Understanding into World Control**|Danze Chen et.al.|[2609.01560](http://arxiv.org/abs/2609.01560)|null|
 |**2026-09-01**|**REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs**|Riyaaz Shaik et.al.|[2609.01215](http://arxiv.org/abs/2609.01215)|null|
 |**2026-09-01**|**World Model-Guided Reinforcement Learning via Counterfactual User Engagement Simulation**|Ang Li et.al.|[2609.01067](http://arxiv.org/abs/2609.01067)|null|

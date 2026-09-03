@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T01:38:43+00:00",
+  "generated_at": "2026-09-03T15:16:33+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -32,33 +32,6 @@
       "summary_cn": "Autoregressive video diffusion models enable streaming generation through sliding-window attention, but each generated block is conditioned on previously generated content, causing appearance and motion errors to propagate recursively over time.",
       "contribution_cn": "To address this problem, we propose DensityKV, a training-free historical KV bank management strategy.",
       "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, long video, cache, kv cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.27406",
-      "date": "2026-08-27",
-      "topics": [
-        "World Models"
-      ],
-      "title": "CLAP: Cross-Embodiment Video World Models are Zero-Shot Physical Simulators",
-      "abstract": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich signals for learning generalizable physics. To bridge this gap, we introduce CLAP, a framework for cross-embodiment action-conditioned video generation capable of being trained on diverse, internet-scale videos across human and robotic agents. CLAP is grounded in the insight that universal physical laws govern spatiotemporal dynamics regardless of the actor. However, cross-embodiment learning is non-trivial because action representations vary sharply across robot platforms and are typically absent in human videos. CLAP addresses this fundamental challenge through the following core contributions. First, CLAP reconciles disparate action spaces using end-effector poses, language instructions, and latent actions. Second, to resolve their individual limitations, CLAP introduces a curriculum-based cross-embodiment learning recipe that first learns foundational physical priors across unlabeled video data using latent actions and subsequently grounds them in end-effector action spaces for zero-shot deployment to real-world tasks. Crucially, CLAP approaches or surpasses state-of-the-art single-embodiment video models in challenging environments like DROID. These performance advantages compound via few-shot adaptation to establish a novel paradigm for training single-embodiment video world models. Ultimately, CLAP delivers the most comprehensive suite of action-conditioned video world models to date - spanning diverse action-conditioning spaces (end-effector, language, and latent) and robot morphologies (including cross-embodiment, DROID, Bridge, bimanual YAM robots, and G1 humanoids). We open-source all code and models. Project Website at https://omni-clap.github.io .",
-      "authors": [
-        "Kechen Liu",
-        "Ola Shorinwa"
-      ],
-      "url": "http://arxiv.org/abs/2608.27406v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 77,
-      "priority": "must-read",
-      "summary_cn": "State-of-the-art action-conditioned video models are typically restricted to a single robot embodiment, preventing them from leveraging the vast corpus of heterogeneous video data that contains rich signals for learning generalizable physics.",
-      "contribution_cn": "To bridge this gap, we introduce CLAP, a framework for cross-embodiment action-conditioned video generation capable of being trained on diverse, internet-scale videos across human and robotic agents.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, action-conditioned, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -123,7 +96,7 @@
       ],
       "comment": "",
       "score": 75,
-      "priority": "skim",
+      "priority": "must-read",
       "summary_cn": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency.",
       "contribution_cn": "To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction.",
       "relevance_cn": "匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time",
@@ -166,34 +139,43 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.25479",
-      "date": "2026-08-27",
+      "id": "2609.02886",
+      "date": "2026-09-02",
       "topics": [
-        "Video Generation",
         "World Models"
       ],
-      "title": "4DStreamCtrl: Interactive Video Generation with Online 4D Control",
-      "abstract": "Generative video models now synthesize footage nearly indistinguishable from reality. Their promise as interactive tools hinges on fine-grained control of how objects and the camera move over time, yet each existing approach captures only part of this: camera-parameter methods steer the viewpoint but cannot move objects, 2D-trajectory methods act in the image plane and ignore depth and occlusion, and recent 3D methods add geometry but run only offline at a fixed length. In particular, none combines 3D-consistent control of both camera and objects with real-time, streaming generation. Here we show that camera motion, object trajectories, and depth can be unified into a single 3D point-track representation, from which one model performs joint camera and object control, depth editing, and motion transfer in a single forward pass. To learn this interface at scale, we mine in-the-wild video for 3D motion supervision, yielding OpenVidHD-Motion3D, and encode it with a lightweight Geometric Motion Head that plugs into a pretrained video diffusion model. Because this encoder is temporally separable, we distill the model into a causal streaming student that generates arbitrarily long video in four denoising steps at memory independent of length. This unified design surpasses prior camera-only, 2D, and offline-3D methods in motion-control precision while covering modalities they address only in isolation. 4DStreamCtrl runs at 20 FPS on a single high-end GPU for 480p video and stays temporally coherent over hundreds of frames, enabling, to our knowledge, interactive 4D-controllable streaming generation for the first time. More broadly, grounding generation in explicit 3D geometry with efficient causal inference points toward interactive world models with closed-loop spatiotemporal control, from controllable simulators to real-time visual imagination for embodied agents.",
+      "title": "SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models",
+      "abstract": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference. Training across heterogeneous data sources and video backbones is challenging: datasets differ in temporal scale, camera geometry, visual quality, motion, and captioning styles, while video generators use distinct representations and architectures. Naive data mixing and model-specific implementations therefore produce inconsistent supervision and make results difficult to reproduce and compare. SolarWM addresses this coupling with a reconfigurable multi-source data engine and a backbone-native adaptation framework. The engine converts 1.43 million canonical clips from 10 datasets into a unified, frame-aligned contract covering visual observations, metric camera geometry, captions, quality metadata, selection decisions, and provenance, while decoupling source processing from mixture construction. Under shared camera-conditioning, training, and inference interfaces, we instantiate four 5B--33B models based on Wan2.2, LTX-2.5, and MiniMax-H3 while preserving their native representations and objectives. A unified three-stage recipe combines bidirectional adaptation, teacher-forced autoregressive initialization, and distribution matching distillation. The resulting causal models enable real-time interaction over rollouts ranging from minutes to hours after being trained on only 5s sequences. By releasing the resulting data, pipeline, recipes, weights, and framework, SolarWM provides a reproducible and extensible foundation for interactive world-model research.",
       "authors": [
-        "Shiqian Li",
-        "Chenguo Lin",
-        "Zhiguang Liu",
-        "Yu Tang",
-        "Jiarong Ou",
-        "Rui Chen",
-        "Yixin Zhu"
+        "Junchao Huang",
+        "Guian Fang",
+        "Shengju Qian",
+        "Xianghao Kong",
+        "Zhuoran Zhao",
+        "Wei Huang",
+        "Yihua Du",
+        "Zixin Zhang",
+        "Justin Cui",
+        "Yuchao Gu",
+        "Yukang Chen",
+        "Xinting Hu",
+        "Tianyu He",
+        "Shaoshuai Shi",
+        "Zhuotao Tian",
+        "Xin Wang",
+        "Mike Zheng Shou",
+        "Li Jiang"
       ],
-      "url": "http://arxiv.org/abs/2608.25479v2",
+      "url": "http://arxiv.org/abs/2609.02886v1",
       "categories": [
-        "cs.CV",
-        "cs.AI"
+        "cs.CV"
       ],
-      "comment": "23 pages",
-      "score": 73,
+      "comment": "https://junchao-cs.github.io/SolarWM-Web/",
+      "score": 74,
       "priority": "skim",
-      "summary_cn": "Generative video models now synthesize footage nearly indistinguishable from reality.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, interactive, closed-loop, embodied, streaming, long video",
+      "summary_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
+      "contribution_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, real-time, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -321,35 +303,64 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.27328",
-      "date": "2026-08-27",
+      "id": "2608.30692",
+      "date": "2026-08-31",
       "topics": [
         "World Models"
       ],
-      "title": "R2M-Bench: Evaluating Revisit Memory via Relative Consistency in Interactive Video World Models",
-      "abstract": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little. This ambiguity makes absolute revisit scores sensitive to rendering stability, repetitive content, and failed motion. We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency. For every detected return, R2M-Bench compares the revisit pair with two controls from the same rollout: a gap-matched non-revisit pair that measures generic temporal stability and a short-range pair that estimates short-horizon consistency. These comparisons produce \\emph{MemoryGain} (MG), the revisit advantage over the temporal baseline, and the \\emph{Normalized Memory Ratio} (NMR), which normalizes this advantage by the short-to-baseline dynamic range. R2M-Bench combines 100 reference scenes with three leave-and-return trajectories to form 300 instances and evaluates appearance fidelity, scene and object identity, local geometry, and persistent state. Across seven action-conditioned video world models, Overall NMR correlates with human consistency judgments at Spearman's $ρ=0.547$ (95\\% CI $[0.45,0.63]$). Its within-model correlation magnitude with generated motion is $0.072$, compared with $0.207$ for raw revisit similarity, indicating that relative calibration substantially reduces the slow-motion shortcut. DreamX-World-Memo achieves the highest Overall NMR among the evaluated video models. Together, these results support same-rollout relative calibration as a practical way to distinguish revisit-specific consistency from generic temporal stability.",
+      "title": "Can Video World Models Track Unobserved World States?",
+      "abstract": "Video world models are increasingly used as simulators, yet visual fidelity alone does not show that a model maintains the hidden state of the world. We examine this gap with an action-conditioned video Shell Game, a visual analog of $S_5$ state tracking that decouples visual rendering from compositing the hidden state underneath. Bidirectional and autoregressive Transformers, Mamba, and linear attention restricted to nonnegative transition eigenvalues all fit the training horizon of 5 swaps and then fall toward chance on longer swap chains (extrapolation) while still rendering plausible video with additional denoising steps providing no benefit. The pixel-based diffusion target never supervises the unseen hidden state, so the generated frames cannot carry it and the state has to live inside the architecture rather than in the tokens. For a Transformer, that architectural state is only an append-only KV cache, so the model has to re-derive the hidden arrangement from the whole history at every chunk. We find two mechanisms that do extrapolate, and both carry a state across chunks and revise it in place. Linear attention succeeds once its transition eigenvalues may be negative, and TTT with a nonlinear fast weight succeeds by updating the feature map through which it reads its own state. We further examine harder cases in dynamic world exploration tasks, and discuss the broader implications for building stateful video world models.",
       "authors": [
-        "Qiwen Gu",
-        "Bingjie Gao",
-        "Rui Chen",
-        "Geng Li",
-        "Jifan Li",
-        "Qishuai Wen",
-        "Li Niu",
-        "Jing Tang",
-        "Xiangxiang Chu",
-        "Junqiao Zhao"
+        "Joonghyuk Shin",
+        "Yicong Hong",
+        "Jaesik Park",
+        "Xun Huang"
       ],
-      "url": "http://arxiv.org/abs/2608.27328v1",
+      "url": "http://arxiv.org/abs/2608.30692v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Code: https://github.com/AMAP-ML/R2MBench",
+      "comment": "Project webpage:https://joonghyuk.com/stateful-vwm-web/",
       "score": 70,
       "priority": "skim",
-      "summary_cn": "High similarity between first-visit and return frames does not necessarily show that a video world model remembered the scene; the intervening rollout may simply have changed very little.",
-      "contribution_cn": "We introduce \\emph{R2M-Bench} (\\textbf{R}elative \\textbf{R}evisit \\textbf{M}emory Benchmark), a benchmark of observable revisit-selective consistency.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned, interactive",
+      "summary_cn": "Video world models are increasingly used as simulators, yet visual fidelity alone does not show that a model maintains the hidden state of the world.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, autoregressive, cache, kv cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.00161",
+      "date": "2026-08-31",
+      "topics": [
+        "World Models"
+      ],
+      "title": "IMPACT: Attention Is the Interaction Map for Scalable Interaction-Aware World Model Training",
+      "abstract": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions. Existing approaches address this limitation by constraining the generation process with external representations encoding motion, geometry, or semantics. Obtaining these spatiotemporally dense representations typically requires auxiliary estimators or manual annotations, limiting training scalability. We instead revisit the training objective and identify a supervision-allocation mismatch under the globally averaged mean squared error (MSE) denoising objective: prevalent static content dominates the optimization signal, leaving sparse dynamic-object regions critical to interaction generation disproportionately under-supervised. Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting. IMPACT uses cross-attention associated with manipulated-object tokens as an internal spatiotemporal prior for action-conditioned changes. It samples candidate regions from this prior, calibrates them with detached local prediction errors to construct an interaction map, and uses the map to reweight denoising supervision, requiring neither external representations nor inference-time modifications. Extensive experiments on robot-arm and human-hand manipulation, spanning diverse control modalities and DiT backbones, show that IMPACT consistently outperforms the corresponding MSE-trained baselines, improving interaction fidelity, physical plausibility, and visual quality.",
+      "authors": [
+        "Rongze Tang",
+        "Jianjie Fang",
+        "Zhaolu Wang",
+        "Ziyou Wang",
+        "Xvyuan Liu",
+        "Haisheng Su",
+        "Xin Zhang",
+        "Wei Wu",
+        "Chen Gao",
+        "Yong Li",
+        "Zhibo Chen"
+      ],
+      "url": "http://arxiv.org/abs/2609.00161v1",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions.",
+      "contribution_cn": "Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
