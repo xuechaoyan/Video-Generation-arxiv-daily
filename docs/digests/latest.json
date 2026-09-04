@@ -1,40 +1,7 @@
 {
-  "generated_at": "2026-09-03T15:16:33+00:00",
+  "generated_at": "2026-09-04T01:28:06+00:00",
   "assessment_mode": "heuristic",
   "papers": [
-    {
-      "id": "2608.27922",
-      "date": "2026-08-28",
-      "topics": [
-        "Video Generation",
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "DensityKV: Density-Guided KV Cache Compression for Long Video Generation",
-      "abstract": "Autoregressive video diffusion models enable streaming generation through sliding-window attention, but each generated block is conditioned on previously generated content, causing appearance and motion errors to propagate recursively over time. Historical key-value (KV) memory preserves earlier subject and scene states and helps maintain long-horizon consistency. However, retaining every generated state creates a historical archive that grows continuously with the rollout, while recurrent states repeatedly add redundant coverage. To address this problem, we propose DensityKV, a training-free historical KV bank management strategy. DensityKV maintains a separate token-level KV bank for each attention head and measures local redundancy among the post-RoPE keys that directly parameterize attention routing using Soft-Riesz density. By constraining neighborhood-density growth after states enter the bank, DensityKV limits repeated historical accumulation while preserving coherent states from each completed generation block. Experiments across three autoregressive video generation backbones and multiple generation lengths show that, at the same upper bound on historical KV capacity, DensityKV improves long-horizon consistency and generation stability while keeping persistent historical storage bounded independently of rollout length.",
-      "authors": [
-        "Wenqu Zhao",
-        "Xuemin Chi",
-        "Xin Zhang",
-        "Guoqing Ma",
-        "Baorun Li",
-        "Jianjie Fang",
-        "Peizhi Tang",
-        "Chen Gao",
-        "Wei Wu"
-      ],
-      "url": "http://arxiv.org/abs/2608.27922v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "17 pages, 9 figures, 2 tables. Code: https://github.com/ZhaoWQQ/DensityKV",
-      "score": 79,
-      "priority": "must-read",
-      "summary_cn": "Autoregressive video diffusion models enable streaming generation through sliding-window attention, but each generated block is conditioned on previously generated content, causing appearance and motion errors to propagate recursively over time.",
-      "contribution_cn": "To address this problem, we propose DensityKV, a training-free historical KV bank management strategy.",
-      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, long video, cache, kv cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
     {
       "id": "2608.29910",
       "date": "2026-08-30",
@@ -131,7 +98,7 @@
       ],
       "comment": "14 pages, 8 figures. Project page: https://manifoldai-research.github.io/CAER/",
       "score": 75,
-      "priority": "skim",
+      "priority": "must-read",
       "summary_cn": "World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions.",
       "contribution_cn": "We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action.",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, embodied, efficient, video generation",
@@ -180,35 +147,32 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.28995",
-      "date": "2026-08-29",
+      "id": "2609.03225",
+      "date": "2026-09-03",
       "topics": [
         "World Models"
       ],
-      "title": "Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution",
-      "abstract": "World models let robots imagine possible futures, but exploiting this capability for real-time control is bottlenecked by a representation misalignment: the generative model and the planner operate on decoupled manifolds, so the planner has no shared structure to search over and must instead decode every candidate back into high-dimensional pixel space to evaluate it. This decoding step is a major obstacle to real-time control on physical hardware. In this paper, we present Hydra, a discrete World Action Model that closes this gap by moving the planner, both the sampler and the evaluator, inside the model. Hydra establishes a unified latent manifold over visual states, physical poses, and control actions, then compresses this manifold through modality-specific Vector-Quantized bottlenecks into discrete vocabularies of kinodynamic intents and visual states. Because candidates are now drawn directly from this shared manifold, sampling is informed by the model's own understanding of the observation rather than proposed blind, and evaluation happens natively within the discrete space: candidates are ranked by a Kinematic-Perceptual Cost, without ever decoding to pixels. We term this Discrete Latent Planning (DLP). Because planning over discrete intents alone cannot supply the smooth, continuous commands physical actuation requires, Hydra pairs DLP with conditional Flow Matching, which maps each selected intent to a continuous trajectory for execution. Evaluated on two physical robotic platforms, Hydra outperforms state-of-the-art world models in goal-directed planning, while matching or exceeding the closed-loop execution capabilities of leading reactive foundation policies.",
+      "title": "Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving",
+      "abstract": "End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \\textit{imagined rollouts}. However, existing world models suffer from three key limitations: temporal inconsistency in long-horizon imagined rollouts, inadequate modeling of ego-environment interactions, and limited adaptability to diverse driving styles. To address these challenges, we propose \\textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm. First, we introduce a temporal consistency regularization that integrates historical latent states through gated cross-attention, stabilizing long-horizon imagined rollouts and mitigating error accumulation. Second, we design an explicit state disentanglement module that separates ego-relevant from ego-irrelevant interactive states, enabling more interpretable and efficient decision-making in complex traffic scenarios. Third, we enable multi-style driving behaviors through Group Relative Policy Optimization, which replaces per-step reward optimization with trajectory-wise relative advantages, reducing reward variance and supporting diverse driving styles without retraining. We evaluate StyleDrive on the Bench2Drive closed-loop driving benchmark, achieving a driving score of 88.44 (+17.08 over the previous best world model-based method) and a success rate of 66.82 (+16.58). Furthermore, we deploy StyleDrive on a real automated guided vehicle platform and demonstrate promising sim-to-real transfer capability in dynamic driving scenarios.",
       "authors": [
-        "Mohammad Nazeri",
-        "Alexandyr Card",
-        "Samira Huber",
-        "Anuj Pokhrel",
-        "Yujun Wang",
-        "Ruben Hammele",
-        "Daeun Song",
-        "Sören Pirk",
-        "Xuesu Xiao"
+        "Yuxuan Han",
+        "Kunyuan Wu",
+        "Liyunong Yang",
+        "Zilu Wang",
+        "Cansen Jiang",
+        "Yi Xiao",
+        "Liang Hu"
       ],
-      "url": "http://arxiv.org/abs/2608.28995v1",
+      "url": "http://arxiv.org/abs/2609.03225v1",
       "categories": [
-        "cs.RO",
-        "cs.CV"
+        "cs.RO"
       ],
-      "comment": "29 pages, 12 figures. https://robotixx.github.io/hydra",
-      "score": 71,
+      "comment": "",
+      "score": 72,
       "priority": "skim",
-      "summary_cn": "World models let robots imagine possible futures, but exploiting this capability for real-time control is bottlenecked by a representation misalignment: the generative model and the planner operate on decoupled manifolds, so the planner has no shared structure to search over and must instead decode every candidate back into high-dimensional pixel space to evaluate it.",
-      "contribution_cn": "In this paper, we present Hydra, a discrete World Action Model that closes this gap by moving the planner, both the sampler and the evaluator, inside the model.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, real-time",
+      "summary_cn": "End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \\textit{imagined rollouts}.",
+      "contribution_cn": "To address these challenges, we propose \\textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, driving, temporal consistency, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -303,6 +267,36 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2609.03557",
+      "date": "2026-09-03",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation",
+      "abstract": "Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions. Such supervision is difficult to obtain from ordinary real-world video because the actions that caused each visual change are typically unknown. We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video. To accommodate the different execution requirements of real-time physics and high-quality offline rendering, the pipeline executes trajectory generation and final rendering in two stages: Stage I runs real physics in PIE and records per-frame character states, control inputs, and camera states into an intermediate trajectory representation; Stage II replays those trajectories in a new engine process and renders them offline with Movie Render Queue (MRQ). Around this core, we develop a distributed production system with cache-aware task partitioning, node-local slot scheduling, automated scene screening, aesthetic and luminance filtering, partial-output recovery, asynchronous upload, and continuous cluster health monitoring. The production cluster contains 25 servers with eight NVIDIA RTX 5090 GPUs per server. From 2,384 asset packs, 429 levels were retained for production together with a pool of 40 humanoid characters. The pipeline has produced 2,691 hours of 1080p video and 6,076 hours of 720p video. We describe the system architecture, the implementation decisions that emerged from production failures, and the limitations of using perceptual quality proxies for world-model data curation. The pipeline described in this report constitutes the Unreal Engine synthetic-data production component used in EchoWM.",
+      "authors": [
+        "Haoyu Wang",
+        "Songchun Zhang",
+        "Haoran Li",
+        "Haoyang Huang",
+        "Zeyue Xue",
+        "Nan Duan"
+      ],
+      "url": "http://arxiv.org/abs/2609.03557v1",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "comment": "16 pages, 5 figures",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions.",
+      "contribution_cn": "We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2608.30692",
       "date": "2026-08-31",
       "topics": [
@@ -330,37 +324,41 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.00161",
-      "date": "2026-08-31",
+      "id": "2609.03602",
+      "date": "2026-09-03",
       "topics": [
         "World Models"
       ],
-      "title": "IMPACT: Attention Is the Interaction Map for Scalable Interaction-Aware World Model Training",
-      "abstract": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions. Existing approaches address this limitation by constraining the generation process with external representations encoding motion, geometry, or semantics. Obtaining these spatiotemporally dense representations typically requires auxiliary estimators or manual annotations, limiting training scalability. We instead revisit the training objective and identify a supervision-allocation mismatch under the globally averaged mean squared error (MSE) denoising objective: prevalent static content dominates the optimization signal, leaving sparse dynamic-object regions critical to interaction generation disproportionately under-supervised. Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting. IMPACT uses cross-attention associated with manipulated-object tokens as an internal spatiotemporal prior for action-conditioned changes. It samples candidate regions from this prior, calibrates them with detached local prediction errors to construct an interaction map, and uses the map to reweight denoising supervision, requiring neither external representations nor inference-time modifications. Extensive experiments on robot-arm and human-hand manipulation, spanning diverse control modalities and DiT backbones, show that IMPACT consistently outperforms the corresponding MSE-trained baselines, improving interaction fidelity, physical plausibility, and visual quality.",
+      "title": "SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving",
+      "abstract": "World models (WMs) have demonstrated strong potential for end-to-end autonomous driving by learning predictive representations of future scene dynamics. However, generating future videos during inference introduces substantial computational overhead, leading many recent driving WMs to adopt a single front camera as input for efficient deployment. This design restricts spatial coverage in safety-critical maneuvers such as lane changes, merges, and turns. To address this limitation, we propose SV-WAM, a surround-view world-action model (WAM) that preserves full six-camera observations while maintaining efficient inference. SV-WAM leverages future-video prediction as dense training supervision for action learning within a shared generative model, rather than as an inference-time output. At the core of this design is an action-centered causal mask that prevents action tokens from attending to future-video tokens during joint action-video denoising. Consequently, the video branch can be discarded at deployment, enabling efficient action-only planning. Furthermore, we introduce a differentiable drivable-area compliance regularizer that penalizes vehicle-footprint corners approaching or crossing drivable boundaries, improving planning safety and boundary awareness. Extensive experiments on the closed-loop NAVSIMv2 benchmark and the open-loop nuScenes benchmark demonstrate that SV-WAM achieves state-of-the-art planning performance with low inference latency and competitive zero-shot transfer capability.",
       "authors": [
-        "Rongze Tang",
-        "Jianjie Fang",
-        "Zhaolu Wang",
-        "Ziyou Wang",
-        "Xvyuan Liu",
-        "Haisheng Su",
-        "Xin Zhang",
-        "Wei Wu",
-        "Chen Gao",
-        "Yong Li",
-        "Zhibo Chen"
+        "Jinyang Wang",
+        "Shiwei Li",
+        "Junjian Wang",
+        "Zhiqiang Deng",
+        "Jianbin Gao",
+        "Yihang Zhao",
+        "Liu Liu",
+        "Yongjia Zhao",
+        "Jinlong Chen",
+        "Huirui Xu",
+        "Yifeng Pan",
+        "Kangwei Liu",
+        "Fan Ren",
+        "Ji Tao",
+        "Minghao Yang"
       ],
-      "url": "http://arxiv.org/abs/2609.00161v1",
+      "url": "http://arxiv.org/abs/2609.03602v1",
       "categories": [
-        "cs.AI",
+        "cs.CV",
         "cs.RO"
       ],
-      "comment": "",
-      "score": 59,
+      "comment": "23 pages, 16 figures",
+      "score": 66,
       "priority": "skim",
-      "summary_cn": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions.",
-      "contribution_cn": "Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
+      "summary_cn": "World models (WMs) have demonstrated strong potential for end-to-end autonomous driving by learning predictive representations of future scene dynamics.",
+      "contribution_cn": "To address this limitation, we propose SV-WAM, a surround-view world-action model (WAM) that preserves full six-camera observations while maintaining efficient inference.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

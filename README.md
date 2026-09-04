@@ -1,4 +1,4 @@
-## Updated on 2026.09.03
+## Updated on 2026.09.04
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
@@ -17,6 +17,10 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-03**|**Stabilizing Camera-Controlled Novel View Synthesis at Inference Time**|Prajwal Singh et.al.|[2609.03639](http://arxiv.org/abs/2609.03639)|null|
+|**2026-09-03**|**EraseSAE: Surgical Concept Erasure in Text-to-Video Diffusion Models via Sparse Autoencoders**|Xinghao Wang et.al.|[2609.03629](http://arxiv.org/abs/2609.03629)|null|
+|**2026-09-03**|**The Attention Triangle in Audio-Video Models**|Sagi Polaczek et.al.|[2609.03586](http://arxiv.org/abs/2609.03586)|null|
+|**2026-09-03**|**LeanGRPO: Eliminating Redundant Recomputation in Diffusion RL**|Sijie Wang et.al.|[2609.03528](http://arxiv.org/abs/2609.03528)|null|
 |**2026-09-02**|**Thinking in Pictures: A Systematic Benchmark for Reasoning-driven Image Generation**|Yutong Liu et.al.|[2609.02864](http://arxiv.org/abs/2609.02864)|null|
 |**2026-09-02**|**RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation**|Xiaolei Lang et.al.|[2609.02847](http://arxiv.org/abs/2609.02847)|null|
 |**2026-09-02**|**Spatially Aware World Action Model via Geometric Latent Diffusion**|Javier Alejandro Lopetegui Gonzalez et.al.|[2609.02531](http://arxiv.org/abs/2609.02531)|null|
@@ -31,7 +35,7 @@
 |**2026-08-28**|**Video Generative Models as Geometry Learner**|Haosen Yang et.al.|[2608.28549](http://arxiv.org/abs/2608.28549)|null|
 |**2026-08-28**|**How Far Can 5,500 Hours of Driving Take You? A Scaling Law Analysis of Video Diffusion Models**|Victor Besnier et.al.|[2608.28404](http://arxiv.org/abs/2608.28404)|null|
 |**2026-08-28**|**DensityKV: Density-Guided KV Cache Compression for Long Video Generation**|Wenqu Zhao et.al.|[2608.27922](http://arxiv.org/abs/2608.27922)|null|
-|**2026-08-28**|**PAWBench: How Far Are We from Probabilistically Aligned World Modeling?**|Yuandong Pu et.al.|[2608.27345](http://arxiv.org/abs/2608.27345)|null|
+|**2026-09-03**|**PAWBench: How Far Are We from Probabilistically Aligned World Modeling?**|Yuandong Pu et.al.|[2608.27345](http://arxiv.org/abs/2608.27345)|null|
 |**2026-08-28**|**SpatialCrafter: Single Image World Modeling with Generative 3D Proxies**|Chuan Fang et.al.|[2608.27073](http://arxiv.org/abs/2608.27073)|null|
 |**2026-08-28**|**TempJail: Temporal Jailbreak Attacks against Image-to-Video Generation Models**|Qi Lu et.al.|[2608.26971](http://arxiv.org/abs/2608.26971)|null|
 |**2026-08-26**|**One Policy, Many Embodiments: Unified Camera-Centric Action Geometry Pre-training for Heterogeneous Embodied Manipulation**| Xiaomi Embodied Intelligence Team et.al.|[2608.26058](http://arxiv.org/abs/2608.26058)|null|
@@ -1363,12 +1367,28 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20260903>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260904>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-03**|**Toward Unified Robot Learning: Bridging Representation, Vision-Language-Action, and World Models**|Shaunak A. Mehta et.al.|[2609.03927](http://arxiv.org/abs/2609.03927)|null|
+|**2026-09-03**|**A hybrid pipeline for dynamic ontology-based semantic mapping**|Konstantinos Dimitropoulos et.al.|[2609.03891](http://arxiv.org/abs/2609.03891)|null|
+|**2026-09-03**|**Can Julia land on the Moon? On the development of a GNC simulation framework for the Argonaut lunar lander**|Francesco Capolupo et.al.|[2609.03843](http://arxiv.org/abs/2609.03843)|null|
+|**2026-09-03**|**Semantic Bayesian World Models**|Tommaso Soru et.al.|[2609.03834](http://arxiv.org/abs/2609.03834)|null|
+|**2026-09-03**|**Rethinking World Models for Safety-Critical Embodied Systems**|Kailang Ma et.al.|[2609.03774](http://arxiv.org/abs/2609.03774)|null|
+|**2026-09-03**|**Symmetries and Causality: Causal Effect Identification Beyond IID Data**|Martin Rabel et.al.|[2609.03697](http://arxiv.org/abs/2609.03697)|null|
+|**2026-09-03**|**WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models**|Chenhao Zhang et.al.|[2609.03681](http://arxiv.org/abs/2609.03681)|null|
+|**2026-09-03**|**SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving**|Jinyang Wang et.al.|[2609.03602](http://arxiv.org/abs/2609.03602)|null|
+|**2026-09-03**|**Drive-HWM: Hierarchical World Models for Dynamic-Latent Guided Autonomous Driving**|Zhaoxin Fan et.al.|[2609.03572](http://arxiv.org/abs/2609.03572)|null|
+|**2026-09-03**|**Toward Physically Grounded JEPA World Models for Goal-Conditioned Robotic Planning**|Muyuan Liu et.al.|[2609.03565](http://arxiv.org/abs/2609.03565)|null|
+|**2026-09-03**|**Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation**|Haoyu Wang et.al.|[2609.03557](http://arxiv.org/abs/2609.03557)|null|
+|**2026-09-03**|**Latent Energy Action Planning with World Models**|Phu Pham et.al.|[2609.03294](http://arxiv.org/abs/2609.03294)|null|
+|**2026-09-03**|**Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving**|Yuxuan Han et.al.|[2609.03225](http://arxiv.org/abs/2609.03225)|null|
+|**2026-09-02**|**VeriPhy: Agentic Physical Reasoning for World Model Evaluation and Refinement**|Wenzhuo Xu et.al.|[2609.03153](http://arxiv.org/abs/2609.03153)|null|
+|**2026-09-02**|**GPU-Accelerated Astrodynamics World Models for Spacecraft Rendezvous and Proximity Operations**|Duncan Eddy et.al.|[2609.03067](http://arxiv.org/abs/2609.03067)|null|
+|**2026-09-02**|**TRACE: Spatiotemporal Contact Memory Graph Network Simulator for Granular Dynamics**|Changjian Zhou et.al.|[2609.02991](http://arxiv.org/abs/2609.02991)|null|
 |**2026-09-02**|**SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models**|Junchao Huang et.al.|[2609.02886](http://arxiv.org/abs/2609.02886)|null|
 |**2026-09-02**|**Discriminative World Models for Web Agents**|Kelvin Li et.al.|[2609.02885](http://arxiv.org/abs/2609.02885)|null|
 |**2026-09-02**|**Do Better Imagined Rollouts Mean Better Robot Control? A Controlled Study of World-Model Evaluation Under Feedback**|Dharini Raghavan et.al.|[2609.02811](http://arxiv.org/abs/2609.02811)|null|
@@ -1503,7 +1523,7 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20260903>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260904>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
@@ -1550,7 +1570,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20260903>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260904>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -1581,5 +1601,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20260903>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260904>back to top</a>)</p>
 
