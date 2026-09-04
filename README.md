@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-03**|**DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation**|Shuaiting Li et.al.|[2609.04031](http://arxiv.org/abs/2609.04031)|null|
 |**2026-09-03**|**Stabilizing Camera-Controlled Novel View Synthesis at Inference Time**|Prajwal Singh et.al.|[2609.03639](http://arxiv.org/abs/2609.03639)|null|
 |**2026-09-03**|**EraseSAE: Surgical Concept Erasure in Text-to-Video Diffusion Models via Sparse Autoencoders**|Xinghao Wang et.al.|[2609.03629](http://arxiv.org/abs/2609.03629)|null|
 |**2026-09-03**|**The Attention Triangle in Audio-Video Models**|Sagi Polaczek et.al.|[2609.03586](http://arxiv.org/abs/2609.03586)|null|
@@ -1373,6 +1374,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-03**|**GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation**|Yupeng Zheng et.al.|[2609.04193](http://arxiv.org/abs/2609.04193)|null|
+|**2026-09-03**|**WorldReward: Reward Modeling for Camera-Conditioned World Models**|Yibin Wang et.al.|[2609.03952](http://arxiv.org/abs/2609.03952)|null|
 |**2026-09-03**|**Toward Unified Robot Learning: Bridging Representation, Vision-Language-Action, and World Models**|Shaunak A. Mehta et.al.|[2609.03927](http://arxiv.org/abs/2609.03927)|null|
 |**2026-09-03**|**A hybrid pipeline for dynamic ontology-based semantic mapping**|Konstantinos Dimitropoulos et.al.|[2609.03891](http://arxiv.org/abs/2609.03891)|null|
 |**2026-09-03**|**Can Julia land on the Moon? On the development of a GNC simulation framework for the Argonaut lunar lander**|Francesco Capolupo et.al.|[2609.03843](http://arxiv.org/abs/2609.03843)|null|

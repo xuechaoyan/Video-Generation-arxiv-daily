@@ -1,21 +1,11 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-04T01:28:06+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-09-04T15:11:10+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
 
-### 1. [Matrix-Game 3.5: Enhancing Real-Time Streaming Interactive World Models with Patch Memory](http://arxiv.org/abs/2608.29910v1)
-
-- **评分**：76/100
-- **作者**：Runjia Qian, Zile Wang, Jihai Zhang et al.
-- **方向**：World Models
-- **摘要摘录**：Interactive world models extend video generation from offline clip synthesis toward persistent simulation of interactive virtual worlds, enabling applications in games, robotics, embodied agents, and XR.
-- **核心贡献**：Building upon Matrix-Game 3.0, we present Matrix-Game 3.5, as shown in Figure 1, which advances real-time interactive world generation toward geometry-aware and long-horizon consistent simulation through three key improvements.
-- **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：world model, interactive, simulation, embodied, autoregressive, streaming
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 2. [Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction](http://arxiv.org/abs/2609.00610v1)
+### 1. [Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction](http://arxiv.org/abs/2609.00610v1)
 
 - **评分**：75/100
 - **作者**：Xiaoyan Liu, Jiaxin Liu, Kangrui Li et al.
@@ -25,7 +15,7 @@
 - **与你课题的关系**：匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [CAER: Causal Action Effect Reweighting for World Model Training](http://arxiv.org/abs/2608.30897v1)
+### 2. [CAER: Causal Action Effect Reweighting for World Model Training](http://arxiv.org/abs/2608.30897v1)
 
 - **评分**：75/100
 - **作者**：Jianjie Fang, Xvyuan Liu, Ziyou Wang et al.
@@ -35,9 +25,7 @@
 - **与你课题的关系**：匹配研究线：world model, video generation；关键词：world model, action-conditioned, embodied, efficient, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-## 快速浏览
-
-### 1. [SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models](http://arxiv.org/abs/2609.02886v1)
+### 3. [SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models](http://arxiv.org/abs/2609.02886v1)
 
 - **评分**：74/100
 - **作者**：Junchao Huang, Guian Fang, Shengju Qian et al.
@@ -47,7 +35,9 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, real-time, distillation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving](http://arxiv.org/abs/2609.03225v1)
+## 快速浏览
+
+### 1. [Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving](http://arxiv.org/abs/2609.03225v1)
 
 - **评分**：72/100
 - **作者**：Yuxuan Han, Kunyuan Wu, Liyunong Yang et al.
@@ -57,7 +47,7 @@
 - **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, driving, temporal consistency, efficient
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [Solaris: Towards Interfaces That Are Generated, Not Coded](http://arxiv.org/abs/2609.00776v1)
+### 2. [Solaris: Towards Interfaces That Are Generated, Not Coded](http://arxiv.org/abs/2609.00776v1)
 
 - **评分**：70/100
 - **作者**：Yuval Alaluf, Omri Avrahami, Guy Bukchin Leshem et al.
@@ -67,7 +57,7 @@
 - **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：world model, interactive, autoregressive, real-time, few-step, distillation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 4. [Motus2: A Self-Evolving General World Model for Dexterous Manipulation](http://arxiv.org/abs/2608.30237v1)
+### 3. [Motus2: A Self-Evolving General World Model for Dexterous Manipulation](http://arxiv.org/abs/2608.30237v1)
 
 - **评分**：70/100
 - **作者**：Hongzhe Bi, Zihao Zhou, Yihang Tang et al.
@@ -77,7 +67,7 @@
 - **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, action-conditioned, closed-loop, embodied, autoregressive
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 5. [Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation](http://arxiv.org/abs/2609.03557v1)
+### 4. [Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation](http://arxiv.org/abs/2609.03557v1)
 
 - **评分**：70/100
 - **作者**：Haoyu Wang, Songchun Zhang, Haoran Li et al.
@@ -87,7 +77,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time, cache, video generation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 6. [Can Video World Models Track Unobserved World States?](http://arxiv.org/abs/2608.30692v1)
+### 5. [Can Video World Models Track Unobserved World States?](http://arxiv.org/abs/2608.30692v1)
 
 - **评分**：70/100
 - **作者**：Joonghyuk Shin, Yicong Hong, Jaesik Park et al.
@@ -97,7 +87,7 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, autoregressive, cache, kv cache
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 7. [SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving](http://arxiv.org/abs/2609.03602v1)
+### 6. [SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving](http://arxiv.org/abs/2609.03602v1)
 
 - **评分**：66/100
 - **作者**：Jinyang Wang, Shiwei Li, Junjian Wang et al.
@@ -105,4 +95,14 @@
 - **摘要摘录**：World models (WMs) have demonstrated strong potential for end-to-end autonomous driving by learning predictive representations of future scene dynamics.
 - **核心贡献**：To address this limitation, we propose SV-WAM, a surround-view world-action model (WAM) that preserves full six-camera observations while maintaining efficient inference.
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, efficient
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 7. [DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation](http://arxiv.org/abs/2609.04031v1)
+
+- **评分**：60/100
+- **作者**：Shuaiting Li, Zelin Gao, Haibin Shen et al.
+- **方向**：Video Generation
+- **摘要摘录**：Video diffusion models (VDMs) have achieved impressive progress in text-to-video generation, but their high memory and computational costs hinder practical deployment.
+- **核心贡献**：Based on this insight, we propose DSAQuant, a Denoising-Stage-Aligned Quantization-aware training framework for VDMs.
+- **与你课题的关系**：匹配研究线：video generation, efficient generation；关键词：distillation, video generation, text-to-video, video diffusion
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
