@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T14:27:13+00:00",
+  "generated_at": "2026-09-07T01:22:27+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -27,41 +27,6 @@
       "summary_cn": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency.",
       "contribution_cn": "To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction.",
       "relevance_cn": "匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.30897",
-      "date": "2026-08-31",
-      "topics": [
-        "World Models"
-      ],
-      "title": "CAER: Causal Action Effect Reweighting for World Model Training",
-      "abstract": "World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions. Yet existing models are commonly trained with space-time-uniform mean squared error, allowing abundant background tokens to dominate the gradient while sparse interaction dynamics remain under-optimized; such uniform fitting rewards reconstructing appearance rather than learning how actions change the world. We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action. CAER contrasts the model's own predictions with and without action conditioning to localize these tokens online, then normalizes the resulting effect map into a weight that preserves the total coefficient mass and changes only where it is spent. This online signal requires no external annotations or offline preprocessing, avoids additional data-processing time, and scales naturally with model and dataset size. Experiments across heterogeneous action-conditioned world-model tasks show that CAER converges to better solutions than uniform MSE training, with consistent improvements in the physical consistency, controllability, and visual quality of generated videos.",
-      "authors": [
-        "Jianjie Fang",
-        "Xvyuan Liu",
-        "Ziyou Wang",
-        "Rongze Tang",
-        "Zhaolu Wang",
-        "Zhuohang Li",
-        "Xin Zhang",
-        "Haisheng Su",
-        "Chen Gao",
-        "Wei Wu",
-        "Xinlei Chen",
-        "Yong Li"
-      ],
-      "url": "http://arxiv.org/abs/2608.30897v1",
-      "categories": [
-        "cs.AI"
-      ],
-      "comment": "14 pages, 8 figures. Project page: https://manifoldai-research.github.io/CAER/",
-      "score": 75,
-      "priority": "must-read",
-      "summary_cn": "World models are becoming core infrastructure for embodied intelligence, with action-conditioned video generation providing controllable predictions of how scenes evolve after agent interventions.",
-      "contribution_cn": "We introduce Causal Action Effect Reweighting (CAER), a general training paradigm that redistributes supervision toward the tokens whose predicted future is causally affected by the action.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, embodied, efficient, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -103,6 +68,37 @@
       "summary_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
       "contribution_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, real-time, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.04911",
+      "date": "2026-09-04",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image",
+      "abstract": "Interactive visual world models must distinguish observation from physical intervention. Camera motion reveals new surfaces, whereas intervention changes object motion, contact, and deformation. Current video world models are largely driven by appearance priors and often lose physical or spatial consistency over long horizons. We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration. TourPhysics extends PhysOmni, our ACM Multimedia 2026 work, from finite physics-grounded video synthesis to persistent exploration and manipulation. TourPhysics combines deterministic simulation with video generation while assigning separate roles to simulator state, geometric evidence, generator controls, and appearance memory. For each action, the simulator computes a finite physical and camera trajectory before the corresponding observation is generated. Accepted observations publish the terminal state and update the appearance memory and subsequent generator controls, while the committed state and simulator geometry remain fixed throughout synthesis and retry. We further separate the simulator geometry used for projection and visibility from the relative depth used to condition the generator. A reference-anchored memory retrieves accepted static appearance through geometric cross-view correspondence and incorporates it through a bounded residual that reverts to the native path when no valid correspondence exists. On simulator-defined camera tours and object manipulations, TourPhysics follows prescribed camera and object trajectories more closely than the evaluated baselines, preserves the input scene, and reduces appearance drift during long-horizon revisits.",
+      "authors": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Zixuan Duan",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Feng Xu",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2609.04911v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 73,
+      "priority": "must-read",
+      "summary_cn": "Interactive visual world models must distinguish observation from physical intervention.",
+      "contribution_cn": "We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -182,51 +178,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2608.30237",
-      "date": "2026-08-31",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Motus2: A Self-Evolving General World Model for Dexterous Manipulation",
-      "abstract": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system. World models have shown great promise in building such agents, yet existing models typically append an action output head to a world simulator, without coupling them into a closed decision-and-learning loop for policy improvement. We present Motus2, a self-evolving general world model for dexterous manipulation. Motus2 advances world modeling through model scaling and data scaling. For model scaling, a single model with shared weights exposes three control interfaces: a policy (world-action model), a simulator (action-conditioned world model), and an evaluator (value model). The policy proposes candidate action chunks, the simulator predicts their visual consequences, and the evaluator assesses the predicted outcomes. Their coupling forms a closed decision-and-learning loop for policy improvement. This formulation uses curated expert demonstrations for action learning, while failed and suboptimal interactions provide valuable evidence for dynamics modeling and value learning. For data scaling, Motus2 progresses from large-scale monocular egocentric data to synchronized stereo egocentric data, followed by robot-domain adaptation with robot trajectories and supplementary human-robot alignment data. Motus2 further studies global-autoregressive and hybrid-memory extensions of its sliding-window context, adds tactile feedback for contact-aware control, and is instantiated on a fully biomimetic platform with stereo vision, dual arms, dual dexterous hands, and tactile sensing. Together, egocentric data scaling and closed-loop general world model scaling provide a general path toward self-evolving dexterous manipulation.",
-      "authors": [
-        "Hongzhe Bi",
-        "Zihao Zhou",
-        "Yihang Tang",
-        "Jingrui Pang",
-        "Shuhe Huang",
-        "Haitian Liu",
-        "Runqing Wang",
-        "Shuai Huang",
-        "Yichen Wang",
-        "Yiming Cheng",
-        "Ruowen Zhao",
-        "Zhenghua Li",
-        "Hengkai Tan",
-        "Xiaolong Liu",
-        "Jinhui Wan",
-        "Jiabao Liu",
-        "Min Zhao",
-        "Fan Bao",
-        "Jun Zhu"
-      ],
-      "url": "http://arxiv.org/abs/2608.30237v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system.",
-      "contribution_cn": "We present Motus2, a self-evolving general world model for dexterous manipulation.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, closed-loop, embodied, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.03557",
       "date": "2026-09-03",
       "topics": [
@@ -253,33 +204,6 @@
       "summary_cn": "Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions.",
       "contribution_cn": "We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time, cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2608.30692",
-      "date": "2026-08-31",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Can Video World Models Track Unobserved World States?",
-      "abstract": "Video world models are increasingly used as simulators, yet visual fidelity alone does not show that a model maintains the hidden state of the world. We examine this gap with an action-conditioned video Shell Game, a visual analog of $S_5$ state tracking that decouples visual rendering from compositing the hidden state underneath. Bidirectional and autoregressive Transformers, Mamba, and linear attention restricted to nonnegative transition eigenvalues all fit the training horizon of 5 swaps and then fall toward chance on longer swap chains (extrapolation) while still rendering plausible video with additional denoising steps providing no benefit. The pixel-based diffusion target never supervises the unseen hidden state, so the generated frames cannot carry it and the state has to live inside the architecture rather than in the tokens. For a Transformer, that architectural state is only an append-only KV cache, so the model has to re-derive the hidden arrangement from the whole history at every chunk. We find two mechanisms that do extrapolate, and both carry a state across chunks and revise it in place. Linear attention succeeds once its transition eigenvalues may be negative, and TTT with a nonlinear fast weight succeeds by updating the feature map through which it reads its own state. We further examine harder cases in dynamic world exploration tasks, and discuss the broader implications for building stateful video world models.",
-      "authors": [
-        "Joonghyuk Shin",
-        "Yicong Hong",
-        "Jaesik Park",
-        "Xun Huang"
-      ],
-      "url": "http://arxiv.org/abs/2608.30692v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project webpage:https://joonghyuk.com/stateful-vwm-web/",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "Video world models are increasingly used as simulators, yet visual fidelity alone does not show that a model maintains the hidden state of the world.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, action-conditioned, autoregressive, cache, kv cache",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -348,6 +272,70 @@
       "summary_cn": "Video diffusion models (VDMs) have achieved impressive progress in text-to-video generation, but their high memory and computational costs hinder practical deployment.",
       "contribution_cn": "Based on this insight, we propose DSAQuant, a Denoising-Stage-Aligned Quantization-aware training framework for VDMs.",
       "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：distillation, video generation, text-to-video, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.00161",
+      "date": "2026-08-31",
+      "topics": [
+        "World Models"
+      ],
+      "title": "IMPACT: Attention Is the Interaction Map for Scalable Interaction-Aware World Model Training",
+      "abstract": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions. Existing approaches address this limitation by constraining the generation process with external representations encoding motion, geometry, or semantics. Obtaining these spatiotemporally dense representations typically requires auxiliary estimators or manual annotations, limiting training scalability. We instead revisit the training objective and identify a supervision-allocation mismatch under the globally averaged mean squared error (MSE) denoising objective: prevalent static content dominates the optimization signal, leaving sparse dynamic-object regions critical to interaction generation disproportionately under-supervised. Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting. IMPACT uses cross-attention associated with manipulated-object tokens as an internal spatiotemporal prior for action-conditioned changes. It samples candidate regions from this prior, calibrates them with detached local prediction errors to construct an interaction map, and uses the map to reweight denoising supervision, requiring neither external representations nor inference-time modifications. Extensive experiments on robot-arm and human-hand manipulation, spanning diverse control modalities and DiT backbones, show that IMPACT consistently outperforms the corresponding MSE-trained baselines, improving interaction fidelity, physical plausibility, and visual quality.",
+      "authors": [
+        "Rongze Tang",
+        "Jianjie Fang",
+        "Zhaolu Wang",
+        "Ziyou Wang",
+        "Xvyuan Liu",
+        "Haisheng Su",
+        "Xin Zhang",
+        "Wei Wu",
+        "Chen Gao",
+        "Yong Li",
+        "Zhibo Chen"
+      ],
+      "url": "http://arxiv.org/abs/2609.00161v1",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions.",
+      "contribution_cn": "Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.03565",
+      "date": "2026-09-03",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Toward Physically Grounded JEPA World Models for Goal-Conditioned Robotic Planning",
+      "abstract": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control. We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA). While inverse dynamics discourages latent collapse and makes latent transitions informative of the actions that produced them, state alignment grounds consecutive representations in their associated physical configuration and motion. Across four benchmark tasks, our model attains the highest success rates on TwoRoom (100%), PushT (98%), and OGBench-Cube (87%), while performing comparably to LeWorldModel on Reacher. Our ablation further shows that adding state alignment consistently improves planning success over IDM alone across all four tasks. Although LeWorldModel, our primary baseline, attains higher average straightening on OGBench-Cube, transition-subspace analysis shows that its transition energy is concentrated in a substantially lower-dimensional subspace. Our state-aligned model exhibits a higher effective transition dimension than LeWorldModel and improves planning over IDM alone, supporting state alignment as an effective complement to inverse dynamics for robotic planning.",
+      "authors": [
+        "Muyuan Liu",
+        "Yue Huang",
+        "Zheng Liang",
+        "Xiang Gao"
+      ],
+      "url": "http://arxiv.org/abs/2609.03565v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "5 pages, 4 figures, 2 tables. Accepted to the IROS 2026 Workshop on Physical World Models for Scaling Embodied AI (PWMS 2026)",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control.",
+      "contribution_cn": "We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA).",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
