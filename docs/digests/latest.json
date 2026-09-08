@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T16:41:51+00:00",
+  "generated_at": "2026-09-08T01:32:07+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -276,41 +276,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.00161",
-      "date": "2026-08-31",
-      "topics": [
-        "World Models"
-      ],
-      "title": "IMPACT: Attention Is the Interaction Map for Scalable Interaction-Aware World Model Training",
-      "abstract": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions. Existing approaches address this limitation by constraining the generation process with external representations encoding motion, geometry, or semantics. Obtaining these spatiotemporally dense representations typically requires auxiliary estimators or manual annotations, limiting training scalability. We instead revisit the training objective and identify a supervision-allocation mismatch under the globally averaged mean squared error (MSE) denoising objective: prevalent static content dominates the optimization signal, leaving sparse dynamic-object regions critical to interaction generation disproportionately under-supervised. Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting. IMPACT uses cross-attention associated with manipulated-object tokens as an internal spatiotemporal prior for action-conditioned changes. It samples candidate regions from this prior, calibrates them with detached local prediction errors to construct an interaction map, and uses the map to reweight denoising supervision, requiring neither external representations nor inference-time modifications. Extensive experiments on robot-arm and human-hand manipulation, spanning diverse control modalities and DiT backbones, show that IMPACT consistently outperforms the corresponding MSE-trained baselines, improving interaction fidelity, physical plausibility, and visual quality.",
-      "authors": [
-        "Rongze Tang",
-        "Jianjie Fang",
-        "Zhaolu Wang",
-        "Ziyou Wang",
-        "Xvyuan Liu",
-        "Haisheng Su",
-        "Xin Zhang",
-        "Wei Wu",
-        "Chen Gao",
-        "Yong Li",
-        "Zhibo Chen"
-      ],
-      "url": "http://arxiv.org/abs/2609.00161v1",
-      "categories": [
-        "cs.AI",
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "World models have made remarkable progress in action-conditioned future prediction for embodied agents, yet still struggle to model physically plausible interactions.",
-      "contribution_cn": "Motivated by this observation, we introduce IMPACT, a scalable Interaction-aware Model training framework with Prior-guided Attention Calibration and Targeting.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.03565",
       "date": "2026-09-03",
       "topics": [
@@ -336,6 +301,37 @@
       "summary_cn": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control.",
       "contribution_cn": "We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA).",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.03572",
+      "date": "2026-09-03",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Drive-HWM: Hierarchical World Models for Dynamic-Latent Guided Autonomous Driving",
+      "abstract": "World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation. However, existing approaches either separate future prediction from action generation or jointly predict them at the same temporal scale, making it difficult to simultaneously achieve long-horizon anticipation and responsive, observation-grounded decision making. We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales. The slow world model predicts multi-step future representations to capture extended scene evolution. To explicitly model the abundant motion dynamics in driving environments, we introduce Dynamic-Aware Latents learned through optical-flow prediction. Guided by these future representations, the fast model uses a lightweight multimodal backbone and an autoregressive expert to jointly predict the next frame and the immediate action from the latest observation. Next-frame prediction encourages the fast model to capture imminent scene evolution, while one-step action generation allows decisions to be continuously updated as new observations arrive. Extensive experiments on NAVSIM v1 and v2 demonstrate the strong driving performance of Drive-HWM. Comprehensive ablation studies further validate the effectiveness of the hierarchical slow--fast design, dynamics-aware future representations, and joint next-frame and action prediction.",
+      "authors": [
+        "Zhaoxin Fan",
+        "Tianbao Zhang",
+        "Wenjun Wu",
+        "Xiaofeng Wang",
+        "Yeying Jin",
+        "Jian Zhao",
+        "Zheng Zhu",
+        "Shuicheng Yan"
+      ],
+      "url": "http://arxiv.org/abs/2609.03572v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "14 pages",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation.",
+      "contribution_cn": "We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, driving, autoregressive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
