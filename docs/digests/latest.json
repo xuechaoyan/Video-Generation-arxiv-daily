@@ -1,35 +1,7 @@
 {
-  "generated_at": "2026-09-08T15:24:55+00:00",
+  "generated_at": "2026-09-09T01:39:42+00:00",
   "assessment_mode": "heuristic",
   "papers": [
-    {
-      "id": "2609.00610",
-      "date": "2026-09-01",
-      "topics": [
-        "World Models",
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction",
-      "abstract": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency. This limits applications in interactive real-time scenarios. To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction. Unlike traditional frame-by-frame emission and delayed geometry recovery, Streaming4D generates temporal video blocks and immediately triggers reconstruction for each completed block, enabling parallel execution between synthesis and geometric updates. This approach allows the world representation to evolve online with the video stream, reducing feedback latency while preserving geometric fidelity. We instantiate \\textbf{Streaming4D} using a Self-Forcing-style autoregressive generator and an incremental reconstruction backend. Experiments show consistent runtime improvements across resolutions on a single RTX 4090 (1.24$\\times$ speedup), while maintaining high-quality 4D geometry and multi-view consistency.",
-      "authors": [
-        "Xiaoyan Liu",
-        "Jiaxin Liu",
-        "Kangrui Li",
-        "Sifan Zhou"
-      ],
-      "url": "http://arxiv.org/abs/2609.00610v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 75,
-      "priority": "must-read",
-      "summary_cn": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency.",
-      "contribution_cn": "To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction.",
-      "relevance_cn": "匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
     {
       "id": "2609.02886",
       "date": "2026-09-02",
@@ -125,55 +97,10 @@
       ],
       "comment": "",
       "score": 72,
-      "priority": "skim",
+      "priority": "must-read",
       "summary_cn": "End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \\textit{imagined rollouts}.",
       "contribution_cn": "To address these challenges, we propose \\textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, driving, temporal consistency, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.00776",
-      "date": "2026-09-01",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Solaris: Towards Interfaces That Are Generated, Not Coded",
-      "abstract": "Digital interfaces are traditionally implemented through intermediate representations such as code, requiring their appearance and behavior to be specified in advance. We introduce Solaris, an interface world model that instead generates an interactive UI directly, frame by frame, in response to user actions. Solaris treats mouse interactions as conditioning signals and autoregressively synthesizes the resulting visual state at interactive speeds. To enable real-time generation while maintaining visual coherence over extended interactions, we combine autoregressive frame generation with few-step distillation and training on the model's own outputs. A language model complements the visual world model by interpreting user intent and specifying how interactions should affect the generated environment, separating high-level reasoning from visual rendering. By generating both the appearance and behavior of an interface dynamically, Solaris enables open-ended interactions that need not be explicitly programmed in advance. We view interface world models as a step toward a new paradigm for software, where interfaces are generated and adapted continuously around user intent rather than implemented as fixed collections of predefined states and",
-      "authors": [
-        "Yuval Alaluf",
-        "Omri Avrahami",
-        "Guy Bukchin Leshem",
-        "Michal Geyer",
-        "Kfir Goldberg",
-        "Elad Richardson",
-        "Diego Alarcón",
-        "Alejandro Alvarez",
-        "Cole Garry",
-        "Anastasis Germanidis",
-        "Tenaya Goldsen",
-        "Corina Gurau",
-        "Robin Kahlow",
-        "Joel Kwartler",
-        "Kathleen Lewis",
-        "Alejandro Matamala Ortiz",
-        "Eugene McMahon",
-        "Thon Prom",
-        "Sarah Saltonstall-Wurm",
-        "Jamie Umpherson",
-        "Hudson Yeo"
-      ],
-      "url": "http://arxiv.org/abs/2609.00776v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "Project page: https://runway.com/news/research/introducing-solaris",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "Digital interfaces are traditionally implemented through intermediate representations such as code, requiring their appearance and behavior to be specified in advance.",
-      "contribution_cn": "We introduce Solaris, an interface world model that instead generates an interactive UI directly, frame by frame, in response to user actions.",
-      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, autoregressive, real-time, few-step, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -332,6 +259,62 @@
       "summary_cn": "World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation.",
       "contribution_cn": "We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, driving, autoregressive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.05161",
+      "date": "2026-09-04",
+      "topics": [
+        "World Models"
+      ],
+      "title": "APEX-RBD: Mixed-Precision Exploration Framework for Hardware-Efficient Robot Dynamics Accelerator Design",
+      "abstract": "Rigid Body Dynamics (RBD) forms the computational core of real-time robotic control, but its immense computational complexity creates a performance bottleneck that necessitates dedicated hardware accelerators. However, the substantial hardware resource and power costs of these accelerators make their deployment on resource-constrained edge platforms highly challenging. While quantization offers a promising path to optimize RBD hardware for edge computing, existing uniform-precision approaches remain inefficient by ignoring the diverse quantization sensitivities of different variables. Although mixed-precision offers a superior alternative, its exploration is intractable due to a vast search space and the prohibitive cost of closed-loop simulation for motion accuracy evaluation. To address these challenges, we introduce APEX-RBD, an automated framework that makes mixed-precision exploration computationally tractable while effectively identifying hardware-efficient configurations. Specifically, it performs physics-driven search space pruning via variable grouping and sensitivity analysis, and employs a data-efficient, prior-informed surrogate model to enable rapid trajectory error prediction. This formulation guides a hybrid optimizer to identify area- and power-efficient designs under user-defined accuracy and performance constraints. Experimental results demonstrate that APEX-RBD discovers designs achieving up to 1.9$\\times$ area reduction and 1.8$\\times$ power savings compared to uniform-precision baselines across diverse robotic platforms.",
+      "authors": [
+        "Xingyu Liu",
+        "Hanwei Fan",
+        "Chaofang Ma",
+        "Jiawei Liang",
+        "Guangyu Hu",
+        "Jiang Xu",
+        "Wei Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.05161v1",
+      "categories": [
+        "cs.AR",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "Rigid Body Dynamics (RBD) forms the computational core of real-time robotic control, but its immense computational complexity creates a performance bottleneck that necessitates dedicated hardware accelerators.",
+      "contribution_cn": "To address these challenges, we introduce APEX-RBD, an automated framework that makes mixed-precision exploration computationally tractable while effectively identifying hardware-efficient configurations.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：closed-loop, simulation, real-time, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.05834",
+      "date": "2026-09-05",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Learning Counterfactual World Models for Embodied Reasoning under Partial Observability",
+      "abstract": "World models promise a general route to embodied intelligence: learn predictive dynamics once, then reason, plan, and act with them. Increasingly, the representations beneath such models are pretrained on large-scale video, interaction, and multimodal corpora, which raises a question prediction quality alone cannot answer: when is a learned representation actually actionable? We identify a failure mode we call counterfactual collapse: a model predicts visually plausible futures while failing to distinguish interventions with different behavioral consequences. This arises whenever a representation is optimized for perceptual similarity rather than intervention structure, which is precisely the objective under which most large-scale pretrained encoders are learned. We introduce Counterfactual Latent World Models (CLWM), which combine a recurrent belief-state encoder, action-conditioned latent dynamics, and a contrastive counterfactual objective that separates futures induced by distinct interventions even when their observations look alike. Across occluded manipulation, aliased navigation, and long-horizon manipulation, CLWM improves planning success over the strongest baseline (65.1% $\\to$ 74.6% on Occluded Push and 67.3% $\\to$ 78.9% on Aliased Maze) and reduces exploitative planning failures (18.4% $\\to$ 9.7% on Deferred Kitchen), with ablations attributing the gains to hard counterfactual negatives, especially perceptual-alias negatives. Finally, our counterfactual separability metric, which tracks planning success across the five baseline model classes ($r \\ge 0.94$), is representation-agnostic: given intervention-outcome labels, it can audit any encoder, pretrained or trained from scratch, before a planner trusts it. We do not yet measure it on large-scale pretrained encoders. Here we establish the metric and its relationship to planning success for world models trained from scratch.",
+      "authors": [
+        "Todd Y. Zhou",
+        "Daniel Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.05834v1",
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "World models promise a general route to embodied intelligence: learn predictive dynamics once, then reason, plan, and act with them.",
+      "contribution_cn": "We introduce Counterfactual Latent World Models (CLWM), which combine a recurrent belief-state encoder, action-conditioned latent dynamics, and a contrastive counterfactual objective that separates futures induced by distinct interventions even when their observations look alike.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

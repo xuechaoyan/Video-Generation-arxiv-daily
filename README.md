@@ -1,4 +1,4 @@
-## Updated on 2026.09.08
+## Updated on 2026.09.09
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-06**|**MVWeaver: A Hierarchical Music Video Generation Agent with a Learned Song-to-Visual Bridge**|Sifei Li et.al.|[2609.06478](http://arxiv.org/abs/2609.06478)|null|
 |**2026-09-04**|**TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image**|Xin Zhang et.al.|[2609.04911](http://arxiv.org/abs/2609.04911)|null|
 |**2026-09-03**|**Joint Alignment and Distillation for Video Generation via Sample-Guided Distribution Matching**|Jiuzhou Lin et.al.|[2609.04283](http://arxiv.org/abs/2609.04283)|null|
 |**2026-09-03**|**DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation**|Shuaiting Li et.al.|[2609.04031](http://arxiv.org/abs/2609.04031)|null|
@@ -1370,12 +1371,18 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20260908>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260909>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-05**|**CST-WM: A Causally Structured World Model for Embodied Visual Tracking**|Junyi Hu et.al.|[2609.06302](http://arxiv.org/abs/2609.06302)|null|
+|**2026-09-05**|**PhysWeep: Does a Video Generator Realize the Physics You Ask For?**|Rasul Khanbayov et.al.|[2609.06207](http://arxiv.org/abs/2609.06207)|null|
+|**2026-09-05**|**How to Learn from What a Human Would Avoid? Intervention-Aware World Models with Real-World RL for Dexterous Manipulation**|Jiaju Yin et.al.|[2609.06009](http://arxiv.org/abs/2609.06009)|null|
+|**2026-09-05**|**Learning Counterfactual World Models for Embodied Reasoning under Partial Observability**|Todd Y. Zhou et.al.|[2609.05834](http://arxiv.org/abs/2609.05834)|null|
+|**2026-09-04**|**GE-Act 2.0: Pretraining and Scaling a World-Action Model for Robotic Manipulation**| AgiBot Research Team et.al.|[2609.05588](http://arxiv.org/abs/2609.05588)|null|
+|**2026-09-03**|**An Agent Model Abstraction for Human-AI Teaming Cognitive Coupling**|Kolitha Kottagaha W. M et.al.|[2609.05552](http://arxiv.org/abs/2609.05552)|null|
 |**2026-09-04**|**TacPAC: Tactile Prediction and Real-Time Action Correction in World-Action Models for Contact-Rich Manipulation**|Zipei Ma et.al.|[2609.05266](http://arxiv.org/abs/2609.05266)|null|
 |**2026-09-04**|**APEX-RBD: Mixed-Precision Exploration Framework for Hardware-Efficient Robot Dynamics Accelerator Design**|Xingyu Liu et.al.|[2609.05161](http://arxiv.org/abs/2609.05161)|null|
 |**2026-09-04**|**One Diffusion Model, Two Roles: Guided Trajectory Planning and Safety-Critical Scenario Generation in Closed-Loop Simulation**|Arka Pal et.al.|[2609.04921](http://arxiv.org/abs/2609.04921)|null|
@@ -1536,12 +1543,13 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20260908>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260909>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-05**|**PAI-Actor: Cinematic Multi-Character Replacement in Dynamic Scenes**|Bangxun Tang et.al.|[2609.05918](http://arxiv.org/abs/2609.05918)|null|
 |**2026-08-28**|**Encore: Infinite Audio-Video Generation with Adaptive Signal Routing**|Shaohua Pan et.al.|[2609.04249](http://arxiv.org/abs/2609.04249)|null|
 |**2026-09-01**|**Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction**|Xiaoyan Liu et.al.|[2609.00610](http://arxiv.org/abs/2609.00610)|null|
 |**2026-08-28**|**LayerRecall: A State-Conditioned Memory Router for Long-Horizon Consistency in Video Generation**|Yixuan Ding et.al.|[2608.28460](http://arxiv.org/abs/2608.28460)|null|
@@ -1584,7 +1592,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20260908>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260909>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -1615,5 +1623,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20260908>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260909>back to top</a>)</p>
 
