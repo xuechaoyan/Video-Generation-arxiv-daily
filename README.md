@@ -17,12 +17,18 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-08**|**Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout**|Zhuoran Zhao et.al.|[2609.09123](http://arxiv.org/abs/2609.09123)|null|
+|**2026-09-08**|**Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance**|Luyao Tang et.al.|[2609.08505](http://arxiv.org/abs/2609.08505)|null|
+|**2026-09-08**|**SignRefine: Adapting Foundational Video Models for Sign Language Generation**|Anton Pelykh et.al.|[2609.08496](http://arxiv.org/abs/2609.08496)|null|
+|**2026-09-08**|**PhysFlow: Physics-Aware Optical Flow for Motion Controllable Video Generation**|Cong Wang et.al.|[2609.08215](http://arxiv.org/abs/2609.08215)|null|
+|**2026-09-07**|**The Price of Consistency: Exploiting Visual Anchors for Multimodal Jailbreaking in Video Generation**|Peng Li et.al.|[2609.07216](http://arxiv.org/abs/2609.07216)|null|
+|**2026-09-07**|**PRG-Fusion: Orchestrating Generative Priors with Reconstruction Evidence for Driving View Synthesis**|Sipeng He et.al.|[2609.06948](http://arxiv.org/abs/2609.06948)|null|
 |**2026-09-06**|**MVWeaver: A Hierarchical Music Video Generation Agent with a Learned Song-to-Visual Bridge**|Sifei Li et.al.|[2609.06478](http://arxiv.org/abs/2609.06478)|null|
-|**2026-09-04**|**TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image**|Xin Zhang et.al.|[2609.04911](http://arxiv.org/abs/2609.04911)|null|
+|**2026-09-07**|**TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image**|Xin Zhang et.al.|[2609.04911](http://arxiv.org/abs/2609.04911)|null|
 |**2026-09-03**|**Joint Alignment and Distillation for Video Generation via Sample-Guided Distribution Matching**|Jiuzhou Lin et.al.|[2609.04283](http://arxiv.org/abs/2609.04283)|null|
 |**2026-09-03**|**DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation**|Shuaiting Li et.al.|[2609.04031](http://arxiv.org/abs/2609.04031)|null|
 |**2026-09-03**|**Stabilizing Camera-Controlled Novel View Synthesis at Inference Time**|Prajwal Singh et.al.|[2609.03639](http://arxiv.org/abs/2609.03639)|null|
-|**2026-09-03**|**EraseSAE: Surgical Concept Erasure in Text-to-Video Diffusion Models via Sparse Autoencoders**|Xinghao Wang et.al.|[2609.03629](http://arxiv.org/abs/2609.03629)|null|
+|**2026-09-08**|**EraseSAE: Surgical Concept Erasure in Text-to-Video Diffusion Models via Sparse Autoencoders**|Xinghao Wang et.al.|[2609.03629](http://arxiv.org/abs/2609.03629)|null|
 |**2026-09-03**|**The Attention Triangle in Audio-Video Models**|Sagi Polaczek et.al.|[2609.03586](http://arxiv.org/abs/2609.03586)|null|
 |**2026-09-03**|**LeanGRPO: Eliminating Redundant Recomputation in Diffusion RL**|Sijie Wang et.al.|[2609.03528](http://arxiv.org/abs/2609.03528)|null|
 |**2026-09-02**|**Thinking in Pictures: A Systematic Benchmark for Reasoning-driven Image Generation**|Yutong Liu et.al.|[2609.02864](http://arxiv.org/abs/2609.02864)|null|
@@ -1377,6 +1383,30 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-08**|**SyncWorld: Visual Calibration Enables World Models as Zero-Shot Simulators**|Yuncong Yang et.al.|[2609.09155](http://arxiv.org/abs/2609.09155)|null|
+|**2026-09-08**|**Earth System World Model for What-If Simulations: A Case Study for Terrestrial Ecosystems**|Zhihao Wang et.al.|[2609.08855](http://arxiv.org/abs/2609.08855)|null|
+|**2026-09-08**|**Hi-FLoop: Hierarchical State-Feedback Loops for Multi-Timescale World Modeling**|Rx Fan et.al.|[2609.08796](http://arxiv.org/abs/2609.08796)|null|
+|**2026-09-08**|**VeriScene: Reconstructing Crime Scenes from Legal Evidence via World-Model Agent**|Kevin Chuanpu Fu et.al.|[2609.08342](http://arxiv.org/abs/2609.08342)|null|
+|**2026-09-08**|**CALIPER: Clean Scenes Cannot Rank Physical Inference in Pretrained Visual Representations**|Aman Mehta et.al.|[2609.08250](http://arxiv.org/abs/2609.08250)|null|
+|**2026-09-08**|**ActionSplice: In-Flight Action Editing for Interactive World Models**|Pardis Taghavi et.al.|[2609.08230](http://arxiv.org/abs/2609.08230)|null|
+|**2026-09-08**|**WorldAgen: Unified State-Action Prediction with Test-Time World Model Training**|Chi Wan et.al.|[2609.08162](http://arxiv.org/abs/2609.08162)|null|
+|**2026-09-07**|**InfluenceField: A Differentiable Field with Interventionally Identifiable Causal Structure for Multimodal World Modeling**|Zihao Yang et.al.|[2609.07874](http://arxiv.org/abs/2609.07874)|null|
+|**2026-09-07**|**A radiographic world model for clinical reasoning and evidence generation**|Suyang Xi et.al.|[2609.07719](http://arxiv.org/abs/2609.07719)|null|
+|**2026-09-07**|**AgentIdeaBench: Benchmarking Scientific Ideation in the Agent Era**|Yunxiang Mo et.al.|[2609.07611](http://arxiv.org/abs/2609.07611)|null|
+|**2026-09-07**|**PhysReal: Learning Real-World Deformable Object Physics via Hybrid Constitutive Modeling**|Yinan Deng et.al.|[2609.07532](http://arxiv.org/abs/2609.07532)|null|
+|**2026-09-07**|**Measuring Language Transfer in Robot Policies: Adding Greek to a Cosmos3 Vision-Language-Action Policy**|Ayoub Kirouane et.al.|[2609.07470](http://arxiv.org/abs/2609.07470)|null|
+|**2026-09-07**|**OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining**|Yuran Wang et.al.|[2609.07398](http://arxiv.org/abs/2609.07398)|null|
+|**2026-09-07**|**PV-WM: A Heterogeneous Micro-Macro World Model for Articulated Pedestrian-Vehicle Co-Rollout**|Haozhuang Chi et.al.|[2609.07328](http://arxiv.org/abs/2609.07328)|null|
+|**2026-09-07**|**World Models Under Asynchronous Sensor Observations**|Akash Anand et.al.|[2609.07299](http://arxiv.org/abs/2609.07299)|null|
+|**2026-09-07**|**Beyond Task Success: Stage-Wise Reliability of World Model Planning under Sensing Degradation**|Geonmyeong Lee et.al.|[2609.07126](http://arxiv.org/abs/2609.07126)|null|
+|**2026-09-07**|**TrojanWorld: Backdooring World-Model Agents via Imagination Steering**|Wenkai Huang et.al.|[2609.07051](http://arxiv.org/abs/2609.07051)|null|
+|**2026-09-07**|**WM-Craftnet: World Synesthesia Model for Generalizable and Robust Dexterous In-Hand Manipulation**|Jie Yin et.al.|[2609.07002](http://arxiv.org/abs/2609.07002)|null|
+|**2026-09-07**|**PRG-Fusion: Orchestrating Generative Priors with Reconstruction Evidence for Driving View Synthesis**|Sipeng He et.al.|[2609.06948](http://arxiv.org/abs/2609.06948)|null|
+|**2026-09-06**|**BinauralVAE: Spatial Audio Reconstruction For World Models**|Luis Vitor Zerkowski et.al.|[2609.06837](http://arxiv.org/abs/2609.06837)|null|
+|**2026-09-06**|**Generalist Open-World Temporal Perception**|Cristian Sminchisescu et.al.|[2609.06823](http://arxiv.org/abs/2609.06823)|null|
+|**2026-09-06**|**Diagnosing and Dynamically Filtering Occupancy World Models for Active Mapping**|Jiahui Zhang et.al.|[2609.06820](http://arxiv.org/abs/2609.06820)|null|
+|**2026-09-06**|**SerenAI: State-transition system inspired by text-based world AI models**|Elvin Babayev et.al.|[2609.06647](http://arxiv.org/abs/2609.06647)|null|
+|**2026-09-06**|**Learning to Use Imagination: Progress-Conditioned Future Utilization for World Action Models**|Yijie Zhu et.al.|[2609.06578](http://arxiv.org/abs/2609.06578)|null|
 |**2026-09-05**|**CST-WM: A Causally Structured World Model for Embodied Visual Tracking**|Junyi Hu et.al.|[2609.06302](http://arxiv.org/abs/2609.06302)|null|
 |**2026-09-05**|**PhysWeep: Does a Video Generator Realize the Physics You Ask For?**|Rasul Khanbayov et.al.|[2609.06207](http://arxiv.org/abs/2609.06207)|null|
 |**2026-09-05**|**How to Learn from What a Human Would Avoid? Intervention-Aware World Models with Real-World RL for Dexterous Manipulation**|Jiaju Yin et.al.|[2609.06009](http://arxiv.org/abs/2609.06009)|null|
@@ -1549,6 +1579,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-08**|**Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout**|Zhuoran Zhao et.al.|[2609.09123](http://arxiv.org/abs/2609.09123)|null|
+|**2026-09-08**|**ActionSplice: In-Flight Action Editing for Interactive World Models**|Pardis Taghavi et.al.|[2609.08230](http://arxiv.org/abs/2609.08230)|null|
 |**2026-09-05**|**PAI-Actor: Cinematic Multi-Character Replacement in Dynamic Scenes**|Bangxun Tang et.al.|[2609.05918](http://arxiv.org/abs/2609.05918)|null|
 |**2026-08-28**|**Encore: Infinite Audio-Video Generation with Adaptive Signal Routing**|Shaohua Pan et.al.|[2609.04249](http://arxiv.org/abs/2609.04249)|null|
 |**2026-09-01**|**Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction**|Xiaoyan Liu et.al.|[2609.00610](http://arxiv.org/abs/2609.00610)|null|
@@ -1598,6 +1630,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-08**|**Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout**|Zhuoran Zhao et.al.|[2609.09123](http://arxiv.org/abs/2609.09123)|null|
 |**2026-08-14**|**ForgeWM: Progressive Causal Training for Few-Step Action-Conditioned Video World Models**|Xinye Li et.al.|[2608.14022](http://arxiv.org/abs/2608.14022)|null|
 |**2026-08-12**|**LoSA: Near-Lossless Sparse Attention for Training-Free Video Diffusion Acceleration**|Enhuai Liu et.al.|[2608.12032](http://arxiv.org/abs/2608.12032)|null|
 |**2026-07-16**|**FlashDecoder: Real-Time Latent-to-Pixel Streaming Decoder with Transformers**|Minguk Kang et.al.|[2607.14898](http://arxiv.org/abs/2607.14898)|null|

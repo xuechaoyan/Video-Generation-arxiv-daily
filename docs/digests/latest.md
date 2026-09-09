@@ -1,21 +1,21 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-09T01:39:42+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-09-09T15:22:17+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
 
-### 1. [SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models](http://arxiv.org/abs/2609.02886v1)
+### 1. [Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout](http://arxiv.org/abs/2609.09123v1)
 
-- **评分**：74/100
-- **作者**：Junchao Huang, Guian Fang, Shengju Qian et al.
-- **方向**：World Models
-- **摘要摘录**：We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.
-- **核心贡献**：We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, real-time, distillation
+- **评分**：82/100
+- **作者**：Zhuoran Zhao, Shengju Qian, Tongtong Liang et al.
+- **方向**：Video Generation, Autoregressive and Streaming Video, Efficient Video Diffusion
+- **摘要摘录**：Autoregressive (AR) video diffusion models have shown great potential in real-time video generation.
+- **核心贡献**：To address this, we propose Mask Forcing, a Dual-Noise Masking Rollout strategy that perturbs the AR student self-rollout to mitigate mode collapse induced by reverse-KL mode seeking.
+- **与你课题的关系**：匹配研究线：efficient generation, video generation；关键词：autoregressive, real-time, distillation, efficient, video generation, video diffusion
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 2. [TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image](http://arxiv.org/abs/2609.04911v1)
+### 2. [TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image](http://arxiv.org/abs/2609.04911v2)
 
 - **评分**：73/100
 - **作者**：Xin Zhang, Yabo Chen, Zixuan Duan et al.
@@ -25,26 +25,16 @@
 - **与你课题的关系**：匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving](http://arxiv.org/abs/2609.03225v1)
-
-- **评分**：72/100
-- **作者**：Yuxuan Han, Kunyuan Wu, Liyunong Yang et al.
-- **方向**：World Models
-- **摘要摘录**：End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \textit{imagined rollouts}.
-- **核心贡献**：To address these challenges, we propose \textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm.
-- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, driving, temporal consistency, efficient
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
 ## 快速浏览
 
-### 1. [Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation](http://arxiv.org/abs/2609.03557v1)
+### 1. [ActionSplice: In-Flight Action Editing for Interactive World Models](http://arxiv.org/abs/2609.08230v1)
 
-- **评分**：70/100
-- **作者**：Haoyu Wang, Songchun Zhang, Haoran Li et al.
-- **方向**：World Models
-- **摘要摘录**：Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions.
-- **核心贡献**：We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time, cache, video generation
+- **评分**：71/100
+- **作者**：Pardis Taghavi, Tingyu Guo, Jonas Lossner et al.
+- **方向**：World Models, Autoregressive and Streaming Video
+- **摘要摘录**：Chunk-autoregressive video world models typically condition each generated chunk on one action.
+- **核心贡献**：We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST).
+- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
 ### 2. [SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving](http://arxiv.org/abs/2609.03602v1)
@@ -57,7 +47,17 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, efficient
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 3. [DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation](http://arxiv.org/abs/2609.04031v1)
+### 3. [Earth System World Model for What-If Simulations: A Case Study for Terrestrial Ecosystems](http://arxiv.org/abs/2609.08855v1)
+
+- **评分**：63/100
+- **作者**：Zhihao Wang, Ruichen Wang, Ruohan Li et al.
+- **方向**：World Models
+- **摘要摘录**：Machine learning emulators have become essential for accelerating expensive Earth-system simulations, but most existing approaches remain passive forecasters: they reproduce simulator trajectories under prescribed forcings without an explicit interaction mechanism for user-specified interventions.
+- **核心贡献**：We propose an action-conditioned world-modeling framework for Earth-system emulation that reformulates simulator trajectories as supervision for controllable state-transition learning.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, interactive, simulation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 4. [DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation](http://arxiv.org/abs/2609.04031v1)
 
 - **评分**：60/100
 - **作者**：Shuaiting Li, Zelin Gao, Haibin Shen et al.
@@ -67,27 +67,7 @@
 - **与你课题的关系**：匹配研究线：video generation, efficient generation；关键词：distillation, video generation, text-to-video, video diffusion
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 4. [Toward Physically Grounded JEPA World Models for Goal-Conditioned Robotic Planning](http://arxiv.org/abs/2609.03565v1)
-
-- **评分**：59/100
-- **作者**：Muyuan Liu, Yue Huang, Zheng Liang et al.
-- **方向**：World Models
-- **摘要摘录**：Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control.
-- **核心贡献**：We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA).
-- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, embodied
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 5. [Drive-HWM: Hierarchical World Models for Dynamic-Latent Guided Autonomous Driving](http://arxiv.org/abs/2609.03572v1)
-
-- **评分**：59/100
-- **作者**：Zhaoxin Fan, Tianbao Zhang, Wenjun Wu et al.
-- **方向**：World Models
-- **摘要摘录**：World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation.
-- **核心贡献**：We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales.
-- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, driving, autoregressive
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
-
-### 6. [APEX-RBD: Mixed-Precision Exploration Framework for Hardware-Efficient Robot Dynamics Accelerator Design](http://arxiv.org/abs/2609.05161v1)
+### 5. [APEX-RBD: Mixed-Precision Exploration Framework for Hardware-Efficient Robot Dynamics Accelerator Design](http://arxiv.org/abs/2609.05161v1)
 
 - **评分**：57/100
 - **作者**：Xingyu Liu, Hanwei Fan, Chaofang Ma et al.
@@ -97,7 +77,7 @@
 - **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：closed-loop, simulation, real-time, efficient
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 7. [Learning Counterfactual World Models for Embodied Reasoning under Partial Observability](http://arxiv.org/abs/2609.05834v1)
+### 6. [Learning Counterfactual World Models for Embodied Reasoning under Partial Observability](http://arxiv.org/abs/2609.05834v1)
 
 - **评分**：57/100
 - **作者**：Todd Y. Zhou, Daniel Zhang
@@ -105,4 +85,24 @@
 - **摘要摘录**：World models promise a general route to embodied intelligence: learn predictive dynamics once, then reason, plan, and act with them.
 - **核心贡献**：We introduce Counterfactual Latent World Models (CLWM), which combine a recurrent belief-state encoder, action-conditioned latent dynamics, and a contrastive counterfactual objective that separates futures induced by distinct interventions even when their observations look alike.
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, embodied
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 7. [PAI-Actor: Cinematic Multi-Character Replacement in Dynamic Scenes](http://arxiv.org/abs/2609.05918v1)
+
+- **评分**：56/100
+- **作者**：Bangxun Tang, Heyuan Gao, Yiren Song et al.
+- **方向**：Autoregressive and Streaming Video
+- **摘要摘录**：We present PAI-Actor, a cinematic multi-character animation framework for character replacement in dynamic movie scenes.
+- **核心贡献**：We present PAI-Actor, a cinematic multi-character animation framework for character replacement in dynamic movie scenes.
+- **与你课题的关系**：匹配研究线：efficient generation, streaming video；关键词：autoregressive, distillation, efficient, video generation
+- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+
+### 8. [WM-Craftnet: World Synesthesia Model for Generalizable and Robust Dexterous In-Hand Manipulation](http://arxiv.org/abs/2609.07002v1)
+
+- **评分**：56/100
+- **作者**：Jie Yin, Zeyuan Zhao, Xiaojing Tan et al.
+- **方向**：World Models
+- **摘要摘录**：Generalizable and robust dexterous in-hand manipulation requires a policy to infer object pose, geometry, contact, and potential slip from partial and noisy observations.
+- **核心贡献**：We propose WM-Craftnet, a world-model-conditioned framework that learns compact action-conditioned latent dynamics from proprioception, depth, tactile sensing, and actions, supervised by multimodal reconstruction and reward prediction.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。

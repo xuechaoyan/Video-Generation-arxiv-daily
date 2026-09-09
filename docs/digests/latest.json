@@ -1,51 +1,45 @@
 {
-  "generated_at": "2026-09-09T01:39:42+00:00",
+  "generated_at": "2026-09-09T15:22:17+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
-      "id": "2609.02886",
-      "date": "2026-09-02",
+      "id": "2609.09123",
+      "date": "2026-09-08",
       "topics": [
-        "World Models"
+        "Video Generation",
+        "Autoregressive and Streaming Video",
+        "Efficient Video Diffusion"
       ],
-      "title": "SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models",
-      "abstract": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference. Training across heterogeneous data sources and video backbones is challenging: datasets differ in temporal scale, camera geometry, visual quality, motion, and captioning styles, while video generators use distinct representations and architectures. Naive data mixing and model-specific implementations therefore produce inconsistent supervision and make results difficult to reproduce and compare. SolarWM addresses this coupling with a reconfigurable multi-source data engine and a backbone-native adaptation framework. The engine converts 1.43 million canonical clips from 10 datasets into a unified, frame-aligned contract covering visual observations, metric camera geometry, captions, quality metadata, selection decisions, and provenance, while decoupling source processing from mixture construction. Under shared camera-conditioning, training, and inference interfaces, we instantiate four 5B--33B models based on Wan2.2, LTX-2.5, and MiniMax-H3 while preserving their native representations and objectives. A unified three-stage recipe combines bidirectional adaptation, teacher-forced autoregressive initialization, and distribution matching distillation. The resulting causal models enable real-time interaction over rollouts ranging from minutes to hours after being trained on only 5s sequences. By releasing the resulting data, pipeline, recipes, weights, and framework, SolarWM provides a reproducible and extensible foundation for interactive world-model research.",
+      "title": "Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout",
+      "abstract": "Autoregressive (AR) video diffusion models have shown great potential in real-time video generation. Recent methods distill pretrained bidirectional video diffusion models into causal AR students through Distribution Matching Distillation (DMD), but the generated videos often suffer from over-saturation and over-smoothing issues, resulting in limited visual quality and realism. The key contributing factor is the mode-seeking behavior of the reverse KL objective in DMD, which can cause the student distribution to collapse onto only a few modes of the teacher distribution. To address this, we propose Mask Forcing, a Dual-Noise Masking Rollout strategy that perturbs the AR student self-rollout to mitigate mode collapse induced by reverse-KL mode seeking. The core idea is to inject cleaner signals into noisy rollout inputs via random masks along spatial and temporal axes during the self-rollout process of AR diffusion distillation. Such perturbations encourage the student rollouts to explore more regions of the teacher distribution, allowing DMD to provide learning signals beyond the modes already covered by the student. Moreover, the cleaner tokens act as denoising guidance for other noisier tokens, improving the intermediate rollout predictions and reducing error accumulation. Extensive experiments demonstrate that our method improves multiple AR video diffusion distillation methods with higher visual quality efficiently, without incorporating real video data or additional post-training stages.",
       "authors": [
+        "Zhuoran Zhao",
+        "Shengju Qian",
+        "Tongtong Liang",
+        "Xianghao Kong",
+        "Songchun Zhang",
         "Junchao Huang",
         "Guian Fang",
-        "Shengju Qian",
-        "Xianghao Kong",
-        "Zhuoran Zhao",
-        "Wei Huang",
-        "Yihua Du",
-        "Zixin Zhang",
-        "Justin Cui",
-        "Yuchao Gu",
-        "Yukang Chen",
-        "Xinting Hu",
-        "Tianyu He",
-        "Shaoshuai Shi",
-        "Zhuotao Tian",
         "Xin Wang",
-        "Mike Zheng Shou",
-        "Li Jiang"
+        "Pan Hui",
+        "Anyi Rao"
       ],
-      "url": "http://arxiv.org/abs/2609.02886v1",
+      "url": "http://arxiv.org/abs/2609.09123v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "https://junchao-cs.github.io/SolarWM-Web/",
-      "score": 74,
+      "comment": "Project page: https://alicezrzhao.github.io/mask_forcing/",
+      "score": 82,
       "priority": "must-read",
-      "summary_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
-      "contribution_cn": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, real-time, distillation",
+      "summary_cn": "Autoregressive (AR) video diffusion models have shown great potential in real-time video generation.",
+      "contribution_cn": "To address this, we propose Mask Forcing, a Dual-Noise Masking Rollout strategy that perturbs the AR student self-rollout to mitigate mode collapse induced by reverse-KL mode seeking.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：autoregressive, real-time, distillation, efficient, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
       "id": "2609.04911",
-      "date": "2026-09-04",
+      "date": "2026-09-07",
       "topics": [
         "Video Generation",
         "World Models"
@@ -61,7 +55,7 @@
         "Feng Xu",
         "Xuelong Li"
       ],
-      "url": "http://arxiv.org/abs/2609.04911v1",
+      "url": "http://arxiv.org/abs/2609.04911v2",
       "categories": [
         "cs.CV"
       ],
@@ -75,62 +69,32 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.03225",
-      "date": "2026-09-03",
+      "id": "2609.08230",
+      "date": "2026-09-08",
       "topics": [
-        "World Models"
+        "World Models",
+        "Autoregressive and Streaming Video"
       ],
-      "title": "Long-Horizon Consistent and Interaction-Aware World Models for Multi-Style End-to-End Driving",
-      "abstract": "End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \\textit{imagined rollouts}. However, existing world models suffer from three key limitations: temporal inconsistency in long-horizon imagined rollouts, inadequate modeling of ego-environment interactions, and limited adaptability to diverse driving styles. To address these challenges, we propose \\textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm. First, we introduce a temporal consistency regularization that integrates historical latent states through gated cross-attention, stabilizing long-horizon imagined rollouts and mitigating error accumulation. Second, we design an explicit state disentanglement module that separates ego-relevant from ego-irrelevant interactive states, enabling more interpretable and efficient decision-making in complex traffic scenarios. Third, we enable multi-style driving behaviors through Group Relative Policy Optimization, which replaces per-step reward optimization with trajectory-wise relative advantages, reducing reward variance and supporting diverse driving styles without retraining. We evaluate StyleDrive on the Bench2Drive closed-loop driving benchmark, achieving a driving score of 88.44 (+17.08 over the previous best world model-based method) and a success rate of 66.82 (+16.58). Furthermore, we deploy StyleDrive on a real automated guided vehicle platform and demonstrate promising sim-to-real transfer capability in dynamic driving scenarios.",
+      "title": "ActionSplice: In-Flight Action Editing for Interactive World Models",
+      "abstract": "Chunk-autoregressive video world models typically condition each generated chunk on one action. An action received during sampling must therefore wait for the next chunk, condition future solver evaluations on a state produced under the previous action, or trigger rollback that repeats completed evaluations. We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST). A lightweight corrector transports the interrupted backbone-native representation toward the matched state induced by the revised action at the same solver step. The world model and sampler remain frozen, and sampling resumes without replaying completed evaluations. The retargeting variant $\\mathrm{CST}*{R}$ updates the entire active chunk, while the temporal-splicing variant $\\mathrm{CST}*{T}$ preserves a temporal prefix and updates only the suffix. Across minWM-Wan Action2V and HY-WM1.5, $\\mathrm{CST}*{R}$ reduces rollback-relative LPIPS by 61.5% and 75.9% relative to direct condition swapping. $\\mathrm{CST}*{T}$ reduces suffix LPIPS by 56.1% and 77.5%, respectively, while providing $2.73\\times$ and $1.69\\times$ pixel-ready speedups over waiting. Under the HY-WorldPlay protocol, $\\mathrm{CST}_{R}$ obtains a PSNR of 25.66 dB, an SSIM of 0.6902, and an LPIPS of 0.1337 against the original rollout.",
       "authors": [
-        "Yuxuan Han",
-        "Kunyuan Wu",
-        "Liyunong Yang",
-        "Zilu Wang",
-        "Cansen Jiang",
-        "Yi Xiao",
-        "Liang Hu"
+        "Pardis Taghavi",
+        "Tingyu Guo",
+        "Jonas Lossner",
+        "Gaurav Pandey",
+        "Reza Langari"
       ],
-      "url": "http://arxiv.org/abs/2609.03225v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 72,
-      "priority": "must-read",
-      "summary_cn": "End-to-end autonomous driving has increasingly adopted world model-based reinforcement learning frameworks to improve learning efficiency through \\textit{imagined rollouts}.",
-      "contribution_cn": "To address these challenges, we propose \\textit{StyleDrive}, a world-model-based learning framework that jointly enforces long-horizon consistency, explicitly disentangles interactive traffic states, and supports multi-style policy optimization within a unified learning paradigm.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, driving, temporal consistency, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.03557",
-      "date": "2026-09-03",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Building Pretraining Data for World Models: An Unreal Engine-Based Pipeline for Action-Conditioned Video Generation",
-      "abstract": "Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions. Such supervision is difficult to obtain from ordinary real-world video because the actions that caused each visual change are typically unknown. We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video. To accommodate the different execution requirements of real-time physics and high-quality offline rendering, the pipeline executes trajectory generation and final rendering in two stages: Stage I runs real physics in PIE and records per-frame character states, control inputs, and camera states into an intermediate trajectory representation; Stage II replays those trajectories in a new engine process and renders them offline with Movie Render Queue (MRQ). Around this core, we develop a distributed production system with cache-aware task partitioning, node-local slot scheduling, automated scene screening, aesthetic and luminance filtering, partial-output recovery, asynchronous upload, and continuous cluster health monitoring. The production cluster contains 25 servers with eight NVIDIA RTX 5090 GPUs per server. From 2,384 asset packs, 429 levels were retained for production together with a pool of 40 humanoid characters. The pipeline has produced 2,691 hours of 1080p video and 6,076 hours of 720p video. We describe the system architecture, the implementation decisions that emerged from production failures, and the limitations of using perceptual quality proxies for world-model data curation. The pipeline described in this report constitutes the Unreal Engine synthetic-data production component used in EchoWM.",
-      "authors": [
-        "Haoyu Wang",
-        "Songchun Zhang",
-        "Haoran Li",
-        "Haoyang Huang",
-        "Zeyue Xue",
-        "Nan Duan"
-      ],
-      "url": "http://arxiv.org/abs/2609.03557v1",
+      "url": "http://arxiv.org/abs/2609.08230v1",
       "categories": [
         "cs.CV",
-        "cs.GR"
+        "cs.LG"
       ],
-      "comment": "16 pages, 5 figures",
-      "score": 70,
+      "comment": "15 pages, 6 figures. Project page: https://pardistaghavi.github.io/actionsplice-website/",
+      "score": 71,
       "priority": "skim",
-      "summary_cn": "Action-conditioned video models require large-scale visual data paired with control signals that are temporally aligned with the resulting scene transitions.",
-      "contribution_cn": "We present a large-scale synthetic data production pipeline built on Unreal Engine for generating action-conditioned, multi-view video.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time, cache, video generation",
+      "summary_cn": "Chunk-autoregressive video world models typically condition each generated chunk on one action.",
+      "contribution_cn": "We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST).",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -174,6 +138,39 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2609.08855",
+      "date": "2026-09-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Earth System World Model for What-If Simulations: A Case Study for Terrestrial Ecosystems",
+      "abstract": "Machine learning emulators have become essential for accelerating expensive Earth-system simulations, but most existing approaches remain passive forecasters: they reproduce simulator trajectories under prescribed forcings without an explicit interaction mechanism for user-specified interventions. This limits their use in interactive scientific workflows and Earth-system digital twins, where users often need to explore how a system would respond if selected state components were changed. We propose an action-conditioned world-modeling framework for Earth-system emulation that reformulates simulator trajectories as supervision for controllable state-transition learning. The key idea is transition-action pretraining: naturally observed state changes are treated as label-free action supervision, allowing the model to learn both prescribed dynamics and action-conditioned responses without manually annotated interventions. We further introduce masked response learning to infer unobserved variables under partial state edits and learn coupled system dependencies. We test this framework on ecosystem dynamics across six global regions and multiple stand ages. Experiments show that the model preserves competitive long-horizon emulation accuracy while enabling controllable structural interventions and coherent responses in coupled ecosystem-cycle variables. These results suggest a practical route from passive Earth-system emulators toward interactive, intervention-aware scientific surrogates.",
+      "authors": [
+        "Zhihao Wang",
+        "Ruichen Wang",
+        "Ruohan Li",
+        "Lei Ma",
+        "George Hurtt",
+        "Xiaowei Jia",
+        "Gengchen Mai",
+        "Shaowen Wang",
+        "Yiqun Xie"
+      ],
+      "url": "http://arxiv.org/abs/2609.08855v1",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "comment": "Accepted in SIGSPATIAL'26",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "Machine learning emulators have become essential for accelerating expensive Earth-system simulations, but most existing approaches remain passive forecasters: they reproduce simulator trajectories under prescribed forcings without an explicit interaction mechanism for user-specified interventions.",
+      "contribution_cn": "We propose an action-conditioned world-modeling framework for Earth-system emulation that reformulates simulator trajectories as supervision for controllable state-transition learning.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2609.04031",
       "date": "2026-09-03",
       "topics": [
@@ -199,66 +196,6 @@
       "summary_cn": "Video diffusion models (VDMs) have achieved impressive progress in text-to-video generation, but their high memory and computational costs hinder practical deployment.",
       "contribution_cn": "Based on this insight, we propose DSAQuant, a Denoising-Stage-Aligned Quantization-aware training framework for VDMs.",
       "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：distillation, video generation, text-to-video, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.03565",
-      "date": "2026-09-03",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Toward Physically Grounded JEPA World Models for Goal-Conditioned Robotic Planning",
-      "abstract": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control. We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA). While inverse dynamics discourages latent collapse and makes latent transitions informative of the actions that produced them, state alignment grounds consecutive representations in their associated physical configuration and motion. Across four benchmark tasks, our model attains the highest success rates on TwoRoom (100%), PushT (98%), and OGBench-Cube (87%), while performing comparably to LeWorldModel on Reacher. Our ablation further shows that adding state alignment consistently improves planning success over IDM alone across all four tasks. Although LeWorldModel, our primary baseline, attains higher average straightening on OGBench-Cube, transition-subspace analysis shows that its transition energy is concentrated in a substantially lower-dimensional subspace. Our state-aligned model exhibits a higher effective transition dimension than LeWorldModel and improves planning over IDM alone, supporting state alignment as an effective complement to inverse dynamics for robotic planning.",
-      "authors": [
-        "Muyuan Liu",
-        "Yue Huang",
-        "Zheng Liang",
-        "Xiang Gao"
-      ],
-      "url": "http://arxiv.org/abs/2609.03565v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "comment": "5 pages, 4 figures, 2 tables. Accepted to the IROS 2026 Workshop on Physical World Models for Scaling Embodied AI (PWMS 2026)",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control.",
-      "contribution_cn": "We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA).",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.03572",
-      "date": "2026-09-03",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Drive-HWM: Hierarchical World Models for Dynamic-Latent Guided Autonomous Driving",
-      "abstract": "World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation. However, existing approaches either separate future prediction from action generation or jointly predict them at the same temporal scale, making it difficult to simultaneously achieve long-horizon anticipation and responsive, observation-grounded decision making. We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales. The slow world model predicts multi-step future representations to capture extended scene evolution. To explicitly model the abundant motion dynamics in driving environments, we introduce Dynamic-Aware Latents learned through optical-flow prediction. Guided by these future representations, the fast model uses a lightweight multimodal backbone and an autoregressive expert to jointly predict the next frame and the immediate action from the latest observation. Next-frame prediction encourages the fast model to capture imminent scene evolution, while one-step action generation allows decisions to be continuously updated as new observations arrive. Extensive experiments on NAVSIM v1 and v2 demonstrate the strong driving performance of Drive-HWM. Comprehensive ablation studies further validate the effectiveness of the hierarchical slow--fast design, dynamics-aware future representations, and joint next-frame and action prediction.",
-      "authors": [
-        "Zhaoxin Fan",
-        "Tianbao Zhang",
-        "Wenjun Wu",
-        "Xiaofeng Wang",
-        "Yeying Jin",
-        "Jian Zhao",
-        "Zheng Zhu",
-        "Shuicheng Yan"
-      ],
-      "url": "http://arxiv.org/abs/2609.03572v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "14 pages",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "World models offer a promising paradigm for autonomous driving by predicting how traffic scenes may evolve and using such predictions to support action generation.",
-      "contribution_cn": "We present Drive-HWM, a hierarchical slow--fast world modeling framework that organizes future representation prediction and action generation at complementary temporal scales.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, driving, autoregressive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -315,6 +252,65 @@
       "summary_cn": "World models promise a general route to embodied intelligence: learn predictive dynamics once, then reason, plan, and act with them.",
       "contribution_cn": "We introduce Counterfactual Latent World Models (CLWM), which combine a recurrent belief-state encoder, action-conditioned latent dynamics, and a contrastive counterfactual objective that separates futures induced by distinct interventions even when their observations look alike.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.05918",
+      "date": "2026-09-05",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "PAI-Actor: Cinematic Multi-Character Replacement in Dynamic Scenes",
+      "abstract": "We present PAI-Actor, a cinematic multi-character animation framework for character replacement in dynamic movie scenes. Unlike conventional animation systems that mainly drive a single static image or a single subject, our goal is to replace and animate multiple characters within real video clips while preserving the original scene dynamics, camera motion, and background content. This setting is particularly challenging because the generated characters must remain consistent with the source performance in motion and interaction, while also matching the surrounding background in lighting, shadow, composition, and overall cinematic appearance. To address this, we formulate multi-character animation as a structure-guided human recovery problem and build a movie-driven training pipeline from high-quality film data. Furthermore, to support practical cinematic production, we introduce a bidirectional-to-autoregressive distillation framework: we first train a bidirectional diffusion transformer for high-quality short-clip generation at 1080P resolution, and then distill it into an autoregressive video-to-video model for efficient inference and longer video generation. Experiments show that PAI-Actor enables high-fidelity multi-character animation with strong scene consistency, cinematic visual quality, and efficient long-form generation.",
+      "authors": [
+        "Bangxun Tang",
+        "Heyuan Gao",
+        "Yiren Song",
+        "Guian Fang",
+        "Zijian He",
+        "Jie Yang",
+        "Mike Zheng Shou"
+      ],
+      "url": "http://arxiv.org/abs/2609.05918v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "We present PAI-Actor, a cinematic multi-character animation framework for character replacement in dynamic movie scenes.",
+      "contribution_cn": "We present PAI-Actor, a cinematic multi-character animation framework for character replacement in dynamic movie scenes.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, distillation, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.07002",
+      "date": "2026-09-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WM-Craftnet: World Synesthesia Model for Generalizable and Robust Dexterous In-Hand Manipulation",
+      "abstract": "Generalizable and robust dexterous in-hand manipulation requires a policy to infer object pose, geometry, contact, and potential slip from partial and noisy observations. Although recent tactile and visuotactile RL methods achieve strong in-hand rotation in controlled settings, their robustness often degrades under pose shifts, force disturbances, and object variation. We propose WM-Craftnet, a world-model-conditioned framework that learns compact action-conditioned latent dynamics from proprioception, depth, tactile sensing, and actions, supervised by multimodal reconstruction and reward prediction. Rather than using the world model for latent imagination or policy optimization, WM-Craftnet uses the learned World Synesthesia Model (WSM) as recurrent task context for an asymmetric actor--critic policy. Importantly, WSM is trained to reconstruct clean depth targets from noisy depth inputs, providing a denoised geometric state for real-robot deployment. Ablations over recurrent baselines, auxiliary heads, tactile masking, and WSM modality heads show that predictive world modeling, clean-depth supervision, and tactile contact cues all shape the learned state. A WSM pretrained on nine \\(z\\)-axis objects serves as a reusable prior for \\(49\\)-object downstream policy learning. This context improves multi-object rotation, with quantitative and qualitative evidence for unseen-object, perturbation-recovery, and sim-to-real transfer.",
+      "authors": [
+        "Jie Yin",
+        "Zeyuan Zhao",
+        "Xiaojing Tan",
+        "Yang Liu",
+        "Chiyu Wang",
+        "Xinyang Gu"
+      ],
+      "url": "http://arxiv.org/abs/2609.07002v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "Accepted to CoRL2026. Project website: https://wmcraftnet.github.io/",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "Generalizable and robust dexterous in-hand manipulation requires a policy to infer object pose, geometry, contact, and potential slip from partial and noisy observations.",
+      "contribution_cn": "We propose WM-Craftnet, a world-model-conditioned framework that learns compact action-conditioned latent dynamics from proprioception, depth, tactile sensing, and actions, supervised by multimodal reconstruction and reward prediction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
