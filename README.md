@@ -1385,6 +1385,10 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-09**|**Programmable World Model**|Zheng-Hui Huang et.al.|[2609.10540](http://arxiv.org/abs/2609.10540)|null|
+|**2026-09-09**|**Performance Comparison of the Nonlinear Curvature and Shack-Hartmann Wavefront Sensors in Strong Turbulence**|Sam J. Potier et.al.|[2609.10536](http://arxiv.org/abs/2609.10536)|null|
+|**2026-09-09**|**DUET-DINO: Simultaneous Cross-View World Modeling for Latent Planning in Robot Manipulation**|Nisarga Nilavadi et.al.|[2609.10506](http://arxiv.org/abs/2609.10506)|null|
+|**2026-09-09**|**Semigroup-JEPA: Latent Dynamics Consistency for Zero-Shot Physics Generalization**|Andy Zeyi Liu et.al.|[2609.10464](http://arxiv.org/abs/2609.10464)|null|
 |**2026-09-09**|**FolDeX: A Physical-World Benchmark for Long-Horizon Robotic Manipulation of Deformable Objects**|Chenhuan Liu et.al.|[2609.10243](http://arxiv.org/abs/2609.10243)|null|
 |**2026-09-09**|**HaWMPO: Hallucination-Aware World Model-based Policy Optimization for Generalist Robot Policy**|Zengjue Chen et.al.|[2609.09941](http://arxiv.org/abs/2609.09941)|null|
 |**2026-09-09**|**Proof-Carrying Cognition: Closing the Verification Gap with Reality-Settled Reward**|Eshwar Reddy M et.al.|[2609.09776](http://arxiv.org/abs/2609.09776)|null|

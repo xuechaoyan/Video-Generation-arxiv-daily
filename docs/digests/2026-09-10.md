@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-10T01:34:37+00:00 · 筛选方式：规则评分（未配置模型 API Key）
+> 生成时间：2026-09-10T15:15:39+00:00 · 筛选方式：规则评分（未配置模型 API Key）
 > 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。
 
 ## 优先精读
@@ -77,14 +77,14 @@
 - **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned, interactive, simulation
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 6. [DSAQuant: Denoising-Stage-Aligned Quantization-Aware Training for Video Generation](http://arxiv.org/abs/2609.04031v1)
+### 6. [DUET-DINO: Simultaneous Cross-View World Modeling for Latent Planning in Robot Manipulation](http://arxiv.org/abs/2609.10506v1)
 
 - **评分**：60/100
-- **作者**：Shuaiting Li, Zelin Gao, Haibin Shen et al.
-- **方向**：Video Generation
-- **摘要摘录**：Video diffusion models (VDMs) have achieved impressive progress in text-to-video generation, but their high memory and computational costs hinder practical deployment.
-- **核心贡献**：Based on this insight, we propose DSAQuant, a Denoising-Stage-Aligned Quantization-aware training framework for VDMs.
-- **与你课题的关系**：匹配研究线：video generation, efficient generation；关键词：distillation, video generation, text-to-video, video diffusion
+- **作者**：Nisarga Nilavadi, Ralf Römer, Moritz Reuss et al.
+- **方向**：World Models
+- **摘要摘录**：Action-conditioned latent world models predict future visual representations, enabling zero-shot goal-conditioned robot planning and control.
+- **核心贡献**：To address this gap, we introduce DUET-DINO, a simultaneous cross-view latent world model that jointly learns action-conditioned predictions from static side- and wrist-camera observations through cross-view conditioning.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, action-conditioned
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
 ### 7. [Arti-JEPA: Adapting Video World Model to Real-Time MRI of the Vocal Tract for Speech-Production Analysis](http://arxiv.org/abs/2609.09757v1)
@@ -97,12 +97,12 @@
 - **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, video world model, real-time
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
 
-### 8. [APEX-RBD: Mixed-Precision Exploration Framework for Hardware-Efficient Robot Dynamics Accelerator Design](http://arxiv.org/abs/2609.05161v1)
+### 8. [Programmable World Model](http://arxiv.org/abs/2609.10540v1)
 
-- **评分**：57/100
-- **作者**：Xingyu Liu, Hanwei Fan, Chaofang Ma et al.
+- **评分**：58/100
+- **作者**：Zheng-Hui Huang, Guixu Lin, Jiacheng Lin et al.
 - **方向**：World Models
-- **摘要摘录**：Rigid Body Dynamics (RBD) forms the computational core of real-time robotic control, but its immense computational complexity creates a performance bottleneck that necessitates dedicated hardware accelerators.
-- **核心贡献**：To address these challenges, we introduce APEX-RBD, an automated framework that makes mixed-precision exploration computationally tractable while effectively identifying hardware-efficient configurations.
-- **与你课题的关系**：匹配研究线：efficient generation, world model；关键词：closed-loop, simulation, real-time, efficient
+- **摘要摘录**：Recent video world models generate increasingly realistic and interactive visual experiences, yet lack reliable mechanisms for maintaining persistent world state and enforcing programmable rules over extended interactions.
+- **核心贡献**：We introduce Programmable World Model, a framework that decouples world-state evolution from visual observation generation.
+- **与你课题的关系**：匹配研究线：world model；关键词：world model, video world model, interactive
 - **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
