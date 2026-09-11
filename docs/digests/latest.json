@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T15:15:39+00:00",
+  "generated_at": "2026-09-11T01:33:19+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -38,6 +38,93 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2609.11548",
+      "date": "2026-09-10",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "World in World: Explore the World with World Models",
+      "abstract": "Autoregressive video world models enable interactive, long-horizon exploration, but flexible control remains challenging. Exploring a source video from new viewpoints requires the generated rollout to remain synchronised with the recorded event, place observed content in the requested view, plausibly complete newly exposed regions, and recover previously generated appearance on revisits. Existing methods typically address these requirements through task-specific modules or additional training. We present World in World, a training-free inference-time interface that converts heterogeneous control evidence into camera- and time-labelled clean visual states, which are read through the native self attention of a frozen causal video model. The evidence comprises source-video observations, target-view scene projections, geometry renderings that guide completion of newly exposed subject regions, and retrieved generated states beyond the rolling cache. Each evidence source carries token-level support and its own availability schedule. A correspondence router combines persistent point identities with geometry to establish token correspondences, guiding supported queries towards matching source-video tokens. Evidence-wise attention CFG (EWA) then independently regulates each auxiliary channel's additional contribution using attention responses from the same denoising forward pass. The shared interface supports camera-controlled rerendering, long-horizon revisiting, and human-motion transfer with the same frozen backbone. We evaluate World in World on camera-controlled video rerendering under diverse viewpoint changes, assessing perceptual quality, temporal consistency, and camera-following accuracy.",
+      "authors": [
+        "Chenxi Song",
+        "Yanming Yang",
+        "Chi Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.11548v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project Page: https://chenxi-song.github.io/worldinworld",
+      "score": 77,
+      "priority": "must-read",
+      "summary_cn": "Autoregressive video world models enable interactive, long-horizon exploration, but flexible control remains challenging.",
+      "contribution_cn": "We present World in World, a training-free inference-time interface that converts heterogeneous control evidence into camera- and time-labelled clean visual states, which are read through the native self attention of a frozen causal video model.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive, causal video, temporal consistency",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.11265",
+      "date": "2026-09-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Uncertainty DMD: Restoring Diversity in Few-Step Autoregressive Video Distillation",
+      "abstract": "Few-step distillation improves the efficiency of autoregressive (AR) video generation, but often causes diversity collapse: under the same prompt, different noise samples tend to produce highly similar videos with weakened motion dynamics. We analyze this degradation in Distribution Matching Distillation (DMD)-distilled AR video generators and find that, in the autoregressive setting, it takes the form of a structured uncertainty collapse: the mode-seeking bias of DMD maps different noise samples to nearly identical first chunks, and the deterministic AR cache then propagates this collapsed state to all subsequent chunks, turning a local loss of stochasticity at the rollout root into a global suppression of temporal variation. Based on this analysis, we propose Uncertainty DMD, a simple uncertainty-injection framework that restores stochasticity at two key stages of AR generation: a timestep perturbation for the first chunk to increase first-chunk diversity, and a stochastic cache-writing mechanism for later chunks to preserve uncertainty in autoregressive conditioning. The method requires no architectural changes and introduces only lightweight perturbation operations. The same perturbation mechanisms are used during both training and inference. Experiments show that Uncertainty DMD consistently improves diversity and motion dynamics while maintaining comparable per-sample visual quality.",
+      "authors": [
+        "Zixuan Duan",
+        "Xunzhi Xiang",
+        "Yabo Chen",
+        "Xin Zhang",
+        "Changhan Liu",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Qi Fan",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2609.11265v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://scdzx.github.io/Uncertainty-DMD",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "Few-step distillation improves the efficiency of autoregressive (AR) video generation, but often causes diversity collapse: under the same prompt, different noise samples tend to produce highly similar videos with weakened motion dynamics.",
+      "contribution_cn": "Based on this analysis, we propose Uncertainty DMD, a simple uncertainty-injection framework that restores stochasticity at two key stages of AR generation: a timestep perturbation for the first chunk to increase first-chunk diversity, and a stochastic cache-writing mechanism for later chunks to preserve uncertainty in autoregressive conditioning.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, few-step, distillation, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2608.10519",
+      "date": "2026-09-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "SparSTAR: Sparse Attention for SpaceTime AutoRegressive Video Synthesis",
+      "abstract": "InfinityStar extends visual autoregressive generation to video through a sequence of image and clip pyramids. Its changing scale and cross-clip context, however, leave late-scale attention costly and make sparse patterns reused from diffusion or image VAR models unreliable. We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting. At each expensive scale and attention head, SparSTAR scores contiguous key blocks from the current query and key activations, retains required conditioning context, and executes the selected blocks through a forward-only sparse path. We analyze cross-scale consistency within a clip, pattern persistence across clip boundaries, and quality degradation as reuse spans increasingly distant scales. Across these analyses, important key blocks shift, showing that recomputing block selection at each target scale is more reliable than reusing a transferred mask. On 720p text-to-video and image-to-video generation, SparSTAR preserves every token and refinement scale while providing about a 1.6x end-to-end speedup and maintaining VBench and paired-output reconstruction fidelity close to dense InfinityStar.",
+      "authors": [
+        "Jongbeom Lee",
+        "Hyunwoo Yu",
+        "Jincheol Yang",
+        "Jaemin Choi",
+        "Suk-Ju Kang"
+      ],
+      "url": "http://arxiv.org/abs/2608.10519v3",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://jigsaw0612.github.io/SparSTAR_project_page/",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "InfinityStar extends visual autoregressive generation to video through a sequence of image and clip pyramids.",
+      "contribution_cn": "We introduce SparSTAR, a training-free block-sparse attention method tailored to this setting.",
+      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：autoregressive, sparse attention, video generation, text-to-video, image-to-video, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2609.04911",
       "date": "2026-09-07",
       "topics": [
@@ -61,10 +148,37 @@
       ],
       "comment": "",
       "score": 73,
-      "priority": "must-read",
+      "priority": "skim",
       "summary_cn": "Interactive visual world models must distinguish observation from physical intervention.",
       "contribution_cn": "We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration.",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.00610",
+      "date": "2026-09-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Streaming4D: Accelerate 4D World Models via Block-wise Video Generation and Incremental Reconstruction",
+      "abstract": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency. This limits applications in interactive real-time scenarios. To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction. Unlike traditional frame-by-frame emission and delayed geometry recovery, Streaming4D generates temporal video blocks and immediately triggers reconstruction for each completed block, enabling parallel execution between synthesis and geometric updates. This approach allows the world representation to evolve online with the video stream, reducing feedback latency while preserving geometric fidelity. We instantiate \\textbf{Streaming4D} using a Self-Forcing-style autoregressive generator and an incremental reconstruction backend. Experiments show consistent runtime improvements across resolutions on a single RTX 4090 (1.24$\\times$ speedup), while maintaining high-quality 4D geometry and multi-view consistency.",
+      "authors": [
+        "Xiaoyan Liu",
+        "Jiaxin Liu",
+        "Kangrui Li",
+        "Sifan Zhou"
+      ],
+      "url": "http://arxiv.org/abs/2609.00610v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted by CVPR 2026 4DV Workshop",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Current 4D generation paradigms are often bottlenecked by a sequential decoupling design: video is generated first, followed by 3D reconstruction, leading to high interaction latency.",
+      "contribution_cn": "To this end, we propose \\textbf{Streaming4D}, a tightly coupled synchronous pipeline that integrates block-wise autoregressive video generation with incremental 3D reconstruction.",
+      "relevance_cn": "匹配研究线：streaming video, world model；关键词：world model, interactive, autoregressive, streaming, self-forcing, real-time",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -181,136 +295,6 @@
       "summary_cn": "Generalist robot policies have demonstrated strong generalization across robotic manipulation tasks, yet their success rates remain limited in com- plex long-horizon scenarios.",
       "contribution_cn": "To address this issue, we propose Hallucination-aware World Model-based Pol- icy Optimization (HaWMPO), a closed-loop reinforcement learning pipeline for VLA policy post-training with world models.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.08855",
-      "date": "2026-09-08",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Earth System World Model for What-If Simulations: A Case Study for Terrestrial Ecosystems",
-      "abstract": "Machine learning emulators have become essential for accelerating expensive Earth-system simulations, but most existing approaches remain passive forecasters: they reproduce simulator trajectories under prescribed forcings without an explicit interaction mechanism for user-specified interventions. This limits their use in interactive scientific workflows and Earth-system digital twins, where users often need to explore how a system would respond if selected state components were changed. We propose an action-conditioned world-modeling framework for Earth-system emulation that reformulates simulator trajectories as supervision for controllable state-transition learning. The key idea is transition-action pretraining: naturally observed state changes are treated as label-free action supervision, allowing the model to learn both prescribed dynamics and action-conditioned responses without manually annotated interventions. We further introduce masked response learning to infer unobserved variables under partial state edits and learn coupled system dependencies. We test this framework on ecosystem dynamics across six global regions and multiple stand ages. Experiments show that the model preserves competitive long-horizon emulation accuracy while enabling controllable structural interventions and coherent responses in coupled ecosystem-cycle variables. These results suggest a practical route from passive Earth-system emulators toward interactive, intervention-aware scientific surrogates.",
-      "authors": [
-        "Zhihao Wang",
-        "Ruichen Wang",
-        "Ruohan Li",
-        "Lei Ma",
-        "George Hurtt",
-        "Xiaowei Jia",
-        "Gengchen Mai",
-        "Shaowen Wang",
-        "Yiqun Xie"
-      ],
-      "url": "http://arxiv.org/abs/2609.08855v1",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "comment": "Accepted in SIGSPATIAL'26",
-      "score": 63,
-      "priority": "skim",
-      "summary_cn": "Machine learning emulators have become essential for accelerating expensive Earth-system simulations, but most existing approaches remain passive forecasters: they reproduce simulator trajectories under prescribed forcings without an explicit interaction mechanism for user-specified interventions.",
-      "contribution_cn": "We propose an action-conditioned world-modeling framework for Earth-system emulation that reformulates simulator trajectories as supervision for controllable state-transition learning.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.10506",
-      "date": "2026-09-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "DUET-DINO: Simultaneous Cross-View World Modeling for Latent Planning in Robot Manipulation",
-      "abstract": "Action-conditioned latent world models predict future visual representations, enabling zero-shot goal-conditioned robot planning and control. However, their predictions for fine-grained spatial and rotational actions are unreliable for full 7-DoF end-effector control. To address this gap, we introduce DUET-DINO, a simultaneous cross-view latent world model that jointly learns action-conditioned predictions from static side- and wrist-camera observations through cross-view conditioning. By exploiting complementary global scene and gripper-centric information, DUET-DINO enables latent planning over the full 7-DoF action space. Across spatially diverse reach, orientation-intensive angled-reach, and multi-goal grasp-and-lift tasks, DUET-DINO consistently outperforms single-view and independent dual-view baselines, achieving 92% success on reach, 72.5% on angled-reach, and 60.0% on lift tasks. DUET-DINO is trained from scratch on DROID and RoboArena datasets and generalizes robustly under visual distribution shifts. We further show that while V-JEPA 2 wrist-view predictions underestimate visual dynamics induced by fine-grained actions, DINOv3 predictions better capture action-conditioned scene changes, leading to stronger downstream planning. The code and model checkpoints will be open-sourced. Project page: https://utn-air.github.io/DUET-DINO",
-      "authors": [
-        "Nisarga Nilavadi",
-        "Ralf Römer",
-        "Moritz Reuss",
-        "Michael Krawez",
-        "Tobias Jülg",
-        "Angela P. Schoellig",
-        "Rudolf Lioutikov",
-        "Wolfram Burgard"
-      ],
-      "url": "http://arxiv.org/abs/2609.10506v1",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "comment": "Preprint, Project Page: https://utn-air.github.io/DUET-DINO",
-      "score": 60,
-      "priority": "skim",
-      "summary_cn": "Action-conditioned latent world models predict future visual representations, enabling zero-shot goal-conditioned robot planning and control.",
-      "contribution_cn": "To address this gap, we introduce DUET-DINO, a simultaneous cross-view latent world model that jointly learns action-conditioned predictions from static side- and wrist-camera observations through cross-view conditioning.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.09757",
-      "date": "2026-09-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Arti-JEPA: Adapting Video World Model to Real-Time MRI of the Vocal Tract for Speech-Production Analysis",
-      "abstract": "Real-time MRI (rtMRI) captures the dynamics of the entire vocal tract during speech, but labeled data are scarce and the modality - single-slice, grayscale, low-resolution - differs substantially from the natural videos that video foundation models are trained on. We introduce Arti-JEPA, a joint embedding predictive architecture to model vocal tract rtMRI by continuing its self-supervised objective on about 62h of unlabelled vocal-tract videos, and evaluate the frozen representation on three tasks: cross-domain phoneme prediction (on typical speakers), fluent-vs-disfluent classification (a corpus containing stuttered speech), and characterizing pre/post-operative transfer (after partial glossectomy). Three key findings emerge. (1) A temporal video prior decisively outperforms per-frame image encoders, and latent prediction (V-JEPA) is at least as strong as pixel reconstruction (VideoMAE), with the edge on fine-grained phonemes. (2) Domain adaptation is \\emph{task-dependent}: it roughly doubles cross-domain phoneme prediction $κ$ (to 0.352) but does not help binary stuttering classification. (3) Arti-JEPA was able to recover phoneme signal from pre/post glossectomy speech --- an in-domain probe decodes patients at least as well as a typical speaker, indicating that the residual transfer gap is cross-speaker/domain misalignment, not surgical signal loss, and post-operative decoding does not fall below performance on pre-operative speech. Together, these position a frozen, domain-adapted rtMRI encoder as a reusable measurement tool for articulatory and clinical speech science.",
-      "authors": [
-        "Hong Nguyen",
-        "Sean Foley",
-        "Christina Hagedorn",
-        "Yijing Lu",
-        "Sudarsana Reddy Kadiri",
-        "Dani Byrd",
-        "Shrikanth Narayanan"
-      ],
-      "url": "http://arxiv.org/abs/2609.09757v1",
-      "categories": [
-        "cs.SD",
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "Real-time MRI (rtMRI) captures the dynamics of the entire vocal tract during speech, but labeled data are scarce and the modality - single-slice, grayscale, low-resolution - differs substantially from the natural videos that video foundation models are trained on.",
-      "contribution_cn": "We introduce Arti-JEPA, a joint embedding predictive architecture to model vocal tract rtMRI by continuing its self-supervised objective on about 62h of unlabelled vocal-tract videos, and evaluate the frozen representation on three tasks: cross-domain phoneme prediction (on typical speakers), fluent-vs-disfluent classification (a corpus containing stuttered speech), and characterizing pre/post-operative transfer (after partial glossectomy).",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, real-time",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.10540",
-      "date": "2026-09-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Programmable World Model",
-      "abstract": "Recent video world models generate increasingly realistic and interactive visual experiences, yet lack reliable mechanisms for maintaining persistent world state and enforcing programmable rules over extended interactions. We introduce Programmable World Model, a framework that decouples world-state evolution from visual observation generation. An agent translates natural-language instructions into executable programs that specify entity states and state-transition rules, enabling direct control over individual entities and their interactions. A lightweight engine executes these programs to update and maintain an explicit, persistent global world state, including off-screen entities and non-visual attributes. To connect world state with visual generation, we introduce state-augmented 3D oriented bounding boxes (OBBs) as an intermediate representation. This representation, together with the target camera trajectory, is deterministically compiled into pixel-aligned spatiotemporal conditioning signals for a pretrained video model serving as the generative renderer. This design allows users to create playable games with predefined mechanics, direct control over individual entities, and persistent world state throughout gameplay. We further introduce CombatStateBench, a benchmark for evaluating programmable world models. On CombatStateBench, our method achieves 94% Count Accuracy and 98% State Accuracy, substantially outperforming existing interactive video world models while supporting coherent long-horizon generation. These results demonstrate the effectiveness of separating explicit state evolution from generative rendering for building persistent, programmable worlds.",
-      "authors": [
-        "Zheng-Hui Huang",
-        "Guixu Lin",
-        "Jiacheng Lin",
-        "Yi-Chuan Huang",
-        "Ruihan Yu",
-        "Muyao Niu",
-        "Siqi Yang",
-        "Yu-Lun Liu",
-        "Yung-Yu Chuang",
-        "Kaipeng Zhang",
-        "Zhixiang Wang"
-      ],
-      "url": "http://arxiv.org/abs/2609.10540v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Homepage: https://alaya-lab.github.io/pwm GitHub: https://github.com/AlayaLab/pwm",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "Recent video world models generate increasingly realistic and interactive visual experiences, yet lack reliable mechanisms for maintaining persistent world state and enforcing programmable rules over extended interactions.",
-      "contribution_cn": "We introduce Programmable World Model, a framework that decouples world-state evolution from visual observation generation.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
