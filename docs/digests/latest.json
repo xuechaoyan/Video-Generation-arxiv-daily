@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T15:17:29+00:00",
+  "generated_at": "2026-09-12T14:25:38+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -125,37 +125,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.04911",
-      "date": "2026-09-07",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image",
-      "abstract": "Interactive visual world models must distinguish observation from physical intervention. Camera motion reveals new surfaces, whereas intervention changes object motion, contact, and deformation. Current video world models are largely driven by appearance priors and often lose physical or spatial consistency over long horizons. We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration. TourPhysics extends PhysOmni, our ACM Multimedia 2026 work, from finite physics-grounded video synthesis to persistent exploration and manipulation. TourPhysics combines deterministic simulation with video generation while assigning separate roles to simulator state, geometric evidence, generator controls, and appearance memory. For each action, the simulator computes a finite physical and camera trajectory before the corresponding observation is generated. Accepted observations publish the terminal state and update the appearance memory and subsequent generator controls, while the committed state and simulator geometry remain fixed throughout synthesis and retry. We further separate the simulator geometry used for projection and visibility from the relative depth used to condition the generator. A reference-anchored memory retrieves accepted static appearance through geometric cross-view correspondence and incorporates it through a bounded residual that reverts to the native path when no valid correspondence exists. On simulator-defined camera tours and object manipulations, TourPhysics follows prescribed camera and object trajectories more closely than the evaluated baselines, preserves the input scene, and reduces appearance drift during long-horizon revisits.",
-      "authors": [
-        "Xin Zhang",
-        "Yabo Chen",
-        "Zixuan Duan",
-        "Haibin Huang",
-        "Chi Zhang",
-        "Feng Xu",
-        "Xuelong Li"
-      ],
-      "url": "http://arxiv.org/abs/2609.04911v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 73,
-      "priority": "skim",
-      "summary_cn": "Interactive visual world models must distinguish observation from physical intervention.",
-      "contribution_cn": "We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.00610",
       "date": "2026-09-10",
       "topics": [
@@ -209,6 +178,36 @@
       "summary_cn": "Chunk-autoregressive video world models typically condition each generated chunk on one action.",
       "contribution_cn": "We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST).",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.04911",
+      "date": "2026-09-07",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image",
+      "abstract": "Interactive visual world models must distinguish observation from physical intervention. Camera motion reveals new surfaces, whereas intervention changes object motion, contact, and deformation. Current video world models are largely driven by appearance priors and often lose physical or spatial consistency over long horizons. We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration. TourPhysics extends PhysOmni, our ACM Multimedia 2026 work, from finite physics-grounded video synthesis to persistent exploration and manipulation. TourPhysics combines deterministic simulation with video generation while assigning separate roles to simulator state, geometric evidence, generator controls, and appearance memory. For each action, the simulator computes a finite physical and camera trajectory before the corresponding observation is generated. Accepted observations publish the terminal state and update the appearance memory and subsequent generator controls, while the committed state and simulator geometry remain fixed throughout synthesis and retry. We further separate the simulator geometry used for projection and visibility from the relative depth used to condition the generator. A reference-anchored memory retrieves accepted static appearance through geometric cross-view correspondence and incorporates it through a bounded residual that reverts to the native path when no valid correspondence exists. On simulator-defined camera tours and object manipulations, TourPhysics follows prescribed camera and object trajectories more closely than the evaluated baselines, preserves the input scene, and reduces appearance drift during long-horizon revisits.",
+      "authors": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Zixuan Duan",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Feng Xu",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2609.04911v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Interactive visual world models must distinguish observation from physical intervention.",
+      "contribution_cn": "We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
