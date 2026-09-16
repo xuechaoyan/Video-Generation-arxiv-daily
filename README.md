@@ -1,4 +1,4 @@
-## Updated on 2026.09.12
+## Updated on 2026.09.16
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
@@ -17,6 +17,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-15**|**VOR-Bench: A Human Perception-Driven Benchmark for Video Object Removal**|Haonan Huang et.al.|[2609.16878](http://arxiv.org/abs/2609.16878)|null|
+|**2026-09-14**|**LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows**|Xiaofeng Mao et.al.|[2609.15863](http://arxiv.org/abs/2609.15863)|null|
+|**2026-09-15**|**DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models**|Jing Lyu et.al.|[2609.15570](http://arxiv.org/abs/2609.15570)|null|
+|**2026-09-13**|**CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation**|Yuxi Liu et.al.|[2609.14725](http://arxiv.org/abs/2609.14725)|null|
+|**2026-09-07**|**BEACON: Behavior and Appearance Control for Subject-Specific Video Generation**|Pokrzywa Baptiste et.al.|[2609.13264](http://arxiv.org/abs/2609.13264)|null|
 |**2026-09-10**|**MindTopo: Can Foundation Models Reason in Topological Space?**|Yunfei Ge et.al.|[2609.11900](http://arxiv.org/abs/2609.11900)|null|
 |**2026-09-10**|**From Evaluation to Enhancement: Benchmarking and Improving Think-with-Video Reasoning for Video Generative Models**|Meng Luo et.al.|[2609.11242](http://arxiv.org/abs/2609.11242)|null|
 |**2026-09-09**|**Decoupled Self-Forcing Distillation for Streaming Talking Head Generation**|Yanru An et.al.|[2609.10317](http://arxiv.org/abs/2609.10317)|null|
@@ -1381,12 +1386,42 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20260912>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260916>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-15**|**GeoLAM: Learning Geometry-Grounded Latent Actions from Unlabeled Human Videos**|Yifan Xie et.al.|[2609.17099](http://arxiv.org/abs/2609.17099)|null|
+|**2026-09-15**|**Unifying Semantic Priors and High-Frequency Traces: Enhancing V-JEPA with Mixture-of-Experts for Robust Synthetic Image Forensics**|Simone Teglia et.al.|[2609.16778](http://arxiv.org/abs/2609.16778)|null|
+|**2026-09-15**|**CorrRisk-WM: Corridor-Conditioned Risk World Modeling for Safety-Critical Trajectory Planning**|Tingyu Guo et.al.|[2609.16724](http://arxiv.org/abs/2609.16724)|null|
+|**2026-09-15**|**The Robot Data Factory**|Sami Haddadin et.al.|[2609.16705](http://arxiv.org/abs/2609.16705)|null|
+|**2026-09-15**|**World Models for Embodied Intelligence: From Plausible to Controllable to Actionable**|Nanjie Yao et.al.|[2609.16697](http://arxiv.org/abs/2609.16697)|null|
+|**2026-09-15**|**AI for Games in the Foundation Model Era**|Meng Luo et.al.|[2609.16679](http://arxiv.org/abs/2609.16679)|null|
+|**2026-09-15**|**WholeBodyWAM: Generalizing Pre-trained World-Action Priors to Humanoid Loco-Manipulation via WBC-Grounded Coordination**|Zhuo Li et.al.|[2609.16644](http://arxiv.org/abs/2609.16644)|null|
+|**2026-09-14**|**The World Model Hardware Accelerator**|Shashank Chaurasia et.al.|[2609.16244](http://arxiv.org/abs/2609.16244)|null|
+|**2026-09-13**|**World-Action Models for Robot Learning and Control: A Survey**|Zuxing Lu et.al.|[2609.16074](http://arxiv.org/abs/2609.16074)|null|
+|**2026-09-13**|**Schema-Adaptive Action-Conditioned JEPA for Cross-Machine CNC Transfer under Partial Sensor Overlap**|Ayoub Louaye Bouaziz et.al.|[2609.16071](http://arxiv.org/abs/2609.16071)|null|
+|**2026-09-14**|**When Should a World Model Move? Loss-Conditioned State Execution**|Jintao Xu et.al.|[2609.15801](http://arxiv.org/abs/2609.15801)|null|
+|**2026-09-14**|**When the World Lies: Backdoor Attacks on Latent World Models for Downstream Control**|Roberto Riaño et.al.|[2609.15781](http://arxiv.org/abs/2609.15781)|null|
+|**2026-09-14**|**JEPLO: Joint-Embedding Predictive Learning for LiDAR-Based Legged Locomotion**|Qihao Yuan et.al.|[2609.15770](http://arxiv.org/abs/2609.15770)|null|
+|**2026-09-15**|**DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models**|Jing Lyu et.al.|[2609.15570](http://arxiv.org/abs/2609.15570)|null|
+|**2026-09-14**|**From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation**|Ailing Zhang et.al.|[2609.15382](http://arxiv.org/abs/2609.15382)|null|
+|**2026-09-14**|**Math for AI safety: an invitation for mathematicians**|Lionel Levine et.al.|[2609.15289](http://arxiv.org/abs/2609.15289)|null|
+|**2026-09-14**|**Legislating World-Model-Based Planning with Legal Reasoning**|Dylan Waldner et.al.|[2609.15113](http://arxiv.org/abs/2609.15113)|null|
+|**2026-09-14**|**Exact Feasibility Certification and Optimal Responsibility Allocation for Multi-Robot CBF Safety Filters**|Chandan Kumar Sah et.al.|[2609.14935](http://arxiv.org/abs/2609.14935)|null|
+|**2026-09-13**|**AutoLab: An Internet-Accessible Experimental Platform for Operational World Models in Wireless Networks**|Jiunn-Tsair Chen et.al.|[2609.14854](http://arxiv.org/abs/2609.14854)|null|
+|**2026-09-13**|**One Model, Two Physical Stories: Auditing Misalignment in Multi-Modal World Modeling**|Geigh Zollicoffer et.al.|[2609.14833](http://arxiv.org/abs/2609.14833)|null|
+|**2026-09-13**|**An immune world model for multiscale forecasting and therapeutic hypothesis generation**|Taoyong Cui et.al.|[2609.14709](http://arxiv.org/abs/2609.14709)|null|
+|**2026-09-13**|**GLAM: Training a latent world model over global spatiotemporal memory for active exploration and navigation**|I-Tak Ieong et.al.|[2609.14561](http://arxiv.org/abs/2609.14561)|null|
+|**2026-09-13**|**AlayaVista: Streaming World Modeling from Panoramic States to Perspective Video**|Jiaming Tan et.al.|[2609.14462](http://arxiv.org/abs/2609.14462)|null|
+|**2026-09-12**|**Finite Asimov Sample Construction in Unbinned Neural Simulation-Based Inference**|Rafael Coelho Lopes de Sa et.al.|[2609.14136](http://arxiv.org/abs/2609.14136)|null|
+|**2026-09-12**|**LPA-CWM: A Learned Physical Adjudicator for Motion Reasoning with Counterfactual World Models**|Kunwei Wu et.al.|[2609.14073](http://arxiv.org/abs/2609.14073)|null|
+|**2026-09-12**|**Exploring napping paradigm for Recurrent Spiking Neural Networks**|Andreas Massey et.al.|[2609.13927](http://arxiv.org/abs/2609.13927)|null|
+|**2026-09-12**|**Map Users and Mapmakers: The Scope of Cognitive Attribution from Acquired Representations**|Yiling Wu et.al.|[2609.13879](http://arxiv.org/abs/2609.13879)|null|
+|**2026-09-12**|**LePlanner: An Iterative Amortized Controller For World Models**|Saksham Bansal et.al.|[2609.13845](http://arxiv.org/abs/2609.13845)|null|
+|**2026-09-12**|**Homeostatic Continual Learning**|Yue Jin et.al.|[2609.13771](http://arxiv.org/abs/2609.13771)|null|
+|**2026-09-11**|**VideoTok4D: A 4D-Aware Video Tokenizer for Compact World Representation**|Xinyi Chen et.al.|[2609.12874](http://arxiv.org/abs/2609.12874)|null|
 |**2026-09-10**|**A Chip-scale Space-time Multiplexed Gaussian Boson Sampling Processor Beyond 10,000 Photons**|Yu-Xuan Fu et.al.|[2609.11922](http://arxiv.org/abs/2609.11922)|null|
 |**2026-09-10**|**ActSafeGuard: Differentiable and Training-Aligned Constraint Enforcement for Flow-Matching Policies**|Jianming Ma et.al.|[2609.11697](http://arxiv.org/abs/2609.11697)|null|
 |**2026-09-10**|**Memory as Plans: World-Action Modeling with Memory-Grounded Planning**|Sizhe Zhao et.al.|[2609.11561](http://arxiv.org/abs/2609.11561)|null|
@@ -1598,12 +1633,14 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20260912>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260916>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-15**|**Bi-FlowGS: Bridging Generative View Completion and Gaussian Geometry through Bidirectional Flow Co-Refinement**|Yuetong Wang et.al.|[2609.17039](http://arxiv.org/abs/2609.17039)|null|
+|**2026-09-14**|**LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows**|Xiaofeng Mao et.al.|[2609.15863](http://arxiv.org/abs/2609.15863)|null|
 |**2026-09-10**|**World in World: Explore the World with World Models**|Chenxi Song et.al.|[2609.11548](http://arxiv.org/abs/2609.11548)|null|
 |**2026-09-10**|**Uncertainty DMD: Restoring Diversity in Few-Step Autoregressive Video Distillation**|Zixuan Duan et.al.|[2609.11265](http://arxiv.org/abs/2609.11265)|null|
 |**2026-09-08**|**Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout**|Zhuoran Zhao et.al.|[2609.09123](http://arxiv.org/abs/2609.09123)|null|
@@ -1651,7 +1688,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20260912>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260916>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -1683,5 +1720,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20260912>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260916>back to top</a>)</p>
 

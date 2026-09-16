@@ -1,42 +1,7 @@
 {
-  "generated_at": "2026-09-12T14:25:38+00:00",
+  "generated_at": "2026-09-16T01:48:42+00:00",
   "assessment_mode": "heuristic",
   "papers": [
-    {
-      "id": "2609.09123",
-      "date": "2026-09-08",
-      "topics": [
-        "Video Generation",
-        "Autoregressive and Streaming Video",
-        "Efficient Video Diffusion"
-      ],
-      "title": "Mask Forcing: Improving Autoregressive Video Diffusion Distillation via Dual-Noise Masking Rollout",
-      "abstract": "Autoregressive (AR) video diffusion models have shown great potential in real-time video generation. Recent methods distill pretrained bidirectional video diffusion models into causal AR students through Distribution Matching Distillation (DMD), but the generated videos often suffer from over-saturation and over-smoothing issues, resulting in limited visual quality and realism. The key contributing factor is the mode-seeking behavior of the reverse KL objective in DMD, which can cause the student distribution to collapse onto only a few modes of the teacher distribution. To address this, we propose Mask Forcing, a Dual-Noise Masking Rollout strategy that perturbs the AR student self-rollout to mitigate mode collapse induced by reverse-KL mode seeking. The core idea is to inject cleaner signals into noisy rollout inputs via random masks along spatial and temporal axes during the self-rollout process of AR diffusion distillation. Such perturbations encourage the student rollouts to explore more regions of the teacher distribution, allowing DMD to provide learning signals beyond the modes already covered by the student. Moreover, the cleaner tokens act as denoising guidance for other noisier tokens, improving the intermediate rollout predictions and reducing error accumulation. Extensive experiments demonstrate that our method improves multiple AR video diffusion distillation methods with higher visual quality efficiently, without incorporating real video data or additional post-training stages.",
-      "authors": [
-        "Zhuoran Zhao",
-        "Shengju Qian",
-        "Tongtong Liang",
-        "Xianghao Kong",
-        "Songchun Zhang",
-        "Junchao Huang",
-        "Guian Fang",
-        "Xin Wang",
-        "Pan Hui",
-        "Anyi Rao"
-      ],
-      "url": "http://arxiv.org/abs/2609.09123v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project page: https://alicezrzhao.github.io/mask_forcing/",
-      "score": 82,
-      "priority": "must-read",
-      "summary_cn": "Autoregressive (AR) video diffusion models have shown great potential in real-time video generation.",
-      "contribution_cn": "To address this, we propose Mask Forcing, a Dual-Noise Masking Rollout strategy that perturbs the AR student self-rollout to mitigate mode collapse induced by reverse-KL mode seeking.",
-      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：autoregressive, real-time, distillation, efficient, video generation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
     {
       "id": "2609.11548",
       "date": "2026-09-10",
@@ -61,6 +26,36 @@
       "summary_cn": "Autoregressive video world models enable interactive, long-horizon exploration, but flexible control remains challenging.",
       "contribution_cn": "We present World in World, a training-free inference-time interface that converts heterogeneous control evidence into camera- and time-labelled clean visual states, which are read through the native self attention of a frozen causal video model.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive, causal video, temporal consistency",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.15863",
+      "date": "2026-09-14",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows",
+      "abstract": "Video diffusion models are stochastic and hard to control: precise content often requires repeated sampling without guaranteed success, and long-horizon scenes drift in appearance, interactions, and temporal coherence. Agentic visual creation provides explicit references, editable 3D scenes, or executable game states for stable control, but does not by itself guarantee high object or character fidelity. Combining the two can enable stable, high-quality generation. To realize this combination, we present LynnReal-Omni, a native multimodal video generation framework built on a 32B shared multimodal diffusion transformer that unifies text-to-video, image-conditioned generation, reference-guided generation, structural control, editing, degraded video restoration, and long-video generation. It accepts heterogeneous visual inputs, including appearance references, editable 3D renders, and game recordings, allowing agents to compose visual conditions within a unified model. We also train a dedicated 27B Flash shared multimodal diffusion transformer for real-time rendering. We build a systematic data pipeline for video cleaning, subject association, multimodal annotation, and aligned control construction, yielding a curated corpus of multi-shot audiovisual segments, and introduce MSAVP, a 100-prompt, 20-metric evaluation design that separates instruction following, generating plausibility, visual quality, temporal behavior, and audio coordination. LynnReal-Omni-Flash further reduces inference cost through model and decoding acceleration, including a lightweight VAE decoder; on one H100, warm generation and decoding of a 22-frame 540p video take 843 ms with LynnReal-Omni and 377 ms with Flash. These results provide a foundation for real-time streaming video generation, making LynnReal-Omni a unified, controllable, and efficient basis for agentic visual creation.",
+      "authors": [
+        "Xiaofeng Mao",
+        "Peijia Lin",
+        "Shaohao Rui",
+        "Yibo Zhang",
+        "Haibin Wan",
+        "Weijie Ma"
+      ],
+      "url": "http://arxiv.org/abs/2609.15863v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "Video diffusion models are stochastic and hard to control: precise content often requires repeated sampling without guaranteed success, and long-horizon scenes drift in appearance, interactions, and temporal coherence.",
+      "contribution_cn": "To realize this combination, we present LynnReal-Omni, a native multimodal video generation framework built on a 32B shared multimodal diffusion transformer that unifies text-to-video, image-conditioned generation, reference-guided generation, structural control, editing, degraded video restoration, and long-video generation.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：streaming, real-time, acceleration, efficient, video generation, text-to-video",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -93,6 +88,35 @@
       "summary_cn": "Few-step distillation improves the efficiency of autoregressive (AR) video generation, but often causes diversity collapse: under the same prompt, different noise samples tend to produce highly similar videos with weakened motion dynamics.",
       "contribution_cn": "Based on this analysis, we propose Uncertainty DMD, a simple uncertainty-injection framework that restores stochasticity at two key stages of AR generation: a timestep perturbation for the first chunk to increase first-chunk diversity, and a stochastic cache-writing mechanism for later chunks to preserve uncertainty in autoregressive conditioning.",
       "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, few-step, distillation, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.14462",
+      "date": "2026-09-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "AlayaVista: Streaming World Modeling from Panoramic States to Perspective Video",
+      "abstract": "Interactive video world models must maintain broad scene context under camera motion while producing high-fidelity observations with low latency. Existing approaches face a representation trade-off: perspective models operate on local views and must preserve off-screen content over long rollouts, whereas broader spatial coverage is typically obtained by synthesizing full-sphere videos or constructing explicit 3D representations. Motivated by the complementary roles of global context and selective local acuity in visual perception, we present AlayaVista, a camera-controllable streaming video world model that decouples panoramic world evolution from perspective observation synthesis. Given a single perspective image, AlayaVista constructs a 360-degree scene prior using a pretrained panorama expansion model and then evolves the scene as a camera-conditioned panoramic latent state. A latent viewport renderer maps this state to the requested perspective video latents, while a perspective refiner restores details, suppresses artifacts, and performs super-resolution. To support efficient streaming, we adapt the panoramic generator to chunk-autoregressive generation and distill both panoramic generation and perspective refinement into few-step processes. To provide the supervision required by this design, we construct MUGEN, a large-scale real-world panoramic video dataset containing 1,318 hours of videos at resolutions of at least 4K, together with rich semantic and geometric annotations.",
+      "authors": [
+        "Jiaming Tan",
+        "Mingliang Zhai",
+        "Zhen Li",
+        "Yuwei Wu",
+        "Chuanhao Li",
+        "Kaipeng Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.14462v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://alaya-lab.github.io/AlayaVista",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Interactive video world models must maintain broad scene context under camera motion while producing high-fidelity observations with low latency.",
+      "contribution_cn": "Motivated by the complementary roles of global context and selective local acuity in visual perception, we present AlayaVista, a camera-controllable streaming video world model that decouples panoramic world evolution from perspective observation synthesis.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive, streaming, few-step",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -152,66 +176,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.08230",
-      "date": "2026-09-08",
-      "topics": [
-        "World Models",
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "ActionSplice: In-Flight Action Editing for Interactive World Models",
-      "abstract": "Chunk-autoregressive video world models typically condition each generated chunk on one action. An action received during sampling must therefore wait for the next chunk, condition future solver evaluations on a state produced under the previous action, or trigger rollback that repeats completed evaluations. We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST). A lightweight corrector transports the interrupted backbone-native representation toward the matched state induced by the revised action at the same solver step. The world model and sampler remain frozen, and sampling resumes without replaying completed evaluations. The retargeting variant $\\mathrm{CST}*{R}$ updates the entire active chunk, while the temporal-splicing variant $\\mathrm{CST}*{T}$ preserves a temporal prefix and updates only the suffix. Across minWM-Wan Action2V and HY-WM1.5, $\\mathrm{CST}*{R}$ reduces rollback-relative LPIPS by 61.5% and 75.9% relative to direct condition swapping. $\\mathrm{CST}*{T}$ reduces suffix LPIPS by 56.1% and 77.5%, respectively, while providing $2.73\\times$ and $1.69\\times$ pixel-ready speedups over waiting. Under the HY-WorldPlay protocol, $\\mathrm{CST}_{R}$ obtains a PSNR of 25.66 dB, an SSIM of 0.6902, and an LPIPS of 0.1337 against the original rollout.",
-      "authors": [
-        "Pardis Taghavi",
-        "Tingyu Guo",
-        "Jonas Lossner",
-        "Gaurav Pandey",
-        "Reza Langari"
-      ],
-      "url": "http://arxiv.org/abs/2609.08230v1",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "15 pages, 6 figures. Project page: https://pardistaghavi.github.io/actionsplice-website/",
-      "score": 71,
-      "priority": "skim",
-      "summary_cn": "Chunk-autoregressive video world models typically condition each generated chunk on one action.",
-      "contribution_cn": "We introduce ActionSplice, an inference framework that formulates this problem as Counterfactual State Transport (CST).",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.04911",
-      "date": "2026-09-07",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "TourPhysics: Bringing Physics to World Models for Exploration and Manipulation from a Single Image",
-      "abstract": "Interactive visual world models must distinguish observation from physical intervention. Camera motion reveals new surfaces, whereas intervention changes object motion, contact, and deformation. Current video world models are largely driven by appearance priors and often lose physical or spatial consistency over long horizons. We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration. TourPhysics extends PhysOmni, our ACM Multimedia 2026 work, from finite physics-grounded video synthesis to persistent exploration and manipulation. TourPhysics combines deterministic simulation with video generation while assigning separate roles to simulator state, geometric evidence, generator controls, and appearance memory. For each action, the simulator computes a finite physical and camera trajectory before the corresponding observation is generated. Accepted observations publish the terminal state and update the appearance memory and subsequent generator controls, while the committed state and simulator geometry remain fixed throughout synthesis and retry. We further separate the simulator geometry used for projection and visibility from the relative depth used to condition the generator. A reference-anchored memory retrieves accepted static appearance through geometric cross-view correspondence and incorporates it through a bounded residual that reverts to the native path when no valid correspondence exists. On simulator-defined camera tours and object manipulations, TourPhysics follows prescribed camera and object trajectories more closely than the evaluated baselines, preserves the input scene, and reduces appearance drift during long-horizon revisits.",
-      "authors": [
-        "Xin Zhang",
-        "Yabo Chen",
-        "Zixuan Duan",
-        "Haibin Huang",
-        "Chi Zhang",
-        "Feng Xu",
-        "Xuelong Li"
-      ],
-      "url": "http://arxiv.org/abs/2609.04911v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "Interactive visual world models must distinguish observation from physical intervention.",
-      "contribution_cn": "We present TourPhysics, an online framework initialized from a single image and a declarative physical configuration.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, simulation, video generation, video synthesis",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.10317",
       "date": "2026-09-09",
       "topics": [
@@ -245,32 +209,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.09418",
-      "date": "2026-09-08",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Valerant: An Automatic Navigable Game Map Generator via Action-Conditioned World Model Exploration",
-      "abstract": "World Action Models (WAMs) couple predictive world modeling with action generation, allowing anticipated future states to guide agent behavior. Although WAMs are rapidly advancing embodied AI, general-purpose counterparts remain largely unexplored in games. Existing game-oriented approaches often combine action-conditioned world models with external policies and reward functions to realize WAM-like decision-making, yet they operate mainly in 2D visual observation space and do not instantiate persistent 3D geometry. Extending this paradigm to 3D games introduces a distinct challenge. In autonomous driving and robotics, the physical environment exists independently of the model, providing a persistent 3D world in which selected actions can be executed. Games have no such external substrate; the virtual world itself must be instantiated. Most playable games require a persistent and navigable space, while 3D games additionally require explicit geometry that supports movement and interaction. Action-conditioned video rollouts provide visual observations but not this spatial representation. We present \\textsc{Valerant}, a training-free framework that transforms a pretrained action-conditioned world model into a WAM for exploring and constructing 3D game maps. By coupling predictive visual rollouts with SLAM-based spatial reconstruction and exploration-driven action selection, \\textsc{Valerant} progressively transforms a single image into a persistent 3D game map. This framework extends WAM-based interaction beyond 2D visual simulation and offers a new approach to reducing manual effort in 3D game-map creation.",
-      "authors": [
-        "Yiran Qiao",
-        "Feng Wang",
-        "Jing Ma"
-      ],
-      "url": "http://arxiv.org/abs/2609.09418v1",
-      "categories": [
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 67,
-      "priority": "skim",
-      "summary_cn": "World Action Models (WAMs) couple predictive world modeling with action generation, allowing anticipated future states to guide agent behavior.",
-      "contribution_cn": "We present \\textsc{Valerant}, a training-free framework that transforms a pretrained action-conditioned world model into a WAM for exploring and constructing 3D game maps.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, driving, simulation, embodied",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.09941",
       "date": "2026-09-09",
       "topics": [
@@ -294,6 +232,80 @@
       "summary_cn": "Generalist robot policies have demonstrated strong generalization across robotic manipulation tasks, yet their success rates remain limited in com- plex long-horizon scenarios.",
       "contribution_cn": "To address this issue, we propose Hallucination-aware World Model-based Pol- icy Optimization (HaWMPO), a closed-loop reinforcement learning pipeline for VLA policy post-training with world models.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.16074",
+      "date": "2026-09-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "World-Action Models for Robot Learning and Control: A Survey",
+      "abstract": "Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts. Beyond mapping observations and language instructions to actions, they must anticipate how candidate actions may affect future states and task-relevant outcomes. Recent advances in world models, video generation, and Vision-Language-Action (VLA) policies have motivated the development of World-Action Models (WAMs), which couple future world prediction with executable action generation. This survey provides a robotics-oriented review of WAMs. We clarify their scope relative to conventional world models, model-based reinforcement learning, action-conditioned video generation, and reactive VLA policies, and organize existing methods through a unified taxonomy covering representations, transition modeling, action interfaces, architectures, training pipelines, data modalities, and scaling strategies. We further review applications of WAMs in manipulation, navigation, and autonomous driving, and we summarize the datasets, benchmarks, metrics, and protocols used to evaluate WAM systems. Finally, we discuss key challenges in action alignment, world-action factorization, spatial and multi-view consistency, long-horizon memory, neural simulation for closed-loop policy learning, and efficient inference. Taken together, this survey aims to provide a concise technical foundation for integrating predictive world modeling with action generation, toward more reliable embodied robot intelligence. Project page: https://rcl-robotics.github.io/Awesome-World-Action-Models.",
+      "authors": [
+        "Zuxing Lu",
+        "Hongjia Zhai",
+        "Guanzhi Wang",
+        "Huajian Zeng",
+        "Jiaqi Yang",
+        "Jingyu Liu",
+        "Lei Cheng",
+        "Yuantai Zhang",
+        "Yuheng Qiu",
+        "Zezhou Cheng",
+        "Ivan Laptev",
+        "Danfei Xu",
+        "Benjamin Riviere",
+        "Giuseppe Loianno",
+        "Eric Xing",
+        "Xingxing Zuo"
+      ],
+      "url": "http://arxiv.org/abs/2609.16074v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "19 pages",
+      "score": 66,
+      "priority": "skim",
+      "summary_cn": "Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, closed-loop, driving, simulation, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.14725",
+      "date": "2026-09-13",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation",
+      "abstract": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity. We show that this tension can be exploited in a noise-regime-dependent way: high-noise steps largely determine global modes, whereas low-noise steps refine local details. We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state. In contrast to loss-level mixing, and complementarily to training-time two-stage recipes, CrossDistill explicitly assigns complementary objectives along the noise axis, so that global branching is preserved before local statistics are sharpened. CrossDistill is a noise-level scheduling policy: PCM and DMD are plug-in instantiations, while the noise partition, crossover coupling, and objective ordering are the key design elements. Experiments on text-to-video diffusion models and qualitative image-to-video results show that CrossDistill expands the few-step quality-diversity frontier, retaining seed-level variation while achieving competitive visual fidelity.",
+      "authors": [
+        "Yuxi Liu",
+        "Haoyu Li",
+        "Yixiang Cai",
+        "Tengxu Sun",
+        "Zekun Zhang",
+        "Baole Ai",
+        "Ang Wang",
+        "Jiamang Wang",
+        "Lin Qu",
+        "Kun Yuan",
+        "Kai Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.14725v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.",
+      "contribution_cn": "We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
