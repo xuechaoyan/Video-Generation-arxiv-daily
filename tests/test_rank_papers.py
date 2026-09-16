@@ -1,6 +1,7 @@
 import datetime as dt
 import unittest
 
+from cursor_summarize import select_papers_for_summary
 from rank_papers import (
     _extract_json_object,
     collect_recent_ids,
@@ -113,8 +114,48 @@ class RankPapersTests(unittest.TestCase):
             [paper], "2026-08-24T00:00:00+00:00", used_llm=False
         )
 
-        self.assertIn("未配置模型 API Key", output)
+        self.assertIn("未配置 Cursor API Key", output)
         self.assertIn("快速浏览", output)
+
+    def test_cursor_fields_render_as_full_paper_summary(self):
+        paper = {
+            "id": "1",
+            "score": 80,
+            "priority": "must-read",
+            "title": "A Paper",
+            "url": "https://arxiv.org/abs/1",
+            "authors": ["A"],
+            "topics": ["Video Generation"],
+            "abstract_cn": "中文摘要。",
+            "summary_cn": "全文总结。",
+            "contribution_cn": "贡献。",
+            "relevance_cn": "相关。",
+            "limitations_cn": "局限。",
+            "assessment_source": "cursor:gpt-5.6-luna",
+        }
+
+        output = render_markdown(
+            [paper], "2026-09-16T00:00:00+00:00", used_llm=True
+        )
+
+        self.assertIn("Cursor 全文阅读", output)
+        self.assertIn("Abstract 中文翻译", output)
+        self.assertIn("全文总结", output)
+
+    def test_summary_selection_prefers_must_read_papers(self):
+        papers = [
+            {"id": "skim", "priority": "skim"},
+            {"id": "must-2", "priority": "must-read"},
+            {"id": "must-1", "priority": "must-read"},
+            {"id": "must-3", "priority": "must-read"},
+        ]
+
+        selected = select_papers_for_summary(papers, max_papers=3)
+
+        self.assertEqual(
+            [paper["id"] for paper in selected],
+            ["must-2", "must-1", "must-3"],
+        )
 
 
 if __name__ == "__main__":

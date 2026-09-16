@@ -359,12 +359,15 @@ def render_markdown(
         ("skim", "快速浏览"),
         ("archive", "低优先级 / 归档"),
     ]
-    mode = "模型复核 + 规则评分" if used_llm else "规则评分（未配置模型 API Key）"
+    if used_llm:
+        mode = "规则评分 + Cursor 全文阅读"
+    else:
+        mode = "规则评分（未配置 Cursor API Key）"
     lines = [
         "# Generation Research Daily Digest",
         "",
         f"> 生成时间：{generated_at} · 筛选方式：{mode}",
-        "> 建议先读“优先精读”，快速浏览只看摘要、方法图和主实验表。",
+        "> 优先精读由 Cursor 读全文；快速浏览只看摘要、方法图和主实验表。",
         "",
     ]
 
@@ -377,11 +380,8 @@ def render_markdown(
             authors = ", ".join(paper["authors"][:3])
             if len(paper["authors"]) > 3:
                 authors += " et al."
-            summary_label = (
-                "一句话摘要"
-                if paper.get("assessment_source") == "llm"
-                else "摘要摘录"
-            )
+            abstract_cn = paper.get("abstract_cn", "")
+            source = str(paper.get("assessment_source", ""))
             lines.extend(
                 [
                     f"### {index}. [{markdown_escape(paper['title'])}]({paper['url']})",
@@ -389,7 +389,22 @@ def render_markdown(
                     f"- **评分**：{paper['score']}/100",
                     f"- **作者**：{markdown_escape(authors)}",
                     f"- **方向**：{markdown_escape(', '.join(paper['topics']))}",
-                    f"- **{summary_label}**：{markdown_escape(paper['summary_cn'])}",
+                ]
+            )
+            if abstract_cn:
+                lines.extend(
+                    [
+                        f"- **Abstract 中文翻译**：{markdown_escape(abstract_cn)}",
+                        f"- **全文总结**：{markdown_escape(paper['summary_cn'])}",
+                    ]
+                )
+            else:
+                summary_label = "一句话摘要" if source == "llm" else "摘要摘录"
+                lines.append(
+                    f"- **{summary_label}**：{markdown_escape(paper['summary_cn'])}"
+                )
+            lines.extend(
+                [
                     f"- **核心贡献**：{markdown_escape(paper['contribution_cn'])}",
                     f"- **与你课题的关系**：{markdown_escape(paper['relevance_cn'])}",
                     f"- **局限 / 待核实**：{markdown_escape(paper['limitations_cn'])}",
