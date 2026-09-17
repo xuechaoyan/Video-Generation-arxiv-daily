@@ -1,7 +1,7 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-17T01:52:32+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
-> 优先精读由 Cursor 读全文；快速浏览只看摘要、方法图和主实验表。
+> 生成时间：2026-09-17T15:42:18+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
@@ -10,33 +10,24 @@
 - **评分**：80/100
 - **作者**：Awomo-WM Team,  :, Enhui Ma et al.
 - **方向**：World Models
-- **Abstract 中文翻译**：物理动力学建模——包括物体如何运动、相互作用以及状态如何变化——是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，这是一个视频世界模型系列，通过物理学重点数据构建以及语言和动作条件下的场景演化预测，将两者联系起来。我们的数据处理流程结合了运动感知视频分割、质量与内容过滤、物理相关性验证，以及对物体、材料和时间局部化交互的结构化标注。通过将摄像机运动与物体行为解耦，并明确描述接触、形变和状态转移，该流程提供了以可观测物理事件为基础的监督信号。在此基础上，我们提出 StrucPhysVideo-TI2V，一种稀疏混合专家（MoE）文本-图像到视频模型，采用逐步强调物理动力学、同时保留通用领域视频数据的课程学习策略。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了 45.5% 的得分，达到当前最优水平，并以 2.8 个百分点超过 Cosmos3-Super-Image2Video。针对不同骨干网络的字幕消融实验进一步证明了物理学重点监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，用于根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 推动了物理动力学建模从图像和语言条件下的视频预测发展到动作驱动的交互。
-- **全文总结**：论文提出 StrucPhysVideo，围绕物理动力学构建数据、标注和视频生成模型。其数据流程通过镜头切分、质量与内容过滤、物理相关性验证以及结构化物理字幕，刻画物体、材料、接触、形变、状态变化和摄像机运动。StrucPhysVideo-TI2V 是约 300 亿参数的稀疏 MoE 文本-图像到视频模型，通过课程学习增强物理场景生成，在 Physics-IQ Verified 上达到 45.5%。进一步提出的 StrucPhysVideo-IA2V 将机器人末端执行器动作作为条件，并通过动作注入、因果自回归训练、因果 ODE 初始化和非对称 DMD 蒸馏实现流式生成；最终模型每个片段只需四步去噪，并在 AgiBot 数据上的视觉保真度、轨迹一致性和交互质量方面优于对比方法。
-- **核心贡献**：1. 提出面向物理交互的视频数据清洗与构建流程，结合镜头边界检测、运动感知窗口选择、技术质量过滤、内容纯度过滤和多模态物理验证。\n2. 提出结构化物理字幕与标签体系，分别描述全局场景动力学、摄像机运动与光照、世界知识与材料属性，以及带时间戳的实体行为，并区分物体运动和摄像机运动。\n3. 提出 StrucPhysVideo-TI2V：采用冻结的多模态编码器和视频 VAE、首帧约束流匹配、稀疏 MoE 时空 Transformer，以及逐步增加物理数据比例的课程训练。\n4. 提出 StrucPhysVideo-IA2V：使用因果动作编码器和逐块动作适配器，将机器人末端执行器轨迹注入视频生成。\n5. 通过自回归扩散训练、因果 ODE 蒸馏和非对称分布匹配蒸馏，将双向视频扩散模型转化为支持流式、低延迟、四步去噪的动作条件生成器。\n6. 在 Physics-IQ Verified 和 AgiBot 机器人视频评测中取得较强结果，并通过字幕和教师引导消融实验验证物理监督与动作条件的作用。
-- **与你课题的关系**：论文与研究重点高度相关。它直接研究视频扩散和视频世界模型，并以结构化物理监督提升物体运动、接触、形变和状态转移的建模能力。其 IA2V 模型面向动作条件的视觉世界建模，根据机器人末端执行器指令预测闭环交互结果，适用于具身智能中的仿真、规划和控制。模型采用严格因果动作编码、自回归分块生成和历史条件约束，支持流式及增量式长序列生成；四步去噪蒸馏、稀疏 MoE 和动作适配器也分别涉及实时生成、蒸馏和计算效率。不过，论文主要展示固定窗口和短期 rollout，尚未证明长期闭环运行中的稳定性。
-- **局限 / 待核实**：论文明确指出，当前工作仍需扩展到更长时域的流式 rollout，并在保持长期物理一致性的同时进一步降低推理延迟，目标可能是一到两步生成。模型还需要支持更丰富的动作空间，并实现不同机器人平台之间的跨具身泛化。论文的 Physics-IQ 结果依赖特定评测协议和 2026 年 9 月 16 日的基准快照，部分对比结果来自复现或外部快照；定性样例不能替代全面的定量评估。IA2V 实验使用固定的机器人数据、视角和动作表示，且部分对比模型使用不同的原生动作空间，因此跨模型比较存在设置差异。论文未明确说明真实机器人闭环部署、长期误差累积和大规模跨平台泛化效果。
+- **一句话**：论文提出 StrucPhysVideo，目标是让视频世界模型更准确地学习物体运动、接触、形变和状态变化。作者构建了包含镜头切分、运动感知选段、技术质量过滤、内容纯度过滤、物理相关性验证以及结构化物理字幕和标签的数据流程，并将相机运动与物体行为分开描述。在模型方面，StrucPhysVideo-TI2V 使用冻结的多模态编码器、首帧约束的流匹配和稀疏 MoE…
+- **精读笔记**：[打开笔记](../notes/2026-09-17/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md)
 
 ### 2. [World in World: Explore the World with World Models](http://arxiv.org/abs/2609.11548v1)
 
 - **评分**：77/100
 - **作者**：Chenxi Song, Yanming Yang, Chi Zhang
 - **方向**：World Models, Autoregressive and Streaming Video
-- **Abstract 中文翻译**：自回归视频世界模型支持交互式、长时程探索，但灵活控制仍然具有挑战性。从新视角探索源视频，要求生成的展开过程与记录事件保持同步，将观察到的内容放置在请求的视角中，以合理方式补全新暴露的区域，并在重新访问时恢复此前生成的外观。现有方法通常通过任务专用模块或额外训练来满足这些要求。我们提出 World in World（WiW），一种无需训练的推理时接口，将异构控制证据转换为带有相机和时间标签的干净视觉状态，并通过冻结因果视频模型的原生自注意力读取这些状态。证据包括源视频观测、目标视角场景投影、用于引导新暴露主体区域补全的几何渲染，以及滚动缓存之外检索到的生成状态。每种证据都具有词元级支持信息和自身的可用性调度。对应关系路由器结合持久化点身份与几何信息建立词元对应关系，引导受到支持的查询关注匹配的源视频词元。随后，证据级注意力 CFG（EWA）利用同一次去噪前向传播中的注意力响应，独立调节每个辅助通道的额外贡献。该共享接口在同一个冻结骨干模型上支持相机控制的重新渲染、长时程重访和人体运动迁移。我们在多种视角变化下对相机控制的视频重新渲染进行评估，考察感知质量、时间一致性和相机跟随准确性。
-- **全文总结**：论文提出 World in World（WiW），一种无需训练、仅在推理阶段工作的视觉证据接口，用于扩展冻结因果视频世界模型的控制能力。它把源视频、目标视角投影、几何渲染和历史生成结果统一转换为带相机、时间及空间有效性信息的干净视觉状态，并通过模型原生自注意力注入。CGAR利用持久点身份和相机几何定位对应证据，EWA则按证据通道调节其引导强度。借助这些机制，模型能够在保持事件进程和场景外观一致性的同时进行新视角探索、补全未见区域并支持长时程重访。基于冻结的 LingBot-World 2.0，实验显示其在 DAVIS 和 OpenVid-1M 的相机控制视频重渲染中取得较高的 VBench 综合表现和较低的相机轨迹误差，并展示了子弹时间、视频稳定、编辑、人体运动迁移及 K/V 共享等应用。
-- **核心贡献**：1. 提出 WiW，一种无需训练的统一视觉证据接口，使冻结的因果视频世界模型能够接收多种异构控制信息。2. 构建源视频观测、目标视角场景投影、渲染几何和生成历史四类互补证据，以支持事件同步、空间对齐、新暴露区域补全和长时程一致性。3. 提出对应关系引导注意力路由（CGAR），结合持久化点跟踪、深度和相机几何，将当前查询路由至匹配的源视频词元。4. 提出证据级注意力 CFG（EWA），在注意力响应层面独立调节各证据通道，并复用同一次去噪前向传播，因此无需为引导增加额外网络函数评估。5. 在单一冻结世界模型骨干上实现多种相机轨迹探索和下游应用，并通过定量比较及消融实验验证各类证据和机制的作用。
-- **与你课题的关系**：论文直接面向视频生成、视频扩散和动作/相机条件下的视觉世界模型。其核心对象是能够持续生成后续观测的自回归因果视频世界模型，重点解决新视角重渲染、闭环式长时程探索、动态事件同步、未观测区域生成以及历史状态重访。滚动缓存与历史 K/V 检索对应长视频生成中的记忆、缓存复用和超出上下文窗口的信息恢复；将证据转为 K/V 并接入原生自注意力，体现了无需重新训练的条件注入和高效缓存复用。EWA 在同一次去噪前向传播中完成证据调节，不增加额外 NFE，与实时生成和推理加速目标相关。论文还展示了人体运动迁移、视频稳定和跨生成实例 K/V 共享，说明该接口可用于动作条件控制、交互式模拟和闭环视觉探索。不过，论文的主要实验任务仍是相机控制的视频重渲染，而非完整的动作驱动环境交互或真实机器人闭环控制。
-- **局限 / 待核实**：论文的主要定量评估集中在 DAVIS 和 OpenVid-1M 上的相机控制视频重渲染，尚未系统评估真实交互式动作控制、机器人闭环决策或更广泛的环境动态。方法依赖深度估计、持久点跟踪、相机信息以及目标相关的几何或人体表示；这些预处理误差可能影响投影、对应关系和补全质量。实验基于冻结的 LingBot-World 2.0 causal-fast 检查点，模型和数据覆盖范围可能限制结论的普适性。历史信息检索需要维护不断增长的历史库，并且每个目标块只选择有限数量的状态，因而可能遗漏相关信息并带来额外存储与检索开销。论文主要报告视觉质量、时间一致性和相机轨迹指标，未明确说明端到端实时延迟、整体计算成本或大规模长时程探索的资源开销。
+- **一句话**：本文提出 World in World（WiW），一种无需训练的视觉证据接口，用于扩展冻结因果视频世界模型的控制能力。方法将源视频、目标视角投影、几何渲染和生成历史统一表示为带相机、时间及空间有效性信息的干净视觉状态，并通过模型原生自注意力注入。针对证据定位和证据强度控制，WiW分别提出对应关系引导注意力路由（CGAR）和证据级注意力 CFG（EWA）。其…
+- **精读笔记**：[打开笔记](../notes/2026-09-17/2609.11548-world-in-world-explore-the-world-with-world-mode.md)
 
 ### 3. [PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control](http://arxiv.org/abs/2609.17521v1)
 
 - **评分**：75/100
 - **作者**：Chuhao Chen, Peter Wonka, Chaoyang Wang et al.
 - **方向**：Video Generation
-- **Abstract 中文翻译**：视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度、具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用决定物体位置而非物理动力学的像素空间信号。为解决这些局限，我们提出 PhysStream：一种用于物理基础图像到视频合成的自回归模型。该模型引入结构化场景记忆——从先前生成的帧中在线提取的位置图和物体跟踪图——并通过稀疏的速度增量信号实现细粒度运动控制。速度增量信号编码物理量，使模型能够学习潜在动力学。我们分两个阶段训练模型：首先使用运动控制条件对双向模型进行微调，然后加入额外的结构化场景记忆训练因果自回归模型，从而进一步提升物理一致性。PhysStream 支持对多物体桌面刚体场景进行交互式的生成中途控制，这是以往方法不具备的能力。在合成基准上，相比最强基线，它将运动分布距离（FVMD）降低了 33%，将轨迹误差降低了 12%；在真实场景比较中，人类评估者在超过 85% 的比较中更偏好该方法。详情请参阅我们的网站：https://czzzzh.github.io/PhysStream
-- **全文总结**：PhysStream 是一种面向物理基础图像到视频生成的因果自回归模型，允许用户在生成过程中对多物体场景施加稀疏的、面向对象的速度增量控制。模型通过位置图和物体跟踪图构成的结构化场景记忆，将此前生成帧中的几何与对象状态反馈给后续生成；同时采用双向运动控制预训练加因果自回归训练的两阶段方案。作者构建了约 10 万个包含桌面刚体碰撞、摩擦和翻滚的合成视频，并在合成、真实场景、非刚体迁移和长时域任务上进行评估。结果显示，该方法在运动匹配、轨迹控制和物理合理性方面优于多种基线，并可扩展到超过训练时长的长视频，但长时间生成仍会出现外观漂移，且系统尚未达到实时速度。
-- **核心贡献**：1. 提出 PhysStream，实现直接作用于生成视频本身的、面向多物体桌面刚体场景的端到端物理基础交互式控制。2. 提出在线更新的结构化场景记忆，将归一化位置图和物体跟踪图作为自回归视频生成的历史条件，以增强几何一致性和物理合理性。3. 设计稀疏速度增量控制信号，使用户能够在指定时间对选定物体施加物理量级的局部运动干预，而无需预先提供完整轨迹。4. 提出包含约 10 万个合成室内刚体运动视频的数据集，覆盖碰撞、摩擦、翻滚和多帧速度扰动。5. 采用先双向运动控制微调、再因果自回归与场景记忆训练的两阶段训练策略，并结合时间移位条件注入和 KV 缓存支持流式生成。
-- **与你课题的关系**：与研究重点高度相关。该工作直接研究视频自回归、因果和流式生成：模型逐潜变量帧生成，并使用 KV 缓存和历史条件支持增量输出与生成中交互。它面向物理基础视觉世界模型和闭环模拟，通过深度估计与 SAM2 从模型自身生成的帧中在线提取位置及对象状态，再反馈给下一步生成，形成生成视频上的闭环场景记忆。它还支持动作条件控制，但控制信号不是密集轨迹或像素位置，而是作用于对象的稀疏速度增量，因此更接近物理动作和动力学建模。工作评估了 301 帧长时域生成，并分析了扩散步数蒸馏、深度估计加速和缓存式在线更新对吞吐量的影响；不过其实时生成仍属于未来工作。
-- **局限 / 待核实**：论文明确指出，模型在极其复杂的运动，尤其是翻滚运动上仍然存在困难；已验证的主要范围是刚体动力学，对更丰富材料的支持目前依赖额外的微调数据；系统尚未实现实时生成。长时域实验显示，随着生成时间延长，外观会因自回归误差累积而逐渐漂移。训练和主要评测集中于静态相机的桌面室内场景及合成数据，真实场景泛化虽有测试但范围有限。系统运行成本仍较高，未加速版本的主要瓶颈是扩散去噪和在线深度估计。论文还指出，一致性指标可能被物体静止、刚性像素漂移等退化结果人为抬高，因此单独依赖这些指标存在局限。
+- **一句话**：本文提出 PhysStream，用于从单张图像自回归生成具有物理合理性的可控视频。用户只需在指定时刻向特定物体施加稀疏的三维速度增量，模型便可逐帧生成多物体之间的碰撞、摩擦和运动响应。方法的核心是在线更新的结构化场景记忆：利用深度估计得到位置图，并利用 SAM2 得到目标跟踪图，将模型自身历史生成结果反馈给后续生成。训练分为两个阶段，先让双向视频模型学习速…
+- **精读笔记**：[打开笔记](../notes/2026-09-17/2609.17521-physstream-streaming-physics-grounded-video-gene.md)
 
 ## 快速浏览
 
@@ -45,67 +36,46 @@
 - **评分**：75/100
 - **作者**：Xiaofeng Mao, Peijia Lin, Shaohao Rui et al.
 - **方向**：Video Generation, Autoregressive and Streaming Video
-- **摘要摘录**：Video diffusion models are stochastic and hard to control: precise content often requires repeated sampling without guaranteed success, and long-horizon scenes drift in appearance, interactions, and temporal coherence.
-- **核心贡献**：To realize this combination, we present LynnReal-Omni, a native multimodal video generation framework built on a 32B shared multimodal diffusion transformer that unifies text-to-video, image-conditioned generation, reference-guided generation, structural control, editing, degraded video restoration, and long-video generation.
-- **与你课题的关系**：匹配研究线：efficient generation, video generation；关键词：streaming, real-time, acceleration, efficient, video generation, text-to-video
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Video diffusion models are stochastic and hard to control: precise content often requires repeated sampling without guaranteed success, and long-horizon scenes drift in appearance…
 
 ### 2. [AlayaVista: Streaming World Modeling from Panoramic States to Perspective Video](http://arxiv.org/abs/2609.14462v1)
 
 - **评分**：74/100
 - **作者**：Jiaming Tan, Mingliang Zhai, Zhen Li et al.
 - **方向**：World Models
-- **摘要摘录**：Interactive video world models must maintain broad scene context under camera motion while producing high-fidelity observations with low latency.
-- **核心贡献**：Motivated by the complementary roles of global context and selective local acuity in visual perception, we present AlayaVista, a camera-controllable streaming video world model that decouples panoramic world evolution from perspective observation synthesis.
-- **与你课题的关系**：匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive, streaming, few-step
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Interactive video world models must maintain broad scene context under camera motion while producing high-fidelity observations with low latency.
 
 ### 3. [Zing-0.5: Toward Playable Worlds with Real-Time Joint Action and Text Control](http://arxiv.org/abs/2609.17909v1)
 
 - **评分**：74/100
 - **作者**：Mingyang Chen, Shengdong Chen, Xiaoxiao Fu et al.
 - **方向**：World Models
-- **摘要摘录**：We introduce Zing-0.5, a 5B autoregressive world model designed for playability: users can explore generated worlds, influence unfolding events, and respond to the resulting feedback through joint keyboard and online text control.
-- **核心贡献**：We introduce Zing-0.5, a 5B autoregressive world model designed for playability: users can explore generated worlds, influence unfolding events, and respond to the resulting feedback through joint keyboard and online text control.
-- **与你课题的关系**：匹配研究线：efficient generation, streaming video；关键词：world model, autoregressive, streaming, real-time, distillation
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：We introduce Zing-0.5, a 5B autoregressive world model designed for playability: users can explore generated worlds, influence unfolding events, and respond to the resulting feedb…
 
 ### 4. [FluxVLA Engine: A One-Stop VLA Engineering Platform for Embodied Intelligence](http://arxiv.org/abs/2609.17210v1)
 
 - **评分**：69/100
 - **作者**：Yinhao Li, Weixin Mao, Zihan Lan et al.
 - **方向**：World Models
-- **摘要摘录**：Vision-language-action (VLA) models, world-action models (WAMs), and offline reinforcement learning methods are rapidly expanding the design space of embodied policies, yet turning these algorithms into reliable robot systems remains constrained by fragmented data formats, training stacks, evaluation protocols, inference runtimes, and embodiment-specific interfaces.
-- **核心贡献**：We present $\mathrm{FluxVLA}$ Engine, an open, configuration-driven platform that turns heterogeneous embodied-policy components into a reproducible data-to-deployment workflow.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, simulation, embodied, real-time
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Vision-language-action (VLA) models, world-action models (WAMs), and offline reinforcement learning methods are rapidly expanding the design space of embodied policies, yet turnin…
 
 ### 5. [World-Action Models for Robot Learning and Control: A Survey](http://arxiv.org/abs/2609.16074v1)
 
 - **评分**：66/100
 - **作者**：Zuxing Lu, Hongjia Zhai, Guanzhi Wang et al.
 - **方向**：World Models
-- **摘要摘录**：Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts.
-- **核心贡献**：请快速查看方法图和主要实验表确认具体贡献。
-- **与你课题的关系**：匹配研究线：world model, video generation；关键词：world model, action-conditioned, closed-loop, driving, simulation, embodied
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts.
 
 ### 6. [CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation](http://arxiv.org/abs/2609.14725v1)
 
 - **评分**：65/100
 - **作者**：Yuxi Liu, Haoyu Li, Yixiang Cai et al.
 - **方向**：Video Generation
-- **摘要摘录**：Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.
-- **核心贡献**：We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.
-- **与你课题的关系**：匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching shar…
 
 ### 7. [From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation](http://arxiv.org/abs/2609.15382v1)
 
 - **评分**：60/100
 - **作者**：Ailing Zhang, Fan Gao, Song Zhang et al.
 - **方向**：World Models
-- **摘要摘录**：Wheel-loader excavation is a sequential decision problem in which every scoop changes the terrain available to subsequent actions.
-- **核心贡献**：We present the World-Action Model (WAM), which proposes multiple scoops, rejects geometrically inadmissible candidates, jointly predicts signed terrain change and loaded volume, executes the candidate with the largest predicted load, and replans from the newly observed terrain.
-- **与你课题的关系**：匹配研究线：world model, efficient generation；关键词：world model, closed-loop, simulation, efficient
-- **局限 / 待核实**：规则模式无法可靠判断实验质量与论文局限。
+- **一句话**：Wheel-loader excavation is a sequential decision problem in which every scoop changes the terrain available to subsequent actions.

@@ -1,7 +1,7 @@
 ## Updated on 2026.09.17
 > Welcome to Video Generation papers! 
 
-> [Read the ranked daily research digest](docs/digests/latest.md) for the recommended shortlist and relevance notes.
+> [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
 
 <details>
   <summary>Table of Contents</summary>
@@ -1394,6 +1394,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-16**|**PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics**|Bardienus P. Duisterhof et.al.|[2609.19142](http://arxiv.org/abs/2609.19142)|null|
 |**2026-09-16**|**CSWAM: Better Causal Semantic Representations for Out-of-Distribution Generalization in World Action Models**|Tianbin Liu et.al.|[2609.18462](http://arxiv.org/abs/2609.18462)|null|
 |**2026-09-16**|**Risk-Aware World Modeling with Flow-Guided Occupancy Evolution for Selective Trajectory Planning in Automated Driving**|Rongxiang Zeng et.al.|[2609.18442](http://arxiv.org/abs/2609.18442)|null|
 |**2026-09-16**|**StrucPhysVideo: Learning Physical Dynamics from Structured Captions and Robot Actions**|Awomo-WM Team et.al.|[2609.18430](http://arxiv.org/abs/2609.18430)|null|
