@@ -3,8 +3,8 @@
 The scheduled workflow writes two views:
 
 - `README.md`: the complete high-recall paper feed
-- `docs/digests/latest.md`: a shortlist capped at 3 must-read papers and 10
-  papers total
+- `docs/digests/latest.md`: a short daily index of 3 must-read papers plus 7 skims
+- `docs/notes/YYYY-MM-DD/`: one detailed note file per must-read paper
 
 ## Default mode
 
@@ -28,8 +28,9 @@ workflow keeps the rule-generated digest instead of losing the daily update.
 
 ## Reading policy
 
-- **Must-read**: at most 3 papers per run; Cursor reads these in full
-- **Skim**: inspect abstract, method figure, and main experiment table
+- **Must-read**: at most 3 papers per run; Cursor reads these in full and writes
+  one note file each under `docs/notes/YYYY-MM-DD/`
+- **Skim**: short one-line entries in the digest only
 - **Archive**: retained in the full feed for later search
 
 Tune limits in the `digest` section of `config.yaml`.

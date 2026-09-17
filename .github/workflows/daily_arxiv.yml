@@ -59,6 +59,7 @@ jobs:
         python -m pip install cursor-sdk pypdf
         python cursor_summarize.py \
           --digest docs/digests/latest.json \
+          --notes-dir docs/notes \
           --max-papers "$MAX_PAPERS"
 
     - name: Check for changes

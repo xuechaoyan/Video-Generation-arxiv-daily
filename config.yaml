@@ -23,6 +23,7 @@ digest:
   llm_candidate_limit: 12
   top_n: 10
   must_read_count: 3
+  notes_dir: './docs/notes'
 
 # Research tracks related to OmniDreams and FlashDreams
 keywords:

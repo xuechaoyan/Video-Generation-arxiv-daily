@@ -13,7 +13,7 @@ from typing import Any
 
 import requests
 
-from rank_papers import render_markdown
+from rank_papers import render_markdown, write_must_read_notes
 
 
 LOGGER = logging.getLogger("cursor-paper-summary")
@@ -128,9 +128,16 @@ Detected organizations: {", ".join(paper.get("major_orgs", [])) or "none"}
     }
 
 
-def write_digest(payload: dict[str, Any], digest_path: Path, used_llm: bool) -> None:
+def write_digest(
+    payload: dict[str, Any],
+    digest_path: Path,
+    used_llm: bool,
+    notes_dir: Path,
+) -> None:
     papers = payload.get("papers", [])
     generated_at = str(payload.get("generated_at", ""))
+    if used_llm and generated_at:
+        write_must_read_notes(papers, notes_dir, generated_at)
     markdown = render_markdown(papers, generated_at, used_llm)
     digest_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2),
@@ -155,6 +162,7 @@ def write_digest(payload: dict[str, Any], digest_path: Path, used_llm: bool) -> 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--digest", required=True)
+    parser.add_argument("--notes-dir", default="docs/notes")
     parser.add_argument("--max-papers", type=int, default=3)
     parser.add_argument("--max-chars-per-paper", type=int, default=100_000)
     args = parser.parse_args()
@@ -186,7 +194,12 @@ def main() -> None:
         f"heuristic+cursor:{model}" if completed else payload.get("assessment_mode")
     )
     payload["cursor_summaries_completed"] = completed
-    write_digest(payload, digest_path, used_llm=completed > 0)
+    write_digest(
+        payload,
+        digest_path,
+        used_llm=completed > 0,
+        notes_dir=Path(args.notes_dir),
+    )
     LOGGER.info("Completed %d/%d full-paper summaries", completed, len(selected))
 
 
