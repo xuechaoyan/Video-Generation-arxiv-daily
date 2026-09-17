@@ -337,7 +337,7 @@ def json_to_md(filename,md_filename,
         f.write("> Welcome to Video Generation papers! \n\n")
         if to_web == False and use_title == True:
             f.write("> [Read the ranked daily research digest](docs/digests/latest.md) "
-                    "for the recommended shortlist and relevance notes.\n\n")
+                    "and [must-read notes](docs/notes/index.md).\n\n")
 
         if use_tc == True:
             f.write("<details>\n")

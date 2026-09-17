@@ -1,5 +1,7 @@
 import datetime as dt
+import tempfile
 import unittest
+from pathlib import Path
 
 from cursor_summarize import select_papers_for_summary
 from rank_papers import (
@@ -7,7 +9,9 @@ from rank_papers import (
     collect_recent_ids,
     enforce_reading_budget,
     heuristic_assessment,
+    paper_note_filename,
     render_markdown,
+    write_must_read_notes,
 )
 
 
@@ -116,22 +120,25 @@ class RankPapersTests(unittest.TestCase):
 
         self.assertIn("未配置 Cursor API Key", output)
         self.assertIn("快速浏览", output)
+        self.assertIn("一句话", output)
+        self.assertNotIn("核心贡献", output)
 
-    def test_cursor_fields_render_as_full_paper_summary(self):
+    def test_digest_keeps_must_read_short_and_links_notes(self):
         paper = {
-            "id": "1",
+            "id": "2609.11548",
             "score": 80,
             "priority": "must-read",
-            "title": "A Paper",
-            "url": "https://arxiv.org/abs/1",
+            "title": "World in World",
+            "url": "https://arxiv.org/abs/2609.11548",
             "authors": ["A"],
-            "topics": ["Video Generation"],
-            "abstract_cn": "中文摘要。",
+            "topics": ["World Models"],
+            "abstract_cn": "很长的中文摘要不应出现在 digest 里。",
             "summary_cn": "全文总结。",
             "contribution_cn": "贡献。",
             "relevance_cn": "相关。",
             "limitations_cn": "局限。",
             "assessment_source": "cursor:gpt-5.6-luna",
+            "note_path": "2026-09-16/2609.11548-world-in-world.md",
         }
 
         output = render_markdown(
@@ -139,8 +146,57 @@ class RankPapersTests(unittest.TestCase):
         )
 
         self.assertIn("Cursor 全文阅读", output)
-        self.assertIn("Abstract 中文翻译", output)
-        self.assertIn("全文总结", output)
+        self.assertIn("精读笔记", output)
+        self.assertIn("../notes/2026-09-16/2609.11548-world-in-world.md", output)
+        self.assertNotIn("很长的中文摘要不应出现在 digest 里", output)
+        self.assertNotIn("核心贡献", output)
+
+    def test_writes_one_note_file_per_must_read_paper_by_date(self):
+        papers = [
+            {
+                "id": "2609.11548",
+                "score": 80,
+                "priority": "must-read",
+                "title": "World in World",
+                "url": "https://arxiv.org/abs/2609.11548",
+                "authors": ["A"],
+                "topics": ["World Models"],
+                "abstract_cn": "中文摘要。",
+                "summary_cn": "全文总结。",
+                "contribution_cn": "贡献。",
+                "relevance_cn": "相关。",
+                "limitations_cn": "局限。",
+                "assessment_source": "cursor:gpt-5.6-luna",
+            },
+            {
+                "id": "x",
+                "score": 60,
+                "priority": "skim",
+                "title": "Skim Paper",
+                "url": "https://arxiv.org/abs/x",
+                "authors": ["B"],
+                "topics": ["Video Generation"],
+                "summary_cn": "Skim.",
+                "contribution_cn": "C",
+                "relevance_cn": "R",
+                "limitations_cn": "L",
+            },
+        ]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            notes_dir = Path(tmp)
+            written = write_must_read_notes(
+                papers, notes_dir, "2026-09-16T00:00:00+00:00"
+            )
+            note_path = notes_dir / "2026-09-16" / paper_note_filename(papers[0])
+            self.assertEqual(len(written), 1)
+            self.assertTrue(note_path.exists())
+            self.assertTrue((notes_dir / "index.md").exists())
+            self.assertTrue((notes_dir / "2026-09-16" / "index.md").exists())
+            content = note_path.read_text(encoding="utf-8")
+            self.assertIn("中文摘要。", content)
+            self.assertIn("全文总结。", content)
+            self.assertNotIn("Skim Paper", content)
 
     def test_summary_selection_prefers_must_read_papers(self):
         papers = [

@@ -347,8 +347,131 @@ def enforce_reading_budget(
     return ordered
 
 
+NOTE_SLUG_PATTERN = re.compile(r"[^a-z0-9]+")
+
+
 def markdown_escape(value: str) -> str:
     return value.replace("|", "\\|").replace("\n", " ").strip()
+
+
+def one_liner(value: str, limit: int = 180) -> str:
+    text = " ".join(str(value or "").split())
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rstrip() + "…"
+
+
+def format_authors(paper: dict[str, Any]) -> str:
+    authors = ", ".join(paper.get("authors", [])[:3])
+    if len(paper.get("authors", [])) > 3:
+        authors += " et al."
+    return authors
+
+
+def paper_note_filename(paper: dict[str, Any]) -> str:
+    slug = NOTE_SLUG_PATTERN.sub("-", str(paper.get("title", "")).lower()).strip("-")
+    slug = (slug or "paper")[:48].strip("-")
+    return f"{paper['id']}-{slug}.md"
+
+
+def digest_note_href(note_path: str) -> str:
+    return "../notes/" + note_path.replace("\\", "/")
+
+
+def render_paper_note(paper: dict[str, Any], generated_at: str) -> str:
+    authors = format_authors(paper)
+    code_url = paper.get("code_url") or ""
+    code_line = f"[{code_url}]({code_url})" if code_url else "未开源"
+    return "\n".join(
+        [
+            f"# {markdown_escape(paper.get('title', ''))}",
+            "",
+            f"- **日期**：{generated_at[:10]}",
+            f"- **评分**：{paper.get('score', 0)}/100",
+            f"- **作者**：{markdown_escape(authors)}",
+            f"- **方向**：{markdown_escape(', '.join(paper.get('topics', [])))}",
+            f"- **论文**：[arXiv {paper.get('id', '')}]({paper.get('url', '')})",
+            f"- **代码**：{code_line}",
+            "",
+            "## Abstract 中文翻译",
+            "",
+            markdown_escape(paper.get("abstract_cn") or "论文未提供中文摘要。"),
+            "",
+            "## 全文总结",
+            "",
+            markdown_escape(paper.get("summary_cn") or "尚无全文总结。"),
+            "",
+            "## 核心贡献",
+            "",
+            markdown_escape(paper.get("contribution_cn") or "请对照原文方法图确认。"),
+            "",
+            "## 与课题的关系",
+            "",
+            markdown_escape(paper.get("relevance_cn") or "关系待核对。"),
+            "",
+            "## 局限 / 待核实",
+            "",
+            markdown_escape(paper.get("limitations_cn") or "论文未明确说明。"),
+            "",
+        ]
+    )
+
+
+def write_notes_indexes(notes_dir: Path, date_name: str, papers: list[dict[str, Any]]) -> None:
+    day_dir = notes_dir / date_name
+    day_lines = [
+        f"# {date_name} 精读笔记",
+        "",
+        f"> 共 {len(papers)} 篇。返回 [全部日期](../index.md)。",
+        "",
+    ]
+    for paper in papers:
+        filename = Path(paper["note_path"]).name
+        day_lines.append(
+            f"- [{markdown_escape(paper['title'])}]({filename}) · {paper.get('score', 0)}/100"
+        )
+    (day_dir / "index.md").write_text("\n".join(day_lines) + "\n", encoding="utf-8")
+
+    dated = sorted(
+        (path for path in notes_dir.iterdir() if path.is_dir() and path.name[:4].isdigit()),
+        reverse=True,
+    )
+    index_lines = [
+        "# 精读笔记",
+        "",
+        "> 每日精读论文单独成篇，按日期归档。摘要目录见 [digest](../digests/latest.md)。",
+        "",
+    ]
+    for folder in dated:
+        count = len(list(folder.glob("*.md"))) - (1 if (folder / "index.md").exists() else 0)
+        index_lines.append(f"- [{folder.name}]({folder.name}/index.md) · {count} 篇")
+    (notes_dir / "index.md").write_text("\n".join(index_lines) + "\n", encoding="utf-8")
+
+
+def write_must_read_notes(
+    papers: list[dict[str, Any]], notes_dir: Path, generated_at: str
+) -> list[dict[str, Any]]:
+    """Write one markdown note per must-read paper under notes/YYYY-MM-DD/."""
+    date_name = generated_at[:10]
+    day_dir = notes_dir / date_name
+    written: list[dict[str, Any]] = []
+    for paper in papers:
+        if paper.get("priority") != "must-read":
+            continue
+        source = str(paper.get("assessment_source", ""))
+        if not paper.get("abstract_cn") and not source.startswith("cursor"):
+            continue
+        day_dir.mkdir(parents=True, exist_ok=True)
+        filename = paper_note_filename(paper)
+        relative = f"{date_name}/{filename}"
+        (day_dir / filename).write_text(
+            render_paper_note(paper, generated_at), encoding="utf-8"
+        )
+        paper["note_path"] = relative
+        written.append(paper)
+    if written:
+        write_notes_indexes(notes_dir, date_name, written)
+    return written
 
 
 def render_markdown(
@@ -367,7 +490,7 @@ def render_markdown(
         "# Generation Research Daily Digest",
         "",
         f"> 生成时间：{generated_at} · 筛选方式：{mode}",
-        "> 优先精读由 Cursor 读全文；快速浏览只看摘要、方法图和主实验表。",
+        "> 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。",
         "",
     ]
 
@@ -377,11 +500,7 @@ def render_markdown(
             continue
         lines.extend([f"## {heading}", ""])
         for index, paper in enumerate(selected, start=1):
-            authors = ", ".join(paper["authors"][:3])
-            if len(paper["authors"]) > 3:
-                authors += " et al."
-            abstract_cn = paper.get("abstract_cn", "")
-            source = str(paper.get("assessment_source", ""))
+            authors = format_authors(paper)
             lines.extend(
                 [
                     f"### {index}. [{markdown_escape(paper['title'])}]({paper['url']})",
@@ -389,28 +508,17 @@ def render_markdown(
                     f"- **评分**：{paper['score']}/100",
                     f"- **作者**：{markdown_escape(authors)}",
                     f"- **方向**：{markdown_escape(', '.join(paper['topics']))}",
+                    f"- **一句话**：{markdown_escape(one_liner(paper.get('summary_cn', '')))}",
                 ]
             )
-            if abstract_cn:
-                lines.extend(
-                    [
-                        f"- **Abstract 中文翻译**：{markdown_escape(abstract_cn)}",
-                        f"- **全文总结**：{markdown_escape(paper['summary_cn'])}",
-                    ]
-                )
-            else:
-                summary_label = "一句话摘要" if source == "llm" else "摘要摘录"
+            note_path = paper.get("note_path")
+            if note_path:
                 lines.append(
-                    f"- **{summary_label}**：{markdown_escape(paper['summary_cn'])}"
+                    f"- **精读笔记**：[打开笔记]({digest_note_href(note_path)})"
                 )
-            lines.extend(
-                [
-                    f"- **核心贡献**：{markdown_escape(paper['contribution_cn'])}",
-                    f"- **与你课题的关系**：{markdown_escape(paper['relevance_cn'])}",
-                    f"- **局限 / 待核实**：{markdown_escape(paper['limitations_cn'])}",
-                    "",
-                ]
-            )
+            elif key == "must-read":
+                lines.append("- **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`")
+            lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -451,6 +559,13 @@ def main() -> None:
     llm_candidate_limit = int(digest.get("llm_candidate_limit", 12))
     top_n = int(digest.get("top_n", 10))
     must_read_count = int(digest.get("must_read_count", 3))
+    notes_dir = Path(digest.get("notes_dir", "docs/notes"))
+    notes_dir.mkdir(parents=True, exist_ok=True)
+    if not (notes_dir / "index.md").exists():
+        (notes_dir / "index.md").write_text(
+            "# 精读笔记\n\n> 每日精读论文会按日期写入此目录。\n",
+            encoding="utf-8",
+        )
 
     candidates = collect_recent_ids(load_json(source_path), lookback_days)
     candidates = candidates[:candidate_limit]
