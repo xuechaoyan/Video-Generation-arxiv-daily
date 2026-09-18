@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T01:39:50+00:00",
+  "generated_at": "2026-09-18T15:15:01+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -29,12 +29,12 @@
       "comment": "Project page: https://westlakedi-awomo.github.io/StrucPhysVideo-Page/",
       "score": 80,
       "priority": "must-read",
-      "summary_cn": "本文提出 StrucPhysVideo，通过物理相关视频筛选、运动与交互结构化标注，增强视频世界模型对物体运动、接触、形变和状态变化的建模能力。其 TI2V 模型采用稀疏 MoE、物理监督课程学习和首帧约束流匹配，在 Physics-IQ Verified 上取得 45.5% 的得分。进一步提出的 IA2V 模型将机器人末端执行器轨迹作为条件，并通过因果化和少步蒸馏实现流式增量生成，在机器人视频预测的视觉保真度、轨迹一致性和交互质量方面优于对比方法。",
-      "contribution_cn": "1. 提出结合镜头边界检测、运动感知分段、技术质量检查、内容纯度过滤和多模态物理验证的视频整理流程，以保留具有可观测物理交互的视频片段。2. 提出结构化物理字幕与标签体系，分别描述场景动力学、相机运动、材料属性、参与实体及带时间戳的接触、操作、形变和状态变化。3. 提出采用稀疏 MoE 和物理动力学课程学习的 StrucPhysVideo-TI2V，并通过消融实验验证物理导向字幕相对于原始字幕的优势。4. 提出 StrucPhysVideo-IA2V，通过因果动作编码、动作注入、教师强制自回归扩散训练、因果 ODE 初始化和非对称分布匹配蒸馏，将双向视频模型转化为四步因果流式机器人世界模型。5. 在图像-动作到视频任务中验证动作条件生成对机器人轨迹一致性和物理交互质量的改善。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究视频生成和视频扩散式世界模型，并以结构化物理监督提升对场景动力学的预测。IA2V 使用机器人动作条件进行闭环式视觉结果预测，属于动作条件视觉世界模型和交互式仿真方向。其因果自回归分块生成支持流式和长序列扩展，四步去噪蒸馏则面向实时生成和低延迟交互；稀疏 MoE 限制每个 token 的专家计算量，也与稀疏计算和推理效率优化相关。",
-      "limitations_cn": "论文明确指出，当前模型仍需扩展到更长时域的流式 rollout，并在长期生成中保持物理一致性；推理延迟仍需降低，未来目标包括一到两步生成。模型还需要支持更丰富的动作空间，并实现跨不同机器人具身形态的泛化。IA2V 实验主要基于 AgiBot 数据和末端执行器 EE20 动作表示，跨平台和跨动作表示能力尚未充分验证。TI2V 主要在 Physics-IQ Verified 等特定评测协议上进行验证，部分定性结果不能替代全面的定量评估。论文使用了私有采集的视频数据，数据规模、组成和可复现性可能受到限制。",
+      "summary_cn": "论文提出 StrucPhysVideo，围绕物理世界建模构建了从数据整理、结构化标注到视频生成和机器人动作条件生成的完整框架。其数据流程通过镜头切分、运动感知窗口选择、技术质量与内容纯度过滤，以及物理相关性验证，保留包含真实物体运动和交互的片段，并标注物体、材料、相机运动、接触、形变和状态变化。StrucPhysVideo-TI2V 使用冻结的 Qwen3-VL 条件编码器和 Wan VAE，结合约 300 亿参数的稀疏 MoE 视频 Transformer 与首帧约束流匹配，在 Physics-IQ Verified 上达到 45.5%。进一步提出的 StrucPhysVideo-IA2V 将机器人末端执行器轨迹注入视频扩散模型，并通过自回归因果化、因果 ODE 初始化和非对称分布匹配蒸馏，实现四步去噪的流式机器人视频生成，在 AgiBot 数据上提升了视频保真度、轨迹一致性和交互质量。",
+      "contribution_cn": "1. 提出面向物理交互的视频数据整理流程，结合镜头边界检测、运动感知分段、技术质量过滤、内容纯度过滤和多模态物理相关性验证。\\n2. 提出结构化物理字幕与标签体系，分别描述全局场景动力学、相机运动、材料属性、实体级时间行为、物理现象和状态变化，并区分相机运动与物体运动。\\n3. 提出 StrucPhysVideo-TI2V，一种带稀疏 MoE 的文本-图像到视频模型，通过课程式训练强化物理动力学建模，在 Physics-IQ Verified 上取得 45.5% 的得分。\\n4. 提出 StrucPhysVideo-IA2V，将双臂机器人末端执行器动作编码并注入视频骨干，实现动作条件的视频世界预测。\\n5. 通过自回归扩散训练、因果 ODE 初始化和非对称分布匹配蒸馏，将双向视频扩散模型转化为支持流式生成的四步因果生成器。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频生成和视频扩散，并以物理动力学为目标，通过结构化字幕改善物体运动、接触、形变和状态转变的建模。其 IA2V 模型属于动作条件视觉世界模型，能够根据机器人末端执行器轨迹预测场景演化，支持闭环交互和机器人 rollout。模型采用因果自回归生成，可按时间块增量生成视频，契合流式和长视频生成方向。四步去噪蒸馏、稀疏 MoE 和动作条件的时间窗口设计，分别对应实时生成、计算稀疏化和低延迟交互。论文还明确将更长时域流式 rollout、进一步降低推理延迟以及面向策略规划和控制作为未来方向。",
+      "limitations_cn": "论文当前的 IA2V 实验主要基于 AgiBot 机器人数据和固定视角视频，动作空间采用双臂末端执行器目标位姿表示，跨机器人形态和更丰富动作空间的泛化仍有待验证。模型的流式生成以时间块和四步去噪为基础，论文指出尚未实现更长时域下始终保持物理一致性的 rollout，也尚未达到一到两步生成的更低延迟。论文使用的 Physics-IQ Verified 结果对应特定评测协议和 2026 年 9 月 16 日的榜单快照，部分基线结果来自复现或外部快照。数据主要来自私有收集和特定机器人数据集，论文未明确说明其对更广泛真实世界场景的覆盖程度。动作条件模型与双向教师之间仍存在因果上下文差异，且自回归生成可能出现误差累积；论文通过蒸馏和自生成历史训练缓解这一问题，但未声称完全解决。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "物理动力学建模，包括物体如何运动、相互作用和改变状态，是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，这是一个视频世界模型系列，将面向物理的数据整理与语言和动作条件下的场景演化预测相结合。我们的数据流程融合了运动感知视频分割、质量与内容过滤以及物理相关性验证，并对物体、材料和时间定位的交互进行结构化标注。通过将相机运动与物体行为解耦，并明确描述接触、形变和状态转变，该流程提供了以可观测物理事件为基础的监督信号。在此数据基础上，我们引入 StrucPhysVideo-TI2V，这是一种稀疏混合专家（MoE）文本-图像到视频模型，采用课程学习策略，逐步提高对物理动力学的重视，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了最先进的性能，得分为 45.5%，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。不同骨干网络上的字幕消融实验进一步证明了面向物理的监督信号的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，可根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 推动物理动力学建模从图像和语言条件下的视频预测走向动作驱动的交互。",
+      "abstract_cn": "物理动力学建模——包括物体如何运动、相互作用以及改变状态——是具身智能视频世界模型的核心。我们提出 StrucPhysVideo，这是一系列视频世界模型，旨在将面向物理学的数据整理与语言和动作条件下的场景演化预测结合起来。我们的数据处理流程结合了运动感知的视频分割、质量与内容过滤、物理相关性验证，以及对物体、材料和时间局部化交互的结构化标注。通过将相机运动与物体行为解耦，并明确描述接触、形变和状态转变，该流程提供了基于可观测物理事件的监督信号。在此基础上，我们提出 StrucPhysVideo-TI2V，一种稀疏混合专家（MoE）文本-图像到视频模型。该模型采用课程式训练，逐步强化对物理动力学的关注，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了 45.5% 的当前最佳性能，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。针对不同骨干网络的字幕消融实验进一步证明了面向物理学监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，用于根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 推动了物理动力学建模从图像和语言条件下的视频预测走向动作驱动的交互。",
       "note_path": "2026-09-18/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md"
     },
     {
@@ -63,12 +63,12 @@
       "comment": "",
       "score": 75,
       "priority": "must-read",
-      "summary_cn": "本文提出 PhysStream，用于从单张图像自回归生成具有物理合理性的可控视频。模型以稀疏的物体级速度增量作为用户控制信号，并将由历史生成帧在线估计的位置图和物体跟踪图作为结构化场景记忆，通过两阶段训练将双向视频模型转换为因果自回归模型。该方法面向静态相机下的多物体桌面刚体动力学，无需推理时调用外部物理模拟器或预先提供完整轨迹即可进行中途交互控制。合成、真实场景和长视频实验表明，它在运动匹配、轨迹控制和物理合理性方面优于多种基线；但长时生成仍会出现外观漂移，当前系统尚未达到实时速度。",
-      "contribution_cn": "1. 提出 PhysStream，实现直接作用于生成视频的、面向多物体桌面刚体场景的端到端物理交互式控制。\n2. 提出结构化场景记忆机制：从历史生成帧在线提取归一化位置图和物体跟踪图，并反馈给后续自回归生成，以改善几何一致性和物理合理性。\n3. 采用稀疏的物体级三维速度增量信号，使用户能够在指定时间对选定物体施加局部运动控制，而无需提供完整的逐帧轨迹。\n4. 设计两阶段训练方案：先训练双向模型学习速度控制，再在因果注意力和教师强制下加入历史场景记忆，缓解多种分布变化同时学习的困难。\n5. 构建约 10 万个包含多物体碰撞、摩擦、翻滚和多帧速度扰动的合成室内刚体视频数据集，并在合成、真实场景、非刚体迁移和长时控制任务上进行评估。\n6. 通过扩散蒸馏和更快的深度估计器将系统延迟降低到原始系统的约 29%，但仍未实现实时生成。",
-      "relevance_cn": "与研究重点高度相关。PhysStream 是自回归、因果、流式的视频生成模型，按潜在帧逐步生成并使用 KV 缓存，因此支持观察部分结果后在中途追加控制，直接对应交互式和闭环式视频生成。它将由模型自身历史输出估计的位置图与跟踪图反馈到下一步，形成基于生成结果的结构化场景记忆，可视为面向物理场景的视觉反馈回路。速度增量控制使用户输入具有物理语义，而不是直接规定像素轨迹，适合动作条件视觉世界模型和物理动力学建模。论文还研究了长视频扩展、扩散步数蒸馏、缓存复用以及在线估计器的运行时开销；不过其“交互式”强调生成过程中的控制，并不意味着当前系统达到实时吞吐。",
-      "limitations_cn": "论文明确指出，该方法在极其复杂的运动，尤其是翻滚运动上仍存在困难；已验证范围主要是刚体动力学，非刚体材料需要针对每种材料额外构建数据并进行微调；尚未实现实时生成。长时生成会因自回归误差累积而出现外观漂移，且一致性指标可能被物体静止或刚性像素漂移等退化结果人为抬高。方法依赖在线的深度估计、VAE 编解码和 SAM2 跟踪，原始系统中 50 步去噪和深度估计占据主要延迟。实验主要基于静态相机、桌面场景和合成刚体数据，论文未明确说明其对更广泛动态相机、复杂开放环境和更长时间范围的泛化能力。",
+      "summary_cn": "PhysStream 面向从单张图像生成具有物理合理性的交互式视频，重点解决现有方法必须预先给出完整控制序列、缺乏场景物理状态反馈的问题。它以稀疏的逐物体三维速度增量作为用户控制，并从已生成帧在线提取位置图和物体跟踪图作为结构化场景记忆，通过因果自回归生成和 KV 缓存逐帧生成视频。作者先训练双向运动控制模型，再转换为引入场景记忆的因果模型，并构建了约 10 万条包含碰撞、摩擦和翻倒的合成桌面刚体视频数据集。实验显示，该方法在合成数据的运动分布、轨迹跟踪和失败率方面优于基线，在真实场景、非刚体迁移和 301 帧长视频上也表现出较好的控制能力；但外观会随时间漂移，系统尚未达到实时速度，且对极复杂的翻滚运动仍有困难。",
+      "contribution_cn": "1. 提出 PhysStream，这是一个直接作用于生成视频本身、支持多物体桌面刚体场景中场景级物理交互控制的自回归图像到视频模型。\\n2. 提出结构化场景记忆机制：从历史生成帧在线估计归一化三维位置图和多物体跟踪图，并将其反馈给后续生成，以增强几何一致性和物理合理性。\\n3. 设计稀疏的逐物体速度增量控制信号，使用户能够在任意生成中途施加物理量级的运动干预，而不必预先指定完整轨迹。\\n4. 提出双向运动控制微调加因果自回归训练的两阶段方案，并通过时间平移的条件拼接避免未来信息泄漏。\\n5. 构建约 10 万条合成室内桌面刚体视频数据集，覆盖多物体运动、碰撞、摩擦和多帧速度扰动。\\n6. 在合成、真实、非刚体和长时域实验中验证方法，并通过蒸馏和更快的深度估计器将系统延迟从 66.3 秒降至 19.3 秒/49 帧视频。",
+      "relevance_cn": "与研究重点高度相关。PhysStream 是自回归、因果、流式视频生成模型，按帧或潜在帧增量生成，并使用 KV 缓存和历史场景记忆形成闭环反馈。它支持生成过程中的交互式控制，用户可在中途对指定物体施加稀疏速度增量，因此直接涉及动作条件视觉世界模型和闭环模拟。其结构化记忆将模型自身生成的几何与物体状态反馈到下一步，增强了多物体碰撞和运动的物理一致性。模型虽未以实时速度运行，但论文研究了少步蒸馏、缓存复用和在线估计器优化，在 49 帧视频上将吞吐率提升至 2.54 FPS，并将实时生成列为未来方向。其自回归结构还支持超出训练长度的 301 帧生成，但长时域中会出现累积外观漂移。",
+      "limitations_cn": "论文明确指出：模型对极其复杂的运动，尤其是翻滚运动，仍存在困难；验证范围主要限于刚体动力学，扩展到更丰富的材料需要额外的微调数据；系统尚未实现实时生成，实时性能被留作未来工作。论文还显示，长时域自回归生成会因误差累积产生外观漂移，且一致性指标可能被物体静止或刚性像素漂移等退化结果虚高。训练和主要验证依赖合成的静态摄像机桌面场景，真实场景上的运动速度仍与真实视频存在差异。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度、具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用决定物体位置而非物理动力学的像素空间信号。为解决这些局限，我们提出 PhysStream：一种面向物理的自回归图像到视频生成模型。该模型引入结构化场景记忆，包括从先前生成帧中在线提取的位置图和物体跟踪图；同时通过稀疏的速度增量信号实现细粒度运动控制。这些信号编码物理量，使模型能够学习底层动力学。我们分两个阶段训练模型：首先对双向模型进行带运动控制条件的微调，然后训练带有额外结构化场景记忆的因果自回归模型，从而进一步提升物理一致性。PhysStream 支持对多物体桌面刚体场景进行生成过程中的交互式中途控制，这是此前方法不具备的能力。在合成基准上，相比最强基线，该方法将运动分布距离（FVMD）降低了 33%，将轨迹误差降低了 12%；在真实场景比较中，人工评估者在超过 85% 的比较中更偏好该方法。更多细节请参见项目网站：https://czzzzh.github.io/PhysStream。",
+      "abstract_cn": "视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度、具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用规定物体位置而非物理动力学的像素空间信号。为解决这些局限，我们提出 PhysStream：一种面向物理的自回归图像到视频生成模型。该模型引入结构化场景记忆，包括根据此前生成帧在线提取的位置图和物体跟踪图；同时通过编码物理量的稀疏速度增量信号实现细粒度运动控制，使模型能够学习潜在动力学。我们分两个阶段训练模型：首先，对双向模型进行带运动控制条件的微调；随后，在此基础上训练具有额外结构化场景记忆的因果自回归模型，从而进一步提高物理一致性。PhysStream 支持对多物体桌面刚体场景进行交互式的生成中途控制，这是以往方法不具备的能力。在合成基准上，相比最强基线方法，其运动分布距离（FVMD）降低了 33%，轨迹误差降低了 12%；在真实场景比较中，人工评估者在超过 85% 的比较中更偏好该方法。更多详情请参阅我们的网站：https://czzzzh.github.io/PhysStream。",
       "note_path": "2026-09-18/2609.17521-physstream-streaming-physics-grounded-video-gene.md"
     },
     {
@@ -217,80 +217,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.16074",
-      "date": "2026-09-13",
-      "topics": [
-        "World Models"
-      ],
-      "title": "World-Action Models for Robot Learning and Control: A Survey",
-      "abstract": "Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts. Beyond mapping observations and language instructions to actions, they must anticipate how candidate actions may affect future states and task-relevant outcomes. Recent advances in world models, video generation, and Vision-Language-Action (VLA) policies have motivated the development of World-Action Models (WAMs), which couple future world prediction with executable action generation. This survey provides a robotics-oriented review of WAMs. We clarify their scope relative to conventional world models, model-based reinforcement learning, action-conditioned video generation, and reactive VLA policies, and organize existing methods through a unified taxonomy covering representations, transition modeling, action interfaces, architectures, training pipelines, data modalities, and scaling strategies. We further review applications of WAMs in manipulation, navigation, and autonomous driving, and we summarize the datasets, benchmarks, metrics, and protocols used to evaluate WAM systems. Finally, we discuss key challenges in action alignment, world-action factorization, spatial and multi-view consistency, long-horizon memory, neural simulation for closed-loop policy learning, and efficient inference. Taken together, this survey aims to provide a concise technical foundation for integrating predictive world modeling with action generation, toward more reliable embodied robot intelligence. Project page: https://rcl-robotics.github.io/Awesome-World-Action-Models.",
-      "authors": [
-        "Zuxing Lu",
-        "Hongjia Zhai",
-        "Guanzhi Wang",
-        "Huajian Zeng",
-        "Jiaqi Yang",
-        "Jingyu Liu",
-        "Lei Cheng",
-        "Yuantai Zhang",
-        "Yuheng Qiu",
-        "Zezhou Cheng",
-        "Ivan Laptev",
-        "Danfei Xu",
-        "Benjamin Riviere",
-        "Giuseppe Loianno",
-        "Eric Xing",
-        "Xingxing Zuo"
-      ],
-      "url": "http://arxiv.org/abs/2609.16074v1",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "comment": "19 pages",
-      "score": 66,
-      "priority": "skim",
-      "summary_cn": "Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, closed-loop, driving, simulation, embodied",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.14725",
-      "date": "2026-09-13",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation",
-      "abstract": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity. We show that this tension can be exploited in a noise-regime-dependent way: high-noise steps largely determine global modes, whereas low-noise steps refine local details. We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state. In contrast to loss-level mixing, and complementarily to training-time two-stage recipes, CrossDistill explicitly assigns complementary objectives along the noise axis, so that global branching is preserved before local statistics are sharpened. CrossDistill is a noise-level scheduling policy: PCM and DMD are plug-in instantiations, while the noise partition, crossover coupling, and objective ordering are the key design elements. Experiments on text-to-video diffusion models and qualitative image-to-video results show that CrossDistill expands the few-step quality-diversity frontier, retaining seed-level variation while achieving competitive visual fidelity.",
-      "authors": [
-        "Yuxi Liu",
-        "Haoyu Li",
-        "Yixiang Cai",
-        "Tengxu Sun",
-        "Zekun Zhang",
-        "Baole Ai",
-        "Ang Wang",
-        "Jiamang Wang",
-        "Lin Qu",
-        "Kun Yuan",
-        "Kai Zhang"
-      ],
-      "url": "http://arxiv.org/abs/2609.14725v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 65,
-      "priority": "skim",
-      "summary_cn": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.",
-      "contribution_cn": "We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.15382",
       "date": "2026-09-14",
       "topics": [
@@ -343,6 +269,75 @@
       "summary_cn": "Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where all context frames reside in the KV cache, but at inference, memory constraints force distant frames to be evicted from the KV cache - removing context the model was conditioned on.",
       "contribution_cn": "To guide this design, we introduce the positional response $R( Δ, \\, t_{\\text{denoise}})$, a perturbation-based sensitivity measure revealing that context influence decays steeply with temporal distance and varies systematically across denoising steps.",
       "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.16697",
+      "date": "2026-09-15",
+      "topics": [
+        "World Models"
+      ],
+      "title": "World Models for Embodied Intelligence: From Plausible to Controllable to Actionable",
+      "abstract": "World models connect perception and decision-making in embodied intelligence by maintaining hidden state, anticipating consequences, comparing interventions, and adapting when execution departs from expectations. Although progress is often measured by visual fidelity, their value lies in improving behavior. Before reaching for a cup, a person anticipates its weight and resistance to grasping, shaping the hand before contact. Such anticipation is coarse and rarely pictorial, yet it guides action. This raises a central question: which predictive capabilities improve behavior? Existing surveys, organized by architecture, output modality, or application domain, leave this question implicit. We introduce three progressively stronger capability levels: Plausible models preserve task-relevant temporal, geometric, or physical structure; Controllable models additionally predict how interventions alter that structure; and Actionable models translate predictions into measurable gains in planning, action, learning, evaluation, verification, recovery, or data selection. We complement this hierarchy with a 3 x 4 matrix crossing geometry, physics, and action grounding with improvement loops centered on data, rewards, policies, and the model itself. Using this framework, we survey manipulation, navigation, locomotion, autonomous driving, and general embodied learning, tracing technical progressions, clarifying capability requirements, and examining datasets, benchmarks, and evaluation protocols. We identify challenges in long-horizon consistency, uncertainty calibration, causal intervention testing, latency, verification and recovery, and cross-embodiment transfer. This perspective shifts evaluation from visual plausibility toward whether predictions capture task-relevant state, reflect intervention effects, and improve the closed-loop behavior of embodied agents.",
+      "authors": [
+        "Nanjie Yao",
+        "Hao Wang",
+        "Chong Cheng",
+        "Zhikang Chen",
+        "Wenzhe Li",
+        "Jiafei Lyu",
+        "Li Shen",
+        "Peilin Zhao",
+        "Zongqing Lu",
+        "Gao Huang",
+        "Steven Hoi",
+        "Dacheng Tao",
+        "Deheng Ye"
+      ],
+      "url": "http://arxiv.org/abs/2609.16697v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "comment": "Project Page: https://3dagentworld.github.io/EmbodiedWM/",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "World models connect perception and decision-making in embodied intelligence by maintaining hidden state, anticipating consequences, comparing interventions, and adapting when execution departs from expectations.",
+      "contribution_cn": "We introduce three progressively stronger capability levels: Plausible models preserve task-relevant temporal, geometric, or physical structure; Controllable models additionally predict how interventions alter that structure; and Actionable models translate predictions into measurable gains in planning, action, learning, evaluation, verification, recovery, or data selection.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.19142",
+      "date": "2026-09-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics",
+      "abstract": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction. They are most beneficial when trained on diverse volumes of data, to instill a rich prior into downstream applications. Existing methods typically require robot action labels to learn action-conditioned 3D dynamics, which excludes web video data from the training pool. We study 3D point track completion as a pre-training objective for learning transferable 3D dynamics without robot data. Given a single RGB-D observation and sparse partial 3D trajectories (tracks), we predict future 3D tracks of all observed points. We show this objective produces a rich 3D dynamics prior, without requiring robot action labels. We contribute a diverse dataset of 2.9 million synthetic frames spanning deformable, articulated, and rigid objects, and use it to train PointZero. We show that a flexible and expressive transformer, PointZero, outperforms prior methods on the same data. We demonstrate the utility of our pre-training objective by post-training PointZero for two downstream applications: (1) action-conditioned 3D dynamics prediction and (2) imitation learning. When fine-tuned to condition on end-effector pose, PointZero outperforms the baselines on the recent PGND 3D dynamics benchmark. When fine-tuned to predict robot actions and 3D tracks, PointZero outperforms or matches the baselines on 6/7 simulated and real-world robot manipulation tasks. We furthermore evaluate training PointZero from scratch to isolate the benefits of our proposed architecture from those of our proposed pre-training objective and dataset. We release the dataset, checkpoints, and full training recipe.",
+      "authors": [
+        "Bardienus P. Duisterhof",
+        "Kaifeng Zhang",
+        "Adam Hung",
+        "Bowen Wen",
+        "Stan Birchfield",
+        "Yunzhu Li",
+        "Deva Ramanan",
+        "Jeffrey Ichnowski"
+      ],
+      "url": "http://arxiv.org/abs/2609.19142v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "https://pointzero-wm.github.io/",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

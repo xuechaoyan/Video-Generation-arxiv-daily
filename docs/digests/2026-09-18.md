@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-18T01:39:50+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-18T15:15:01+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：80/100
 - **作者**：Awomo-WM Team,  :, Enhui Ma et al.
 - **方向**：World Models
-- **一句话**：本文提出 StrucPhysVideo，通过物理相关视频筛选、运动与交互结构化标注，增强视频世界模型对物体运动、接触、形变和状态变化的建模能力。其 TI2V 模型采用稀疏 MoE、物理监督课程学习和首帧约束流匹配，在 Physics-IQ Verified 上取得 45.5% 的得分。进一步提出的 IA2V 模型将机器人末端执行器轨迹作为条件，并通过因果化…
+- **一句话**：论文提出 StrucPhysVideo，围绕物理世界建模构建了从数据整理、结构化标注到视频生成和机器人动作条件生成的完整框架。其数据流程通过镜头切分、运动感知窗口选择、技术质量与内容纯度过滤，以及物理相关性验证，保留包含真实物体运动和交互的片段，并标注物体、材料、相机运动、接触、形变和状态变化。StrucPhysVideo-TI2V 使用冻结的 Qwen3…
 - **精读笔记**：[打开笔记](../notes/2026-09-18/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md)
 
 ### 2. [PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control](http://arxiv.org/abs/2609.17521v1)
@@ -18,7 +18,7 @@
 - **评分**：75/100
 - **作者**：Chuhao Chen, Peter Wonka, Chaoyang Wang et al.
 - **方向**：Video Generation
-- **一句话**：本文提出 PhysStream，用于从单张图像自回归生成具有物理合理性的可控视频。模型以稀疏的物体级速度增量作为用户控制信号，并将由历史生成帧在线估计的位置图和物体跟踪图作为结构化场景记忆，通过两阶段训练将双向视频模型转换为因果自回归模型。该方法面向静态相机下的多物体桌面刚体动力学，无需推理时调用外部物理模拟器或预先提供完整轨迹即可进行中途交互控制。合成、…
+- **一句话**：PhysStream 面向从单张图像生成具有物理合理性的交互式视频，重点解决现有方法必须预先给出完整控制序列、缺乏场景物理状态反馈的问题。它以稀疏的逐物体三维速度增量作为用户控制，并从已生成帧在线提取位置图和物体跟踪图作为结构化场景记忆，通过因果自回归生成和 KV 缓存逐帧生成视频。作者先训练双向运动控制模型，再转换为引入场景记忆的因果模型，并构建了约 1…
 - **精读笔记**：[打开笔记](../notes/2026-09-18/2609.17521-physstream-streaming-physics-grounded-video-gene.md)
 
 ### 3. [LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows](http://arxiv.org/abs/2609.15863v1)
@@ -52,30 +52,30 @@
 - **方向**：World Models
 - **一句话**：Vision-language-action (VLA) models, world-action models (WAMs), and offline reinforcement learning methods are rapidly expanding the design space of embodied policies, yet turnin…
 
-### 4. [World-Action Models for Robot Learning and Control: A Survey](http://arxiv.org/abs/2609.16074v1)
-
-- **评分**：66/100
-- **作者**：Zuxing Lu, Hongjia Zhai, Guanzhi Wang et al.
-- **方向**：World Models
-- **一句话**：Robots operating in open environments act under partial observability, physical constraints, and dynamic task contexts.
-
-### 5. [CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation](http://arxiv.org/abs/2609.14725v1)
-
-- **评分**：65/100
-- **作者**：Yuxi Liu, Haoyu Li, Yixiang Cai et al.
-- **方向**：Video Generation
-- **一句话**：Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching shar…
-
-### 6. [From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation](http://arxiv.org/abs/2609.15382v1)
+### 4. [From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation](http://arxiv.org/abs/2609.15382v1)
 
 - **评分**：60/100
 - **作者**：Ailing Zhang, Fan Gao, Song Zhang et al.
 - **方向**：World Models
 - **一句话**：Wheel-loader excavation is a sequential decision problem in which every scoop changes the terrain available to subsequent actions.
 
-### 7. [Recency Forcing: Bridging the Long-Horizon Gap in Autoregressive Video Generation](http://arxiv.org/abs/2609.19729v1)
+### 5. [Recency Forcing: Bridging the Long-Horizon Gap in Autoregressive Video Generation](http://arxiv.org/abs/2609.19729v1)
 
 - **评分**：59/100
 - **作者**：Tri Cao, Hung Nguyen, Phong Nguyen et al.
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where a…
+
+### 6. [World Models for Embodied Intelligence: From Plausible to Controllable to Actionable](http://arxiv.org/abs/2609.16697v1)
+
+- **评分**：58/100
+- **作者**：Nanjie Yao, Hao Wang, Chong Cheng et al.
+- **方向**：World Models
+- **一句话**：World models connect perception and decision-making in embodied intelligence by maintaining hidden state, anticipating consequences, comparing interventions, and adapting when exe…
+
+### 7. [PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics](http://arxiv.org/abs/2609.19142v1)
+
+- **评分**：58/100
+- **作者**：Bardienus P. Duisterhof, Kaifeng Zhang, Adam Hung et al.
+- **方向**：World Models
+- **一句话**：World models endow perceptual systems with the ability to predict how scenes evolve under interaction.
