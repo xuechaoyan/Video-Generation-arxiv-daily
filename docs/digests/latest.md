@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-19T01:44:59+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-19T14:51:52+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：80/100
 - **作者**：Awomo-WM Team,  :, Enhui Ma et al.
 - **方向**：World Models
-- **一句话**：本文提出 StrucPhysVideo，旨在学习物体运动、接触、形变和状态变化等物理动力学。作者构建了包含镜头切分、运动感知片段选择、技术质量过滤、内容纯度过滤、物理相关性验证和结构化标注的数据流程，将场景、材料、物体行为、时间顺序及相机运动分别记录。基于这些数据，StrucPhysVideo-TI2V 使用稀疏 MoE 视频 Transformer 和课…
+- **一句话**：本文提出 StrucPhysVideo，旨在学习物体运动、接触、形变和状态变化等物理动力学。工作首先构建物理导向的数据流程，通过镜头与运动感知分割、技术质量过滤、内容纯度过滤、物理相关性验证，以及包含物体、材料、相机运动和时间定位交互的结构化描述，筛选并标注视频数据。基于这些数据，作者训练了稀疏 MoE 文本-图像到视频模型 StrucPhysVideo-…
 - **精读笔记**：[打开笔记](../notes/2026-09-19/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md)
 
 ### 2. [PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control](http://arxiv.org/abs/2609.17521v1)
@@ -18,7 +18,7 @@
 - **评分**：75/100
 - **作者**：Chuhao Chen, Peter Wonka, Chaoyang Wang et al.
 - **方向**：Video Generation
-- **一句话**：论文提出 PhysStream，用于从单张图像自回归生成具有物理合理性的可控视频。用户可在生成过程中针对场景中的指定物体，在任意时间注入稀疏的三维速度增量；模型则利用从已生成帧在线估计的位置图和物体跟踪图作为结构化场景记忆，反馈历史几何与对象状态。模型先以双向方式学习速度控制，再转换为带因果注意力、KV 缓存和场景记忆的自回归模型。作者构建了约 10 万段…
+- **一句话**：PhysStream 面向静态摄像机下的多物体桌面场景，提出一种支持交互式中途控制的物理约束图像到视频自回归生成方法。用户只需在指定时刻对目标物体输入稀疏的三维速度增量，模型便逐帧生成后续视频，并根据自身历史帧在线更新位置图和物体跟踪图作为结构化场景记忆。方法先训练带速度控制的双向模型，再转换为带因果注意力、KV 缓存和场景记忆的自回归模型。作者构建了约…
 - **精读笔记**：[打开笔记](../notes/2026-09-19/2609.17521-physstream-streaming-physics-grounded-video-gene.md)
 
 ### 3. [LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows](http://arxiv.org/abs/2609.15863v1)
