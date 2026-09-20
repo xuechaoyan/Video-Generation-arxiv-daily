@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-20T01:46:10+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-20T14:56:38+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：80/100
 - **作者**：Awomo-WM Team,  :, Enhui Ma et al.
 - **方向**：World Models
-- **一句话**：本文提出 StrucPhysVideo，旨在学习物体运动、接触、形变和状态变化等物理动力学。作者构建了包含镜头切分、运动感知窗口选择、技术质量过滤、内容纯度过滤、物理相关性验证以及结构化标注的数据流水线，将场景、物体、材料、相机运动和时间定位的交互信息转化为训练监督。在模型方面，StrucPhysVideo-TI2V 基于约 300 亿参数的稀疏 MoE…
+- **一句话**：本文提出 StrucPhysVideo，通过物理相关视频筛选、结构化物理字幕和物理现象标签，为视频世界模型提供关于物体、材料、接触、形变、状态变化及时间顺序的监督。StrucPhysVideo-TI2V 基于稀疏 MoE 视频 Transformer，在图像和文本条件下生成物理上更合理的视频，在 Physics-IQ Verified 上达到 45.5%。…
 - **精读笔记**：[打开笔记](../notes/2026-09-20/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md)
 
 ### 2. [PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control](http://arxiv.org/abs/2609.17521v1)
@@ -18,7 +18,7 @@
 - **评分**：75/100
 - **作者**：Chuhao Chen, Peter Wonka, Chaoyang Wang et al.
 - **方向**：Video Generation
-- **一句话**：PhysStream 是一种面向桌面刚体动力学的自回归图像到视频生成方法。用户可在生成过程中针对指定物体、指定时刻输入稀疏的三维速度增量，模型则利用从历史生成帧在线提取的位置图和物体跟踪图作为结构化场景记忆，逐帧生成具有物理一致性的多物体运动。方法采用“先双向运动控制微调、再因果自回归训练”的两阶段方案，并在约 10 万条合成视频上训练。实验显示其在运动分…
+- **一句话**：本文提出 PhysStream，一个面向物理基础图像到视频生成的自回归流式模型。用户可以在生成过程中针对场景中的特定物体，在任意选定时刻施加稀疏的三维速度增量，而无需预先规划完整轨迹。模型通过位置图和物体跟踪图构成的结构化场景记忆，将先前生成帧中的几何与对象状态反馈给后续生成。训练采用两阶段方案：先在双向 Wan2.2-TI2V-5B 模型上学习速度控制，…
 - **精读笔记**：[打开笔记](../notes/2026-09-20/2609.17521-physstream-streaming-physics-grounded-video-gene.md)
 
 ### 3. [LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows](http://arxiv.org/abs/2609.15863v1)
@@ -66,16 +66,16 @@
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where a…
 
-### 6. [PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics](http://arxiv.org/abs/2609.19142v1)
-
-- **评分**：58/100
-- **作者**：Bardienus P. Duisterhof, Kaifeng Zhang, Adam Hung et al.
-- **方向**：World Models
-- **一句话**：World models endow perceptual systems with the ability to predict how scenes evolve under interaction.
-
-### 7. [World Models for Embodied Intelligence: From Plausible to Controllable to Actionable](http://arxiv.org/abs/2609.16697v1)
+### 6. [World Models for Embodied Intelligence: From Plausible to Controllable to Actionable](http://arxiv.org/abs/2609.16697v1)
 
 - **评分**：58/100
 - **作者**：Nanjie Yao, Hao Wang, Chong Cheng et al.
 - **方向**：World Models
 - **一句话**：World models connect perception and decision-making in embodied intelligence by maintaining hidden state, anticipating consequences, comparing interventions, and adapting when exe…
+
+### 7. [PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics](http://arxiv.org/abs/2609.19142v1)
+
+- **评分**：58/100
+- **作者**：Bardienus P. Duisterhof, Kaifeng Zhang, Adam Hung et al.
+- **方向**：World Models
+- **一句话**：World models endow perceptual systems with the ability to predict how scenes evolve under interaction.

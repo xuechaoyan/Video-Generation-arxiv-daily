@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T01:46:10+00:00",
+  "generated_at": "2026-09-20T14:56:38+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -29,12 +29,12 @@
       "comment": "Project page: https://westlakedi-awomo.github.io/StrucPhysVideo-Page/",
       "score": 80,
       "priority": "must-read",
-      "summary_cn": "本文提出 StrucPhysVideo，旨在学习物体运动、接触、形变和状态变化等物理动力学。作者构建了包含镜头切分、运动感知窗口选择、技术质量过滤、内容纯度过滤、物理相关性验证以及结构化标注的数据流水线，将场景、物体、材料、相机运动和时间定位的交互信息转化为训练监督。在模型方面，StrucPhysVideo-TI2V 基于约 300 亿参数的稀疏 MoE 视频 Transformer，通过图像与结构化文本条件生成视频，并采用逐步增加物理数据比例的课程训练。其在 Physics-IQ Verified 上取得 45.5% 的得分。进一步地，StrucPhysVideo-IA2V 引入因果动作编码器和动作适配模块，将机器人末端执行器轨迹注入视频生成过程，并通过自回归扩散训练、因果 ODE 初始化和非对称分布匹配蒸馏，将双向模型转化为流式少步生成器。实验表明，该模型在机器人视频保真度、轨迹一致性、深度一致性和交互质量方面优于所比较的基线。",
-      "contribution_cn": "1. 提出面向物理交互的视频数据整理流水线，结合镜头检测、运动感知分割、技术质量检查、内容过滤和多模态物理验证，保留具有可观测物理过程的视频片段。2. 提出结构化物理字幕与标签体系，描述场景、实体、材料、相机运动以及时间定位的接触、操控、形变、运动和状态变化，并将物体行为与相机运动区分开。3. 提出 StrucPhysVideo-TI2V，采用稀疏 MoE、第一帧约束的流匹配和物理数据课程学习，以提升物理动力学视频预测能力。4. 提出 StrucPhysVideo-IA2V，将机器人末端执行器动作编码为因果动作条件，并通过动作注入、因果自回归训练和三阶段少步蒸馏实现交互式视频世界模型。5. 在 Physics-IQ Verified 和 AgiBot 机器人视频数据上进行评估，验证了物理导向字幕和动作条件对生成质量、动作一致性及交互合理性的提升。",
-      "relevance_cn": "与研究重点高度相关。该工作直接面向视频生成与视频扩散，通过流匹配、稀疏 MoE 视频 Transformer和第一帧约束生成建模场景演化；其 IA2V 模型将机器人末端执行器轨迹作为条件，属于动作条件视觉世界模型和闭环仿真的基础组件。模型通过因果注意力、分块自回归展开和动作窗口对齐支持流式、增量式机器人轨迹生成；通过因果 ODE 初始化与非对称 DMD 蒸馏，将多步双向扩散模型压缩为每个时间块四步去噪，从而降低实时交互延迟。稀疏专家路由限制每个 token 的专家计算量，也与稀疏注意力和高效生成方向相关。论文同时明确将更长时域流式展开、进一步降低至一到两步生成、扩大动作空间及跨机器人形态泛化列为后续方向。",
-      "limitations_cn": "论文明确指出，当前模型仍需扩展到更长时域的流式展开，同时保持长期物理一致性；推理延迟仍需进一步降低，目标是实现一到两步生成。模型还需要支持更丰富的动作空间，并提升不同机器人平台之间的跨形态泛化能力。论文的 IA2V 训练和评估主要基于特定的 AgiBot 数据与机器人末端执行器表示，跨平台适用性尚未充分验证。Physics-IQ Verified 结果依赖特定评测协议及 2026 年 9 月 16 日的基准快照，定性样例不能替代全面的定量评估。对于世界模型预测误差在长序列闭环控制中的累积影响，论文未明确说明。",
+      "summary_cn": "本文提出 StrucPhysVideo，通过物理相关视频筛选、结构化物理字幕和物理现象标签，为视频世界模型提供关于物体、材料、接触、形变、状态变化及时间顺序的监督。StrucPhysVideo-TI2V 基于稀疏 MoE 视频 Transformer，在图像和文本条件下生成物理上更合理的视频，在 Physics-IQ Verified 上达到 45.5%。进一步提出的 StrucPhysVideo-IA2V 将机器人末端执行器轨迹作为动作条件，并通过动作注入、因果自回归训练、因果 ODE 初始化和非对称分布匹配蒸馏，实现四步去噪的流式机器人视频预测。实验表明，该模型在物理动力学、视频保真度、轨迹一致性、深度一致性和交互质量方面取得了较强表现。",
+      "contribution_cn": "1. 提出面向物理交互的视频数据策划流水线，结合镜头检测、运动感知切片、技术质量过滤、内容纯度过滤和物理相关性验证，以保留具有连续可观测物理过程的视频片段。2. 提出结构化语言标注方案，分别描述全局场景动力学、相机运动与光照、世界知识与材料属性，以及带时间戳的实体级行为，从而区分相机运动和物体运动，并刻画接触、操控、形变和状态变化。3. 提出 StrucPhysVideo-TI2V，一种约 300 亿参数的稀疏时空 MoE 文本-图像到视频模型，并通过逐步提高物理数据比例的课程训练增强物理动力学预测。4. 提出 StrucPhysVideo-IA2V，将机器人末端执行器动作编码并注入视频扩散骨干，通过双向动作条件训练、因果自回归扩散训练、因果 ODE 蒸馏和非对称 DMD，将模型转化为可流式生成的少步因果世界模型。5. 在 Physics-IQ Verified 和机器人视频数据上进行评估，并通过字幕消融证明物理聚焦字幕优于原始字幕。",
+      "relevance_cn": "与研究重点高度相关。首先，论文直接研究视频生成和视频扩散，并使用流匹配、扩散 Transformer、稀疏 MoE、参考帧约束和图像-文本条件生成来预测场景演化。其次，StrucPhysVideo-IA2V 是动作条件视觉世界模型，依据机器人末端执行器轨迹生成后续视觉状态，面向闭环交互和仿真。再次，模型采用严格因果动作编码、时间块级因果注意力和自回归 rollout，支持流式、增量式和长序列生成。最后，四步去噪蒸馏、因果 ODE 初始化、非对称分布匹配蒸馏、稀疏专家路由和有限历史条件分别对应实时生成、蒸馏、计算效率和缓存/上下文受限的研究方向。论文还明确将更长时域流式 rollout 和进一步降低延迟作为未来工作。",
+      "limitations_cn": "论文明确指出，当前模型仍需扩展到更长时域的流式 rollout，并在长期生成中维持物理一致性；推理延迟仍需降低，未来目标包括一到两步生成；动作空间还需要更加丰富；跨不同机器人平台和具身形态的泛化能力仍有待提升。IA2V 实验主要使用固定机器人数据集、头部相机视角和预定义末端执行器动作表示，因而不能充分证明对更广泛机器人形态、动作接口和真实闭环控制场景的泛化能力。Physics-IQ 结果依赖特定评测协议和 2026 年 9 月 16 日的排行榜快照，定性样例不能替代全面量化评估。论文未明确说明模型在真实机器人闭环部署中的成功率、长期误差累积表现以及训练数据的完整规模和可复现性。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "物理动力学建模——包括物体如何运动、相互作用以及状态如何变化——是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，一系列将物理学导向的数据整理与语言、动作条件下的场景演化预测相结合的视频世界模型。我们的数据流水线结合了运动感知视频分割、质量与内容过滤以及物理相关性验证，并对物体、材料和时间定位的交互进行结构化标注。通过将相机运动与物体行为解耦，并明确描述接触、形变和状态转移，该流水线提供了以可观测物理事件为基础的监督信号。在此基础上，我们提出 StrucPhysVideo-TI2V，一种稀疏混合专家（MoE）文本-图像到视频模型。该模型采用课程学习，逐步强化对物理动力学的关注，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了当前最佳性能，得分为 45.5%，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。不同骨干网络上的字幕消融实验进一步证明了物理导向监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，可根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四次去噪步骤进行增量式机器人轨迹展开。总体而言，StrucPhysVideo 推动物理动力学建模从图像和语言条件下的视频预测走向动作驱动的交互。",
+      "abstract_cn": "对物理动力学进行建模——包括物体如何移动、相互作用以及改变状态——是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，这是一个视频世界模型系列，将面向物理的数据策划与语言和动作条件下的场景演化预测连接起来。我们的数据流水线结合了运动感知的视频分割、质量与内容过滤、物理相关性验证，以及对物体、材料和时间局部化交互的结构化标注。通过解耦相机运动与物体行为，并明确描述接触、形变和状态转变，该流水线提供了以可观测物理事件为基础的监督信号。在此类数据基础上，我们提出 StrucPhysVideo-TI2V，一种稀疏混合专家（MoE）文本-图像到视频模型。该模型采用课程式训练，逐步加强对物理动力学的重视，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了最先进的性能，得分为 45.5%，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。不同骨干网络上的字幕消融实验进一步证明了物理聚焦监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，用于根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 将物理动力学建模从图像和语言条件下的视频预测推进到了动作驱动的交互。",
       "note_path": "2026-09-20/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md"
     },
     {
@@ -63,12 +63,12 @@
       "comment": "",
       "score": 75,
       "priority": "must-read",
-      "summary_cn": "PhysStream 是一种面向桌面刚体动力学的自回归图像到视频生成方法。用户可在生成过程中针对指定物体、指定时刻输入稀疏的三维速度增量，模型则利用从历史生成帧在线提取的位置图和物体跟踪图作为结构化场景记忆，逐帧生成具有物理一致性的多物体运动。方法采用“先双向运动控制微调、再因果自回归训练”的两阶段方案，并在约 10 万条合成视频上训练。实验显示其在运动分布、轨迹跟踪和人工偏好方面优于多种基线，也能扩展到长视频和部分非刚体场景，但长时生成会出现外观漂移，且尚未达到实时速度。",
-      "contribution_cn": "1. 提出 PhysStream，实现直接基于生成视频本身的、端到端的多物体场景级物理交互控制，支持生成中途干预。2. 提出结构化场景记忆机制，将在线估计的位置图和物体跟踪图反馈给自回归生成器，以增强几何一致性和物理合理性。3. 设计稀疏速度增量控制信号，用物理量而非预先指定的像素轨迹来控制对象运动。4. 提出双向到因果自回归的两阶段训练方案，并通过条件通道的时间平移避免未来信息泄漏。5. 构建包含碰撞、摩擦、翻滚和多帧速度扰动的约 10 万条室内刚体动力学合成视频数据集。6. 在合成长视频、真实场景和部分非刚体材料实验中验证方法的运动控制与物理一致性。",
-      "relevance_cn": "该论文与研究重点高度相关。它直接研究视频生成与视频扩散模型，并将 Wan2.2-TI2V-5B 改造为因果、自回归、逐帧生成模型；通过历史帧产生的结构化场景记忆形成反馈回路，属于面向动作条件视觉世界模型和闭环模拟的设计。稀疏速度增量是物理动作条件，支持观察已生成结果后在中途追加控制，适合交互式和流式长视频生成。模型使用因果注意力、KV 缓存以及每步增量更新的深度和跟踪估计器；论文还测试了 301 帧长时生成，并采用分布匹配蒸馏将 50 步去噪压缩为 4 步，使端到端速度提升约 3.4 倍。不过作者明确指出其目标是交互控制而非实时吞吐，实时生成仍是未来工作。",
-      "limitations_cn": "论文明确指出，该方法在极其复杂的运动，尤其是翻滚运动上仍存在困难；已验证范围主要限于静态相机下的桌面刚体动力学，非刚体材料需要额外的专门微调数据。自回归长时生成会因误差累积产生外观漂移，且随着时长增加一致性下降。系统未经加速时单个 49 帧视频约需 66.3 秒，作者尚未实现实时生成。方法还依赖在线的深度估计、物体跟踪和 VAE 往返处理，并受合成训练数据与桌面场景分布限制。论文未明确说明在动态相机、开放世界大规模场景或更广泛物理交互中的泛化能力。",
+      "summary_cn": "本文提出 PhysStream，一个面向物理基础图像到视频生成的自回归流式模型。用户可以在生成过程中针对场景中的特定物体，在任意选定时刻施加稀疏的三维速度增量，而无需预先规划完整轨迹。模型通过位置图和物体跟踪图构成的结构化场景记忆，将先前生成帧中的几何与对象状态反馈给后续生成。训练采用两阶段方案：先在双向 Wan2.2-TI2V-5B 模型上学习速度控制，再转为带因果注意力、KV 缓存和在线场景记忆的自回归模型。作者构建了约 10 万段包含碰撞、摩擦和翻倒等刚体动力学的合成视频，并在合成、真实场景、非刚体迁移和长视频任务上进行评估。PhysStream 在物理运动分布、轨迹准确性和控制响应方面整体优于基线，并可将 49 帧训练窗口扩展到 301 帧；不过长时间生成会出现累积的外观漂移。系统经蒸馏和更快的深度估计器加速后，单个 49 帧片段的延迟从 66.3 秒降至 19.3 秒，但尚未达到实时速度。",
+      "contribution_cn": "1. 提出 PhysStream，实现了多物体桌面刚体场景中直接、端到端、生成中途的物理基础交互式视频控制。\\n2. 提出结构化场景记忆机制，在线维护由单目深度估计得到的位置图和由 SAM2 得到的物体跟踪图，并将其作为自回归生成的历史反馈。\\n3. 使用稀疏的物体级速度增量信号表达物理控制量，而不是直接规定物体的像素位置或完整轨迹。\\n4. 设计双向运动控制微调加因果自回归训练的两阶段训练方案，并通过时间移位的条件拼接避免未来信息泄漏。\\n5. 构建约 10 万段包含复杂多物体刚体运动、碰撞和多帧速度扰动的合成数据集。\\n6. 在物理运动指标、轨迹误差、真实场景泛化、长时域控制和部分非刚体场景上进行了系统评估，并验证了蒸馏和轻量深度估计对降低延迟的作用。",
+      "relevance_cn": "与研究重点高度相关。PhysStream 是面向视频生成和视频扩散的自回归、因果、流式模型，按潜在帧逐步生成，并使用 KV 缓存支持增量生成。它直接面向动作条件视觉世界模型和闭环模拟：用户输入速度增量，模型生成下一帧，再从自身生成结果中在线估计深度与对象轨迹，将场景状态反馈到后续生成，形成基于视频输出的闭环。方法支持生成中途的交互控制、多物体物理碰撞和长视频扩展，契合动作条件、因果建模和长视频生成方向。其速度增量控制属于稀疏、物理量驱动的动作条件，而非预先给定的密集轨迹。系统还涉及分布匹配蒸馏、稀疏控制、KV 缓存和在线估计器加速，但论文报告的 0.74 FPS 未达到实时生成。",
+      "limitations_cn": "论文明确指出，该方法在极其复杂的运动，尤其是翻滚运动上仍存在困难；经过验证的主要范围是刚体动力学，非刚体材料需要针对每种材料额外微调数据。长时间自回归生成会因误差累积产生外观漂移，且一致性会随时域增长而下降。当前系统尚未实现实时生成，作者将其留作未来工作。方法依赖静态相机、桌面场景和在线深度估计与目标跟踪，在更广泛的相机运动、开放环境和复杂物理交互中的表现，论文未明确说明。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度且具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用决定物体位置而非物理动力学的像素空间信号。为解决这些局限，我们提出 PhysStream，一种面向物理的自回归图像到视频合成模型。该模型引入结构化场景记忆——从先前生成的帧中在线提取的位置图和物体跟踪图——并通过编码物理量的稀疏速度增量信号实现细粒度运动控制，使模型能够学习底层动力学。我们分两个阶段训练模型：首先对双向模型进行运动控制条件微调，然后训练带有额外结构化场景记忆的因果自回归模型，从而进一步提升物理一致性。PhysStream 支持对多物体桌面刚体场景进行交互式的生成中途控制，这是以往方法不具备的能力。在合成基准上，相比最强基线，该方法将运动分布距离（FVMD）降低了 33%，将轨迹误差降低了 12%；在自然场景比较中，人工评估者在超过 85% 的比较中更偏好该方法。更多详情请见我们的网站：https://czzzzh.github.io/PhysStream",
+      "abstract_cn": "视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度、具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用决定物体位置而非物理动力学的像素空间信号。为解决这些局限，我们提出 PhysStream：一种用于物理基础图像到视频合成的自回归模型。该模型引入结构化场景记忆——从先前生成帧中在线提取的位置图和物体跟踪图——并通过稀疏的速度增量信号实现细粒度运动控制。速度增量信号编码物理量，使模型能够学习潜在动力学。我们分两个阶段训练模型：首先，对双向模型进行带运动控制条件的微调；随后，在此基础上训练因果自回归模型，并加入额外的结构化场景记忆，从而进一步提升物理一致性。PhysStream 支持对多物体桌面刚体场景进行交互式的生成中途控制，这是以往方法不具备的能力。在合成基准上，相较于最强基线，该方法将运动分布距离（FVMD）降低了 33%，将轨迹误差降低了 12%；在野外数据比较中，人类评估者在超过 85% 的比较中更偏好该方法。详情请见我们的网站：https://czzzzh.github.io/PhysStream。",
       "note_path": "2026-09-20/2609.17521-physstream-streaming-physics-grounded-video-gene.md"
     },
     {
@@ -273,38 +273,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.19142",
-      "date": "2026-09-16",
-      "topics": [
-        "World Models"
-      ],
-      "title": "PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics",
-      "abstract": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction. They are most beneficial when trained on diverse volumes of data, to instill a rich prior into downstream applications. Existing methods typically require robot action labels to learn action-conditioned 3D dynamics, which excludes web video data from the training pool. We study 3D point track completion as a pre-training objective for learning transferable 3D dynamics without robot data. Given a single RGB-D observation and sparse partial 3D trajectories (tracks), we predict future 3D tracks of all observed points. We show this objective produces a rich 3D dynamics prior, without requiring robot action labels. We contribute a diverse dataset of 2.9 million synthetic frames spanning deformable, articulated, and rigid objects, and use it to train PointZero. We show that a flexible and expressive transformer, PointZero, outperforms prior methods on the same data. We demonstrate the utility of our pre-training objective by post-training PointZero for two downstream applications: (1) action-conditioned 3D dynamics prediction and (2) imitation learning. When fine-tuned to condition on end-effector pose, PointZero outperforms the baselines on the recent PGND 3D dynamics benchmark. When fine-tuned to predict robot actions and 3D tracks, PointZero outperforms or matches the baselines on 6/7 simulated and real-world robot manipulation tasks. We furthermore evaluate training PointZero from scratch to isolate the benefits of our proposed architecture from those of our proposed pre-training objective and dataset. We release the dataset, checkpoints, and full training recipe.",
-      "authors": [
-        "Bardienus P. Duisterhof",
-        "Kaifeng Zhang",
-        "Adam Hung",
-        "Bowen Wen",
-        "Stan Birchfield",
-        "Yunzhu Li",
-        "Deva Ramanan",
-        "Jeffrey Ichnowski"
-      ],
-      "url": "http://arxiv.org/abs/2609.19142v1",
-      "categories": [
-        "cs.CV",
-        "cs.RO"
-      ],
-      "comment": "https://pointzero-wm.github.io/",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2609.16697",
       "date": "2026-09-15",
       "topics": [
@@ -338,6 +306,38 @@
       "summary_cn": "World models connect perception and decision-making in embodied intelligence by maintaining hidden state, anticipating consequences, comparing interventions, and adapting when execution departs from expectations.",
       "contribution_cn": "We introduce three progressively stronger capability levels: Plausible models preserve task-relevant temporal, geometric, or physical structure; Controllable models additionally predict how interventions alter that structure; and Actionable models translate predictions into measurable gains in planning, action, learning, evaluation, verification, recovery, or data selection.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.19142",
+      "date": "2026-09-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "PointZero: 3D Point Track Completion for Learning Transferable 3D Dynamics",
+      "abstract": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction. They are most beneficial when trained on diverse volumes of data, to instill a rich prior into downstream applications. Existing methods typically require robot action labels to learn action-conditioned 3D dynamics, which excludes web video data from the training pool. We study 3D point track completion as a pre-training objective for learning transferable 3D dynamics without robot data. Given a single RGB-D observation and sparse partial 3D trajectories (tracks), we predict future 3D tracks of all observed points. We show this objective produces a rich 3D dynamics prior, without requiring robot action labels. We contribute a diverse dataset of 2.9 million synthetic frames spanning deformable, articulated, and rigid objects, and use it to train PointZero. We show that a flexible and expressive transformer, PointZero, outperforms prior methods on the same data. We demonstrate the utility of our pre-training objective by post-training PointZero for two downstream applications: (1) action-conditioned 3D dynamics prediction and (2) imitation learning. When fine-tuned to condition on end-effector pose, PointZero outperforms the baselines on the recent PGND 3D dynamics benchmark. When fine-tuned to predict robot actions and 3D tracks, PointZero outperforms or matches the baselines on 6/7 simulated and real-world robot manipulation tasks. We furthermore evaluate training PointZero from scratch to isolate the benefits of our proposed architecture from those of our proposed pre-training objective and dataset. We release the dataset, checkpoints, and full training recipe.",
+      "authors": [
+        "Bardienus P. Duisterhof",
+        "Kaifeng Zhang",
+        "Adam Hung",
+        "Bowen Wen",
+        "Stan Birchfield",
+        "Yunzhu Li",
+        "Deva Ramanan",
+        "Jeffrey Ichnowski"
+      ],
+      "url": "http://arxiv.org/abs/2609.19142v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "https://pointzero-wm.github.io/",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "World models endow perceptual systems with the ability to predict how scenes evolve under interaction.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
