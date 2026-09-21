@@ -1401,6 +1401,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-18**|**Benchmarking World Models for Continual Learning on Compositional Tasks**|Haoyu Zhou et.al.|[2609.22055](http://arxiv.org/abs/2609.22055)|null|
+|**2026-09-18**|**SkelWAM: A Skeleton-Guided World-Action Model for Zero-Shot Cross-Embodiment Manipulation**|Pengjun Niu et.al.|[2609.21983](http://arxiv.org/abs/2609.21983)|null|
+|**2026-09-18**|**Intervention Granularity Matters: Coherent Treatment Bundles in Counterfactual Simulation with Clinical World Models**|Fangzhou Wang et.al.|[2609.21906](http://arxiv.org/abs/2609.21906)|null|
 |**2026-09-18**|**Compact but Moving: Intervention-Relevant Geometry in Recurrent World Models**|Yuming Chen et.al.|[2609.21787](http://arxiv.org/abs/2609.21787)|null|
 |**2026-09-18**|**World Modeling in Transformers**|Pierre Beckmann et.al.|[2609.21748](http://arxiv.org/abs/2609.21748)|null|
 |**2026-09-18**|**Sandwich-Residuals: Parameter-Efficient Test-time Adaptation of World Models**|Krishnam Soni et.al.|[2609.21740](http://arxiv.org/abs/2609.21740)|null|

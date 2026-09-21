@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T01:47:18+00:00",
+  "generated_at": "2026-09-21T17:13:46+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -29,55 +29,13 @@
       "comment": "Project page: https://westlakedi-awomo.github.io/StrucPhysVideo-Page/",
       "score": 80,
       "priority": "must-read",
-      "summary_cn": "本文提出 StrucPhysVideo，一个面向具身智能物理世界建模的视频生成系统。作者首先构建物理导向的数据流程，通过镜头切分、运动感知片段选择、技术质量与内容纯度筛选、物理相关性验证，以及包含物体、材料、接触、形变、状态变化和时间顺序的结构化标注，提升训练数据对可观测物理事件的覆盖。基于这些数据，StrucPhysVideo-TI2V 使用冻结的 Qwen3-VL 编码器、Wan VAE、约 300 亿参数的稀疏 MoE 视频 Transformer 和首帧约束的 flow matching，实现图像与文本条件下的视频生成。随后，StrucPhysVideo-IA2V 通过因果动作编码器、动作适配器、自回归扩散训练、因果 ODE 初始化和非对称分布匹配蒸馏，将模型转化为能够根据机器人末端执行器轨迹进行流式增量生成的世界模型。TI2V 在 Physics-IQ Verified 上取得 45.5% 的得分；物理字幕优于原始字幕；IA2V 在 AgiBot 数据上的视频保真度、轨迹一致性、深度一致性和交互质量均优于所比较的 DreamDojo-AgiBot，并且每个时间块仅需四步去噪。",
-      "contribution_cn": "1. 提出面向物理交互视频的数据清洗与整理流程，结合镜头边界检测、运动感知分段、技术质量检查、内容纯度过滤和多模态物理验证，以保留具有连续且可观测物理过程的片段。 2. 提出结构化物理语言标注流程，分别描述全局场景动力学、相机运动与光照、世界知识与材料属性，以及带时间戳的实体级行为，并将相机运动与物体行为区分开来。 3. 构建包含物理现象、材料类别、状态变化、交互视角和物理异常等信息的闭集标签体系，以支持数据组织与采样。 4. 提出 StrucPhysVideo-TI2V：采用稀疏 MoE 时空 Transformer、双路径首帧条件和课程式训练，在图像与文本条件下生成物理上更合理的视频。 5. 提出 StrucPhysVideo-IA2V：使用因果动作编码器和逐块动作条件，将机器人末端执行器命令注入视频生成过程。 6. 通过自回归扩散训练、因果 ODE 初始化和非对称 DMD，将双向视频扩散模型转化为低延迟、四步去噪的因果流式生成器。 7. 在 Physics-IQ Verified 和 AgiBot 机器人视频评测中取得较强结果，并通过字幕、教师 dropout 与引导强度消融验证关键设计。",
-      "relevance_cn": "与研究重点高度相关。该工作直接研究视频生成和视频扩散，并以物理动力学预测为目标。StrucPhysVideo-IA2V 将机器人末端执行器动作作为条件，预测动作导致的视觉场景变化，属于动作条件视觉世界模型和闭环交互模拟的基础组件。其严格因果注意力、自回归分块 rollout 和因果动作编码器与因果、流式及长视频生成方向直接相关。四步去噪的因果蒸馏、少步生成和 DMD 旨在降低交互式生成延迟；稀疏 MoE 则提高参数容量，同时限制每个 token 的专家计算量。首帧约束、动作窗口对齐和物理结构化字幕有助于维持场景身份、时间连续性、动作一致性和物理合理性。不过，论文主要展示离线视频预测与短时机器人 rollout，尚未完整实现由模型预测驱动策略执行的闭环控制系统。",
-      "limitations_cn": "论文明确指出，当前模型仍需扩展到更长时域的流式 rollout，并在长时间内保持物理一致性；推理延迟还需进一步降低，目标是实现一到两步生成。模型还需要支持更丰富的动作空间，并提升不同机器人形态之间的跨具身泛化能力。论文的 IA2V 评测主要基于固定的 AgiBot 数据和短时视频片段，且使用四步去噪；因此对长时域误差累积、真实机器人闭环控制和更广泛机器人平台的泛化能力尚未充分验证。部分比较采用不同的动作表示和输入设置，论文也说明 A2World 获得了额外的初始腕部视图与由观测姿态推导的控制信号。物理视频数据和机器人训练数据包含私有或特定来源数据，数据规模、完整组成及可复现性存在限制。对于论文未报告的其他局限，论文未明确说明",
+      "summary_cn": "本文提出 StrucPhysVideo，用于建模物体运动、接触、形变和状态变化。系统首先通过镜头切分、运动感知窗口选择、质量与内容过滤、物理相关性验证，构建物理导向视频数据，并生成包含场景、相机运动、材料属性及时间定位行为的结构化字幕和标签。基于此，StrucPhysVideo-TI2V 使用稀疏 MoE 视频 Transformer 和课程式训练进行文本-图像到视频生成，在 Physics-IQ Verified 上达到 45.5%。进一步地，StrucPhysVideo-IA2V 将模型改造成受机器人末端执行器轨迹控制的因果自回归世界模型，并通过因果训练、ODE 初始化和非对称分布匹配蒸馏实现四步增量生成。实验表明，该模型在物理动力学预测、视频保真度、轨迹一致性和交互质量方面均有较强表现。",
+      "contribution_cn": "1. 提出面向物理交互的视频数据整理流水线，结合镜头检测、运动感知分割、技术质量检查、内容纯度过滤和多模态物理验证，保留具有可观测物理过程的视频片段。2. 提出结构化物理字幕与标签体系，分别描述场景动力学、相机与光照、世界知识和材料属性，以及带时间戳的实体行为，并将相机运动与物体运动分离。3. 提出 StrucPhysVideo-TI2V，一种具有双路径参考图像条件、稀疏 MoE 时空 Transformer 和首帧约束流匹配的文本-图像到视频模型，并通过物理导向课程训练提升动力学建模能力。4. 提出 StrucPhysVideo-IA2V，将视频扩散模型扩展为由机器人末端执行器动作控制的交互式世界模型，采用因果动作编码、动作适配器、因果自回归训练和少步蒸馏实现流式生成。5. 在 Physics-IQ Verified 和 AgiBot 机器人视频数据上进行评估，证明物理字幕监督、动作条件和蒸馏生成对性能的提升。",
+      "relevance_cn": "该工作与研究重点高度相关。它直接研究视频生成和视频扩散，并将生成目标从外观变化推进到物体运动、接触、形变和状态转移等物理动力学。IA2V 模型以机器人末端执行器轨迹为条件，预测动作造成的视觉后果，属于动作条件视觉世界模型和闭环仿真的基础组件。其因果自回归分块生成支持根据历史视觉状态逐步 rollout，符合流式和长视频生成方向。模型使用四步去噪蒸馏降低交互延迟，稀疏 MoE 限制每个 token 的专家计算量，也与实时生成和计算效率优化相关。论文同时明确指出，当前系统仍需向更长时域的流式 rollout、更低延迟的一到两步生成、更丰富动作空间及跨机器人形态泛化发展。",
+      "limitations_cn": "论文使用私有采集的视频数据，数据规模、具体分布和可复现性受到限制。TI2V 的物理性能主要依据 Physics-IQ Verified 及特定的基准快照评估，IA2V 主要在 AgiBot 数据和固定视角、固定设置下测试，外推到其他环境和机器人形态的能力尚未充分验证。IA2V 当前采用四步去噪生成，论文承认仍需进一步降低到一到两步以实现更及时的交互。作者还指出，当前方法尚未充分解决更长时间跨度流式 rollout 中的物理一致性、误差累积、丰富动作空间支持以及跨具身形态泛化问题。论文未明确说明真实机器人闭环控制或下游策略性能的系统性验证。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "物理动力学建模——包括物体如何运动、相互作用以及改变状态——是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，这是一系列视频世界模型，通过物理学导向的数据整理以及语言和动作条件下的场景演化预测，将二者连接起来。我们的数据流程结合了运动感知的视频分割、质量与内容筛选、物理相关性验证，以及对物体、材料和时间局部化交互的结构化标注。通过将相机运动与物体行为解耦，并明确描述接触、形变和状态转变，该流程提供了基于可观测物理事件的监督信号。在此基础上，我们提出 StrucPhysVideo-TI2V，一种稀疏混合专家（MoE）文本-图像到视频模型。该模型采用课程式训练，逐步强化对物理动力学的关注，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了当前最佳性能，得分为 45.5%，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。不同骨干网络上的字幕消融实验进一步证明了物理学导向监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，可根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使模型能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 推动物理动力学建模从图像和语言条件下的视频预测，走向动作驱动的交互。",
+      "abstract_cn": "物理动力学建模——包括物体如何运动、相互作用以及改变状态——是面向具身智能的视频世界模型的核心。我们提出 StrucPhysVideo，一系列视频世界模型，通过物理学导向的数据整理，以及语言和动作条件下的场景演化预测，将二者连接起来。我们的数据流水线结合了运动感知的视频分割、质量与内容过滤、物理相关性验证，以及对物体、材料和时间局部化交互的结构化标注。通过解耦相机运动与物体行为，并明确描述接触、形变和状态转移，该流水线提供了以可观测物理事件为基础的监督信号。在此基础上，我们提出 StrucPhysVideo-TI2V，这是一种稀疏混合专家（MoE）文本-图像到视频模型，采用课程式训练，逐步提高对物理动力学的重视，同时保留通用领域视频数据。StrucPhysVideo-TI2V 在 Physics-IQ Verified 上取得了最先进的性能，得分为 45.5%，比 Cosmos3-Super-Image2Video 高 2.8 个百分点。针对不同骨干网络的字幕消融实验进一步证明了物理导向监督的有效性。我们还将 StrucPhysVideo-TI2V 扩展为 StrucPhysVideo-IA2V，一种交互式图像-动作到视频世界模型，可根据机器人末端执行器指令预测视觉结果。动作条件、因果自回归生成和少步蒸馏使其能够仅用四个去噪步骤进行增量式机器人 rollout。总体而言，StrucPhysVideo 推动了物理动力学建模从图像和语言条件的视频预测走向动作驱动的交互。",
       "note_path": "2026-09-21/2609.18430-strucphysvideo-learning-physical-dynamics-from-s.md"
-    },
-    {
-      "id": "2609.17909",
-      "date": "2026-09-15",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Zing-0.5: Toward Playable Worlds with Real-Time Joint Action and Text Control",
-      "abstract": "We introduce Zing-0.5, a 5B autoregressive world model designed for playability: users can explore generated worlds, influence unfolding events, and respond to the resulting feedback through joint keyboard and online text control. Our approach brings together three technical contributions: (1) Unified action and text conditioning, combining magnitude-aware keyboard inputs with temporally aligned text instructions and jointly annotated videos to learn navigation and event control within the same sequence; (2) Event-scale supervision for incremental generation, using a segment-level teacher trained on connected multi-prompt videos to supervise a block-level causal student through distribution-matching distillation; and (3) Low-cost real-time interaction, combining four-step generation with context-preserving streaming to support 832 x 480 inference at 24 FPS at an estimated server rental cost of approximately USD 0.009 per stream-minute. Zing-0.5 achieves an overall score of 81.0 and a consistency score of 88.5 across 158 WBench Navigation cases. A joint-control demonstration shows a text-directed event change during continued navigation without restarting generation. We release the model weights, inference code, and Zing-SGLang serving implementation to support further work on playable generated worlds.",
-      "authors": [
-        "Mingyang Chen",
-        "Shengdong Chen",
-        "Xiaoxiao Fu",
-        "Bosheng Gong",
-        "Haoyuan Guo",
-        "Bowen Li",
-        "Jiawen Li",
-        "Kejun Li",
-        "Tianpeng Li",
-        "Yin Liu",
-        "Haoze Sun",
-        "Zeyang Tian",
-        "Meng Wang",
-        "Xinmiao Wu",
-        "Jiangqiao Yan",
-        "Zining Zhao"
-      ],
-      "url": "http://arxiv.org/abs/2609.17909v1",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "19 pages, 8 figures. Authors listed alphabetically by surname. Project: https://zing.loopit.me/ ; Code: https://github.com/seedleap/zing-world-model ; Models: https://huggingface.co/seedleap/zing-0.5 ; Serving: https://github.com/seedleap/Zing-SGLang",
-      "score": 74,
-      "priority": "must-read",
-      "summary_cn": "Zing-0.5 是一个基于 Wan2.2-TI2V-5B 的 5B 自回归视频世界模型，旨在实现可实时交互的生成世界。它将带有连续强度的键盘动作与时间对齐的文本指令统一起来，使用户能够在持续导航的同时改变场景或角色事件。模型采用片段级教师监督块级因果学生的训练方案，并结合历史扰动、自回归 rollout/replay、ODE 初始化和分布匹配蒸馏，以支持长序列和少步生成。通过四步生成、KV 缓存复用、轻量解码器和流式传输，系统在 832×480 分辨率下达到 24 FPS，估计成本为每路流每分钟 0.009 美元。在 158 个 WBench Navigation 案例上取得 81.0 的总体得分和 88.5 的一致性得分。论文同时指出，模型尚未显式维护实体状态、交互规则及跨视角的持久后果。",
-      "contribution_cn": "1. 提出统一的动作和文本条件机制：使用带连续幅度的 W/A/S/D 与 I/J/K/L 键盘控制，并将分段文本指令与视频时间轴对齐，从而在同一连续会话中实现导航和事件控制。\\n2. 提出事件尺度的增量生成监督：在连续多提示视频上训练片段级教师模型，并通过分布匹配蒸馏监督每次生成四个潜在帧的块级因果学生模型，使跨多个生成块展开的事件能够得到监督。\\n3. 构建面向实时交互的低成本推理系统：结合四步生成、有限视觉 KV 缓存、文本 KV 更新时的视觉缓存保留、缓存复用、轻量递归解码和有界媒体队列，在 480p、24 FPS 下实现实时服务。\\n4. 发布模型权重、推理代码和 Zing-SGLang 服务实现。",
-      "relevance_cn": "与视频生成和视频扩散相关：模型建立在 Wan2.2-TI2V-5B 的视频扩散 Transformer 与流匹配目标之上，并通过一致性蒸馏、分布匹配蒸馏和四步采样实现少步视频生成。与动作条件视觉世界模型和闭环模拟相关：模型根据连续键盘动作生成视觉后续，用户观察反馈后继续输入动作或文本，形成探索—反馈—再控制的交互闭环。与自回归、因果、流式和长视频生成相关：块级因果学生逐块生成视频，支持在线提示切换；训练使用长序列适配、历史扰动和模型自身 rollout，推理使用有界视觉 KV 缓存维持持续上下文。与实时生成、蒸馏、稀疏注意力和缓存复用相关：四步生成与 ODE 初始化、局部一致性蒸馏、DMD/DFD 联合训练相结合；训练采用稀疏 FlexAttention 掩码，推理复用视觉 KV、旋转键、RoPE 张量及动作条件，并通过流式媒体管线实现 24 FPS。",
-      "limitations_cn": "论文明确指出，模型不维护显式的实体状态或交互规则，因而无法保证动作后果在离开视野、改变视角或经过后续交互后仍然持久且一致。视觉历史只能部分表示世界状态；有界 KV 缓存会限制对早期视觉证据的访问，自回归误差也可能随生成历史累积并破坏连贯性。论文展示的文本事件响应主要是选定时间段中的定性结果，尚未证明这些后果能够在长期交互中持续有效。模型的流匹配和蒸馏目标没有显式约束状态转移或交互规则。作者还报告，持续的 DMD/DFD 训练可能产生高频噪声伪影并降低色彩饱和度。评测主要集中于 158 个 WBench Navigation 案例，文本联合控制主要通过演示进行定性展示。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 Zing-0.5，这是一个面向可玩性的 5B 自回归世界模型：用户可以探索生成的世界、影响事件的发展，并通过键盘与在线文本的联合控制对反馈作出响应。我们的方法结合了三项技术贡献：（1）统一的动作与文本条件，将具有幅度感知能力的键盘输入、时间对齐的文本指令以及联合标注视频结合起来，在同一序列中学习导航与事件控制；（2）面向事件尺度的增量生成监督，利用在连续多提示视频上训练的片段级教师模型，通过分布匹配蒸馏监督块级因果学生模型；（3）低成本实时交互，将四步生成与保持上下文的流式处理相结合，以支持 832×480 分辨率、24 FPS 的推理，估计服务器租用成本约为每路流每分钟 0.009 美元。在 158 个 WBench Navigation 案例上，Zing-0.5 的总体得分为 81.0，一致性得分为 88.5。一项联合控制演示展示了在不中断生成的持续导航过程中，通过文本指令改变事件。我们发布模型权重、推理代码和 Zing-SGLang 服务实现，以支持可玩生成世界的进一步研究。",
-      "note_path": "2026-09-21/2609.17909-zing-0-5-toward-playable-worlds-with-real-time-j.md"
     },
     {
       "id": "2609.20034",
@@ -100,12 +58,12 @@
       "comment": "Technical report. 25 pages, 13 figures, 10 tables. Project page: https://world.astronex.com.cn ; Code: https://github.com/Astronex-Robotics/Astronex-World ; Weights: https://huggingface.co/Astronex-Lab/Astronex-World",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文提出 Astronex-World 1.0，一个基于 Wan2.2-TI2V-5B 的 5B 可控视频世界模型基础，包含双向模型和因果模型两种形态。系统统一支持文本、图像、相机、连续动作、具身标识和定时文本事件条件；双向模型用于高质量全上下文生成与监督，因果模型通过块因果注意力、局部历史窗口、持久注意力 sink、跨块 KV 缓存和少步 UniPC 实现持续实时生成。模型使用 PRoPE 注入相机几何，并以逐层动作调制实现动作控制。五阶段训练依次完成控制适配、因果转换、轨迹蒸馏、混合域因果微调和 DMD/DMD2 分布匹配。模型在两块 L20 GPU 上完成训练，可在单块 L20 上以 24 fps、832×480 分辨率实时流式生成，在 WBench 上取得较强结果，但复杂交互、长时漂移、物理真实性和主体运动仍存在明显不足。",
-      "contribution_cn": "1. 提出共享 5B 视频骨干的双向与因果模型系列，同时覆盖文本到视频、图像到视频、交互式持续生成和离线高质量生成。 2. 提出统一控制接口：通过 PRoPE 注入逐帧相机内参与外参，通过 64 维连续动作和具身标识调制每个 Transformer 层，并提供可插入指定时间位置的文本事件接口及可后训练的动作序列输出接口。 3. 提出五阶段训练方案，包括双向相机与动作控制适配、块因果教师强制、在线 UniPC 轨迹蒸馏、混合域因果监督微调以及带运动保持项的非对称 DMD/DMD2。 4. 将块因果注意力、跨块 KV 缓存、20 帧局部窗口和 4 帧持久 sink 结合，实现少步数、长时、实时视频流式生成。 5. 在 WBench 和部分 VBench 评测中验证模型效果，并显示其以 5B 参数规模和两块 L20 GPU 的训练预算达到可与更大模型竞争的结果。",
-      "relevance_cn": "该工作与研究重点高度相关。它直接研究可控视频扩散世界模型，并将相机轨迹、连续动作和具身标识作为条件，用于动作驱动的视觉状态预测和闭环式交互 rollout。因果模型采用块因果注意力，仅访问历史信息，配合跨块 KV 缓存实现自回归、持续和流式生成；局部历史窗口与持久 sink 针对长视频上下文和误差累积问题。在线 UniPC 轨迹蒸馏、少步采样以及非对称 DMD/DMD2 分布匹配降低了推理成本，使 832×480 视频能够在单块 L20 GPU 上以 24 fps 实时生成。开放的动作输入和动作序列输出接口还为机器人和自动驾驶中的策略后训练、动作预测及闭环模拟提供了基础。",
-      "limitations_cn": "论文明确指出以下局限：复杂交互能力较弱，事件编辑、主体动作和视角切换主要依赖有限的文本切换接口，无法表达多个相互独立的定时事件；长时 rollout 仍会出现颜色偏移、场景变暗、结构重绘、细节丢失和循环不一致；DMD 蒸馏会抑制主体运动，导致生成结果偏静态；模型没有显式物理状态、深度、碰撞约束或三维场景表示，因此视频连贯性不等于物理准确性；64 维动作输入和动作输出接口仍需通过领域数据进行自动驾驶和机器人后训练。实验方面，VBench 仅完成了 240 个 T2V 和 118 个 I2V 视频的部分评测，内部篮球运动诊断也不是公开基准，且不同模型的能力对比使用了各自报告中的硬件、分辨率和延迟定义，未完全标准化。论文未明确说明更大规模、多主体复杂交互和真实闭环任务成功率的系统评测结果。",
+      "summary_cn": "Astronex-World 1.0 是一个基于 Wan2.2-TI2V-5B 的 5B 可控视频世界模型基础，提供双向和因果两种形态，统一支持文本、图像、相机、连续动作、具身标识符及事件控制。模型通过 PRoPE 注入相机几何信息，并在每个 Transformer 层调制动作条件；因果版本采用块因果注意力、局部历史窗口、持久注意力汇聚帧、KV 缓存和少步 UniPC，实现长时持续生成与单块 L20 上的实时流式推理。五阶段训练包括双向控制适配、块因果转换、在线轨迹蒸馏、混合域因果 SFT 以及非对称 DMD/DMD2。模型在 WBench 上取得较强成绩，但复杂交互、长时漂移、运动幅度和物理真实性仍存在明显不足。",
+      "contribution_cn": "1. 提出共享 5B 视频主干的双向与因果模型系列，分别面向高质量离线生成及可缓存、持久的交互式生成，并支持文本生成视频和图像生成视频。2. 提出统一控制接口：通过 PRoPE 注入完整相机内参与外参，使用 64 维连续动作和具身标识符调制全部视觉层，并提供定时文本事件接口及可后训练的动作序列输出接口。3. 提出五阶段训练流程，包括双向控制适配、块因果教师强制、在线 UniPC 轨迹蒸馏、混合域因果监督微调和非对称 DMD/DMD2 分布匹配。4. 结合块因果注意力、跨块 KV 缓存、局部历史窗口和持久汇聚帧，实现 832×480、24 fps 的实时流式生成。5. 在 WBench 158 和 289 任务以及部分 VBench 评测中验证模型，并展示了仅使用两块 L20 GPU 进行后训练、单块 L20 GPU 实时推理的效率。",
+      "relevance_cn": "论文与视频生成和视频扩散高度相关：它直接复用 Wan2.2-TI2V-5B 的视频 DiT 与流匹配生成框架，并通过 UniPC 采样和 DMD/DMD2 蒸馏实现少步视频生成。它面向动作条件视觉世界模型和闭环模拟，使用逐帧相机轨迹、连续动作、具身标识符及定时事件预测未来视觉状态，且支持将生成历史反馈为后续上下文。它与自回归、因果、流式和长视频生成直接相关：因果模型采用块下三角注意力，只访问历史信息，以 KV 缓存复用已完成块，并通过局部窗口和持久汇聚帧维持长时上下文。它也与实时生成、蒸馏、稀疏注意力和缓存复用直接相关：少步 UniPC、在线轨迹蒸馏、DMD/DMD2、块级注意力和跨块 KV 缓存共同支持单块 L20 上的实时 24 fps 流式输出。",
+      "limitations_cn": "论文明确指出，复杂交互能力较弱：事件编辑、主体动作和视角切换主要依赖有限的文本切换接口，无法表达多个相互独立的定时事件。长时生成仍存在颜色漂移、场景变暗、结构重绘、细节丢失以及回转后场景不可逆等问题。DMD 蒸馏会抑制主体运动，导致生成结果偏静态，内部运动幅度显著低于双向教师模型。模型没有显式物理状态、深度、碰撞约束或 3D 场景表示，因此视频连贯性不能证明物理准确性。64 维动作输入和动作序列输出接口仍需通过领域数据进行自动驾驶或机器人后训练。VBench 结果仅覆盖部分数据集（240 个 T2V 和 118 个 I2V 视频），不能视为完整评测；论文未明确说明更大规模或更全面真实闭环任务中的泛化能力。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 Astronex-World 1.0，这是一个开放的、可控的视频世界模型基础。给定文本提示（文本到视频）或初始观测（图像到视频）后，该模型能够在与帧对齐的相机轨迹、连续动作和具身标识符条件下预测未来视觉状态，并接受插入 rollout 指定位置的文本事件。该模型系列提供用于全上下文生成的双向模型，以及采用块因果注意力和跨块 KV 缓存、用于持续生成的因果模型；二者均建立在 Wan2.2-TI2V-5B 先验之上。PRoPE 注入相机内参和外参，64 维动作流则调制每个 Transformer 层。五阶段训练流程依次发展双向相机与动作控制，将骨干网络转换为块因果生成模型，蒸馏出少步数学生模型，恢复混合域动力学，并进行非对称 DMD/DMD2 分布匹配。因果模型以 24 fps 生成 832×480 视频。全部五个训练阶段均可在两块 NVIDIA L20 48 GB GPU 上运行，因果模型则可在单块 GPU 上实时流式生成。在 WBench Navi 和 WBench Full 上，该模型分别获得 73.5 和 70.0 分。在 Full 评测中，这个 5B 模型得分高于 13.6B 的 LongCat-Video 和 14B 的 Helios，与 22B 的 LTX-2.3 相差不到 1 分，并高于 YUME 1.5；后者同样基于 5B 先验、在 NVIDIA A100 GPU 上进行后训练。预留的动作输入和输出接口支持后续针对具身智能和自动驾驶的后训练。",
+      "abstract_cn": "我们提出 Astronex-World 1.0，一个开放且可控的视频世界模型基础。给定文本提示（文本生成视频）或初始观测（图像生成视频），该模型能够在帧对齐的相机轨迹、连续动作和具身标识符条件下预测未来视觉状态，并接受插入到推演指定位置的文本事件。该模型系列提供用于全上下文生成的双向模型，以及采用块因果注意力和跨块 KV 缓存、用于持续生成的因果模型；两者均基于 Wan2.2-TI2V-5B 先验构建。PRoPE 注入相机内参与外参，64 维动作流调制每个 Transformer 层。五阶段训练流程依次实现双向相机与动作控制、将主干转换为块因果生成、蒸馏少步学生模型、恢复混合域动态，并应用非对称 DMD/DMD2 分布匹配。因果模型以 24 fps 生成 832×480 视频。全部五个训练阶段均可在两块 NVIDIA L20 48 GB GPU 上运行，因果模型则可在单块 GPU 上实时流式生成。在 WBench Navi 和 WBench Full 上，该模型分别取得 73.5 和 70.0 分。在 Full 测试中，这个 5B 模型得分高于 13.6B 的 LongCat-Video 和 14B 的 Helios，与 22B 的 LTX-2.3 相差不到 1 分，并高于使用相同 5B 先验、在 NVIDIA A100 GPU 上进行后训练的 YUME 1.5。预留的动作输入和输出接口支持后续针对具身智能与自动驾驶的后训练。",
       "note_path": "2026-09-21/2609.20034-astronex-world-1-0-real-time-interactive-world-m.md"
     },
     {
@@ -146,12 +104,14 @@
       ],
       "comment": "Technical Report. Videos and additional results are available at zyt-aim.github.io/ZYT-World",
       "score": 74,
-      "priority": "skim",
-      "summary_cn": "Generative world models offer controllable and repeatable closed-loop simulation for end-to-end and vision-language-action driving policies, but production deployment exposes three unresolved requirements: faithfully reproducing a mixed fisheye-pinhole rig at native resolutions; reconciling causal, per-timestep interaction with long-horizon stability and low latency; and preserving scene identity when a location is revisited.",
-      "contribution_cn": "We present ZYT-World, a single architecture that natively generates four fisheye views with field of view > 180° and three pinhole views.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, simulation, streaming, real-time",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "论文提出面向自动驾驶闭环仿真的 ZYT-World。它使用单一 5B 参数视频 DiT，在原生分辨率下联合生成四个超广角鱼眼视图和三个针孔视图，并通过 Plücker 射线、运动 AdaLN、像素对齐布局和可插拔隐式记忆实现相机几何、车辆运动、交通参与者及地点身份控制。通过教师强制、因果一致性蒸馏、自回滚 DMD 和 RigCritic，将 40 步双向扩散教师压缩为每个潜变量一步的因果自回归生成器；结合 TinyVAE、W8A8 和专用推理引擎，实现双 GPU 七视图 4 FPS。实验表明，一步模型在多数指标上接近教师，TinyVAE 显著降低了解码开销，记忆模块改善了跨轨迹重访的一致性，并展示了 30 秒长时域回滚。",
+      "contribution_cn": "1. 提出原生异构相机系统建模方法，用投影专用 Plücker 适配器、全局自车运动 AdaLN、共享布局适配器和稀疏跨视图注意力联合处理四个鱼眼视图与三个针孔视图。2. 提出因果一步生成的后训练流程，结合教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏、像素感知正则化和联合七视图判别器 RigCritic。3. 构造基于 4D 高斯泼溅和替代轨迹的跨轨迹训练对，并设计零初始化残差记忆路径，以恢复重访地点的特定几何和布局。4. 提出 1900 万参数的 TinyVAE 解码器，在保持较高视觉和语义质量的同时，将解码速度提升 59.8 倍。5. 结合异构训练调度、多维并行、内存优化、W8A8 量化和增量推理引擎，使七视图高分辨率训练及实时流式部署成为可能。",
+      "relevance_cn": "与研究重点高度相关。该工作直接研究视频扩散世界模型、动作或自车运动条件控制、因果自回归与逐时间步流式生成，并通过有界 KV 缓存和隐式记忆支持长视频及跨轨迹场景一致性。其核心贡献是将 40 步双向扩散教师蒸馏为每个潜变量一步的生成器，结合自回滚训练解决训练历史与推理自生成历史之间的分布偏移；稀疏跨视图注意力、缓存复用、量化和轻量解码则对应实时生成与计算复用。该模型还提供了面向闭环自动驾驶策略的可编辑轨迹、交通布局和信号灯条件，因此属于动作条件视觉世界模型和闭环仿真范畴。",
+      "limitations_cn": "论文的评估主要基于内部数据集和开放环路视频、检测、几何及系统指标，未提供公开数据或可复现实验代码，也未给出策略级闭环驾驶性能的定量评估。记忆模块的效果主要通过定性重访示例展示，论文明确指出没有独立的定量记忆基准；相关表格是单一测试划分且没有置信区间。30 秒长时域结果是在仅训练到约 8.1 秒窗口后通过有界缓存外推得到的，论文将更大规模的长时域稳定性研究留作未来工作。一步自回归模型相较教师在 FDD、LPIPS、PSNR、SSIM、检测 F1 和跨视图 Sampson 误差等指标上存在下降，TinyVAE 在固定潜变量重建的 PSNR、SSIM 和文本框字符相似度上仍落后于 Wan 解码器。布局条件依赖上游感知结果，因此会受到漏检、误检和抖动影响；显式运动条件未直接包含横滚、俯仰和垂直运动。论文未报告所有长尾天气、交通参与者类别和更长时间尺度下的系统性统计结果。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "生成式世界模型为端到端和视觉-语言-动作驾驶策略提供了可控且可重复的闭环仿真，但生产部署仍面临三个未解决的要求：忠实复现原生分辨率下的鱼眼—针孔混合相机系统；协调逐时间步的因果交互、长时域稳定性与低延迟；以及在不同轨迹重新访问某地点时保持场景身份。我们提出 ZYT-World，这是一种统一架构，可原生生成四个视场角大于 180° 的鱼眼视图和三个针孔视图。面向投影的 Plücker 适配器编码相机几何，基于自车运动自适应的层归一化提供全局运动控制，轻量级像素对齐布局则通过实例级边界框、朝向和颜色对交通参与者及信号灯进行条件控制。异构训练结合了完整相机系统的几何覆盖与高分辨率细节。教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏以及 RigCritic，将一个 40 步双向教师模型转换为每个潜变量一步的流式生成器，其中 RigCritic 联合评估七视图相机系统。一个拥有 1900 万参数的变分自编码器解码器 TinyVAE、W8A8 量化和我们的推理引擎，分别降低了解码、主干网络和增量执行成本。最后，利用从真实采集中构造的跨轨迹样本对训练可插拔的隐式记忆模块，以保留特定地点的证据。在内部多视图测试集上，一步模型保留了教师模型 90% 以上的 PSNR 和 SSIM，同时 FID、FVD 和 LPIPS 与教师模型的差异均在 11% 以内。在图 2 所示的仅生成器计时设置下，其速度比 40 步双向教师模型快 107.7 倍。TinyVAE 的解码速度比 Wan 解码器快 59.8 倍。30 秒回滚和跨轨迹重访实验展示了预期的长时域与记忆行为。",
+      "note_path": "2026-09-21/2609.21712-zyt-world-a-real-time-controllable-world-model-f.md"
     },
     {
       "id": "2609.20892",
@@ -331,6 +291,33 @@
       "summary_cn": "Navigation world models plan by foresight, predicting the future that each candidate action sequence produces and selecting the best, rather than mapping observations to actions directly.",
       "contribution_cn": "We present Feel-WM, the first off-road navigation world model that conditions on proprioception and predicts what the robot will feel alongside what the camera will see.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.20604",
+      "date": "2026-09-17",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Semantic SLAM in Precision Agriculture using Bayesian Inference",
+      "abstract": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots. The framework combines probabilistic mapping of objects and their semantic attributes, updated through Bayesian inference, with a graph-based Simultaneous Localization and Mapping (SLAM) approach implemented using $g^2o$, a general framework for graph optimization. This integration enables accurate mapping and localization without relying solely on GPS. By leveraging semantic information such as plant type, size, and health, the robot can perform tasks while mapping and localizing itself within a field of crops. The proposed framework was validated through Gazebo simulations and physical experiments on an indoor field with artificial plants using Boston Dynamics' robot dog Spot. A YOLOv8n object detection model was trained to extract object and semantic data from depth camera observations. These simulations and experiments demonstrate that the system can successfully perform real-time mapping of up to at least 400 plants.",
+      "authors": [
+        "Ruben Beumer",
+        "Sander Doodeman",
+        "René van de Molengraft",
+        "Duarte Antunes"
+      ],
+      "url": "http://arxiv.org/abs/2609.20604v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots.",
+      "contribution_cn": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, real-time",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
