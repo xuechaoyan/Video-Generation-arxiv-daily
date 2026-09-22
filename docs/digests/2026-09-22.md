@@ -1,24 +1,24 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-22T01:58:09+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-22T15:46:52+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [Astronex-World 1.0: Real-Time Interactive World Model Foundation](http://arxiv.org/abs/2609.20034v1)
+### 1. [WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory](http://arxiv.org/abs/2609.24984v1)
 
-- **评分**：74/100
-- **作者**：Xin Zhou, Cong Miao
+- **评分**：76/100
+- **作者**：Wangbo Yu, Kunhao Liu, Wenbo Hu et al.
 - **方向**：World Models
-- **一句话**：Astronex-World 1.0 是基于 Wan2.2-TI2V-5B 构建的 5B 可控视频世界模型，提供双向离线生成和因果持续生成两种形式。模型通过 PRoPE 建模相机内外参，通过 64 维动作流和具身标识符实现逐层动作控制，并支持文本事件在指定时间点插入 rollout。其五阶段训练流程结合块因果注意力、KV 缓存、在线轨迹蒸馏、混合域 SFT…
-- **精读笔记**：[打开笔记](../notes/2026-09-22/2609.20034-astronex-world-1-0-real-time-interactive-world-m.md)
+- **一句话**：本文提出 WorldCrafter，用于长时间、可交互视频生成的相机可控自回归视频世界模型。方法将历史潜在帧及其相机参数输入由预训练多视角三维表示初始化的记忆编码器，形成隐式三维感知表示；随后，姿态引导的读出模块根据即将执行的相机轨迹，从该表示中提取固定数量的记忆令牌，与近期时间上下文共同条件化视频 DiT。为控制计算量，系统保留最新帧并通过最大化目标区域…
+- **精读笔记**：[打开笔记](../notes/2026-09-22/2609.24984-worldcrafter-consistent-video-world-model-with-i.md)
 
 ### 2. [ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation](http://arxiv.org/abs/2609.21712v1)
 
 - **评分**：74/100
 - **作者**：Boni Hu, Xiong Wei, Haoming Huang et al.
 - **方向**：World Models
-- **一句话**：论文提出 ZYT-World，一个面向自动驾驶闭环仿真的实时可控世界模型。它在原生分辨率下联合生成四个超广角鱼眼视图和三个针孔视图，并通过 Plücker 射线、基于自车运动的 AdaLN 以及像素对齐布局实现相机、轨迹、交通参与者和信号灯控制。作者将 40 步双向扩散教师模型蒸馏为逐潜变量的一步因果自回归生成器，并结合 RigCritic、TinyVAE…
+- **一句话**：ZYT-World 面向自动驾驶闭环仿真，构建了一个可控的七视图世界模型，原生支持四个超广角鱼眼视图和三个针孔视图，并保持各自的投影、分辨率和几何关系。模型结合 Plücker 射线、基于自车运动的 AdaLN、像素对齐布局条件和跨视图注意力，实现逐时间步的运动、交通参与者及信号灯控制。通过教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏和 RigCritic…
 - **精读笔记**：[打开笔记](../notes/2026-09-22/2609.21712-zyt-world-a-real-time-controllable-world-model-f.md)
 
 ### 3. [CausalWM: Causal Chain-of-Thought Reasoning for Embodied World Model](http://arxiv.org/abs/2609.23184v1)
@@ -31,51 +31,51 @@
 
 ## 快速浏览
 
-### 1. [ConsistWorld: Evidence Routing for Consistent Multi-Agent World Models](http://arxiv.org/abs/2609.22641v1)
+### 1. [Streaming Video Editing with Easy Adaptation](http://arxiv.org/abs/2609.24788v1)
+
+- **评分**：72/100
+- **作者**：Yujia Hu, Jiajun Li, Zihao He et al.
+- **方向**：Video Generation
+- **一句话**：In this paper, we propose SVEET, a framework that requires merely training on a pretrained bidirectional video diffusion model but supports high-quality streaming video editing in…
+
+### 2. [ConsistWorld: Evidence Routing for Consistent Multi-Agent World Models](http://arxiv.org/abs/2609.22641v1)
 
 - **评分**：71/100
 - **作者**：Qianxun Xu, Xianfang Zeng, Xinyao Liao et al.
 - **方向**：World Models, Autoregressive and Streaming Video
 - **一句话**：Autoregressive video world models enable temporally coherent generation for a single observer.
 
-### 2. [WM-VS: Progress-Aligned World Models for Closed-Loop Visual Servoing](http://arxiv.org/abs/2609.20892v1)
+### 3. [Imagine-RL: Residual-Confidence-Guided Cross-Attention for World-Model-Augmented VLA Reinforcement Learning](http://arxiv.org/abs/2609.24033v1)
 
-- **评分**：66/100
-- **作者**：Guanzhong Sun, Junyi Ma, Yixuan Zhou et al.
+- **评分**：69/100
+- **作者**：Kejia Hu, Wentong Zhai, Bo Zhao et al.
 - **方向**：World Models
-- **一句话**：Closed-loop visual servoing requires predictions that indicate whether an action reduces task error, not only whether the action is plausible.
+- **一句话**：Reliable action evaluation in contact-rich manipulation requires looking beyond the current observation to future visual and contact consequences.
 
-### 3. [FOCAL-VLA: Subtask-Guided Geometry Distillation and Implicit World Modeling for Vision-Language-Action Models](http://arxiv.org/abs/2609.21228v1)
+### 4. [CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation](http://arxiv.org/abs/2609.14725v2)
 
-- **评分**：61/100
-- **作者**：Zhiyuan Gao, Di Wen, Yanxiang Zhan et al.
-- **方向**：World Models
-- **一句话**：Vision-language-action (VLA) models built on pretrained vision-language models have demonstrated strong performance across diverse robotic manipulation tasks.
-
-### 4. [Recency Forcing: Bridging the Long-Horizon Gap in Autoregressive Video Generation](http://arxiv.org/abs/2609.19729v1)
-
-- **评分**：59/100
-- **作者**：Tri Cao, Hung Nguyen, Phong Nguyen et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where a…
-
-### 5. [DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models](http://arxiv.org/abs/2609.20051v1)
-
-- **评分**：58/100
-- **作者**：Shihong Li, Juntao Xu,  JinCao et al.
+- **评分**：65/100
+- **作者**：Yuxi Liu, Haoyu Li, Yixiang Cai et al.
 - **方向**：Video Generation
-- **一句话**：Step distillation reduces the cost of video generation, but reusing a LoRA trained for a longer trajectory can alter its functional effect or degrade target quality.
+- **一句话**：Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching shar…
 
-### 6. [Feeling Terrain Before Crossing: World Models for Off-Road Navigation](http://arxiv.org/abs/2609.19863v1)
+### 5. [DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation](http://arxiv.org/abs/2609.24976v1)
 
-- **评分**：57/100
-- **作者**：E-In Son, Dong-Wook Kim, Ji-Hoon Hwang et al.
+- **评分**：62/100
+- **作者**：Haoran Yuan, Zekai Wang, Boning Shao et al.
 - **方向**：World Models
-- **一句话**：Navigation world models plan by foresight, predicting the future that each candidate action sequence produces and selecting the best, rather than mapping observations to actions d…
+- **一句话**：Dexterous manipulation depends on contact dynamics that are often only partially observable from vision.
 
-### 7. [Semantic SLAM in Precision Agriculture using Bayesian Inference](http://arxiv.org/abs/2609.20604v1)
+### 6. [OnlineWM: Causality-Aware Active Online Learning for Effective World Modeling](http://arxiv.org/abs/2609.23753v1)
 
-- **评分**：56/100
-- **作者**：Ruben Beumer, Sander Doodeman, René van de Molengraft et al.
+- **评分**：54/100
+- **作者**：Yikun Miao, Fangqi Zhu, Quanxin Shou et al.
 - **方向**：World Models
-- **一句话**：This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots.
+- **一句话**：Generative world models aim to predict future states conditioned on actions, where action controllability is fundamental for reliable dynamics modeling.
+
+### 7. [HappyWorld-Bench](http://arxiv.org/abs/2609.24308v1)
+
+- **评分**：53/100
+- **作者**：Zhiqi Bai, Junai Cai, Yixin Chen et al.
+- **方向**：World Models
+- **一句话**：Evaluating world models requires assessing both the quality of the worlds they generate and their consistency and responsiveness under exploration, interaction, and modification.

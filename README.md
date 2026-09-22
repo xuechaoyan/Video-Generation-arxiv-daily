@@ -17,6 +17,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-21**|**VideoGen-Agent: Reinforcing Video Generation Agents**|Binxu Li et.al.|[2609.24997](http://arxiv.org/abs/2609.24997)|null|
+|**2026-09-21**|**Streaming Video Editing with Easy Adaptation**|Yujia Hu et.al.|[2609.24788](http://arxiv.org/abs/2609.24788)|null|
+|**2026-09-21**|**TReViS: Temporal Repetition Structure Aware Video Synthesis for Self-supervised Repetitive Action Counting**|Fanqi Yu et.al.|[2609.24367](http://arxiv.org/abs/2609.24367)|null|
+|**2026-09-20**|**Why Do Video Diffusion Models Violate Physics? Unveiling the Flaws in Attention Mechanisms**|Yueyan Li et.al.|[2609.23658](http://arxiv.org/abs/2609.23658)|null|
+|**2026-09-20**|**An Efficient and Effective Watermarking Scheme for the Protection of the Intellectual Property Rights of Video Generative Models**|Wenhong Huang et.al.|[2609.23586](http://arxiv.org/abs/2609.23586)|null|
 |**2026-09-19**|**RewardVerse: Rubric-Guided Policy Optimization for Video Reward Modeling**|Zhenchen Tang et.al.|[2609.22947](http://arxiv.org/abs/2609.22947)|null|
 |**2026-09-13**|**Rethinking Streaming Video Diffusion Model: Context, Execution, and Training**|Hongchen Zhang et.al.|[2609.22283](http://arxiv.org/abs/2609.22283)|null|
 |**2026-09-18**|**JEPA Guided Diffusion: Predictive Vision-Language Conditioning for Generative Traffic Forecasting**|Trinh Tra Giang Nguyen et.al.|[2609.21379](http://arxiv.org/abs/2609.21379)|null|
@@ -31,7 +36,7 @@
 |**2026-09-15**|**VOR-Bench: A Human Perception-Driven Benchmark for Video Object Removal**|Haonan Huang et.al.|[2609.16878](http://arxiv.org/abs/2609.16878)|null|
 |**2026-09-14**|**LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows**|Xiaofeng Mao et.al.|[2609.15863](http://arxiv.org/abs/2609.15863)|null|
 |**2026-09-15**|**DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models**|Jing Lyu et.al.|[2609.15570](http://arxiv.org/abs/2609.15570)|null|
-|**2026-09-13**|**CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation**|Yuxi Liu et.al.|[2609.14725](http://arxiv.org/abs/2609.14725)|null|
+|**2026-09-20**|**CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation**|Yuxi Liu et.al.|[2609.14725](http://arxiv.org/abs/2609.14725)|null|
 |**2026-09-07**|**BEACON: Behavior and Appearance Control for Subject-Specific Video Generation**|Pokrzywa Baptiste et.al.|[2609.13264](http://arxiv.org/abs/2609.13264)|null|
 |**2026-09-10**|**MindTopo: Can Foundation Models Reason in Topological Space?**|Yunfei Ge et.al.|[2609.11900](http://arxiv.org/abs/2609.11900)|null|
 |**2026-09-10**|**From Evaluation to Enhancement: Benchmarking and Improving Think-with-Video Reasoning for Video Generative Models**|Meng Luo et.al.|[2609.11242](http://arxiv.org/abs/2609.11242)|null|
@@ -1403,6 +1408,27 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-21**|**WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory**|Wangbo Yu et.al.|[2609.24984](http://arxiv.org/abs/2609.24984)|null|
+|**2026-09-21**|**DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation**|Haoran Yuan et.al.|[2609.24976](http://arxiv.org/abs/2609.24976)|null|
+|**2026-09-21**|**DualWAM: Dual-System World Action Models for Asynchronous Global Planning and Local Refinement**|Yixin Zheng et.al.|[2609.24868](http://arxiv.org/abs/2609.24868)|null|
+|**2026-09-21**|**D-JEPA: A Decision-Aligned Latent World Model**|Shuaijun Liu et.al.|[2609.24749](http://arxiv.org/abs/2609.24749)|null|
+|**2026-09-21**|**Beyond Visual Quality: A Study of Test-Time Planning with World Action Models**|Jianhao Yuan et.al.|[2609.24745](http://arxiv.org/abs/2609.24745)|null|
+|**2026-09-21**|**Think Like a World Model, Act Like a VLA: Distilling World-Model Representations into Compact Robot Policies**|Trung Dao et.al.|[2609.24682](http://arxiv.org/abs/2609.24682)|null|
+|**2026-09-21**|**Relationally Grounded Latent World Models for Autonomous Driving**|Fabian Schmidt et.al.|[2609.24626](http://arxiv.org/abs/2609.24626)|null|
+|**2026-09-21**|**Few-Shot Demonstrations Elicit the Use of In-Context World Representations in LLMs**|Kohsei Matsutani et.al.|[2609.24352](http://arxiv.org/abs/2609.24352)|null|
+|**2026-09-21**|**LIBERO-VPro: Benchmarking Closed-Loop Visual Robustness of Robotic Foundation Models**|Huiqiong Li et.al.|[2609.24350](http://arxiv.org/abs/2609.24350)|null|
+|**2026-09-21**|**NeuIDO: Neural Intrinsic Dynamics Operator for Physics-Informed 4D World Models**|Jiajing Lin et.al.|[2609.24313](http://arxiv.org/abs/2609.24313)|null|
+|**2026-09-21**|**HappyWorld-Bench**|Zhiqi Bai et.al.|[2609.24308](http://arxiv.org/abs/2609.24308)|null|
+|**2026-09-21**|**Monet: Measuring the Ecosystem of Open-Source Text-to-Image Models Tailored for Harmful Services**|Zihao Wang et.al.|[2609.24134](http://arxiv.org/abs/2609.24134)|null|
+|**2026-09-21**|**What Matters in Designing World Action Models: An Empirical Study**|Chao Tang et.al.|[2609.24048](http://arxiv.org/abs/2609.24048)|null|
+|**2026-09-21**|**Imagine-RL: Residual-Confidence-Guided Cross-Attention for World-Model-Augmented VLA Reinforcement Learning**|Kejia Hu et.al.|[2609.24033](http://arxiv.org/abs/2609.24033)|null|
+|**2026-09-21**|**UniK: Universal Knowledge Perception for Digital and Physical AI**|Nirmit Desai et.al.|[2609.23971](http://arxiv.org/abs/2609.23971)|null|
+|**2026-09-20**|**HapticWAM: Distilling Imagined Touch into a World-Action Model without Inference-Time Tactile Sensing**|Mikhail Sannikov et.al.|[2609.23888](http://arxiv.org/abs/2609.23888)|null|
+|**2026-09-20**|**MotionJEPA: Preventing Temporal Feature Collapse by Capturing Visual Changes in Latent Space**|Markus Karmann et.al.|[2609.23881](http://arxiv.org/abs/2609.23881)|null|
+|**2026-09-20**|**Grounded Action Model: 3D Grounding as a Foundation for Robotics**|Gehao Zhang et.al.|[2609.23863](http://arxiv.org/abs/2609.23863)|null|
+|**2026-09-20**|**OnlineWM: Causality-Aware Active Online Learning for Effective World Modeling**|Yikun Miao et.al.|[2609.23753](http://arxiv.org/abs/2609.23753)|null|
+|**2026-09-20**|**WOLF: World Model Guided LiDAR Exploration with Predictive Frontiers**|Yuyang Tian et.al.|[2609.23656](http://arxiv.org/abs/2609.23656)|null|
+|**2026-09-20**|**AR-WAM: A Visual-Conditioned Agent-Ready World Action Model for Robotic Manipulation**|Yicheng Jiang et.al.|[2609.23578](http://arxiv.org/abs/2609.23578)|null|
 |**2026-09-20**|**The Right Future for Action: Learning Action-Relevant Predictive States in World Action Models**|Qiwen Gu et.al.|[2609.23369](http://arxiv.org/abs/2609.23369)|null|
 |**2026-09-20**|**A Patient World Model for Early Forecasting of Digital Health Campaign Outcomes: Capabilities and Limits**|Yunlong Wang et.al.|[2609.23333](http://arxiv.org/abs/2609.23333)|null|
 |**2026-09-19**|**Robot World Models Are Not Invariant to How the Actions Are Written**|Ahmed Karim et.al.|[2609.23252](http://arxiv.org/abs/2609.23252)|null|

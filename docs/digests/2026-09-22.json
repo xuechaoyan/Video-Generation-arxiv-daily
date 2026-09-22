@@ -1,35 +1,44 @@
 {
-  "generated_at": "2026-09-22T01:58:09+00:00",
+  "generated_at": "2026-09-22T15:46:52+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2609.20034",
-      "date": "2026-09-17",
+      "id": "2609.24984",
+      "date": "2026-09-21",
       "topics": [
         "World Models"
       ],
-      "title": "Astronex-World 1.0: Real-Time Interactive World Model Foundation",
-      "abstract": "We present Astronex-World 1.0, an open controllable video world-model foundation. Given a text prompt (text-to-video) or an initial observation (image-to-video), the model predicts future visual states under frame-aligned camera trajectories, continuous actions, and an embodiment identifier, and accepts text events inserted at a specified position of a rollout. The family provides a bidirectional model for full-context generation and a causal model with block-causal attention and cross-block KV caching for persistent generation, both built on the Wan2.2-TI2V-5B prior. PRoPE injects camera intrinsics and extrinsics, while a 64-dimensional action stream modulates every Transformer layer. A five-stage training path develops bidirectional camera and action control, converts the backbone to block-causal generation, distills a few-step student, restores mixed-domain dynamics, and applies asymmetric DMD/DMD2 distribution matching. The causal model generates 832x480 video at 24 fps. All five training stages run on two NVIDIA L20 48 GB GPUs, and the causal model streams in real time on one. It scores 73.5 on WBench Navi and 70.0 on WBench Full. On Full, this 5B model is above the 13.6B LongCat-Video and the 14B Helios, within one point of the 22B LTX-2.3, and above YUME 1.5, which is post-trained from the same 5B prior on NVIDIA A100 GPUs. The reserved action input and output interfaces allow post-training for embodied intelligence and autonomous driving.",
+      "title": "WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory",
+      "abstract": "Video world models enable interactive exploration of dynamic environments, yet struggle to respect prior observations over long horizons and across viewpoints. We present WorldCrafter, a video world model that learns a camera-queryable implicit 3D-aware memory for this purpose. The key insight is to let the requested viewpoint shape how multi-view evidence is compressed into the video generator's limited token budget. Trained jointly with the video generator, a memory encoder and pose-conditioned readout module integrate historical observations into a fixed set of target view-specific tokens before denoising, without explicit depth-based correspondences. By combining this memory with recent temporal context and few-step distillation, WorldCrafter enables streaming scene exploration from a single input image or text prompt. Experiments across static and dynamic scenes show substantial gains in long-horizon consistency and camera-control accuracy while preserving visual quality during minute-scale exploration.",
       "authors": [
-        "Xin Zhou",
-        "Cong Miao"
+        "Wangbo Yu",
+        "Kunhao Liu",
+        "Wenbo Hu",
+        "Shenghai Yuan",
+        "Chaoran Feng",
+        "Haiyang Zhou",
+        "Yukun Huang",
+        "Yiran Wang",
+        "Wang Zhao",
+        "Yingmin Luo",
+        "Ying Shan"
       ],
-      "url": "http://arxiv.org/abs/2609.20034v1",
+      "url": "http://arxiv.org/abs/2609.24984v1",
       "categories": [
         "cs.CV",
         "cs.AI",
-        "cs.RO"
+        "cs.GR"
       ],
-      "comment": "Technical report. 25 pages, 13 figures, 10 tables. Project page: https://world.astronex.com.cn ; Code: https://github.com/Astronex-Robotics/Astronex-World ; Weights: https://huggingface.co/Astronex-Lab/Astronex-World",
-      "score": 74,
+      "comment": "Project webpage: https://drexubery.github.io/WorldCrafter",
+      "score": 76,
       "priority": "must-read",
-      "summary_cn": "Astronex-World 1.0 是基于 Wan2.2-TI2V-5B 构建的 5B 可控视频世界模型，提供双向离线生成和因果持续生成两种形式。模型通过 PRoPE 建模相机内外参，通过 64 维动作流和具身标识符实现逐层动作控制，并支持文本事件在指定时间点插入 rollout。其五阶段训练流程结合块因果注意力、KV 缓存、在线轨迹蒸馏、混合域 SFT 和 DMD/DMD2，使模型能够在单张 L20 上以 24 fps 实时生成 832×480 视频。模型在 WBench 上取得较高质量和一致性，但复杂交互、长时段漂移、物理真实性以及动作引起的主体运动仍存在明显不足。",
-      "contribution_cn": "1. 提出一个共享 5B 视频骨干的双向与因果模型家族，同时支持文生视频、图生视频、相机控制、连续动作控制和事件编辑。\\n2. 设计统一控制接口：使用 PRoPE 注入相机内参与外参，以 64 维连续动作和具身 ID 调制全部 Transformer 层，并预留动作序列输出接口用于后训练。\\n3. 提出五阶段训练方案，包括双向控制适配、块因果转换、在线 UniPC 轨迹蒸馏、混合域因果 SFT 和非对称 DMD/DMD2 分布匹配。\\n4. 将块因果注意力、跨块 KV 缓存、局部历史窗口和持久注意力 sink 结合，实现实时、持续的视频生成。\\n5. 在 WBench 和部分 VBench 评测中验证模型，并展示其在较低训练硬件成本下与更大规模开放模型竞争的性能。",
-      "relevance_cn": "论文与视频生成和视频扩散高度相关：它直接建立在视频扩散 DiT 和流匹配框架上，并通过 UniPC 少步采样与 DMD/DMD2 蒸馏降低生成成本。其因果模型采用块因果注意力、跨块 KV 缓存、局部历史和注意力 sink，针对自回归、流式和长视频生成。相机内外参、连续动作和具身 ID 使其适用于动作条件视觉世界模型、闭环交互模拟、机器人和自动驾驶。模型在单张 NVIDIA L20 上以 24 fps 实时流式生成，直接对应实时生成研究方向；同时，滚动强制训练和自生成历史用于缓解自回归误差累积。",
-      "limitations_cn": "论文明确指出：复杂交互能力较弱，当前文本切换接口难以表达多个独立的定时事件；长时段 rollout 仍会出现颜色偏移、场景变暗、结构重绘和细节丢失；DMD 蒸馏会抑制主体运动，导致生成结果偏静态；模型没有显式物理状态、深度、碰撞约束或三维场景表示，因此视频连贯性不等于物理准确性；64 维动作输入和动作输出接口仍需通过领域数据进行后训练。论文还报告 Full WBench 的 Interaction 分数仅为 47.6，Physical 分数为 68.1，部分 VBench 评测规模有限，且动态程度偏低。",
+      "summary_cn": "本文提出 WorldCrafter，用于长时间、可交互视频生成的相机可控自回归视频世界模型。方法将历史潜在帧及其相机参数输入由预训练多视角三维表示初始化的记忆编码器，形成隐式三维感知表示；随后，姿态引导的读出模块根据即将执行的相机轨迹，从该表示中提取固定数量的记忆令牌，与近期时间上下文共同条件化视频 DiT。为控制计算量，系统保留最新帧并通过最大化目标区域联合视场覆盖来选择互补历史帧。模型在多个阶段进行训练，并通过少步金字塔蒸馏实现实时流式推理。实验在包含静态和动态场景、长达 528 至 1,648 帧且带闭环重访轨迹的基准上进行。WorldCrafter 在重访一致性和相机控制指标上优于比较方法；其快速版本达到 16 fps，并在分钟级探索中保持较好的视觉质量。消融实验表明，隐式三维感知记忆、记忆编码器与生成器的联合优化、姿态引导读出以及最大覆盖历史检索均有助于提升性能。",
+      "contribution_cn": "提出一种面向视频世界模型的隐式三维感知记忆机制，将历史潜在帧压缩为紧凑表示，并在固定令牌预算下进行高效写入和面向目标视角的读出。将该记忆整合到相机可控的自回归视频生成框架中，通过姿态条件读出和最大覆盖历史检索提升长时间重访一致性与相机控制准确度。通过记忆编码器、读出模块和视频 DiT 的联合优化，使记忆表示与生成器令牌空间协同适配。采用少步金字塔蒸馏和混合蒸馏模型构建实时交互系统，在 4 GPU 机器上达到 16 fps，并支持分钟级流式探索。",
+      "relevance_cn": "与研究重点直接相关：它是用于交互式闭环模拟的动作或相机条件视频世界模型，以自回归分块方式持续生成长视频；通过隐式三维感知记忆解决跨视角、长时间重访时的场景一致性问题；通过姿态条件、近期上下文和历史记忆共同控制生成；通过少步蒸馏实现实时流式生成；通过固定令牌预算、历史帧选择和潜变量记忆编码降低长历史处理成本。其记忆编码与读出相较于基于深度估计和几何变形的空间记忆，报告了 21.7 倍的记忆处理成本降低。",
+      "limitations_cn": "论文明确指出，一些特别复杂或持续时间更长的相机轨迹仍可能出现一致性失效；每个生成块都重新编码历史会产生额外延迟。作者提出未来可采用自回归流式记忆编码器，增量地将新生成块并入记忆状态，以减少对历史的重复计算。论文还显示，蒸馏版本在视觉保真度、主体跟随能力和部分相机控制指标上相较基础模型存在权衡；使用合成数据进行蒸馏可能引入纹理模糊。除此之外，论文未明确说明。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 Astronex-World 1.0，一种开放的可控视频世界模型基础。给定文本提示（文生视频）或初始观测（图生视频）后，该模型能够在帧对齐的相机轨迹、连续动作和具身标识符条件下预测未来视觉状态，并接受插入到 rollout 指定位置的文本事件。该模型系列包含用于全上下文生成的双向模型，以及采用块因果注意力和跨块 KV 缓存、用于持续生成的因果模型；二者均建立在 Wan2.2-TI2V-5B 基础模型之上。PRoPE 注入相机内参和外参，64 维动作流则调制每个 Transformer 层。五阶段训练路径依次实现双向相机与动作控制，将骨干网络转换为块因果生成模型，蒸馏出少步学生模型，恢复混合域动力学，并采用非对称 DMD/DMD2 进行分布匹配。因果模型以 24 fps 生成 832×480 视频。全部五个训练阶段均可在两张 NVIDIA L20 48 GB GPU 上运行，因果模型则可在一张 GPU 上实时流式生成。该模型在 WBench Navi 和 WBench Full 上分别取得 73.5 和 70.0 分。在 Full 评测中，这一 5B 模型超过了 13.6B 的 LongCat-Video 和 14B 的 Helios，与 22B 的 LTX-2.3 仅相差不到 1 分，并超过了 YUME 1.5；后者同样基于 5B 基础模型、在 NVIDIA A100 GPU 上进行后训练。预留的动作输入和输出接口支持针对具身智能与自动驾驶进行后训练。",
-      "note_path": "2026-09-22/2609.20034-astronex-world-1-0-real-time-interactive-world-m.md"
+      "abstract_cn": "视频世界模型能够支持对动态环境的交互式探索，但在长时间跨度和跨视角情况下，往往难以遵循先前的观测结果。我们提出 WorldCrafter，一种为此学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是，使所请求的视角决定多视角证据如何被压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪之前将历史观测整合为一组固定数量、面向目标视角的令牌，而无需显式的基于深度的对应关系。通过结合这一记忆、近期时间上下文以及少步蒸馏，WorldCrafter 能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法在保持视觉质量的同时，显著提升了长时间跨度的一致性和相机控制准确度，并支持分钟级探索。",
+      "note_path": "2026-09-22/2609.24984-worldcrafter-consistent-video-world-model-with-i.md"
     },
     {
       "id": "2609.21712",
@@ -70,12 +79,12 @@
       "comment": "Technical Report. Videos and additional results are available at zyt-aim.github.io/ZYT-World",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文提出 ZYT-World，一个面向自动驾驶闭环仿真的实时可控世界模型。它在原生分辨率下联合生成四个超广角鱼眼视图和三个针孔视图，并通过 Plücker 射线、基于自车运动的 AdaLN 以及像素对齐布局实现相机、轨迹、交通参与者和信号灯控制。作者将 40 步双向扩散教师模型蒸馏为逐潜变量的一步因果自回归生成器，并结合 RigCritic、TinyVAE、W8A8 量化、稀疏跨视图注意力和专用推理引擎实现实时推理。跨轨迹隐式记忆模块用于在重新访问地点时恢复场景特定几何。内部评测显示一步模型保持了较高的教师质量，生成器相对教师最高获得 107.7 倍加速，完整七视图系统在双 GPU 上达到 4 FPS，并展示了 30 秒级长时域生成和跨轨迹重访能力。",
-      "contribution_cn": "1. 提出面向异构生产相机系统的统一多视图架构，在原生投影和分辨率下联合建模四个鱼眼视图与三个针孔视图。\\n2. 设计投影专用 Plücker 适配器、基于自车运动的 AdaLN 和像素对齐布局注入，实现几何、运动及场景布局的细粒度控制。\\n3. 结合教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏和 RigCritic，将双向多步扩散模型转换为一步因果流式生成器。\\n4. 提出利用真实采集与 4D Gaussian Splatting 构造跨轨迹训练对的可插拔隐式记忆模块，以增强地点重访时的场景一致性。\\n5. 提出 1900 万参数的 TinyVAE 解码器，并结合 W8A8 量化、缓存复用、稀疏跨视图注意力和专用推理引擎降低解码及推理成本。\\n6. 通过异构训练调度和多维并行，使七视图高分辨率训练及实时部署成为可能。",
-      "relevance_cn": "与研究重点高度相关。该工作直接研究视频扩散世界模型、动作或自车运动条件控制、因果自回归与流式长视频生成。它以每个潜变量时间步为生成单位，使用有界历史 KV 缓存和一步蒸馏支持闭环交互与长时域回滚；通过自回滚分布匹配蒸馏解决训练历史与部署自生成历史之间的分布偏移。稀疏跨视图注意力、缓存复用、W8A8 量化、TinyVAE 和专用推理引擎对应实时生成与推理加速方向。跨轨迹隐式记忆则进一步关联到闭环模拟中的场景持久性和可重复世界模型。",
-      "limitations_cn": "论文的评测主要基于内部数据集和开放环视频、检测、几何及系统指标，并明确指出这些指标不能替代策略层面的闭环评估。记忆模块只有描述性对比，没有独立的定量记忆基准、置信区间或统计显著性分析。30 秒长时域结果主要是定性展示，论文将更大规模的长时域稳定性研究留作开放问题；分钟级能力是由相同循环外推而非经过更长窗口训练验证。一步自回归模型相较教师模型在 FDD、LPIPS、PSNR、SSIM、检测 F1 和跨视图几何误差等指标上存在明显下降，不同蒸馏步数之间也存在质量与速度权衡。训练数据来自单一生产体系，且重平衡后雨、雾、雪、高速行驶及行人等长尾条件仍占比较低，因此对未覆盖环境和极端场景的泛化能力尚未充分验证。TinyVAE 虽显著加速，但在固定潜变量重建的 PSNR、SSIM 和文字框字符相似度上仍低于 Wan 解码器。",
+      "summary_cn": "ZYT-World 面向自动驾驶闭环仿真，构建了一个可控的七视图世界模型，原生支持四个超广角鱼眼视图和三个针孔视图，并保持各自的投影、分辨率和几何关系。模型结合 Plücker 射线、基于自车运动的 AdaLN、像素对齐布局条件和跨视图注意力，实现逐时间步的运动、交通参与者及信号灯控制。通过教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏和 RigCritic，将 40 步双向扩散模型压缩为一步因果流式生成器；结合有界 KV 缓存、隐式跨轨迹记忆、TinyVAE、量化和专用推理引擎，实现七视图实时生成。实验表明，该系统在保持较高视频质量的同时显著降低生成和解码成本，并在 30 秒回滚及场景重访中保持一定的时空一致性。",
+      "contribution_cn": "1. 提出面向异构生产相机系统的统一七视图世界模型，使用投影专用 Plücker 适配器、自车运动 AdaLN、像素对齐布局注入和稀疏跨视图注意力，联合建模鱼眼与针孔视图。2. 提出由教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏和 RigCritic 组成的因果一步后训练流程，将 40 步双向教师转换为逐潜变量的一步流式生成器。3. 利用真实场景 4D Gaussian Splatting 构造跨轨迹训练对，并设计可插拔的隐式记忆残差路径，以增强不同轨迹重访时的地点特定几何和布局一致性。4. 提出 1900 万参数的 TinyVAE 解码器，并结合像素、感知、语义和晶格残差损失，在显著降低解码成本的同时接近 Wan 解码器的质量。5. 对训练和部署进行协同优化，包括异构分辨率调度、多维并行、KV 缓存复用、W8A8 量化、算子融合及双 GPU 增量推理。",
+      "relevance_cn": "该工作与研究重点高度相关：它是面向闭环自动驾驶的动作/自车运动条件视觉世界模型，按时间步因果地生成多视图观测，并将生成结果反馈给驾驶策略。其一步扩散蒸馏、流式自回归生成、有界 KV 缓存、稀疏跨视图注意力、量化和 TinyVAE 直接对应实时生成、缓存复用和低延迟推理。跨轨迹隐式记忆解决了长期回滚和场景重访中的身份保持问题；原生鱼眼—针孔联合建模则增强了真实传感器系统中的闭环仿真价值。",
+      "limitations_cn": "论文的定量评估主要基于内部数据集和开放环视频、检测及几何指标，未提供充分的真实策略级闭环驾驶安全性或决策性能评估。记忆模块的重访效果主要通过定性结果展示，论文明确指出没有独立的定量记忆基准，且跨轨迹记忆输入部分来自 4D Gaussian Splatting 渲染，与推理时的真实图像记忆并不完全一致。30 秒结果是在训练窗口之外使用有界缓存进行外推，分钟级能力只是由相同循环可继续运行推断，尚未进行更大规模的长时域稳定性研究。一步 AR 学生相较教师在 FDD、LPIPS、PSNR、SSIM、检测 F1 和跨视图几何误差等指标上存在明显下降。TinyVAE 虽然速度大幅提升，但在固定潜变量重建的 PSNR、SSIM 和文字/小目标相似度上仍低于 Wan 解码器。训练数据经过重平衡后，雨、雾、雪、高速驾驶、行人和三轮车等尾部场景占比较低，因此对所有极端条件的泛化能力未被充分验证。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "生成式世界模型为端到端和视觉-语言-动作驾驶策略提供了可控且可重复的闭环仿真，但生产部署提出了三个尚未解决的要求：忠实复现原生分辨率下的鱼眼-针孔混合相机系统；协调逐时间步的因果交互、长时域稳定性与低延迟；以及在重新访问某一地点时保持场景身份。我们提出 ZYT-World，这是一种单一架构，能够原生生成四个视场角大于 180° 的鱼眼视图和三个针孔视图。面向投影的 Plücker 适配器编码相机几何信息，基于自车运动的自适应层归一化（AdaLN）提供全局运动控制，轻量级像素对齐布局通过实例级边界框、朝向和颜色对交通参与者及信号灯进行条件控制。异构训练将完整相机系统的几何覆盖与高分辨率细节结合起来。教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏以及 RigCritic，将一个 40 步双向教师模型转换为逐潜变量的一步流式生成器，其中 RigCritic 联合评估七视图相机系统。一个拥有 1900 万参数的变分自编码器解码器（TinyVAE）、W8A8 量化和我们的推理引擎，分别降低了解码、主干网络和增量执行的成本。最后，利用从真实采集中得到的跨轨迹样本对训练一个可插拔的隐式记忆模块，以保留特定地点的证据。在内部多视图测试集上，一步模型保留了教师模型超过 90% 的 PSNR 和 SSIM，同时 FID、FVD 和 LPIPS 与教师模型的差异均控制在 11% 以内。在图 2 所示的仅生成器计时设置下，其速度比 40 步双向教师模型快 107.7 倍。TinyVAE 的解码速度比 Wan 快 59.8 倍。30 秒回滚和跨轨迹重访实验展示了预期的长时域与记忆行为。",
+      "abstract_cn": "生成式世界模型为端到端和视觉-语言-动作驾驶策略提供了可控且可重复的闭环仿真，但生产部署仍面临三个尚未解决的要求：忠实复现原生分辨率下的鱼眼—针孔混合相机系统；协调逐时间步的因果交互、长时域稳定性与低延迟；以及在重新访问某一地点时保持场景身份。我们提出 ZYT-World，这是一种能够原生生成四个视场角大于 180° 的鱼眼视图和三个针孔视图的单一架构。面向投影的 Plücker 适配器编码相机几何信息，基于自车运动自适应的层归一化提供全局运动控制，轻量级像素对齐布局则通过实例级边界框、朝向和颜色对交通参与者及信号灯进行条件控制。异构训练将完整相机系统的几何覆盖与高分辨率细节结合起来。教师强制、因果一致性蒸馏、自回滚分布匹配蒸馏以及 RigCritic，将一个 40 步双向教师模型转换为一个每个潜变量一步、按流式方式运行的生成器，其中 RigCritic 对七视图相机系统进行联合评估。一个拥有 1900 万参数的变分自编码器解码器 TinyVAE、W8A8 量化和我们的推理引擎，分别降低了解码、主干网络计算和增量执行成本。最后，利用从真实采集中构造的跨轨迹样本对训练一个可插拔的隐式记忆模块，以保留地点特有的证据。在内部多视图测试集上，一步模型保留了教师模型超过 90% 的 PSNR 和 SSIM，同时 FID、FVD 和 LPIPS 与教师模型的差异均在 11% 以内。在图 2 所示的仅生成器计时设置下，它比 40 步双向教师模型快 107.7 倍。TinyVAE 的解码速度比 Wan 解码器快 59.8 倍。30 秒回滚和跨轨迹重访实验展示了预期的长时域与记忆行为。",
       "note_path": "2026-09-22/2609.21712-zyt-world-a-real-time-controllable-world-model-f.md"
     },
     {
@@ -115,6 +124,33 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2609.24788",
+      "date": "2026-09-21",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "Streaming Video Editing with Easy Adaptation",
+      "abstract": "In this paper, we propose SVEET, a framework that requires merely training on a pretrained bidirectional video diffusion model but supports high-quality streaming video editing in an auto-regressive fashion. To tackle this problem, we first systematically revisit existing video-to-video diffusion approaches and identify two key principles for such streaming adaptation: backbone feature disentanglement and conditional frame independence. Building on these insights, we develop a novel paradigm for controllable video generation. At its core, an auxiliary model branch encodes source video inputs with temporally independent self-attention, and the intermediate features are injected into the corresponding backbone blocks for streaming-compatible control. Moreover, to bridge the discrepancy between the feature spaces of bidirectional and streaming models, we propose a decoupled training scheme that explicitly enforces the orthogonality between the optimization directions of video controllability and model causality. Such disentanglement ensures compatibility between the two objectives at inference and facilitates smooth zero-shot knowledge transfer across heterogeneous backbone architectures. Extensive experiments demonstrate that SVEET achieves superior editing quality while maintaining real-time performance, attaining 15 FPS on a single H100 GPU 17 without any auxiliary acceleration techniques. Codes are available at https://github.com/YujiaHu1109/SVEET.",
+      "authors": [
+        "Yujia Hu",
+        "Jiajun Li",
+        "Zihao He",
+        "Songhua Liu"
+      ],
+      "url": "http://arxiv.org/abs/2609.24788v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "In this paper, we propose SVEET, a framework that requires merely training on a pretrained bidirectional video diffusion model but supports high-quality streaming video editing in an auto-regressive fashion.",
+      "contribution_cn": "In this paper, we propose SVEET, a framework that requires merely training on a pretrained bidirectional video diffusion model but supports high-quality streaming video editing in an auto-regressive fashion.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：streaming, real-time, acceleration, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2609.22641",
       "date": "2026-09-18",
       "topics": [
@@ -145,178 +181,187 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.20892",
-      "date": "2026-09-17",
+      "id": "2609.24033",
+      "date": "2026-09-21",
       "topics": [
         "World Models"
       ],
-      "title": "WM-VS: Progress-Aligned World Models for Closed-Loop Visual Servoing",
-      "abstract": "Closed-loop visual servoing requires predictions that indicate whether an action reduces task error, not only whether the action is plausible. We call this gap the prediction-control mismatch and introduce WM-VS, a target-centric progress-aligned world-model framework for closed-loop visual servoing. Offline target-region DINOv2 correspondences define a signed four-dimensional servo coordinate for translation, scale, and in-plane rotation. Stage 1 aligns action-conditioned latent transitions with this coordinate; Stage 2 freezes the world model and trains a reactive joint-velocity policy with action imitation, consequence supervision, and short imagined rollouts that favor error contraction. Deployment is RGB-only and reactive, without online trajectory optimization. On a real 7-DoF eye-to-hand system, WM-VS reaches a corner RMSE no larger than 10 percent of its initial value in 30/30 trials and retains this criterion at the final valid frame in 25/30 (83.33 percent). Removing future-error alignment reduces retention to 26.67 percent. The learned progress signal agrees with an external AprilTag corner error not used for training or control (mean Spearman rho = 0.8778). Without retraining, two unseen 3D targets achieve translation-error reductions of 86.48 percent and 90.27 percent and rotation-error reductions of 70.01 percent and 65.70 percent. These results link progress-aligned action consequences to repeated closed-loop correction and transfer. Code and data will be released as open source.",
+      "title": "Imagine-RL: Residual-Confidence-Guided Cross-Attention for World-Model-Augmented VLA Reinforcement Learning",
+      "abstract": "Reliable action evaluation in contact-rich manipulation requires looking beyond the current observation to future visual and contact consequences. Existing noise-space reinforcement learning efficiently steers a frozen Vision-Language-Action (VLA) policy, but its critics largely ignore these consequences. We present Imagine-RL, which augments noise-space VLA post-training with action-conditioned visual-torque imagination. For each candidate action chunk, a frozen visual-torque latent world model (VTLWM) autoregressively predicts compact future representations without pixel reconstruction. A current image-state-action query attends to observed histories and predicted futures, while previous-window prediction residuals provide token-wise confidence priors that suppress unreliable future tokens. By combining current evidence with predicted consequences, the action critic better evaluates candidate actions and supervises the actor, while the VLA and VTLWM remain frozen. Across four real-robot tasks with 50 evaluation trials per task, Imagine-RL uses only 100 RL trajectories and improves the average success rate by (23.6%) over DSRL and by (60%) over VLA baselines.",
       "authors": [
-        "Guanzhong Sun",
-        "Junyi Ma",
-        "Yixuan Zhou",
-        "Yuxuan Wu",
-        "Yanzi Miao",
-        "Hesheng Wang"
+        "Kejia Hu",
+        "Wentong Zhai",
+        "Bo Zhao",
+        "Shuai Liang"
       ],
-      "url": "http://arxiv.org/abs/2609.20892v1",
+      "url": "http://arxiv.org/abs/2609.24033v1",
       "categories": [
-        "cs.RO",
-        "cs.CV"
+        "cs.RO"
       ],
-      "comment": "",
-      "score": 66,
+      "comment": "8 pages, 9 figures",
+      "score": 69,
       "priority": "skim",
-      "summary_cn": "Closed-loop visual servoing requires predictions that indicate whether an action reduces task error, not only whether the action is plausible.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
+      "summary_cn": "Reliable action evaluation in contact-rich manipulation requires looking beyond the current observation to future visual and contact consequences.",
+      "contribution_cn": "We present Imagine-RL, which augments noise-space VLA post-training with action-conditioned visual-torque imagination.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, autoregressive, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.21228",
-      "date": "2026-09-18",
+      "id": "2609.14725",
+      "date": "2026-09-20",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation",
+      "abstract": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity. We show that this tension can be exploited in a noise-regime-dependent way: high-noise steps largely determine global modes, whereas low-noise steps refine local details. We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state. In contrast to loss-level mixing, and complementarily to training-time two-stage recipes, CrossDistill explicitly assigns complementary objectives along the noise axis, so that global branching is preserved before local statistics are sharpened. CrossDistill is a noise-level scheduling policy: PCM and DMD are plug-in instantiations, while the noise partition, crossover coupling, and objective ordering are the key design elements. Experiments on text-to-video diffusion models and qualitative image-to-video results show that CrossDistill expands the few-step quality-diversity frontier, retaining seed-level variation while achieving competitive visual fidelity.",
+      "authors": [
+        "Yuxi Liu",
+        "Haoyu Li",
+        "Yixiang Cai",
+        "Tengxu Sun",
+        "Zekun Zhang",
+        "Baole Ai",
+        "Ang Wang",
+        "Jiamang Wang",
+        "Lin Qu",
+        "Kun Yuan",
+        "Kai Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2609.14725v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.",
+      "contribution_cn": "We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.24976",
+      "date": "2026-09-21",
       "topics": [
         "World Models"
       ],
-      "title": "FOCAL-VLA: Subtask-Guided Geometry Distillation and Implicit World Modeling for Vision-Language-Action Models",
-      "abstract": "Vision-language-action (VLA) models built on pretrained vision-language models have demonstrated strong performance across diverse robotic manipulation tasks. However, VLA models that directly map current 2D observations to actions often lack sufficient spatial and temporal understanding, limiting their performance in precise and long-horizon manipulation. Recent methods enhance VLA models through geometric supervision and future-state prediction across the entire scene. However, these methods can suffer from redundant scene information, distracting the model from learning the geometry and dynamics relevant to the current interaction. To address this issue, we propose FOCAL-VLA, a framework that combines subtask-guided geometry distillation with implicit world modeling to learn representations of current spatial structure and future interaction dynamics. To focus geometric learning on the current subtask, we transfer geometric knowledge from VGGT to the VLA model by aligning geometry latents with features from subtask-relevant image regions. To capture the future 3D evolution of the current interaction, we incorporate implicit world modeling using Track4World features from current and future demonstration frames. The two complementary representations jointly guide action generation without running VGGT or Track4World at inference time. Experiments show that FOCAL-VLA outperforms baselines on both simulation benchmarks and real-world manipulation tasks. Project website: https://zhiyuan-gao.github.io/FOCAL-VLA/.",
+      "title": "DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation",
+      "abstract": "Dexterous manipulation depends on contact dynamics that are often only partially observable from vision. Recent World-Action Models (WAMs) couple predictive video world modeling with action generation, but remain largely vision-centric and therefore cannot directly model these contact dynamics. We present DexTacWAM, a visuo-tactile WAM that encodes each fingertip independently, aggregates the resulting features through a finger- and pose-aware tactile compressor, and injects the tactile latent into a video diffusion world model for joint visuo-tactile world modeling. Across six contact-rich dexterous manipulation tasks on a 22-DoF bimanual platform, DexTacWAM achieves the highest score on every task, averaging 70.6 versus 38.0 for the strongest baseline. Ablations attribute the gain to modeling contact evolution as part of the predicted world state rather than tactile conditioning alone: removing tactile world modeling reduces the four-task mean from 74.7 to 26.6 while keeping the same tactile features and action expert. After four hours of tactile-encoder adaptation with a frozen pretrained vision VAE, our continual vision-to-touch learning extends the pretrained video model to touch using roughly 100 demonstrations per task without tactile midtraining, while retaining visual prediction quality within 0.5 dB of vision-only counterparts. The compressor retains 89.4% of pre-fusion contact recall while enabling 2.26x faster training and 1.29x faster inference. Together, these results show that pretrained video priors can be extended to distributed multi-finger contact dynamics in a data- and compute-efficient manner.",
       "authors": [
-        "Zhiyuan Gao",
-        "Di Wen",
-        "Yanxiang Zhan",
-        "Mohammad Khoshnazar",
-        "Jeroen Schäfer",
-        "Kunyu Peng",
-        "Michael Beetz"
+        "Haoran Yuan",
+        "Zekai Wang",
+        "Boning Shao",
+        "Haoran Lu",
+        "Trevor Darrell",
+        "Ismini Lourentzou",
+        "Wei Zhan"
       ],
-      "url": "http://arxiv.org/abs/2609.21228v1",
+      "url": "http://arxiv.org/abs/2609.24976v1",
       "categories": [
         "cs.RO",
         "cs.AI",
         "cs.CV"
       ],
-      "comment": "",
-      "score": 61,
+      "comment": "22 pages. Project website: https://dextacwam.github.io/",
+      "score": 62,
       "priority": "skim",
-      "summary_cn": "Vision-language-action (VLA) models built on pretrained vision-language models have demonstrated strong performance across diverse robotic manipulation tasks.",
-      "contribution_cn": "To address this issue, we propose FOCAL-VLA, a framework that combines subtask-guided geometry distillation with implicit world modeling to learn representations of current spatial structure and future interaction dynamics.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, distillation",
+      "summary_cn": "Dexterous manipulation depends on contact dynamics that are often only partially observable from vision.",
+      "contribution_cn": "We present DexTacWAM, a visuo-tactile WAM that encodes each fingertip independently, aggregates the resulting features through a finger- and pose-aware tactile compressor, and injects the tactile latent into a video diffusion world model for joint visuo-tactile world modeling.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, efficient, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.19729",
-      "date": "2026-09-17",
+      "id": "2609.23753",
+      "date": "2026-09-20",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "Recency Forcing: Bridging the Long-Horizon Gap in Autoregressive Video Generation",
-      "abstract": "Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where all context frames reside in the KV cache, but at inference, memory constraints force distant frames to be evicted from the KV cache - removing context the model was conditioned on. Rather than simulating eviction via context truncation - which discards temporal information the model still needs and degrades motion coherence - we keep the context but while progressively reducing the influence of distant frames, making their eventual eviction negligible. To guide this design, we introduce the positional response $R( Δ, \\, t_{\\text{denoise}})$, a perturbation-based sensitivity measure revealing that context influence decays steeply with temporal distance and varies systematically across denoising steps. Motivated by this analysis, we propose Recency Forcing, which applies a non-positive, timestep-dependent bias, termed Temporal Response Bias (TRB), on pre-softmax attention logits derived directly from $R$, closing the train-inference gap without modifying context length or training objectives. We further introduce Biased Attention Reparameterization (BAR), an exact reformulation that moves the bias outside the softmax, making TRB a standard FlashAttention call at zero overhead. Recency Forcing operates in both training-free mode and training-based mode. Experiments on VBench and VBench-Long demonstrate state-of-the-art long-horizon generation quality at no additional inference cost.",
+      "title": "OnlineWM: Causality-Aware Active Online Learning for Effective World Modeling",
+      "abstract": "Generative world models aim to predict future states conditioned on actions, where action controllability is fundamental for reliable dynamics modeling. While recent efforts leverage simulator-generated data to enhance this capability, existing training pipelines face two fundamental limitations. First, static offline data collection leads to a distribution misalignment between training sets and the model's evolving error patterns, failing to resolve critical long-tail scenarios where dynamics predictions remain unreliable. Second, the standard objective of minimizing observational discrepancy often encourages the model to exploit spurious correlations instead of capturing the underlying action-effect causality. To address these limitations, we propose OnlineWM, an online training framework that continuously improves world modeling through active simulator interaction and causality-aware optimization. OnlineWM introduces two key innovations: (1) Active Online Learning: Instead of using fixed datasets, OnlineWM adaptively queries the simulator for new interaction sequences that target the model's current predictive weaknesses, ensuring high-utility data acquisition. (2) Causality-Aware Fine-Tuning: We propose a counterfactual learning strategy that contrasts the outcomes of different actions from identical states, forcing the model to attribute state transitions to specific actions rather than ambient environmental evolution, thereby grounding its predictions in reliable causal mechanisms. By integrating active data acquisition with causal optimization, OnlineWM establishes a closed-loop refinement process that ensures the model is both robust to diverse scenarios and precise in its causal attribution. Extensive experiments demonstrate that OnlineWM significantly enhances action controllability and generalizes effectively to unseen domains.",
       "authors": [
-        "Tri Cao",
-        "Hung Nguyen",
-        "Phong Nguyen",
-        "Khoi Nguyen"
+        "Yikun Miao",
+        "Fangqi Zhu",
+        "Quanxin Shou",
+        "Xiaoyi Pang",
+        "Zhengyang Yan",
+        "Junhao Li",
+        "Haodong Wang",
+        "Zicong Hong",
+        "Song Guo"
       ],
-      "url": "http://arxiv.org/abs/2609.19729v1",
+      "url": "http://arxiv.org/abs/2609.23753v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "23 pages, 9 figures. Project page: https://onlinewm.github.io/",
+      "score": 54,
+      "priority": "skim",
+      "summary_cn": "Generative world models aim to predict future states conditioned on actions, where action controllability is fundamental for reliable dynamics modeling.",
+      "contribution_cn": "To address these limitations, we propose OnlineWM, an online training framework that continuously improves world modeling through active simulator interaction and causality-aware optimization.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.24308",
+      "date": "2026-09-21",
+      "topics": [
+        "World Models"
+      ],
+      "title": "HappyWorld-Bench",
+      "abstract": "Evaluating world models requires assessing both the quality of the worlds they generate and their consistency and responsiveness under exploration, interaction, and modification. We introduce HappyWorld-Bench, a comprehensive benchmark that evaluates whether generated worlds remain reliable as agents interact with them. Our design is built on a hierarchical capability framework of six world capabilities (W1-W6), from generative construction to unified world modeling, instantiated across three independent evaluation tracks: video world models, spatial world models, and embodied world models. HappyWorld-Bench comprises 1,138 video prompts, 300 spatial scenes, and 254 embodied test cases. Across all three tracks, we build and operate HappyWorld-Arena to organize human A/B comparisons and derive model-level Elo ratings, which complement newly designed automated metrics that capture behavioral correctness. We evaluate 14 video world models, 9 spatial systems, and 8 embodied candidates under this unified framework. Results reveal remaining reliability gaps across all three tracks: video models exhibit reduced consistency during extended rollouts and revisits, spatial models achieve at best 70.14% placement accuracy and 73.33% edit execution, and embodied models struggle to preserve state across multi-step actions and respond precisely to altered action conditions and physical rules. These findings highlight the need to evaluate world models not only by visual quality, but also by state consistency and the correctness of their responses to actions and interventions.",
+      "authors": [
+        "Zhiqi Bai",
+        "Junai Cai",
+        "Yixin Chen",
+        "Jingrun Du",
+        "Tao Feng",
+        "Wei Gong",
+        "Siyuan Huang",
+        "Xiao Lin",
+        "Jiaheng Liu",
+        "Jun Luo",
+        "Yongzhe Lyu",
+        "Liya Ma",
+        "Zenan Meng",
+        "Lin Qu",
+        "Wenbo Su",
+        "Jiaming Wang",
+        "Qinghe Wang",
+        "Shaofei Wang",
+        "Yanghai Wang",
+        "Zequn Wang",
+        "Ziming Wang",
+        "Hu Wei",
+        "Jiangtao Wu",
+        "Ruiqi Wu",
+        "Jiaxin Xie",
+        "Yuchi Xu",
+        "Ze Xu",
+        "Chengting Yu",
+        "Liangyu Yuan",
+        "Gang Zeng",
+        "Yawen Zeng",
+        "Xingyao Zhang",
+        "Zizheng Zhang",
+        "Bo Zheng",
+        "Jiancheng Zhu",
+        "Song-Chun Zhu"
+      ],
+      "url": "http://arxiv.org/abs/2609.24308v1",
       "categories": [
         "cs.CV"
       ],
       "comment": "",
-      "score": 59,
+      "score": 53,
       "priority": "skim",
-      "summary_cn": "Autoregressive (AR) video generation degrades over long horizons due to an overlooked train-inference discrepancy we term KV eviction mismatch: models train on short clips where all context frames reside in the KV cache, but at inference, memory constraints force distant frames to be evicted from the KV cache - removing context the model was conditioned on.",
-      "contribution_cn": "To guide this design, we introduce the positional response $R( Δ, \\, t_{\\text{denoise}})$, a perturbation-based sensitivity measure revealing that context influence decays steeply with temporal distance and varies systematically across denoising steps.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.20051",
-      "date": "2026-09-17",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models",
-      "abstract": "Step distillation reduces the cost of video generation, but reusing a LoRA trained for a longer trajectory can alter its functional effect or degrade target quality. Static parameter compatibility offers one perspective on this problem; our observations show that similar measured geometry can coexist with different adapter behavior under a shortened denoising schedule. We propose DART, a training-free method that combines low-rank coordinate transport with target-schedule response calibration using forward evaluations and no source training videos. On a four-step Wan2.2 target, DART-F improves the joint quality score from 0.9029 to 0.9227 and changes macro functional retention from -0.4644 to +0.1349. Component analysis shows that calibration accounts for most of the quality improvement, while coordinate transport provides complementary gains when combined with calibration. Adapter-level results reveal positive functional effects for some adapters and strong attenuation with reduced negative functional effects for others. Evaluations on two additional targets show the same aggregate trend. These results motivate evaluating distilled-model LoRA reuse jointly through functional preservation and negative-transfer avoidance, without assuming recovery for every adapter.",
-      "authors": [
-        "Shihong Li",
-        "Juntao Xu",
-        " JinCao",
-        "Maowen Tang",
-        "Jun Huang",
-        "Jintao Li"
-      ],
-      "url": "http://arxiv.org/abs/2609.20051v1",
-      "categories": [
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "Step distillation reduces the cost of video generation, but reusing a LoRA trained for a longer trajectory can alter its functional effect or degrade target quality.",
-      "contribution_cn": "We propose DART, a training-free method that combines low-rank coordinate transport with target-schedule response calibration using forward evaluations and no source training videos.",
-      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：few-step, distillation, video generation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.19863",
-      "date": "2026-09-17",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Feeling Terrain Before Crossing: World Models for Off-Road Navigation",
-      "abstract": "Navigation world models plan by foresight, predicting the future that each candidate action sequence produces and selecting the best, rather than mapping observations to actions directly. Unlike urban settings where a predicted scene is a sufficient proxy, off-road navigation hinges on the robot--terrain interaction, so the prediction must cover not only what the camera will see but what the robot will feel. However, existing scene-focused models do not predict how much the robot will slip, tilt or shake along a planned trajectory. Proprioception captures these dynamics directly and, when used as input, improves the prediction of the physical future. We present Feel-WM, the first off-road navigation world model that conditions on proprioception and predicts what the robot will feel alongside what the camera will see. The physical future takes the form of a future proprioceptive state and a failure risk, both learned from the robot's own experience without human labels. The planner rolls out the physical future alongside the scene and weighs the predicted failure risk against goal similarity in a separable score. Experiments on real off-road data and in simulation demonstrate that Feel-WM outperforms visual-only navigation world models in open-loop planning and closed-loop rough-terrain navigation across wheeled and legged platforms. Deployed on a Husky on mountain trails, Feel-WM plans onboard, predicts rough ground ahead and steers around it, completing courses that an end-to-end policy fails.",
-      "authors": [
-        "E-In Son",
-        "Dong-Wook Kim",
-        "Ji-Hoon Hwang",
-        "Kangsun Lee",
-        "Jisung Bae",
-        "Jung-Taak Kim",
-        "Seung-Woo Seo"
-      ],
-      "url": "http://arxiv.org/abs/2609.19863v1",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "comment": "8 pages, 6 figures",
-      "score": 57,
-      "priority": "skim",
-      "summary_cn": "Navigation world models plan by foresight, predicting the future that each candidate action sequence produces and selecting the best, rather than mapping observations to actions directly.",
-      "contribution_cn": "We present Feel-WM, the first off-road navigation world model that conditions on proprioception and predicts what the robot will feel alongside what the camera will see.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.20604",
-      "date": "2026-09-17",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Semantic SLAM in Precision Agriculture using Bayesian Inference",
-      "abstract": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots. The framework combines probabilistic mapping of objects and their semantic attributes, updated through Bayesian inference, with a graph-based Simultaneous Localization and Mapping (SLAM) approach implemented using $g^2o$, a general framework for graph optimization. This integration enables accurate mapping and localization without relying solely on GPS. By leveraging semantic information such as plant type, size, and health, the robot can perform tasks while mapping and localizing itself within a field of crops. The proposed framework was validated through Gazebo simulations and physical experiments on an indoor field with artificial plants using Boston Dynamics' robot dog Spot. A YOLOv8n object detection model was trained to extract object and semantic data from depth camera observations. These simulations and experiments demonstrate that the system can successfully perform real-time mapping of up to at least 400 plants.",
-      "authors": [
-        "Ruben Beumer",
-        "Sander Doodeman",
-        "René van de Molengraft",
-        "Duarte Antunes"
-      ],
-      "url": "http://arxiv.org/abs/2609.20604v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 56,
-      "priority": "skim",
-      "summary_cn": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots.",
-      "contribution_cn": "This paper presents a real-time semantic world modeling framework specialized for precision agriculture using autonomous robots.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, real-time",
+      "summary_cn": "Evaluating world models requires assessing both the quality of the worlds they generate and their consistency and responsiveness under exploration, interaction, and modification.",
+      "contribution_cn": "We introduce HappyWorld-Bench, a comprehensive benchmark that evaluates whether generated worlds remain reliable as agents interact with them.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
