@@ -1,4 +1,4 @@
-## Updated on 2026.09.22
+## Updated on 2026.09.23
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -17,6 +17,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-22**|**Decoupling Logical Masks from GPU Execution for Dynamic Block-Sparse Attention**|Shanghao Liu et.al.|[2609.25869](http://arxiv.org/abs/2609.25869)|null|
+|**2026-09-22**|**TRACE: Trajectory Representation and Consistency Estimation for AI-Generated Video Detection**|Huangsen Cao et.al.|[2609.25775](http://arxiv.org/abs/2609.25775)|null|
 |**2026-09-21**|**VideoGen-Agent: Reinforcing Video Generation Agents**|Binxu Li et.al.|[2609.24997](http://arxiv.org/abs/2609.24997)|null|
 |**2026-09-21**|**Streaming Video Editing with Easy Adaptation**|Yujia Hu et.al.|[2609.24788](http://arxiv.org/abs/2609.24788)|null|
 |**2026-09-21**|**TReViS: Temporal Repetition Structure Aware Video Synthesis for Self-supervised Repetitive Action Counting**|Fanqi Yu et.al.|[2609.24367](http://arxiv.org/abs/2609.24367)|null|
@@ -25,14 +27,14 @@
 |**2026-09-19**|**RewardVerse: Rubric-Guided Policy Optimization for Video Reward Modeling**|Zhenchen Tang et.al.|[2609.22947](http://arxiv.org/abs/2609.22947)|null|
 |**2026-09-13**|**Rethinking Streaming Video Diffusion Model: Context, Execution, and Training**|Hongchen Zhang et.al.|[2609.22283](http://arxiv.org/abs/2609.22283)|null|
 |**2026-09-18**|**JEPA Guided Diffusion: Predictive Vision-Language Conditioning for Generative Traffic Forecasting**|Trinh Tra Giang Nguyen et.al.|[2609.21379](http://arxiv.org/abs/2609.21379)|null|
-|**2026-09-18**|**4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors**|Haitao Huang et.al.|[2609.21176](http://arxiv.org/abs/2609.21176)|null|
-|**2026-09-17**|**Video DeltaNet: A Video-Native Hybrid Attention for Livestream Video Generation**|Haocheng Xi et.al.|[2609.20744](http://arxiv.org/abs/2609.20744)|null|
+|**2026-09-21**|**4DGS-Fixer: Generative Sparse-View 4D Gaussian Splatting with Iterative Refinement Guided by Video Diffusion Priors**|Haitao Huang et.al.|[2609.21176](http://arxiv.org/abs/2609.21176)|null|
+|**2026-09-21**|**Video DeltaNet: A Video-Native Hybrid Attention for Livestream Video Generation**|Haocheng Xi et.al.|[2609.20744](http://arxiv.org/abs/2609.20744)|null|
 |**2026-09-17**|**V2-STRep: VLM-Grounded Structured Task Representations for Reusable Robot Skills Acquired from Generated Videos**|Yexin Hu et.al.|[2609.20582](http://arxiv.org/abs/2609.20582)|null|
 |**2026-09-17**|**DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models**|Shihong Li et.al.|[2609.20051](http://arxiv.org/abs/2609.20051)|null|
 |**2026-09-17**|**Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings**|Yutao Ming et.al.|[2609.19782](http://arxiv.org/abs/2609.19782)|null|
 |**2026-09-17**|**Dreaming the Sound of Contact: Leveraging Video and Audio Generation for Zero-Shot Force-Aware Manipulation and Data Generation**|Guanhua Ji et.al.|[2609.19137](http://arxiv.org/abs/2609.19137)|null|
 |**2026-09-16**|**vidax: A Unified JAX Framework for Video Generative Models on Accelerator Meshes**|Congyue Deng et.al.|[2609.18077](http://arxiv.org/abs/2609.18077)|null|
-|**2026-09-15**|**PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control**|Chuhao Chen et.al.|[2609.17521](http://arxiv.org/abs/2609.17521)|null|
+|**2026-09-21**|**PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control**|Chuhao Chen et.al.|[2609.17521](http://arxiv.org/abs/2609.17521)|null|
 |**2026-09-15**|**VOR-Bench: A Human Perception-Driven Benchmark for Video Object Removal**|Haonan Huang et.al.|[2609.16878](http://arxiv.org/abs/2609.16878)|null|
 |**2026-09-14**|**LynnReal-Omni: Native multi-modal Video Generation for Agentic Visual Workflows**|Xiaofeng Mao et.al.|[2609.15863](http://arxiv.org/abs/2609.15863)|null|
 |**2026-09-15**|**DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models**|Jing Lyu et.al.|[2609.15570](http://arxiv.org/abs/2609.15570)|null|
@@ -1402,18 +1404,27 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20260922>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260923>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-22**|**TriWorldBench: A Tri-View Consistency Perspective on Embodied World Models**|Xuanyi Liu et.al.|[2609.26314](http://arxiv.org/abs/2609.26314)|null|
+|**2026-09-22**|**ForeDrive: Foresight-Guided End-to-End Autonomous Driving with a Planning-Relevant Latent World Model**|Sinuo Wang et.al.|[2609.26299](http://arxiv.org/abs/2609.26299)|null|
+|**2026-09-22**|**Dual-Frontier: When Can an Agent Trust Its World Model?**|Huatai Zhu et.al.|[2609.26293](http://arxiv.org/abs/2609.26293)|null|
+|**2026-09-22**|**Skytopia: Monocular Drone Navigation with Action-Conditioned Latent World Models**|Yuhang Zhang et.al.|[2609.26007](http://arxiv.org/abs/2609.26007)|null|
+|**2026-09-22**|**An Action Is Worth One Patch: Unified World-Action Modeling with PatchWAM**|Tianheng Wang et.al.|[2609.25961](http://arxiv.org/abs/2609.25961)|null|
+|**2026-09-22**|**GameDirector: Decoupling Gameplay Logic from Rendering for Player-Configurable Game World Models**|Zijun Lin et.al.|[2609.25652](http://arxiv.org/abs/2609.25652)|null|
+|**2026-09-22**|**MachEmbodied-U0: Unified Understanding and Generation Model for Embodied Intelligence**|Haoran Wen et.al.|[2609.25627](http://arxiv.org/abs/2609.25627)|null|
+|**2026-09-22**|**IndustrialVLA-Bench: A Traceable Multi-Axis Evaluation of Open Robot Policy Models**|Yiqi Wang et.al.|[2609.25562](http://arxiv.org/abs/2609.25562)|null|
+|**2026-09-22**|**A JEPA Recipe for Tabular Foundation Models**|Mingyu Jeon et.al.|[2609.25541](http://arxiv.org/abs/2609.25541)|null|
 |**2026-09-21**|**WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory**|Wangbo Yu et.al.|[2609.24984](http://arxiv.org/abs/2609.24984)|null|
 |**2026-09-21**|**DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation**|Haoran Yuan et.al.|[2609.24976](http://arxiv.org/abs/2609.24976)|null|
 |**2026-09-21**|**DualWAM: Dual-System World Action Models for Asynchronous Global Planning and Local Refinement**|Yixin Zheng et.al.|[2609.24868](http://arxiv.org/abs/2609.24868)|null|
 |**2026-09-21**|**D-JEPA: A Decision-Aligned Latent World Model**|Shuaijun Liu et.al.|[2609.24749](http://arxiv.org/abs/2609.24749)|null|
 |**2026-09-21**|**Beyond Visual Quality: A Study of Test-Time Planning with World Action Models**|Jianhao Yuan et.al.|[2609.24745](http://arxiv.org/abs/2609.24745)|null|
-|**2026-09-21**|**Think Like a World Model, Act Like a VLA: Distilling World-Model Representations into Compact Robot Policies**|Trung Dao et.al.|[2609.24682](http://arxiv.org/abs/2609.24682)|null|
+|**2026-09-22**|**Think Like a World Model, Act Like a VLA: Distilling World-Model Representations into Compact Robot Policies**|Trung Dao et.al.|[2609.24682](http://arxiv.org/abs/2609.24682)|null|
 |**2026-09-21**|**Relationally Grounded Latent World Models for Autonomous Driving**|Fabian Schmidt et.al.|[2609.24626](http://arxiv.org/abs/2609.24626)|null|
 |**2026-09-21**|**Few-Shot Demonstrations Elicit the Use of In-Context World Representations in LLMs**|Kohsei Matsutani et.al.|[2609.24352](http://arxiv.org/abs/2609.24352)|null|
 |**2026-09-21**|**LIBERO-VPro: Benchmarking Closed-Loop Visual Robustness of Robotic Foundation Models**|Huiqiong Li et.al.|[2609.24350](http://arxiv.org/abs/2609.24350)|null|
@@ -1739,7 +1750,7 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20260922>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260923>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
@@ -1797,7 +1808,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20260922>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260923>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -1829,5 +1840,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20260922>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20260923>back to top</a>)</p>
 
