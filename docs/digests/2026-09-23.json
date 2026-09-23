@@ -1,7 +1,39 @@
 {
-  "generated_at": "2026-09-23T01:54:11+00:00",
+  "generated_at": "2026-09-23T15:36:52+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
+    {
+      "id": "2609.26425",
+      "date": "2026-09-22",
+      "topics": [
+        "World Models"
+      ],
+      "title": "QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation",
+      "abstract": "KV cache memory has become a major deployment bottleneck for video generation and world models, which motivates low-bit quantization study for efficiency. Existing 2-bit KV cache quantization methods can achieve nearly lossless performance on video benchmarks such as VBench, however, we find that they still cause severe temporal flickering and visual degradation. Meanwhile, deeper investigates show that Key quantization produces smaller reconstruction errors than Value, but surprisingly leads to much larger output degradation. We trace this discrepancy to attention: small Key perturbations can change the attention logits, i.e., QK^\\top, and shift the temporal-spatial tokens selected by Queries. These observations motivate us to explicitly preserve attention logits and temporal-spatial token selection during KV cache quantization to alleviate the visual degradation problem. To address this issue, we present QuantWM, a training-free and strictly causal 2-bit KV cache quantization framework. QuantWM introduces two complementary techniques to mitigate the attention shifts. Firstly, quantization-sensitivity-aware clustering (QSAC) jointly considers historical Query sensitivity and residual ranges to select INT2-friendly Key centroids, which reduces quantization errors in channels that are more critical to attention. In addition, principal-subspace attention compensation (PSAC) restores the remaining Key errors along the dominant Query subspace using low-rank projections, which provides a direct and efficient correction to stabilize attention logits. Extensive experiments on Causal-Forcing, LingBot-World-v2, HY-World 1.5, Matrix-Game-2 and Longcat-Video demonstrate that QuantWM significantly improves visual quality and temporal consistency, while outperforming existing methods across image and video quality metrics with up to 6.20x KV cache memory compression and limited additional overhead.",
+      "authors": [
+        "Jiaqi Zhao",
+        "Xiaobin Hu",
+        "Bo Yin",
+        "Junpeng Jiang",
+        "Miao Zhang",
+        "Shuicheng Yan"
+      ],
+      "url": "http://arxiv.org/abs/2609.26425v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "论文研究视频生成和交互式世界模型中2比特KV缓存量化引起的隐性视觉退化。作者发现，Key量化虽然重建误差小于Value量化，却会通过扰动QKᵀ改变Query对历史时空Token的选择，造成时间闪烁、模糊和伪影。为此提出无需训练、严格因果的QuantWM：QSAC依据历史Query的通道敏感性和残差动态范围选择量化质心，PSAC则利用Query主子空间的低秩投影补偿剩余Key误差。五个视频生成和世界模型上的实验显示，该方法降低了Token选择偏移，改善了PSNR、SSIM、LPIPS及VBench表现，并在最高6.20倍缓存压缩下保持有限延迟开销。",
+      "contribution_cn": "1. 揭示现有2比特KV缓存量化在视频生成和世界模型中存在未被充分反映的时间闪烁与视觉退化，并指出Key量化是主要原因。2. 从注意力logits和时空Token选择偏移的角度解释Key量化的高敏感性。3. 提出QSAC，将历史Query敏感性与残差量化难度结合，用于选择更适合INT2量化的Key质心。4. 提出PSAC，在历史Query主子空间中以低秩方式补偿剩余Key误差，直接稳定注意力logits。5. 构建训练免费的严格因果2比特KV缓存量化框架，在多个视频生成和世界模型上实现最高6.20倍内存压缩并改善视觉质量与时间一致性。",
+      "relevance_cn": "与研究重点高度相关。论文直接面向视频生成、视频扩散式世界模型和自回归、因果、流式长视频生成中的KV缓存内存瓶颈。其核心贡献是通过低比特量化、注意力敏感性建模和主子空间补偿，在保持历史视觉上下文与时空Token选择稳定的同时减少缓存占用，适用于动作条件世界模型和闭环模拟中的持续生成。实验覆盖LingBot-World-v2、HY-World 1.5、Matrix-Game-2、Causal-Forcing和LongCat-Video，并报告了缓存压缩、视觉质量、时间一致性和推理延迟之间的关系。",
+      "limitations_cn": "论文的实验主要覆盖五个开源模型、480p和720p视频及约93帧生成，尚不能充分证明对更长视频、更高分辨率或更多模型架构的泛化能力。QSAC使用Query二阶统计的对角近似，PSAC固定使用低秩主子空间（实现中为秩8），这些近似可能在不同模型或分布下影响效果。方法仍需保存BF16质心、主子空间及额外补偿信息，并依赖定制推理内核。部分模型的端到端延迟有所增加；论文未明确说明在更长时间闭环交互、复杂动作分布或极端显存约束下的性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "KV缓存内存已成为视频生成和世界模型部署中的主要瓶颈，因此有必要研究低比特量化以提升效率。现有的2比特KV缓存量化方法在VBench等视频基准上能够实现近乎无损的性能，但我们发现，这些方法仍会导致严重的时间闪烁和视觉质量下降。进一步研究表明，Key量化产生的重建误差小于Value量化，但却出人意料地导致更严重的输出退化。我们将这一差异追溯到注意力机制：细微的Key扰动可能改变注意力logits，即QKᵀ，并改变Query所选择的时空Token。基于这些观察，我们提出在KV缓存量化过程中显式保持注意力logits和时空Token选择，以减轻视觉质量下降问题。为此，我们提出QuantWM，一个无需训练且严格因果的2比特KV缓存量化框架。QuantWM引入了两种互补技术来缓解注意力偏移。首先，量化敏感性感知聚类（QSAC）联合考虑历史Query敏感性和残差范围，以选择适合INT2的Key质心，从而减少注意力更关键通道中的量化误差。此外，主子空间注意力补偿（PSAC）利用低秩投影，沿主导Query子空间恢复剩余的Key误差，从而直接且高效地校正注意力logits，使其更加稳定。在Causal-Forcing、LingBot-World-v2、HY-World 1.5、Matrix-Game-2和Longcat-Video上的大量实验表明，QuantWM能够显著提升视觉质量和时间一致性，并在图像和视频质量指标上优于现有方法，同时实现最高6.20倍的KV缓存内存压缩，仅引入有限的额外开销。",
+      "note_path": "2026-09-23/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md"
+    },
     {
       "id": "2609.24984",
       "date": "2026-09-21",
@@ -32,13 +64,47 @@
       "comment": "Project webpage: https://drexubery.github.io/WorldCrafter",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "WorldCrafter 是一个支持相机控制的自回归视频世界模型，使用从历史潜变量帧中学习的隐式三维感知记忆来维持长时域、跨视角的场景一致性。模型通过最大覆盖率历史帧检索、姿态引导的固定大小记忆读出和近期上下文联合条件化视频 DiT，并通过少步蒸馏实现实时流式生成。实验显示，该方法在闭环重访一致性、相机控制和整体视觉质量方面优于所比较的方法；但复杂或超长轨迹仍可能出现一致性崩溃。",
-      "contribution_cn": "1. 提出隐式三维感知记忆机制，将历史潜变量帧压缩为紧凑表示，并在固定令牌预算内完成高效写入与读出，同时保留空间和时间上下文。2. 将该记忆整合到可控相机的自回归视频生成中，通过姿态引导读出和最大覆盖率历史检索提升长时域重访一致性与相机控制准确性。3. 通过少步金字塔蒸馏构建实时交互系统，在保持视觉质量和主体跟随能力的同时实现流式推理；WorldCrafter-fast 在四 GPU 机器上达到 16 fps。4. 在包含静态、动态场景和闭环重访轨迹的基准上验证了方法，并通过消融实验分析了联合优化、姿态引导读出和历史检索策略的作用。",
-      "relevance_cn": "该论文直接针对视频生成与视频扩散中的长视频一致性、跨视角记忆和实时生成问题。它将视频 DiT、相机条件、自回归分块生成与隐式三维记忆结合，支持用户通过相机轨迹进行闭环交互式世界模拟，适用于动作或相机控制下的视觉世界模型。其固定令牌记忆、历史帧选择和少步蒸馏也分别对应稀疏历史注意力、缓存/记忆复用以及实时视频扩散推理等研究方向。",
-      "limitations_cn": "论文明确指出：在特别复杂或特别长的相机轨迹上，一致性仍可能崩溃；每个生成块都重新编码历史会增加额外延迟。作者提出可采用自回归流式记忆编码器，增量更新记忆状态以减少重复计算。论文未明确说明更广泛场景分布、真实交互动作类型或超出其评测设置的泛化能力。",
+      "summary_cn": "本文提出 WorldCrafter，用于交互式长时视频生成和闭环场景探索。该方法将历史潜变量帧及其相机信息编码为隐式三维感知表示，再根据未来目标相机轨迹进行位姿引导的固定预算读出，并将所得记忆令牌与近期上下文共同输入相机条件自回归视频 DiT。通过最大视野覆盖的历史检索、记忆编码器与生成器联合优化，以及少步蒸馏，模型能够实现长时间、可控且实时的场景探索。实验显示，WorldCrafter在回访一致性、相机控制和整体视觉质量方面优于所比较的方法；蒸馏版本可在四块 GPU 上达到 16 fps。",
+      "contribution_cn": "1. 提出面向视频世界模型的隐式三维感知记忆，将历史潜变量帧压缩为紧凑表示，并在固定令牌预算下高效写入和读出空间—时间上下文。\\n2. 将该记忆整合到相机可控的自回归视频生成框架中，通过未来视角引导记忆读出和最大覆盖历史检索，提高长时间回访一致性与相机控制准确性。\\n3. 通过记忆编码器、视频 DiT、读出模块和相机条件分支的联合优化，使记忆表示适配生成器的令牌空间。\\n4. 采用少步金字塔蒸馏和混合蒸馏模型构建实时交互系统，在保持视觉质量和主体跟随能力的同时支持流式生成。\\n5. 在静态与动态场景、闭环回访轨迹上的实验和消融验证了隐式三维记忆、位姿引导读出、联合优化及最大覆盖检索的有效性。",
+      "relevance_cn": "与研究重点高度相关。WorldCrafter直接面向视频生成、视频扩散和动作/相机条件的视觉世界模型，将目标相机轨迹作为控制信号，在长时间闭环探索中生成后续观测。其分块自回归生成、近期上下文加持久记忆、固定令牌预算读出，以及少步蒸馏和 16 fps 流式推理，分别对应长视频生成、因果/流式生成、缓存与记忆复用、实时生成和扩散加速。隐式三维感知记忆无需显式深度对应或三维重建，却能支持跨视角回访的一致性；实验在 725 条包含回访的长轨迹上验证了这一点。",
+      "limitations_cn": "论文明确指出，面对特别复杂或特别长的相机轨迹时，一致性仍可能失效；每个生成块都重新编码历史会产生额外延迟。作者提出可通过自回归流式记忆编码器增量整合新生成块，以减少对历史的重复计算，但该方向尚未在本文中实现。除此之外，论文未明确说明更大规模真实交互环境、极端动态变化、错误相机位姿估计以及更长时间尺度下的性能边界。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型支持对动态环境进行交互式探索，但难以在长时间跨度和跨视角情况下遵循先前的观测。我们提出 WorldCrafter，一种为此学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪之前将历史观测整合为固定数量、针对目标视角的令牌，且不需要基于显式深度的对应关系。结合近期时间上下文与少步蒸馏，WorldCrafter 能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法显著提升了长时域一致性和相机控制准确性，同时在分钟级探索过程中保持视觉质量。",
+      "abstract_cn": "视频世界模型能够支持对动态环境的交互式探索，但在长时间范围和跨视角场景中，仍难以遵循先前的观测结果。我们提出 WorldCrafter，一种为此学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和位姿条件读出模块与视频生成器联合训练，在去噪之前将历史观测整合为一组固定数量、面向目标视角的令牌，且无需显式的基于深度的对应关系。结合这一记忆、近期时间上下文和少步蒸馏，WorldCrafter能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法在保持分钟级探索过程中视觉质量的同时，显著提升了长时间范围的一致性和相机控制准确性。",
       "note_path": "2026-09-23/2609.24984-worldcrafter-consistent-video-world-model-with-i.md"
+    },
+    {
+      "id": "2609.26792",
+      "date": "2026-09-22",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "DreamStream: Towards Policy-Oriented Generative Simulation for End-to-End Driving",
+      "abstract": "Faithfully evaluating end-to-end driving policies in simulation requires observations that are not merely photo-realistic, but preserve the scene features a policy relies on to make decisions. Existing platforms, however, exhibit a sim-to-real visual gap that corrupts policy perception, undermining their ability to assess a policy's closed-loop decision-making. To this end, we propose DreamStream, a generative, closed-loop simulator that achieves policy-oriented fidelity using a simulator-grounded autoregressive video model. Our video model is distilled from a large pretrained video model via traffic layout guidance, varying visual appearance while preserving policy-relevant features such as scenario layout and the temporal consistency of dynamic objects. We further observe that perceptual metrics like FID misrank how well these features are preserved. To tackle this, we introduce FD$π$, a new multi-representation metric that measures the sim-to-real gap as the Fréchet distance over scene-context features from public E2E policies. Under FD$π$, DreamStream improves over the strongest prior closed-loop simulator by $1.6\\times$ on nuScenes and $4.7\\times$ on NAVSIM, and induces the least perturbation to policy's perceptual observability. Based on DreamStream, we construct Navhard-CL benchmark, which turns non-reactive real-world benchmark NAVSIM into interactive testing environments with adversarial driving behaviors and weather variations. This benchmark exposes many failure modes of driving policies, such as scorer bias and lack of recovery behaviors, that prior closed-loop benchmarks overlook. Code and data are available at https://github.com/VAIL-UCLA/DreamStream.",
+      "authors": [
+        "Ziyang Leng",
+        "Sicheng Mo",
+        "Seth Z. Zhao",
+        "Haoyuan Cai",
+        "Yu Zeng",
+        "Rowan McAllister",
+        "Bolei Zhou"
+      ],
+      "url": "http://arxiv.org/abs/2609.26792v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "Accepted to CoRL 2026. Project page: https://vail-ucla.github.io/DreamStream/",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "论文提出 DreamStream，将物理交通模拟器与自回归视频模型结合，用模拟器提供可控的交通布局和交互行为，再生成供端到端驾驶策略使用的真实感相机观测。其核心采用多阶段视频扩散蒸馏、交通布局引导、多样场景蒸馏，以及利用早期时间步潜变量作为 KV 缓存的长时域自回归生成。为从策略视角评价视觉保真度，论文提出 FDπ，通过比较真实与生成场景在多个端到端策略中的场景上下文特征来衡量仿真到真实的差距。实验表明，FDπ 比 FID 和 FVD 更能反映驾驶性能，DreamStream 在 nuScenes 和 NAVSIM 上优于既有方法。基于该系统，论文构建了 Navhard-CL，通过对抗行为、恶劣天气和光照变化测试策略，发现评分器偏差、轨迹提议覆盖不足以及视觉编码器对外观变化脆弱等闭环失效模式。",
+      "contribution_cn": "1. 提出 DreamStream 生成式闭环驾驶模拟器，将物理模拟器的可控交通状态与自回归视频模型的视觉真实性结合起来。 2. 设计三阶段自回归视频扩散蒸馏流程，并提出交通布局引导和多样场景蒸馏，以保持车道和交通参与者布局、动态一致性及多样天气光照条件。 3. 提出面向驾驶策略的 FDπ 指标，在多个端到端策略的场景上下文特征空间中计算真实与生成观测的 Fréchet 距离。 4. 构建 Navhard-CL 闭环基准，将 NAVSIM 扩展为具有交互式对抗行为和视觉条件变化的测试环境，并分析端到端策略的闭环失效模式。 5. 通过 KV 缓存和少步自回归生成实现长时域、实时视频生成；实验显示缓存可显著降低长序列质量漂移。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究面向动作和交通布局条件的自回归视频世界模型，用物理模拟器状态驱动视觉生成，并在闭环中根据驾驶策略动作持续更新场景。其方法涉及长视频生成、因果/自回归建模、视频扩散蒸馏、实时生成和 KV 缓存复用；早期时间步潜变量作为缓存以维持长时域一致性，单张 RTX PRO 6000 上达到约 20.2 或 16.9 帧/秒的模型生成速度。DreamStream 还体现了 action-conditioned visual world model 与闭环仿真的结合：策略输出动作，模拟器推进世界状态，视频模型生成下一段观测，形成持续交互循环。",
+      "limitations_cn": "论文明确指出，DreamStream 仍主要在仿真环境中运行，尚未开展真实道路评估或硬件在环部署，原因是成本和安全风险。自回归视频模型在极长时域滚动中仍会累积漂移，该问题留待未来研究。论文还报告了约 200 个 A100 GPU 天的完整训练成本，以及较大模型版本需要约 67 GB 显存。除此之外，论文未明确说明其生成观测在真实驾驶部署中的安全保证、对未见交通参与者或极端场景的泛化能力，以及闭环模拟器与真实世界动力学之间的全部差异。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "在仿真中忠实地评估端到端驾驶策略，所需的观测不仅要具备照片级真实感，还必须保留策略用于决策的场景特征。然而，现有平台存在仿真到真实的视觉差距，会损害策略的感知能力，从而削弱其评估闭环决策能力的效果。为此，我们提出 DreamStream，一种生成式闭环模拟器，利用以模拟器为基础的自回归视频模型实现面向策略的保真度。我们的视频模型通过交通布局引导，从大型预训练视频模型中蒸馏得到，在保留场景布局、动态物体时间一致性等策略相关特征的同时改变视觉外观。我们进一步发现，FID 等感知指标会错误地排序这些特征的保留程度。为解决这一问题，我们提出 FDπ，一种新的多表示指标，利用公开端到端策略的场景上下文特征之间的 Fréchet 距离来衡量仿真到真实的差距。在 FDπ 指标下，DreamStream 相比最强的既有闭环模拟器，在 nuScenes 和 NAVSIM 上分别取得 1.6 倍和 4.7 倍的提升，并对策略感知可观测性造成最小扰动。在 DreamStream 的基础上，我们构建了 Navhard-CL 基准，将非反应式的真实世界基准 NAVSIM 转化为包含对抗性驾驶行为和天气变化的交互式测试环境。该基准揭示了许多驾驶策略的失效模式，例如评分器偏差和缺乏恢复行为，而这些问题在以往闭环基准中常被忽略。代码和数据已发布于 https://github.com/VAIL-UCLA/DreamStream。",
+      "note_path": "2026-09-23/2609.26792-dreamstream-towards-policy-oriented-generative-s.md"
     },
     {
       "id": "2609.17521",
@@ -65,14 +131,12 @@
       ],
       "comment": "",
       "score": 75,
-      "priority": "must-read",
-      "summary_cn": "论文提出 PhysStream，一种面向物理约束图像到视频生成的自回归流式模型。用户可在生成过程中针对场景中的不同物体，在任意时刻输入稀疏的三维速度增量，而无需预先指定完整轨迹。模型通过位置图和目标跟踪图构成的结构化场景记忆，将历史生成结果反馈给后续生成步骤，并采用“先双向运动控制微调、后因果自回归训练”的两阶段方案。作者构建了约 10 万个包含多物体刚体碰撞和速度扰动的合成视频数据集。实验表明，该方法在运动分布、轨迹精度、物理合理性和交互控制方面优于多种基线，并可扩展到 301 帧的长视频和部分非刚体场景；但长时生成仍会出现外观漂移，且尚未达到实时速度。",
-      "contribution_cn": "1. 提出 PhysStream，实现直接作用于生成视频本身的、面向多物体桌面刚体场景的端到端物理约束交互式控制。用户只需在选定时刻对目标物体施加稀疏速度增量信号。 2. 提出结构化场景记忆机制，将在线估计的位置图和目标跟踪图作为历史条件反馈给自回归视频生成器，以改善几何一致性、目标跟踪和物理合理性。 3. 设计两阶段训练流程：先让双向视频模型学习速度增量控制，再通过因果注意力、教师强制和 KV 缓存训练加入场景记忆的自回归模型。 4. 构建约 10 万个合成室内刚体动力学视频，包含碰撞、摩擦、翻倒和多帧速度扰动，用于训练和评测。 5. 在合成、真实采集、长时程和部分非刚体实验中验证方法效果；在合成测试中取得更低的 FVMD、轨迹误差和跟踪失败率，并通过蒸馏和更快的深度估计器将系统速度提升约 3.4 倍。",
-      "relevance_cn": "与研究重点高度相关。PhysStream 是自回归、因果、流式的视频生成模型，按潜变量帧逐步生成视频，并通过历史帧、因果注意力和 KV 缓存支持增量生成。它允许用户在生成过程中动态干预，因此体现了闭环式的动作条件视觉世界模型特征：模型生成帧，在线深度估计和目标跟踪形成场景记忆，再反馈给后续生成。其速度增量条件直接编码物理量，而非规定像素轨迹，适合研究物理约束的动作条件生成、多物体交互和闭环模拟。论文还涉及长视频生成、稀疏控制、缓存复用和扩散蒸馏；不过作者明确区分了“交互式”与“实时”，原始系统尚未达到实时生成。",
-      "limitations_cn": "论文明确指出，模型在极其复杂的运动，尤其是翻滚运动方面仍存在困难；已验证的主要范围是刚体动力学，非刚体和更丰富材料需要额外的微调数据；系统尚未实现实时生成，实时化被留作未来工作。长时程生成会因自回归误差累积产生外观漂移，且一致性会随时间下降。训练和主要评测依赖合成的静态摄像机桌面场景，真实世界泛化范围仍有限。在线深度估计、VAE 往返和扩散去噪带来显著延迟与显存开销。论文还指出，部分一致性指标可能被物体静止、刚性漂移或其他退化生成结果人为抬高。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频生成的交互式控制正从粗粒度提示转向对动态场景进行细粒度、具有物理意义的操控。然而，现有可控方法要么要求在生成开始前提供完整的控制计划，要么使用规定物体位置而非物理动力学的像素空间信号。为解决这些限制，我们提出 PhysStream：一种用于物理约束图像到视频合成的自回归模型。该模型结合结构化场景记忆——从先前生成的帧中在线提取的位置图和目标跟踪图——并通过编码物理量的稀疏速度增量信号实现细粒度运动控制，使模型能够学习底层动力学。我们分两个阶段训练模型：首先对双向模型进行运动控制条件微调，然后训练加入结构化场景记忆的因果自回归模型，从而进一步提升物理一致性。PhysStream 支持对多目标桌面刚体场景进行交互式的生成中途控制，这是先前方法不具备的能力。在合成基准上，相较于最强基线，该方法将运动分布距离（FVMD）降低了 33%，将轨迹误差降低了 12%；在真实场景比较中，人工评估者在超过 85% 的比较中更偏好该方法。更多详情请参阅我们的网站：https://czzzzh.github.io/PhysStream",
-      "note_path": "2026-09-23/2609.17521-physstream-streaming-physics-grounded-video-gene.md"
+      "priority": "skim",
+      "summary_cn": "Interactive control for video generation is moving from coarse prompts toward fine-grained, physically meaningful manipulation of dynamic scenes.",
+      "contribution_cn": "To address these limitations, we propose PhysStream, an autoregressive model for physics-grounded image-to-video synthesis that incorporates structured scene memory---positional maps and object tracking maps derived online from previously generated frames---and supports fine-grained motion control via sparse velocity-increment signals that encode physical quantities, letting the model learn the underlying dynamics.",
+      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：interactive, autoregressive, streaming, video generation, image-to-video, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
       "id": "2609.23184",
@@ -103,7 +167,7 @@
       ],
       "comment": "",
       "score": 74,
-      "priority": "must-read",
+      "priority": "skim",
       "summary_cn": "Embodied world models learn to predict future physical dynamics from visual observations and control signals, where physical knowledge is implicitly entangled within latent representations.",
       "contribution_cn": "We introduce CausalWM, a 16B embodied world model that performs explicit causal chain-of-thought reasoning before future video prediction.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, embodied, few-step, efficient",
@@ -223,104 +287,39 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.14725",
-      "date": "2026-09-20",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "CrossDistill: Balancing Quality and Diversity via Trajectory-Level Hybrid Few-Step Distillation",
-      "abstract": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity. We show that this tension can be exploited in a noise-regime-dependent way: high-noise steps largely determine global modes, whereas low-noise steps refine local details. We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state. In contrast to loss-level mixing, and complementarily to training-time two-stage recipes, CrossDistill explicitly assigns complementary objectives along the noise axis, so that global branching is preserved before local statistics are sharpened. CrossDistill is a noise-level scheduling policy: PCM and DMD are plug-in instantiations, while the noise partition, crossover coupling, and objective ordering are the key design elements. Experiments on text-to-video diffusion models and qualitative image-to-video results show that CrossDistill expands the few-step quality-diversity frontier, retaining seed-level variation while achieving competitive visual fidelity.",
-      "authors": [
-        "Yuxi Liu",
-        "Haoyu Li",
-        "Yixiang Cai",
-        "Tengxu Sun",
-        "Zekun Zhang",
-        "Baole Ai",
-        "Ang Wang",
-        "Jiamang Wang",
-        "Lin Qu",
-        "Kun Yuan",
-        "Kai Zhang"
-      ],
-      "url": "http://arxiv.org/abs/2609.14725v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 65,
-      "priority": "skim",
-      "summary_cn": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.",
-      "contribution_cn": "We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.24976",
-      "date": "2026-09-21",
-      "topics": [
-        "World Models"
-      ],
-      "title": "DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation",
-      "abstract": "Dexterous manipulation depends on contact dynamics that are often only partially observable from vision. Recent World-Action Models (WAMs) couple predictive video world modeling with action generation, but remain largely vision-centric and therefore cannot directly model these contact dynamics. We present DexTacWAM, a visuo-tactile WAM that encodes each fingertip independently, aggregates the resulting features through a finger- and pose-aware tactile compressor, and injects the tactile latent into a video diffusion world model for joint visuo-tactile world modeling. Across six contact-rich dexterous manipulation tasks on a 22-DoF bimanual platform, DexTacWAM achieves the highest score on every task, averaging 70.6 versus 38.0 for the strongest baseline. Ablations attribute the gain to modeling contact evolution as part of the predicted world state rather than tactile conditioning alone: removing tactile world modeling reduces the four-task mean from 74.7 to 26.6 while keeping the same tactile features and action expert. After four hours of tactile-encoder adaptation with a frozen pretrained vision VAE, our continual vision-to-touch learning extends the pretrained video model to touch using roughly 100 demonstrations per task without tactile midtraining, while retaining visual prediction quality within 0.5 dB of vision-only counterparts. The compressor retains 89.4% of pre-fusion contact recall while enabling 2.26x faster training and 1.29x faster inference. Together, these results show that pretrained video priors can be extended to distributed multi-finger contact dynamics in a data- and compute-efficient manner.",
-      "authors": [
-        "Haoran Yuan",
-        "Zekai Wang",
-        "Boning Shao",
-        "Haoran Lu",
-        "Trevor Darrell",
-        "Ismini Lourentzou",
-        "Wei Zhan"
-      ],
-      "url": "http://arxiv.org/abs/2609.24976v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
-      ],
-      "comment": "22 pages. Project website: https://dextacwam.github.io/",
-      "score": 62,
-      "priority": "skim",
-      "summary_cn": "Dexterous manipulation depends on contact dynamics that are often only partially observable from vision.",
-      "contribution_cn": "We present DexTacWAM, a visuo-tactile WAM that encodes each fingertip independently, aggregates the resulting features through a finger- and pose-aware tactile compressor, and injects the tactile latent into a video diffusion world model for joint visuo-tactile world modeling.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, efficient, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.26007",
+      "id": "2609.26458",
       "date": "2026-09-22",
       "topics": [
+        "Video Generation",
         "World Models"
       ],
-      "title": "Skytopia: Monocular Drone Navigation with Action-Conditioned Latent World Models",
-      "abstract": "Monocular drone navigation requires reaching a goal in an unseen environment from a single forward-facing camera, which offers few cues for depth and scale. World models address this by modelling how observations evolve under actions, but they are built to be executed: the prediction is produced at deployment and fed back into action generation at every control step. We argue that what a policy needs from a world model is not the prediction but the representation required to produce it: in flight the executed action explains almost all of the change between observations, so prediction reduces to reprojecting a static scene under a known displacement. We therefore introduce skytopia, a policy built on an action-conditioned latent world model, and the 3D Gaussian Splatting platform on which it is trained. A forward objective predicts the representation of the next observation from the intended motion, and an inverse objective recovers that motion from the predicted transition. Because the prediction never reaches action generation, the predictor is discarded and one policy serves point-goal, image-goal, and goal-free navigation. Simulation experiments show that skytopia outperforms every baseline under all three specifications, attaining 57.8%, 66.0%, and 49.0% success rate, while discarding the predictor removes 59.4% of the inference cost. The same policy is subsequently deployed on a physical drone without fine-tuning and reaches goals in indoor, open outdoor, and woodland environments.",
+      "title": "Code Plans, Diffusion Renders: Open-Ended Generative World Modeling",
+      "abstract": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling. Unlike existing video world models that implicitly represent world dynamics through visual observations, our system explicitly constructs an executable world with code and employs video generation models for visual realization. Specifically, we coordinate five complementary roles to translate high-level concepts into structured world rules, executable dynamics, and perceptual observations. This design enables \\textit{long-term memory}, \\textit{open-ended interactions}, \\textit{autonomous world evolution}, and \\textit{multi-agent scenarios}, where multiple entities can act, interact, and evolve persistently beyond the current observation. Extensive experiments demonstrate that our framework substantially extends the capabilities of existing world models, enabling long-term memory, open-ended interactions, autonomous evolution, and persistent multi-agent dynamics, while achieving state-of-the-art performance across multiple evaluation settings. Code and model weights will be made publicly available. Project Page: \\href{https://becauseimbatman0.github.io/CoDeR}{CoDeR}.",
       "authors": [
-        "Yuhang Zhang",
-        "Rangya Zhang",
-        "Yujing Shang",
-        "Zhuoyuan Yu",
-        "Weiying Wang",
-        "Steven Yang",
-        "Qingsong Yan",
-        "Chao Yan",
-        "Mir Feroskhan"
+        "Zixun Fang",
+        "Yawen Shao",
+        "Kai Zhu",
+        "Jie Xiao",
+        "Shihan Chen",
+        "Yu Liu",
+        "Xueyang Fu",
+        "Yang Cao",
+        "Wei Zhai",
+        "Zheng-Jun Zha"
       ],
-      "url": "http://arxiv.org/abs/2609.26007v1",
+      "url": "http://arxiv.org/abs/2609.26458v1",
       "categories": [
-        "cs.RO",
-        "cs.AI"
+        "cs.CV"
       ],
-      "comment": "",
-      "score": 59,
+      "comment": "https://becauseimbatman0.github.io/CoDeR",
+      "score": 66,
       "priority": "skim",
-      "summary_cn": "Monocular drone navigation requires reaching a goal in an unseen environment from a single forward-facing camera, which offers few cues for depth and scale.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
+      "summary_cn": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling.",
+      "contribution_cn": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 2
+  "cursor_summaries_completed": 3
 }

@@ -1,6 +1,7 @@
 # 2026-09-23 精读笔记
 
-> 共 2 篇。返回 [全部日期](../index.md)。
+> 共 3 篇。返回 [全部日期](../index.md)。
 
+- [QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation](2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md) · 76/100
 - [WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory](2609.24984-worldcrafter-consistent-video-world-model-with-i.md) · 76/100
-- [PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control](2609.17521-physstream-streaming-physics-grounded-video-gene.md) · 75/100
+- [DreamStream: Towards Policy-Oriented Generative Simulation for End-to-End Driving](2609.26792-dreamstream-towards-policy-oriented-generative-s.md) · 75/100
