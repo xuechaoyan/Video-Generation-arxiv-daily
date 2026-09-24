@@ -1412,13 +1412,21 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-23**|**The Past Frames the Future: Memory for Autoregressive Video Generation**|Harold Haodong Chen et.al.|[2609.28466](http://arxiv.org/abs/2609.28466)|null|
+|**2026-09-23**|**LiMA: Bridging Long-term Imagination to Real-time Dexterous Manipulation via Asynchronous Diffusion**|Ning Chen et.al.|[2609.28431](http://arxiv.org/abs/2609.28431)|null|
+|**2026-09-23**|**Agent-Editing World Model: Rethinking World Modeling for LLM Agents**|Shuang Sun et.al.|[2609.28416](http://arxiv.org/abs/2609.28416)|null|
+|**2026-09-23**|**Frozen Flows Forget: Diagnosing and Restoring Lost Motion in a Latent-flow World Model**|Xiwen Chen et.al.|[2609.28414](http://arxiv.org/abs/2609.28414)|null|
+|**2026-09-23**|**PointCast: One World Model for Rigid, Articulated, and Deformable Object Manipulation**|Hantao Ye et.al.|[2609.28393](http://arxiv.org/abs/2609.28393)|null|
+|**2026-09-23**|**Generalizable Robotic Insertion with World Models**|Nicklas Hansen et.al.|[2609.28258](http://arxiv.org/abs/2609.28258)|null|
+|**2026-09-23**|**SlackDrive: Reclaiming Runtime Slack for Adaptive Driving Inference**|Xiaohuan Pei et.al.|[2609.28064](http://arxiv.org/abs/2609.28064)|null|
+|**2026-09-23**|**Prompt, Probe, Train, or Annotate? Single-camera sports video understanding in amateur settings**|Sai Varun Kodathala et.al.|[2609.28049](http://arxiv.org/abs/2609.28049)|null|
 |**2026-09-23**|**InternW0: A Foundational Physical World Model for Efficient Real-World Interactions**|Jisong Cai et.al.|[2609.27656](http://arxiv.org/abs/2609.27656)|null|
 |**2026-09-23**|**SHRAV: State-Hypothesis-Reason-Action-Verify Framework for Physical Modeling and Inverse Design**|Ziheng Guo et.al.|[2609.27621](http://arxiv.org/abs/2609.27621)|null|
 |**2026-09-23**|**Latent evolving World Action Model**|Xueji Fang et.al.|[2609.27455](http://arxiv.org/abs/2609.27455)|null|
 |**2026-09-23**|**CoRe-WAM: Correspondence-Aligned Temporal Residuals for World Action Models**|Bin Zhou et.al.|[2609.27314](http://arxiv.org/abs/2609.27314)|null|
 |**2026-09-22**|**DreamStream: Towards Policy-Oriented Generative Simulation for End-to-End Driving**|Ziyang Leng et.al.|[2609.26792](http://arxiv.org/abs/2609.26792)|null|
 |**2026-09-22**|**Code Plans, Diffusion Renders: Open-Ended Generative World Modeling**|Zixun Fang et.al.|[2609.26458](http://arxiv.org/abs/2609.26458)|null|
-|**2026-09-22**|**QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation**|Jiaqi Zhao et.al.|[2609.26425](http://arxiv.org/abs/2609.26425)|null|
+|**2026-09-23**|**QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation**|Jiaqi Zhao et.al.|[2609.26425](http://arxiv.org/abs/2609.26425)|null|
 |**2026-09-22**|**TriWorldBench: A Tri-View Consistency Perspective on Embodied World Models**|Xuanyi Liu et.al.|[2609.26314](http://arxiv.org/abs/2609.26314)|null|
 |**2026-09-23**|**ForeDrive: Foresight-Guided End-to-End Autonomous Driving with a Planning-Relevant Latent World Model**|Sinuo Wang et.al.|[2609.26299](http://arxiv.org/abs/2609.26299)|null|
 |**2026-09-22**|**Dual-Frontier: When Can an Agent Trust Its World Model?**|Huatai Zhu et.al.|[2609.26293](http://arxiv.org/abs/2609.26293)|null|
@@ -1765,6 +1773,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-23**|**The Past Frames the Future: Memory for Autoregressive Video Generation**|Harold Haodong Chen et.al.|[2609.28466](http://arxiv.org/abs/2609.28466)|null|
 |**2026-09-22**|**DreamStream: Towards Policy-Oriented Generative Simulation for End-to-End Driving**|Ziyang Leng et.al.|[2609.26792](http://arxiv.org/abs/2609.26792)|null|
 |**2026-09-18**|**ConsistWorld: Evidence Routing for Consistent Multi-Agent World Models**|Qianxun Xu et.al.|[2609.22641](http://arxiv.org/abs/2609.22641)|null|
 |**2026-09-18**|**Edit-VAR: Taming Visual Autoregressive Model for Precise Video Editing**|Chongbo Zhao et.al.|[2609.21268](http://arxiv.org/abs/2609.21268)|null|

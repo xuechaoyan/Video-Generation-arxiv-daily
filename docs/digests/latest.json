@@ -1,39 +1,7 @@
 {
-  "generated_at": "2026-09-24T01:43:47+00:00",
+  "generated_at": "2026-09-24T15:58:20+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
-    {
-      "id": "2609.26425",
-      "date": "2026-09-22",
-      "topics": [
-        "World Models"
-      ],
-      "title": "QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation",
-      "abstract": "KV cache memory has become a major deployment bottleneck for video generation and world models, which motivates low-bit quantization study for efficiency. Existing 2-bit KV cache quantization methods can achieve nearly lossless performance on video benchmarks such as VBench, however, we find that they still cause severe temporal flickering and visual degradation. Meanwhile, deeper investigates show that Key quantization produces smaller reconstruction errors than Value, but surprisingly leads to much larger output degradation. We trace this discrepancy to attention: small Key perturbations can change the attention logits, i.e., QK^\\top, and shift the temporal-spatial tokens selected by Queries. These observations motivate us to explicitly preserve attention logits and temporal-spatial token selection during KV cache quantization to alleviate the visual degradation problem. To address this issue, we present QuantWM, a training-free and strictly causal 2-bit KV cache quantization framework. QuantWM introduces two complementary techniques to mitigate the attention shifts. Firstly, quantization-sensitivity-aware clustering (QSAC) jointly considers historical Query sensitivity and residual ranges to select INT2-friendly Key centroids, which reduces quantization errors in channels that are more critical to attention. In addition, principal-subspace attention compensation (PSAC) restores the remaining Key errors along the dominant Query subspace using low-rank projections, which provides a direct and efficient correction to stabilize attention logits. Extensive experiments on Causal-Forcing, LingBot-World-v2, HY-World 1.5, Matrix-Game-2 and Longcat-Video demonstrate that QuantWM significantly improves visual quality and temporal consistency, while outperforming existing methods across image and video quality metrics with up to 6.20x KV cache memory compression and limited additional overhead.",
-      "authors": [
-        "Jiaqi Zhao",
-        "Xiaobin Hu",
-        "Bo Yin",
-        "Junpeng Jiang",
-        "Miao Zhang",
-        "Shuicheng Yan"
-      ],
-      "url": "http://arxiv.org/abs/2609.26425v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 76,
-      "priority": "must-read",
-      "summary_cn": "论文研究视频生成和交互式世界模型中2比特KV缓存量化造成的隐性视觉退化。作者发现，Key量化虽然重构误差更小，却比Value量化更容易引起时间闪烁、模糊和伪影，原因是Key扰动会改变QKᵀ注意力logits，进而改变Query选取的历史时空token。为此，论文提出无需训练且严格因果的QuantWM：QSAC根据历史Query的通道敏感性和残差量化难度选择Key质心，PSAC则在主导Query子空间中以低秩方式补偿剩余误差。五种视频生成或世界模型实验显示，该方法降低了token选择偏移并改善帧级视觉质量和VBench表现，在最高6.20倍缓存压缩下保持有限推理开销。",
-      "contribution_cn": "1. 揭示了现有2比特KV缓存量化在视频生成和世界模型中未被充分关注的时间闪烁与视觉退化问题，并证明Key量化是主要原因。 2. 从注意力logits扰动和时空token选择偏移的角度解释Key量化的高敏感性。 3. 提出量化敏感性感知聚类（QSAC），联合利用历史Query通道敏感性与残差分组动态范围，选择更适合低比特量化的Key质心。 4. 提出主子空间注意力补偿（PSAC），利用历史Query统计量提取主子空间，并通过低秩投影补偿关键方向上的Key误差。 5. 构建无需训练、严格因果的2比特KV缓存量化框架，在多个视频生成和世界模型上实现视觉质量、时间一致性、缓存压缩率和推理效率之间的较好平衡。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向视频生成、视频扩散/自回归视频生成以及动作条件世界模型的部署效率问题，尤其适用于因果、流式和长视频生成中不断增长的KV缓存。通过保持注意力logits和时空token选择，QuantWM能够降低量化引起的时间闪烁，适合需要时间一致性和闭环视觉状态更新的世界模型；其严格因果设计、分块流式缓存量化、低秩补偿和最高6.20倍内存压缩，也与实时生成、缓存复用和受限设备部署密切相关。论文主要实验对象是自回归视频生成和世界模型，并未直接提出新的视频扩散采样或动作策略学习方法。",
-      "limitations_cn": "论文为在审预印本，结论主要基于五个开源视频生成或世界模型，并在特定分辨率、视频长度和硬件配置下评估，泛化到更多模型、超长视频及其他部署平台的效果未明确说明。QSAC使用历史Query统计量的对角近似，PSAC仅保留固定数量的主导Query方向，其近似误差和在不同模型、层或场景中的最优秩选择未系统讨论。评测主要关注帧级PSNR、SSIM、LPIPS、VBench和token选择偏移，论文承认VBench可能无法充分反映视觉退化，因此对真实用户感知质量及闭环世界模型任务性能的覆盖仍有限。方法在部分模型上带来约5%的延迟增加，且PSAC需要额外保存低秩补偿信息；更广泛的吞吐、能耗和多设备部署代价未明确说明。论文未明确说明在极端长序列、快速场景变化或Query分布显著变化时的失效边界。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "KV缓存内存已成为视频生成和世界模型部署中的主要瓶颈，这推动了针对效率的低比特量化研究。现有的2比特KV缓存量化方法在VBench等视频基准上能够实现近乎无损的性能，但我们发现，它们仍会导致严重的时间闪烁和视觉质量下降。同时，进一步研究表明，Key量化产生的重构误差小于Value量化，但却出人意料地导致更严重的输出退化。我们将这一差异追溯到注意力机制：微小的Key扰动可能改变注意力logits，即QKᵀ，并使Query选中的时空token发生偏移。这些观察促使我们在KV缓存量化过程中显式保持注意力logits和时空token选择，以减轻视觉质量下降问题。为此，我们提出QuantWM，一个无需训练且严格因果的2比特KV缓存量化框架。QuantWM引入了两种互补技术来缓解注意力偏移。首先，量化敏感性感知聚类（QSAC）联合考虑历史Query敏感性和残差范围，以选择适合INT2的Key质心，从而减少注意力关键通道中的量化误差。此外，主子空间注意力补偿（PSAC）利用低秩投影沿主导Query子空间恢复剩余的Key误差，直接且高效地校正注意力logits，稳定注意力计算。在Causal-Forcing、LingBot-World-v2、HY-World 1.5、Matrix-Game-2和Longcat-Video上的大量实验表明，QuantWM能够显著提升视觉质量和时间一致性，并在图像和视频质量指标上全面优于现有方法，同时实现最高6.20倍的KV缓存内存压缩，仅引入有限的额外开销。",
-      "note_path": "2026-09-24/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md"
-    },
     {
       "id": "2609.24984",
       "date": "2026-09-21",
@@ -64,13 +32,45 @@
       "comment": "Project webpage: https://drexubery.github.io/WorldCrafter",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "WorldCrafter 面向需要长时间闭环探索的视频世界模型，提出了一种隐式三维感知记忆机制。它利用预训练多视图表示初始化记忆编码器，将历史潜变量帧及其相机信息压缩为隐式表示，再通过目标相机轨迹引导的读出模块生成固定数量的记忆令牌，与近期上下文共同条件化视频 DiT。模型采用最大视野覆盖的历史帧检索、相机条件自回归生成和少步蒸馏，实现了从图像或文本提示开始的实时流式探索。在包含静态和动态场景、长达 528 至 1,648 帧并带有闭环重访的基准上，WorldCrafter 在重访一致性和相机控制方面优于比较方法；蒸馏版本 WorldCrafter-fast 达到 16 fps（4 GPU），并保持较好的视觉质量。消融实验表明，隐式三维记忆、联合优化、姿态引导读出和最大覆盖检索均有助于性能提升。",
-      "contribution_cn": "1. 提出面向视频世界模型的隐式三维感知记忆，将历史潜变量帧编码为紧凑表示，并在固定令牌预算下进行高效写入和读出，同时保留空间与时间上下文。2. 将该记忆机制整合进相机可控的自回归视频生成框架，通过目标姿态引导的记忆读出和最大视野覆盖历史检索提升长时间重访一致性与相机控制精度；论文报告相较最强基线重访一致性提升 47.6%。3. 结合分布匹配蒸馏和混合高噪声/低噪声模型，构建实时交互系统，在保持视觉质量和主体跟随能力的同时实现流式推理和分钟级探索。4. 通过系统消融和效率分析验证设计：相较基于深度估计与变形的空间记忆，记忆处理成本降低 21.7 倍。",
-      "relevance_cn": "该论文与研究重点高度相关。它是用于动作或相机条件交互式探索的视觉世界模型，以相机轨迹作为控制信号，通过自回归分块生成实现闭环、长视频模拟；隐式三维感知记忆使模型能够在跨视角重访时保留场景外观和结构，直接针对长时一致性问题。其固定大小的记忆令牌、目标视角条件读出和最大覆盖历史检索涉及稀疏历史访问、上下文压缩与高效记忆复用；近期上下文与持久记忆的结合支持因果式流式生成。少步蒸馏和 16 fps 的推理速度则直接对应实时生成和生成加速方向。论文重点是相机控制的交互式世界模型，并未将一般离散动作策略或完整物理环境建模作为核心。",
-      "limitations_cn": "论文明确指出，模型在特别复杂或特别长的相机轨迹上仍可能出现一致性崩溃；每个生成分块都重新编码历史会带来额外延迟。作者提出未来可使用自回归流式记忆编码器，增量地将新生成分块并入记忆状态，以减少对历史的重复计算。论文还显示，蒸馏版本相较完整模型的相机控制和部分视觉质量指标有所下降，并且使用合成数据进行蒸馏可能引入纹理模糊；这些是论文实验中体现的性能权衡。",
+      "summary_cn": "WorldCrafter 是一种面向交互式场景探索的相机可控自回归视频世界模型。它使用从历史潜空间帧和相机参数中学习得到的隐式三维感知记忆，并通过目标相机轨迹引导的读出模块，将与当前视角相关的信息压缩为固定数量的记忆令牌，再与近期上下文共同输入视频 DiT。模型采用最大视场覆盖的历史帧检索、记忆编码器与生成器联合优化，以及少步蒸馏，实现了长时程闭环探索和实时流式生成。在725条长轨迹视频上的实验中，该方法在重访一致性和相机控制方面优于所比较的方法；未蒸馏模型的总体 VBench 得分为81.910，蒸馏模型可在四张 GPU 上达到16 fps。",
+      "contribution_cn": "1. 提出用于视频世界模型的隐式三维感知记忆，将历史潜空间帧编码为紧凑表示，并在固定令牌预算内进行高效写入和读出。2. 将该记忆整合到相机可控的自回归视频生成中，利用目标姿态引导的记忆读出和最大覆盖率历史检索，提高长时程重访一致性与相机控制准确性。3. 通过少步金字塔蒸馏构建实时交互系统，在保持视觉质量和主体跟随能力的同时支持分钟级流式探索。4. 实验和消融表明，隐式三维记忆、联合优化、姿态引导读出及最大覆盖率检索均有助于提升性能；其记忆处理开销较基于深度的空间记忆降低21.7倍。",
+      "relevance_cn": "该工作与视频生成和视频扩散直接相关：它以视频 DiT 和条件流匹配为生成基础，并通过少步蒸馏实现实时推理。它也是动作或相机条件视觉世界模型的典型实例，将相机轨迹作为条件，支持闭环重访、动态场景探索和长时程模拟。其自回归分块生成、固定大小记忆令牌、历史潜变量检索和记忆复用，分别对应长视频生成、流式生成、稀疏历史注意力和缓存式状态复用。该方法尤其关注跨视角场景一致性，而不是仅延长近期上下文，因此对构建可持续交互的三维感知视频世界模型具有较强参考价值。",
+      "limitations_cn": "论文明确指出，沿特别复杂或特别长的轨迹进行探索时，一致性仍可能出现崩溃；每个生成块都重新编码历史会带来额外延迟。论文提出的改进方向是采用自回归流式记忆编码器，增量式地将新生成块纳入记忆状态，以减少对历史的重复计算。此外，WorldCrafter-fast 的相机控制和部分视觉质量指标低于未蒸馏的 WorldCrafter，说明实时蒸馏存在性能权衡。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型能够实现对动态环境的交互式探索，但在长时间范围和跨视角情况下，往往难以遵循既有观测。为此，我们提出 WorldCrafter：一种学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪前将历史观测整合为一组固定数量、面向目标视角的令牌，而无需显式的基于深度的对应关系。结合这种记忆、近期时间上下文以及少步蒸馏，WorldCrafter能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法显著提升了长时间范围的一致性和相机控制精度，同时在分钟级探索过程中保持视觉质量。",
+      "abstract_cn": "视频世界模型能够对动态环境进行交互式探索，但在长时间范围和跨视角情况下，往往难以遵循先前的观测结果。我们提出 WorldCrafter，一种为此学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪之前将历史观测整合为一组固定数量、面向目标视角的令牌，且无需显式的基于深度的对应关系。WorldCrafter 将这种记忆与近期时间上下文及少步蒸馏相结合，从而能够根据单张输入图像或文本提示，以流式方式探索场景。在静态和动态场景上的实验表明，该方法在保持视觉质量的同时，显著提升了长时程一致性和相机控制准确性，并支持分钟级探索。",
       "note_path": "2026-09-24/2609.24984-worldcrafter-consistent-video-world-model-with-i.md"
+    },
+    {
+      "id": "2609.26425",
+      "date": "2026-09-23",
+      "topics": [
+        "World Models"
+      ],
+      "title": "QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation",
+      "abstract": "KV cache memory has become a major deployment bottleneck for video generation and world models, which motivates low-bit quantization study for efficiency. Existing 2-bit KV cache quantization methods can achieve nearly lossless performance on video benchmarks such as VBench, however, we find that they still cause severe temporal flickering and visual degradation. Meanwhile, deeper investigates show that Key quantization produces smaller reconstruction errors than Value, but surprisingly leads to much larger output degradation. We trace this discrepancy to attention: small Key perturbations can change the attention logits, i.e., QK^\\top, and shift the temporal-spatial tokens selected by Queries. These observations motivate us to explicitly preserve attention logits and temporal-spatial token selection during KV cache quantization to alleviate the visual degradation problem. To address this issue, we present QuantWM, a training-free and strictly causal 2-bit KV cache quantization framework. QuantWM introduces two complementary techniques to mitigate the attention shifts. Firstly, quantization-sensitivity-aware clustering (QSAC) jointly considers historical Query sensitivity and residual ranges to select INT2-friendly Key centroids, which reduces quantization errors in channels that are more critical to attention. In addition, principal-subspace attention compensation (PSAC) restores the remaining Key errors along the dominant Query subspace using low-rank projections, which provides a direct and efficient correction to stabilize attention logits. Extensive experiments on Causal-Forcing, LingBot-World-v2, HY-World 1.5, Matrix-Game-2 and Longcat-Video demonstrate that QuantWM significantly improves visual quality and temporal consistency, while outperforming existing methods across image and video quality metrics with up to 6.20x KV cache memory compression and limited additional overhead.",
+      "authors": [
+        "Jiaqi Zhao",
+        "Xiaobin Hu",
+        "Bo Yin",
+        "Junpeng Jiang",
+        "Miao Zhang",
+        "Shuicheng Yan"
+      ],
+      "url": "http://arxiv.org/abs/2609.26425v2",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "论文研究视频生成和世界模型中2比特KV缓存量化造成的隐性视觉退化。作者发现，Key量化虽然重建误差小于Value量化，却会通过扰动QKᵀ改变时空token选择，造成闪烁、模糊和伪影。为此提出无需训练、严格因果的QuantWM：QSAC依据历史Query敏感性和残差量化难度选择Key质心，PSAC则在主导Query子空间中以低秩方式补偿剩余Key误差。五个视频生成和世界模型上的实验显示，该方法降低了token选择偏移并改善PSNR、SSIM、LPIPS及VBench表现，最高实现6.20倍缓存压缩，延迟开销通常有限。",
+      "contribution_cn": "1. 揭示现有2比特KV缓存量化在视频生成和世界模型中会产生基准分数未充分反映的时间闪烁和视觉退化，并证明Key量化是主要原因。 2. 从注意力logits扰动和时空token选择偏移角度解释Key量化的高敏感性。 3. 提出量化敏感性感知聚类（QSAC），联合Query通道敏感性与残差动态范围，选择更有利于注意力保持的Key质心。 4. 提出主子空间注意力补偿（PSAC），利用历史Query的主成分子空间，以低秩投影补偿残余Key误差。 5. 构建无需训练、严格因果的2比特KV缓存量化框架，并在五个模型上验证其视觉质量、时间一致性、内存压缩和推理效率优势。",
+      "relevance_cn": "论文与研究重点直接相关，面向自回归、因果、流式视频生成和动作条件世界模型中的KV缓存瓶颈。它不改变生成模型本身，而是在闭环或长序列生成所需的历史上下文缓存上进行严格因果的2比特量化，降低显存占用并保持时空一致性。其对注意力token选择偏移的分析与视频扩散、实时生成、长视频生成中的时间稳定性密切相关；QSAC和PSAC也可视为面向高效推理的敏感性建模与低秩缓存补偿机制。实验覆盖LingBot-World-v2、HY-World 1.5、Matrix-Game-2、Causal-Forcing和LongCat-Video，涉及世界模型、动作序列条件生成及自回归视频生成。",
+      "limitations_cn": "论文未明确说明。根据文中设置，实验主要覆盖五个开源模型、480p/720p分辨率和93帧视频，尚未证明方法对更多架构、更长视频、更高分辨率或不同量化位宽的泛化性。QSAC使用对Query二阶统计的对角近似，PSAC在实现中固定采用秩8主子空间，可能存在近似误差和额外存储、计算开销。论文也未报告在所有模型和硬件上的完整端到端实时性能，且当前工作为预印本、尚在评审中。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "KV缓存内存已成为视频生成和世界模型部署中的主要瓶颈，这推动了针对高效低比特量化的研究。现有的2比特KV缓存量化方法在VBench等视频基准上能够实现近乎无损的性能，但我们发现，它们仍会导致严重的时间闪烁和视觉质量下降。进一步研究表明，Key量化产生的重建误差小于Value量化，但却出人意料地导致更严重的输出退化。我们将这一差异追溯到注意力机制：微小的Key扰动可能改变注意力logits，即QKᵀ，并使Query选中的时空token发生偏移。这些观察促使我们在KV缓存量化过程中显式保持注意力logits和时空token选择，以减轻视觉质量下降问题。为此，我们提出QuantWM，一种无需训练且严格因果的2比特KV缓存量化框架。QuantWM引入了两项互补技术来缓解注意力偏移。首先，量化敏感性感知聚类（QSAC）联合考虑历史Query敏感性和残差范围，以选择适合INT2表示的Key质心，从而减少注意力更关键的通道中的量化误差。此外，主子空间注意力补偿（PSAC）利用低秩投影，在主导Query子空间方向上恢复剩余的Key误差，从而直接且高效地校正注意力logits并稳定注意力。针对Causal-Forcing、LingBot-World-v2、HY-World 1.5、Matrix-Game-2和Longcat-Video的大量实验表明，QuantWM能够显著提升视觉质量和时间一致性，并在图像和视频质量指标上全面优于现有方法，同时实现最高6.20倍的KV缓存内存压缩，仅引入有限的额外开销。",
+      "note_path": "2026-09-24/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md"
     },
     {
       "id": "2609.26792",
@@ -98,12 +98,12 @@
       "comment": "Accepted to CoRL 2026. Project page: https://vail-ucla.github.io/DreamStream/",
       "score": 75,
       "priority": "must-read",
-      "summary_cn": "本文提出 DreamStream，一个将物理交通模拟器与自回归视频扩散模型结合的生成式闭环驾驶模拟器。模拟器负责维护可控的交通布局和交互行为，视频模型将符号状态渲染为策略实际接收的逼真视觉观测。作者通过多阶段蒸馏、交通布局引导、多样场景蒸馏以及基于早期时间步潜变量的 KV 缓存，实现了长时域、少步数、自回归生成。为衡量视觉信息是否保留了驾驶策略真正依赖的内容，论文提出 FDπ，并构建 Navhard-CL 以测试对抗行为和天气变化。实验表明，DreamStream 在视觉对齐、长时域稳定性和闭环评估方面优于既有方法，并揭示了评分器偏差、轨迹提议覆盖不足和视觉编码器对外观变化脆弱等问题。",
-      "contribution_cn": "1. 提出 DreamStream，将物理模拟器与自回归视频模型结合，实现具有交通状态 grounding、视觉逼真度和闭环可交互性的驾驶模拟。2. 提出面向策略的视觉对齐指标 FDπ，从多个端到端驾驶策略的场景上下文表征出发衡量仿真到真实的视觉差距，比 FID 和 FVD 更能反映驾驶性能相关的信息保真度。3. 提出三阶段视频模型蒸馏方案，并结合交通布局引导和多样场景蒸馏，在保持车道与交通参与者布局、动态一致性及天气和光照多样性的同时支持高效自回归生成。4. 使用早期时间步潜变量作为 KV 缓存，降低长时域自回归 rollout 的质量漂移；实验中在 nuScenes 和 NAVSIM 上分别将漂移降低 68% 和 48%。5. 构建 Navhard-CL 闭环基准，将 NAVSIM 扩展为包含对抗驾驶行为及天气、光照和路面变化的交互式测试环境，并发现多类现有策略失效模式。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究基于视频扩散模型的自回归、因果、长视频和流式闭环生成，并将生成观测与物理模拟器状态及驾驶策略动作连接起来，属于动作条件世界模型和闭环仿真的具体应用。交通布局条件使模型根据模拟器状态生成对应视角，支持策略驱动的交互式 rollout；早期时间步潜变量作为 KV cache 用于维持长序列一致性并降低漂移；三阶段蒸馏将大型预训练视频模型转化为少步数的因果自回归模型，支持实时生成。论文还报告了单卡约 20.2 或 16.9 生成帧/秒、约 10.1 或 8.8 模拟帧/秒的效率结果，并讨论了稀疏或缓存复用方向中的缓存复用机制。",
-      "limitations_cn": "论文明确指出，DreamStream 仍主要在模拟环境中进行闭环评估，尚未开展真实道路评估或硬件在环部署，原因是成本和安全限制。此外，自回归视频模型在极长时域 rollout 中仍会累积漂移，该问题留待未来工作。论文还报告模型训练成本约为 200 个 A100 GPU 天，并且实时性能依赖较高的 GPU 资源。",
+      "summary_cn": "本文提出 DreamStream，将物理交通模拟器与自回归视频扩散模型结合，用模拟器中的交通布局和动态状态生成面向策略的视觉观测，从而支持端到端驾驶策略的长时域闭环评估。其三阶段蒸馏流程结合交通布局引导、多样场景蒸馏和自生成上下文训练，并利用早期时间步潜变量作为 KV 缓存以减轻长序列漂移。作者提出 FDπ，通过多个端到端驾驶策略实际使用的场景特征衡量仿真到真实的视觉差距；实验显示该指标比 FID 和 FVD 更能反映驾驶性能。基于该系统构建的 Navhard-CL 加入对抗行为及天气、光照和路面变化，揭示了评分器偏差、轨迹提议覆盖不足和视觉编码器对外观变化脆弱等问题。",
+      "contribution_cn": "提出 DreamStream 闭环生成式模拟器，将物理模拟器的可控交通场景与自回归视频模型的视觉真实性结合起来；提出三阶段自回归视频扩散蒸馏方案，以及交通布局引导和多样场景蒸馏，以保持布局一致性、动态时间一致性和多样视觉外观；提出面向策略的 FDπ 指标，基于多个端到端驾驶策略的场景上下文特征评估视觉对齐；构建 Navhard-CL 闭环基准，支持对抗驾驶行为和多种天气、光照、路面条件下的交互式测试；展示 KV 缓存对长时域 rollout 稳定性的帮助，并实现实时生成。",
+      "relevance_cn": "论文与研究重点高度相关：它直接研究面向动作闭环的视觉世界模型，将物理模拟器状态和交通布局作为条件，根据端到端策略动作进行交互式 rollout；采用自回归、因果的视频扩散生成，支持数百帧的长时域模拟；通过早期时间步潜变量 KV 缓存降低长序列质量漂移，并通过三阶段蒸馏实现少步推理和实时生成；交通布局引导使生成视频保持车道几何、交通参与者位置及动态一致性。论文还以 nuScenes 和 NAVSIM 验证视觉对齐与闭环驾驶表现，并用 Navhard-CL 测试策略在对抗行为和外观变化下的鲁棒性。",
+      "limitations_cn": "闭环评估仍在仿真环境中进行，尚未覆盖真实道路评估或硬件在环部署。自回归视频模型在极长时域 rollout 中仍会累积漂移，该问题尚未解决。模型训练成本约为 200 个 A100 GPU 天，且实验运行依赖高端 GPU；论文未明确说明在更大规模场景、更多传感器模态或更复杂交通交互中的泛化能力。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "忠实地评估端到端驾驶策略需要模拟中的观测不仅具备照片级真实感，还要保留策略依赖其做出决策的场景特征。然而，现有平台存在仿真到真实的视觉差距，会破坏策略的感知能力，从而削弱其评估闭环决策能力的效果。为此，我们提出 DreamStream，一种生成式闭环模拟器，通过以模拟器为基础的自回归视频模型实现面向策略的保真度。我们的视频模型通过交通布局引导，从大型预训练视频模型中蒸馏得到，在保留场景布局、动态物体时间一致性等策略相关特征的同时改变视觉外观。我们进一步发现，FID 等感知指标会错误地排序这些特征的保留程度。为解决这一问题，我们提出 FDπ，一种新的多表征指标：利用公开端到端策略的场景上下文特征，通过计算其弗雷歇距离来衡量仿真到真实的差距。在 FDπ 指标下，DreamStream 相比性能最强的既有闭环模拟器，在 nuScenes 和 NAVSIM 上分别提升 1.6 倍和 4.7 倍，并且对策略感知可观测性的扰动最小。基于 DreamStream，我们构建了 Navhard-CL 基准，将非反应式的真实世界基准 NAVSIM 转化为具有对抗性驾驶行为和天气变化的交互式测试环境。该基准揭示了许多驾驶策略的失效模式，例如评分器偏差和缺乏恢复行为，而既有闭环基准会忽略这些问题。代码和数据已发布于 https://github.com/VAIL-UCLA/DreamStream。",
+      "abstract_cn": "忠实地在仿真中评估端到端驾驶策略，所需的观测不仅要具有照片级真实感，还必须保留策略用于决策的场景特征。然而，现有平台存在仿真到真实的视觉差距，会扭曲策略的感知能力，从而削弱其评估闭环决策能力的效果。为此，我们提出 DreamStream，一种生成式闭环模拟器，利用基于模拟器的自回归视频模型实现面向策略的保真度。我们的视频模型通过交通布局引导从大规模预训练视频模型中蒸馏得到，在保留策略相关特征（如场景布局和动态物体时间一致性）的同时改变视觉外观。我们进一步发现，FID 等感知指标会错误地排序这些特征的保留程度。为解决这一问题，我们提出 FDπ，一种新的多表示指标：利用公开端到端策略的场景上下文特征，通过计算 Fréchet 距离来衡量仿真到真实的差距。在 FDπ 指标下，DreamStream 相比最强的先前闭环模拟器，在 nuScenes 和 NAVSIM 上分别取得 1.6 倍和 4.7 倍的改进，并对策略感知可观测性造成最小扰动。基于 DreamStream，我们构建了 Navhard-CL 基准，将非反应式的真实世界基准 NAVSIM 转化为包含对抗性驾驶行为和天气变化的交互式测试环境。该基准揭示了许多驾驶策略的失效模式，例如评分器偏差和缺乏恢复行为，而这些问题会被先前的闭环基准忽略。代码和数据见 https://github.com/VAIL-UCLA/DreamStream。",
       "note_path": "2026-09-24/2609.26792-dreamstream-towards-policy-oriented-generative-s.md"
     },
     {
@@ -135,42 +135,6 @@
       "summary_cn": "Interactive control for video generation is moving from coarse prompts toward fine-grained, physically meaningful manipulation of dynamic scenes.",
       "contribution_cn": "To address these limitations, we propose PhysStream, an autoregressive model for physics-grounded image-to-video synthesis that incorporates structured scene memory---positional maps and object tracking maps derived online from previously generated frames---and supports fine-grained motion control via sparse velocity-increment signals that encode physical quantities, letting the model learn the underlying dynamics.",
       "relevance_cn": "匹配研究线：video generation, streaming video；关键词：interactive, autoregressive, streaming, video generation, image-to-video, video synthesis",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.23184",
-      "date": "2026-09-19",
-      "topics": [
-        "World Models"
-      ],
-      "title": "CausalWM: Causal Chain-of-Thought Reasoning for Embodied World Model",
-      "abstract": "Embodied world models learn to predict future physical dynamics from visual observations and control signals, where physical knowledge is implicitly entangled within latent representations. We introduce CausalWM, a 16B embodied world model that performs explicit causal chain-of-thought reasoning before future video prediction. CausalWM organizes useful variables into a reasoning trajectory, allowing the model to progressively capture causal dependencies underlying physical evolution. To train CausalWM, we collect 31K hours embodied data and develop a three-stage paradigm consisting of large-scale video pre-training, causal CoT mid-training, and multi-objective RL post-training. Despite using only a limited set of supervised CoT variables, CausalWM exhibits emergent in-context learning capabilities, enabling contextual visual feature guidance and efficient few-step generation. CausalWM achieves state-of-the-art performance across language-conditioned, action-conditioned, single-view and multi-view benchmarks, including Top-1 performance on TriWorldBench leaderboard.",
-      "authors": [
-        "Ziming Xu",
-        "Shuang Liang",
-        "Ruobing Han",
-        "Ziqiao Xi",
-        "Mingxing Rao",
-        "Kun Zhou",
-        "Zijun Zhang",
-        "Yuchen Yan",
-        "Yufan Wei",
-        "Junbo Huang",
-        "Yifei Shao",
-        "Fang Nan",
-        "Biwei Huang"
-      ],
-      "url": "http://arxiv.org/abs/2609.23184v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 74,
-      "priority": "skim",
-      "summary_cn": "Embodied world models learn to predict future physical dynamics from visual observations and control signals, where physical knowledge is implicitly entangled within latent representations.",
-      "contribution_cn": "We introduce CausalWM, a 16B embodied world model that performs explicit causal chain-of-thought reasoning before future video prediction.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, embodied, few-step, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -321,6 +285,55 @@
       "summary_cn": "Few-step distillation accelerates diffusion models but must balance diversity and fidelity: trajectory-based distillation preserves mode coverage, while distribution matching sharpens samples but can reduce diversity.",
       "contribution_cn": "We propose CrossDistill, a trajectory-level hybrid distillation framework that splits the sampling trajectory at a crossover point, applies a trajectory-preserving objective on the high-noise interval and a distribution-matching objective on the low-noise interval, and couples the two stages through the crossover state.",
       "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, text-to-video, image-to-video, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.28466",
+      "date": "2026-09-23",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "The Past Frames the Future: Memory for Autoregressive Video Generation",
+      "abstract": "Advances in generative models have improved video fidelity, enabling long-horizon generation, interactive world modeling, and evolving visual environments. Autoregressive (AR) video generation extends visual sequences through causal rollouts. However, a fundamental bottleneck emerges: as the generated sequence expands, practical models must operate under strictly bounded context windows, storage, and computational limits. Consequently, critical historical information, e.g., entity identities, dynamic states, and intervention-induced causal changes, often leaves the active context long before its relevance diminishes. Overcoming this limitation and maintaining temporal persistence constitutes a fundamental memory problem. We present a systematic and comprehensive review of memory mechanisms in AR video generation. We formulate memory operationally as persistent historical information maintained across outer AR steps, capable of influencing future generation even after the originating evidence is no longer locally accessible. Building upon this unified framework, we organize the literature through five complementary perspectives: (I) Forms, the representational carriers of history; (II) Functions, the specific semantic and physical information requiring preservation; (III) Operations, the lifecycle of writing, reading, updating, managing, and integrating memory; (IV) Learning, the optimization of memory behaviors under closed-loop rollouts; and (V) Evaluation, the paradigms for diagnosing genuine memory capabilities. We conclude by synthesizing open challenges, including composable and resource-aware memory architectures, trustworthy state updating, self-rollout learning, and standardized evaluation. By bridging representations, mechanisms, and learning paradigms, this paper establishes a structured foundation for developing reliable, memory-conditioned video generation systems.",
+      "authors": [
+        "Harold Haodong Chen",
+        "Rongjin Guo",
+        "Disen Lan",
+        "Wen-Jie Shu",
+        "Hongfei Zhang",
+        "Hanzhe Hu",
+        "Shengtao Yao",
+        "Zixin Zhang",
+        "Guibin Zhang",
+        "Zhefan Rao",
+        "Jinxiu Liu",
+        "Yexin Liu",
+        "Rui Peng",
+        "Yuhao Liu",
+        "Bin Ren",
+        "Shuai Yang",
+        "Yukang Chen",
+        "Salman Khan",
+        "Ying-Cong Chen",
+        "Ser-Nam Lim",
+        "Rynson W. H. Lau",
+        "Nicu Sebe",
+        "Yu Cheng",
+        "Ming-Hsuan Yang",
+        "Qifeng Chen"
+      ],
+      "url": "http://arxiv.org/abs/2609.28466v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Advances in generative models have improved video fidelity, enabling long-horizon generation, interactive world modeling, and evolving visual environments.",
+      "contribution_cn": "We present a systematic and comprehensive review of memory mechanisms in AR video generation.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, interactive, closed-loop, autoregressive, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
