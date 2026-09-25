@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T02:00:16+00:00",
+  "generated_at": "2026-09-25T15:58:07+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -32,12 +32,12 @@
       "comment": "Project webpage: https://drexubery.github.io/WorldCrafter",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "WorldCrafter是一种面向交互式长视频生成的相机可控自回归视频世界模型。它从历史视频潜变量和相机参数中构建隐式三维感知记忆，并通过目标轨迹引导的读出模块，将与当前视角相关的信息压缩为固定数量的DiT记忆令牌；同时结合近期上下文以保持可见运动的连续性。模型基于多来源真实和合成数据分阶段训练，并通过少步金字塔蒸馏实现实时流式推理。实验覆盖静态、动态和文本生成场景，结果显示其在长时回访一致性、相机控制和整体视觉质量方面优于所比较的方法；消融实验验证了联合优化、姿态引导读出和最大覆盖率历史检索的作用。",
-      "contribution_cn": "1. 提出用于视频世界模型的隐式三维感知记忆，将历史潜变量压缩为保留时空信息的紧凑表示，并在固定令牌预算下进行高效写入和读出。2. 将该记忆整合到相机可控的自回归视频生成中，通过目标姿态引导的记忆读出和最大覆盖率历史检索提升长时回访一致性与相机控制精度。3. 通过记忆编码器、视频DiT和读出模块的联合优化，使记忆表示适配生成器的令牌空间。4. 采用混合少步蒸馏构建实时交互系统，在保持视觉质量和主体跟随能力的同时达到4块GPU上16帧/秒的生成速度。",
-      "relevance_cn": "该论文与研究重点高度相关：它直接研究视频扩散世界模型、动作或相机条件控制、闭环长时探索以及自回归和流式生成。相机轨迹作为条件输入，生成视频块并将其加入历史档案，再通过回访轨迹评估闭环一致性。隐式三维记忆避免保存完整历史或显式深度对应关系，以固定大小令牌支持长视频生成；最大覆盖率检索、近期上下文和目标视角查询共同实现跨视角记忆。少步蒸馏用于降低扩散采样成本并实现实时推理，记忆编码和读出的低延迟也有助于流式系统部署。",
-      "limitations_cn": "论文明确指出，沿特别复杂或特别长的轨迹时，一致性仍可能崩溃；每个视频块都重新编码历史会带来额外延迟。作者提出可使用自回归流式记忆编码器，增量更新记忆状态以减少重复计算。此外，WorldCrafter依赖估计的相机姿态和有限数量的历史帧，且实验结论基于特定数据集、基准和比较方法；论文未明确说明其在更大规模真实交互环境、严重姿态估计误差或更复杂动态场景中的表现。",
+      "summary_cn": "WorldCrafter提出了一种面向视频世界模型的隐式三维感知记忆机制，用于解决长时域交互探索中的场景遗忘、跨视角不一致和相机控制误差。模型将历史视频潜变量及其相机参数编码为隐式三维表示，再根据即将执行的相机轨迹进行姿态引导的固定大小记忆读出，并与近期上下文共同条件化视频DiT。系统采用最大覆盖率历史帧检索、相机条件自回归生成和少步蒸馏，实现了实时流式生成。实验在静态和动态场景、长达数百至上千帧并包含闭环重访的轨迹上进行，结果显示其重访一致性、相机控制和整体视觉质量优于所比较的方法；蒸馏版本可在4张GPU上达到16帧每秒。论文同时指出，极复杂或超长轨迹仍可能出现一致性崩溃，并且每个生成块重新编码历史会带来额外延迟。",
+      "contribution_cn": "1. 提出隐式三维感知记忆机制，将历史潜变量帧压缩为紧凑的空间—时间表示，并在固定令牌预算下进行高效写入和读出。2. 将该记忆集成到相机可控的自回归视频生成中，通过姿态引导读出和最大覆盖率历史检索提升长时域重访一致性与相机控制准确率。3. 通过记忆编码器、读出模块、视频DiT和相机条件分支的联合优化，使记忆表示与生成器令牌空间协同适配。4. 采用少步金字塔蒸馏和混合蒸馏模型构建实时交互系统，在保持视觉质量和主体跟随能力的同时支持分钟级流式探索。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频扩散驱动的交互式视觉世界模型，并将相机轨迹作为条件进行闭环、自回归、长视频生成。隐式三维记忆解决了超出近期上下文后的历史信息保持问题；姿态引导读出使记忆内容适配目标视角；固定大小记忆令牌和历史帧选择控制了长序列计算开销。其少步蒸馏、流式生成和缓存式历史记忆与实时生成、稀疏信息利用及缓存复用密切相关。论文还明确展示了静态和动态场景中的重访测试、分钟级探索以及4张GPU上16帧每秒的推理速度。",
+      "limitations_cn": "论文明确指出，沿特别复杂或特别长的相机轨迹进行探索时，一致性仍可能崩溃；每个生成块都重新编码历史，会产生额外延迟。论文提出未来可使用自回归流式记忆编码器，增量地将新生成块加入记忆状态，以减少对历史的重复计算。此外，WorldCrafter-fast相较未蒸馏模型在部分视觉质量指标和相机控制指标上有所下降。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型支持对动态环境进行交互式探索，但难以在长时间跨度和跨视角条件下遵循既有观测。我们提出WorldCrafter，一种为此学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是，让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪前将历史观测整合为一组固定的、针对目标视角的令牌，而无需显式的基于深度的对应关系。通过将该记忆与近期时间上下文及少步蒸馏相结合，WorldCrafter能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法在保持分钟级探索视觉质量的同时，显著提升了长时一致性和相机控制准确性。",
+      "abstract_cn": "视频世界模型能够实现对动态环境的交互式探索，但在长时间跨度和跨视角场景中往往难以遵循此前的观测。我们提出WorldCrafter，一种学习可由相机查询的隐式三维感知记忆的视频世界模型。其核心思想是让请求的视角决定如何将多视角证据压缩到视频生成器有限的令牌预算中。记忆编码器和姿态条件读出模块与视频生成器联合训练，在去噪之前将历史观测整合为一组固定数量、面向目标视角的令牌，而无需显式的基于深度的对应关系。通过结合这种记忆、近期时间上下文和少步蒸馏，WorldCrafter能够从单张输入图像或文本提示开始进行流式场景探索。在静态和动态场景上的实验表明，该方法在保持视觉质量的同时，显著提升了长时域一致性和相机控制准确率，并支持分钟级探索。",
       "note_path": "2026-09-25/2609.24984-worldcrafter-consistent-video-world-model-with-i.md"
     },
     {
@@ -110,12 +110,12 @@
       "comment": "",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "本文研究视频生成和世界模型中2比特KV缓存量化导致的隐性视觉退化。作者发现，Key量化虽然重建误差较小，却会显著扰动注意力logit和时空Token选择，进而造成时间闪烁、模糊和伪影。QuantWM通过QSAC在聚类时考虑Query敏感性与残差量化难度，并通过PSAC沿主导Query子空间补偿剩余Key误差。五个模型上的实验显示，该方法降低了Token选择偏移并改善PSNR、SSIM、LPIPS和VBench表现，同时将KV缓存压缩最高达6.20倍。",
-      "contribution_cn": "1. 揭示了2比特KV缓存量化在视频生成和世界模型中的视觉退化问题，并指出Key量化比Value量化更敏感，主要原因是其会改变注意力logit及时空Token选择。2. 提出量化敏感性感知聚类（QSAC），利用历史Query统计和残差分组动态范围选择更适合低比特量化的Key质心。3. 提出主子空间注意力补偿（PSAC），使用低秩投影沿主导Query方向恢复Key量化误差，以稳定注意力logit。4. 构建无需训练、严格因果的2比特KV缓存量化框架，并在多个视频生成和世界模型上验证其视觉质量、时间一致性、内存压缩和推理效率。",
-      "relevance_cn": "本文与研究重点高度相关。它直接面向自回归、因果和长视频生成中的KV缓存内存瓶颈，提出无需训练的2比特量化与缓存压缩方法。通过减少注意力Token选择偏移，QuantWM有助于维持视频时间一致性和世界模型的闭环历史上下文；其流式、分块且仅量化一次的缓存处理也适用于长视频和持续生成场景。该方法最高实现6.20倍KV缓存压缩，并在部分模型上保持较低的端到端延迟开销，因此与实时生成、缓存复用和高效部署密切相关。",
-      "limitations_cn": "论文未明确说明局限性。根据论文报告，实验主要覆盖五个开源模型、480p/720p分辨率和93帧视频，尚未证明方法对更广泛模型、分辨率或更长视频的普适性。PSAC需要维护主子空间及补偿量，并引入额外计算和存储；在LingBot-World-v2和HY-World 1.5上端到端延迟分别增加5.44%和5.87%。此外，论文承认VBench等常规视频指标可能无法充分反映时间闪烁和视觉退化。",
+      "summary_cn": "论文研究视频生成和世界模型中2比特KV缓存量化导致的隐性视觉退化。作者发现，Key量化虽然重建误差更小，却会通过扰动QK⊤改变Query的时空标记选择，从而引发时间闪烁、模糊和伪影。QuantWM通过QSAC根据Query敏感性和残差量化难度选择Key聚类中心，并通过PSAC沿主导Query子空间补偿剩余误差。五个模型上的实验显示，该方法在保持接近BF16的VBench表现的同时，改善帧级质量和时间一致性，最高实现6.20倍缓存压缩。",
+      "contribution_cn": "1. 揭示了现有2比特KV缓存量化在视频生成和世界模型中的时间闪烁与视觉退化问题，并证明Key量化比Value量化更敏感；其核心原因是Key扰动改变注意力logits和时空标记选择。 2. 提出无需训练、严格因果的QuantWM框架，以注意力行为保持为目标进行2比特KV缓存量化。 3. 提出量化敏感性感知聚类（QSAC），利用历史Query的通道敏感性和残差分组动态范围选择更合适的Key聚类中心。 4. 提出主子空间注意力补偿（PSAC），通过低秩投影沿主导Query方向恢复Key误差并校正注意力logits。 5. 在五个视频生成和世界模型上验证了方法的有效性，实现最高6.20倍KV缓存压缩，并保持有限的推理开销。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向自回归、因果和流式视频生成及动作条件世界模型中的KV缓存内存瓶颈；通过严格因果的分块缓存量化支持长视频生成和交互式世界模拟。其QSAC和PSAC针对注意力选择稳定性，能够减少缓存压缩造成的跨帧闪烁，因此与时间一致性、实时生成和高效部署密切相关。实验覆盖LingBot-World-v2、Matrix-Game-2、HY-World 1.5、Causal-Forcing和LongCat-Video，其中包括动作序列条件的世界模型；在部分模型上延迟开销约为5%至6%，LongCat-Video上延迟还下降17.78%。",
+      "limitations_cn": "论文未明确说明完整的局限性。根据实验设置可见：评估主要覆盖五个开源模型、480p/720p视频和约93帧生成，尚未证明对更长视频、更高分辨率或更多架构的普适性；PSAC采用固定秩8、BF16存储主子空间并以INT8存储补偿项，其秩和额外开销的适应性未被系统研究；作者报告的端到端延迟并非在所有模型上都降低，部分模型增加约5.44%至5.87%；论文还指出VBench可能无法充分反映闪烁和视觉退化，因此仅依赖常规视频基准难以完整评价该方法。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "KV缓存内存已经成为视频生成和世界模型部署中的主要瓶颈，这推动了针对低比特量化的效率研究。现有的2比特KV缓存量化方法在VBench等视频基准上能够实现近乎无损的性能，但我们发现，这些方法仍会导致严重的时间闪烁和视觉质量下降。进一步研究表明，Key量化产生的重建误差小于Value量化，但却会导致大得多的输出质量下降。我们将这一差异归因于注意力机制：微小的Key扰动会改变注意力logit，即QKᵀ，并改变Query所选择的时空Token。基于这些观察，我们提出在KV缓存量化过程中显式保持注意力logit和时空Token选择，以缓解视觉质量下降问题。为此，我们提出QuantWM，一个无需训练且严格因果的2比特KV缓存量化框架。QuantWM引入了两项互补技术来减轻注意力偏移。首先，量化敏感性感知聚类（QSAC）联合考虑历史Query的敏感性和残差范围，以选择适合INT2的Key质心，从而减少对注意力更关键的通道中的量化误差。此外，主子空间注意力补偿（PSAC）利用低秩投影，沿主导Query子空间恢复剩余的Key误差，从而直接、高效地校正注意力logit并稳定注意力。针对Causal-Forcing、LingBot-World-v2、HY-World 1.5、Matrix-Game-2和Longcat-Video的大量实验表明，QuantWM能够显著提升视觉质量和时间一致性，并在图像和视频质量指标上优于现有方法，同时实现最高6.20倍的KV缓存内存压缩，仅引入有限的额外开销。",
+      "abstract_cn": "KV缓存内存已成为视频生成和世界模型部署中的主要瓶颈，推动了面向效率的低比特量化研究。现有的2比特KV缓存量化方法在VBench等视频基准上能够实现近乎无损的性能，但我们发现它们仍会造成严重的时间闪烁和视觉退化。进一步研究表明，Key量化产生的重建误差小于Value量化，但出人意料地会导致更大的输出退化。我们将这一差异追溯到注意力机制：微小的Key扰动会改变注意力logits，即QK⊤，并改变Query所选择的时空标记。基于这些观察，我们提出在KV缓存量化过程中显式保持注意力logits和时空标记选择，以缓解视觉退化问题。为此，我们提出QuantWM，一个无需训练且严格因果的2比特KV缓存量化框架。QuantWM引入了两项互补技术来减轻注意力偏移。首先，量化敏感性感知聚类（QSAC）联合考虑历史Query敏感性和残差范围，以选择适合INT2的Key聚类中心，从而减少对注意力更关键的通道中的量化误差。此外，主子空间注意力补偿（PSAC）利用低秩投影，沿主导Query子空间恢复剩余的Key误差，为稳定注意力logits提供直接而高效的校正。在Causal-Forcing、LingBot-World-v2、HY-World 1.5、Matrix-Game-2和Longcat-Video上的大量实验表明，QuantWM显著提升了视觉质量和时间一致性，并在图像和视频质量指标上优于现有方法，同时实现最高6.20倍的KV缓存内存压缩，仅引入有限的额外开销。",
       "note_path": "2026-09-25/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md"
     },
     {
@@ -147,38 +147,6 @@
       "summary_cn": "Faithfully evaluating end-to-end driving policies in simulation requires observations that are not merely photo-realistic, but preserve the scene features a policy relies on to make decisions.",
       "contribution_cn": "To this end, we propose DreamStream, a generative, closed-loop simulator that achieves policy-oriented fidelity using a simulator-grounded autoregressive video model.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：interactive, closed-loop, driving, simulation, autoregressive, temporal consistency",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.17521",
-      "date": "2026-09-21",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control",
-      "abstract": "Interactive control for video generation is moving from coarse prompts toward fine-grained, physically meaningful manipulation of dynamic scenes. Yet existing controllable methods either require the full control schedule before generation starts, or use pixel-space signals that dictate object positions rather than physical dynamics. To address these limitations, we propose PhysStream, an autoregressive model for physics-grounded image-to-video synthesis that incorporates structured scene memory---positional maps and object tracking maps derived online from previously generated frames---and supports fine-grained motion control via sparse velocity-increment signals that encode physical quantities, letting the model learn the underlying dynamics. We train our model in two stages: a bidirectional model is first finetuned with motion-control conditioning, then a causal autoregressive model is trained with additional structured scene memory, further improving physical consistency. PhysStream enables interactive, mid-generation control over multi-object tabletop rigid-body scenes---a capability not supported by prior methods---reducing motion distribution distance (FVMD) by 33% and trajectory error by 12% over the strongest baselines on synthetic benchmarks, and is preferred by human evaluators in over 85% of in-the-wild comparisons. Please check our website for more details: https://czzzzh.github.io/PhysStream",
-      "authors": [
-        "Chuhao Chen",
-        "Peter Wonka",
-        "Chaoyang Wang",
-        "Chen Wang",
-        "Qiao Feng",
-        "Sergey Tulyakov",
-        "Lingjie Liu"
-      ],
-      "url": "http://arxiv.org/abs/2609.17521v2",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.GR"
-      ],
-      "comment": "",
-      "score": 75,
-      "priority": "skim",
-      "summary_cn": "Interactive control for video generation is moving from coarse prompts toward fine-grained, physically meaningful manipulation of dynamic scenes.",
-      "contribution_cn": "To address these limitations, we propose PhysStream, an autoregressive model for physics-grounded image-to-video synthesis that incorporates structured scene memory---positional maps and object tracking maps derived online from previously generated frames---and supports fine-grained motion control via sparse velocity-increment signals that encode physical quantities, letting the model learn the underlying dynamics.",
-      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：interactive, autoregressive, streaming, video generation, image-to-video, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -322,6 +290,40 @@
       "summary_cn": "World-action models (WAMs) transfer visual and motion priors from pretrained video generators to robot control by jointly modeling visual dynamics and actions.",
       "contribution_cn": "Accordingly, we propose DeltaWAM, which jointly predicts visual deltas and actions using dense-anchor, sparse-delta, and action streams, with three architectures that differ in representation and computation sharing.",
       "relevance_cn": "匹配研究线：efficient generation, world model；关键词：action-conditioned, streaming, few-step, cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.26458",
+      "date": "2026-09-22",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Code Plans, Diffusion Renders: Open-Ended Generative World Modeling",
+      "abstract": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling. Unlike existing video world models that implicitly represent world dynamics through visual observations, our system explicitly constructs an executable world with code and employs video generation models for visual realization. Specifically, we coordinate five complementary roles to translate high-level concepts into structured world rules, executable dynamics, and perceptual observations. This design enables \\textit{long-term memory}, \\textit{open-ended interactions}, \\textit{autonomous world evolution}, and \\textit{multi-agent scenarios}, where multiple entities can act, interact, and evolve persistently beyond the current observation. Extensive experiments demonstrate that our framework substantially extends the capabilities of existing world models, enabling long-term memory, open-ended interactions, autonomous evolution, and persistent multi-agent dynamics, while achieving state-of-the-art performance across multiple evaluation settings. Code and model weights will be made publicly available. Project Page: \\href{https://becauseimbatman0.github.io/CoDeR}{CoDeR}.",
+      "authors": [
+        "Zixun Fang",
+        "Yawen Shao",
+        "Kai Zhu",
+        "Jie Xiao",
+        "Shihan Chen",
+        "Yu Liu",
+        "Xueyang Fu",
+        "Yang Cao",
+        "Wei Zhai",
+        "Zheng-Jun Zha"
+      ],
+      "url": "http://arxiv.org/abs/2609.26458v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "https://becauseimbatman0.github.io/CoDeR",
+      "score": 66,
+      "priority": "skim",
+      "summary_cn": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling.",
+      "contribution_cn": "We introduce \\textbf{CoDeR}, a new paradigm for world modeling.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

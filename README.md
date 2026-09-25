@@ -1413,6 +1413,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-24**|**AD-WM: Action-Discriminative World Models for Counterfactual Model Predictive Control**|Jiabin Qiu et.al.|[2609.30264](http://arxiv.org/abs/2609.30264)|null|
+|**2026-09-24**|**Rolling-WAM: World Action Models with Rolling Imagination**|Yinghua Zhou et.al.|[2609.30247](http://arxiv.org/abs/2609.30247)|null|
+|**2026-09-24**|**Underwater C3-JEPA: An Object-Centric Cross-View World Model for ROV Salvage**|Yuncong Yang et.al.|[2609.30214](http://arxiv.org/abs/2609.30214)|null|
+|**2026-09-24**|**Simulation-Based Inference and Unbinned Asimov Construction with Hybrid Neural Density Estimation**|Rafael Coelho Lopes de Sa et.al.|[2609.30196](http://arxiv.org/abs/2609.30196)|null|
+|**2026-09-24**|**Aim Short to Reach Far: Your Frozen World Model Can Plan Better Than You Think**|Xvyuan Liu et.al.|[2609.30036](http://arxiv.org/abs/2609.30036)|null|
 |**2026-09-24**|**Decoupled Learning and Selection in Slate Recommendation for Privacy and Stability Under Noisy Scores**|Sam Urmian et.al.|[2609.29453](http://arxiv.org/abs/2609.29453)|null|
 |**2026-09-24**|**Poster: FedWM-Guard: Thwarting Imagination Poisoning in Federated World Model-based Autonomous Driving**|Sheng Liu et.al.|[2609.29178](http://arxiv.org/abs/2609.29178)|null|
 |**2026-09-24**|**Representation World Model: Learning States, Transition and Executable Plans in Representation**|Yijun Yuan et.al.|[2609.29171](http://arxiv.org/abs/2609.29171)|null|
