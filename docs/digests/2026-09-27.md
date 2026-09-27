@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-27T01:57:39+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-27T15:50:49+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：76/100
 - **作者**：Wangbo Yu, Kunhao Liu, Wenbo Hu et al.
 - **方向**：World Models
-- **一句话**：WorldCrafter 是一种面向交互式闭环探索的相机可控自回归视频世界模型。它利用从历史潜在帧和相机参数中提取的隐式三维感知记忆，并通过目标姿态引导的读出模块将历史信息压缩为固定数量的 DiT 记忆令牌，再与近期上下文共同生成后续视频块。模型采用最大视野覆盖的历史检索、联合优化和少步蒸馏，实现了长时程场景重访一致性、相机控制和流式生成。实验覆盖 145…
+- **一句话**：WorldCrafter 是一种面向交互式探索的相机可控自回归视频世界模型。它使用从预训练多视角三维表示初始化的记忆编码器，将历史潜变量帧及其相机姿态压缩为隐式三维感知表示，再通过姿态引导的读出模块提取与未来相机轨迹相关的固定数量记忆令牌，并与近期上下文共同输入视频 DiT。系统采用最大视野覆盖的历史帧检索、联合优化和少步蒸馏，实现了长时闭环探索与实时流式…
 - **精读笔记**：[打开笔记](../notes/2026-09-27/2609.24984-worldcrafter-consistent-video-world-model-with-i.md)
 
 ### 2. [HelloWorld: Towards Practical Applications of Generative Driving World Models](http://arxiv.org/abs/2609.28931v1)
@@ -26,7 +26,7 @@
 - **评分**：76/100
 - **作者**：Jiaqi Zhao, Xiaobin Hu, Bo Yin et al.
 - **方向**：World Models
-- **一句话**：本文研究视频生成和交互式世界模型中2比特KV缓存量化造成的隐性视觉退化。作者发现，尽管现有方法在VBench上的分数接近无损，生成结果仍可能出现时间闪烁、模糊和伪影；其中Key量化比Value量化更敏感，原因是Key扰动会改变QKᵀ注意力logits及Query对历史时空token的选择。QuantWM通过QSAC依据历史Query敏感性和残差量化难度选择…
+- **一句话**：论文发现，现有 2 比特 KV 缓存量化虽然在 VBench 上接近无损，却会引发视频时间闪烁、模糊和伪影，主要原因是 Key 量化扰动了注意力 logits，导致 Query 选择不同的历史时空 token。为此，QuantWM 采用 QSAC 根据 Query 通道敏感性和残差量化难度选择 Key 聚类中心，并采用 PSAC 沿主导 Query 子空间…
 - **精读笔记**：[打开笔记](../notes/2026-09-27/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md)
 
 ## 快速浏览
