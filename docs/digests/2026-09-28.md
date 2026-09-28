@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-28T02:03:10+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-28T18:47:45+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,24 +10,24 @@
 - **评分**：78/100
 - **作者**：Haojun Xu, Jie Huang, Xin Lu et al.
 - **方向**：Video Generation, World Models, Efficient Video Diffusion
-- **一句话**：论文研究少步视频扩散蒸馏中机器人—物体交互动力学丢失的问题。作者发现，DMD 的弱重新加噪会使教师后验锁定在近乎静态的轨迹附近，而运动较强的轨迹又更难被伪分数模型拟合。DyMD 通过时间亲和度条件化的重新加噪采样，为交互保真度较低的轨迹增加由教师速度转向构造的高噪声先验采样；同时利用潜变量时间动力学预测噪声相对拟合难度，对困难轨迹提高判别器训练权重。在将…
+- **一句话**：论文研究少步视频扩散蒸馏中交互动态丢失的问题，指出DMD的弱重新加噪会使教师后验锁定在近乎静止的轨迹附近，而运动较强的样本又更难被伪分数模型拟合。DyMD通过时间亲和度条件化的重新加噪采样和动态引导的伪分数跟踪，分别改进教师监督和评论器训练。将14B的PF-Wan教师蒸馏为四步1.3B学生后，DyMD在R-Bench、PAI-Bench-G和EZS-Ben…
 - **精读笔记**：[打开笔记](../notes/2026-09-28/2609.31349-dymd-preserving-interaction-dynamics-through-dis.md)
 
-### 2. [HelloWorld: Towards Practical Applications of Generative Driving World Models](http://arxiv.org/abs/2609.28931v1)
+### 2. [QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation](http://arxiv.org/abs/2609.26425v2)
+
+- **评分**：76/100
+- **作者**：Jiaqi Zhao, Xiaobin Hu, Bo Yin et al.
+- **方向**：World Models
+- **一句话**：论文发现，现有2比特KV缓存量化虽然在VBench上接近无损，却会引发视频时间闪烁、模糊和伪影，主要原因是Key量化扰动了注意力logits并改变了Query对历史时空Token的选择。为此提出无需训练、严格因果的QuantWM，通过QSAC按Query敏感性和残差量化难度选择Key质心，并通过PSAC沿主导Query子空间补偿剩余Key误差。五个视频生成…
+- **精读笔记**：[打开笔记](../notes/2026-09-28/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md)
+
+### 3. [HelloWorld: Towards Practical Applications of Generative Driving World Models](http://arxiv.org/abs/2609.28931v1)
 
 - **评分**：76/100
 - **作者**：Fan Lu, Hanshi Wang, Zijing Wang et al.
 - **方向**：World Models
 - **一句话**：Driving world models provide a promising route toward scalable counterfactual data generation and interactive simulation beyond recorded driving logs.
 - **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
-
-### 3. [QuantWM: Temporally Consistent 2-Bit KV Cache Quantization for World Models and Video Generation](http://arxiv.org/abs/2609.26425v2)
-
-- **评分**：76/100
-- **作者**：Jiaqi Zhao, Xiaobin Hu, Bo Yin et al.
-- **方向**：World Models
-- **一句话**：论文研究视频生成和世界模型中2比特KV缓存量化造成的隐性视觉退化。作者发现，Key量化虽然重建误差小于Value量化，却会通过扰动QK⊤改变时空token选择，进而引发时间闪烁、模糊和伪影。为此提出无需训练、严格因果的QuantWM：QSAC依据历史Query敏感性和残差量化难度选择Key质心，PSAC则沿Query的主导子空间补偿剩余Key误差。五个视频…
-- **精读笔记**：[打开笔记](../notes/2026-09-28/2609.26425-quantwm-temporally-consistent-2-bit-kv-cache-qua.md)
 
 ## 快速浏览
 
