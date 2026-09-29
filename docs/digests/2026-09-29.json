@@ -1,222 +1,125 @@
 {
-  "generated_at": "2026-09-29T02:49:53+00:00",
+  "generated_at": "2026-09-29T17:04:11+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2609.33218",
-      "date": "2026-09-27",
+      "id": "2609.34606",
+      "date": "2026-09-28",
       "topics": [
         "World Models"
       ],
-      "title": "Scope-WM: Scoped Computation for Efficient Visual World Models",
-      "abstract": "Visual world models enable robotic planning by predicting future observations, but dense latent-state propagation and sample-intensive trajectory optimization incur high inference latency and peak memory usage, limiting real-time deployment on resource-constrained platforms. Existing sparse world-model acceleration methods either rely on unguided token sparsification, which may discard planning-relevant information and restrict achievable sparsity, or introduce heavy auxiliary modules and cumbersome multi-stage training pipelines. In this work, we present Scope-WM, an efficient visual world model that scopes computation to prediction-relevant latent regions and promising action sequences. Scope-WM distills prediction relevance into a lightweight action-conditioned selector and applies full dynamics prediction only to a compact subset of selected tokens. It updates the remaining tokens using a compact summary of foreground states and their changes, allowing the background to perceive foreground dynamics without costly token-to-token interactions. During planning, Scope-WM preserves and reuses high-quality action sequences discovered during the initial MPC search, focusing subsequent search under reduced rollout budgets. The resulting pipeline requires only a one-off selector distillation followed by a single joint training stage for the sparse world model. On the challenging Push-T task, Scope-WM reduces peak GPU memory usage and planning time to $18.1\\%$ and $14.3\\%$ of those of dense DINO-WM, respectively, corresponding to a $6.97\\times$ planning speedup, while maintaining competitive task performance. Further evaluations across five diverse visual planning tasks demonstrate the general applicability of Scope-WM. Code is available at https://github.com/ChunZheng2022/Scope-WM.",
+      "title": "WorldAttention: An Efficient Attention Architecture for Interactive Video World Models",
+      "abstract": "Leveraging the paradigm of autoregressive diffusion, text-conditioned interactive video world models aim to simulate temporally coherent environments guided by textual instructions. While enabling low-latency, long-duration generation is pivotal for embodied AI and simulation-based planning, current frameworks primarily rely on sliding-window mechanisms to bound computational complexity. However, this approach inherently sacrifices historical context, undermining the long-range interactive capabilities. Conversely, maintaining a full-history cache remains computationally prohibitive and memory-intensive: the quadratic complexity of attention leads to excessive computational overhead, while the linear growth of the KV cache inevitably leads to GPU memory saturation. To overcome these limitations, we propose WorldAttention, a system-oriented attention architecture that achieves high efficiency through the co-design of specialized attention kernels and hierarchical KV cache management. First, we introduce Hybrid Sparse Attention (HSA), which integrates linear global attention supplemented with head-adaptive sparse attention. Additionally, we design a Hierarchical KV Cache (HKV) that organizes historical KV pairs into semantically indexed pages across multi-tier memory, enabling fine-grained retrieval and controlled GPU residency. These two designs are supported by tailored kernels to effectively translate their theoretical efficiency into real-world performance. Extensive experiments on VBench-Long and InterVBench demonstrate that WorldAttention consistently surpasses prior state-of-the-art methods, achieving subject consistency scores of 0.9472 on VBench-Long and 0.9668 on InterVBench, respectively.",
       "authors": [
-        "Chunzheng Li",
-        "Zesheng Jia",
-        "Hongda Zhang",
-        "Jiaying Tang",
-        "Yuntian Wang",
-        "Siao Liu",
-        "Jin Wang"
+        "Zeyu Zhang",
+        "Jinyuan Mao",
+        "Dakai An",
+        "Wangbo Zhao",
+        "Hanfeng Lu",
+        "Jiasheng Tang",
+        "Yinghao Yu",
+        "Wei Wang",
+        "Bohan Zhuang"
       ],
-      "url": "http://arxiv.org/abs/2609.33218v1",
+      "url": "http://arxiv.org/abs/2609.34606v1",
       "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.RO"
+        "cs.CV"
       ],
-      "comment": "",
-      "score": 80,
-      "priority": "must-read",
-      "summary_cn": "本文针对基于视觉世界模型的机器人规划中潜状态传播和采样式 MPC 计算成本高的问题，提出 Scope-WM。该方法在三个层面分配计算：使用蒸馏相关性选择（DRS）根据视觉状态、控制状态和动作选择需要完整动力学预测的少量标记；使用前景-变化量背景更新（FDBU）通过前景状态及其运动变化的汇总信息轻量更新背景标记；使用精英库交叉熵方法（EB-CEM）在初始 MPC 步骤投入更多采样，并在后续步骤复用高质量动作序列。实验基于 DINO-WM，在 PointMaze、Wall、Push-T、Rope 和 Granular 五项任务上进行。Push-T 上最激进的 32 标记配置将规划时间和峰值 GPU 内存分别降至稠密基线的 14.3% 和 18.1%，实现 6.97 倍加速，同时成功率为 88%；较宽松的 98 标记配置成功率达到 94%。消融实验表明，DRS、FDBU 和 EB-CEM 分别有助于相关标记选择、背景状态维护和低预算轨迹搜索。",
-      "contribution_cn": "1. 将高效视觉世界模型规划表述为三层计算分配问题，涵盖预测相关标记选择、前景感知的背景更新和轨迹搜索预算分配。 2. 提出 DRS，通过从完整标记教师模型中蒸馏预测相关性，利用轻量级动作条件选择器确定需要完整动力学预测的标记，并仅需一次选择器蒸馏。 3. 提出 FDBU，利用前景状态和前景变化量的汇总上下文，以轻量级门控残差更新背景标记，避免稠密的前景-背景标记交互。 4. 提出 EB-CEM，在初始 MPC 搜索中使用更大的采样预算，并将高质量动作序列存入精英库，在后续低预算搜索中复用和扰动这些序列。 5. 在五个视觉规划任务上验证了方法的效率-性能权衡，并在 Push-T 上实现显著的规划时间和显存降低。",
-      "relevance_cn": "该论文与研究重点直接相关，核心对象是用于机器人闭环规划的视觉世界模型。它通过动作条件的预测相关性选择实现状态和动作依赖的稀疏计算，通过前景动力学摘要实现低成本潜状态更新，并通过精英动作序列复用减少后续 MPC 搜索开销。这些设计对应稀疏注意力或稀疏 token 计算、缓存/轨迹复用、实时推理和闭环视觉模拟。方法不是视频生成或视频扩散模型，也不是自回归像素级长视频生成；其预测对象是 DINOv2 特征空间中的未来视觉潜状态，主要目标是提高动作条件视觉世界模型的规划效率。",
-      "limitations_cn": "论文在 Rope 任务上的稀疏模型性能明显低于稠密 DINO-WM：最佳 Scope-WM 的 Chamfer Distance 为 0.71，而 DINO-WM 为 0.41，说明在更复杂的可变形动力学场景中，稀疏前景预测和汇总式背景更新可能损失重要信息。更激进的稀疏配置也会带来一定性能下降，例如 Push-T 的 32 标记配置成功率为 88%，低于稠密模型的 90%，而 98 标记配置为 94%。DRS 依赖预先训练的稠密 DINO-WM 教师和一次蒸馏，FDBU 使用前景状态与变化量的汇总表示，可能无法完整表达复杂的标记间关系。实验主要基于五项离线视觉规划任务和有限的 GPU 平台，论文未明确说明在真实机器人、更多样的长时域任务、不同视觉编码器或大规模实时部署中的表现。该方法的训练和推理开销、超参数敏感性及其与视频扩散或生成式世界模型的比较，论文未明确说明。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视觉世界模型通过预测未来观测来支持机器人规划，但稠密潜状态传播和高样本量轨迹优化会带来较高的推理延迟与峰值内存使用，限制其在资源受限平台上的实时部署。现有稀疏世界模型加速方法要么依赖无引导的标记稀疏化，可能丢弃与规划相关的信息并限制可实现的稀疏程度；要么引入复杂的辅助模块和繁琐的多阶段训练流程。本文提出 Scope-WM，一种高效的视觉世界模型，将计算范围限定在与预测相关的潜在区域和有前景的动作序列上。Scope-WM 将预测相关性蒸馏到一个轻量级的动作条件选择器中，仅对选定的少量标记执行完整动力学预测。对于其余标记，模型利用前景状态及其变化的紧凑摘要进行更新，使背景能够感知前景动力学，同时避免昂贵的标记间交互。在规划过程中，Scope-WM 保留并复用初始模型预测控制（MPC）搜索中发现的高质量动作序列，在减少后续 rollout 预算的情况下集中进行搜索。该流程只需进行一次选择器蒸馏，随后对稀疏世界模型进行单阶段联合训练。在具有挑战性的 Push-T 任务上，相比稠密 DINO-WM，Scope-WM 将峰值 GPU 内存使用量和规划时间分别降至其 18.1% 和 14.3%，对应 6.97 倍的规划加速，同时保持具有竞争力的任务性能。在五个不同的视觉规划任务上的进一步评估展示了 Scope-WM 的普适性。代码已公开于 https://github.com/ChunZheng2022/Scope-WM。",
-      "note_path": "2026-09-29/2609.33218-scope-wm-scoped-computation-for-efficient-visual.md"
-    },
-    {
-      "id": "2609.31349",
-      "date": "2026-09-25",
-      "topics": [
-        "Video Generation",
-        "World Models",
-        "Efficient Video Diffusion"
-      ],
-      "title": "DyMD: Preserving Interaction Dynamics through Distribution Matching Distillation in Few-Step Video World Models",
-      "abstract": "Large video diffusion models offer expressive priors for embodied prediction and learning, yet their many-step sampling remains costly for interactive downstream use. Distribution Matching Distillation (DMD) enables few-step video generation, but can suppress robot--object motion while preserving visual quality. Examining DMD's teacher and fake-score signals, we find that weak re-noising keeps the teacher posterior concentrated near motion-deficient rollouts, limiting motion-restoring guidance. Meanwhile, stronger-motion rollouts tend to incur larger fake-score fitting errors, which can hinder the generator's learning of interaction dynamics. We propose DyMD, a DMD framework that adapts both teacher supervision and critic fitting to the evolving student. Temporal affinity--conditioned re-noise sampling adapts the timestep distribution to each rollout's current interaction fidelity by mixing the base schedule with a teacher prior motivated by local posterior variation, thereby balancing motion recovery and appearance refinement. To better track stronger-motion rollouts, dynamics-guided fake-score tracking uses a noise-conditioned predictor to estimate noise-relative fitting difficulty from latent temporal dynamics, then upweights predicted-hard rollouts in the critic loss. Using DyMD, we distill a 14B teacher into a four-step 1.3B student with no auxiliary modules at inference. On embodied-video benchmarks, the student improves R-Bench task adherence by $9.6$ percentage points and PAI-Bench-G Domain score by $5.1$ points over Base DMD while maintaining comparable visual quality. As a backbone for downstream action planning, our student achieves 34% mean success across two WorldArena tasks, compared with 16% for Base DMD.",
-      "authors": [
-        "Haojun Xu",
-        "Jie Huang",
-        "Xin Lu",
-        "Mingchen Zhong",
-        "Zihao Fan",
-        "Linjiang Huang",
-        "Si Liu"
-      ],
-      "url": "http://arxiv.org/abs/2609.31349v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "",
+      "comment": "Website: https://alibaba-damo-academy.github.io/WorldAttention, Code: https://github.com/alibaba-damo-academy/WorldAttention",
       "score": 78,
       "priority": "must-read",
-      "summary_cn": "本文研究DMD将大型视频扩散教师蒸馏为少步视频世界模型时交互动力学退化的问题。作者发现，弱重新加噪会使教师后验锁定在运动不足的学生轨迹附近，而运动较强的轨迹又更难被伪评分模型拟合。DyMD通过时间亲和度条件化的重新加噪采样，为交互保真度较低的轨迹增加教师先验采样；同时利用潜变量时间动力学预测噪声相对拟合难度，并提高困难轨迹在判别器训练中的权重。将14B PF-Wan教师蒸馏为四步1.3B学生后，DyMD在R-Bench、PAI-Bench-G和EZS-Bench上改善了交互保真度，并在WorldArena闭环动作规划中将平均成功率从16%提升至34%，且推理无需额外模块。",
-      "contribution_cn": "1. 分析DMD中教师监督和伪评分拟合对交互动力学退化的影响，指出教师侧模式锁定和运动相关的判别器拟合困难是关键障碍。2. 提出时间亲和度条件化的重新加噪采样，将教师速度转向先验与基础时间步调度混合，并依据每条学生轨迹当前的交互保真度自适应分配采样概率。3. 提出动力学引导的伪评分跟踪，通过噪声条件预测器从VAE潜变量时间动力学估计相对拟合难度，在固定判别器更新预算下对困难轨迹进行加权。4. 在四步、1.3B学生模型上验证方法，在多个具身视频基准和WorldArena下游动作规划任务中取得优于Base DMD的结果。",
-      "relevance_cn": "本文与视频生成和视频扩散高度相关，核心目标是将14B视频扩散教师压缩为四步1.3B生成器，并降低少步采样造成的运动和交互动力学损失。它直接涉及实时或低延迟视频生成中的蒸馏、少步采样、时间步自适应分配和伪评分跟踪。作为视频世界模型，DyMD生成的视觉未来可用于具身预测和闭环动作规划；WorldArena结果表明，保留机器人—物体交互动力学能够提升下游闭环决策。论文没有重点讨论自回归、因果或流式生成，也未提出显式的稀疏注意力或缓存复用机制。",
-      "limitations_cn": "论文明确指出，教师速度转向曲线依赖具体教师模型和采样调度，更换教师时必须重新估计。方法训练阶段还依赖冻结的V-JEPA特征编码器、教师模型、伪评分模型和难度预测器，训练流程较复杂，尽管推理时不需要辅助模块。实验主要基于PF-Wan教师、RoVid-X数据和三个具身视频基准，并使用四步、81帧的1.3B双向学生模型，因此对其他教师、数据分布、视频长度及因果或流式场景的泛化能力尚未充分验证。论文未明确说明真实机器人部署中的计算开销、延迟和安全性影响。",
+      "summary_cn": "论文面向文本条件的交互式长视频世界模型，解决完整历史上下文带来的注意力计算和 KV 缓存内存开销问题。方法由分层 KV 缓存（HKV）和混合稀疏注意力（HSA）组成：HKV 将历史缓存分页并跨 GPU、CPU 和 NVMe 分层管理，通过提示级和页面级检索选择相关视觉记忆；HSA 以线性全局注意力建模长程依赖，并以头部自适应的块稀疏注意力保留局部细节。配合针对内存布局优化的定制内核，系统在 VBench-Long 和 InterVBench 上获得较高的一致性、质量和提示跟随效果，并在单张 H100 上达到 22 FPS，端到端实现 2.21 倍加速。",
+      "contribution_cn": "1. 提出专为交互式长视频生成设计的 WorldAttention 架构，以缓解二次注意力计算和持续增长的 KV 缓存带来的效率与内存瓶颈。 2. 提出分层 KV 缓存（HKV），将历史 KV 划分为语义页面，并在 GPU、CPU 和 NVMe 多级存储间进行细粒度检索、迁移和驻留管理。 3. 提出混合稀疏注意力（HSA），结合线性全局注意力、动态块稀疏注意力和头部级自适应稀疏率，在全局上下文覆盖与局部细节建模之间取得平衡。 4. 设计与缓存组织和稀疏模式匹配的定制注意力内核，优化非连续内存访问和执行并行度；相较 FlashAttention-3，稀疏内核最高加速 14.02 倍，结合 HKV 的端到端加速为 2.21 倍。 5. 在 VBench-Long 和 InterVBench 上验证方法在长时段交互视频中的主体一致性、背景一致性、运动平滑性、提示对齐和推理吞吐优势。",
+      "relevance_cn": "与研究重点高度相关。论文直接研究自回归扩散式、文本条件交互视频世界模型，强调跨数十秒至分钟级生成时保持历史记忆、主体身份、场景一致性和因果连贯性。HKV 支持全历史上下文的分层存储与语义检索，适用于长视频、交互式和闭环式环境模拟；HSA、块稀疏注意力和线性注意力降低长序列计算成本；KV 缓存复用、专用内核和多级内存管理对应缓存重用、稀疏注意力与实时生成方向。论文报告单张 NVIDIA H100 上 22 FPS，并在 60 秒及更长时长设置中验证效率，但其重点是文本驱动的交互生成，而非明确的动作条件控制或机器人闭环策略学习。",
+      "limitations_cn": "论文明确显示，当前检索主要采用提示级 Top-1 候选块，再从其中选择页面；对于涉及多个事件的提示，扩大候选块数量会分散固定页面预算并引入无关上下文，因此该设计对多事件场景可能存在局限。面对语义相似的历史片段，实验显示性能会小幅下降。稀疏块注意力内核本身仅占 HSA 总延迟的 1.86%，KV 重组和连续内存复制仍是主要开销，说明单独优化注意力内核不能完全解决端到端效率问题。实验主要基于 Wan2.1-T2V、480p 视频以及 VBench-Long 和 InterVBench；论文未明确说明在更广泛模型、分辨率、场景分布或真实具身闭环任务中的泛化能力。训练过程使用 32 张 H100、192 个 CPU 核心和 960 GB CPU 内存，资源需求较高。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "大型视频扩散模型提供了用于具身预测和学习的丰富先验，但其多步采样对交互式下游应用而言成本高昂。分布匹配蒸馏（DMD）能够实现少步视频生成，但在保持视觉质量的同时可能抑制机器人与物体之间的运动。通过分析DMD中的教师信号和伪评分信号，我们发现，较弱的重新加噪会使教师后验集中在运动不足的轨迹附近，从而限制恢复运动的引导能力。同时，运动更强的轨迹往往会产生更大的伪评分拟合误差，这可能妨碍生成器学习交互动力学。我们提出DyMD，一种使教师监督和判别器拟合都适应不断演化的学生模型的DMD框架。时间亲和度条件化的重新加噪采样通过将基础调度与受局部后验变化启发的教师先验混合，根据每条轨迹当前的交互保真度调整时间步分布，从而平衡运动恢复与外观细化。为更好地跟踪运动更强的轨迹，动力学引导的伪评分跟踪器使用噪声条件预测器，根据潜变量时间动力学估计相对于噪声的拟合难度，并在判别器损失中提高预测困难轨迹的权重。使用DyMD，我们将一个14B教师模型蒸馏为一个四步、1.3B的学生模型，推理时无需额外辅助模块。在具身视频基准上，该学生模型相较于Base DMD将R-Bench任务遵循度提高了9.6个百分点，将PAI-Bench-G Domain分数提高了5.1个百分点，同时保持了相当的视觉质量。作为下游动作规划的骨干模型，该学生模型在两个WorldArena任务上取得了34%的平均成功率，而Base DMD为16%。",
-      "note_path": "2026-09-29/2609.31349-dymd-preserving-interaction-dynamics-through-dis.md"
+      "abstract_cn": "借助自回归扩散范式，文本条件交互式视频世界模型旨在根据文本指令模拟具有时间一致性的环境。尽管实现低延迟、长时长生成对于具身智能和基于仿真的规划至关重要，现有框架主要依赖滑动窗口机制来限制计算复杂度。然而，这种方法必然会牺牲历史上下文，从而削弱长程交互能力。相反，维护完整历史缓存在计算和内存方面仍然难以承受：注意力的二次复杂度会带来过高的计算开销，而 KV 缓存的线性增长则不可避免地导致 GPU 内存耗尽。为克服这些局限，我们提出 WorldAttention，一种面向系统设计的注意力架构，通过专用注意力内核与分层 KV 缓存管理的协同设计实现高效率。首先，我们引入混合稀疏注意力（HSA），将线性全局注意力与头部自适应稀疏注意力相结合。此外，我们设计了分层 KV 缓存（HKV），将历史 KV 对组织为跨多级存储、按语义建立索引的页面，从而实现细粒度检索并控制 GPU 中的数据驻留。这两项设计由定制内核提供支持，可将理论效率有效转化为实际性能。在 VBench-Long 和 InterVBench 上的大量实验表明，WorldAttention 持续超越此前的先进方法，在两个基准上分别取得 0.9472 和 0.9668 的主体一致性得分。",
+      "note_path": "2026-09-29/2609.34606-worldattention-an-efficient-attention-architectu.md"
     },
     {
-      "id": "2609.32540",
-      "date": "2026-09-26",
+      "id": "2609.35560",
+      "date": "2026-09-28",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "In-Flight KV Cache with Clean Anchors for Faster Autoregressive Video Diffusion",
-      "abstract": "Few-step autoregressive video diffusion generates a long video by splitting the video into temporal chunks and generating chunk-by-chunk, each through a short sequence of denoising stages. To memorize chunks that are already generated, previous methods reconstruct a clean or less-noisy key--value (KV) cache by additional forwards to build the cache without advancing an output latent. However, every denoising forward itself already computes the in-flight KV of the current chunk. We introduce FlashForward, which directly reuses this cache to avoid the heavy cache-update-only model forwards. After the current chunk completes one denoising stage, its stage-specific cache is already available for the next chunk. Assigning one GPU to each stage therefore lets different chunks occupy different stages concurrently. This early availability has a quality cost: the resulting stage-matched history is noisy, causing appearance and motion drift among chunks. To complement it, FlashForward produces sparse auxiliary clean anchor latents before the corresponding region is generated so the generation trajectories can be stabilized by this two-sided conditioning. The two memories operate at different temporal scales: sparse clean anchor KV supplies coarse, long-range two-sided structural guidance, while dense stage-matched history preserves fine, recent evolution. With up to four GPUs, FlashForward runs $1.16$--$1.69\\times$ faster than HiAR and $1.42$--$2.92\\times$ faster than Self-Forcing for 16 FPS videos of 20 seconds or longer across 1.3B and 14B backbone scales at 480p and 720p. On VBench, for the 1.3B model at 480p, it achieves higher scores and remains stable at longer durations, demonstrating that FlashForward generates high-quality and temporally consistent videos across durations of 20s, 35s and 65s at a much faster generation speed.",
+      "title": "WorldPlay2: Extending Real-Time Interactive World Models in Control and Horizon",
+      "abstract": "Interactive world models require responding in real time to versatile controls and maintaining long-horizon consistency. However, modeling heterogeneous controls remains difficult, while explosive contexts and unstable distillation impede achieving both long-horizon consistency and real-time responsiveness. In this paper, we present WorldPlay2, an interactive world model that couples a factorized hybrid control interface with a co-design of compressed memory and stable distillation. 1) Our factorized hybrid control interface integrates frame-aligned action control with structured semantic control that explicitly disentangles scene appearance, character identity, and dynamic semantic events, thereby facilitating effective control learning. 2) To achieve efficient long-horizon modeling, we compress historical contexts into compact memory tokens shared by the autoregressive student and the bidirectional teacher. This design enables clip-wise, memory-conditioned score evaluation instead of jointly processing an entire long rollout, substantially reducing distillation overhead. 3) We further propose Stable Forcing, which initializes the autoregressive student via a few-step strategy and leverages full-rollout replay to preserve the quality of long-horizon rollouts, ensuring robust and stable distillation. Extensive experiments demonstrate the strong generalizability of our model and its superior performance compared to existing methods.",
       "authors": [
-        "Yikai Wang",
-        "Xiao Han",
-        "Mengmeng Xu",
-        "Juan Camilo Perez",
-        "Yiannis Douratsos",
-        "Sen He",
-        "Zijian Zhou",
-        "Fei Zhang",
-        "Zhaochong An",
-        "Juan-Manuel Perez-Rua",
-        "Chen Change Loy",
-        "Tao Xiang"
+        "Haiyu Zhang",
+        "Wenqiang Sun",
+        "Tengfei Wang",
+        "Junta Wu",
+        "Jun Zhang",
+        "Yunhong Wang",
+        "Yu Qiao",
+        "Chunchao Guo"
       ],
-      "url": "http://arxiv.org/abs/2609.32540v1",
+      "url": "http://arxiv.org/abs/2609.35560v1",
       "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG",
-        "cs.MM"
+        "cs.CV"
       ],
-      "comment": "PJ page: https://yikai-wang.github.io/FlashForward/",
-      "score": 74,
+      "comment": "project page: https://worldplay2.github.io/",
+      "score": 78,
       "priority": "must-read",
-      "summary_cn": "论文提出 FlashForward，一种面向少步自回归视频扩散的高效生成框架。它复用普通去噪前向产生的阶段匹配 KV 缓存，使每次计算既推进当前视频片段又为后续片段提供状态，从而在多 GPU 上形成跨去噪阶段的波流水线。针对阶段匹配历史噪声较大、容易造成外观和运动漂移的问题，框架由规划器预先生成稀疏干净锚点，并与近期稠密历史结合进行双侧条件。规划器和渲染器共享骨干网络，通过监督微调和自滚动蒸馏训练。在 1.3B/14B、480p/720p 设置下，方法显著降低长视频生成延迟，并在 VBench 长视频评测中保持较好的质量和时间一致性。",
-      "contribution_cn": "1. 提出一种跨片段状态契约：每个普通渲染去噪前向在推进当前片段的同时发布阶段匹配 KV，避免仅用于缓存更新的额外前向，并支持不同去噪阶段在多 GPU 上形成波流水线。2. 提出时间尺度互补的记忆设计：稀疏干净锚点 KV 提供粗粒度、长程、双侧结构约束，阶段匹配的渲染历史提供近期的细粒度外观和运动信息。3. 设计共享骨干的规划器—渲染器架构，以角色嵌入和 LoRA 适配器区分两种 temporal dependency，并通过真实视频监督微调和自滚动分布蒸馏训练。4. 在 1.3B 和 14B 模型、480p 和 720p 视频上验证了速度优势，并在 1.3B、480p 的 VBench 及长视频测试中取得较高质量和稳定性。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究自回归、少步、长视频扩散生成，并通过复用在途 KV 缓存降低生成延迟。阶段匹配历史使相邻视频片段能够跨去噪阶段流水并行，属于缓存复用和多 GPU 实时化优化；规划器预先生成稀疏锚点、渲染器进行因果生成，则提供了面向长时序一致性的双侧结构引导。方法支持流式生成，并在 20 秒、35 秒和 65 秒视频上评估，具体体现了长视频生成、因果依赖管理、并行执行和 KV 缓存设计之间的结合。",
-      "limitations_cn": "论文明确指出：该方法面向长序列、少步、多 GPU 生成，规划器和流水线预热会削弱短视频的收益，单 GPU 推理无法利用波流水线并行。训练数据仅包含真实世界视频，使模型偏向写实内容，可能限制其在动画和其他风格化领域的表现。方法使用固定的锚点步长和条件窗口，并采用较为基础的训练方案；放宽固定的干净锚点状态假设和自适应锚点选择仍属于未来工作。此外，锚点位置若直接作为最终输出会产生周期性接缝，因此需要重新生成锚点位置。仅使用阶段匹配历史会产生严重闪烁，而更密集地使用干净历史和未来信息会带来较高延迟。论文未明确说明其在更多硬件配置、更多数据分布及非写实内容上的泛化性能。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "少步自回归视频扩散通过将视频划分为时间片段，并逐片段生成长视频；每个片段都经过一小段去噪阶段序列。为记忆已经生成的片段，现有方法通过额外的前向计算重建干净或低噪声的键值（KV）缓存，在不推进输出潜变量的情况下构建缓存。然而，每次去噪前向本身已经计算了当前片段的在途 KV。我们提出 FlashForward，直接复用这一缓存，从而避免代价高昂的、仅用于更新缓存的模型前向计算。当前片段完成一个去噪阶段后，其特定于该阶段的缓存已可供下一个片段使用。因此，为每个阶段分配一块 GPU，就能让不同片段并发处于不同阶段。这种提前可用性会带来质量代价：由此产生的阶段匹配历史带有噪声，导致片段之间出现外观和运动漂移。为此，FlashForward 在相应区域生成之前产生稀疏的辅助干净锚点潜变量，通过双侧条件稳定生成轨迹。两种记忆作用于不同的时间尺度：稀疏的干净锚点 KV 提供粗粒度、长程的双侧结构引导，而稠密的阶段匹配历史保留近期的细粒度演化信息。在最多使用四块 GPU 时，对于 480p 和 720p、1.3B 和 14B 两种骨干模型，针对时长至少 20 秒的 16 FPS 视频，FlashForward 比 HiAR 快 1.16–1.69 倍，比 Self-Forcing 快 1.42–2.92 倍。在 VBench 上，对于 480p 的 1.3B 模型，它取得了更高的分数，并且在更长时长下保持稳定，表明 FlashForward 能以显著更快的生成速度生成时长为 20 秒、35 秒和 65 秒的高质量、时间一致视频。",
-      "note_path": "2026-09-29/2609.32540-in-flight-kv-cache-with-clean-anchors-for-faster.md"
-    },
-    {
-      "id": "2609.20051",
-      "date": "2026-09-26",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models",
-      "abstract": "Few-step distillation reduces the inference cost of image-to-video generation, but directly reusing LoRA adapters trained for long denoising trajectories can weaken their intended effects and degrade video quality. We observe that adapters with similar measured static parameter geometry can behave differently under the shortened target schedule, motivating response-aware transfer. We propose DART, a training-free reparameterization method that transports source LoRAs into aligned coordinates through a low-rank distillation bridge. Paired forward evaluations measure channel-level incremental responses under the target schedule to fit coefficients that calibrate response direction, source-relative magnitude, and timestep allocation. Coordinate transport establishes update directions, while calibration adapts their contributions, requiring neither source training videos nor backpropagation. Experiments across multiple distilled I2V models demonstrate improved generation quality and aggregate functional retention over direct reuse. Further analyses show that coordinate transport complements response calibration, with adapter-level benefits encompassing both functional preservation and reduced negative transfer.",
-      "authors": [
-        "Shihong Li",
-        "Juntao Xu",
-        " JinCao",
-        "Maowen Tang",
-        "Jun Huang",
-        "Jintao Li"
-      ],
-      "url": "http://arxiv.org/abs/2609.20051v2",
-      "categories": [
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 73,
-      "priority": "skim",
-      "summary_cn": "Few-step distillation reduces the inference cost of image-to-video generation, but directly reusing LoRA adapters trained for long denoising trajectories can weaken their intended effects and degrade video quality.",
-      "contribution_cn": "We propose DART, a training-free reparameterization method that transports source LoRAs into aligned coordinates through a low-rank distillation bridge.",
-      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：few-step, distillation, efficient, video generation, image-to-video, video diffusion",
+      "summary_cn": "Interactive world models require responding in real time to versatile controls and maintaining long-horizon consistency.",
+      "contribution_cn": "In this paper, we present WorldPlay2, an interactive world model that couples a factorized hybrid control interface with a co-design of compressed memory and stable distillation.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, interactive, autoregressive, real-time, few-step, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.30963",
-      "date": "2026-09-25",
+      "id": "2609.34470",
+      "date": "2026-09-28",
       "topics": [
-        "Video Generation"
+        "World Models"
       ],
-      "title": "Where and When to Force: Routed Forcing for Streaming Avatars",
-      "abstract": "Audio-driven streaming avatar generation requires real-time synthesis of speech-synchronized videos with dynamic and diverse motion. Self Forcing uses Distribution Matching Distillation (DMD) to distill bidirectional video diffusion models into causal, few-step generators for real-time streaming. However, DMD minimizes a reverse KL divergence, which is inherently mode-seeking: it causes the student to discard high-dynamic modes and collapse onto static outputs, compressing both dynamics and diversity of generated videos. We find that this collapse is region-heterogeneous: person regions involving pose and gesture variations suffer the largest diversity loss, the audio-driven mouth region shows a small loss, and the background remains nearly stable. Based on this observation, we propose Routed Forcing, which routes the distillation objective by semantic region and noise stage to improve dynamics and diversity while preserving visual quality. Specifically, (1) Where to Force: Semantic-Region Routing applies Data-Forcing Distillation (DFD), which supervises the student with real videos, to the person region where diversity collapse is most severe, while retaining DMD for the mouth and background to preserve lip synchronization and scene stability. (2) When to Force: Noise-Stage Routing activates DFD at high noise stages, where real video serves as effective supervision to inject diverse and dynamic motion patterns. At low noise stages, DMD is used to refine details, avoiding blur and artifacts from spatial differences between real video and student-generated video. Experiments show that Routed Forcing improves dynamics by up to 45% and diversity by 7-25% over Self Forcing, while preserving video quality and lip synchronization.",
+      "title": "Precise Editing and Flexible Referencing for Interactable Worlds",
+      "abstract": "We present EditWorld, a video world model for precise editing and flexible referencing in interactable worlds. Existing video world models primarily focus on navigation, letting users explore generated worlds but offering limited control over how existing world content is modified. EditWorld extends world modeling from exploration to precise modification by streaming editing instructions and reference images during autoregressive generation. To support these capabilities, EditWorld introduces Gated Causal Attention for temporally varying editing conditions and reference images, together with a Sparse Context mechanism that maintains a bounded historical context for long-horizon inference. We further adopt joint autoregressive and bidirectional training with annealed self-resampling, and construct a dedicated data synthesis and annotation pipeline that provides supervision for world editing. We also present WBench-Editing to systematically evaluate streaming world editing capabilities. EditWorld achieves the best overall performance on WBench-Editing with an overall score of 73.8 and an editing score of 80.0, substantially outperforming existing methods on editing-related metrics. https://github.com/leoisufa/EditWorld",
       "authors": [
-        "Zihan Su",
-        "Siwen Lu",
-        "Junhao Zhuang",
-        "Zeyue Xue",
-        "Haoyang Huang",
-        "Guanghao Li",
-        "Xiaofeng Tan",
-        "Chun Yuan",
-        "Nan Duan"
+        "Xinyao Liao",
+        "Xianfang Zeng",
+        "Zhu Liang",
+        "Zhoujie Fu",
+        "Qianxun Xu",
+        "Jiachi Liu",
+        "Gang Yu",
+        "Guosheng Lin"
       ],
-      "url": "http://arxiv.org/abs/2609.30963v1",
+      "url": "http://arxiv.org/abs/2609.34470v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.AI"
       ],
       "comment": "",
       "score": 72,
-      "priority": "skim",
-      "summary_cn": "Audio-driven streaming avatar generation requires real-time synthesis of speech-synchronized videos with dynamic and diverse motion.",
-      "contribution_cn": "Based on this observation, we propose Routed Forcing, which routes the distillation objective by semantic region and noise stage to improve dynamics and diversity while preserving visual quality.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：streaming, real-time, few-step, distillation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "本文提出 EditWorld，将视频世界模型从以导航和探索为主扩展到支持持续、精确的世界编辑与参考图像注入。模型基于自回归视频生成，通过门控因果注意力处理随时间变化的编辑指令和参考图像，通过稀疏上下文限制长视频历史记忆的规模，并结合自回归/双向联合训练、退火式自重采样及少步蒸馏，提高条件跟随能力、长时域稳定性和生成效率。作者还利用导航与视频编辑数据合成带有编辑状态、场景描述、相机轨迹和参考图像的训练数据，并提出约 150 个测试案例组成的 WBench-Editing。实验显示，EditWorld 在流式编辑和参考条件编辑方面明显优于对比方法，同时保持较强的通用世界建模能力。",
+      "contribution_cn": "1. 提出 EditWorld 视频世界模型，支持通过流式文本指令、动作和参考图像对已生成世界进行连续的局部或全局编辑。2. 提出门控因果注意力，使编辑条件和参考图像能够在指定交互阶段介入，同时保持因果生成、参考内容保真和时间连续性。3. 提出稀疏上下文机制，始终保留初始世界状态和近期片段，并检索相关历史片段，从而以固定上下文预算支持长时域自回归生成。4. 采用自回归与双向联合训练、退火式自重采样，以及基于 PCM 和 Self Gradient Forcing 的四步蒸馏，以增强条件响应、减少误差累积并实现更高效生成。5. 构建面向世界编辑的数据合成与标注流程，并提出 WBench-Editing 基准。EditWorld 在该基准上取得 73.8 的总体得分和 80.0 的编辑得分。",
+      "relevance_cn": "与研究重点高度相关。它是面向可交互世界的自回归视频生成模型，直接支持动作、文本编辑指令和参考图像在生成过程中的流式输入，属于动作条件视觉世界模型和闭环交互模拟的范畴。门控因果注意力解决了时间变化条件下的因果、流式控制问题；稀疏上下文通过固定预算的 KV 历史检索支持长视频和长时域生成，并与缓存复用密切相关。模型还采用退火式自重采样来模拟自回归推理中的自身历史，缓解误差累积；基于 PCM 与 Self Gradient Forcing 的四步蒸馏则直接涉及实时生成和少步采样。论文重点是可控世界编辑，而非传统视频扩散模型本身，但其流式自回归生成、长上下文管理、缓存检索和实时蒸馏技术与视频生成和视频世界模型研究高度契合。",
+      "limitations_cn": "论文明确显示，WBench-Editing 的主比较为公平起见主要使用纯文本流式编辑指令，因为多数基线不支持交互式参考图像输入，因此参考图像能力的全面横向比较受到限制。WBench-Editing 约包含 150 个案例，规模有限，编辑效果主要通过基于视觉语言模型的问题回答进行评估，可能不足以覆盖真实交互场景的全部复杂性。论文还指出，自回归推理下 EditWorld 的通用 WBench 平均性能低于其双向推理版本，说明因果生成仍存在性能代价。除上述内容外，论文未明确说明模型的完整训练和推理计算成本、真实部署吞吐量、不同硬件上的端到端延迟，以及在更长时域或更复杂多轮编辑中的失效边界。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "我们提出 EditWorld，一种面向可交互世界的精确编辑与灵活引用的视频世界模型。现有视频世界模型主要关注导航，使用户能够探索生成的世界，但对如何修改已有世界内容的控制能力有限。EditWorld 通过在自回归生成过程中流式输入编辑指令和参考图像，将世界建模从探索扩展到精确修改。为支持这些能力，EditWorld 引入门控因果注意力，以处理随时间变化的编辑条件和参考图像；同时引入稀疏上下文机制，在长时域推理中维持有界的历史上下文。我们进一步采用自回归与双向训练相结合的方式，并配合退火式自重采样；此外还构建了专门的数据合成与标注流程，为世界编辑提供监督。我们还提出 WBench-Editing，用于系统评估流式世界编辑能力。EditWorld 在 WBench-Editing 上取得了最佳总体性能，总体得分为 73.8，编辑得分为 80.0，并在与编辑相关的指标上大幅超越现有方法。",
+      "note_path": "2026-09-29/2609.34470-precise-editing-and-flexible-referencing-for-int.md"
     },
     {
-      "id": "2609.32518",
-      "date": "2026-09-26",
+      "id": "2609.35491",
+      "date": "2026-09-28",
       "topics": [
         "Autoregressive and Streaming Video"
       ],
-      "title": "UnStep: Training-Free Acceleration of Causal Video Diffusion with Fewer Steps Than Distillation",
-      "abstract": "Distilling bidirectional multi-step video diffusion transformers into few-step causal models has become a common approach for streaming video generation. While these few-step students are significantly faster than the teachers they are distilled from, they remain slow for real-time generation. In this work we present UnStep, a training-free wrapper that accelerates few-step causal video models at inference by running them with fewer diffusion transformer (DiT) steps than during distillation and limiting the temporal window retained in the attention KV cache. We propose two inference-only mechanisms to recover quality lost by step reduction and attention windowing: renoising the generated latent frames to a near-clean level and reusing the existing clean-cache pass to refine them, and applying truncated SVD to the DiT attention value and output projections. We also accelerate inference with a quality-preserving runtime stack for the DiT and VAE decoder, including more efficient attention calls and KV indexing, fused Triton RoPE with cached coefficients, and VAE decoding with optimized memory layout, precision, and convolution kernels. By reducing computation and optimizing the runtime stack, UnStep sets a new throughput regime for causal video diffusion, by running substantially faster than current methods, reaching 50 FPS on a single H100 without quality loss, and 77 FPS on GB200, all without retraining.",
+      "title": "From Scores to Samples: Elastic Forcing for Autoregressive Video Generation",
+      "abstract": "Few-step autoregressive video generation commonly relies on Distribution Matching Distillation (DMD), requiring a bidirectional diffusion teacher and an online fake-score model. We instead learn the rollout distribution directly from reference videos, eliminating both score models during post-training. Our framework minimizes maximum mean discrepancy (MMD) in frozen self-supervised video representation spaces, using a hybrid Nyström--Monte Carlo estimator to balance approximation bias and sampling variance. Memory-efficient replay and gradient subsampling make this objective practical. Using the same architecture and initialization as Self-Forcing, our 1.3B model improves the VBench Total score from 83.80 to 84.64 while retaining 17 FPS. Removing auxiliary score models also enables 14B post-training on eight H200 GPUs. Beyond distillation, learning from reference videos enables the acquisition of new visual styles, semantic concepts, and spatial priors without a target-specific diffusion teacher.",
       "authors": [
-        "Youssef Mansour",
-        "Enis Simsar",
-        "Fadime Sener",
-        "Markos Georgopoulos",
-        "Albert Pumarola",
-        "Ali Thabet",
-        "Edgar Schoenfeld"
+        "Chi Zhang",
+        "Yueyi Liu",
+        "Haoyang Shi",
+        "Ruichuan An",
+        "Haoyu Li",
+        "Yuhang Wu",
+        "Sen Cui",
+        "Miao Liu"
       ],
-      "url": "http://arxiv.org/abs/2609.32518v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "Distilling bidirectional multi-step video diffusion transformers into few-step causal models has become a common approach for streaming video generation.",
-      "contribution_cn": "In this work we present UnStep, a training-free wrapper that accelerates few-step causal video models at inference by running them with fewer diffusion transformer (DiT) steps than during distillation and limiting the temporal window retained in the attention KV cache.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：causal video, streaming, real-time, acceleration, few-step, distillation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2609.32175",
-      "date": "2026-09-26",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "OneFixer: High-Quality and Consistent One-Step Autoregressive 3DGS Refinement for Driving Scenes",
-      "abstract": "Autoregressive video diffusion is a promising render-time fixer for 3D Gaussian Splatting (3DGS) in autonomous-driving simulation, but deployment demands high visual quality and temporal consistency at low latency. This is especially hard for one-step causal generation, where each imperfect prediction immediately becomes context for subsequent frames. Existing approaches stabilize rollouts through staged training with multiple modules and rollout-aware regularization, yet one-step quality still falls short of what deployment requires. We introduce OneFixer, a one-step autoregressive video-diffusion fixer trained in a single task-specific adaptation stage. Our key idea is a deployment-matched shared rollout: the model's own one-step predictions serve as the causal context for flow matching, exposing training to deployment-time errors, while the same rollout receives direct pixel-space perceptual supervision to preserve fine detail. Because the predictions optimized for current-frame quality are exactly those reused as future context, fidelity and autoregressive robustness are learned jointly, without bidirectional-to-causal conversion or teacher-student distillation. OneFixer further exploits cues that driving simulation readily provides, lane geometry and dynamic-agent states, to improve geometric fidelity. On Waymo and proprietary driving scenes with 900-frame rollouts, OneFixer achieves the lowest FVD, LPIPS, and DISTS among all baselines at one step, with temporal consistency matching or exceeding multi-stage DMD pipelines. Under identical backbone and conditioning, it matches a multi-stage DMD-with-Self-Forcing pipeline in under half the GPU-hours and keeps improving beyond its plateau. In closed-loop simulation with a driving policy, OneFixer reduces the collision rate by a third relative to raw 3DGS rendering. Project page: https://onefixer-web.vercel.app/",
-      "authors": [
-        "Boseong Jeon",
-        "Junhyeop Lee",
-        "Juhan Cha",
-        "Hayoung Kim"
-      ],
-      "url": "http://arxiv.org/abs/2609.32175v1",
+      "url": "http://arxiv.org/abs/2609.35491v1",
       "categories": [
         "cs.CV",
         "cs.AI"
@@ -224,38 +127,37 @@
       "comment": "",
       "score": 70,
       "priority": "skim",
-      "summary_cn": "Autoregressive video diffusion is a promising render-time fixer for 3D Gaussian Splatting (3DGS) in autonomous-driving simulation, but deployment demands high visual quality and temporal consistency at low latency.",
-      "contribution_cn": "We introduce OneFixer, a one-step autoregressive video-diffusion fixer trained in a single task-specific adaptation stage.",
-      "relevance_cn": "匹配研究线：streaming video, world model；关键词：closed-loop, driving, simulation, autoregressive, self-forcing, temporal consistency",
+      "summary_cn": "Few-step autoregressive video generation commonly relies on Distribution Matching Distillation (DMD), requiring a bidirectional diffusion teacher and an online fake-score model.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, self-forcing, few-step, distillation, efficient, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.08230",
-      "date": "2026-09-26",
+      "id": "2609.35003",
+      "date": "2026-09-28",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "ActionSplice: In-Flight Action Editing for Interactive World Models",
-      "abstract": "Chunk-autoregressive video world models typically generate each chunk under one action. When an action changes during sampling, waiting until the next chunk delays the response, while directly switching the conditioning leaves the intermediate solver state shaped by the previous action. Restarting sampling under the revised action avoids this mismatch but repeats completed computation. We introduce \\emph{ActionSplice}, which edits the interrupted state through Counterfactual State Transport (CST). A lightweight corrector moves the interrupted solver state toward the matched counterfactual solver state induced by the revised action at the same solver step. The world model and sampler remain frozen, and sampling resumes without replaying completed evaluations. $\\mathrm{CST}_{R}$ retargets the entire active chunk, while $\\mathrm{CST}_{T}$ preserves the temporal prefix at the intervention step and corrects only the suffix. On minWM--Wan Action2V and HY-WM1.5, we measure fidelity against matched rollback references. Relative to condition swapping, $\\mathrm{CST}_{R}$ reduces LPIPS by 61.5\\% and 75.9\\%, and $\\mathrm{CST}_{T}$ reduces suffix LPIPS by 56.1\\% and 77.5\\%, respectively.",
+      "title": "Learning to Act under Visual Interruptions with Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have demonstrated strong capabilities in robotic manipulation, but they are typically developed and evaluated with all camera streams available throughout task execution. When a camera stops delivering frames during task execution, the policy must continue acting without access to subsequent observations from the missing view. Despite its practical importance, how such interruptions affect closed-loop manipulation remains insufficiently understood. To investigate this problem, we introduce MAIL-Bench, a benchmark that evaluates visual interruptions with VLA models. By interrupting different cameras at multiple stages of each policy's successful reference trajectory, MAIL-Bench measures how well policies retain their capabilities when visual inputs become unavailable. Building on this benchmark, we propose MINT, which first trains VLA policies to remain functional under missing visual inputs. At inference time, MINT selectively supplements missing observations using optical-flow extrapolation or an action-conditioned world model, and withdraws predicted views when they become unreliable. Experiments on $π_{0.5}$ and GR00T N1.5 show that MINT significantly improves task success under camera loss over the original models. Experiments on AgiBot G2 further demonstrate the real-robot deployment under camera loss. The benchmark is available at https://minglejiang.github.io/Mail-Bench/",
       "authors": [
-        "Pardis Taghavi",
-        "Tingyu Guo",
-        "Jonas Lossner",
-        "Gaurav Pandey",
-        "Reza Langari"
+        "Mingle Jiang",
+        "Rui Xu",
+        "Yunke Wang",
+        "Chang Xu"
       ],
-      "url": "http://arxiv.org/abs/2609.08230v2",
+      "url": "http://arxiv.org/abs/2609.35003v1",
       "categories": [
-        "cs.CV",
-        "cs.LG"
+        "cs.RO",
+        "cs.AI"
       ],
-      "comment": "16 pages, 6 figures. Project page: https://pardistaghavi.github.io/actionsplice-website/",
-      "score": 68,
+      "comment": "https://minglejiang.github.io/Mail-Bench/",
+      "score": 70,
       "priority": "skim",
-      "summary_cn": "Chunk-autoregressive video world models typically generate each chunk under one action.",
-      "contribution_cn": "We introduce \\emph{ActionSplice}, which edits the interrupted state through Counterfactual State Transport (CST).",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, autoregressive",
+      "summary_cn": "Vision-language-action (VLA) models have demonstrated strong capabilities in robotic manipulation, but they are typically developed and evaluated with all camera streams available throughout task execution.",
+      "contribution_cn": "To investigate this problem, we introduce MAIL-Bench, a benchmark that evaluates visual interruptions with VLA models.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -293,46 +195,138 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2609.33264",
+      "id": "2609.34749",
+      "date": "2026-09-28",
+      "topics": [
+        "World Models"
+      ],
+      "title": "CoDrive: Cross-Vehicle World-Consistent Video Generation with Precise Trajectory Control for Cooperative Driving",
+      "abstract": "Real-world driving is inherently multi-agent, yet most existing driving world models generate observations from a single ego vehicle. Independently extending them to multiple vehicles does not ensure that different agents observe a consistent shared world. We present CoDrive, a cross-vehicle, multi-view driving video generation framework that jointly generates observations of vehicles sharing the same dynamic scene with precise camera-trajectory control. CoDrive interleaves local self-attention, which models spatiotemporal dependencies among the views of each vehicle, with global self-attention, which enables information exchange and consistency modeling across vehicles. To explicitly encode their spatial relationships, all camera trajectories are represented in a shared world coordinate system and injected into the attention layers through projective relative positional encoding. We further adopt a progressive mixed-task training strategy that combines large-scale real-world single-agent data with synthetic cross-agent interaction data, allowing the model to benefit from real-world appearance distributions while learning cross-agent consistency from simulation. For systematic evaluation, we introduce CoDrive-Bench, a benchmark covering real and synthetic multi-vehicle scenarios and evaluating trajectory controllability, scene geometry consistency, and instance-level consistency. Experiments show that CoDrive improves trajectory controllability and cross-agent geometric and instance consistency while maintaining competitive visual quality.",
+      "authors": [
+        "Yu Meng",
+        "Baining Zhao",
+        "Junta Wu",
+        "Tengfei Wang",
+        "Rongze Tang",
+        "Haiyu Zhang",
+        "Wenqiang Sun",
+        "Chen Gao",
+        "Zhibo Chen",
+        "Xinlei Chen",
+        "Yong Li",
+        "Xiao-Ping Zhang",
+        "Chunchao Guo"
+      ],
+      "url": "http://arxiv.org/abs/2609.34749v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "28 pages, 6 figures",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "Real-world driving is inherently multi-agent, yet most existing driving world models generate observations from a single ego vehicle.",
+      "contribution_cn": "We present CoDrive, a cross-vehicle, multi-view driving video generation framework that jointly generates observations of vehicles sharing the same dynamic scene with precise camera-trajectory control.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, driving, simulation, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.33595",
       "date": "2026-09-27",
       "topics": [
         "World Models"
       ],
-      "title": "VehDyn: A Driving World Model Benchmark for Vehicle Dynamics",
-      "abstract": "Video world models are emerging as data engines, action planners, and generative simulators for autonomous driving, but existing benchmarks primarily assess visual fidelity and coarse physical plausibility, providing limited evidence on whether generated driving futures obey realistic vehicle kinematics and dynamics. This limitation is further compounded by the lack of datasets in which vehicle, road, maneuver, and speed conditions are independently controlled, and ground-truth vehicle states are recorded in synchrony with videos. We introduce VehDyn, a driving world model benchmark for vehicle dynamics. VehDyn is built on a CARLA-CarSim co-simulation platform where photorealistic rendering is coupled with a validated multi-body dynamics model, and it contains 10,080 configurations from a full factorial design over five vehicle types, four tire-road friction coefficients, three maneuvers, four target speeds, 14 scenes, and three illuminations, each paired with synchronized position, velocity, and attitude sequences. Built on this dataset, VehDyn introduces a hierarchical evaluation framework that measures trajectory alignment, kinematic consistency, and dynamic consistency, and benchmarks 12 state-of-the-art video world models. We further assess the video quality using two established protocols and correlate it with the VehDyn score. Trajectory-level metrics are nearly saturated, with ten of twelve models within 20\\% of ground truth, while no model reaches 92\\% of ground truth on dynamic consistency, and visual-quality metrics are only weakly correlated with vehicle-dynamics fidelity. DrivingWorld achieves the highest VehDyn score, followed by Cosmos 3 Nano and LTX-Video 2.5, and the VehDyn score agrees closely with human judgment. VehDyn provides a systematic foundation for developing driving world models that are physically consistent and visually realistic.",
+      "title": "Beyond One-Step Accuracy: State-Affine Latent Transition for Reliable Visual Planning",
+      "abstract": "Joint-embedding world models enable visual planning by learning action-conditioned dynamics in latent space. Yet they are commonly trained for one-step prediction on encoded states, while planning recursively applies the learned transition to its own predictions. One-step accuracy therefore does not capture how prediction errors propagate under recursive rollout. We decompose multi-step rollout error into the errors introduced at individual steps and their propagation through subsequent transitions. We show that state-affine dynamics are precisely the differentiable transitions with state-independent Jacobians, eliminating the nonlinear propagation residual and making the error propagation operators depend only on the action sequence. Guided by this result, we introduce SALT (State-Affine Latent Transition), an action-conditioned state-affine dynamics model in which the action modulates both the state transformation and the additive update. We train SALT through recursive multi-step rollout supervision, feeding each predicted latent state back into the transition so that training matches how the model is used during planning. Across four visual planning environments, SALT exhibits $1.48$--$2.19\\times$ higher one-step prediction error than the matched LeWM baseline, yet improves closed-loop success in every environment by $10.0$ percentage points on average. On OGBench-Cube, the fraction of episodes that fail with a sharp rise in model-predicted cost after execution decreases from $23.3%$ to $2.0%$.",
       "authors": [
-        "Tianyi Wang",
-        "Wangsheng Du",
-        "Jiazhou Chen",
-        "Tianyi Zeng",
-        "Xiangyu Li",
-        "Jiseop Byeon",
-        "Yujin Wang",
-        "Yiming Xu",
-        "Yangyang Wang",
-        "Bingzhao Gao",
-        "Sikai Chen",
-        "Zhaomiao Guo",
-        "Junfeng Jiao",
-        "Christian Claudel",
-        "Alexandre Bayen"
+        "Boyuan Zhang",
+        "Yingjun Du",
+        "Xiantong Zhen",
+        "Ling Shao"
       ],
-      "url": "http://arxiv.org/abs/2609.33264v1",
+      "url": "http://arxiv.org/abs/2609.33595v1",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Joint-embedding world models enable visual planning by learning action-conditioned dynamics in latent space.",
+      "contribution_cn": "Guided by this result, we introduce SALT (State-Affine Latent Transition), an action-conditioned state-affine dynamics model in which the action modulates both the state transformation and the additive update.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.35052",
+      "date": "2026-09-28",
+      "topics": [
+        "World Models"
+      ],
+      "title": "OPIS: An Input-Grounded Benchmark for Multi-Object Memory in Video World Models",
+      "abstract": "Video world models must preserve the visual state of the world over time, but existing evaluation protocols often rely on generated histories, video reference, or selected revisit viewpoints that can confound the assessment of a model's true memory capability. To address this, we introduce OPIS, an input-grounded benchmark that strictly anchors the assessment to a fixed set of object instances from the initial observation for evaluating multi-object memory in video world models. The OPIS dataset comprises 500 cases across real-world, embodied-robotic, and game-world domains, providing dense object-level annotations for 12,672 rigid, articulated, and deformable instances. Our object-centric evaluator combines association and explicit visibility reasoning to hierarchically measure Object (O) Presence (P), Identity (I), and Structure (S), utilizing static or dynamic evaluation tracks based on object kinematics. Across eight image-to-video or camera-conditioned world models, our proposed OPIS scores range from 48.65 to 56.01. As the reference inventory grows from less than 20 to more than 40 objects, the Presence, Identity, and Structure scores show an overall decline, with the average Identity score falling from 40.22 to 23.11. The results demonstrate that preserving the particular object instances in the input is considerably harder than generating plausible visual elements.",
+      "authors": [
+        "Hao Wang",
+        "Tao Yu",
+        "Liuzhou Zhang",
+        "HeXin Wang",
+        "Haopeng Jin",
+        "Yuxuan Zhou",
+        "Xinming Wang",
+        "Hongzhu Yi",
+        "Xinye Li",
+        "Yuanlei Wang",
+        "Ping Nie",
+        "Yan Huang",
+        "Yuxuan Zhang",
+        "Pengfei Zhou",
+        "Yanyan Zou",
+        "Wei Yang"
+      ],
+      "url": "http://arxiv.org/abs/2609.35052v1",
       "categories": [
         "cs.CV",
-        "cs.AI",
-        "cs.ET",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Video world models must preserve the visual state of the world over time, but existing evaluation protocols often rely on generated histories, video reference, or selected revisit viewpoints that can confound the assessment of a model's true memory capability.",
+      "contribution_cn": "To address this, we introduce OPIS, an input-grounded benchmark that strictly anchors the assessment to a fixed set of object instances from the initial observation for evaluating multi-object memory in video world models.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, embodied, image-to-video",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2609.35311",
+      "date": "2026-09-28",
+      "topics": [
+        "World Models"
+      ],
+      "title": "RoGSW4RLD: Feed-Forward 4D Gaussian Lifting for Robot World Model Rollouts",
+      "abstract": "Action-conditioned video world models predict future robot interactions from multiple cameras, yet their outputs remain disparate video collections rather than a shared metric scene queryable across viewpoints and time. While existing 4D reconstruction methods offer a path to spatialize these predictions, independently reconstructing and merging each camera stream fails to enforce cross-view consistency. This limitation is particularly detrimental when combining moving robot-mounted cameras with fixed external views. To address this, we introduce RoGSW4RLD, a feed-forward framework that lifts synchronized multi-camera rollouts into a unified, time-queryable metric 4D Gaussian field. Rather than learning a separate geometric transition model, RoGSW4RLD directly reconstructs the visual future generated by existing world models. Its core innovation is a two-stage architecture: Stage 1 jointly forms the metric 4D field by fusing cross-view evidence with robot-specific articulated geometry and kinematics, while Stage 2 refines the field's geometry and appearance while strictly preserving the initial temporal displacements. Evaluated on 256 held-out DROID episodes, RoGSW4RLD significantly outperforms camera-wise reconstruction with calibrated merging, improving novel-view PSNR by 2.15 dB, reducing depth AbsRel by 47%, and lowering robot displacement error by 61%. These robust gains extend to action-conditioned Cosmos 3 rollouts, demonstrating that predicted video futures can be successfully translated into consistent, spatially queryable 4D metric representations.",
+      "authors": [
+        "Jin Hyun Kim",
+        "Min Young Kim",
+        "Soohwan Song",
+        "Daekyum Kim"
+      ],
+      "url": "http://arxiv.org/abs/2609.35311v1",
+      "categories": [
+        "cs.CV",
         "cs.RO"
       ],
-      "comment": "48 pages, 27 figures, 19 tables",
-      "score": 67,
+      "comment": "",
+      "score": 60,
       "priority": "skim",
-      "summary_cn": "Video world models are emerging as data engines, action planners, and generative simulators for autonomous driving, but existing benchmarks primarily assess visual fidelity and coarse physical plausibility, providing limited evidence on whether generated driving futures obey realistic vehicle kinematics and dynamics.",
-      "contribution_cn": "We introduce VehDyn, a driving world model benchmark for vehicle dynamics.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, driving, simulation, efficient",
+      "summary_cn": "Action-conditioned video world models predict future robot interactions from multiple cameras, yet their outputs remain disparate video collections rather than a shared metric scene queryable across viewpoints and time.",
+      "contribution_cn": "To address this, we introduce RoGSW4RLD, a feed-forward framework that lifts synchronized multi-camera rollouts into a unified, time-queryable metric 4D Gaussian field.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 3
+  "cursor_summaries_completed": 2
 }

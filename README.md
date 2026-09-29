@@ -17,6 +17,13 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-28**|**PDMD: Projected Distribution Matching Distillation for Video Diffusion Models**|Zimo Wang et.al.|[2609.35768](http://arxiv.org/abs/2609.35768)|null|
+|**2026-09-28**|**GeoVerse: World-Consistent Novel View Synthesis in Geometric Latent Space**|Kerui Ren et.al.|[2609.35734](http://arxiv.org/abs/2609.35734)|null|
+|**2026-09-28**|**Sol-H3: Recursive Self-Improvement for MiniMax-H3 Inference Acceleration on Sol-Engine across Cloud and Edge**|Yitong Li et.al.|[2609.35110](http://arxiv.org/abs/2609.35110)|null|
+|**2026-09-28**|**GenNVS: Geometry-enhanced Novel View Synthesis via Disentangled 3D Prior**|Yajiao Xiong et.al.|[2609.34579](http://arxiv.org/abs/2609.34579)|null|
+|**2026-09-28**|**From Static to Dynamic: On-Policy Distillation from Image to Video Diffusion Models**|Bingqing Jiang et.al.|[2609.34371](http://arxiv.org/abs/2609.34371)|null|
+|**2026-09-28**|**WorldWeave: Growing Persistent Geometric Worlds for Video Generation**|Yifan Huang et.al.|[2609.34221](http://arxiv.org/abs/2609.34221)|null|
+|**2026-09-28**|**Enhanced Video Text Editing with Trajectory-Aligned Glyph Rendering**|Shulian Zhang et.al.|[2609.34178](http://arxiv.org/abs/2609.34178)|null|
 |**2026-09-27**|**VGGT-Diff: Visual Geometry Meets Diffusion for Sparse-View Novel View Synthesis**|Kangjie Chen et.al.|[2609.33253](http://arxiv.org/abs/2609.33253)|null|
 |**2026-09-26**|**REMEDY: How Far Is Video Generation from Medical Education World Models?**|Lixing Tan et.al.|[2609.32460](http://arxiv.org/abs/2609.32460)|null|
 |**2026-09-26**|**SparSP: Exploiting Communication Sparsity for Sequence-Parallel Video DiTs**|Desen Sun et.al.|[2609.32197](http://arxiv.org/abs/2609.32197)|null|
@@ -39,7 +46,7 @@
 |**2026-09-21**|**Video DeltaNet: A Video-Native Hybrid Attention for Livestream Video Generation**|Haocheng Xi et.al.|[2609.20744](http://arxiv.org/abs/2609.20744)|null|
 |**2026-09-17**|**V2-STRep: VLM-Grounded Structured Task Representations for Reusable Robot Skills Acquired from Generated Videos**|Yexin Hu et.al.|[2609.20582](http://arxiv.org/abs/2609.20582)|null|
 |**2026-09-26**|**DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models**|Shihong Li et.al.|[2609.20051](http://arxiv.org/abs/2609.20051)|null|
-|**2026-09-17**|**Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings**|Yutao Ming et.al.|[2609.19782](http://arxiv.org/abs/2609.19782)|null|
+|**2026-09-28**|**Printing the Underdetermined: Materializing Multi-solutionness in Figurative Paintings**|Yutao Ming et.al.|[2609.19782](http://arxiv.org/abs/2609.19782)|null|
 |**2026-09-17**|**Dreaming the Sound of Contact: Leveraging Video and Audio Generation for Zero-Shot Force-Aware Manipulation and Data Generation**|Guanhua Ji et.al.|[2609.19137](http://arxiv.org/abs/2609.19137)|null|
 |**2026-09-16**|**vidax: A Unified JAX Framework for Video Generative Models on Accelerator Meshes**|Congyue Deng et.al.|[2609.18077](http://arxiv.org/abs/2609.18077)|null|
 |**2026-09-21**|**PhysStream: Streaming Physics-Grounded Video Generation with Structured Scene Memory and Fine-Grained Motion Control**|Chuhao Chen et.al.|[2609.17521](http://arxiv.org/abs/2609.17521)|null|
@@ -1418,6 +1425,36 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-28**|**DynaTokens: Teaching Dynamics to Camera-Controlled Video Models at Test Time**|Ziqi Ma et.al.|[2609.35704](http://arxiv.org/abs/2609.35704)|null|
+|**2026-09-28**|**MM-ABC: Towards Generalist Mobile Manipulation via Seeing, Coordinating and Imagining**|Qiwei Liang et.al.|[2609.35652](http://arxiv.org/abs/2609.35652)|null|
+|**2026-09-28**|**Control-Geometry Straightening for Sampling-Based Latent Planning**|Ziang Fu et.al.|[2609.35603](http://arxiv.org/abs/2609.35603)|null|
+|**2026-09-28**|**WorldPlay2: Extending Real-Time Interactive World Models in Control and Horizon**|Haiyu Zhang et.al.|[2609.35560](http://arxiv.org/abs/2609.35560)|null|
+|**2026-09-28**|**Graph World Models for Constrained Epidemic Policy Planning**|Yiqi Su et.al.|[2609.35545](http://arxiv.org/abs/2609.35545)|null|
+|**2026-09-28**|**A.D.A.M.O. (Agent for language-Driven Actions with Multimodal Observations): A Visual-Symbolic Framework for Virtual Humans**|Alessandro Emmanuel Pecora et.al.|[2609.35463](http://arxiv.org/abs/2609.35463)|null|
+|**2026-09-28**|**Revision, Not Restart: Revisable Visual Plans for Closed-Loop World-Action Models**|Pengyiang Liu et.al.|[2609.35439](http://arxiv.org/abs/2609.35439)|null|
+|**2026-09-28**|**From Pixel to Poses: Object-centric Tool Manipulation Learning from Human Demonstrations**|Bangjun Wang et.al.|[2609.35375](http://arxiv.org/abs/2609.35375)|null|
+|**2026-09-28**|**NeuronDiscover: Agent-in-Twin for Mechanistic Discovery in Neuronal Microenvironments with World Action Models**|Haowei Xu et.al.|[2609.35338](http://arxiv.org/abs/2609.35338)|null|
+|**2026-09-28**|**RoGSW4RLD: Feed-Forward 4D Gaussian Lifting for Robot World Model Rollouts**|Jin Hyun Kim et.al.|[2609.35311](http://arxiv.org/abs/2609.35311)|null|
+|**2026-09-28**|**Spatial Grafting: Grounding 3D Features for Flow-Matching Robot Policies**|Dingsheng Liu et.al.|[2609.35249](http://arxiv.org/abs/2609.35249)|null|
+|**2026-09-28**|**FlexiWorld: Learning and Planning via Flexible Action Chunks Across Multiple Time Scales**|Shidu Ren et.al.|[2609.35138](http://arxiv.org/abs/2609.35138)|null|
+|**2026-09-28**|**OPIS: An Input-Grounded Benchmark for Multi-Object Memory in Video World Models**|Hao Wang et.al.|[2609.35052](http://arxiv.org/abs/2609.35052)|null|
+|**2026-09-28**|**EMPIRIC: Experiment-Driven Learning of Residual World Models for Robot Planning**|Yichao Liang et.al.|[2609.35047](http://arxiv.org/abs/2609.35047)|null|
+|**2026-09-28**|**JRDB-AVR: An Active Visual Reasoning Benchmark for Embodied Agents in Real-World Environments**|Zhixi Cai et.al.|[2609.35032](http://arxiv.org/abs/2609.35032)|null|
+|**2026-09-28**|**Proxy2World: Learning to Generate Worlds From Lightweight Proxies without Seeing Them**|Hongli Xu et.al.|[2609.35023](http://arxiv.org/abs/2609.35023)|null|
+|**2026-09-28**|**Learning to Act under Visual Interruptions with Vision-Language-Action Models**|Mingle Jiang et.al.|[2609.35003](http://arxiv.org/abs/2609.35003)|null|
+|**2026-09-28**|**What Makes World Action Models Generalize? An Empirical Study of Test-Time Future Modeling**|Renping Zhou et.al.|[2609.34981](http://arxiv.org/abs/2609.34981)|null|
+|**2026-09-28**|**RoboFL: Federated Expert Assembly for World Action Models**|Rongyu Zhang et.al.|[2609.34968](http://arxiv.org/abs/2609.34968)|null|
+|**2026-09-28**|**Don't Throw Away the Tail: Action Upcycling for Policy Acceleration**|Taesung Kwon et.al.|[2609.34911](http://arxiv.org/abs/2609.34911)|null|
+|**2026-09-28**|**ECHO: Event-Augmented Context with Hindsight and Outlook for Wrist-Only Manipulation**|Xinyue Wang et.al.|[2609.34893](http://arxiv.org/abs/2609.34893)|null|
+|**2026-09-28**|**WM-VLM: Probing Internal World Models for Interleaved Visual-Textual Reasoning**|Yuheng Zha et.al.|[2609.34826](http://arxiv.org/abs/2609.34826)|null|
+|**2026-09-28**|**CoDrive: Cross-Vehicle World-Consistent Video Generation with Precise Trajectory Control for Cooperative Driving**|Yu Meng et.al.|[2609.34749](http://arxiv.org/abs/2609.34749)|null|
+|**2026-09-28**|**Learning What to Recall: Adaptive Multi-Cue Episodic Memory for World Models**|Beomsu Kim et.al.|[2609.34677](http://arxiv.org/abs/2609.34677)|null|
+|**2026-09-28**|**Efficient World Action Model Inference with Adaptive Intermediate States**|Zhinnan Liu et.al.|[2609.34608](http://arxiv.org/abs/2609.34608)|null|
+|**2026-09-28**|**WorldAttention: An Efficient Attention Architecture for Interactive Video World Models**|Zeyu Zhang et.al.|[2609.34606](http://arxiv.org/abs/2609.34606)|null|
+|**2026-09-28**|**Shaping Persistent Representations from Independent Interactions**|Ji Dai et.al.|[2609.34604](http://arxiv.org/abs/2609.34604)|null|
+|**2026-09-28**|**Precise Editing and Flexible Referencing for Interactable Worlds**|Xinyao Liao et.al.|[2609.34470](http://arxiv.org/abs/2609.34470)|null|
+|**2026-09-28**|**From World Models to World Action Models: Rethinking Next-State Prediction**|Tingyu Yuan et.al.|[2609.34414](http://arxiv.org/abs/2609.34414)|null|
+|**2026-09-28**|**LRC-JEPA: Disentangling Dynamics and Residual Context for Efficient World Models**|Luzhe Huang et.al.|[2609.34375](http://arxiv.org/abs/2609.34375)|null|
 |**2026-09-27**|**ReSync: Re-Aligning the Two Clocks of Asynchronous World-Action Models**|Xi Lin et.al.|[2609.33944](http://arxiv.org/abs/2609.33944)|null|
 |**2026-09-27**|**Behavioral Monitoring of JEPA World Models with Jacobian Centroids**|Thomas Walker et.al.|[2609.33940](http://arxiv.org/abs/2609.33940)|null|
 |**2026-09-27**|**ReDrive: Shaping Representations with World Modeling for End-to-End Driving**|Yueting Zhu et.al.|[2609.33854](http://arxiv.org/abs/2609.33854)|null|
@@ -1841,6 +1878,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-09-28**|**From Scores to Samples: Elastic Forcing for Autoregressive Video Generation**|Chi Zhang et.al.|[2609.35491](http://arxiv.org/abs/2609.35491)|null|
+|**2026-09-28**|**WaveAlign: Cache-Aware Query-Row Scheduling for Sparse Attention in Long-Video Generation**|Zijian Dai et.al.|[2609.34814](http://arxiv.org/abs/2609.34814)|null|
+|**2026-09-28**|**Geometry as Address: Routing Attention to Visual Memory for Long-Horizon Camera-Controlled Video Generation**|Zesong Yang et.al.|[2609.34722](http://arxiv.org/abs/2609.34722)|null|
 |**2026-09-26**|**In-Flight KV Cache with Clean Anchors for Faster Autoregressive Video Diffusion**|Yikai Wang et.al.|[2609.32540](http://arxiv.org/abs/2609.32540)|null|
 |**2026-09-26**|**UnStep: Training-Free Acceleration of Causal Video Diffusion with Fewer Steps Than Distillation**|Youssef Mansour et.al.|[2609.32518](http://arxiv.org/abs/2609.32518)|null|
 |**2026-09-26**|**OneFixer: High-Quality and Consistent One-Step Autoregressive 3DGS Refinement for Driving Scenes**|Boseong Jeon et.al.|[2609.32175](http://arxiv.org/abs/2609.32175)|null|

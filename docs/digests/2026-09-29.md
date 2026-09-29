@@ -1,81 +1,81 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-29T02:49:53+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-09-29T17:04:11+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [Scope-WM: Scoped Computation for Efficient Visual World Models](http://arxiv.org/abs/2609.33218v1)
-
-- **评分**：80/100
-- **作者**：Chunzheng Li, Zesheng Jia, Hongda Zhang et al.
-- **方向**：World Models
-- **一句话**：本文针对基于视觉世界模型的机器人规划中潜状态传播和采样式 MPC 计算成本高的问题，提出 Scope-WM。该方法在三个层面分配计算：使用蒸馏相关性选择（DRS）根据视觉状态、控制状态和动作选择需要完整动力学预测的少量标记；使用前景-变化量背景更新（FDBU）通过前景状态及其运动变化的汇总信息轻量更新背景标记；使用精英库交叉熵方法（EB-CEM）在初始 M…
-- **精读笔记**：[打开笔记](../notes/2026-09-29/2609.33218-scope-wm-scoped-computation-for-efficient-visual.md)
-
-### 2. [DyMD: Preserving Interaction Dynamics through Distribution Matching Distillation in Few-Step Video World Models](http://arxiv.org/abs/2609.31349v1)
+### 1. [WorldAttention: An Efficient Attention Architecture for Interactive Video World Models](http://arxiv.org/abs/2609.34606v1)
 
 - **评分**：78/100
-- **作者**：Haojun Xu, Jie Huang, Xin Lu et al.
-- **方向**：Video Generation, World Models, Efficient Video Diffusion
-- **一句话**：本文研究DMD将大型视频扩散教师蒸馏为少步视频世界模型时交互动力学退化的问题。作者发现，弱重新加噪会使教师后验锁定在运动不足的学生轨迹附近，而运动较强的轨迹又更难被伪评分模型拟合。DyMD通过时间亲和度条件化的重新加噪采样，为交互保真度较低的轨迹增加教师先验采样；同时利用潜变量时间动力学预测噪声相对拟合难度，并提高困难轨迹在判别器训练中的权重。将14B P…
-- **精读笔记**：[打开笔记](../notes/2026-09-29/2609.31349-dymd-preserving-interaction-dynamics-through-dis.md)
+- **作者**：Zeyu Zhang, Jinyuan Mao, Dakai An et al.
+- **方向**：World Models
+- **一句话**：论文面向文本条件的交互式长视频世界模型，解决完整历史上下文带来的注意力计算和 KV 缓存内存开销问题。方法由分层 KV 缓存（HKV）和混合稀疏注意力（HSA）组成：HKV 将历史缓存分页并跨 GPU、CPU 和 NVMe 分层管理，通过提示级和页面级检索选择相关视觉记忆；HSA 以线性全局注意力建模长程依赖，并以头部自适应的块稀疏注意力保留局部细节。配合…
+- **精读笔记**：[打开笔记](../notes/2026-09-29/2609.34606-worldattention-an-efficient-attention-architectu.md)
 
-### 3. [In-Flight KV Cache with Clean Anchors for Faster Autoregressive Video Diffusion](http://arxiv.org/abs/2609.32540v1)
+### 2. [WorldPlay2: Extending Real-Time Interactive World Models in Control and Horizon](http://arxiv.org/abs/2609.35560v1)
 
-- **评分**：74/100
-- **作者**：Yikai Wang, Xiao Han, Mengmeng Xu et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：论文提出 FlashForward，一种面向少步自回归视频扩散的高效生成框架。它复用普通去噪前向产生的阶段匹配 KV 缓存，使每次计算既推进当前视频片段又为后续片段提供状态，从而在多 GPU 上形成跨去噪阶段的波流水线。针对阶段匹配历史噪声较大、容易造成外观和运动漂移的问题，框架由规划器预先生成稀疏干净锚点，并与近期稠密历史结合进行双侧条件。规划器和渲染器…
-- **精读笔记**：[打开笔记](../notes/2026-09-29/2609.32540-in-flight-kv-cache-with-clean-anchors-for-faster.md)
+- **评分**：78/100
+- **作者**：Haiyu Zhang, Wenqiang Sun, Tengfei Wang et al.
+- **方向**：World Models
+- **一句话**：Interactive world models require responding in real time to versatile controls and maintaining long-horizon consistency.
+- **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
+
+### 3. [Precise Editing and Flexible Referencing for Interactable Worlds](http://arxiv.org/abs/2609.34470v1)
+
+- **评分**：72/100
+- **作者**：Xinyao Liao, Xianfang Zeng, Zhu Liang et al.
+- **方向**：World Models
+- **一句话**：本文提出 EditWorld，将视频世界模型从以导航和探索为主扩展到支持持续、精确的世界编辑与参考图像注入。模型基于自回归视频生成，通过门控因果注意力处理随时间变化的编辑指令和参考图像，通过稀疏上下文限制长视频历史记忆的规模，并结合自回归/双向联合训练、退火式自重采样及少步蒸馏，提高条件跟随能力、长时域稳定性和生成效率。作者还利用导航与视频编辑数据合成带有…
+- **精读笔记**：[打开笔记](../notes/2026-09-29/2609.34470-precise-editing-and-flexible-referencing-for-int.md)
 
 ## 快速浏览
 
-### 1. [DART: Distillation-Aware Reparameterization for Training-Free LoRA Reuse in Few-Step Video Diffusion Models](http://arxiv.org/abs/2609.20051v2)
-
-- **评分**：73/100
-- **作者**：Shihong Li, Juntao Xu,  JinCao et al.
-- **方向**：Video Generation
-- **一句话**：Few-step distillation reduces the inference cost of image-to-video generation, but directly reusing LoRA adapters trained for long denoising trajectories can weaken their intended…
-
-### 2. [Where and When to Force: Routed Forcing for Streaming Avatars](http://arxiv.org/abs/2609.30963v1)
-
-- **评分**：72/100
-- **作者**：Zihan Su, Siwen Lu, Junhao Zhuang et al.
-- **方向**：Video Generation
-- **一句话**：Audio-driven streaming avatar generation requires real-time synthesis of speech-synchronized videos with dynamic and diverse motion.
-
-### 3. [UnStep: Training-Free Acceleration of Causal Video Diffusion with Fewer Steps Than Distillation](http://arxiv.org/abs/2609.32518v1)
+### 1. [From Scores to Samples: Elastic Forcing for Autoregressive Video Generation](http://arxiv.org/abs/2609.35491v1)
 
 - **评分**：70/100
-- **作者**：Youssef Mansour, Enis Simsar, Fadime Sener et al.
+- **作者**：Chi Zhang, Yueyi Liu, Haoyang Shi et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：Distilling bidirectional multi-step video diffusion transformers into few-step causal models has become a common approach for streaming video generation.
+- **一句话**：Few-step autoregressive video generation commonly relies on Distribution Matching Distillation (DMD), requiring a bidirectional diffusion teacher and an online fake-score model.
 
-### 4. [OneFixer: High-Quality and Consistent One-Step Autoregressive 3DGS Refinement for Driving Scenes](http://arxiv.org/abs/2609.32175v1)
+### 2. [Learning to Act under Visual Interruptions with Vision-Language-Action Models](http://arxiv.org/abs/2609.35003v1)
 
 - **评分**：70/100
-- **作者**：Boseong Jeon, Junhyeop Lee, Juhan Cha et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive video diffusion is a promising render-time fixer for 3D Gaussian Splatting (3DGS) in autonomous-driving simulation, but deployment demands high visual quality and t…
+- **作者**：Mingle Jiang, Rui Xu, Yunke Wang et al.
+- **方向**：World Models
+- **一句话**：Vision-language-action (VLA) models have demonstrated strong capabilities in robotic manipulation, but they are typically developed and evaluated with all camera streams available…
 
-### 5. [ActionSplice: In-Flight Action Editing for Interactive World Models](http://arxiv.org/abs/2609.08230v2)
-
-- **评分**：68/100
-- **作者**：Pardis Taghavi, Tingyu Guo, Jonas Lossner et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Chunk-autoregressive video world models typically generate each chunk under one action.
-
-### 6. [SLIP-VLA: Single-Step Latent Imagination for Policy Learning in Vision-Language-Action Models](http://arxiv.org/abs/2609.33575v1)
+### 3. [SLIP-VLA: Single-Step Latent Imagination for Policy Learning in Vision-Language-Action Models](http://arxiv.org/abs/2609.33575v1)
 
 - **评分**：68/100
 - **作者**：Tianfu Li, Haoxuan Xu, Wenbo Chen et al.
 - **方向**：World Models
 - **一句话**：Vision-Language-Action models are increasingly effective for robotic manipulation, yet most predict actions directly from current observations without explicitly modeling future s…
 
-### 7. [VehDyn: A Driving World Model Benchmark for Vehicle Dynamics](http://arxiv.org/abs/2609.33264v1)
+### 4. [CoDrive: Cross-Vehicle World-Consistent Video Generation with Precise Trajectory Control for Cooperative Driving](http://arxiv.org/abs/2609.34749v1)
 
-- **评分**：67/100
-- **作者**：Tianyi Wang, Wangsheng Du, Jiazhou Chen et al.
+- **评分**：63/100
+- **作者**：Yu Meng, Baining Zhao, Junta Wu et al.
 - **方向**：World Models
-- **一句话**：Video world models are emerging as data engines, action planners, and generative simulators for autonomous driving, but existing benchmarks primarily assess visual fidelity and co…
+- **一句话**：Real-world driving is inherently multi-agent, yet most existing driving world models generate observations from a single ego vehicle.
+
+### 5. [Beyond One-Step Accuracy: State-Affine Latent Transition for Reliable Visual Planning](http://arxiv.org/abs/2609.33595v1)
+
+- **评分**：62/100
+- **作者**：Boyuan Zhang, Yingjun Du, Xiantong Zhen et al.
+- **方向**：World Models
+- **一句话**：Joint-embedding world models enable visual planning by learning action-conditioned dynamics in latent space.
+
+### 6. [OPIS: An Input-Grounded Benchmark for Multi-Object Memory in Video World Models](http://arxiv.org/abs/2609.35052v1)
+
+- **评分**：61/100
+- **作者**：Hao Wang, Tao Yu, Liuzhou Zhang et al.
+- **方向**：World Models
+- **一句话**：Video world models must preserve the visual state of the world over time, but existing evaluation protocols often rely on generated histories, video reference, or selected revisit…
+
+### 7. [RoGSW4RLD: Feed-Forward 4D Gaussian Lifting for Robot World Model Rollouts](http://arxiv.org/abs/2609.35311v1)
+
+- **评分**：60/100
+- **作者**：Jin Hyun Kim, Min Young Kim, Soohwan Song et al.
+- **方向**：World Models
+- **一句话**：Action-conditioned video world models predict future robot interactions from multiple cameras, yet their outputs remain disparate video collections rather than a shared metric sce…
