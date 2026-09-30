@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-09-30T02:31:14+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
+> 生成时间：2026-09-30T17:02:09+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
