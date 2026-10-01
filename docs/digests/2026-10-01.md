@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-01T02:33:05+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-01T17:32:28+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：82/100
 - **作者**：Zeqi Xiao, Qingle Liu, Kaiwen Zhang et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文提出 DeCoPrune，一种无需训练的在线 KV 缓存剪枝方法，用中间干净预测与最终去噪结果之间的差异衡量令牌对长期视觉记忆的价值，并保留高差异令牌、剪除低差异令牌。作者同时提出 CMBench，通过一分钟级视频上下文中的物体重现和场景回访任务评估历史信息回忆。在 LingBot World v2 上，DeCoPrune 在大幅减少历史 KV 令牌的…
+- **一句话**：论文针对自回归视频扩散中 KV 缓存随视频历史增长、导致显存和注意力开销不断上升的问题，提出无需训练的 DeCoPrune。方法利用中间干净预测与最终去噪结果之间的差异评估每个视频标记的重要性，保留高差异标记、剪除低差异标记，并结合近期窗口、RoPE 时间位置重索引和可选的注意力头专用策略来压缩历史缓存。论文还提出 CMBench，通过 58 个约一分钟的…
 - **精读笔记**：[打开笔记](../notes/2026-10-01/2609.39096-decoprune-efficient-kv-cache-pruning-for-autoreg.md)
 
 ### 2. [LongLive-Plug: Once-for-All Distillation for Video Generation](http://arxiv.org/abs/2609.38154v1)
