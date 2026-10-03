@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-03T02:25:53+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-03T15:15:58+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：75/100
 - **作者**：Ji Xia, Tingting Liao, Xuezhi Liang et al.
 - **方向**：World Models
-- **一句话**：论文提出LOCI，一种面向流式视频世界模型的混合空间记忆架构，将带摄像机几何条件的循环线性记忆与显式历史键值缓存结合起来。循环状态以固定大小累积完整历史并帮助后续注意力定位相关观测，缓存则保留可直接访问的视觉细节。LOCI采用分块因果生成、按块进行保留、以及由近期窗口和多样视图库组成的有界历史访问机制。在5B Wan骨干网络上，LOCI在MIND记忆基准、…
+- **一句话**：LOCI面向需要长期空间一致性的视频世界模型，将两种记忆结合起来：由相机几何条件化的固定大小循环Kimi Delta Attention状态，以及保存观测级视觉细节的历史键值缓存。模型以五帧为块进行因果生成，在15个模块中使用循环记忆和块内注意力，在另外15个模块中使用历史Softmax注意力；循环读取结果会影响后续历史注意力的查询，从而帮助模型定位与当前…
 - **精读笔记**：[打开笔记](../notes/2026-10-03/2609.40222-loci-spatial-linear-memory-for-streaming-world-m.md)
 
 ### 2. [Dream4ACT: A Shared Visual Action Interface for Multi-Embodiment Video-Action Modeling](http://arxiv.org/abs/2609.40153v1)
@@ -26,7 +26,7 @@
 - **评分**：72/100
 - **作者**：Fangyu Lin, Xingtong Ge, Lunjie Zhu et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文提出 Radian，通过冻结视觉基础模型对自回归生成视频的解码帧进行多层特征判别，将真实数据的感知与语义监督加入在策略 DMD 蒸馏中。该方法采用 ODE 初始化、DMD 稳定化与判别器校准、联合表示对抗蒸馏三阶段训练，并通过稀疏解码降低训练开销。实验表明，Radian 在 Wan2.1-1.3B 的四步分块、一步逐帧和 60 秒长视频生成中均改善了视…
+- **一句话**：论文提出 Radian，用冻结视觉基础模型的多层表示空间对抗监督补充基于自身自回归展开的 DMD，从而改善少步因果视频生成中的细节、结构、运动稳定性和长时域误差累积。方法采用三阶段训练：ODE 初始化、带判别器校准的 DMD 稳定化，以及 DMD 与表示空间对抗蒸馏联合优化。训练时仅对自回归展开结果进行稀疏帧解码，并通过 DINOv2 等视觉表示和轻量判别…
 - **精读笔记**：[打开笔记](../notes/2026-10-03/2609.40037-enhancing-autoregressive-video-generation-via-re.md)
 
 ## 快速浏览
