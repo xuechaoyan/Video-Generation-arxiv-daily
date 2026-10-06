@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-06T03:23:49+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
+> 生成时间：2026-10-06T17:26:48+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,8 +10,8 @@
 - **评分**：84/100
 - **作者**：Zeqi Xiao, Qingle Liu, Kaiwen Zhang et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive video diffusion supports streaming generation and interactive control, but its KV cache grows continuously with the generated history.
-- **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
+- **一句话**：论文针对自回归视频扩散中历史 KV 缓存持续增长、导致显存和注意力计算成本上升的问题，提出无需训练的 DeCoPrune。该方法利用中间干净预测与最终去噪结果之间的 token 级差异判断上下文冗余：差异较大的 token 被保留，差异较小的 token 被剪除，同时结合近期窗口、初始 sink、RoPE 时间位置重索引和可选的注意力头专门化。论文还构建了…
+- **精读笔记**：[打开笔记](../notes/2026-10-06/2609.39096-decoprune-efficient-kv-cache-pruning-for-autoreg.md)
 
 ### 2. [DuoMatching: Joint-Marginal Distribution Matching for Few-Step Video Generation](http://arxiv.org/abs/2610.03543v1)
 

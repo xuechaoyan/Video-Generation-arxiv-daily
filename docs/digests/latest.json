@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-06T03:23:49+00:00",
-  "assessment_mode": "heuristic",
+  "generated_at": "2026-10-06T17:26:48+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
       "id": "2609.39096",
@@ -25,11 +25,13 @@
       "comment": "",
       "score": 84,
       "priority": "must-read",
-      "summary_cn": "Autoregressive video diffusion supports streaming generation and interactive control, but its KV cache grows continuously with the generated history.",
-      "contribution_cn": "We introduce DeCoPrune, a training-free method that treats cache compression as a denoising-consistency problem.",
-      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：interactive, autoregressive, streaming, cache, kv cache, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "summary_cn": "论文针对自回归视频扩散中历史 KV 缓存持续增长、导致显存和注意力计算成本上升的问题，提出无需训练的 DeCoPrune。该方法利用中间干净预测与最终去噪结果之间的 token 级差异判断上下文冗余：差异较大的 token 被保留，差异较小的 token 被剪除，同时结合近期窗口、初始 sink、RoPE 时间位置重索引和可选的注意力头专门化。论文还构建了 CMBench，通过 Reappear 和 Revisit 任务测试模型对历史物体与场景的长程视觉回忆。在 LingBot World v2 上，DeCoPrune 剪除 85.43% 的历史 KV token，达到 6.489 FPS 和 4.14 倍加速，DINO 回忆分数为 0.6701，接近 FullKV 的 0.6803；其头专门化版本达到 0.6783 DINO 和 86.19% 剪枝率。消融实验表明，高差异 token 选择、RoPE 重索引以及针对上下文回忆的 CMBench 评估均具有重要作用。",
+      "contribution_cn": "1. 提出 DeCoPrune：一种无需训练、在线运行的 KV-cache 剪枝方法，以中间干净预测与最终去噪结果之间的步到最终差异作为模型内生的重要性信号，并通过物理压缩 KV 序列降低后续注意力成本。 2. 提出 CMBench：包含 58 个约一分钟上下文片段和 116 个 Reappear/Revisit 延续任务的基准，用于在受控历史 KV 压缩下评估特定物体、人物和场景的长程视觉回忆。 3. 在 LingBot World v2 上证明该方法可在保留接近 FullKV 的长程回忆能力的同时剪除超过 85% 的历史 KV token，并实现超过 4 倍的延续生成加速；实验还系统比较了窗口截断、头级策略、时间差异选择和随机选择等基线，并进行了探针步数、阈值、RoPE 重索引及选择方向消融。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向自回归、流式和长视频生成中的历史上下文增长问题，通过 KV-cache 剪枝降低长时间 rollout 的显存、历史注意力长度和延续生成成本；在相近压缩预算下实现约 4.1 倍加速，属于缓存复用和高效推理方向。其去噪一致性信号无需额外训练或额外模型评估，并与稀疏历史注意力、近期窗口和 RoPE 压缩结合。由于方法保留过去物体和场景的视觉证据，CMBench 的 Reappear/Revisit 任务也与具有长程记忆的交互式视觉世界模型和闭环模拟相关。不过，论文主要评估的是视觉上下文回忆，并未直接研究动作条件建模、策略闭环控制或实时交互环境中的决策质量。",
+      "limitations_cn": "论文的主要实验以 LingBot World v2 为主，其他骨干网络的验证规模较小；因此方法对不同自回归视频扩散架构、不同去噪调度和不同视频分辨率的普适性仍需进一步验证。CMBench 主要衡量特定物体或场景的视觉回忆，生成上下文中有 102 个任务来自 MiniMax H3 构造的合成片段，真实世界片段仅包含 14 个任务，且评估依赖 OWL-ViT、SAM 2 和 DINOv2 的检测、分割与相似度测量。论文报告的剪枝率是生成序列级历史 token 数量的减少，不等同于峰值内存节省或总体计算量减少；FPS 和加速比也只统计延续生成，不包括前缀处理。方法需要选择探针时间步和阈值，观测到的既有视频上下文没有原始去噪轨迹时还需要重新加噪并进行处理。论文显示激进压缩会导致回忆性能下降，但未明确给出在不同任务类型、压缩预算或更长上下文下的普适失效边界。论文未明确说明真实部署中的端到端实时延迟、能耗和硬件扩展性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归视频扩散天然支持流式生成和交互式控制，但其 KV 缓存会随着生成历史不断增长。现有压缩策略要么通过固定窗口丢弃历史，要么依据局部注意力和相似性信号选择 token；这些方法无法直接衡量当前块相对于已保留上下文是否提供了额外信息。我们提出 DeCoPrune，一种无需训练的方法，将缓存压缩视为去噪一致性问题。我们通过实验证发现，去噪难度可以作为 token 长期保留价值的有效代理：步间预测与最终结果差异较大的 token，往往携带较难从已保留上下文中预测的视觉证据。DeCoPrune 通过当前块 token 的中间干净预测与最终去噪值之间的差异来衡量其去噪难度，将高差异 token 保留在长期缓存中，并剪除低差异 token。为评估信息保留能力，我们提出 CMBench，其中包含 58 个约一分钟的生成或真实世界上下文片段，以及 116 个要求回忆此前观察到的特定物体或场景的 Reappear 或 Revisit 延续任务。在 LingBot World v2 上的实验表明，DeCoPrune 在剪除超过 85% 历史 KV token 的同时，仍能保持接近 FullKV 的长程回忆能力，并将延续生成速度提升超过 4 倍；在相近缓存预算下，其表现显著优于所评估的压缩基线。这些结果表明，去噪一致性可以作为模型内生信号，在降低自回归推理成本的同时保留长程信息。项目主页为 https://decoprune.github.io。代码发布于 https://github.com/DeCoPrune/CMBench，基准数据集发布于 https://huggingface.co/datasets/Aoraku/CMBench。",
+      "note_path": "2026-10-06/2609.39096-decoprune-efficient-kv-cache-pruning-for-autoreg.md"
     },
     {
       "id": "2610.03543",
@@ -314,5 +316,5 @@
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 0
+  "cursor_summaries_completed": 1
 }
