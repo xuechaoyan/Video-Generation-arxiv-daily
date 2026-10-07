@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-07T02:47:17+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-07T17:59:35+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：84/100
 - **作者**：Zeqi Xiao, Qingle Liu, Kaiwen Zhang et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：本文研究长上下文自回归视频扩散中的 KV 缓存增长问题，提出无需训练的 DeCoPrune。方法利用中间干净预测与最终去噪结果之间的 token 级差异判断历史视觉信息的重要性，保留高差异 token、剪除低差异 token，并结合近期窗口、RoPE 重索引和可选的注意力头专门化。作者同时提出 CMBench，通过 Reappear 和 Revisit 任…
+- **一句话**：论文针对自回归视频扩散在长时间生成中 KV 缓存持续膨胀、导致内存和注意力开销增加的问题，提出无需训练的 DeCoPrune。该方法比较生成轨迹中的中间干净预测与最终去噪结果，认为差异较大的令牌包含当前上下文尚未充分表达的重要视觉证据，因此保留这些令牌并剪除低差异令牌；同时结合近期窗口、初始 sink chunk 保护和 RoPE 时间位置重索引。论文还提…
 - **精读笔记**：[打开笔记](../notes/2026-10-07/2609.39096-decoprune-efficient-kv-cache-pruning-for-autoreg.md)
 
 ### 2. [WorldSonus: Bringing Sound to Worlds](http://arxiv.org/abs/2610.08760v1)
@@ -18,7 +18,7 @@
 - **评分**：82/100
 - **作者**：Pengjun Fang, Jingyi Fa, Kam Man Wu et al.
 - **方向**：World Models
-- **一句话**：WorldSonus是一个为交互式世界模型提供声音的模块化视频到音频系统。它使用带有有界Ring-KV缓存的流式因果自回归扩散架构，以100毫秒为单位生成48 kHz立体声音频；通过双时间尺度视觉条件分别建模长程语义和帧级时空细节；并利用训练阶段的ShiftNCE蒸馏目标改善因果条件下的视听时间同步。系统支持在不中断会话或重新计算历史帧的情况下更新声音提示…
+- **一句话**：WorldSonus 是一个为交互式世界模型补充声音的模块化视频到音频系统。它以流式因果自回归扩散方式，每次生成100毫秒的48 kHz立体声音频，并通过有界5秒 Ring-KV缓存保持恒定的内存和计算开销。系统采用双时间尺度视觉条件：块级语义特征维持长程连续性，帧级特征帮助流匹配头进行精细的时空对齐；训练阶段的 ShiftNCE 则利用同步教师改善事件时…
 - **精读笔记**：[打开笔记](../notes/2026-10-07/2610.08760-worldsonus-bringing-sound-to-worlds.md)
 
 ### 3. [SimForcing: Distilling Simulation Motion Priors into Real-Domain Robot World Models](http://arxiv.org/abs/2610.06598v1)
@@ -26,7 +26,7 @@
 - **评分**：76/100
 - **作者**：Xiaodong Wang, Tianle Li, Chuanxin Song et al.
 - **方向**：World Models
-- **一句话**：SimForcing 面向动作条件机器人世界模型中的仿真到真实迁移问题。方法先利用合成轨迹训练仿真世界模型，再将其初始化为真实域学生模型，并通过相邻视频潜变量的时间差进行运动蒸馏，以迁移动作相关的运动先验而减弱仿真与真实外观差异。训练时，模型还通过多块仿真条件注入、条件丢弃和潜变量扰动利用仿真预测，同时提高对不准确或缺失仿真条件的鲁棒性。推理时，学生模型先…
+- **一句话**：SimForcing 旨在利用仿真数据提升动作条件真实机器人视频预测。方法先用增强后的仿真轨迹训练仿真世界模型，再将其作为冻结教师和学生初始化，通过相邻潜变量差分的运动蒸馏，把仿真中的动作相关运动先验迁移到真实域，同时在仿真和真实视频上联合进行流匹配训练。为利用但不过度依赖不准确的仿真预测，模型在多个视频 Transformer 模块中注入带噪仿真潜变量，…
 - **精读笔记**：[打开笔记](../notes/2026-10-07/2610.06598-simforcing-distilling-simulation-motion-priors-i.md)
 
 ## 快速浏览
