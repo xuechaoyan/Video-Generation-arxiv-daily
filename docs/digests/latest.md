@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-10T16:24:50+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-11T02:19:34+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,24 +10,24 @@
 - **评分**：76/100
 - **作者**：Dongbin Zhang, Chaoda Zheng, Kangjie Chen et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文指出，Self Forcing虽然通过自生成历史进行训练来缓解训练—推理不一致，但因分离历史KV缓存而切断了后续块向早期块传递的梯度。Connected Self Forcing通过Shortcut Gradient Replay，在不保留完整自回归计算图的前提下恢复从后续预测到历史KV状态及早期生成过程的部分梯度，使每个块不仅为自身生成质量负责，也根…
-- **精读笔记**：[打开笔记](../notes/2026-10-10/2610.12156-connected-self-forcing-beyond-local-learning-in.md)
+- **一句话**：论文指出，Self Forcing虽然通过自生成历史训练来匹配推理分布，但因历史KV缓存被detach，后续块对早期块的反向监督会丢失。Connected Self Forcing通过Shortcut Gradient Replay重建从后续预测到历史KV状态及早期生成过程的跨块梯度，在不保留完整自回归计算图的前提下，以较低激活内存换取重计算。该方法结合D…
+- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.12156-connected-self-forcing-beyond-local-learning-in.md)
 
 ### 2. [Conditional Residual Prediction: Improving Autoregressive Video Diffusion without a Bidirectional Teacher](http://arxiv.org/abs/2610.11479v1)
 
 - **评分**：75/100
 - **作者**：Bowen Zheng, Zhiguang Liu, Jiarong Ou et al.
 - **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：论文研究因果视频扩散模型在自回归生成中的暴露偏差问题：教师强制训练使模型过度依赖真实历史，而推理时历史由模型自身生成，早期误差会逐步累积。作者提出条件残差预测（CRP），将模型拆为历史无关分支和历史条件残差分支，前者仅依据当前噪声输入和文本预测，后者利用历史信息补充必要残差，并通过停止梯度和隐空间融合避免历史分支污染无历史分支。同时，作者以逐帧独立编码的图…
-- **精读笔记**：[打开笔记](../notes/2026-10-10/2610.11479-conditional-residual-prediction-improving-autore.md)
+- **一句话**：论文研究了因果视频扩散模型在教师强制训练与自回归推理之间的分布差异：模型在训练时看到正确历史，容易依赖历史中本可由当前输入预测的信息，导致推理时历史误差累积并造成质量下降。作者提出条件残差预测（CRP），将模型分为不使用历史的History-Free分支和仅预测历史相关残差的History-Conditioned分支，并结合停止梯度与隐状态融合；同时以逐帧…
+- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.11479-conditional-residual-prediction-improving-autore.md)
 
 ### 3. [MORCA: Offline-to-Online Reinforcement Learning for Adaptive Cache Reuse in Video Diffusion Acceleration](http://arxiv.org/abs/2610.10457v1)
 
 - **评分**：72/100
 - **作者**：Yuxiang Xiong, Ruiyan Wang, Wenqiang Wang et al.
 - **方向**：Video Generation, Efficient Video Diffusion
-- **一句话**：本文研究视频扩散模型迭代去噪中的缓存加速问题。作者指出，现有方法依据局部步骤误差决定缓存复用，但该误差不能可靠预测最终视频质量损失；同时，阈值调度难以精确满足用户指定的加速比。MORCA将缓存调度建模为带复用预算约束的MDP，利用步骤误差信号、去噪潜变量特征和预算状态，进行面向终端误差的复用/重计算决策，并采用基于IQL的离线到在线强化学习训练调度器。针对…
-- **精读笔记**：[打开笔记](../notes/2026-10-10/2610.10457-morca-offline-to-online-reinforcement-learning-f.md)
+- **一句话**：论文提出 MORCA，用于加速视频扩散模型的缓存调度。作者指出，现有方法依据单步缓存复用误差进行阈值决策，但单步误差不能可靠反映最终视频质量损失；同时，阈值调度难以精确满足用户指定的加速比。MORCA 将调度建模为带复用预算的马尔可夫决策过程，引入当前及历史潜变量的紧凑特征，并采用离线到在线的隐式Q学习进行训练。该方法先利用随机轨迹离线初始化，再通过在线轨…
+- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.10457-morca-offline-to-online-reinforcement-learning-f.md)
 
 ## 快速浏览
 

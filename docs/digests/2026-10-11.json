@@ -1,0 +1,323 @@
+{
+  "generated_at": "2026-10-11T02:19:34+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.12156",
+      "date": "2026-10-08",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Connected Self Forcing: Beyond Local Learning in Video Autoregression",
+      "abstract": "To stream long videos while maintaining visual quality and temporal consistency, Self Forcing mitigates exposure bias through self-rollout training on self-generated histories with key-value (KV) caching. To keep memory manageable, it detaches historical caches, preserving forward dependencies between chunks but severing the backward gradient paths. We introduce Connected Self Forcing, a training framework that reconnects gradient paths across autoregressive chunks, allowing feedback from later predictions to guide how earlier context is generated. These connections go beyond historical KV-writing: gradients pass through generated latents into the computations that produced them, linking the generation of earlier context to its use in later predictions. To make this connected training memory-efficient, we develop shortcut gradient replay, which recovers cross-chunk gradients without retaining the full rollout computation graph. Integrated with distribution matching distillation, Connected Self Forcing trains historical chunks according to both their direct supervision and their contribution to subsequent generation. Experiments on autoregressive video generation show improvements in long-horizon visual quality and temporal consistency, without changing the inference procedure.",
+      "authors": [
+        "Dongbin Zhang",
+        "Chaoda Zheng",
+        "Kangjie Chen",
+        "Xiangyu Li",
+        "Shijia Chen",
+        "Jinhao Deng",
+        "Yuqi Zhang",
+        "Guangfeng Jiang",
+        "Hongbin Lin",
+        "Choo Sin Wai",
+        "Minqi Wang",
+        "Puyi Wang",
+        "Jingye Zhang",
+        "Yu Zhang",
+        "Xianming Liu",
+        "Boyang Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.12156v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project Page: https://eastbeanzhang.github.io/CSF/",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "论文指出，Self Forcing虽然通过自生成历史训练来匹配推理分布，但因历史KV缓存被detach，后续块对早期块的反向监督会丢失。Connected Self Forcing通过Shortcut Gradient Replay重建从后续预测到历史KV状态及早期生成过程的跨块梯度，在不保留完整自回归计算图的前提下，以较低激活内存换取重计算。该方法结合DMD训练，不增加参数且不改变推理流程。在Wan2.1-T2V-1.3B上的60秒和240秒实验中，相比Self Forcing及相关基线，整体质量、背景和主体一致性等指标普遍提升，并减少了长视频中的主体与场景漂移。",
+      "contribution_cn": "1. 识别了Self Forcing中的前向—反向鸿沟：生成块会在前向过程中影响未来预测，但历史detach阻断了未来损失回传至早期上下文生成的路径。 2. 提出Connected Self Forcing，通过Shortcut Gradient Replay利用后续块直接读取历史KV缓存这一依赖，恢复跨块梯度，并将反馈传回历史KV写入和生成过程。 3. 在不保留完整rollout计算图、不增加模型参数且不改变推理过程的情况下实现内存高效训练。 4. 通过60秒和240秒长时域自回归视频实验及消融实验，验证了视觉质量和时间一致性方面的改进。",
+      "relevance_cn": "该工作直接针对视频自回归、因果、流式和长视频生成中的训练问题。它使用自生成历史、KV缓存和分块自回归rollout来匹配在线推理，并通过跨块梯度连接提升长时域主体与场景一致性，因此与长视频生成、缓存复用和因果视频模型高度相关。其结合分布匹配蒸馏和四步采样，也与视频生成加速和蒸馏有关。方法只改变训练阶段，推理时仍使用原有的因果KV缓存流程；论文未涉及动作条件、闭环交互模拟或实时系统吞吐量的直接评估。",
+      "limitations_cn": "论文的实验主要基于Wan2.1-T2V-1.3B、文本到视频DMD后训练和特定提示集，外推到其他架构、数据规模及条件形式的效果尚未得到充分验证。Shortcut Gradient Replay以重计算换取激活内存降低，论文未在正文中完整量化其训练时间和计算开销。CSF的质量与动态程度存在初始化和反馈权重相关的权衡，部分设置下动态程度低于基线。实验重点是离线长时域视频质量和一致性，未明确说明真实交互闭环、动作条件控制、实时延迟或部署吞吐量表现。作为预印本，论文未明确说明更大规模训练和更长时间范围下的稳定性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "为了在保持视觉质量和时间一致性的同时流式生成长视频，Self Forcing通过利用带有键值（KV）缓存的自生成历史进行自回归 rollout 训练，缓解了暴露偏差。为控制内存开销，它将历史缓存从计算图中分离，在保留块之间前向依赖的同时切断反向梯度路径。我们提出 Connected Self Forcing，一种重新连接自回归块之间梯度路径的训练框架，使后续预测的反馈能够指导更早上下文的生成。这些连接超越了历史 KV 写入：梯度会穿过生成的潜变量，进入产生这些潜变量的计算过程，从而将早期上下文的生成与其在后续预测中的使用联系起来。为使这种连接式训练具备内存效率，我们提出 shortcut gradient replay，在无需保留完整 rollout 计算图的情况下恢复跨块梯度。结合分布匹配蒸馏，Connected Self Forcing根据历史块自身的直接监督及其对后续生成的贡献共同训练这些块。在自回归视频生成实验中，该方法提升了长时域视觉质量和时间一致性，同时不改变推理过程。",
+      "note_path": "2026-10-11/2610.12156-connected-self-forcing-beyond-local-learning-in.md"
+    },
+    {
+      "id": "2610.11479",
+      "date": "2026-10-08",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Conditional Residual Prediction: Improving Autoregressive Video Diffusion without a Bidirectional Teacher",
+      "abstract": "Causal video diffusion models generate video autoregressively, which suits streaming, interactive, and long-video generation. Under standard training, however, they often yield lower generation quality than bidirectional models of the same size. Many existing approaches address this gap by initializing from or distilling a pretrained bidirectional teacher. We instead train a causal model from an image-model initialization, with no bidirectional video model at any stage. Because this path requires neither a large bidirectional teacher nor a complex distillation pipeline, it is simpler and more scalable. On this path, we find that a causal model trained on ground-truth history becomes strongly dependent on it, so that at inference errors in its own generated history propagate forward. We hypothesize that much of this dependence is unnecessary, because the current input already determines much of what the history provides. We propose Conditional Residual Prediction (CRP), a simple recipe for reducing a model's reliance on a condition: the model first predicts the target without the condition, and the condition may only add a residual on top of this prediction. Applied to history, CRP makes the model predict each chunk from the present as far as it can and use the past only for what the present cannot supply. In controlled experiments, CRP nearly closes the 6.14-point gap to a bidirectional model trained under the same setup. Scaling this recipe, we train Optica, a 2B-parameter causal video model that autoregressively generates 5-second 480p videos and reaches 82.78 on VBench with only about 15M training videos.",
+      "authors": [
+        "Bowen Zheng",
+        "Zhiguang Liu",
+        "Jiarong Ou",
+        "Rui Chen",
+        "Tianyang Hu"
+      ],
+      "url": "http://arxiv.org/abs/2610.11479v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "26 pages, 6 figures, 4 tables",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "论文研究了因果视频扩散模型在教师强制训练与自回归推理之间的分布差异：模型在训练时看到正确历史，容易依赖历史中本可由当前输入预测的信息，导致推理时历史误差累积并造成质量下降。作者提出条件残差预测（CRP），将模型分为不使用历史的History-Free分支和仅预测历史相关残差的History-Conditioned分支，并结合停止梯度与隐状态融合；同时以逐帧独立编码的图像VAE替代具有时间耦合的​​视频VAE。在256p、5秒视频的受控实验中，CRP将因果模型与双向模型的VBench差距从6.14分缩小至0.19分，加入图像VAE后进一步达到略高于双向基线的水平。扩展得到的2B参数Optica无需双向视频教师模型，能够自回归生成5秒480p视频，在VBench上取得82.78分。",
+      "contribution_cn": "1. 提出条件残差预测（CRP）：先从当前输入和文本预测不依赖历史的结果，再让历史条件分支只预测必要的残差，从机制上减少因果视频模型对历史的过度依赖。\n2. 设计History-Free与History-Conditioned双分支结构，使用停止梯度防止条件分支污染无历史分支，并通过逐层隐状态融合传递无历史特征。\n3. 将视频VAE替换为逐帧独立编码的图像VAE，消除VAE内部的时间历史耦合及首帧/后续帧潜变量不平衡问题。\n4. 通过系统消融实验验证了x0预测、CRP、隐状态融合和停止梯度各组件的作用，并用生成历史和损坏历史实验衡量历史依赖及误差累积。\n5. 训练Optica这一2B参数因果视频模型，在不使用双向视频模型初始化、样本或分数蒸馏的情况下，以约1500万个视频达到82.78的VBench总分。",
+      "relevance_cn": "论文与研究重点高度相关。它直接针对自回归、因果、流式和长视频生成，利用CRP降低生成历史错误在闭环自回归过程中的传播，因此对流式生成和交互式世界模型具有直接启发。Optica能够以5个块自回归生成5秒480p视频，并保持较高的语义一致性，说明该方法适合作为动作条件视觉世界模型或闭环模拟器的基础训练方案。论文还提出保留历史独有信息、丢弃当前输入可推断信息的上下文压缩原则，与长上下文记忆压缩和缓存复用有关。不过，论文没有展示动作条件控制、真实闭环环境交互、稀疏注意力或KV缓存带来的实时加速；当前模型仍为50步采样，也尚未蒸馏为少步模型，因此与实时生成和高效部署的联系主要是方法潜力而非已验证结果。",
+      "limitations_cn": "论文明确指出：所有受控实验和扩展实验都只评估5秒视频，尚未验证CRP能否在更长的自回归生成中持续抑制误差累积；目前只将CRP应用于历史条件，尚未研究图像到视频生成中的条件图像等其他可能被过度依赖的条件；当前Optica不支持图像到视频生成；图像VAE放弃了时间压缩，History-Free分支还会增加一次前向传播；当前50步模型尚未证明实时效率，也尚未将Optica蒸馏为少步模型。此外，论文未报告动作条件控制、闭环世界模型任务、稀疏注意力或KV缓存复用方面的实验结果。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "因果视频扩散模型以自回归方式生成视频，适用于流式、交互式和长视频生成。然而，在标准训练下，它们的生成质量通常低于同等规模的双向模型。许多现有方法通过从预训练双向教师模型初始化或进行蒸馏来缩小这一差距。相比之下，我们从图像模型初始化开始训练因果模型，整个过程中不使用双向视频模型。由于这一流程既不需要大型双向教师模型，也不需要复杂的蒸馏管线，因此更加简单且易于扩展。在这一训练路径中，我们发现，使用真实历史进行训练的因果模型会严重依赖历史信息，导致推理时自身生成历史中的错误不断向前传播。我们推测，其中相当一部分依赖是不必要的，因为当前输入本身已经决定了历史所提供的大部分信息。为此，我们提出条件残差预测（Conditional Residual Prediction，CRP），这是一种降低模型对条件依赖的简单方法：模型首先在不使用条件的情况下预测目标，条件只能在此预测之上添加残差。将其应用于历史信息后，CRP使模型尽可能仅根据当前信息预测每个视频块，并仅利用过去信息补充当前信息无法提供的内容。在受控实验中，CRP几乎弥合了相同训练设置下因果模型与双向模型之间6.14分的差距。在此基础上进行扩展训练，我们得到Optica，这是一个包含20亿参数的因果视频模型，能够自回归生成5秒、480p视频，仅使用约1500万个训练视频便在VBench上达到82.78分。",
+      "note_path": "2026-10-11/2610.11479-conditional-residual-prediction-improving-autore.md"
+    },
+    {
+      "id": "2610.10457",
+      "date": "2026-10-07",
+      "topics": [
+        "Video Generation",
+        "Efficient Video Diffusion"
+      ],
+      "title": "MORCA: Offline-to-Online Reinforcement Learning for Adaptive Cache Reuse in Video Diffusion Acceleration",
+      "abstract": "Diffusion Transformers (DiTs) achieve remarkable performance in video synthesis, but their iterative denoising process suffers from high inference latency. To address this, caching has emerged as an effective acceleration strategy by capitalizing on inter-step redundancy during denoising. Existing dynamic caching methods typically estimate the error that cache reuse would introduce at each denoising step (step error) to guide cache decisions, whereas our concern is how much quality loss cache reuse would cause in the final generated video (terminal error). We show that step error does not directly correspond to terminal error and that latent information helps capture their relationship, thereby informing cache decisions. Moreover, existing threshold-based methods cannot provide precise speedup control, making it difficult to meet practical requirements for user-specified acceleration targets. To address these limitations, we introduce MORCA, a cache scheduling framework trained through offline-to-online reinforcement learning to make latent-aware reuse/recompute decisions under user-specified acceleration targets. Extensive experiments on different video generation models across multiple target acceleration ratios demonstrate that MORCA achieves better generation fidelity than state-of-the-art caching methods under comparable computational budgets. Code is available at https://github.com/x10ngyx/MORCA.",
+      "authors": [
+        "Yuxiang Xiong",
+        "Ruiyan Wang",
+        "Wenqiang Wang",
+        "Teng Hu",
+        "Songhang Shen",
+        "Bohao Feng",
+        "Hongqian Deng",
+        "Ran Yi"
+      ],
+      "url": "http://arxiv.org/abs/2610.10457v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "22 pages, 8 figures",
+      "score": 72,
+      "priority": "must-read",
+      "summary_cn": "论文提出 MORCA，用于加速视频扩散模型的缓存调度。作者指出，现有方法依据单步缓存复用误差进行阈值决策，但单步误差不能可靠反映最终视频质量损失；同时，阈值调度难以精确满足用户指定的加速比。MORCA 将调度建模为带复用预算的马尔可夫决策过程，引入当前及历史潜变量的紧凑特征，并采用离线到在线的隐式Q学习进行训练。该方法先利用随机轨迹离线初始化，再通过在线轨迹微调。在 Wan2.1 和 Wan2.2 上的实验显示，MORCA 在约 1.8×至 4.0×加速范围内通常取得更好的 PSNR、SSIM 和 LPIPS，同时将加速比误差控制在较小范围内。",
+      "contribution_cn": "1. 提出 MORCA，一种潜变量感知、面向用户指定加速目标的自适应视频扩散缓存调度框架。 2. 将缓存调度表述为带复用预算的约束MDP，并通过状态增广和可行动作集合保证目标复用次数，从而实现更精确的加速比控制。 3. 设计结合步骤误差信号、去噪统计量、当前及历史潜变量特征和剩余预算的调度状态，用于根据终端误差作出复用或重新计算决策。 4. 提出基于隐式Q学习的离线到在线强化学习训练流程，以提高有限数据下的样本利用率，并通过在线微调进一步改进策略。 5. 在 Wan2.1 和 Wan2.2 视频生成模型上的实验表明，相比 TeaCache、MagCache、DiCache 和 SeaCache，MORCA 在相近加速比下取得了更好的速度—质量折中。",
+      "relevance_cn": "该工作与视频扩散加速和缓存复用直接相关：它跳过部分 DiT 去噪计算并复用历史残差，以降低视频生成推理延迟。其核心是用潜变量和终端质量导向的强化学习调度缓存，而不是仅使用局部步骤误差或固定阈值。它还针对实际部署中的实时或低延迟生成需求，提供了面向用户指定加速比的预算控制。该方法属于推理阶段的缓存复用，与蒸馏、稀疏注意力等加速路线互补；论文还指出，MORCA原则上可与不同缓存粒度及缓存复用策略结合。它不涉及动作条件视觉世界模型、闭环仿真或自回归长视频生成。",
+      "limitations_cn": "论文仅在 Wan2.1-T2V-1.3B 和 Wan2.2-T2V-A14B 两个文本到视频模型、固定的 50 步去噪设置及有限的 VBench 提示词集上进行评估，跨模型和任务的泛化能力未充分验证。MORCA需要额外收集离线和在线缓存调度轨迹，并进行强化学习训练，这会带来训练成本和工程复杂度。其速度控制依赖复用次数与延迟之间的经验校准关系，且由于复用步数离散，加速比无法完全连续或精确匹配目标。论文主要使用相对于无缓存参考视频的 PSNR、SSIM 和 LPIPS 评估质量，未充分讨论感知质量、运动一致性、文本对齐或真实用户体验。论文未明确说明在更长视频、实时流式生成、动作条件生成或闭环世界模型场景中的表现。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "扩散Transformer（DiT）在视频合成方面取得了显著效果，但其迭代去噪过程具有较高的推理延迟。为此，缓存通过利用去噪过程中的跨步冗余，成为一种有效的加速策略。现有动态缓存方法通常估计每个去噪步骤中复用缓存会引入的误差（步骤误差），并据此指导缓存决策；而我们关注的是缓存复用会对最终生成视频造成多大的质量损失（终端误差）。我们表明，步骤误差与终端误差并不直接对应，而潜变量信息有助于捕捉二者之间的关系，从而为缓存决策提供依据。此外，现有基于阈值的方法无法精确控制加速比，难以满足用户指定的实际加速目标。为解决这些问题，我们提出 MORCA，一种通过离线到在线强化学习训练的缓存调度框架，可在用户指定的加速目标下，利用潜变量感知的信息作出复用或重新计算决策。在不同视频生成模型和多个目标加速比上的大量实验表明，在相近计算预算下，MORCA 比当前先进的缓存方法实现了更高的生成保真度。代码已发布于 https://github.com/x10ngyx/MORCA。",
+      "note_path": "2026-10-11/2610.10457-morca-offline-to-online-reinforcement-learning-f.md"
+    },
+    {
+      "id": "2610.12368",
+      "date": "2026-10-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LiteNWM: Efficient Latent World Models for Onboard Visual Navigation in the Wild",
+      "abstract": "Direct visual navigation policies generate trajectories efficiently but do not explicitly evaluate their future consequences. Generative navigation world models provide this foresight through visual rollouts, which are costly when evaluating multiple candidates. We present LiteNWM, a latent navigation world model that shares visual encoding across candidates and jointly predicts their action-conditioned future representations at multiple horizons, while a learned scorer uses these predictions to select trajectories. In offline evaluations on RECON, SCAND, and SACSoN, LiteNWM reduces macro-averaged trajectory error by 17.56% relative to NoMaD+NWM-XL and achieves a 128.00-fold end-to-end speedup on an RTX 5090. The same evaluator transfers from NoMaD to MBRA without proposer-specific retraining, reducing MBRA's macro-averaged trajectory error by 16.2%. In real-robot experiments in unseen indoor and outdoor environments, LiteNWM improves navigation success from 43.3% to 83.3% relative to NoMaD. These results demonstrate that LiteNWM can be deployed for future-aware planning and closed-loop navigation on a physical robot.",
+      "authors": [
+        "Linkai Liu",
+        "Yuntian Zhang",
+        "Zhenshan Bing",
+        "Chen Chen",
+        "Lingjuan Lyu",
+        "Shangguang Wang",
+        "Mengwei Xu",
+        "Dongqi Cai"
+      ],
+      "url": "http://arxiv.org/abs/2610.12368v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "12 pages, 11 figures, including appendix",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "Direct visual navigation policies generate trajectories efficiently but do not explicitly evaluate their future consequences.",
+      "contribution_cn": "We present LiteNWM, a latent navigation world model that shares visual encoding across candidates and jointly predicts their action-conditioned future representations at multiple horizons, while a learned scorer uses these predictions to select trajectories.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, closed-loop, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.09785",
+      "date": "2026-10-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "UltraWorld: Learning Interactive Ultrasound World Models from Untracked Clinical Videos with Acoustic Sampling Map",
+      "abstract": "World models can enable autonomous ultrasound scanning by predicting the outcomes of probe motions from local observations. Learning this action--observation relationship typically relies on synchronized video--pose pairs, which are costly to collect at scale and largely unavailable in routine clinical recordings. Reliable action following further requires modeling ultrasound's cross-sectional sampling geometry. We present UltraWorld, a self-distillation recipe that transfers priors from clinical ultrasound videos into interactive world models without real action annotations. Starting from clinical videos, we adapt a video foundation model into an ultrasound generator conditioned on reference images and anatomical masks. Anatomical masks sampled along programmable trajectories through 3D anatomy provide spatial guidance for synthesizing action--video pairs. We then use these synthetic pairs to self-distill the generator into a world model that predicts future observations from local observations and actions, without requiring anatomical masks or other 3D assets at inference time. To further improve action following, we introduce the Acoustic Sampling Map (AsMap), which represents probe poses and imaging settings as pixel-wise 3D sampling positions, beam directions, and depths. Experiments demonstrate improved prediction fidelity and action following. Across nine simulated closed-loop local planning episodes, UltraWorld reduces the mean final distance to the goal and orientation error by 29\\% and 38\\%, respectively, compared with visual servoing. Project Page: https://ultraworld-project.github.io/.",
+      "authors": [
+        "Keke Yang",
+        "Erqi Wang",
+        "Sainan Guan",
+        "Hongliang Ren"
+      ],
+      "url": "http://arxiv.org/abs/2610.09785v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "World models can enable autonomous ultrasound scanning by predicting the outcomes of probe motions from local observations.",
+      "contribution_cn": "We present UltraWorld, a self-distillation recipe that transfers priors from clinical ultrasound videos into interactive world models without real action annotations.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, interactive, closed-loop, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.11401",
+      "date": "2026-10-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WAM-Cache: Staleness-Bounded KV Reuse for Efficient World Action Models",
+      "abstract": "World Action Models (WAMs) enable generalist robot manipulation by conditioning an action expert on representations from a pretrained video Diffusion Transformer (DiT). In closed-loop control, the video DiT runs at every chunk to encode the current observation into layerwise key-value (KV) pairs that the action expert queries. This prefill dominates the per-chunk computational cost, yet existing training-free accelerations leave it fully dense. We present WAM-Cache, a training-free framework that retains layerwise key-value representations across chunks and recomputes only a sparse refresh set of tokens. Crucially, we find that the intuitive heuristic of refreshing visually drifted tokens plateaus far below the dense baseline, even with an oracle predicting ground-truth KV drift. Downstream action accuracy is instead governed by where the action expert attends, not by what moved. WAM-Cache therefore selects the refresh set by uniting the action expert's cross-attention with visual latent surprise, complemented by a strict age bound that suppresses compounding error. On Fast-WAM, WAM-Cache cuts video DiT prefill FLOPs by 32-42% across RoboTwin 2.0, LIBERO, and real-world experiments, while staying within 0.7-1.8 percentage points of the dense policy in simulation and 2.5 points on a real robot.",
+      "authors": [
+        "Kai Ding",
+        "Yang He",
+        "Ruijie Quan",
+        "Yi Yang"
+      ],
+      "url": "http://arxiv.org/abs/2610.11401v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "19 pages, 5 figures, 7 tables. Project page: https://dingkai0302.github.io/wam-cache/",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "World Action Models (WAMs) enable generalist robot manipulation by conditioning an action expert on representations from a pretrained video Diffusion Transformer (DiT).",
+      "contribution_cn": "We present WAM-Cache, a training-free framework that retains layerwise key-value representations across chunks and recomputes only a sparse refresh set of tokens.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：closed-loop, simulation, acceleration, cache, efficient, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.11756",
+      "date": "2026-10-08",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation",
+      "abstract": "Autoregressive video diffusion enables causal video streaming without a bidirectional pass over the full clip, but existing few-step systems usually retain only the opening and most recent frames in a fixed-size KV cache. Once an event leaves this window, later frames can no longer attend to it, a failure we term mid-horizon forgetting. We present Memory Forcing, a few-step streaming method that preserves this missing history without increasing the cache size. Its Archive \\& Working Banks partition the cache into sink, archive, and working regions, retaining diverse intermediate events alongside recent motion under fixed memory. Because absolute temporal indices drift outside the training range, Bank-aware RoPE reassigns indices at attention time so each bank remains distinguishable. At 1.3B, Memory Forcing leads on longer clips, shows the smallest drop from 5s to 60s among methods reporting all four lengths, and preserves subjects and scenes through leave-and-return. The same design scales to Wan2.2 5B, producing more physically plausible, realistic, and dynamic videos and, to our knowledge, the first public 5B model on this forcing line.",
+      "authors": [
+        "Jiaming Zhang",
+        "Xinyu Wang",
+        "Huafeng Shi",
+        "Gangshan Wu",
+        "Limin Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.11756v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "10 pages, 6 figures",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Autoregressive video diffusion enables causal video streaming without a bidirectional pass over the full clip, but existing few-step systems usually retain only the opening and most recent frames in a fixed-size KV cache.",
+      "contribution_cn": "We present Memory Forcing, a few-step streaming method that preserves this missing history without increasing the cache size.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, causal video, streaming, few-step, cache, kv cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.09763",
+      "date": "2026-10-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Beyond Policy Support: Interaction Constrained Offline Reinforcement Learning for Autonomous Driving",
+      "abstract": "Offline reinforcement learning enables reward-driven policy improvement from fixed datasets without requiring online exploration, making it particularly attractive in safety-critical domains. A central challenge, however, is distribution shift: policy optimization may favor actions that are weakly supported by the offline data, rendering value estimates unreliable. Existing approaches primarily control this shift in the policy's own action space. In interactive environments such as autonomous driving, this can be insufficient: a candidate ego trajectory may remain well supported under the marginal behavior distribution while being poorly supported jointly with the surrounding-agent behavior observed in the logged interaction. We refer to this degradation in interaction support as \\emph{interaction distribution shift} (IDS), and introduce \\emph{Interaction-Constrained Drive Policy} (ICDP), an offline reinforcement learning framework that explicitly controls interaction-level distribution shift. Starting from the joint data distribution over ego and surrounding-agent futures, we show that joint-support degradation decomposes exactly into an ego-support component and a residual interaction-support component. We recover the latter through contrastive density-ratio estimation, isolating interaction compatibility without explicit joint-density modeling, surrounding-agent prediction, or rollouts in reactive simulators or learned world models during policy optimization. Closed-loop evaluations on nuPlan, Interplan and real-world truck experiments show that ICDP suppresses high-value yet interaction-unsupported trajectory selections and improves performance in interaction-critical driving scenarios. Project webpage: https://mahmoud-selim.github.io/ICDP/",
+      "authors": [
+        "Mahmoud Selim",
+        "Cristina Cipriani",
+        "Karl Henrik Johansson"
+      ],
+      "url": "http://arxiv.org/abs/2610.09763v1",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "Offline reinforcement learning enables reward-driven policy improvement from fixed datasets without requiring online exploration, making it particularly attractive in safety-critical domains.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, closed-loop, driving",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.11382",
+      "date": "2026-10-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "PlanWAM: Planning-Shaped Future Representations for End-to-End Autonomous Driving",
+      "abstract": "World models in end-to-end autonomous driving predict future scene evolution to provide foresight for trajectory planning. Existing methods mainly study how to predict the future and how to use it, but less often ask which future representation is actually most useful for planning. To this end, we propose PlanWAM, a Planning-Shaped World Action Model. The key idea is to let the planning task shape the future-state representation, so that it retains the information most useful for planning. A latent world model then predicts this planning-shaped future latent representation from historical observations and uses it for planning, enabling foresighted planning. Specifically, we first use a Temporal Register Pyramid to compress multi-frame historical information in a recency-aware manner, learning a compact history representation oriented toward future reasoning and planning. We then introduce a privileged future posterior branch that observes ground-truth future frames, and shape its future latent representation with trajectory-planning objectives to obtain a planning-shaped future latent representation. Hindsight-to-Foresight Distillation trains a prior branch that depends only on history to predict this future latent representation. The predicted future latent representation serves as planning context and guides trajectory generation and selection. PlanWAM achieves 93.8 PDMS / 90.9 EPDMS on NAVSIM-v1/v2 navtest and reaches 38.7 HD-Score on closed-loop HUGSIM in a zero-shot setting, demonstrating leading planning performance across both open-loop and closed-loop evaluations. Extensive experiments further demonstrate that planning-shaped future representations provide an effective and deployable form of foresight for world-action models.",
+      "authors": [
+        "Jinchang Xu",
+        "Hongda Yu",
+        "Fengwei Dong",
+        "Wenhui Huang",
+        "Xi Wei",
+        "Yongzhi Liu",
+        "Sunan Zhang",
+        "Jirao Wang",
+        "Chen Lv",
+        "Bingbing Li",
+        "Guodong Yin",
+        "Weichao Zhuang"
+      ],
+      "url": "http://arxiv.org/abs/2610.11382v1",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "World models in end-to-end autonomous driving predict future scene evolution to provide foresight for trajectory planning.",
+      "contribution_cn": "To this end, we propose PlanWAM, a Planning-Shaped World Action Model.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.12459",
+      "date": "2026-10-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
+      "abstract": "Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been produced. A model must determine the next action from its generated state, execute that action, and recognize when the task is complete. Open-loop generation cannot adapt to execution outcomes, while existing closed-loop systems often rely on pretrained executors or indirect verification. This leaves a gap between deciding an action and successfully realizing it. We formulate procedural video generation as \\emph{closed-loop task execution in visual world space} and introduce \\textbf{WorldGuide}. Given only an initial image and a task goal, WorldGuide predicts an atomic action, generates its corresponding video clip, and uses the generated result to select the next action or terminate. The Planner and Executor are trained on the same step-level procedural demonstrations: the Planner learns to predict the next atomic action or task completion from visual progress, while the Executor is directly trained to realize the predicted actions. Hierarchical visual memory maintains state across long-horizon execution with bounded history token cost. Due to the lack of step-level action-video supervision for joint planner-executor training, we introduce \\textbf{WorldGuide Bench}: approximately 59K step-annotated videos across 245 tasks and 27 procedural categories. WorldGuide achieves a 33.33\\% Task Success on \\textbf{WorldGuide-Bench}, compared with 29.90\\% for the strong recent video model MiniMax-H3, even though MiniMax-H3 receives reference action plans, and achieves 47.69\\% on \\textbf{VideoCraft-Bench} compared with 32.73\\% for MiniMax-H3 under goal-only conditioning. These results demonstrate the importance of coupling planning with learned execution for goal-directed procedural video generation.",
+      "authors": [
+        "Ankan Deria",
+        "Komal Kumar",
+        "Hisham Cholakkal",
+        "Fahad Shahbaz Khan",
+        "Salman Khan"
+      ],
+      "url": "http://arxiv.org/abs/2610.12459v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "34 pages, 14 figures, 15 Tables",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been produced.",
+      "contribution_cn": "Due to the lack of step-level action-video supervision for joint planner-executor training, we introduce \\textbf{WorldGuide Bench}: approximately 59K step-annotated videos across 245 tasks and 27 procedural categories.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, closed-loop, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}
