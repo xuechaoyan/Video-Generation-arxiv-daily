@@ -1,33 +1,25 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-11T16:49:10+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-12T02:43:57+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [Connected Self Forcing: Beyond Local Learning in Video Autoregression](http://arxiv.org/abs/2610.12156v1)
+### 1. [ForcingBooster: Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion](http://arxiv.org/abs/2610.12625v1)
+
+- **评分**：84/100
+- **作者**：Zekai Gu, Peng Wang, Jiahao Lu et al.
+- **方向**：Video Generation, World Models, Autoregressive and Streaming Video
+- **一句话**：论文提出ForcingBooster，用轻量级路由器根据每个潜在图像块的内容、历史上下文和条件信号，动态决定其是否继续去噪。已收敛的简单区域使用中间干净潜变量提前退出，并将其键值表示缓存供其他区域使用；复杂或条件敏感区域继续细化。作者通过停止损失和计算成本损失进行在线策略训练，以冻结的完整去噪结果作为监督，无需额外视频数据或人工停止标签。在Causal F…
+- **精读笔记**：[打开笔记](../notes/2026-10-12/2610.12625-forcingbooster-adaptive-patch-wise-denoising-for.md)
+
+### 2. [Connected Self Forcing: Beyond Local Learning in Video Autoregression](http://arxiv.org/abs/2610.12156v1)
 
 - **评分**：76/100
 - **作者**：Dongbin Zhang, Chaoda Zheng, Kangjie Chen et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文研究自回归长视频生成中的训练—推理不匹配问题。Self Forcing 虽然使用模型自身生成的历史进行训练，但为节省内存会切断块间反向梯度，导致早期块无法根据其对后续生成的影响进行优化。Connected Self Forcing 通过快捷梯度重放，从后续块回传梯度至历史 KV 状态及其生成过程，在避免保存完整计算图的同时恢复部分跨块监督。实验基于 W…
-- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.12156-connected-self-forcing-beyond-local-learning-in.md)
-
-### 2. [Conditional Residual Prediction: Improving Autoregressive Video Diffusion without a Bidirectional Teacher](http://arxiv.org/abs/2610.11479v1)
-
-- **评分**：75/100
-- **作者**：Bowen Zheng, Zhiguang Liu, Jiarong Ou et al.
-- **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：论文研究因果视频扩散模型在教师强制训练与自回归推理之间的分布差异，指出模型会过度依赖真实历史，导致生成误差在长时序中累积。作者提出条件残差预测（CRP）：历史无关分支先根据当前噪声输入和文本预测目标，历史条件分支只预测由历史提供的残差，并通过停止梯度和隐状态融合保持两者分工。作者还以逐帧独立编码的图像VAE替代具有时间耦合的因果视频VAE，以减少潜变量间的…
-- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.11479-conditional-residual-prediction-improving-autore.md)
-
-### 3. [MORCA: Offline-to-Online Reinforcement Learning for Adaptive Cache Reuse in Video Diffusion Acceleration](http://arxiv.org/abs/2610.10457v1)
-
-- **评分**：72/100
-- **作者**：Yuxiang Xiong, Ruiyan Wang, Wenqiang Wang et al.
-- **方向**：Video Generation, Efficient Video Diffusion
-- **一句话**：本文研究视频扩散模型推理中的缓存调度问题。作者指出，现有方法依据当前步骤的局部缓存误差进行阈值决策，但局部步骤误差并不能可靠预测最终视频质量损失。MORCA 将缓存调度建模为带复用预算约束的马尔可夫决策过程，利用去噪步骤统计、潜变量的紧凑特征以及剩余复用预算，预测终端误差并决定复用或重计算。该方法采用离线到在线的隐式Q学习：先从随机缓存轨迹中进行离线初始化…
-- **精读笔记**：[打开笔记](../notes/2026-10-11/2610.10457-morca-offline-to-online-reinforcement-learning-f.md)
+- **一句话**：论文指出，Self Forcing 虽然通过自生成历史缓解了训练与推理不一致问题，但为节省内存而分离历史 KV 缓存，导致后续分块的损失无法反向指导早期分块及其上下文生成。Connected Self Forcing 通过快捷梯度重放，将后续分块的梯度经历史 KV 状态传回早期分块的 KV 写入和生成过程，同时避免保留完整自回归计算图。实验基于 Wan2.…
+- **精读笔记**：[打开笔记](../notes/2026-10-12/2610.12156-connected-self-forcing-beyond-local-learning-in.md)
 
 ## 快速浏览
 
@@ -36,46 +28,53 @@
 - **评分**：71/100
 - **作者**：Linkai Liu, Yuntian Zhang, Zhenshan Bing et al.
 - **方向**：World Models
-- **一句话**：Direct visual navigation policies generate trajectories efficiently but do not explicitly evaluate their future consequences.
+- **一句话**：本文提出 LiteNWM，用于在视觉导航中高效评估候选轨迹。系统冻结导航策略，利用共享的 DINOv3 视觉编码、动作条件的潜在空间预测器以及相对于当前最优轨迹的评分器，联合预测 H1–H4 多个时间范围的未来特征，并据此筛选候选轨迹，从而避免为每条候选轨迹生成 RGB 视频。RECON、SCAND 和 SACSoN 实验显示，LiteNWM 在轨迹误差和…
 
-### 2. [UltraWorld: Learning Interactive Ultrasound World Models from Untracked Clinical Videos with Acoustic Sampling Map](http://arxiv.org/abs/2610.09785v1)
-
-- **评分**：70/100
-- **作者**：Keke Yang, Erqi Wang, Sainan Guan et al.
-- **方向**：World Models
-- **一句话**：World models can enable autonomous ultrasound scanning by predicting the outcomes of probe motions from local observations.
-
-### 3. [WAM-Cache: Staleness-Bounded KV Reuse for Efficient World Action Models](http://arxiv.org/abs/2610.11401v1)
-
-- **评分**：70/100
-- **作者**：Kai Ding, Yang He, Ruijie Quan et al.
-- **方向**：World Models
-- **一句话**：World Action Models (WAMs) enable generalist robot manipulation by conditioning an action expert on representations from a pretrained video Diffusion Transformer (DiT).
-
-### 4. [Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation](http://arxiv.org/abs/2610.11756v1)
+### 2. [Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation](http://arxiv.org/abs/2610.11756v1)
 
 - **评分**：70/100
 - **作者**：Jiaming Zhang, Xinyu Wang, Huafeng Shi et al.
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Autoregressive video diffusion enables causal video streaming without a bidirectional pass over the full clip, but existing few-step systems usually retain only the opening and mo…
 
-### 5. [Beyond Policy Support: Interaction Constrained Offline Reinforcement Learning for Autonomous Driving](http://arxiv.org/abs/2610.09763v1)
+### 3. [Towards Safe World Models: Risks, Defenses, and Evaluation](http://arxiv.org/abs/2610.13372v1)
 
-- **评分**：69/100
-- **作者**：Mahmoud Selim, Cristina Cipriani, Karl Henrik Johansson
+- **评分**：66/100
+- **作者**：Xiaoma Wang, Litian Zhang, Xinze Shi et al.
 - **方向**：World Models
-- **一句话**：Offline reinforcement learning enables reward-driven policy improvement from fixed datasets without requiring online exploration, making it particularly attractive in safety-criti…
+- **一句话**：World models support planning, control, learning from imagined experience, and model-mediated evaluation by predicting action-conditioned consequences.
 
-### 6. [PlanWAM: Planning-Shaped Future Representations for End-to-End Autonomous Driving](http://arxiv.org/abs/2610.11382v1)
-
-- **评分**：69/100
-- **作者**：Jinchang Xu, Hongda Yu, Fengwei Dong et al.
-- **方向**：World Models
-- **一句话**：World models in end-to-end autonomous driving predict future scene evolution to provide foresight for trajectory planning.
-
-### 7. [WorldGuide: Goal-Directed Video World Model for Procedural Task Execution](http://arxiv.org/abs/2610.12459v1)
+### 4. [WorldGuide: Goal-Directed Video World Model for Procedural Task Execution](http://arxiv.org/abs/2610.12459v1)
 
 - **评分**：65/100
 - **作者**：Ankan Deria, Komal Kumar, Hisham Cholakkal et al.
 - **方向**：World Models
 - **一句话**：Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been…
+
+### 5. [Beyond Successful Robot Demonstrations: Learning from Human Interactions and Modeling Failure Dynamics](http://arxiv.org/abs/2610.13522v1)
+
+- **评分**：65/100
+- **作者**：Peiyan Tu, Cong Wang, Hanxin Zhu et al.
+- **方向**：World Models
+- **一句话**：Action-conditioned world models offer a promising foundation for generalist robotic intelligence by predicting the consequences of actions.
+
+### 6. [LeWAM: End-to-End World and Action Modeling with JEPAs](http://arxiv.org/abs/2610.12818v1)
+
+- **评分**：64/100
+- **作者**：Minghao Fu, Tavis Siebert, Eryk Halicki et al.
+- **方向**：World Models
+- **一句话**：Joint-embedding predictive architectures (JEPAs) learn compact latent world models without pixel reconstruction.
+
+### 7. [Golden Anchor for Video Generation](http://arxiv.org/abs/2610.13217v1)
+
+- **评分**：61/100
+- **作者**：Jinyuan Xu, Shitong Shao, Lichen Bai et al.
+- **方向**：World Models
+- **一句话**：Video generation supports digital content creation, with applications in virtual avatars, AI-driven filmmaking, interactive game engines, and world models.
+
+### 8. [Unified Generative Video Compression with Autoregressive and Bidirectional Video Diffusion](http://arxiv.org/abs/2610.13023v1)
+
+- **评分**：59/100
+- **作者**：Tianyu Zhang, Shuai Huo, Dengchao Jin et al.
+- **方向**：Video Generation
+- **一句话**：Video diffusion models can reconstruct visually compelling content from severely compressed representations at ultra-low bitrates, but they impose a rigid deployment trade-off.
