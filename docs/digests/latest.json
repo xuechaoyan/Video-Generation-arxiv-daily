@@ -1,116 +1,188 @@
 {
-  "generated_at": "2026-10-13T18:33:07+00:00",
+  "generated_at": "2026-10-14T02:15:58+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2610.12625",
-      "date": "2026-10-08",
+      "id": "2610.14685",
+      "date": "2026-10-10",
       "topics": [
         "Video Generation",
         "World Models",
         "Autoregressive and Streaming Video"
       ],
-      "title": "ForcingBooster: Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion",
-      "abstract": "Autoregressive video diffusion models have become a leading approach to real-time interactive video generation and video world modeling. However, existing methods typically allocate computation uniformly across space when generating the next video chunk, updating all patches with the same denoising schedule and number of function evaluations. This ignores the spatial heterogeneity of video content: static, simple, or recurring regions are often easier to denoise, while other regions require further refinement or additional context. A uniform budget thus leads to redundant computation on easy patches, whereas reducing the fixed step count can leave difficult patches insufficiently refined. We introduce \\methodname{}, a general framework that dynamically allocates denoising steps to individual patches: easy patches stop early to improve efficiency, while difficult patches receive more refinement steps. This design accelerates generation with negligible quality degradation. Our method is compatible with most existing few-step autoregressive diffusion models, requiring only a lightweight routing module with modest training. Experiments demonstrate that \\methodname{} reduces the total number of denoising steps applied across video patches by about 50\\% while maintaining visual quality comparable to the four-step baseline.",
+      "title": "Demiurge: Forging Navigable 4D Worlds via Autoregressive Video Rerendering",
+      "abstract": "Recent advances in video diffusion enable novel-view video synthesis from a single input video, supporting world modeling, embodied intelligence, and robotic simulation. However, existing methods process camera trajectories independently, lacking the cross-trajectory consistency needed for coherent, navigable 4D worlds. We introduce Demiurge, an autoregressive video rerendering pipeline built on a dynamic 4D point-cloud memory cache. It promotes cross-trajectory consistency through four components: (1) an appearance video diffusion model that synthesizes photorealistic novel-view videos conditioned on the 4D memory; (2) a memory-consistent video depth completion model that aligns known-region depths with cached geometry and completes missing regions, mitigating scale ambiguity and discontinuities during memory updates; (3) memory-aware dual-stream warping that provides high-fidelity visual guidance and occlusion cues for novel-view synthesis; and (4) geometry-aware video refinement that enhances perceptual quality. Extensive experiments demonstrate state-of-the-art performance and three key capabilities: coherent spatiotemporal lattice construction over dense multi-view trajectories; large-parallax video rerendering under challenging camera motions, including 180-degree rotations with no input-view overlap; and geometry-faithful outputs that can be directly optimized into high-quality 3D Gaussian Splatting representations with minimal artifacts. Project page: https://hanxinzhu-lab.github.io/demiurge_project_page/.",
       "authors": [
-        "Zekai Gu",
-        "Peng Wang",
-        "Jiahao Lu",
-        "Yongsen Mao",
-        "Cheng Lin",
-        "Yuan Liu"
+        "Hanxin Zhu",
+        "Jianqi Ma",
+        "Cong Wang",
+        "Zhihao Hu",
+        "Junyao Gao",
+        "Tianyu He",
+        "Junyan Lin",
+        "Jiayin Xiao",
+        "Jiateng Shou",
+        "Sen Liang",
+        "Weidong Zhang",
+        "Zhibo Chen",
+        "Jun Zhang"
       ],
-      "url": "http://arxiv.org/abs/2610.12625v1",
+      "url": "http://arxiv.org/abs/2610.14685v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project page: https://igl-hkust.github.io/ForcingBooster",
+      "comment": "",
       "score": 84,
       "priority": "must-read",
-      "summary_cn": "论文提出ForcingBooster，用轻量级路由器在每次去噪后判断各空间图像块是否已经充分收敛。简单或稳定区域提前停止并缓存其键值表示，复杂、运动或新出现的区域继续去噪，从而在同一视频块内实现自适应的空间计算分配。路由器通过冻结的原生成器产生的完整步数结果作为目标，并结合质量误差损失和计算成本损失进行在策略训练，无需额外视频数据或人工停止标签。在Causal Forcing、Wan2.1、LingBot-World-V2和LongLive等模型上的实验显示，该方法通常能保持接近四步基线的质量，同时获得约1.15至1.31倍端到端加速；在Causal Forcing上减少约50%的图像块去噪步数。",
-      "contribution_cn": "1. 提出ForcingBooster自适应图像块级去噪框架，在冻结的少步数自回归视频扩散生成器中为不同空间区域分配不同的去噪预算。 2. 利用每个中间去噪步骤的干净潜变量预测，使已收敛图像块能够提前退出，并通过KV缓存保留其上下文、避免后续重复计算。 3. 提出基于完整步数生成结果的停止代理损失和计算成本损失，并通过当前路由策略的在策略回放训练路由器，无需额外数据或人工停止标注。 4. 在多种视频生成模型和世界模型上验证了方法的有效性，表明空间位置和图像块的选择比仅调整整体步数更有利于保持细节和时间一致性。",
-      "relevance_cn": "该工作直接面向视频扩散的实时生成和自回归、因果、流式视频生成场景，通过图像块级早停和KV缓存复用降低每个未来视频块的推理成本。它适用于视频世界模型和交互式生成，能够根据运动、摄像机变化、新显露区域和纹理复杂度动态分配计算量。方法还与少步数蒸馏、稀疏推理和缓存复用高度相关：它不修改大型生成器，而是在其上增加路由器，并仅更新仍不确定的空间区域。实验显示，在接近统一两步采样的运行时间下，它能取得更高质量，并在低运动视频中获得更大的加速。",
-      "limitations_cn": "论文未明确系统讨论局限性。根据实验和方法描述，该方法仍依赖一个完整步数的冻结生成器作为训练参考，并需要额外训练和执行轻量级路由器；路由、KV缓存构建及视频解码等开销会使端到端加速低于图像块去噪步数的减少比例。加速效果受视频运动程度影响，动态更强的视频通常收益较小。方法的质量目标主要是逼近生成器自身的完整步数输出，而不是真实视频，因此不能保证完整步数基线本身的质量。对于未测试的模型、分辨率、视频长度或更长时间生成场景，论文未明确说明其泛化表现。",
+      "summary_cn": "Demiurge针对现有新视角视频生成方法逐条独立处理相机轨迹、难以保持跨视角一致性的问题，提出基于动态4D点云记忆的自回归视频重渲染框架。它通过“生成—恢复—更新”循环，将生成的外观和恢复的几何持续写入共享记忆，并结合记忆引导的外观扩散、记忆一致的视频深度补全、双流变形和几何感知细化，实现连贯的多视角时空世界构建。实验显示，该方法在视频质量、跨轨迹一致性、相机轨迹跟随、大视差重渲染和3D高斯泼溅重建方面优于所比较的方法。",
+      "contribution_cn": "1. 提出基于动态4D点云记忆的自回归视频重渲染框架，用于构建跨相机轨迹一致且可导航的4D世界。2. 提出记忆引导的外观视频扩散模型，并通过噪声监测器抑制点云投影中的异常条件。3. 提出记忆一致的视频深度补全方法，将缓存几何与新揭示区域结合，恢复时序一致且具有度量尺度的深度。4. 提出记忆感知的双流变形策略，分别维护外观记忆和几何记忆，以兼顾颜色稳定性与遮挡推理能力，减少背景泄漏和累积色彩漂移。5. 提出可选的几何感知视频细化模块，以降低纹理闪烁和高频噪声。6. 通过大量实验验证了密集多视角时空晶格构建、大视差重渲染以及几何忠实3D高斯泼溅重建能力。",
+      "relevance_cn": "与研究重点高度相关。该方法直接属于视频扩散和视频重渲染领域，并以自回归方式沿连续相机轨迹生成新视角视频。动态4D点云记忆使历史观测能够跨轨迹复用，缓解长视界生成中的上下文遗忘、空间漂移和外观漂移问题；双流变形和记忆更新机制则为闭环式世界状态维护提供了显式几何基础。它面向可导航4D世界、具身智能和机器人仿真，因而与动作条件视觉世界模型和闭环模拟具有明确联系，但论文主要条件是相机轨迹，而不是智能体动作或环境交互策略。论文使用视频扩散模型和显式缓存复用，但未重点研究实时生成、蒸馏或稀疏注意力。",
+      "limitations_cn": "论文未明确系统列出局限性，但根据方法和实验设置可确认以下限制：输入仍是单目视频，未观测区域需要由生成模型补全，因此无法保证真实世界几何和动态的完全准确性；自回归记忆更新可能累积生成误差、伪影或错误几何。实验主要使用81帧、480×832分辨率的视频片段，并依赖Wan2.1-1.3B等扩散模型和8张NVIDIA H20 GPU，计算成本较高，论文未证明其实时性能。方法需要已知或估计的相机轨迹，论文没有展示由智能体动作直接驱动的闭环交互控制。论文未明确说明在更长时序、更复杂动态场景、极端遮挡或大规模环境中的性能上限。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归视频扩散模型已成为实时交互式视频生成和视频世界建模的主流方法。然而，现有方法通常在生成下一个视频块时对空间位置均匀分配计算量，对所有图像块采用相同的去噪调度和函数评估次数。这忽略了视频内容在空间上的异质性：静态、简单或重复出现的区域通常更容易去噪，而其他区域则需要进一步细化或额外上下文。因此，统一的计算预算会导致对简单图像块的重复计算；而降低固定步数又可能使困难图像块细化不足。我们提出ForcingBooster，这是一个通用框架，可动态地为单个图像块分配去噪步数：简单图像块可以提前停止以提升效率，而困难图像块则获得更多细化步骤。该设计能够在视觉质量几乎不下降的情况下加速生成。我们的方法兼容大多数现有的少步数自回归扩散模型，只需进行适度训练即可加入轻量级路由模块。实验表明，ForcingBooster将视频图像块上应用的去噪步数总量减少了约50%，同时保持了与四步基线相当的视觉质量。",
-      "note_path": "2026-10-13/2610.12625-forcingbooster-adaptive-patch-wise-denoising-for.md"
+      "abstract_cn": "近年来，视频扩散模型的发展显著推动了生成式视频重渲染：模型可以从单个输入视频合成新视角视频，从而服务于世界建模、具身智能和机器人仿真等广泛应用。然而，尽管现有方法具有出色的照片级真实感，它们通常将每条相机轨迹孤立处理，缺乏构建连贯且可遍历的四维世界所需的跨轨迹一致性。为解决这一局限，我们提出Demiurge，一种用于生成可导航四维世界的自回归视频重渲染流程。Demiurge建立在动态四维点云记忆缓存之上，通过四个关键组件促进跨轨迹一致性：1）外观视频扩散模型，以四维记忆为条件，沿目标相机轨迹重渲染具有照片级真实感的新视角视频；2）记忆一致的视频深度补全模型，使已知区域的深度与缓存几何对齐，同时补全缺失区域，从而缓解记忆更新过程中的尺度歧义和不连续性；3）记忆感知的双流变形策略，为新视角视频合成提供高保真的视觉引导和遮挡线索；4）几何感知的视频细化模型，进一步提升合成视频的感知质量。大量实验表明，Demiurge达到了当前最优性能，并具备三项关键能力：1）在密集的多视角轨迹上构建连贯的时空晶格；2）在具有挑战性的相机运动下进行大视差视频重渲染，包括在与输入视角完全没有重叠的情况下完成180度旋转；3）生成几何忠实的输出，这些输出可以直接优化为高质量的3D高斯泼溅表示，并且伪影极少。项目主页：https://hanxinzhu-lab.github.io/demiurge_project_page/。",
+      "note_path": "2026-10-14/2610.14685-demiurge-forging-navigable-4d-worlds-via-autoreg.md"
     },
     {
-      "id": "2610.12156",
-      "date": "2026-10-08",
+      "id": "2610.15324",
+      "date": "2026-10-11",
       "topics": [
+        "Video Generation",
         "Autoregressive and Streaming Video"
       ],
-      "title": "Connected Self Forcing: Beyond Local Learning in Video Autoregression",
-      "abstract": "To stream long videos while maintaining visual quality and temporal consistency, Self Forcing mitigates exposure bias through self-rollout training on self-generated histories with key-value (KV) caching. To keep memory manageable, it detaches historical caches, preserving forward dependencies between chunks but severing the backward gradient paths. We introduce Connected Self Forcing, a training framework that reconnects gradient paths across autoregressive chunks, allowing feedback from later predictions to guide how earlier context is generated. These connections go beyond historical KV-writing: gradients pass through generated latents into the computations that produced them, linking the generation of earlier context to its use in later predictions. To make this connected training memory-efficient, we develop shortcut gradient replay, which recovers cross-chunk gradients without retaining the full rollout computation graph. Integrated with distribution matching distillation, Connected Self Forcing trains historical chunks according to both their direct supervision and their contribution to subsequent generation. Experiments on autoregressive video generation show improvements in long-horizon visual quality and temporal consistency, without changing the inference procedure.",
+      "title": "TempoKV: Predictive KV Cache Quantization for Autoregressive Video Generation",
+      "abstract": "Autoregressive (AR) video diffusion models enable streaming generation of long videos but suffer from significant memory overhead due to the rapidly growing KV cache. Existing KV cache quantization methods are primarily designed for LLMs and transfer poorly to video models, where activations exhibit different statistics and strong spatiotemporal redundancy. We observe that the video KV cache is largely predictable over time, with a clear asymmetry. Keys are highly predictable from their temporal history, while values depend primarily on the current key and need a short history of preceding values. Based on these observations, we propose \\textbf{\\method}, a training-free predictive KV cache quantization framework for AR video generation. \\method predicts keys and values according to their distinct dependencies and stores only the residuals at low precision. Both predictors are lightweight, calibrated once offline by linear regression on a small set of BF16 samples, and remain fixed across prompts and generation runs. Experiments on Self-Forcing, Causal Forcing, and LongCat-Video-13B show that \\method consistently achieves higher generation quality than existing KV cache quantization methods at comparable or higher compression ratios, reaching up to $6.71\\times$ KV cache compression with the best overall quality--efficiency tradeoff. Our code will be released on GitHub.",
       "authors": [
-        "Dongbin Zhang",
-        "Chaoda Zheng",
-        "Kangjie Chen",
-        "Xiangyu Li",
-        "Shijia Chen",
-        "Jinhao Deng",
-        "Yuqi Zhang",
-        "Guangfeng Jiang",
-        "Hongbin Lin",
-        "Choo Sin Wai",
-        "Minqi Wang",
-        "Puyi Wang",
-        "Jingye Zhang",
-        "Yu Zhang",
-        "Xianming Liu",
-        "Boyang Wang"
+        "Jiahui Hu",
+        "Weile Mo",
+        "Peiliang Cai",
+        "Jiacheng Liu",
+        "Jinkui Ren",
+        "Xiantao Zhang",
+        "Xiaobing Tu",
+        "Linfeng Zhang"
       ],
-      "url": "http://arxiv.org/abs/2610.12156v1",
+      "url": "http://arxiv.org/abs/2610.15324v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project Page: https://eastbeanzhang.github.io/CSF/",
-      "score": 76,
+      "comment": "",
+      "score": 79,
       "priority": "must-read",
-      "summary_cn": "论文研究自回归长视频生成中的训练—推理不一致问题。Self Forcing虽然使用模型自身生成的历史进行训练，但为节省内存会分离历史KV缓存，导致后续块的损失无法反向指导早期块及其上下文生成。Connected Self Forcing通过快捷梯度重放恢复选定的跨块梯度：后续块先对历史KV状态反向传播，再通过KV写入和早期块生成将反馈传回。该方法不增加参数、不改变推理流程，以额外重计算换取较低激活内存。基于Wan2.1-T2V-1.3B和DMD的实验显示，在60秒和240秒生成中，相比Self Forcing及Self Gradient Forcing，CSF总体提升了视觉质量、主体一致性和背景一致性，并减少了长期主体与场景漂移。",
-      "contribution_cn": "1. 识别Self Forcing中的前向—反向梯度鸿沟：历史块会影响后续预测，但缓存分离阻断了后续损失对早期上下文生成的梯度反馈。 2. 提出Connected Self Forcing及其快捷梯度重放机制，通过对选定历史KV状态进行可微重放，恢复后续块到早期块的跨块梯度，同时避免保留完整自回归计算图。 3. 将历史块同时按自身生成质量及其作为后续上下文的作用进行训练，并与分布匹配蒸馏结合。 4. 在60秒和240秒自回归视频生成评测中验证了更好的长期视觉质量和时间一致性，且无需修改推理过程或增加模型参数。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向自回归、因果、流式和长视频生成，使用KV缓存维持历史上下文，并通过跨块梯度训练改善长期生成中的主体和场景一致性。其快捷梯度重放以重计算换取激活内存，适合受限内存下的长时域训练；结合DMD实现少步生成蒸馏。方法本身主要改变训练阶段，推理仍采用原有因果自回归和KV缓存流程，因此没有直接降低推理延迟，也未涉及动作条件视觉世界模型或闭环交互模拟。",
-      "limitations_cn": "论文的实验主要基于Wan2.1-T2V-1.3B、文本到视频DMD后训练和固定提示集，外推到其他架构、条件形式或真实交互式世界模型的效果尚未验证。CSF通过额外重计算换取内存节省，训练计算开销增加；论文未在摘要和正文所给内容中明确量化其完整的训练时间—内存权衡。性能依赖初始化方式，部分设置下动态程度低于基线，且降低跨块梯度权重会牺牲若干质量与一致性指标。评估主要使用VBench-Long和MovieGen Video Bench的自动指标及定性结果，论文未明确说明真实用户偏好或闭环任务性能。",
+      "summary_cn": "论文针对自回归视频扩散模型中 KV 缓存随视频时长线性增长、严重占用 GPU 内存的问题，提出免训练的 TempoKV 预测式量化方法。作者发现，键缓存能够由同一空间位置的历史键有效预测，而值缓存的主要预测信号是当前对齐的键，历史值仅提供有限补充信息。TempoKV 先预测并量化键残差，再利用重建的当前键和历史值预测并量化值残差，同时为键分配更高精度。预测器通过少量 BF16 校准轨迹离线线性回归得到，无需重新训练模型。其在三种自回归视频模型上的实验显示，TempoKV 在视觉质量、长时一致性、压缩率、显存和延迟之间取得了优于基线的平衡，最高实现 6.71 倍 KV 缓存压缩，并支持约 90 秒的长视频生成。",
+      "contribution_cn": "1. 揭示视频 KV 缓存中键和值的非对称时序预测关系：键主要依赖自身历史，值则显著受当前对齐键的影响，并通过分层及时序分析验证该规律。2. 提出 TempoKV 预测式残差量化框架，分别预测键和值，仅量化低幅度残差，并采用键高精度、值低精度的混合位宽分配。3. 设计轻量、免训练的离线线性回归校准方法，预测器可跨提示词和生成运行复用。4. 在 Self-Forcing、Causal Forcing 和 LongCat-Video-13B 上验证方法有效性，在最高 6.71 倍压缩下保持较高生成质量，并降低 KV 缓存和峰值显存开销。5. 通过交叉预测器、混合位宽和历史长度消融实验，验证了键到值预测、较高键精度以及短值历史和较长键历史的设计。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向自回归、流式和长视频生成中的 KV 缓存瓶颈，通过利用跨潜在帧的时序冗余压缩历史上下文，降低长时生成所需的显存。方法无需训练，在线解码仅引入较小延迟，适合实时或近实时生成优化；在 Self-Forcing、Causal Forcing 等因果视频生成框架上的验证也与闭环、持续上下文复用密切相关。论文重点是缓存量化和预测式残差编码，而不是动作条件建模、世界模型或闭环控制本身。",
+      "limitations_cn": "论文是预印本，且实验主要基于 Self-Forcing-Wan-1.3B、Causal Forcing-Wan-1.3B 和 LongCat-Video-13B，以及 MovieGen 的前 128 个提示词，模型和数据覆盖范围有限。预测器需要离线收集 BF16 校准轨迹，并依赖训练模型中稳定的空间索引和跨帧统计规律，其对其他架构、任务或分布外提示词的泛化能力未被充分验证。实验主要考察 KV 缓存压缩对生成质量、显存和延迟的影响，没有系统报告端到端实时帧率或更广泛的硬件结果。极低精度下性能可能明显下降：值使用 1 bit 时质量显著崩溃。论文未明确说明代码发布后的可复现性、不同校准集规模的敏感性，以及在动作条件视觉世界模型或闭环交互场景中的表现。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "为了在保持视觉质量和时间一致性的同时流式生成长视频，Self Forcing 通过在模型生成的历史上进行自回归自 rollout 训练，并结合键值（KV）缓存，缓解了暴露偏差。为控制内存开销，它将历史缓存从计算图中分离，在保留块之间前向依赖的同时切断反向梯度路径。我们提出 Connected Self Forcing，一种重新连接自回归块之间梯度路径的训练框架，使后续预测的反馈能够指导更早历史上下文的生成。这些连接超越了历史 KV 写入：梯度会穿过生成的潜变量，进入产生这些潜变量的计算过程，从而将早期上下文的生成与其在后续预测中的使用联系起来。为使这种连接式训练具备内存效率，我们提出快捷梯度重放，在无需保留完整 rollout 计算图的情况下恢复跨块梯度。结合分布匹配蒸馏后，Connected Self Forcing 根据历史块自身的直接监督及其对后续生成的贡献共同训练这些历史块。在自回归视频生成实验中，该方法提升了长时间范围内的视觉质量和时间一致性，同时不改变推理过程。",
-      "note_path": "2026-10-13/2610.12156-connected-self-forcing-beyond-local-learning-in.md"
+      "abstract_cn": "自回归（AR）视频扩散模型能够流式生成长视频，但由于 KV 缓存快速增长而面临显著的内存开销。现有 KV 缓存量化方法主要针对大语言模型设计，迁移到视频模型时效果不佳，因为视频模型中的激活具有不同的统计特征和强烈的时空冗余。我们观察到，视频 KV 缓存随时间具有很强的可预测性，并呈现明显的不对称性：键可以根据其时间历史高度准确地预测，而值主要依赖当前键，并且只需要较短的前序值历史。基于这些观察，我们提出 TempoKV，一种面向 AR 视频生成的免训练预测式 KV 缓存量化框架。TempoKV 根据键和值各自不同的依赖关系进行预测，并仅以低精度存储预测残差。两个预测器都很轻量，仅通过在少量 BF16 样本上进行线性回归离线校准一次，并在不同提示词和生成运行之间保持固定。在 Self-Forcing、Causal Forcing 和 LongCat-Video-13B 上的实验表明，在相当或更高压缩比下，TempoKV 始终比现有 KV 缓存量化方法实现更高的生成质量；其 KV 缓存压缩比最高达到 6.71 倍，并取得了最佳的整体质量—效率权衡。我们的代码将发布在 GitHub 上。",
+      "note_path": "2026-10-14/2610.15324-tempokv-predictive-kv-cache-quantization-for-aut.md"
     },
     {
-      "id": "2610.12368",
-      "date": "2026-10-08",
+      "id": "2610.14603",
+      "date": "2026-10-10",
       "topics": [
         "World Models"
       ],
-      "title": "LiteNWM: Efficient Latent World Models for Onboard Visual Navigation in the Wild",
-      "abstract": "Direct visual navigation policies generate trajectories efficiently but do not explicitly evaluate their future consequences. Generative navigation world models provide this foresight through visual rollouts, which are costly when evaluating multiple candidates. We present LiteNWM, a latent navigation world model that shares visual encoding across candidates and jointly predicts their action-conditioned future representations at multiple horizons, while a learned scorer uses these predictions to select trajectories. In offline evaluations on RECON, SCAND, and SACSoN, LiteNWM reduces macro-averaged trajectory error by 17.56% relative to NoMaD+NWM-XL and achieves a 128.00-fold end-to-end speedup on an RTX 5090. The same evaluator transfers from NoMaD to MBRA without proposer-specific retraining, reducing MBRA's macro-averaged trajectory error by 16.2%. In real-robot experiments in unseen indoor and outdoor environments, LiteNWM improves navigation success from 43.3% to 83.3% relative to NoMaD. These results demonstrate that LiteNWM can be deployed for future-aware planning and closed-loop navigation on a physical robot.",
+      "title": "AnyRank: Reliable Anytime Policy Ranking via Sequential Testing",
+      "abstract": "Due to the high cost of hardware experiments, robot policies are predominantly evaluated by comparing their empirical performance on a limited number of hardware trials. However, finite-sample statistical uncertainty can lead to erroneous conclusions, especially when ranking multiple policies using a fixed batch of evaluation data. We propose AnyRank: a sequential method for multi-policy ranking that (i) adaptively allocates trials to hard-to-separate policies, (ii) provides (partial) rankings at any stopping time while bounding the probability of an incorrect ranking, and (iii) optionally exploits prior information to prioritize hardware evaluations more efficiently. This prior information could be informed from expert intuition, a small set of held-out hardware evaluations, or from policy rollouts in a simulator or an action-conditioned video world model. Notably, the prior can be imperfect; while a strong prior can provide efficiency gains on hardware, any inaccuracies in prior policy rankings do not invalidate the statistical assurances of AnyRank. We achieve the aforementioned properties through novel theoretical contributions that combine sequential testing with multiple-hypothesis graphical testing approaches. Experiments in simulation and real-world policy evaluation benchmarks show that AnyRank requires up to 50% fewer hardware evaluations compared to existing statistically rigorous approaches, while guarding against the incorrect rankings produced by heuristic methods used by state-of-the-art benchmarks.",
       "authors": [
-        "Linkai Liu",
-        "Yuntian Zhang",
-        "Zhenshan Bing",
-        "Chen Chen",
-        "Lingjuan Lyu",
-        "Shangguang Wang",
-        "Mengwei Xu",
-        "Dongqi Cai"
+        "Apurva Badithela",
+        "David Snyder",
+        "Tenny Yin",
+        "Jade Sceats",
+        "George Pappas",
+        "Nikolai Matni",
+        "Masha Itkina",
+        "Haruki Nishimura",
+        "Anirudha Majumdar"
       ],
-      "url": "http://arxiv.org/abs/2610.12368v1",
+      "url": "http://arxiv.org/abs/2610.14603v1",
       "categories": [
-        "cs.RO"
+        "cs.RO",
+        "eess.SY"
       ],
-      "comment": "12 pages, 11 figures, including appendix",
-      "score": 71,
-      "priority": "skim",
-      "summary_cn": "论文提出 LiteNWM，用于解决导航世界模型在评估多个候选轨迹时需要逐条进行昂贵 RGB 视频展开的问题。它冻结导航策略，使用共享的 DINOv3 视觉编码、动作条件潜变量预测器和相对于当前最优轨迹的评分器，联合预测 H1–H4 多个时间范围的未来特征，并据此筛选轨迹。LiteNWM 在三个导航数据集上取得更低的轨迹误差和更高的端点一致率，在 RTX 5090 上相较 NoMaD+NWM-XL 实现 128 倍端到端加速；评估器还可无专门训练地迁移到 MBRA。在 Unitree Go2 EDU 的未见室内外场景中，它将整体导航成功率从 43.3% 提升到 83.3%，并支持循环重规划和闭环执行。",
-      "contribution_cn": "1. 识别出候选轨迹逐条 RGB 展开是导航世界模型的主要计算瓶颈，并通过共享视觉编码和候选轨迹联合预测重构评估流程。 2. 提出结合位姿条件、多时间范围潜变量预测与相对当前轨迹评分的候选轨迹评估方法，在不重建 RGB 未来的情况下比较动作后果。 3. 在 RECON、SCAND 和 SACSoN 上验证了准确性，在 RTX 5090 上相较 NoMaD+NWM-XL 达到 128 倍端到端加速。 4. 证明冻结的评估器可迁移到 MBRA，无需针对提议器重新训练，并在真实 Unitree Go2 EDU 上完成未见环境中的闭环导航。",
-      "relevance_cn": "该工作与研究重点直接相关：它是一个动作条件视觉世界模型，用潜变量预测候选动作序列的未来表征，并将预测结果用于闭环导航中的轨迹选择。其 H1–H4 联合预测消除了跨预测时间范围的自回归反馈，属于非自回归、多时间范围的高效未来建模；共享编码、批量潜变量预测和无 RGB 解码降低了推理延迟，适合板载和近实时规划。系统采用滚动时域执行，在每个控制周期重新观察、生成候选、预测后果、选择并执行，因此体现了面向行动后果的闭环视觉模拟。它还展示了从 NoMaD 到 MBRA 的模块化评估器迁移，但研究重点主要是导航轨迹评估，而非通用视频生成。",
-      "limitations_cn": "论文将预测范围限制为四步短时轨迹，实验结论未证明其对更长时域或长视频生成有效。导航提议器和 DINOv3 编码器在训练与部署中保持冻结，方法对提议轨迹质量及候选数量的依赖尚未被充分消除。主要离线评估使用 RECON、SCAND 和 SACSoN 的固定开发集，真实机器人实验仅在 Unitree Go2 EDU 的三个场景、每种方法每个场景 10 次试验中进行，泛化到更多机器人、任务和环境的能力仍有限。方法依赖动作接口适配、位姿估计和校准的选择门槛；论文未明确说明在传感器噪声、动作执行误差或更复杂动态环境下的鲁棒性。速度结果主要在 RTX 5090 上测得，不能直接代表所有板载硬件上的实时性能。论文未明确说明其潜变量预测是否能保持可视化细节或支持导航之外的通用视频生成。",
+      "comment": "CoRL 2026",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "论文提出 AnyRank，用于在硬件试验次数有限且成本高昂的情况下可靠地对多个机器人策略进行排序。该方法将策略排序建模为多重假设检验问题，结合安全的任意时刻有效推断、序贯的非参数两两比较和图式多重检验。它根据当前证据自适应选择下一个要评估的策略，并动态重新分配统计风险预算，从而优先处理难以区分的策略，同时在任意停止时刻控制家族错误率并输出完整或部分排序。AnyRank还可利用来自专家、留出硬件数据、模拟器或动作条件视频世界模型的先验；即使先验错误，也不会破坏统计有效性。RoboArena、TRI-LBM、DROID-task及合成数据实验显示，该方法相较于 Bonferroni 等严格统计基线能以更少样本拒绝更多假设，部分场景减少约 50% 的硬件评估，并避免 Bradley–Terry 等启发式排序方法的误校准和时间不一致问题。论文指出，其效果依赖独立同分布评估数据，现有世界模型先验在大规模评估中往往预测性不足。",
+      "contribution_cn": "1. 提出 AnyRank，将多机器人策略排序统一为序贯多重假设检验问题，并支持任意停止时刻的部分或完整排序。 2. 将安全任意时刻有效推断与图式多重假设检验结合，在自适应采样和停止条件下控制家族错误率。 3. 设计基于比较难度和当前风险预算的主动采样机制，将更多评估分配给统计上更难区分的策略。 4. 提出利用先验策略性能估计初始化风险分配和图权重的方法，并证明不准确先验不会破坏统计保证。 5. 通过传递闭包进一步推断可由已解决的策略比较推出的排序关系。 6. 在仿真、RoboArena、TRI-LBM 和 DROID-task 等数据上验证了可靠性、样本效率、先验影响和可扩展性。",
+      "relevance_cn": "论文与研究重点的直接联系主要在于动作条件视频世界模型和闭环策略评估：它将世界模型中的策略 rollout 作为硬件评估的先验，用于预测策略相对性能、初始化多重检验图并减少昂贵的真实机器人试验。论文还专门比较了世界模型先验与真实硬件结果的相关性，发现普通或离线世界模型先验可能很弱（一个 RoboArena 实验中 Spearman 相关系数为 0.05），而针对具体任务微调的视频世界模型可获得较强相关性（DROID Fold towel 实验中为 0.89）。因此，该工作不是视频生成模型本身，也不提出视频扩散、长视频生成、实时生成、蒸馏、稀疏注意力或缓存复用算法；其贡献是为动作条件视觉世界模型产生的模拟结果提供一种统计上可靠的硬件闭环验证和策略排序框架。",
+      "limitations_cn": "论文明确假设评估数据是独立同分布的；当任务、环境或 rollout 存在相关性时，统计保证可能不适用。可靠地利用先验以进一步减少硬件评估仍然具有挑战性。实验表明，现有模拟器和开箱即用的视频世界模型在大规模评估中通常不足以准确预测真实策略性能。即使先验较强，可靠的硬件策略比较仍可能需要较多评估，代理评估与硬件评估的高效、可靠融合被留作未来工作。随着策略数量增加，待比较的策略对数量呈二次增长，排序的固有难度和样本复杂度仍会上升。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "直接视觉导航策略能够高效生成轨迹，但不会显式评估这些轨迹未来可能产生的后果。生成式导航世界模型通过视觉展开提供这种前瞻能力，但评估多个候选轨迹的代价很高。我们提出 LiteNWM，一种潜在空间导航世界模型，它在不同候选轨迹之间共享视觉编码，并在多个时间范围联合预测其受动作条件控制的未来表示；同时，学习到的评分器利用这些预测选择轨迹。在 RECON、SCAND 和 SACSoN 上的离线评估中，相较于 NoMaD+NWM-XL，LiteNWM 将宏平均轨迹误差降低了 17.56%，并在 RTX 5090 上实现了 128.00 倍的端到端加速。同一个评估器无需针对提议器重新训练，即可从 NoMaD 迁移到 MBRA，使 MBRA 的宏平均轨迹误差降低 16.2%。在未见过的室内和室外环境中进行的真实机器人实验表明，相较于 NoMaD，LiteNWM 将导航成功率从 43.3% 提升至 83.3%。这些结果表明，LiteNWM 能够部署在实体机器人上，用于面向未来的规划和闭环导航。"
+      "abstract_cn": "由于硬件实验成本高昂，机器人策略通常通过在有限次数的硬件试验中比较其经验性能来进行评估。然而，有限样本的统计不确定性可能导致错误结论，尤其是在使用固定批量评估数据对多个策略进行排序时。我们提出 AnyRank：一种用于多策略排序的序贯方法，它（i）自适应地为难以区分的策略分配试验；（ii）能够在任意停止时刻提供（部分）排序，同时控制排序错误的概率；（iii）可选择利用先验信息，更高效地安排硬件评估。这些先验信息可以来自专家直觉、少量留出的硬件评估，或来自模拟器和动作条件视频世界模型中的策略 rollout。值得注意的是，先验可以是不完美的；尽管强先验能够提高硬件评估效率，但先验策略排序中的任何错误都不会破坏 AnyRank 的统计保证。我们通过结合序贯检验与多重假设图检验的新理论贡献，实现了上述性质。在仿真和真实世界策略评估基准上的实验表明，与现有具有严格统计保证的方法相比，AnyRank 最多可减少 50% 的硬件评估次数，同时能够避免当前最先进基准所使用的启发式方法产生的错误排序。",
+      "note_path": "2026-10-14/2610.14603-anyrank-reliable-anytime-policy-ranking-via-sequ.md"
+    },
+    {
+      "id": "2610.03221",
+      "date": "2026-10-10",
+      "topics": [
+        "Efficient Video Diffusion"
+      ],
+      "title": "VDOT++: Unified Few-Step Video Generation via Unbalanced Optimal Transport Distillation",
+      "abstract": "Video creation spans text-to-video (T2V), image-to-video (I2V), and condition-based generation, yet video diffusion models remain costly because they repeatedly evaluate large backbones during sampling. Distribution matching distillation (DMD) reduces this cost, but its reverse Kullback--Leibler (KL) objective can provide unstable or incomplete guidance when the student and teacher distributions have limited overlap. VDOT addressed this issue by adding optimal transport distillation (OTD), whose explicit coupling supplies geometric directions for condition-based generation. Balanced OTD, however, performs full-mass matching between the spatial tokens of each corresponding student--teacher frame pair. This assumption weakens for T2V and I2V, where one condition admits many valid outputs and spatial content need not align across different realizations. We present VDOT++, a unified distillation framework that applies the same training recipe separately to generators for the three task families. It makes OTD robust to output diversity through an asymmetric unbalanced formulation that allows unreliable student tokens to carry less mass while maintaining coverage of the teacher tokens. An $\\ell_1$ ground cost further replaces mean-based aggregation with a more mode-preserving weighted median that limits the influence of distant transport targets. The two changes respectively determine whom to match and how the selected targets should be aggregated. We additionally combine distribution matching and adversarial refinement through sequential backward passes, and exploit the decoupled score networks for cross-scale distillation, where larger score networks improve a compact generator. Experiments on UVCBench, VBench, VBench-I2V, and the VACE benchmark show that the resulting four-step generators are competitive with many-step teachers and strong few-step baselines across all three task families.",
+      "authors": [
+        "Yutong Wang",
+        "Xingtong Ge",
+        "Enhuai Liu",
+        "Yunke Wang",
+        "Tianfan Xue",
+        "Yu Qiao",
+        "Yaohui Wang",
+        "Xinyuan Chen",
+        "Chang Xu"
+      ],
+      "url": "http://arxiv.org/abs/2610.03221v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Video creation spans text-to-video (T2V), image-to-video (I2V), and condition-based generation, yet video diffusion models remain costly because they repeatedly evaluate large backbones during sampling.",
+      "contribution_cn": "We present VDOT++, a unified distillation framework that applies the same training recipe separately to generators for the three task families.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, video generation, text-to-video, image-to-video, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.14583",
+      "date": "2026-10-10",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Remembering What Matters for Long-Horizon Robotic World Models",
+      "abstract": "Autoregressive robot video world models based on discrete visual tokens remain unreliable over long rollout horizons. Retaining the entire generated history does not necessarily improve prediction quality. We investigate a possible memory-role conflict in Full Context decoding: persistent scene information, recent visual-action states, and stale generated history compete for attention despite their different predictive roles. This perspective motivates ReCAP (Receding Context with Anchor Preservation), a training-free context-scheduling method for long-horizon robot video world models. ReCAP keeps the pretrained tokenizer, world model, and visual decoder frozen. It preserves the initial scene anchor and a contiguous window of recent complete visual-action blocks while evicting older generated history. The schedule preserves within-block structure and temporal order, requires no additional modules or parameter updates, and bounds active-context growth independently of rollout length. We evaluate ReCAP on RT-1, BridgeV2, LIBERO-90, and CALVIN using frozen autoregressive world models. Across evaluated environments and horizons, ReCAP improves visual fidelity, action-conditioned consistency, and robot structure preservation relative to Full Context. On BridgeV2, it reduces LPIPS by 63.3%. In the system benchmark at H=64, it reduces the logical KV footprint by 73.3% and p50 latency by 6.51%. Attention analyses show increased attention to retained recent states, while history interventions associate larger amounts of stale context with higher prediction error. These observations are consistent with the memory-role-conflict hypothesis, although they do not isolate it from context-length and position-handling effects. Our results support inference-time context scheduling as a practical approach to improving long-horizon robot video prediction and computational efficiency without retraining.",
+      "authors": [
+        "Hao Wu",
+        "Tianyu Shao",
+        "Shengju Qian",
+        "Yizhou Zhao",
+        "Fan Zhang",
+        "Penghao Zhao",
+        "Weiyan Wang",
+        "Yufei Huang",
+        "Fan Xu",
+        "Kun Wang",
+        "Xin Wang",
+        "Ming-Hsuan Yang",
+        "Yuxuan Liang"
+      ],
+      "url": "http://arxiv.org/abs/2610.14583v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "35 pages",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Autoregressive robot video world models based on discrete visual tokens remain unreliable over long rollout horizons.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, action-conditioned, autoregressive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
       "id": "2610.11756",
-      "date": "2026-10-08",
+      "date": "2026-10-11",
       "topics": [
         "Autoregressive and Streaming Video"
       ],
@@ -123,16 +195,112 @@
         "Gangshan Wu",
         "Limin Wang"
       ],
-      "url": "http://arxiv.org/abs/2610.11756v1",
+      "url": "http://arxiv.org/abs/2610.11756v2",
       "categories": [
         "cs.CV"
       ],
-      "comment": "10 pages, 6 figures",
+      "comment": "The current version contains serious formatting errors and cannot be retained. A simple replacement would still leave traces of the original version, failing to meet our requirements. Therefore, I request its withdrawal. Thank you for your understanding and cooperation",
       "score": 70,
       "priority": "skim",
       "summary_cn": "Autoregressive video diffusion enables causal video streaming without a bidirectional pass over the full clip, but existing few-step systems usually retain only the opening and most recent frames in a fixed-size KV cache.",
       "contribution_cn": "We present Memory Forcing, a few-step streaming method that preserves this missing history without increasing the cache size.",
       "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, causal video, streaming, few-step, cache, kv cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.15922",
+      "date": "2026-10-11",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Frequency-Step Cache: Separating Synchronization and Repair for Efficient Autoregressive Video Diffusion",
+      "abstract": "Autoregressive (AR) video generation enables long-horizon synthesis but requires repeated forward passes through large diffusion transformers. Training-free caching reduces this cost by reusing intermediate computation, yet existing controllers often couple two decisions: when to synchronize the cache exactly and how much computation to repair between synchronizations. We introduce Frequency-Step Cache (FSC), which separates these roles. FSC schedules exact full-computation anchors on a dense-to-sparse trajectory, while a lightweight latent-space risk based on frequency-resolved drift and token age controls inter-anchor repair through whole-step replay, selective token recomputation, or full repair. On SkyReels-V2, whole-step reuse provides most of the acceleration, while selective token computation is most effective as fidelity repair. A controlled ablation shows that using one reactive signal for both synchronization and repair reduces fidelity at matched latency, with the same separation advantage observed on FramePack and Matrix-Game. Across multiple autoregressive video backbones, FSC improves speed-quality trade-offs. On SkyReels-V2, FSC-Speed reaches 2.36x speedup versus MotionCache's 2.275x while improving SSIM by 0.019 and PSNR by 0.5 dB. At MotionCache-matched speed, FSC-Quality improves SSIM by 0.031 and PSNR by 1.0 dB and lowers LPIPS by 0.024. Without retuning, FSC-Quality transfers to SkyReels-V2 14B at 2.12x speedup versus 1.79x for MotionCache.",
+      "authors": [
+        "Kerry Xu",
+        "Param Misra",
+        "Zachary Stenglein",
+        "Athri Karunamurthy",
+        "Fanjiang Ye",
+        "Yuke Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.15922v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "30 pages, 11 figures, 18 tables",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Autoregressive (AR) video generation enables long-horizon synthesis but requires repeated forward passes through large diffusion transformers.",
+      "contribution_cn": "We introduce Frequency-Step Cache (FSC), which separates these roles.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：autoregressive, acceleration, cache, efficient, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.14568",
+      "date": "2026-10-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "FrameFold: Response-Guided KV Cache Consolidation for Autoregressive Long Video Generation",
+      "abstract": "In autoregressive video generation, retaining all historical key-value (KV) states increases memory usage and per-step attention costs as videos grow longer. A fixed cache budget bounds these costs but raises the challenge of preserving historical content that supports consistent, high-quality generation. Existing methods control cache size through history selection or consolidation, yet deciding what to retain and how to limit the loss of useful content remains a shared challenge. Our analysis shows that spatial queries depend on different historical content and that higher current attention coverage does not necessarily yield better long-video quality. We introduce FrameFold, a training-free KV cache consolidation method that compares the content retrieved by the same recent historical queries before and after merging to guide both representative construction and merge selection. Exploiting temporal redundancy between adjacent historical entries, FrameFold merges their KV states into shared representatives while retaining complete spatial grids. It fits value-merging coefficients in closed form by matching conditional attention responses, then selects the merge with the lowest remaining response distortion. Under matched KV cache budgets, experiments on Self Forcing and Causal Forcing at 30 and 60 seconds and on LongLive at 120 seconds demonstrate improved consistency and visual quality. Continuous eight-minute Self Forcing rollouts further show less quality degradation than the baselines.",
+      "authors": [
+        "Muyu Liu",
+        "Mingming Liu",
+        "Hong Gu",
+        "Yuyao Zhang",
+        "Qin Lu"
+      ],
+      "url": "http://arxiv.org/abs/2610.14568v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "26 pages, 14 figures",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "In autoregressive video generation, retaining all historical key-value (KV) states increases memory usage and per-step attention costs as videos grow longer.",
+      "contribution_cn": "We introduce FrameFold, a training-free KV cache consolidation method that compares the content retrieved by the same recent historical queries before and after merging to guide both representative construction and merge selection.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, long video, cache, kv cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.15294",
+      "date": "2026-10-11",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ProWorld: Multi-View World Model with Proprioceptive Feedback for Closed-Loop Policy Evaluation",
+      "abstract": "Evaluating robot manipulation policies through repeated physical trials is costly. We study whether an action-conditioned world model can serve as a closed-loop test environment whose policy success rates track those on real robots. Beyond realistic video, the model must return the camera views and proprioceptive state needed for the policy's next action and preserve failed-action outcomes to avoid overestimating policy capability. We introduce ProWorld, a world model that jointly predicts multi-view video and robot state, then feeds both back to a frozen policy for repeated interaction. ProWorld comprises a shared transformer for joint video-state flow prediction and Shared-Time View Encoding to distinguish cameras while preserving temporal synchronization. To reduce interaction hallucinations that turn missed grasps into successful lifts, we augment training with failed interactions collected in high-fidelity simulation, reducing inflated success rates in the generated environment. ProWorld achieves the highest overall TriWorldBench score among the compared methods. Across three policies and four local manipulation tasks, it attains a Pearson correlation of 0.95 and a Spearman correlation of 0.94 between generated and real success rates. These results support joint visual-proprioceptive feedback and failure-aware training as a basis for world-model-based policy evaluation.",
+      "authors": [
+        "Zijun Wang",
+        "Tianyi Yan",
+        "Haokun Lin",
+        "Panwen Hu",
+        "Bohang He",
+        "Siyu Ren",
+        "Xiaoyu Guo",
+        "Weijia Liufu",
+        "Shuoshuo Xue",
+        "Fengjiao Chen",
+        "Zipeng Ye",
+        "Xuezhi Cao",
+        "Zutao Jiang",
+        "Hanhui Li",
+        "Xiaodan Liang"
+      ],
+      "url": "http://arxiv.org/abs/2610.15294v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "Evaluating robot manipulation policies through repeated physical trials is costly.",
+      "contribution_cn": "We introduce ProWorld, a world model that jointly predicts multi-view video and robot state, then feeds both back to a frozen policy for repeated interaction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, simulation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -170,155 +338,6 @@
       "summary_cn": "World models support planning, control, learning from imagined experience, and model-mediated evaluation by predicting action-conditioned consequences.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.13522",
-      "date": "2026-10-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Beyond Successful Robot Demonstrations: Learning from Human Interactions and Modeling Failure Dynamics",
-      "abstract": "Action-conditioned world models offer a promising foundation for generalist robotic intelligence by predicting the consequences of actions. However, existing robotic datasets provide limited coverage of the diverse interaction dynamics required for generalizable world modeling. Large-scale egocentric human videos offer complementary interaction experience, yet the embodiment gap between human hands and robotic manipulators hinders effective cross-embodiment learning. Meanwhile, the predominance of successful demonstrations leaves failure dynamics substantially underrepresented, limiting the ability of world models to anticipate unsuccessful executions. To address these limitations, we introduce HF-WM, an action-conditioned world model that combines Human interaction learning with Failure-aware post-training. To bridge the embodiment gap, we develop a dual-branch framework that couples video generation with auxiliary pointflow prediction, using stabilized pointflow as a unified motion representation across human and robot interactions while suppressing egocentric camera motion. To improve failure modeling, we further perform Group Relative Policy Optimization (GRPO) post-training on perturbed actions derived from successful demonstrations, guided by action alignment and physical plausibility rewards, enabling the model to learn plausible failure dynamics without paired ground-truth videos. Extensive experiments demonstrate that HF-WM achieves state-of-the-art performance in action-conditioned video generation and exhibits strong utility for policy evaluation in downstream robotic tasks.",
-      "authors": [
-        "Peiyan Tu",
-        "Cong Wang",
-        "Hanxin Zhu",
-        "Xin Jin",
-        "Zhibo Chen"
-      ],
-      "url": "http://arxiv.org/abs/2610.13522v1",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 65,
-      "priority": "skim",
-      "summary_cn": "Action-conditioned world models offer a promising foundation for generalist robotic intelligence by predicting the consequences of actions.",
-      "contribution_cn": "To address these limitations, we introduce HF-WM, an action-conditioned world model that combines Human interaction learning with Failure-aware post-training.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.12459",
-      "date": "2026-10-08",
-      "topics": [
-        "World Models"
-      ],
-      "title": "WorldGuide: Goal-Directed Video World Model for Procedural Task Execution",
-      "abstract": "Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been produced. A model must determine the next action from its generated state, execute that action, and recognize when the task is complete. Open-loop generation cannot adapt to execution outcomes, while existing closed-loop systems often rely on pretrained executors or indirect verification. This leaves a gap between deciding an action and successfully realizing it. We formulate procedural video generation as \\emph{closed-loop task execution in visual world space} and introduce \\textbf{WorldGuide}. Given only an initial image and a task goal, WorldGuide predicts an atomic action, generates its corresponding video clip, and uses the generated result to select the next action or terminate. The Planner and Executor are trained on the same step-level procedural demonstrations: the Planner learns to predict the next atomic action or task completion from visual progress, while the Executor is directly trained to realize the predicted actions. Hierarchical visual memory maintains state across long-horizon execution with bounded history token cost. Due to the lack of step-level action-video supervision for joint planner-executor training, we introduce \\textbf{WorldGuide Bench}: approximately 59K step-annotated videos across 245 tasks and 27 procedural categories. WorldGuide achieves a 33.33\\% Task Success on \\textbf{WorldGuide-Bench}, compared with 29.90\\% for the strong recent video model MiniMax-H3, even though MiniMax-H3 receives reference action plans, and achieves 47.69\\% on \\textbf{VideoCraft-Bench} compared with 32.73\\% for MiniMax-H3 under goal-only conditioning. These results demonstrate the importance of coupling planning with learned execution for goal-directed procedural video generation.",
-      "authors": [
-        "Ankan Deria",
-        "Komal Kumar",
-        "Hisham Cholakkal",
-        "Fahad Shahbaz Khan",
-        "Salman Khan"
-      ],
-      "url": "http://arxiv.org/abs/2610.12459v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "34 pages, 14 figures, 15 Tables",
-      "score": 65,
-      "priority": "skim",
-      "summary_cn": "Video generators and video-based world models can synthesize plausible visual trajectories, but long-horizon procedural tasks require generation to adapt to what has actually been produced.",
-      "contribution_cn": "Due to the lack of step-level action-video supervision for joint planner-executor training, we introduce \\textbf{WorldGuide Bench}: approximately 59K step-annotated videos across 245 tasks and 27 procedural categories.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, closed-loop, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.12818",
-      "date": "2026-10-08",
-      "topics": [
-        "World Models"
-      ],
-      "title": "LeWAM: End-to-End World and Action Modeling with JEPAs",
-      "abstract": "Joint-embedding predictive architectures (JEPAs) learn compact latent world models without pixel reconstruction. Existing JEPA pipelines typically train visual representations and action-conditioned dynamics before adding a control policy or solver. We introduce LeWAM, an end-to-end JEPA for control with: (1) a joint training objective over next latent state prediction and action flow matching, and (2) an isotropic Gaussian constraint on the latent state, enabling a single model to support direct policy execution and efficient planning by evaluating sampled actions with its learned latent dynamics. Compared with prior JEPAs in visual planning, LeWAM improves success rate from 28.6% to 89.7% on contact-rich tasks and from 10.9% to 46.2% on long-horizon tasks, and plans 32.3 times faster. On behavior cloning tasks in simulation and physical robots, LeWAM is also competitive with established methods. Interpretability analyses show that LeWAM learns control-relevant representations and action distributions effectively guiding test-time planning and control.",
-      "authors": [
-        "Minghao Fu",
-        "Tavis Siebert",
-        "Eryk Halicki",
-        "Randall Balestriero"
-      ],
-      "url": "http://arxiv.org/abs/2610.12818v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "comment": "Project website: https://le-wam.github.io/",
-      "score": 64,
-      "priority": "skim",
-      "summary_cn": "Joint-embedding predictive architectures (JEPAs) learn compact latent world models without pixel reconstruction.",
-      "contribution_cn": "We introduce LeWAM, an end-to-end JEPA for control with: (1) a joint training objective over next latent state prediction and action flow matching, and (2) an isotropic Gaussian constraint on the latent state, enabling a single model to support direct policy execution and efficient planning by evaluating sampled actions with its learned latent dynamics.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.13217",
-      "date": "2026-10-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Golden Anchor for Video Generation",
-      "abstract": "Video generation supports digital content creation, with applications in virtual avatars, AI-driven filmmaking, interactive game engines, and world models. State-of-the-art systems achieve controllability primarily through image-to-video (I2V) generation, in which an injected anchor image determines the identity, composition, and style of the resulting video. In modern pipelines, this anchor is synthesized by a text-to-image (T2I) generator. This raises a largely overlooked question: Are images obtained directly from the T2I model truly suitable for current video models? Our analysis shows that anchor aesthetic and quality scores are weakly correlated with downstream video quality. The structure-and-texture score is negatively correlated with I2V video quality in both the visual and motion dimensions. Fine-tuning the T2I model on an image reward accordingly yields anchors with visibly denser structural and character detail: they score higher on image metrics, yet lower the video reward on every I2V model we test and change downstream motion unpredictably. We therefore introduce Golden Anchor Learning (GAL), to our knowledge the first framework for learning golden anchors by optimizing a T2I generator with downstream video feedback. GAL evaluates candidate anchors through the videos they induce under a frozen I2V model and converts video rewards into image-level preferences for DPO fine-tuning of the T2I generator. On all four I2V models, GAL raises the VBench average by $2.97\\%$--$8.46\\%$ over the untuned generator. The rendered clips also score higher under VideoReward-Overall, and their extracted frames under HPSv3 and UniPercept. GAL yields consistent motion gains across all four I2V models, as measured by a $5.62\\%$--$38.24\\%$ increase in VBench dynamic degree. Although GAL is trained only on HunyuanVideo-1.5 renders, these gains extend to the other three I2V models.",
-      "authors": [
-        "Jinyuan Xu",
-        "Shitong Shao",
-        "Lichen Bai",
-        "Zikai Zhou",
-        "Guoxi Huang",
-        "Nantheera Anantrasirichai",
-        "Zeke Xie"
-      ],
-      "url": "http://arxiv.org/abs/2610.13217v1",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "22 pages (including references and appendices), 3 figures, 8 tables",
-      "score": 61,
-      "priority": "skim",
-      "summary_cn": "Video generation supports digital content creation, with applications in virtual avatars, AI-driven filmmaking, interactive game engines, and world models.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, interactive, video generation, image-to-video",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.13023",
-      "date": "2026-10-09",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "Unified Generative Video Compression with Autoregressive and Bidirectional Video Diffusion",
-      "abstract": "Video diffusion models can reconstruct visually compelling content from severely compressed representations at ultra-low bitrates, but they impose a rigid deployment trade-off. Bidirectional (BI) models achieve high quality through dense full-sequence attention, yet require the entire sequence before reconstruction and incur substantial latency. Autoregressive (AR) models enable low-delay streaming, but their restricted temporal context reduces compression efficiency. This tension is particularly relevant when a video stream must be decoded in real time yet is also stored for later, quality-oriented playback, making AR and BI models natural choices for the live and replay stages, respectively. To support both stages, we present UniGVC, a Unified Generative Video Codec that supports two decoding modes from a single bitstream. UniGVC-BI employs a BI-DiT with dense attention for quality-oriented random-access decoding, whereas UniGVC-AR uses windowed AR-DiT for low-delay streaming. Both paths share a hierarchical latent codec that recurrently produces the same conditions with ultra-low bitrates, allowing UniGVC-BI to serve as a conditional teacher for single-step distillation of UniGVC-AR. A tiny conditional video decoder further reduces streaming latency while preserving most of the reconstruction quality. On standard 1080p benchmarks, UniGVC-BI achieves the best overall rate-distortion-perception trade-off among the evaluated methods and produces temporally stable video at rates as low as 0.0005 bits per pixel. Meanwhile, UniGVC-AR remains competitive while decoding 1080p video at 36.85 FPS, over $250\\times$ faster than UniGVC-BI. Code and models will be released later.",
-      "authors": [
-        "Tianyu Zhang",
-        "Shuai Huo",
-        "Dengchao Jin",
-        "Hewei Liu",
-        "Meng Lei",
-        "Tianwen Wu",
-        "Jiawen Gu",
-        "Chao Zhou",
-        "Li Li",
-        "Dong Liu"
-      ],
-      "url": "http://arxiv.org/abs/2610.13023v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "Video diffusion models can reconstruct visually compelling content from severely compressed representations at ultra-low bitrates, but they impose a rigid deployment trade-off.",
-      "contribution_cn": "To support both stages, we present UniGVC, a Unified Generative Video Codec that supports two decoding modes from a single bitstream.",
-      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, distillation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
