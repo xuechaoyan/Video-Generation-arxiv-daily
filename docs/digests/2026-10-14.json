@@ -1,46 +1,41 @@
 {
-  "generated_at": "2026-10-14T02:15:58+00:00",
+  "generated_at": "2026-10-14T16:00:32+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2610.14685",
-      "date": "2026-10-10",
+      "id": "2610.18289",
+      "date": "2026-10-13",
       "topics": [
         "Video Generation",
         "World Models",
         "Autoregressive and Streaming Video"
       ],
-      "title": "Demiurge: Forging Navigable 4D Worlds via Autoregressive Video Rerendering",
-      "abstract": "Recent advances in video diffusion enable novel-view video synthesis from a single input video, supporting world modeling, embodied intelligence, and robotic simulation. However, existing methods process camera trajectories independently, lacking the cross-trajectory consistency needed for coherent, navigable 4D worlds. We introduce Demiurge, an autoregressive video rerendering pipeline built on a dynamic 4D point-cloud memory cache. It promotes cross-trajectory consistency through four components: (1) an appearance video diffusion model that synthesizes photorealistic novel-view videos conditioned on the 4D memory; (2) a memory-consistent video depth completion model that aligns known-region depths with cached geometry and completes missing regions, mitigating scale ambiguity and discontinuities during memory updates; (3) memory-aware dual-stream warping that provides high-fidelity visual guidance and occlusion cues for novel-view synthesis; and (4) geometry-aware video refinement that enhances perceptual quality. Extensive experiments demonstrate state-of-the-art performance and three key capabilities: coherent spatiotemporal lattice construction over dense multi-view trajectories; large-parallax video rerendering under challenging camera motions, including 180-degree rotations with no input-view overlap; and geometry-faithful outputs that can be directly optimized into high-quality 3D Gaussian Splatting representations with minimal artifacts. Project page: https://hanxinzhu-lab.github.io/demiurge_project_page/.",
+      "title": "LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout",
+      "abstract": "Autoregressive video diffusion models have emerged as a foundation for long-horizon world rollout. However, when extended far beyond their training windows, these models suffer from progressive drift: visual quality deteriorates, motion becomes inconsistent, and object identity gradually collapses as generated frames are recursively reused as context. We study a supervision-horizon gap: short-horizon distillation leaves later rollout states without direct supervision. We show that matching short-window marginals need not determine long-horizon behavior, while longer on-policy trajectories expose delayed failures to training. This motivates temporal manifold matching at scale for long-horizon world models. Building on this insight, we introduce LongForcing, a distillation approach that scales teacher supervision to long student self-rollouts. LongForcing preserves the short-horizon teacher-forcing and causal ODE-distillation stages, while replacing the realscore teacher in the final distribution-matching stage with an extended-horizon bidirectional teacher. The long-horizon teacher supervises extended student self-rollouts using the standard distribution-matching formulation, without modifying the student architecture or increasing inference cost. We evaluate LongForcing on text-to-video generation and interactive action-conditioned world models, achieving a VBench Quality score of 85.52 and improving WorldRoamBench 60s action score by 23.9 points in first-person ablations. Qualitative stress tests further sample interactive rollouts up to 24 hours, far beyond the training horizon. These results suggest that scaling supervision along the temporal axis is a practical step toward long-horizon world models. The project website and code are at https://github.com/Fantasy-AMAP/LongForcing.",
       "authors": [
-        "Hanxin Zhu",
-        "Jianqi Ma",
-        "Cong Wang",
-        "Zhihao Hu",
-        "Junyao Gao",
-        "Tianyu He",
-        "Junyan Lin",
-        "Jiayin Xiao",
-        "Jiateng Shou",
-        "Sen Liang",
-        "Weidong Zhang",
-        "Zhibo Chen",
-        "Jun Zhang"
+        "Ziyu Zhu",
+        "Zhaoxu Sun",
+        "Fan Jiang",
+        "Mengchao Wang",
+        "Junfeng Ni",
+        "Ting-Bing Xu",
+        "Zhicheng Liu",
+        "Mu Xu"
       ],
-      "url": "http://arxiv.org/abs/2610.14685v1",
+      "url": "http://arxiv.org/abs/2610.18289v1",
       "categories": [
         "cs.CV"
       ],
       "comment": "",
-      "score": 84,
+      "score": 82,
       "priority": "must-read",
-      "summary_cn": "Demiurge针对现有新视角视频生成方法逐条独立处理相机轨迹、难以保持跨视角一致性的问题，提出基于动态4D点云记忆的自回归视频重渲染框架。它通过“生成—恢复—更新”循环，将生成的外观和恢复的几何持续写入共享记忆，并结合记忆引导的外观扩散、记忆一致的视频深度补全、双流变形和几何感知细化，实现连贯的多视角时空世界构建。实验显示，该方法在视频质量、跨轨迹一致性、相机轨迹跟随、大视差重渲染和3D高斯泼溅重建方面优于所比较的方法。",
-      "contribution_cn": "1. 提出基于动态4D点云记忆的自回归视频重渲染框架，用于构建跨相机轨迹一致且可导航的4D世界。2. 提出记忆引导的外观视频扩散模型，并通过噪声监测器抑制点云投影中的异常条件。3. 提出记忆一致的视频深度补全方法，将缓存几何与新揭示区域结合，恢复时序一致且具有度量尺度的深度。4. 提出记忆感知的双流变形策略，分别维护外观记忆和几何记忆，以兼顾颜色稳定性与遮挡推理能力，减少背景泄漏和累积色彩漂移。5. 提出可选的几何感知视频细化模块，以降低纹理闪烁和高频噪声。6. 通过大量实验验证了密集多视角时空晶格构建、大视差重渲染以及几何忠实3D高斯泼溅重建能力。",
-      "relevance_cn": "与研究重点高度相关。该方法直接属于视频扩散和视频重渲染领域，并以自回归方式沿连续相机轨迹生成新视角视频。动态4D点云记忆使历史观测能够跨轨迹复用，缓解长视界生成中的上下文遗忘、空间漂移和外观漂移问题；双流变形和记忆更新机制则为闭环式世界状态维护提供了显式几何基础。它面向可导航4D世界、具身智能和机器人仿真，因而与动作条件视觉世界模型和闭环模拟具有明确联系，但论文主要条件是相机轨迹，而不是智能体动作或环境交互策略。论文使用视频扩散模型和显式缓存复用，但未重点研究实时生成、蒸馏或稀疏注意力。",
-      "limitations_cn": "论文未明确系统列出局限性，但根据方法和实验设置可确认以下限制：输入仍是单目视频，未观测区域需要由生成模型补全，因此无法保证真实世界几何和动态的完全准确性；自回归记忆更新可能累积生成误差、伪影或错误几何。实验主要使用81帧、480×832分辨率的视频片段，并依赖Wan2.1-1.3B等扩散模型和8张NVIDIA H20 GPU，计算成本较高，论文未证明其实时性能。方法需要已知或估计的相机轨迹，论文没有展示由智能体动作直接驱动的闭环交互控制。论文未明确说明在更长时序、更复杂动态场景、极端遮挡或大规模环境中的性能上限。",
+      "summary_cn": "论文指出，自回归视频扩散模型在长时间闭环生成中会因误差递归累积而发生视觉、运动、身份和动作一致性漂移，根本原因是短时域训练与长时域部署之间存在监督时域差距。LongForcing 保留短时域教师强制和因果 ODE 蒸馏，仅在分布匹配阶段引入扩展时域双向教师，对学生更长的自生成轨迹进行在策略监督。实验表明，该方法在文本到视频和动作条件交互式世界模型上均能改善质量、动作跟随和长期稳定性，并在不改变学生架构或增加推理成本的情况下，将交互式 rollout 的定性压力测试扩展至 24 小时。",
+      "contribution_cn": "1. 形式化了监督时域差距，说明短窗口边缘分布匹配无法充分确定长轨迹，并阐明更长 rollout 如何暴露延迟失败。 2. 提出 LongForcing，在最终分布匹配蒸馏阶段使用扩展时域教师监督更长的学生自生成轨迹，同时保留原有短时域训练流程。 3. 给出有限时域漂移控制分析，讨论路径匹配、教师泄漏、学生—教师不匹配以及从退化状态恢复等因素。 4. 在文本到视频和交互式动作条件世界模型上进行评测，报告了 VBench、VBench-Long、WorldRoamBench、漂移指标及人工偏好方面的改进。",
+      "relevance_cn": "该工作与研究重点高度相关：它直接面向自回归、因果、流式和长视频生成中的闭环 rollout 漂移问题；通过扩展 DMD 的时间监督范围，提高长时域视频生成的稳定性，而不增加推理成本。它还直接应用于动作条件视觉世界模型，训练学生在策略生成连续轨迹并由长时域双向教师监督，从而改善动作跟随、交互响应、视觉一致性和长期世界状态保持。方法保留实时生成模型的少步因果推理流程，因此也与蒸馏和实时生成密切相关；论文未提出新的稀疏注意力或缓存复用机制。",
+      "limitations_cn": "论文明确指出，延长监督时域并不能自动消除训练时域之后的漂移，也不能自动减小路径匹配误差；理论保证依赖教师质量、学生—教师匹配程度、教师泄漏、从退化状态恢复能力及相关条件。实验中的定量长期评测主要覆盖 60 秒交互式 rollout 和 30 秒文本到视频生成，最长 24 小时的结果主要是定性压力测试。论文还指出，交互式训练使用预先指定的动作计划，反馈动作以及更强的长期条件扩展仍需进一步研究。论文未明确说明在更大规模模型、更多环境和更复杂开放式交互中的泛化能力，也未系统报告训练计算成本相对于基线的增加情况。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "近年来，视频扩散模型的发展显著推动了生成式视频重渲染：模型可以从单个输入视频合成新视角视频，从而服务于世界建模、具身智能和机器人仿真等广泛应用。然而，尽管现有方法具有出色的照片级真实感，它们通常将每条相机轨迹孤立处理，缺乏构建连贯且可遍历的四维世界所需的跨轨迹一致性。为解决这一局限，我们提出Demiurge，一种用于生成可导航四维世界的自回归视频重渲染流程。Demiurge建立在动态四维点云记忆缓存之上，通过四个关键组件促进跨轨迹一致性：1）外观视频扩散模型，以四维记忆为条件，沿目标相机轨迹重渲染具有照片级真实感的新视角视频；2）记忆一致的视频深度补全模型，使已知区域的深度与缓存几何对齐，同时补全缺失区域，从而缓解记忆更新过程中的尺度歧义和不连续性；3）记忆感知的双流变形策略，为新视角视频合成提供高保真的视觉引导和遮挡线索；4）几何感知的视频细化模型，进一步提升合成视频的感知质量。大量实验表明，Demiurge达到了当前最优性能，并具备三项关键能力：1）在密集的多视角轨迹上构建连贯的时空晶格；2）在具有挑战性的相机运动下进行大视差视频重渲染，包括在与输入视角完全没有重叠的情况下完成180度旋转；3）生成几何忠实的输出，这些输出可以直接优化为高质量的3D高斯泼溅表示，并且伪影极少。项目主页：https://hanxinzhu-lab.github.io/demiurge_project_page/。",
-      "note_path": "2026-10-14/2610.14685-demiurge-forging-navigable-4d-worlds-via-autoreg.md"
+      "abstract_cn": "自回归视频扩散模型已成为长时域世界 rollout 的基础。然而，当生成过程远远超出训练窗口时，这些模型会出现渐进式漂移：视觉质量下降、运动变得不一致，并且由于生成帧被递归地重新用作上下文，物体身份会逐渐崩溃。我们研究了监督时域差距：短时域蒸馏使后续 rollout 状态缺乏直接监督。我们表明，匹配短窗口边缘分布并不一定能决定长时域行为，而更长的在策略轨迹能够将延迟失败暴露给训练过程。这促使我们面向长时域世界模型开展大规模时序流形匹配。在此基础上，我们提出 LongForcing，一种将教师监督扩展到学生长时域自回归 rollout 的蒸馏方法。LongForcing 保留短时域教师强制和因果 ODE 蒸馏阶段，同时在最终的分布匹配阶段，用扩展时域的双向教师替代真实分数教师。长时域教师使用标准的分布匹配形式监督扩展的学生自回归 rollout，既不修改学生架构，也不增加推理成本。我们在文本到视频生成和交互式动作条件世界模型上评估 LongForcing，取得 85.52 的 VBench Quality 分数，并在第一人称消融实验中将 WorldRoamBench 60 秒动作分数提高了 23.9 分。定性压力测试还采样了最长达 24 小时的交互式 rollout，远远超出训练时域。结果表明，沿时间轴扩展监督，是构建长时域世界模型的一项切实可行的步骤。项目网站和代码地址为 https://github.com/Fantasy-AMAP/LongForcing。",
+      "note_path": "2026-10-14/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md"
     },
     {
       "id": "2610.15324",
@@ -68,115 +63,208 @@
       "comment": "",
       "score": 79,
       "priority": "must-read",
-      "summary_cn": "论文针对自回归视频扩散模型中 KV 缓存随视频时长线性增长、严重占用 GPU 内存的问题，提出免训练的 TempoKV 预测式量化方法。作者发现，键缓存能够由同一空间位置的历史键有效预测，而值缓存的主要预测信号是当前对齐的键，历史值仅提供有限补充信息。TempoKV 先预测并量化键残差，再利用重建的当前键和历史值预测并量化值残差，同时为键分配更高精度。预测器通过少量 BF16 校准轨迹离线线性回归得到，无需重新训练模型。其在三种自回归视频模型上的实验显示，TempoKV 在视觉质量、长时一致性、压缩率、显存和延迟之间取得了优于基线的平衡，最高实现 6.71 倍 KV 缓存压缩，并支持约 90 秒的长视频生成。",
-      "contribution_cn": "1. 揭示视频 KV 缓存中键和值的非对称时序预测关系：键主要依赖自身历史，值则显著受当前对齐键的影响，并通过分层及时序分析验证该规律。2. 提出 TempoKV 预测式残差量化框架，分别预测键和值，仅量化低幅度残差，并采用键高精度、值低精度的混合位宽分配。3. 设计轻量、免训练的离线线性回归校准方法，预测器可跨提示词和生成运行复用。4. 在 Self-Forcing、Causal Forcing 和 LongCat-Video-13B 上验证方法有效性，在最高 6.71 倍压缩下保持较高生成质量，并降低 KV 缓存和峰值显存开销。5. 通过交叉预测器、混合位宽和历史长度消融实验，验证了键到值预测、较高键精度以及短值历史和较长键历史的设计。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向自回归、流式和长视频生成中的 KV 缓存瓶颈，通过利用跨潜在帧的时序冗余压缩历史上下文，降低长时生成所需的显存。方法无需训练，在线解码仅引入较小延迟，适合实时或近实时生成优化；在 Self-Forcing、Causal Forcing 等因果视频生成框架上的验证也与闭环、持续上下文复用密切相关。论文重点是缓存量化和预测式残差编码，而不是动作条件建模、世界模型或闭环控制本身。",
-      "limitations_cn": "论文是预印本，且实验主要基于 Self-Forcing-Wan-1.3B、Causal Forcing-Wan-1.3B 和 LongCat-Video-13B，以及 MovieGen 的前 128 个提示词，模型和数据覆盖范围有限。预测器需要离线收集 BF16 校准轨迹，并依赖训练模型中稳定的空间索引和跨帧统计规律，其对其他架构、任务或分布外提示词的泛化能力未被充分验证。实验主要考察 KV 缓存压缩对生成质量、显存和延迟的影响，没有系统报告端到端实时帧率或更广泛的硬件结果。极低精度下性能可能明显下降：值使用 1 bit 时质量显著崩溃。论文未明确说明代码发布后的可复现性、不同校准集规模的敏感性，以及在动作条件视觉世界模型或闭环交互场景中的表现。",
+      "summary_cn": "论文针对自回归视频扩散模型中随视频长度线性增长的 KV 缓存内存瓶颈，提出无需训练的 TempoKV 预测式量化方法。作者发现，键可由同一空间位置的历史键较好预测，而值主要依赖当前对齐的键，并辅以短值历史。因此，TempoKV分别预测键和值，只量化预测残差，并为键分配更高精度；预测器通过少量 BF16 轨迹离线线性回归校准。Self-Forcing、Causal Forcing 和 LongCat-Video-13B 实验显示，该方法在保持生成质量和长时序一致性的同时，实现最高 6.71 倍 KV 缓存压缩，降低峰值显存，并仅带来较小运行时开销。",
+      "contribution_cn": "1. 揭示视频 KV 缓存中键和值的非对称时序可预测性：键主要依赖自身历史，值则显著受当前对齐键的影响。\\n2. 提出 TempoKV 预测式 KV 缓存量化框架，分别采用时间预测器和键到值的交叉预测器，仅对预测残差进行低比特量化。\\n3. 设计非对称精度分配、锚定帧高精度量化及短历史上下文机制，并通过离线线性回归完成免训练校准。\\n4. 在三种自回归视频生成模型和多种精度配置上验证了方法的有效性，在较高压缩比下取得更好的视频质量、显存效率和延迟权衡，最高达到 6.71 倍压缩。",
+      "relevance_cn": "论文与研究重点高度相关，直接面向自回归、流式和长视频生成中的 KV 缓存内存瓶颈。它利用视频 latent 帧之间的时空冗余和缓存演化的可预测性，通过残差量化、非对称键值精度和缓存重用降低长上下文生成的存储需求。该方法尤其适合需要持续复用历史上下文的长视频和实时生成系统；实验还表明其可在减少峰值显存的同时保持质量，并仅引入约 11.9% 的生成开销。不过，论文主要解决 KV 缓存压缩，而非视频生成模型本身的蒸馏、稀疏注意力或闭环动作条件建模。",
+      "limitations_cn": "论文将实验主要限制在 Self-Forcing-Wan-1.3B、Causal Forcing-Wan-1.3B 和 LongCat-Video-13B，以及 MovieGen 提示词和特定分辨率、帧数设置，尚未证明对更广泛模型、任务和硬件的普适性。预测器需要使用 BF16 校准轨迹进行离线拟合，且仍需保留锚定帧和预测所需的历史信息。值使用过低精度（例如 1 bit）会导致生成质量显著崩溃，压缩与质量之间仍存在权衡。解码压缩缓存会增加延迟，且论文未报告真实部署环境下的端到端吞吐、能耗或多用户场景表现。论文未明确说明代码发布后的可复现性和对不同提示分布、超长生成范围的稳定性。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归（AR）视频扩散模型能够流式生成长视频，但由于 KV 缓存快速增长而面临显著的内存开销。现有 KV 缓存量化方法主要针对大语言模型设计，迁移到视频模型时效果不佳，因为视频模型中的激活具有不同的统计特征和强烈的时空冗余。我们观察到，视频 KV 缓存随时间具有很强的可预测性，并呈现明显的不对称性：键可以根据其时间历史高度准确地预测，而值主要依赖当前键，并且只需要较短的前序值历史。基于这些观察，我们提出 TempoKV，一种面向 AR 视频生成的免训练预测式 KV 缓存量化框架。TempoKV 根据键和值各自不同的依赖关系进行预测，并仅以低精度存储预测残差。两个预测器都很轻量，仅通过在少量 BF16 样本上进行线性回归离线校准一次，并在不同提示词和生成运行之间保持固定。在 Self-Forcing、Causal Forcing 和 LongCat-Video-13B 上的实验表明，在相当或更高压缩比下，TempoKV 始终比现有 KV 缓存量化方法实现更高的生成质量；其 KV 缓存压缩比最高达到 6.71 倍，并取得了最佳的整体质量—效率权衡。我们的代码将发布在 GitHub 上。",
+      "abstract_cn": "自回归（AR）视频扩散模型能够流式生成长视频，但由于 KV 缓存快速增长而面临显著的内存开销。现有 KV 缓存量化方法主要针对大语言模型设计，难以直接迁移到视频模型，因为视频模型中的激活具有不同的统计特性和显著的时空冗余。我们观察到，视频 KV 缓存随时间变化具有很强的可预测性，并且存在明显的不对称性：键主要可以根据其时间历史进行预测，而值主要依赖当前键，并且只需要较短的先前值历史。基于这些观察，我们提出了 TempoKV，一种无需训练的、面向自回归视频生成的预测式 KV 缓存量化框架。TempoKV 根据键和值各自不同的依赖关系进行预测，并仅以低精度存储预测残差。两个预测器都十分轻量，仅通过在少量 BF16 样本上进行线性回归离线校准一次，并在不同提示词和生成过程中保持固定。在 Self-Forcing、Causal Forcing 和 LongCat-Video-13B 上的实验表明，在相当或更高的压缩比下，TempoKV 始终比现有 KV 缓存量化方法实现更高的生成质量；其 KV 缓存压缩比最高达到 6.71 倍，并取得了最佳的整体质量—效率权衡。我们的代码将发布在 GitHub 上。",
       "note_path": "2026-10-14/2610.15324-tempokv-predictive-kv-cache-quantization-for-aut.md"
     },
     {
-      "id": "2610.14603",
-      "date": "2026-10-10",
+      "id": "2610.17434",
+      "date": "2026-10-12",
       "topics": [
         "World Models"
       ],
-      "title": "AnyRank: Reliable Anytime Policy Ranking via Sequential Testing",
-      "abstract": "Due to the high cost of hardware experiments, robot policies are predominantly evaluated by comparing their empirical performance on a limited number of hardware trials. However, finite-sample statistical uncertainty can lead to erroneous conclusions, especially when ranking multiple policies using a fixed batch of evaluation data. We propose AnyRank: a sequential method for multi-policy ranking that (i) adaptively allocates trials to hard-to-separate policies, (ii) provides (partial) rankings at any stopping time while bounding the probability of an incorrect ranking, and (iii) optionally exploits prior information to prioritize hardware evaluations more efficiently. This prior information could be informed from expert intuition, a small set of held-out hardware evaluations, or from policy rollouts in a simulator or an action-conditioned video world model. Notably, the prior can be imperfect; while a strong prior can provide efficiency gains on hardware, any inaccuracies in prior policy rankings do not invalidate the statistical assurances of AnyRank. We achieve the aforementioned properties through novel theoretical contributions that combine sequential testing with multiple-hypothesis graphical testing approaches. Experiments in simulation and real-world policy evaluation benchmarks show that AnyRank requires up to 50% fewer hardware evaluations compared to existing statistically rigorous approaches, while guarding against the incorrect rankings produced by heuristic methods used by state-of-the-art benchmarks.",
+      "title": "World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models",
+      "abstract": "Recent advances in video world models have enabled plausible interactive environments, yet long-horizon generation places a fundamental demand on visual memory: the previously observed world must remain consistent as the model continues to generate. Existing autoregressive approaches often implicitly rely on the generative model itself to retain such information, leading to spatial memory decay beyond the active context. We introduce World-T3, a camera-controlled video world model with a test-time training memory that consolidates past observations into dedicated model parameters. To robustly update this memory, we propose a recursive least-squares rule that incrementally absorbs novel visual features via online pose-keyed memory updates. Our TTT memory reads out previously observed scene features from the fast-weight state by camera pose, enabling consistent generation with constant storage and per-step computation regardless of rollout length. To facilitate real-time interactive generation with this robust memory, we further distill the autoregressive model into a few-step generator via dual-teacher distribution matching. On a long-horizon revisit benchmark, World-T3 raises revisit PSNR from 13.52 to 18.31 dB and reduces absolute rotation error from 3.344 to 1.075 relative to the strongest baseline on both metrics, while sustaining 20.6 FPS at 1280 x 704 on a single NVIDIA B200 GPU.",
       "authors": [
-        "Apurva Badithela",
-        "David Snyder",
-        "Tenny Yin",
-        "Jade Sceats",
-        "George Pappas",
-        "Nikolai Matni",
-        "Masha Itkina",
-        "Haruki Nishimura",
-        "Anirudha Majumdar"
+        "Junyi Wu",
+        "Zekun Li",
+        "Chenhongyi Yang",
+        "Chen Guo",
+        "Lingchen Yang",
+        "Yongan Zhang",
+        "Xinyi Zhang",
+        "Hongbing Hu",
+        "Bartek Rymkowski",
+        "Srinath Sridhar",
+        "Yan Yan",
+        "Xijie Huang"
       ],
-      "url": "http://arxiv.org/abs/2610.14603v1",
+      "url": "http://arxiv.org/abs/2610.17434v1",
       "categories": [
-        "cs.RO",
-        "eess.SY"
+        "cs.CV",
+        "cs.AI",
+        "cs.MM"
       ],
-      "comment": "CoRL 2026",
+      "comment": "Project Page: https://adreamwu.github.io/World-T3/",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "论文提出 AnyRank，用于在硬件试验次数有限且成本高昂的情况下可靠地对多个机器人策略进行排序。该方法将策略排序建模为多重假设检验问题，结合安全的任意时刻有效推断、序贯的非参数两两比较和图式多重检验。它根据当前证据自适应选择下一个要评估的策略，并动态重新分配统计风险预算，从而优先处理难以区分的策略，同时在任意停止时刻控制家族错误率并输出完整或部分排序。AnyRank还可利用来自专家、留出硬件数据、模拟器或动作条件视频世界模型的先验；即使先验错误，也不会破坏统计有效性。RoboArena、TRI-LBM、DROID-task及合成数据实验显示，该方法相较于 Bonferroni 等严格统计基线能以更少样本拒绝更多假设，部分场景减少约 50% 的硬件评估，并避免 Bradley–Terry 等启发式排序方法的误校准和时间不一致问题。论文指出，其效果依赖独立同分布评估数据，现有世界模型先验在大规模评估中往往预测性不足。",
-      "contribution_cn": "1. 提出 AnyRank，将多机器人策略排序统一为序贯多重假设检验问题，并支持任意停止时刻的部分或完整排序。 2. 将安全任意时刻有效推断与图式多重假设检验结合，在自适应采样和停止条件下控制家族错误率。 3. 设计基于比较难度和当前风险预算的主动采样机制，将更多评估分配给统计上更难区分的策略。 4. 提出利用先验策略性能估计初始化风险分配和图权重的方法，并证明不准确先验不会破坏统计保证。 5. 通过传递闭包进一步推断可由已解决的策略比较推出的排序关系。 6. 在仿真、RoboArena、TRI-LBM 和 DROID-task 等数据上验证了可靠性、样本效率、先验影响和可扩展性。",
-      "relevance_cn": "论文与研究重点的直接联系主要在于动作条件视频世界模型和闭环策略评估：它将世界模型中的策略 rollout 作为硬件评估的先验，用于预测策略相对性能、初始化多重检验图并减少昂贵的真实机器人试验。论文还专门比较了世界模型先验与真实硬件结果的相关性，发现普通或离线世界模型先验可能很弱（一个 RoboArena 实验中 Spearman 相关系数为 0.05），而针对具体任务微调的视频世界模型可获得较强相关性（DROID Fold towel 实验中为 0.89）。因此，该工作不是视频生成模型本身，也不提出视频扩散、长视频生成、实时生成、蒸馏、稀疏注意力或缓存复用算法；其贡献是为动作条件视觉世界模型产生的模拟结果提供一种统计上可靠的硬件闭环验证和策略排序框架。",
-      "limitations_cn": "论文明确假设评估数据是独立同分布的；当任务、环境或 rollout 存在相关性时，统计保证可能不适用。可靠地利用先验以进一步减少硬件评估仍然具有挑战性。实验表明，现有模拟器和开箱即用的视频世界模型在大规模评估中通常不足以准确预测真实策略性能。即使先验较强，可靠的硬件策略比较仍可能需要较多评估，代理评估与硬件评估的高效、可靠融合被留作未来工作。随着策略数量增加，待比较的策略对数量呈二次增长，排序的固有难度和样本复杂度仍会上升。",
+      "summary_cn": "World-T3 面向需要长期保持场景一致性的相机控制视频世界模型。它在有限的局部上下文之外，引入基于测试时训练的持久参数记忆：将被上下文淘汰的视频块编码为相机位姿—视觉内容键值对，并通过递归最小二乘更新快速权重；生成时再根据目标相机位姿检索历史场景特征。作者从预训练视频扩散模型出发，依次进行双向相机条件训练、自回归块因果训练与 TTT 记忆学习，最后通过同时利用双向教师和记忆增强自回归教师的分布匹配蒸馏，将采样压缩到 4 步。实验在 120 个出发后返回轨迹上显示，该方法在语义重访一致性、PSNR 和相机轨迹跟随方面优于五个基线，并在 1280×704 分辨率、单张 B200 GPU 上达到 20.6 FPS。",
+      "contribution_cn": "1. 提出 World-T3，将相机位姿索引的测试时训练记忆集成到视频世界模型中，以参数化快速权重持续保存历史观测，并使存储量和每步更新成本与 rollout 长度无关。\\n2. 提出基于递归最小二乘的测试时记忆整合规则，通过累计特征协方差进行白化预条件，抑制平滑相机轨迹中高度相关的冗余键，从而优先写入新的视觉信息。\\n3. 设计三阶段训练流程，将预训练视频扩散模型转换为带有块因果注意力和持久记忆的自回归世界模型。\\n4. 提出双教师分布匹配蒸馏，同时保持局部视觉质量、运动连贯性和长期场景一致性，将生成过程压缩为 4 步。\\n5. 在重访一致性评测的六项指标上取得最佳结果，并达到超过 16 FPS 播放速率的实时生成性能。",
+      "relevance_cn": "该工作与研究重点高度相关。它属于视频扩散驱动的相机控制视觉世界模型，并直接研究长视频、自回归和闭环式持续生成中的长期空间记忆问题。其块因果建模支持按连续相机轨迹进行交互式 rollout；位姿键控的 TTT 快速权重使模型能够在重访场景时恢复既有内容，而不依赖不断增长的历史帧、3D 表示或记忆 token。递归最小二乘更新对应在线记忆写入，固定大小记忆和有界上下文对应恒定的长时域开销。双教师蒸馏、4 步采样、记忆读取缓存和高效注意力则直接服务于实时生成；实验报告在 1280×704 下达到 20.6 FPS，并显著改善重访 PSNR 与相机旋转误差。",
+      "limitations_cn": "论文明确显示，4 步蒸馏模型相较 50 步自回归教师的 VBench 从 75.15 降至 74.52，Local Memory 从 0.9442 降至 0.9258，说明实时性与局部视觉质量、局部一致性之间存在权衡。固定大小的参数化记忆虽然使开销恒定，但其长期保真度受模型参数表达能力限制；论文未给出随 rollout 无限增长时的记忆容量上限或失真曲线。评测主要基于 120 个 10 秒、16 FPS、1280×704 的出发—返回相机轨迹，且方法的控制形式集中于 6-DoF 相机位姿，论文未明确说明其对更丰富动作、动态世界或更长真实交互任务的泛化能力。速度结果依赖单张 NVIDIA B200 GPU 以及编译、缓存、高效算子和优化后的 VAE 解码，论文未明确说明在其他硬件上的实时性能。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "由于硬件实验成本高昂，机器人策略通常通过在有限次数的硬件试验中比较其经验性能来进行评估。然而，有限样本的统计不确定性可能导致错误结论，尤其是在使用固定批量评估数据对多个策略进行排序时。我们提出 AnyRank：一种用于多策略排序的序贯方法，它（i）自适应地为难以区分的策略分配试验；（ii）能够在任意停止时刻提供（部分）排序，同时控制排序错误的概率；（iii）可选择利用先验信息，更高效地安排硬件评估。这些先验信息可以来自专家直觉、少量留出的硬件评估，或来自模拟器和动作条件视频世界模型中的策略 rollout。值得注意的是，先验可以是不完美的；尽管强先验能够提高硬件评估效率，但先验策略排序中的任何错误都不会破坏 AnyRank 的统计保证。我们通过结合序贯检验与多重假设图检验的新理论贡献，实现了上述性质。在仿真和真实世界策略评估基准上的实验表明，与现有具有严格统计保证的方法相比，AnyRank 最多可减少 50% 的硬件评估次数，同时能够避免当前最先进基准所使用的启发式方法产生的错误排序。",
-      "note_path": "2026-10-14/2610.14603-anyrank-reliable-anytime-policy-ranking-via-sequ.md"
+      "abstract_cn": "近期视频世界模型的发展已经能够生成合理的交互式环境，但长时域生成对视觉记忆提出了根本要求：随着模型持续生成，先前观测到的世界必须保持一致。现有自回归方法通常隐式依赖生成模型自身保留这类信息，导致超出活跃上下文后出现空间记忆衰减。我们提出 World-T3，一种带有测试时训练记忆的相机控制视频世界模型，可将过去的观测整合到专用模型参数中。为稳健地更新该记忆，我们提出递归最小二乘规则，通过在线的、由位姿作为键控的记忆更新，逐步吸收新的视觉特征。我们的 TTT 记忆根据相机位姿从快速权重状态中读取先前观测到的场景特征，从而实现一致生成，并使无论 rollout 长度如何，存储量和每步计算量都保持不变。为了借助这种稳健记忆实现实时交互式生成，我们进一步通过双教师分布匹配，将自回归模型蒸馏为少步生成器。在长时域重访基准上，与两个指标均最强的基线相比，World-T3 将重访 PSNR 从 13.52 提升至 18.31 dB，并将绝对旋转误差从 3.344 降至 1.075；同时，它在单张 NVIDIA B200 GPU 上以 1280×704 分辨率保持 20.6 FPS 的速度。",
+      "note_path": "2026-10-14/2610.17434-world-t3-test-time-training-as-persistent-memory.md"
     },
     {
-      "id": "2610.03221",
-      "date": "2026-10-10",
+      "id": "2610.16545",
+      "date": "2026-10-12",
       "topics": [
+        "Video Generation",
         "Efficient Video Diffusion"
       ],
-      "title": "VDOT++: Unified Few-Step Video Generation via Unbalanced Optimal Transport Distillation",
-      "abstract": "Video creation spans text-to-video (T2V), image-to-video (I2V), and condition-based generation, yet video diffusion models remain costly because they repeatedly evaluate large backbones during sampling. Distribution matching distillation (DMD) reduces this cost, but its reverse Kullback--Leibler (KL) objective can provide unstable or incomplete guidance when the student and teacher distributions have limited overlap. VDOT addressed this issue by adding optimal transport distillation (OTD), whose explicit coupling supplies geometric directions for condition-based generation. Balanced OTD, however, performs full-mass matching between the spatial tokens of each corresponding student--teacher frame pair. This assumption weakens for T2V and I2V, where one condition admits many valid outputs and spatial content need not align across different realizations. We present VDOT++, a unified distillation framework that applies the same training recipe separately to generators for the three task families. It makes OTD robust to output diversity through an asymmetric unbalanced formulation that allows unreliable student tokens to carry less mass while maintaining coverage of the teacher tokens. An $\\ell_1$ ground cost further replaces mean-based aggregation with a more mode-preserving weighted median that limits the influence of distant transport targets. The two changes respectively determine whom to match and how the selected targets should be aggregated. We additionally combine distribution matching and adversarial refinement through sequential backward passes, and exploit the decoupled score networks for cross-scale distillation, where larger score networks improve a compact generator. Experiments on UVCBench, VBench, VBench-I2V, and the VACE benchmark show that the resulting four-step generators are competitive with many-step teachers and strong few-step baselines across all three task families.",
+      "title": "Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration",
+      "abstract": "Feature caching has become a mainstream training-free strategy for accelerating video diffusion models by reusing intermediate outputs across denoising steps. However, existing adaptive methods rely on heuristic difference measures misaligned with actual generation quality, employ a single global threshold that ignores heterogeneous phase dynamics, and never validate their budget estimates against true approximation error, allowing systematic bias to propagate uncorrected. We propose \\textbf{AlignCache}, a closed-loop caching framework that directly aligns scheduling decisions with their true influence on the final generated video through three tightly coupled components: (1) phase-adaptive budget routing that partitions the denoising trajectory into structurally distinct phases, each governed by an independent threshold and a staleness-aware guard; (2) closed-loop threshold calibration that exploits counterfactual error measurement at the classifier-free guided output level to adjust decision boundaries online via an EMA feedback loop; and (3) momentum-augmented draft synthesis combining direction-magnitude gated residual extrapolation with anchor-guided unconditional correction. By transforming scheduling from a static risk accumulator into a feedback-driven, self-correcting controller, AlignCache consistently achieves superior acceleration-quality trade-offs across state-of-the-art video generation models. Our code is available at https://github.com/jiangjyjy/AlignCache.",
       "authors": [
-        "Yutong Wang",
-        "Xingtong Ge",
-        "Enhuai Liu",
-        "Yunke Wang",
-        "Tianfan Xue",
-        "Yu Qiao",
-        "Yaohui Wang",
-        "Xinyuan Chen",
-        "Chang Xu"
+        "Jiyue Jiang",
+        "Zhiyu Huo",
+        "Yuhan Chen",
+        "Yanruisheng Shao",
+        "Gong Zhang",
+        "Lei Deng"
       ],
-      "url": "http://arxiv.org/abs/2610.03221v2",
+      "url": "http://arxiv.org/abs/2610.16545v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.AI"
       ],
       "comment": "",
-      "score": 74,
+      "score": 76,
       "priority": "skim",
-      "summary_cn": "Video creation spans text-to-video (T2V), image-to-video (I2V), and condition-based generation, yet video diffusion models remain costly because they repeatedly evaluate large backbones during sampling.",
-      "contribution_cn": "We present VDOT++, a unified distillation framework that applies the same training recipe separately to generators for the three task families.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：few-step, distillation, video generation, text-to-video, image-to-video, video diffusion",
+      "summary_cn": "Feature caching has become a mainstream training-free strategy for accelerating video diffusion models by reusing intermediate outputs across denoising steps.",
+      "contribution_cn": "We propose \\textbf{AlignCache}, a closed-loop caching framework that directly aligns scheduling decisions with their true influence on the final generated video through three tightly coupled components: (1) phase-adaptive budget routing that partitions the denoising trajectory into structurally distinct phases, each governed by an independent threshold and a staleness-aware guard; (2) closed-loop threshold calibration that exploits counterfactual error measurement at the classifier-free guided output level to ad...",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：closed-loop, acceleration, cache, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.14583",
-      "date": "2026-10-10",
+      "id": "2610.17688",
+      "date": "2026-10-13",
       "topics": [
         "World Models"
       ],
-      "title": "Remembering What Matters for Long-Horizon Robotic World Models",
-      "abstract": "Autoregressive robot video world models based on discrete visual tokens remain unreliable over long rollout horizons. Retaining the entire generated history does not necessarily improve prediction quality. We investigate a possible memory-role conflict in Full Context decoding: persistent scene information, recent visual-action states, and stale generated history compete for attention despite their different predictive roles. This perspective motivates ReCAP (Receding Context with Anchor Preservation), a training-free context-scheduling method for long-horizon robot video world models. ReCAP keeps the pretrained tokenizer, world model, and visual decoder frozen. It preserves the initial scene anchor and a contiguous window of recent complete visual-action blocks while evicting older generated history. The schedule preserves within-block structure and temporal order, requires no additional modules or parameter updates, and bounds active-context growth independently of rollout length. We evaluate ReCAP on RT-1, BridgeV2, LIBERO-90, and CALVIN using frozen autoregressive world models. Across evaluated environments and horizons, ReCAP improves visual fidelity, action-conditioned consistency, and robot structure preservation relative to Full Context. On BridgeV2, it reduces LPIPS by 63.3%. In the system benchmark at H=64, it reduces the logical KV footprint by 73.3% and p50 latency by 6.51%. Attention analyses show increased attention to retained recent states, while history interventions associate larger amounts of stale context with higher prediction error. These observations are consistent with the memory-role-conflict hypothesis, although they do not isolate it from context-length and position-handling effects. Our results support inference-time context scheduling as a practical approach to improving long-horizon robot video prediction and computational efficiency without retraining.",
+      "title": "OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching",
+      "abstract": "Occupancy world models provide a structured, metric representation of future driving scenes, making them a promising basis for end-to-end autonomous driving. However, existing occupancy-aware planners typically couple occupancy prediction and action generation through either hierarchical coupling or parallel multi-task learning. Hierarchical methods use occupancy either as a fully predicted future preceding action generation or as an action-conditioned rollout for trajectory evaluation, whereas parallel multi-task methods predict occupancy alongside planning through a separate branch or auxiliary objective. These interfaces retain either an explicit generation order or a role asymmetry, limiting reciprocal interaction between world prediction and action generation during trajectory formation. We propose OccWAM, an occupancy-native world-action model that jointly generates dense future occupancy and continuous ego trajectories via flow matching conditioned on scene representations. Building on this joint formulation, we introduce scene-to-ego world-action flow matching, a two-stage formulation. The first stage predicts scene-centric occupancy together with an absolute ego trajectory, providing a stable representation of future scene evolution. The same predicted world is then re-indexed into the future ego frames induced by the initial trajectory, where ego motion is represented through adjacent pose increments and a second joint flow refines ego-centric occupancy and motion for action-aligned planning. Unlike video-based world-action models, OccWAM preserves explicit semantic geometry for direct planning reasoning without pixel synthesis. Extensive experiments on Bench2Drive and nuScenes demonstrate state-of-the-art performance in closed-loop driving, open-loop planning, and future occupancy prediction.",
       "authors": [
-        "Hao Wu",
-        "Tianyu Shao",
-        "Shengju Qian",
-        "Yizhou Zhao",
-        "Fan Zhang",
-        "Penghao Zhao",
-        "Weiyan Wang",
-        "Yufei Huang",
-        "Fan Xu",
-        "Kun Wang",
-        "Xin Wang",
-        "Ming-Hsuan Yang",
-        "Yuxuan Liang"
+        "Qihang Huang",
+        "Wenhui Huang",
+        "Collister Chua",
+        "Shiyu Fang",
+        "Zhan Chen",
+        "Songyan Zhang",
+        "Zhidong Wang",
+        "Daiying Tian",
+        "Chen Lv"
       ],
-      "url": "http://arxiv.org/abs/2610.14583v1",
+      "url": "http://arxiv.org/abs/2610.17688v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "skim",
+      "summary_cn": "Occupancy world models provide a structured, metric representation of future driving scenes, making them a promising basis for end-to-end autonomous driving.",
+      "contribution_cn": "We propose OccWAM, an occupancy-native world-action model that jointly generates dense future occupancy and continuous ego trajectories via flow matching conditioned on scene representations.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, driving",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.17926",
+      "date": "2026-10-13",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation",
+      "abstract": "Autoregressive video generation relies on memory retrieval to model long-range dependencies. This capability becomes particularly critical for multi-shot generation, where models must reconcile substantial visual changes across shot transitions with persistent semantic continuity. Existing methods tend to perform memory retrieval at the frame level and share the same historical context across all query tokens, overlooking the heterogeneous information needs and leading to redundant retrieval and inefficient use of historical memory. To bridge this gap, we introduce CineMem, an attention-aligned fine-grained memory retrieval framework that combines online memory organization with query-adaptive retrieval for autoregressive multi-shot video generation. Specifically, guided by intrinsic memory-access patterns revealed through attention analysis, we propose an online-clustered KV cache as a memory organization strategy over all historical tokens, enabling semantic-aware memory grouping and more precise retrieval. In addition, we introduce a query-level retrieval mechanism that provides broader access to historical information under a fixed retrieval budget, thereby improving long-term memory utilization. Together, these designs enable the multi-shot video generator to preserve long-range consistency across shot transitions, particularly in revisitation scenarios, while approximating full-memory access under a constrained memory budget. To facilitate evaluation, we further introduce a suite of task-specific, VLM-assisted metrics for faithful inter-shot consistency assessment. Extensive experiments demonstrate the effectiveness of our framework.",
+      "authors": [
+        "Xiaoxue Wu",
+        "Xinyu Gao",
+        "Fang Yu",
+        "Yu Qiao",
+        "Xinyuan Chen"
+      ],
+      "url": "http://arxiv.org/abs/2610.17926v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "Project Page: https://uknowsth.github.io/CineMem/",
+      "score": 75,
+      "priority": "skim",
+      "summary_cn": "Autoregressive video generation relies on memory retrieval to model long-range dependencies.",
+      "contribution_cn": "To bridge this gap, we introduce CineMem, an attention-aligned fine-grained memory retrieval framework that combines online memory organization with query-adaptive retrieval for autoregressive multi-shot video generation.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, long video, cache, kv cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18873",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts",
+      "abstract": "Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment. Real-world rollouts contain successes, suboptimal behavior, and failures: imitating every recorded action can reinforce poor behavior, while filtering out failures discards evidence of physical interactions and their consequences. We introduce \\textbf{LoopWAM}, a closed-loop world-action model that learns directly from this full quality spectrum, using rollouts from both itself and other deployed policies. Source-dependent noise sampling unifies behavior learning and action-conditioned world modeling, while quality steering and quality-weighted supervision retain full video supervision across qualities and regulate action imitation. Video and action tokens interact throughout parallel denoising, allowing learned consequences to inform action generation directly. On RoboChallenge Table30-V2, three deployment-and-training rounds raise success from 23.67\\% to 43.33\\%, a 19.7-percentage-point gain, with a final score of 56.80. LoopWAM also achieves 94.5\\% average success on RoboTwin~2.0 and 49.5\\% overall success on RoboCasa365 without additional embodied pretraining, obtaining the best overall results among the compared methods across all three benchmarks. On challenging shirt folding task, two rounds of deployment-driven improvement after single-task post-training raise success from 13.20\\% to 55.56\\%. These results demonstrate closed-loop improvement from mixed-quality experience under both multi-task learning and single-task post-training. \\href{https://loop-wam.github.io/}{\\textcolor{orange}{Project Page}}",
+      "authors": [
+        "Wenxuan Guo",
+        "Yingping Liang",
+        "Zhaoguo Wang",
+        "Ziyuan Li",
+        "Angyuan Ma",
+        "Zhenyu Wu",
+        "Chengkun Wang",
+        "Bingyao Yu",
+        "Ze Chen",
+        "Borui Zhang",
+        "Xiuwei Xu",
+        "Meng Zhang",
+        "Erjin Zhou",
+        "Jiwen Lu"
+      ],
+      "url": "http://arxiv.org/abs/2610.18873v1",
       "categories": [
         "cs.RO",
         "cs.CV"
       ],
-      "comment": "35 pages",
+      "comment": "Project page: https://loop-wam.github.io/",
+      "score": 73,
+      "priority": "skim",
+      "summary_cn": "Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment.",
+      "contribution_cn": "We introduce \\textbf{LoopWAM}, a closed-loop world-action model that learns directly from this full quality spectrum, using rollouts from both itself and other deployed policies.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18125",
+      "date": "2026-10-13",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression",
+      "abstract": "Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs. Recent codebook-based approaches such as Turbo-DDCM achieve strong perceptual quality at ultra-low bitrates, but their reliance on dense Gaussian codebooks remains costly in both memory and computation, and scales poorly with the large latent dimensions of modern image and video generators. Their combinatorial bitstream encoding further becomes computationally heavy at this scale. We introduce H-DDCM, a scalable generative compression framework that replaces Gaussian codebooks with implicit randomized Hadamard dictionaries. The fast Walsh-Hadamard transform allows for implicitly synthesizing full-dimensional dictionaries with $O(d \\log d)$ compute for projection and reconstruction and $O(d)$ memory, without materializing the full-dimensional dictionary. We further introduce an efficient table-free lexicographic coding scheme that makes combinatorial encoding practical at larger dimensions. Beyond images, we adapt the framework to an autoregressive video flow model and develop a streaming compression scheme that periodically re-encodes recently reconstructed frames into a fresh KV-cache prefix, preserving temporal context across segments at no additional transmitted bits. This enables long-form, close to real-time generative video compression on a single GPU. Across image and video benchmarks, H-DDCM achieves competitive rate-distortion-perception performance while substantially reducing the memory and computational overhead of codebook-based training-free generative compression.",
+      "authors": [
+        "Or Ronai",
+        "Vladimir Kulikov",
+        "Tomer Michaeli"
+      ],
+      "url": "http://arxiv.org/abs/2610.18125v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "Project's webpage at https://h-ddcm.github.io/",
       "score": 72,
       "priority": "skim",
-      "summary_cn": "Autoregressive robot video world models based on discrete visual tokens remain unreliable over long rollout horizons.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, action-conditioned, autoregressive",
+      "summary_cn": "Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs.",
+      "contribution_cn": "We introduce H-DDCM, a scalable generative compression framework that replaces Gaussian codebooks with implicit randomized Hadamard dictionaries.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, streaming, real-time, cache, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -235,109 +323,6 @@
       "summary_cn": "Autoregressive (AR) video generation enables long-horizon synthesis but requires repeated forward passes through large diffusion transformers.",
       "contribution_cn": "We introduce Frequency-Step Cache (FSC), which separates these roles.",
       "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：autoregressive, acceleration, cache, efficient, video generation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.14568",
-      "date": "2026-10-10",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "FrameFold: Response-Guided KV Cache Consolidation for Autoregressive Long Video Generation",
-      "abstract": "In autoregressive video generation, retaining all historical key-value (KV) states increases memory usage and per-step attention costs as videos grow longer. A fixed cache budget bounds these costs but raises the challenge of preserving historical content that supports consistent, high-quality generation. Existing methods control cache size through history selection or consolidation, yet deciding what to retain and how to limit the loss of useful content remains a shared challenge. Our analysis shows that spatial queries depend on different historical content and that higher current attention coverage does not necessarily yield better long-video quality. We introduce FrameFold, a training-free KV cache consolidation method that compares the content retrieved by the same recent historical queries before and after merging to guide both representative construction and merge selection. Exploiting temporal redundancy between adjacent historical entries, FrameFold merges their KV states into shared representatives while retaining complete spatial grids. It fits value-merging coefficients in closed form by matching conditional attention responses, then selects the merge with the lowest remaining response distortion. Under matched KV cache budgets, experiments on Self Forcing and Causal Forcing at 30 and 60 seconds and on LongLive at 120 seconds demonstrate improved consistency and visual quality. Continuous eight-minute Self Forcing rollouts further show less quality degradation than the baselines.",
-      "authors": [
-        "Muyu Liu",
-        "Mingming Liu",
-        "Hong Gu",
-        "Yuyao Zhang",
-        "Qin Lu"
-      ],
-      "url": "http://arxiv.org/abs/2610.14568v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "26 pages, 14 figures",
-      "score": 69,
-      "priority": "skim",
-      "summary_cn": "In autoregressive video generation, retaining all historical key-value (KV) states increases memory usage and per-step attention costs as videos grow longer.",
-      "contribution_cn": "We introduce FrameFold, a training-free KV cache consolidation method that compares the content retrieved by the same recent historical queries before and after merging to guide both representative construction and merge selection.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, long video, cache, kv cache, efficient, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.15294",
-      "date": "2026-10-11",
-      "topics": [
-        "World Models"
-      ],
-      "title": "ProWorld: Multi-View World Model with Proprioceptive Feedback for Closed-Loop Policy Evaluation",
-      "abstract": "Evaluating robot manipulation policies through repeated physical trials is costly. We study whether an action-conditioned world model can serve as a closed-loop test environment whose policy success rates track those on real robots. Beyond realistic video, the model must return the camera views and proprioceptive state needed for the policy's next action and preserve failed-action outcomes to avoid overestimating policy capability. We introduce ProWorld, a world model that jointly predicts multi-view video and robot state, then feeds both back to a frozen policy for repeated interaction. ProWorld comprises a shared transformer for joint video-state flow prediction and Shared-Time View Encoding to distinguish cameras while preserving temporal synchronization. To reduce interaction hallucinations that turn missed grasps into successful lifts, we augment training with failed interactions collected in high-fidelity simulation, reducing inflated success rates in the generated environment. ProWorld achieves the highest overall TriWorldBench score among the compared methods. Across three policies and four local manipulation tasks, it attains a Pearson correlation of 0.95 and a Spearman correlation of 0.94 between generated and real success rates. These results support joint visual-proprioceptive feedback and failure-aware training as a basis for world-model-based policy evaluation.",
-      "authors": [
-        "Zijun Wang",
-        "Tianyi Yan",
-        "Haokun Lin",
-        "Panwen Hu",
-        "Bohang He",
-        "Siyu Ren",
-        "Xiaoyu Guo",
-        "Weijia Liufu",
-        "Shuoshuo Xue",
-        "Fengjiao Chen",
-        "Zipeng Ye",
-        "Xuezhi Cao",
-        "Zutao Jiang",
-        "Hanhui Li",
-        "Xiaodan Liang"
-      ],
-      "url": "http://arxiv.org/abs/2610.15294v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 69,
-      "priority": "skim",
-      "summary_cn": "Evaluating robot manipulation policies through repeated physical trials is costly.",
-      "contribution_cn": "We introduce ProWorld, a world model that jointly predicts multi-view video and robot state, then feeds both back to a frozen policy for repeated interaction.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.13372",
-      "date": "2026-10-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Towards Safe World Models: Risks, Defenses, and Evaluation",
-      "abstract": "World models support planning, control, learning from imagined experience, and model-mediated evaluation by predicting action-conditioned consequences. Their safety cannot be inferred from predictive accuracy alone: errors in observations, state and memory, dynamics, evaluation, execution, or feedback can propagate into unsafe decisions and persist through updates. This work organizes the literature on world-model safety around a six-stage lifecycle covering data and observations, state and memory, dynamics and imagination, evaluation and planning, action and control, and feedback and update. We synthesize non-adversarial failures, attacks, defenses, evaluation protocols, benchmarks, and deployment conditions, and distinguish evidence directness from outcome level. The current evidence corpus contains 163 cited works. We use the framework to identify where claims are supported, where attribution remains unresolved, and which measurements are needed to connect model-level behavior to closed-loop and operational safety.",
-      "authors": [
-        "Xiaoma Wang",
-        "Litian Zhang",
-        "Xinze Shi",
-        "Zhengxuan Hu",
-        "Zihan Yang",
-        "Mingqi Ren",
-        "You Wu",
-        "Bingyu Yan",
-        "Zelong Yu",
-        "Zhenjie Su",
-        "Yuming Shang",
-        "Xi Zhang",
-        "Chaozhuo Li",
-        "Philip S. Yu"
-      ],
-      "url": "http://arxiv.org/abs/2610.13372v1",
-      "categories": [
-        "cs.CR"
-      ],
-      "comment": "55 pages, 6 figures",
-      "score": 66,
-      "priority": "skim",
-      "summary_cn": "World models support planning, control, learning from imagined experience, and model-mediated evaluation by predicting action-conditioned consequences.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
