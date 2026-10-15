@@ -17,12 +17,16 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-14**|**Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance**|Zhuobai Dong et.al.|[2610.20220](http://arxiv.org/abs/2610.20220)|null|
+|**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
+|**2026-10-14**|**When Pairwise Preferences Cycle: A Reliability-Anchored Preference Walk for Video GRPO**|Xinrui Lin et.al.|[2610.20089](http://arxiv.org/abs/2610.20089)|null|
+|**2026-10-14**|**Complementary Future Token Pruning for World Action Models**|Baekseung Kim et.al.|[2610.19957](http://arxiv.org/abs/2610.19957)|null|
 |**2026-10-14**|**StateCraft: Augmenting Video World Models with Abstract-State Reasoning**|Lorenzo Venturoli et.al.|[2610.19795](http://arxiv.org/abs/2610.19795)|null|
 |**2026-10-14**|**SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models**|Zefan Yang et.al.|[2610.19327](http://arxiv.org/abs/2610.19327)|null|
 |**2026-10-13**|**GAD: Geometry Attention Distillation for Consistent Video Generation**|Junfeng Ni et.al.|[2610.18779](http://arxiv.org/abs/2610.18779)|null|
 |**2026-10-13**|**Simplifying and Improving On-Policy Distillation for Few-Step Diffusion**|Jiawei Zhang et.al.|[2610.18472](http://arxiv.org/abs/2610.18472)|null|
 |**2026-10-13**|**LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout**|Ziyu Zhu et.al.|[2610.18289](http://arxiv.org/abs/2610.18289)|null|
-|**2026-10-13**|**Data-Free Continual Learning for World Action Model with Rectified Generative Replay**|Kaipeng Fang et.al.|[2610.18038](http://arxiv.org/abs/2610.18038)|null|
+|**2026-10-14**|**Data-Free Continual Learning for World Action Model with Rectified Generative Replay**|Kaipeng Fang et.al.|[2610.18038](http://arxiv.org/abs/2610.18038)|null|
 |**2026-10-13**|**Hierarchical Curriculum Learning for Surgical Video Generation: Focusing on Bilateral Axillo-Breast Approach Robotic Thyroidectomy Datasets**|Youngbin Kong et.al.|[2610.17684](http://arxiv.org/abs/2610.17684)|null|
 |**2026-10-12**|**Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration**|Jiyue Jiang et.al.|[2610.16545](http://arxiv.org/abs/2610.16545)|null|
 |**2026-10-12**|**MiMaAlign: Hierarchical Micro-Macro Alignment for Physically Plausible Video Generation**|Yansong Liu et.al.|[2610.16482](http://arxiv.org/abs/2610.16482)|null|
@@ -1509,6 +1513,18 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-14**|**SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving**|Shaoyuan Xie et.al.|[2610.20609](http://arxiv.org/abs/2610.20609)|null|
+|**2026-10-14**|**VITAL: From Visual Motion to Precise Action**|Ao Liang et.al.|[2610.20604](http://arxiv.org/abs/2610.20604)|null|
+|**2026-10-14**|**Towards Agentic Robots: Model, Data, Environment, and Harness**|Chonghan Qin et.al.|[2610.20442](http://arxiv.org/abs/2610.20442)|null|
+|**2026-10-14**|**Look Before You Restore: Learning to Predict Before Acting for Agentic Image Restoration**|Xu Zhang et.al.|[2610.20384](http://arxiv.org/abs/2610.20384)|null|
+|**2026-10-14**|**Are We Overthinking One-Step Generation?**|Woobin Park et.al.|[2610.20331](http://arxiv.org/abs/2610.20331)|null|
+|**2026-10-14**|**PAWA: Panoramic Action-conditioned World Modeling for Multiple Agents**|Siqi Yang et.al.|[2610.20240](http://arxiv.org/abs/2610.20240)|null|
+|**2026-10-14**|**Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance**|Zhuobai Dong et.al.|[2610.20220](http://arxiv.org/abs/2610.20220)|null|
+|**2026-10-14**|**OneLA: Learning Many Worlds from Latent Actions**|Ziyu Zhu et.al.|[2610.20160](http://arxiv.org/abs/2610.20160)|null|
+|**2026-10-14**|**Atomic-WAM: Execution-Grounded Atomic-Motion Reasoning for World Action Models**|Shijun Shi et.al.|[2610.20157](http://arxiv.org/abs/2610.20157)|null|
+|**2026-10-14**|**Tactile-Guided Robot Learning: From Representation Learning to Foundation Models**|Kiyanoush Nazari et.al.|[2610.20134](http://arxiv.org/abs/2610.20134)|null|
+|**2026-10-14**|**Complementary Future Token Pruning for World Action Models**|Baekseung Kim et.al.|[2610.19957](http://arxiv.org/abs/2610.19957)|null|
+|**2026-10-14**|**Neurosymbolic Learning of Interpretable World Models**|Riccardo Andreoni et.al.|[2610.19955](http://arxiv.org/abs/2610.19955)|null|
 |**2026-10-14**|**What Matters for World Modeling in Vision-Language-Action Models?**|Qisen Ma et.al.|[2610.19825](http://arxiv.org/abs/2610.19825)|null|
 |**2026-10-14**|**StateCraft: Augmenting Video World Models with Abstract-State Reasoning**|Lorenzo Venturoli et.al.|[2610.19795](http://arxiv.org/abs/2610.19795)|null|
 |**2026-10-14**|**SceneAE: Scene Generation and Reconstruction in Queryable 3D-Anchored Latent Space**|Shuofeng Sun et.al.|[2610.19708](http://arxiv.org/abs/2610.19708)|null|
@@ -1526,7 +1542,7 @@
 |**2026-10-13**|**Action Jets: Learning the Local Shape of the Action-conditioned Data Manifold**|Anton Arapin et.al.|[2610.19007](http://arxiv.org/abs/2610.19007)|null|
 |**2026-10-13**|**Contact-UAN: Unsupervised Actuator Networks as a Residual World Model for Humanoid Control**|Nolan Fey et.al.|[2610.18991](http://arxiv.org/abs/2610.18991)|null|
 |**2026-10-13**|**LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts**|Wenxuan Guo et.al.|[2610.18873](http://arxiv.org/abs/2610.18873)|null|
-|**2026-10-13**|**Interaction Latents as Actions for Contact-Rich Manipulation**|Yuhang Zheng et.al.|[2610.18855](http://arxiv.org/abs/2610.18855)|null|
+|**2026-10-14**|**Interaction Latents as Actions for Contact-Rich Manipulation**|Yuhang Zheng et.al.|[2610.18855](http://arxiv.org/abs/2610.18855)|null|
 |**2026-10-13**|**ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation**|Zijun Xu et.al.|[2610.18852](http://arxiv.org/abs/2610.18852)|null|
 |**2026-10-13**|**WorldOracle: Benchmarking Action-Conditioned World Models against Real-World Executions**|Haoyi Duan et.al.|[2610.18826](http://arxiv.org/abs/2610.18826)|null|
 |**2026-10-13**|**GreenWAM: A World Foundation Model for Robotics**|Gennady Sidorov et.al.|[2610.18774](http://arxiv.org/abs/2610.18774)|null|
@@ -2287,6 +2303,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
 |**2026-10-13**|**LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout**|Ziyu Zhu et.al.|[2610.18289](http://arxiv.org/abs/2610.18289)|null|
 |**2026-10-13**|**H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression**|Or Ronai et.al.|[2610.18125](http://arxiv.org/abs/2610.18125)|null|
 |**2026-10-13**|**CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation**|Xiaoxue Wu et.al.|[2610.17926](http://arxiv.org/abs/2610.17926)|null|

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T01:56:29+00:00",
+  "generated_at": "2026-10-15T15:48:43+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -29,85 +29,13 @@
       "comment": "",
       "score": 82,
       "priority": "must-read",
-      "summary_cn": "论文分析了自回归视频扩散模型在超出训练时域进行闭环展开时产生漂移的原因，指出短窗口监督无法约束长轨迹中的跨窗口依赖和延迟失败。作者提出 LongForcing，在保留短时域教师强制与因果 ODE 蒸馏的基础上，使用扩展时域双向教师对学生较长的在策略自展开进行分布匹配。该方法不改变学生架构或推理成本，在文本到视频和交互式动作条件世界模型上均改善了视频质量、动作跟随和长时域稳定性，并展示了最长 24 小时的定性交互展开。",
-      "contribution_cn": "1. 形式化定义了监督时域鸿沟，说明短窗口边缘分布匹配无法唯一确定长轨迹，并分析了更长轨迹对延迟失败和漂移控制的作用。2. 提出 LongForcing，将分布匹配蒸馏中的教师监督扩展到更长的学生自生成轨迹，采用扩展时域双向教师进行联合路径监督。3. 在交互式世界模型和文本到视频生成上进行评估，通过时域消融、漂移测量和人工评价验证了更长监督时域对动作跟随、视觉质量、语义一致性和长期稳定性的改善。",
-      "relevance_cn": "论文与研究重点高度相关。它直接针对自回归、因果和流式视频生成在长时域闭环展开中的误差累积问题，并将训练监督延伸到学生的长轨迹。其交互式动作条件世界模型面向用户动作响应、世界状态保持和闭环模拟；文本到视频实验则验证了长视频生成中的视觉质量与一致性。方法属于蒸馏和长时域轨迹分布匹配，不增加推理成本，但论文未重点研究稀疏注意力或缓存复用。",
-      "limitations_cn": "论文明确指出，延长监督时域并不能自动消除监督目标中的匹配松弛，也不能保证训练时域之后的稳定性；理论保证依赖教师质量、学生与教师在访问状态上的差异、教师泄漏程度以及从退化状态恢复的能力。实验中即使使用 321 帧监督，长时域漂移仍然存在。交互式训练还依赖预先指定的动作计划，论文主要报告 60 秒基准和定性长时域压力测试，24 小时结果并非完整的定量评测。论文未明确说明在更大规模模型、更多样化动作策略和真实环境中的泛化能力。",
+      "summary_cn": "论文指出，自回归视频扩散模型在长时间闭环生成中会因误差递归积累而产生视觉、运动、身份和动作一致性漂移，根源在于短训练窗口与长部署时域之间的监督差距。LongForcing 保留短时域教师强制和因果 ODE 蒸馏，仅将最终分布匹配阶段的教师扩展到更长时域，并直接监督学生自生成的连续轨迹。实验表明，延长监督时域可改善文生视频质量、长视频稳定性以及交互式世界模型的动作跟随，并在不改变架构和推理成本的情况下支持最长 24 小时的定性 rollout。",
+      "contribution_cn": "1. 形式化了监督时域差距，说明短窗口边缘分布匹配无法唯一确定长轨迹，长轨迹训练能够暴露延迟失败。2. 提出 LongForcing，在分布匹配蒸馏中使用扩展时域双向教师监督更长的学生自回归轨迹，无需修改学生架构或增加推理成本。3. 在交互式动作条件世界模型和文生视频任务上进行评估，展示监督时域对动作跟随、视觉质量、语义一致性和漂移控制的影响。",
+      "relevance_cn": "论文与研究重点高度相关：它直接研究自回归、因果、流式和长视频生成中的闭环 rollout 漂移；通过延长在线策略轨迹的教师监督，改善动作条件视觉世界模型的状态保持、动作响应和长期模拟；其方法属于蒸馏和分布匹配范畴，并明确保持实时生成学生的架构与推理成本不变。实验覆盖 60 秒交互式 rollout、30 秒文生视频以及最长 24 小时的定性压力测试，直接对应长时域世界模型和长期视频生成场景。",
+      "limitations_cn": "论文承认，延长监督时域并不能自动消除超出训练时域的失败，也不能保证匹配误差必然减小；理论保证依赖教师质量、学生与教师在访问状态上的匹配程度、教师泄漏和从漂移状态恢复的能力。实验中的定量评估主要覆盖 60 秒交互式 rollout 和 30 秒文生视频，24 小时结果属于定性压力测试。论文还指出，当前方法尚未解决持久记忆、层次化规划、目标导向行为和长期推理问题。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归视频扩散模型已成为长时域世界展开的基础。然而，当生成过程远超训练窗口时，这些模型会出现逐步漂移：视觉质量下降、运动变得不一致，并且由于生成帧被递归地重新用作上下文，物体身份会逐渐崩溃。我们研究了监督时域鸿沟：短时域蒸馏使后续展开状态缺乏直接监督。我们表明，匹配短窗口边缘分布未必能决定长时域行为，而更长的在策略轨迹能够将延迟发生的失败暴露给训练过程。这促使我们针对长时域世界模型大规模开展时间流形匹配。在此基础上，我们提出 LongForcing，一种将教师监督扩展到学生长时域自展开的蒸馏方法。LongForcing 保留短时域教师强制和因果 ODE 蒸馏阶段，同时在最终的分布匹配阶段，用扩展时域的双向教师替代真实分数教师。长时域教师使用标准的分布匹配形式监督扩展的学生自展开，无需修改学生架构，也不会增加推理成本。我们在文本到视频生成和交互式动作条件世界模型上评估 LongForcing，取得 85.52 的 VBench Quality 分数，并在第一人称消融实验中将 WorldRoamBench 60 秒动作分数提高了 23.9 分。定性压力测试进一步采样了最长达 24 小时的交互式展开，远超训练时域。这些结果表明，沿时间轴扩展监督是迈向长时域世界模型的一项实用途径。项目网站和代码地址为 https://github.com/Fantasy-AMAP/LongForcing。",
+      "abstract_cn": "自回归视频扩散模型已成为长时域世界 rollout 的基础。然而，当生成过程远超训练窗口时，这些模型会出现渐进式漂移：视觉质量下降、运动变得不一致，并且由于生成帧被递归地重新用作上下文，物体身份会逐渐崩溃。我们研究了监督时域差距：短时域蒸馏使后续 rollout 状态缺乏直接监督。我们表明，匹配短窗口边缘分布并不一定能决定长时域行为，而更长的在线策略轨迹能够将延迟失败暴露给训练过程。这促使我们针对长时域世界模型开展大规模时序流形匹配。在此基础上，我们提出 LongForcing，一种将教师监督扩展到学生自回归长时域 rollout 的蒸馏方法。LongForcing 保留短时域教师强制和因果 ODE 蒸馏阶段，同时在最终的分布匹配阶段，用扩展时域的双向教师替代真实分数教师。长时域教师使用标准的分布匹配公式监督扩展的学生自回归 rollout，同时无需修改学生架构，也不增加推理成本。我们在文生视频和交互式动作条件世界模型上评估 LongForcing，取得 85.52 的 VBench Quality 分数，并在第一人称消融实验中将 WorldRoamBench 60 秒动作分数提高了 23.9 分。定性压力测试还对最长达 24 小时的交互式 rollout 进行了采样，远超训练时域。这些结果表明，沿时间轴扩展监督，是迈向长时域世界模型的一项实用步骤。项目网站和代码位于 https://github.com/Fantasy-AMAP/LongForcing。",
       "note_path": "2026-10-15/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md"
-    },
-    {
-      "id": "2610.17434",
-      "date": "2026-10-12",
-      "topics": [
-        "World Models"
-      ],
-      "title": "World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models",
-      "abstract": "Recent advances in video world models have enabled plausible interactive environments, yet long-horizon generation places a fundamental demand on visual memory: the previously observed world must remain consistent as the model continues to generate. Existing autoregressive approaches often implicitly rely on the generative model itself to retain such information, leading to spatial memory decay beyond the active context. We introduce World-T3, a camera-controlled video world model with a test-time training memory that consolidates past observations into dedicated model parameters. To robustly update this memory, we propose a recursive least-squares rule that incrementally absorbs novel visual features via online pose-keyed memory updates. Our TTT memory reads out previously observed scene features from the fast-weight state by camera pose, enabling consistent generation with constant storage and per-step computation regardless of rollout length. To facilitate real-time interactive generation with this robust memory, we further distill the autoregressive model into a few-step generator via dual-teacher distribution matching. On a long-horizon revisit benchmark, World-T3 raises revisit PSNR from 13.52 to 18.31 dB and reduces absolute rotation error from 3.344 to 1.075 relative to the strongest baseline on both metrics, while sustaining 20.6 FPS at 1280 x 704 on a single NVIDIA B200 GPU.",
-      "authors": [
-        "Junyi Wu",
-        "Zekun Li",
-        "Chenhongyi Yang",
-        "Chen Guo",
-        "Lingchen Yang",
-        "Yongan Zhang",
-        "Xinyi Zhang",
-        "Hongbing Hu",
-        "Bartek Rymkowski",
-        "Srinath Sridhar",
-        "Yan Yan",
-        "Xijie Huang"
-      ],
-      "url": "http://arxiv.org/abs/2610.17434v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.MM"
-      ],
-      "comment": "Project Page: https://adreamwu.github.io/World-T3/",
-      "score": 76,
-      "priority": "must-read",
-      "summary_cn": "论文研究视频世界模型在长时域交互中的场景持久性问题：当已观察区域离开有限上下文后，传统自回归模型会遗忘其内容，并在摄像机返回时重新生成不一致的场景。World-T3 将摄像机位姿映射为记忆键、将视觉隐藏表示作为值，并通过测试时训练把被逐出上下文的观测写入固定大小的快速权重记忆。针对平滑摄像机轨迹造成的键相关和冗余问题，作者采用在线递归最小二乘更新，以抑制已存储方向、保留新信息。模型通过三阶段训练获得摄像机控制、自回归生成和持久记忆能力，再利用双教师分布匹配将采样压缩为 4 步。由 120 个出入轨迹片段组成的评测显示，模型在重访一致性、摄像机跟踪和实时性能方面优于五个基线；4 步模型达到 18.31 dB 重访 PSNR、1.075° 绝对旋转误差和 20.6 FPS，但视觉质量和局部一致性相较 50 步教师略有下降。",
-      "contribution_cn": "1. 提出 World-T3，一种带有基于摄像机位姿索引的测试时训练记忆的视频世界模型，将历史观测整合到参数化快速权重中，使记忆存储和每步访问成本不随 rollout 长度增长。 2. 提出测试时记忆整合方法，以在线递归最小二乘更新处理平滑摄像机轨迹中的高度相关位姿键，通过白化式预条件减少冗余写入并保护已有记忆。 3. 设计三阶段训练流程：从预训练视频扩散模型学习双向摄像机控制教师，转换为带有有界上下文和 TTT 记忆的块因果自回归模型，再通过双教师分布匹配蒸馏为 4 步生成器。 4. 在长时域重访基准上，相比五个近期视频世界模型，在六项重访一致性指标中均排名第一，并在单张 NVIDIA B200 GPU 上以 1280×704 分辨率达到 20.6 FPS。",
-      "relevance_cn": "该工作与视频生成和视频扩散直接相关：它以视频扩散模型为骨干，并将其改造成可交互的自回归世界模型。它尤其契合动作条件视觉世界模型和闭环模拟方向，因为生成过程由连续的 6-DoF 摄像机轨迹控制，并通过出入式轨迹评测模型在返回已访问位置时能否保持世界状态。它针对自回归、因果、流式和长视频生成中的上下文遗忘问题，用固定大小的参数化记忆替代不断增长的历史帧、几何或记忆 token。它还与实时生成、蒸馏和缓存复用密切相关：双教师蒸馏将 50 步模型压缩为 4 步生成器，推理中结合记忆读取缓存、编译和高效注意力，在 B200 上达到 20.6 FPS。其核心贡献是把长期视觉状态写入可在线更新的模型参数，并以位姿查询，从而在有限上下文下支持闭环式场景重访。",
-      "limitations_cn": "论文明确显示，4 步蒸馏模型相较 50 步教师的 VBench 得分从 75.15 降至 74.52，局部记忆指标从 0.9442 降至 0.9258，说明实时加速仍以部分局部视觉质量和一致性为代价。其参数化记忆容量固定，论文指出这依赖模型参数空间的表达能力；在观测内容超过该表达能力时可能存在记忆冲突、信息压缩或遗忘风险。评测主要基于 120 个出入式重访片段、预先给定的 6-DoF 摄像机轨迹和特定数据集，论文未明确说明在更开放的动作控制、复杂动态物体、非摄像机动作、极长 rollout 或真实交互闭环中的表现。实时速度是在单张 NVIDIA B200 GPU、1280×704 分辨率下报告的，不能直接代表普通硬件上的实时性能。论文未明确说明模型在记忆更新错误、位姿估计误差或场景发生真实变化时的鲁棒性。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "近年来，视频世界模型取得了进展，能够生成合理的交互式环境；然而，长时域生成对视觉记忆提出了根本要求：随着模型持续生成，先前观察到的世界必须保持一致。现有自回归方法通常隐式依赖生成模型自身保留这类信息，导致超过活动上下文范围后出现空间记忆衰减。我们提出 World-T3，一种由摄像机控制的视频世界模型，并引入测试时训练记忆，将过去的观测整合到专用模型参数中。为实现稳健的记忆更新，我们提出递归最小二乘规则，通过在线、由位姿作为键控的记忆更新，逐步吸收新的视觉特征。我们的 TTT 记忆根据摄像机位姿，从快速权重状态中读取此前观察到的场景特征，从而实现一致的生成，并使存储需求和每步计算量不受 rollout 长度影响、保持恒定。为了利用这种稳健记忆实现实时交互式生成，我们进一步通过双教师分布匹配，将自回归模型蒸馏为少步生成器。在长时域重访基准上，相对于两个指标均最强的基线模型，World-T3 将重访 PSNR 从 13.52 dB 提升至 18.31 dB，并将绝对旋转误差从 3.344° 降低至 1.075°；同时，在单张 NVIDIA B200 GPU 上以 1280×704 分辨率保持 20.6 FPS 的速度。",
-      "note_path": "2026-10-15/2610.17434-world-t3-test-time-training-as-persistent-memory.md"
-    },
-    {
-      "id": "2610.16545",
-      "date": "2026-10-12",
-      "topics": [
-        "Video Generation",
-        "Efficient Video Diffusion"
-      ],
-      "title": "Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration",
-      "abstract": "Feature caching has become a mainstream training-free strategy for accelerating video diffusion models by reusing intermediate outputs across denoising steps. However, existing adaptive methods rely on heuristic difference measures misaligned with actual generation quality, employ a single global threshold that ignores heterogeneous phase dynamics, and never validate their budget estimates against true approximation error, allowing systematic bias to propagate uncorrected. We propose \\textbf{AlignCache}, a closed-loop caching framework that directly aligns scheduling decisions with their true influence on the final generated video through three tightly coupled components: (1) phase-adaptive budget routing that partitions the denoising trajectory into structurally distinct phases, each governed by an independent threshold and a staleness-aware guard; (2) closed-loop threshold calibration that exploits counterfactual error measurement at the classifier-free guided output level to adjust decision boundaries online via an EMA feedback loop; and (3) momentum-augmented draft synthesis combining direction-magnitude gated residual extrapolation with anchor-guided unconditional correction. By transforming scheduling from a static risk accumulator into a feedback-driven, self-correcting controller, AlignCache consistently achieves superior acceleration-quality trade-offs across state-of-the-art video generation models. Our code is available at https://github.com/jiangjyjy/AlignCache.",
-      "authors": [
-        "Jiyue Jiang",
-        "Zhiyu Huo",
-        "Yuhan Chen",
-        "Yanruisheng Shao",
-        "Gong Zhang",
-        "Lei Deng"
-      ],
-      "url": "http://arxiv.org/abs/2610.16545v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 76,
-      "priority": "must-read",
-      "summary_cn": "本文提出 AlignCache，用于免训练加速视频扩散模型的特征缓存。该方法将去噪过程划分为早、中、晚三个阶段，使用阶段专属阈值、累计风险预算和缓存陈旧度上限进行路由；在触发精确计算时，通过比较反事实缓存草稿与真实 CFG 引导输出，在线校准阈值；同时利用带方向—幅度门控的动量残差外推和锚点引导的无条件校正，提高跳步预测质量。在 Wan2.1-1.3B、Open-Sora-1.2 和 HunyuanVideo 上，AlignCache分别获得 2.29×、1.86× 和 2.15× 的加速，并在参考保真度指标上优于所比较的方法。",
-      "contribution_cn": "1. 指出现有缓存调度中的启发式指标与最终生成质量不一致、单一全局阈值无法适应不同去噪阶段，以及预算误差缺乏闭环校正等问题，并提出 AlignCache 框架。2. 提出阶段自适应预算路由机制，为不同阶段设置独立阈值，并引入缓存陈旧度保护和在线阈值校准。3. 在 CFG 引导输出层面进行反事实误差测量，利用按阶段维护的指数移动平均反馈动态修正阈值。4. 提出动量增强的草稿合成方法，包括带方向—幅度门控的残差外推和锚点引导的无条件分支校正。5. 在三种视频扩散模型上展示了更优的加速—质量 Pareto 权衡，并通过消融实验分析了预热步数、阈值、阶段划分、运动增益和外推阶数的影响。",
-      "relevance_cn": "与视频生成和视频扩散高度相关：该工作直接针对 DiT 视频扩散模型的迭代去噪成本，通过特征缓存减少精确网络前向计算。它涉及实时生成和推理加速，并通过缓存复用、残差预测和闭环误差反馈提升速度—质量权衡。阶段化调度、陈旧度控制和动量外推也与长视频生成中的冗余管理有关；论文进一步提出将该闭环原则扩展到稀疏注意力、token 剪枝、量化、蒸馏以及长视频生成。不过，本文核心对象是缓存加速，并非动作条件视觉世界模型、闭环环境模拟或自回归/因果流式生成。",
-      "limitations_cn": "论文明确指出：当前校准按提示词独立进行，可能产生较高预热开销；尚未充分利用提示词条件先验来减少短轨迹上的预热成本。方法尚未扩展到长视频生成和多模态扩散流水线。论文实验仅覆盖 Wan2.1-1.3B、Open-Sora-1.2 和 HunyuanVideo，并使用有限提示词和随机种子进行调参与评估，跨模型和更广泛数据分布的泛化仍需验证。方法的性能依赖阈值、阶段边界、预热步数及运动增益等超参数，且更激进的缓存会带来保真度下降。与量化、蒸馏或编译器内核融合等其他加速技术的组合效果尚未实证。对于动作条件视觉世界模型、闭环模拟以及自回归或实时流式生成，论文未提供直接实验依据。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "特征缓存已成为加速视频扩散模型的主流免训练策略，其通过在去噪步骤之间复用中间输出来提升速度。然而，现有自适应方法依赖与实际生成质量不一致的启发式差异度量，采用忽略不同阶段动态特性的单一全局阈值，并且从未用真实近似误差验证其预算估计，使系统性偏差得以未经修正地传播。我们提出 AlignCache，一种闭环缓存框架，通过以下三个紧密耦合的组件，使调度决策直接与其对最终生成视频的真实影响相匹配：（1）阶段自适应预算路由，将去噪轨迹划分为结构不同的阶段，每个阶段采用独立阈值和感知陈旧度的保护机制；（2）闭环阈值校准，在无分类器引导输出层面利用反事实误差测量，通过指数移动平均反馈回路在线调整决策边界；（3）动量增强的草稿合成，将方向—幅度门控的残差外推与锚点引导的无条件校正相结合。AlignCache将调度从静态风险累积器转变为反馈驱动、自我校正的控制器，在多种最先进的视频生成模型上始终实现更优的加速—质量权衡。我们的代码已发布于 https://github.com/jiangjyjy/AlignCache。",
-      "note_path": "2026-10-15/2610.16545-heuristics-are-not-enough-calibrated-and-correct.md"
     },
     {
       "id": "2610.17688",
@@ -134,12 +62,14 @@
       ],
       "comment": "",
       "score": 75,
-      "priority": "skim",
-      "summary_cn": "Occupancy world models provide a structured, metric representation of future driving scenes, making them a promising basis for end-to-end autonomous driving.",
-      "contribution_cn": "We propose OccWAM, an occupancy-native world-action model that jointly generates dense future occupancy and continuous ego trajectories via flow matching conditioned on scene representations.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, driving",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "论文提出 OccWAM，将稠密度量占用与连续自车轨迹置于同一个条件流匹配生成过程中。模型采用共享的三专家 Mixture-of-Transformers，使世界专家与动作专家在每一层双向交换信息。两阶段场景到自车流程先在固定场景坐标系中生成占用和绝对轨迹，再依据预测轨迹将占用重索引到未来自车坐标系，并联合细化占用与相邻运动增量。实验显示，该方法在 Bench2Drive 闭环驾驶以及 nuScenes 开环规划和未来占用预测中均达到或超过对比方法。",
+      "contribution_cn": "1. 提出以占用为核心的世界—动作模型 OccWAM，通过耦合条件流匹配联合生成稠密度量未来占用和连续自车运动，使占用预测能够直接参与动作生成。2. 提出场景到自车的两阶段世界—动作流匹配：第一阶段生成场景中心占用与绝对轨迹，第二阶段将预测世界重索引到轨迹诱导的自车坐标系，并联合运输占用与自车位姿增量。3. 构建共享三专家 Mixture-of-Transformers，通过逐层双向交互实现世界与动作状态的联合建模。4. 在 Bench2Drive 和 nuScenes 上验证了闭环驾驶、开环规划及未来占用预测性能，并通过消融实验证明了双向信息交互和第二阶段联合细化的作用。",
+      "relevance_cn": "与研究重点的关系具体体现在：该工作属于动作条件世界模型和闭环驾驶仿真范畴，显式预测未来场景占用并同时生成自车动作，可用于规划—世界预测的闭环交互。它采用连续流匹配而非离散自回归生成，具有联合生成世界状态与动作的特点；场景中心到自车中心的两阶段变换，以及世界专家与动作专家的双向信息交换，增强了面向未来运动的规划对齐。模型保留显式语义几何而不生成视频像素，因此与视频扩散世界模型存在表示层面的差异。论文没有重点讨论实时生成、蒸馏、稀疏注意力或缓存复用；不过其推理时每个阶段使用一次共享世界—动作骨干，且第一阶段使用单步求解，体现了一定的推理效率设计。",
+      "limitations_cn": "论文未明确说明",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "占用世界模型能够以结构化、度量化的方式表示未来驾驶场景，因此有望成为端到端自动驾驶的基础。然而，现有的占用感知规划器通常通过分层耦合或并行多任务学习来连接占用预测与动作生成。分层方法要么先完整预测未来占用再生成动作，要么进行动作条件化的展开以评估轨迹；并行多任务方法则通过独立分支或辅助目标，在规划的同时预测占用。这些接口仍然保留了明确的生成顺序或角色不对称性，限制了世界预测与动作生成在轨迹形成过程中的相互作用。我们提出 OccWAM，一种以占用为核心的世界—动作模型，通过以场景表示为条件的流匹配联合生成稠密未来占用和连续自车轨迹。在此联合 formulation 的基础上，我们提出场景到自车的世界—动作流匹配，这是一种两阶段方法。第一阶段在场景中心坐标系中，同时预测占用和绝对自车轨迹，从而提供对未来场景演化的稳定表示。随后，根据初始轨迹所确定的未来自车坐标系，对同一个预测世界重新索引；在这些坐标系中，自车运动由相邻位姿增量表示，第二个联合流进一步细化以动作为对齐目标的自车中心占用和运动。不同于基于视频的世界—动作模型，OccWAM 保留了显式语义几何结构，无需生成像素即可直接进行规划推理。在 Bench2Drive 和 nuScenes 上的大量实验表明，OccWAM 在闭环驾驶、开环规划和未来占用预测方面均取得了最先进的性能。",
+      "note_path": "2026-10-15/2610.17688-occwam-occupancy-world-action-models-with-joint.md"
     },
     {
       "id": "2610.17926",
@@ -163,12 +93,14 @@
       ],
       "comment": "Project Page: https://uknowsth.github.io/CineMem/",
       "score": 75,
-      "priority": "skim",
-      "summary_cn": "Autoregressive video generation relies on memory retrieval to model long-range dependencies.",
-      "contribution_cn": "To bridge this gap, we introduce CineMem, an attention-aligned fine-grained memory retrieval framework that combines online memory organization with query-adaptive retrieval for autoregressive multi-shot video generation.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, long video, cache, kv cache, efficient, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "CineMem 面向需要流式、长时域生成的自回归多镜头视频生成。作者先将双向视频模型适配为按块自回归生成的多镜头模型，并通过重采样历史上下文缓解训练与推理不一致造成的误差累积。注意力分析显示，历史令牌具有跨帧的语义聚类结构，而不同查询令牌和注意力头对历史记忆的偏好差异显著。基于此，CineMem 使用按相似度在线组织的聚类 KV 缓存，并让每个查询-注意力头独立检索相关记忆簇，同时保留首块和最新块作为锚点。该方法在固定预算下扩大有效历史感受野，减少帧级共享检索的冗余。作者还提出同时评估镜头间语义保持和预期镜头变化是否实现的 PTCS 指标。基于 Wan2.1-T2V-1.3B 的实验表明，CineMem 在 15 秒多镜头视频上改善了转场控制、镜头内一致性和镜头间一致性，并在 PTCS 上优于所比较的因果和双向基线；消融实验也验证了聚类记忆和查询级检索的作用。",
+      "contribution_cn": "1. 提出 CineMem，将在线聚类 KV 缓存与查询级、注意力头级自适应检索结合，用于受限记忆预算下的自回归多镜头长视频生成。2. 通过注意力分析揭示历史视觉令牌的跨帧语义聚类结构及不同查询-注意力头的异质记忆偏好，并据此设计更细粒度的记忆组织和路由机制。3. 提出带有聚类平衡、分裂与合并、负载惩罚及分配稳定项的在线 KV 缓存，使历史令牌能够动态形成语义相关的检索单元。4. 提出查询-头独立的记忆检索，在相同检索预算下扩大历史信息覆盖范围，并近似完整记忆注意力。5. 提出带重采样历史上下文的长时域自回归适配训练策略，以缓解误差累积和训练-推理差距。6. 提出 VLM 辅助的 Prompt-conditioned Transition-Consistency Score，通过联合衡量语义保持与预期转场实现，更忠实地评估多镜头视频的镜头间一致性。",
+      "relevance_cn": "与研究重点高度相关。该工作直接研究自回归、因果、流式和长视频生成，通过块级自回归 rollout 以及历史 KV 缓存实现长程依赖建模；其核心贡献是面向视频扩散自回归生成的稀疏、细粒度记忆检索和缓存复用。在线聚类 KV 缓存减少了完整历史注意力的计算和存储压力，查询级及头级路由扩大了固定预算下的有效历史感受野，属于稀疏注意力与缓存复用方向。方法尤其针对多镜头转场和重新访问场景中的长期语义一致性，而非动作条件视觉世界模型或闭环交互模拟。论文报告的理论计算分析显示，聚类检索总 FLOPs 为 638.82 TFLOPs，低于完整历史注意力的 932.56 TFLOPs，并略低于帧级检索的 650.02 TFLOPs。",
+      "limitations_cn": "论文未明确说明局限性。根据论文报告的实验范围可知，验证主要基于 Wan2.1-T2V-1.3B、45K 多镜头视频数据集、100 个评估提示和 15 秒视频，尚未证明方法在更长视频、更大模型、更广泛数据分布或真实交互式闭环环境中的表现。在线聚类还会引入额外计算开销，且方法是对完整历史注意力的近似；论文未明确量化其在更长时域下的延迟、显存占用、鲁棒性或聚类失败情形。其 PTCS 依赖 VLM 辅助评估，论文未明确说明该评估协议在不同 VLM、提示词或人工评价下的一致性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归视频生成依赖记忆检索来建模长程依赖。对于多镜头生成而言，这一能力尤为关键，因为模型需要在镜头切换时协调大幅度的视觉变化与持续的语义连贯性。现有方法通常在帧级别进行记忆检索，并让所有查询令牌共享相同的历史上下文，忽略了不同查询令牌的信息需求具有异质性，从而导致冗余检索以及历史记忆利用效率低下。为弥合这一差距，我们提出 CineMem：一种面向自回归多镜头视频生成的注意力对齐细粒度记忆检索框架，将在线记忆组织与查询自适应检索相结合。具体而言，受注意力分析所揭示的内在记忆访问模式指导，我们提出在线聚类 KV 缓存，作为覆盖所有历史令牌的记忆组织策略，实现语义感知的记忆分组与更精确的检索。此外，我们引入查询级检索机制，在固定检索预算下提供对历史信息更广泛的访问，从而提升长期记忆利用率。两种设计共同使多镜头视频生成器能够保持镜头切换之间的长程一致性，尤其是在重新访问先前内容的场景中，同时在受限记忆预算下近似实现完整记忆访问。为促进评估，我们进一步提出一套面向任务、借助视觉语言模型的指标，用于忠实评估镜头间一致性。大量实验验证了所提出框架的有效性。",
+      "note_path": "2026-10-15/2610.17926-cinemem-attention-aligned-fine-grained-memory-re.md"
     },
     {
       "id": "2610.19327",
@@ -201,6 +133,36 @@
       "summary_cn": "Robotic ultrasound can standardize image acquisition and reduce operator workload and variability, but policy learning remains limited by the lack of realistic, controllable simulation environments.",
       "contribution_cn": "We propose SonoWorld, a causal ultrasound world model that learns video dynamics from unlabeled clinical videos and grounds them to 6-DoF control using a small set of freehand clinical scans tracked with an EM sensor.",
       "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, interactive, simulation, autoregressive, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.20220",
+      "date": "2026-10-14",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance",
+      "abstract": "Autoregressive generation underlies real-time, causal video synthesis and is the backbone of video world models. Today's dominant approach distills a bidirectional diffusion model into a causal few-step student, but existing pipelines make this conversion prohibitively expensive, requiring offline Probability Flow ODE} (PF-ODE) trajectories that cost tens of thousands of GPU-hours and terabytes of storage. We show it can be made dramatically more efficient. Pushing this efficiency to its extreme, we reduce trajectory supervision to a single sample, the strictest setting possible, and find that it causes severe quality collapse. We trace this to the teacher's trajectory geometry: the high-noise regime, governing semantic layout and motion, and the low-noise regime, governing fine texture exhibit fundamentally different curvature and optimization behavior, so a single monolithic student cannot jointly fit both, causing severe representation interference. Motivated by this, we propose Glance Forcing, a lightweight distillation framework that decouples the denoising trajectory into two complementary slow and fast experts, each guided by a tailored, stage-specific objective, while keeping the pretrained teacher entirely frozen. This decoupling further reveals a general mechanism underlying few-step distillation: PF-ODE distillation mainly straightens the few-step trajectory geometry, while the subsequent distribution-matching stage independently governs distributional quality. Using only one PF-ODE trajectory, Glance Forcing already surpasses the fully-trained state-of-the-art baseline, raising the VBench Total score from 84.04 to 84.22 while cutting trajectory-collection cost from thousands of GPU-hours to about one A100-GPU-hour, with markedly larger gains in dynamic degree, VisionReward, and instruction-following, and consistent preference from human raters over strong baselines.",
+      "authors": [
+        "Zhuobai Dong",
+        "Junchao Yi",
+        "Hu Jian Guo",
+        "Linjie Li",
+        "Rui Zhao",
+        "Alex Jinpeng Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.20220v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "skim",
+      "summary_cn": "Autoregressive generation underlies real-time, causal video synthesis and is the backbone of video world models.",
+      "contribution_cn": "Motivated by this, we propose Glance Forcing, a lightweight distillation framework that decouples the denoising trajectory into two complementary slow and fast experts, each guided by a tailored, stage-specific objective, while keeping the pretrained teacher entirely frozen.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, video world model, autoregressive, causal video, real-time, few-step",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -325,6 +287,34 @@
       "summary_cn": "A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions.",
       "contribution_cn": "We present GreenWAM, a world foundation model for robotics, together with the recipe that produces it: (1) a shared anatomical action space that describes 20 robot families, from bimanual arms to dexterous humanoids, in common joint coordinates; (2) joint training on these families in visual, action-conditioned and world-action modes; and (3) policies that split an action expert off the generator.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18135",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "SkipWorld: Latent Skip Planning with Distilled World Models for Efficient Visual Navigation",
+      "abstract": "World-model-based visual navigation enables action planning by predicting future states under candidate trajectories. However, long-horizon rollout remains challenging: models are often trained with ground-truth visual histories but deployed in closed-loop prediction, and evaluating many candidates with step-by-step rollout is computationally expensive. We propose SkipWorld, a latent skip planning framework for efficient visual navigation. SkipWorld introduces three components: (i) Latent AutoRoll, which trains a world model to recursively roll out future states in latent space, reducing the mismatch between training and closed-loop inference; (ii) SkipDistill, which distills the latent autoregressive model into a skip world model that directly predicts long-stride future latent states; and (iii) Skip-then-Refine Planning, a dual-model coarse-to-fine planner that first filters candidate trajectories with the skip model and then reranks selected candidates with the stronger autoregressive model. This design preserves accurate trajectory evaluation while reducing redundant rollout computation. Experiments on RECON, HuRoN, SCAND, and TartanDrive show that, compared with NWM, SkipWorld reduces the average ATE by 4.2% and RPE by 2.7%, while decreasing planning time by 62.4% with a 2.7-fold speedup.",
+      "authors": [
+        "Yifei Yang",
+        "Zehua Fan",
+        "Zike Yan",
+        "Zhongyu Li",
+        "Yan Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.18135v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "World-model-based visual navigation enables action planning by predicting future states under candidate trajectories.",
+      "contribution_cn": "We propose SkipWorld, a latent skip planning framework for efficient visual navigation.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, closed-loop, autoregressive, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

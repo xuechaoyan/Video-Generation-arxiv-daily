@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-15T01:56:29+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-15T15:48:43+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,72 +10,72 @@
 - **评分**：82/100
 - **作者**：Ziyu Zhu, Zhaoxu Sun, Fan Jiang et al.
 - **方向**：Video Generation, World Models, Autoregressive and Streaming Video
-- **一句话**：论文分析了自回归视频扩散模型在超出训练时域进行闭环展开时产生漂移的原因，指出短窗口监督无法约束长轨迹中的跨窗口依赖和延迟失败。作者提出 LongForcing，在保留短时域教师强制与因果 ODE 蒸馏的基础上，使用扩展时域双向教师对学生较长的在策略自展开进行分布匹配。该方法不改变学生架构或推理成本，在文本到视频和交互式动作条件世界模型上均改善了视频质量、动…
+- **一句话**：论文指出，自回归视频扩散模型在长时间闭环生成中会因误差递归积累而产生视觉、运动、身份和动作一致性漂移，根源在于短训练窗口与长部署时域之间的监督差距。LongForcing 保留短时域教师强制和因果 ODE 蒸馏，仅将最终分布匹配阶段的教师扩展到更长时域，并直接监督学生自生成的连续轨迹。实验表明，延长监督时域可改善文生视频质量、长视频稳定性以及交互式世界模型…
 - **精读笔记**：[打开笔记](../notes/2026-10-15/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md)
 
-### 2. [World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models](http://arxiv.org/abs/2610.17434v1)
-
-- **评分**：76/100
-- **作者**：Junyi Wu, Zekun Li, Chenhongyi Yang et al.
-- **方向**：World Models
-- **一句话**：论文研究视频世界模型在长时域交互中的场景持久性问题：当已观察区域离开有限上下文后，传统自回归模型会遗忘其内容，并在摄像机返回时重新生成不一致的场景。World-T3 将摄像机位姿映射为记忆键、将视觉隐藏表示作为值，并通过测试时训练把被逐出上下文的观测写入固定大小的快速权重记忆。针对平滑摄像机轨迹造成的键相关和冗余问题，作者采用在线递归最小二乘更新，以抑制已…
-- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.17434-world-t3-test-time-training-as-persistent-memory.md)
-
-### 3. [Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration](http://arxiv.org/abs/2610.16545v1)
-
-- **评分**：76/100
-- **作者**：Jiyue Jiang, Zhiyu Huo, Yuhan Chen et al.
-- **方向**：Video Generation, Efficient Video Diffusion
-- **一句话**：本文提出 AlignCache，用于免训练加速视频扩散模型的特征缓存。该方法将去噪过程划分为早、中、晚三个阶段，使用阶段专属阈值、累计风险预算和缓存陈旧度上限进行路由；在触发精确计算时，通过比较反事实缓存草稿与真实 CFG 引导输出，在线校准阈值；同时利用带方向—幅度门控的动量残差外推和锚点引导的无条件校正，提高跳步预测质量。在 Wan2.1-1.3B、O…
-- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.16545-heuristics-are-not-enough-calibrated-and-correct.md)
-
-## 快速浏览
-
-### 1. [OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching](http://arxiv.org/abs/2610.17688v1)
+### 2. [OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching](http://arxiv.org/abs/2610.17688v1)
 
 - **评分**：75/100
 - **作者**：Qihang Huang, Wenhui Huang, Collister Chua et al.
 - **方向**：World Models
-- **一句话**：Occupancy world models provide a structured, metric representation of future driving scenes, making them a promising basis for end-to-end autonomous driving.
+- **一句话**：论文提出 OccWAM，将稠密度量占用与连续自车轨迹置于同一个条件流匹配生成过程中。模型采用共享的三专家 Mixture-of-Transformers，使世界专家与动作专家在每一层双向交换信息。两阶段场景到自车流程先在固定场景坐标系中生成占用和绝对轨迹，再依据预测轨迹将占用重索引到未来自车坐标系，并联合细化占用与相邻运动增量。实验显示，该方法在 Benc…
+- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.17688-occwam-occupancy-world-action-models-with-joint.md)
 
-### 2. [CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation](http://arxiv.org/abs/2610.17926v1)
+### 3. [CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation](http://arxiv.org/abs/2610.17926v1)
 
 - **评分**：75/100
 - **作者**：Xiaoxue Wu, Xinyu Gao, Fang Yu et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive video generation relies on memory retrieval to model long-range dependencies.
+- **一句话**：CineMem 面向需要流式、长时域生成的自回归多镜头视频生成。作者先将双向视频模型适配为按块自回归生成的多镜头模型，并通过重采样历史上下文缓解训练与推理不一致造成的误差累积。注意力分析显示，历史令牌具有跨帧的语义聚类结构，而不同查询令牌和注意力头对历史记忆的偏好差异显著。基于此，CineMem 使用按相似度在线组织的聚类 KV 缓存，并让每个查询-注意力…
+- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.17926-cinemem-attention-aligned-fine-grained-memory-re.md)
 
-### 3. [SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models](http://arxiv.org/abs/2610.19327v1)
+## 快速浏览
+
+### 1. [SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models](http://arxiv.org/abs/2610.19327v1)
 
 - **评分**：75/100
 - **作者**：Zefan Yang, Zheyuan Zhang, Boris Maihe et al.
 - **方向**：Video Generation, World Models
 - **一句话**：Robotic ultrasound can standardize image acquisition and reduce operator workload and variability, but policy learning remains limited by the lack of realistic, controllable simul…
 
-### 4. [Into the LidarVerse: A Real-Time Unified LiDAR World Model Across Tasks and Sensors](http://arxiv.org/abs/2610.19201v1)
+### 2. [Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance](http://arxiv.org/abs/2610.20220v1)
+
+- **评分**：75/100
+- **作者**：Zhuobai Dong, Junchao Yi, Hu Jian Guo et al.
+- **方向**：Video Generation, World Models
+- **一句话**：Autoregressive generation underlies real-time, causal video synthesis and is the backbone of video world models.
+
+### 3. [Into the LidarVerse: A Real-Time Unified LiDAR World Model Across Tasks and Sensors](http://arxiv.org/abs/2610.19201v1)
 
 - **评分**：74/100
 - **作者**：Henry Che, Xuanchi Ren, Sanja Fidler et al.
 - **方向**：World Models
 - **一句话**：We present LidarVerse, a real-time unified LiDAR world model for sensor simulation across tasks and sensors.
 
-### 5. [LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts](http://arxiv.org/abs/2610.18873v1)
+### 4. [LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts](http://arxiv.org/abs/2610.18873v1)
 
 - **评分**：73/100
 - **作者**：Wenxuan Guo, Yingping Liang, Zhaoguo Wang et al.
 - **方向**：World Models
 - **一句话**：Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment.
 
-### 6. [H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression](http://arxiv.org/abs/2610.18125v1)
+### 5. [H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression](http://arxiv.org/abs/2610.18125v1)
 
 - **评分**：72/100
 - **作者**：Or Ronai, Vladimir Kulikov, Tomer Michaeli
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs.
 
-### 7. [GreenWAM: A World Foundation Model for Robotics](http://arxiv.org/abs/2610.18774v1)
+### 6. [GreenWAM: A World Foundation Model for Robotics](http://arxiv.org/abs/2610.18774v1)
 
 - **评分**：69/100
 - **作者**：Gennady Sidorov, Valerii Kornilov, Denis Grankin et al.
 - **方向**：World Models
 - **一句话**：A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions.
+
+### 7. [SkipWorld: Latent Skip Planning with Distilled World Models for Efficient Visual Navigation](http://arxiv.org/abs/2610.18135v1)
+
+- **评分**：69/100
+- **作者**：Yifei Yang, Zehua Fan, Zike Yan et al.
+- **方向**：World Models
+- **一句话**：World-model-based visual navigation enables action planning by predicting future states under candidate trajectories.

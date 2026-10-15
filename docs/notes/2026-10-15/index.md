@@ -3,5 +3,5 @@
 > 共 3 篇。返回 [全部日期](../index.md)。
 
 - [LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout](2610.18289-longforcing-scaling-temporal-manifold-matching-f.md) · 82/100
-- [World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models](2610.17434-world-t3-test-time-training-as-persistent-memory.md) · 76/100
-- [Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration](2610.16545-heuristics-are-not-enough-calibrated-and-correct.md) · 76/100
+- [OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching](2610.17688-occwam-occupancy-world-action-models-with-joint.md) · 75/100
+- [CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation](2610.17926-cinemem-attention-aligned-fine-grained-memory-re.md) · 75/100
