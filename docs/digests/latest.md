@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-14T16:00:32+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-15T01:56:29+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,72 +10,72 @@
 - **评分**：82/100
 - **作者**：Ziyu Zhu, Zhaoxu Sun, Fan Jiang et al.
 - **方向**：Video Generation, World Models, Autoregressive and Streaming Video
-- **一句话**：论文指出，自回归视频扩散模型在长时间闭环生成中会因误差递归累积而发生视觉、运动、身份和动作一致性漂移，根本原因是短时域训练与长时域部署之间存在监督时域差距。LongForcing 保留短时域教师强制和因果 ODE 蒸馏，仅在分布匹配阶段引入扩展时域双向教师，对学生更长的自生成轨迹进行在策略监督。实验表明，该方法在文本到视频和动作条件交互式世界模型上均能改善…
-- **精读笔记**：[打开笔记](../notes/2026-10-14/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md)
+- **一句话**：论文分析了自回归视频扩散模型在超出训练时域进行闭环展开时产生漂移的原因，指出短窗口监督无法约束长轨迹中的跨窗口依赖和延迟失败。作者提出 LongForcing，在保留短时域教师强制与因果 ODE 蒸馏的基础上，使用扩展时域双向教师对学生较长的在策略自展开进行分布匹配。该方法不改变学生架构或推理成本，在文本到视频和交互式动作条件世界模型上均改善了视频质量、动…
+- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md)
 
-### 2. [TempoKV: Predictive KV Cache Quantization for Autoregressive Video Generation](http://arxiv.org/abs/2610.15324v1)
-
-- **评分**：79/100
-- **作者**：Jiahui Hu, Weile Mo, Peiliang Cai et al.
-- **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：论文针对自回归视频扩散模型中随视频长度线性增长的 KV 缓存内存瓶颈，提出无需训练的 TempoKV 预测式量化方法。作者发现，键可由同一空间位置的历史键较好预测，而值主要依赖当前对齐的键，并辅以短值历史。因此，TempoKV分别预测键和值，只量化预测残差，并为键分配更高精度；预测器通过少量 BF16 轨迹离线线性回归校准。Self-Forcing、Cau…
-- **精读笔记**：[打开笔记](../notes/2026-10-14/2610.15324-tempokv-predictive-kv-cache-quantization-for-aut.md)
-
-### 3. [World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models](http://arxiv.org/abs/2610.17434v1)
+### 2. [World-T3: Test-Time Training as Persistent Memory for Real-Time Video World Models](http://arxiv.org/abs/2610.17434v1)
 
 - **评分**：76/100
 - **作者**：Junyi Wu, Zekun Li, Chenhongyi Yang et al.
 - **方向**：World Models
-- **一句话**：World-T3 面向需要长期保持场景一致性的相机控制视频世界模型。它在有限的局部上下文之外，引入基于测试时训练的持久参数记忆：将被上下文淘汰的视频块编码为相机位姿—视觉内容键值对，并通过递归最小二乘更新快速权重；生成时再根据目标相机位姿检索历史场景特征。作者从预训练视频扩散模型出发，依次进行双向相机条件训练、自回归块因果训练与 TTT 记忆学习，最后通过…
-- **精读笔记**：[打开笔记](../notes/2026-10-14/2610.17434-world-t3-test-time-training-as-persistent-memory.md)
+- **一句话**：论文研究视频世界模型在长时域交互中的场景持久性问题：当已观察区域离开有限上下文后，传统自回归模型会遗忘其内容，并在摄像机返回时重新生成不一致的场景。World-T3 将摄像机位姿映射为记忆键、将视觉隐藏表示作为值，并通过测试时训练把被逐出上下文的观测写入固定大小的快速权重记忆。针对平滑摄像机轨迹造成的键相关和冗余问题，作者采用在线递归最小二乘更新，以抑制已…
+- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.17434-world-t3-test-time-training-as-persistent-memory.md)
 
-## 快速浏览
-
-### 1. [Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration](http://arxiv.org/abs/2610.16545v1)
+### 3. [Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration](http://arxiv.org/abs/2610.16545v1)
 
 - **评分**：76/100
 - **作者**：Jiyue Jiang, Zhiyu Huo, Yuhan Chen et al.
 - **方向**：Video Generation, Efficient Video Diffusion
-- **一句话**：Feature caching has become a mainstream training-free strategy for accelerating video diffusion models by reusing intermediate outputs across denoising steps.
+- **一句话**：本文提出 AlignCache，用于免训练加速视频扩散模型的特征缓存。该方法将去噪过程划分为早、中、晚三个阶段，使用阶段专属阈值、累计风险预算和缓存陈旧度上限进行路由；在触发精确计算时，通过比较反事实缓存草稿与真实 CFG 引导输出，在线校准阈值；同时利用带方向—幅度门控的动量残差外推和锚点引导的无条件校正，提高跳步预测质量。在 Wan2.1-1.3B、O…
+- **精读笔记**：[打开笔记](../notes/2026-10-15/2610.16545-heuristics-are-not-enough-calibrated-and-correct.md)
 
-### 2. [OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching](http://arxiv.org/abs/2610.17688v1)
+## 快速浏览
+
+### 1. [OccWAM: Occupancy World-Action Models with Joint Scene-to-Ego Flow Matching](http://arxiv.org/abs/2610.17688v1)
 
 - **评分**：75/100
 - **作者**：Qihang Huang, Wenhui Huang, Collister Chua et al.
 - **方向**：World Models
 - **一句话**：Occupancy world models provide a structured, metric representation of future driving scenes, making them a promising basis for end-to-end autonomous driving.
 
-### 3. [CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation](http://arxiv.org/abs/2610.17926v1)
+### 2. [CineMem: Attention-Aligned Fine-grained Memory Retrieval for Multi-Shot Long Video Generation](http://arxiv.org/abs/2610.17926v1)
 
 - **评分**：75/100
 - **作者**：Xiaoxue Wu, Xinyu Gao, Fang Yu et al.
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Autoregressive video generation relies on memory retrieval to model long-range dependencies.
 
-### 4. [LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts](http://arxiv.org/abs/2610.18873v1)
+### 3. [SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models](http://arxiv.org/abs/2610.19327v1)
+
+- **评分**：75/100
+- **作者**：Zefan Yang, Zheyuan Zhang, Boris Maihe et al.
+- **方向**：Video Generation, World Models
+- **一句话**：Robotic ultrasound can standardize image acquisition and reduce operator workload and variability, but policy learning remains limited by the lack of realistic, controllable simul…
+
+### 4. [Into the LidarVerse: A Real-Time Unified LiDAR World Model Across Tasks and Sensors](http://arxiv.org/abs/2610.19201v1)
+
+- **评分**：74/100
+- **作者**：Henry Che, Xuanchi Ren, Sanja Fidler et al.
+- **方向**：World Models
+- **一句话**：We present LidarVerse, a real-time unified LiDAR world model for sensor simulation across tasks and sensors.
+
+### 5. [LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts](http://arxiv.org/abs/2610.18873v1)
 
 - **评分**：73/100
 - **作者**：Wenxuan Guo, Yingping Liang, Zhaoguo Wang et al.
 - **方向**：World Models
 - **一句话**：Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment.
 
-### 5. [H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression](http://arxiv.org/abs/2610.18125v1)
+### 6. [H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression](http://arxiv.org/abs/2610.18125v1)
 
 - **评分**：72/100
 - **作者**：Or Ronai, Vladimir Kulikov, Tomer Michaeli
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs.
 
-### 6. [Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation](http://arxiv.org/abs/2610.11756v2)
+### 7. [GreenWAM: A World Foundation Model for Robotics](http://arxiv.org/abs/2610.18774v1)
 
-- **评分**：70/100
-- **作者**：Jiaming Zhang, Xinyu Wang, Huafeng Shi et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive video diffusion enables causal video streaming without a bidirectional pass over the full clip, but existing few-step systems usually retain only the opening and mo…
-
-### 7. [Frequency-Step Cache: Separating Synchronization and Repair for Efficient Autoregressive Video Diffusion](http://arxiv.org/abs/2610.15922v1)
-
-- **评分**：70/100
-- **作者**：Kerry Xu, Param Misra, Zachary Stenglein et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Autoregressive (AR) video generation enables long-horizon synthesis but requires repeated forward passes through large diffusion transformers.
+- **评分**：69/100
+- **作者**：Gennady Sidorov, Valerii Kornilov, Denis Grankin et al.
+- **方向**：World Models
+- **一句话**：A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions.
