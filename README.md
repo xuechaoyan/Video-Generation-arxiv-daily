@@ -17,6 +17,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-15**|**AVC-Reward: Event-Centric Audio-Video Consistency Evaluation**|Yuruo Wu et.al.|[2610.22321](http://arxiv.org/abs/2610.22321)|null|
+|**2026-10-15**|**Velox: Spatial Memory Makes World Models Efficient**|Qiuhong Shen et.al.|[2610.22311](http://arxiv.org/abs/2610.22311)|null|
 |**2026-10-14**|**Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance**|Zhuobai Dong et.al.|[2610.20220](http://arxiv.org/abs/2610.20220)|null|
 |**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
 |**2026-10-14**|**When Pairwise Preferences Cycle: A Reliability-Anchored Preference Walk for Video GRPO**|Xinrui Lin et.al.|[2610.20089](http://arxiv.org/abs/2610.20089)|null|
@@ -1513,6 +1515,19 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-15**|**T2-z: Test-Time Optimization of Environment Latents for Robotic World Models**|Chenyuan Zhou et.al.|[2610.22364](http://arxiv.org/abs/2610.22364)|null|
+|**2026-10-15**|**Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation**|Zirui Wu et.al.|[2610.22363](http://arxiv.org/abs/2610.22363)|null|
+|**2026-10-15**|**OmniVerifier-C1: Decomposed Graded Verifier for Rule-Governed Generative World Modeling**|Bowei Liu et.al.|[2610.22355](http://arxiv.org/abs/2610.22355)|null|
+|**2026-10-15**|**GeoState: Learning View-Decoupled Geometry States for 3D World Modeling**|Hongchang Liu et.al.|[2610.22343](http://arxiv.org/abs/2610.22343)|null|
+|**2026-10-15**|**Dexterity from Supervised Play**|Botao He et.al.|[2610.22340](http://arxiv.org/abs/2610.22340)|null|
+|**2026-10-15**|**Velox: Spatial Memory Makes World Models Efficient**|Qiuhong Shen et.al.|[2610.22311](http://arxiv.org/abs/2610.22311)|null|
+|**2026-10-15**|**Plans Are Not Executions: Adapting Frozen World-Model Planners to Controller-Induced Execution Shift**|Danqi Zhao et.al.|[2610.22041](http://arxiv.org/abs/2610.22041)|null|
+|**2026-10-15**|**VeriVLA: Adaptive Test-Time Verification for Flow-Based VLAs with Latent World Models**|Xueli Sun et.al.|[2610.21985](http://arxiv.org/abs/2610.21985)|null|
+|**2026-10-15**|**TS-WAM: Temporal Latent Actions and World-Action Coupling for Vision-Language Robot Control**|Menghao Yin et.al.|[2610.21922](http://arxiv.org/abs/2610.21922)|null|
+|**2026-10-15**|**CoWorld Reasoner: Agentic Multimodal Reasoning with the Evolving Video World Model-Driven Harness**|Dongjie Cheng et.al.|[2610.21910](http://arxiv.org/abs/2610.21910)|null|
+|**2026-10-15**|**Cross-Embodiment Causal Transfer from Human Videos to Robot Manipulation**|Xingyu Zhang et.al.|[2610.21798](http://arxiv.org/abs/2610.21798)|null|
+|**2026-10-15**|**Comfortably Stuck: Evaluation Pitfalls in Bench2Drive's Closed-Loop Protocol**|Thomas Schwarzfischer et.al.|[2610.21741](http://arxiv.org/abs/2610.21741)|null|
+|**2026-10-15**|**MAIA: Anticipating Interaction Anomalies in Contact-Rich Manipulation via Multimodal World Models**|Yi Qiao et.al.|[2610.21686](http://arxiv.org/abs/2610.21686)|null|
 |**2026-10-15**|**Learning Intrinsic Dynamics in Latent World Models**|Jiamin Shi et.al.|[2610.21612](http://arxiv.org/abs/2610.21612)|null|
 |**2026-10-15**|**From Optical Flow to Safety: Visual Safety Certification via Scale-Free Relative Motion**|Bazeela Banday et.al.|[2610.21374](http://arxiv.org/abs/2610.21374)|null|
 |**2026-10-15**|**Constrained Multi-Agent Reinforcement Learning in Imagination**|Raz Shmueli et.al.|[2610.21319](http://arxiv.org/abs/2610.21319)|null|
@@ -2313,6 +2328,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-15**|**Speculative Forcing for Efficient Autoregressive Video Generation**|Hyunwook Choi et.al.|[2610.22347](http://arxiv.org/abs/2610.22347)|null|
 |**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
 |**2026-10-13**|**LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout**|Ziyu Zhu et.al.|[2610.18289](http://arxiv.org/abs/2610.18289)|null|
 |**2026-10-13**|**H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression**|Or Ronai et.al.|[2610.18125](http://arxiv.org/abs/2610.18125)|null|
@@ -2338,7 +2354,7 @@
 |**2026-10-02**|**Weave Forcing: Compositional Memory Routing for Interactive Long Video Generation**|Ziyi Wang et.al.|[2610.03510](http://arxiv.org/abs/2610.03510)|null|
 |**2026-10-07**|**In-Distribution Forcing for Long Video Generation at Test Time**|Jeongwoo Shin et.al.|[2610.03120](http://arxiv.org/abs/2610.03120)|null|
 |**2026-10-05**|**Custom Forcing: Training-Free Subject Customization for Autoregressive Video Generation**|Yunseung Ok et.al.|[2610.02914](http://arxiv.org/abs/2610.02914)|null|
-|**2026-10-02**|**TRAC: Trajectory-aware Reuse and Adaptive Correction for Efficient Autoregressive Video Generation**|Jiaxing Song et.al.|[2610.02779](http://arxiv.org/abs/2610.02779)|null|
+|**2026-10-15**|**TRAC: Trajectory-aware Reuse and Adaptive Correction for Efficient Autoregressive Video Generation**|Jiaxing Song et.al.|[2610.02779](http://arxiv.org/abs/2610.02779)|null|
 |**2026-10-08**|**Spatial Memory Intelligence: Endowing World Models with Understanding-Driven Long-Term Memory**|Ying Yang et.al.|[2610.02521](http://arxiv.org/abs/2610.02521)|null|
 |**2026-10-01**|**MosaiChunk: Compositing Spatio-Temporal Memory for Autoregressive Video Generation**|Yiwen Zhang et.al.|[2610.02153](http://arxiv.org/abs/2610.02153)|null|
 |**2026-09-30**|**SemanTok: Predictable Semantic Tokens for Efficient Autoregressive Video Generation**|Mikhail Dereviannykh et.al.|[2610.00686](http://arxiv.org/abs/2610.00686)|null|
