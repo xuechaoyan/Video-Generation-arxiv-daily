@@ -1,0 +1,326 @@
+{
+  "generated_at": "2026-10-16T01:46:35+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.18289",
+      "date": "2026-10-13",
+      "topics": [
+        "Video Generation",
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout",
+      "abstract": "Autoregressive video diffusion models have emerged as a foundation for long-horizon world rollout. However, when extended far beyond their training windows, these models suffer from progressive drift: visual quality deteriorates, motion becomes inconsistent, and object identity gradually collapses as generated frames are recursively reused as context. We study a supervision-horizon gap: short-horizon distillation leaves later rollout states without direct supervision. We show that matching short-window marginals need not determine long-horizon behavior, while longer on-policy trajectories expose delayed failures to training. This motivates temporal manifold matching at scale for long-horizon world models. Building on this insight, we introduce LongForcing, a distillation approach that scales teacher supervision to long student self-rollouts. LongForcing preserves the short-horizon teacher-forcing and causal ODE-distillation stages, while replacing the realscore teacher in the final distribution-matching stage with an extended-horizon bidirectional teacher. The long-horizon teacher supervises extended student self-rollouts using the standard distribution-matching formulation, without modifying the student architecture or increasing inference cost. We evaluate LongForcing on text-to-video generation and interactive action-conditioned world models, achieving a VBench Quality score of 85.52 and improving WorldRoamBench 60s action score by 23.9 points in first-person ablations. Qualitative stress tests further sample interactive rollouts up to 24 hours, far beyond the training horizon. These results suggest that scaling supervision along the temporal axis is a practical step toward long-horizon world models. The project website and code are at https://github.com/Fantasy-AMAP/LongForcing.",
+      "authors": [
+        "Ziyu Zhu",
+        "Zhaoxu Sun",
+        "Fan Jiang",
+        "Mengchao Wang",
+        "Junfeng Ni",
+        "Ting-Bing Xu",
+        "Zhicheng Liu",
+        "Mu Xu"
+      ],
+      "url": "http://arxiv.org/abs/2610.18289v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 82,
+      "priority": "must-read",
+      "summary_cn": "论文指出，自回归视频扩散模型在长时域闭环生成中会因短时域训练与长时域部署之间的监督差距而逐步漂移，表现为画质下降、运动不一致、身份丢失和动作响应退化。LongForcing 保留短时域教师强制与因果 ODE 蒸馏，仅将最终分布匹配阶段的教师监督扩展到更长的学生自生成轨迹。理论分析说明，短窗口边缘分布无法确定长轨迹，而长轨迹匹配能够覆盖延迟失败。实验表明，该方法在文生视频和交互式世界模型上均降低了长时域漂移并提升了动作控制和视频质量，且不改变学生架构或推理成本。",
+      "contribution_cn": "1. 形式化了自回归视频生成中的监督时域差距，说明短窗口匹配无法约束跨窗口的联合依赖，长轨迹能够暴露延迟失败。2. 提出 LongForcing，在分布匹配蒸馏阶段使用扩展时域双向教师监督更长的学生在线策略自生成轨迹，同时保留原有的短时域教师强制和因果 ODE 蒸馏流程。3. 在文生视频和交互式动作条件世界模型上进行评估，并通过监督时域消融、时间分辨率漂移分析和人工评测验证长时域监督的效果。",
+      "relevance_cn": "与研究重点高度相关。该工作直接针对自回归、因果、流式和长视频生成中的递归误差累积问题，并通过长时域分布匹配提升闭环 rollout 的稳定性。它面向动作条件视觉世界模型，用预设动作序列训练和评估交互式模拟，改善长时间动作跟随、视觉一致性和物理响应。方法建立在视频扩散蒸馏、少步生成和在线策略自生成轨迹之上，在不增加推理成本的情况下扩展训练监督时域；实验还展示了最长 24 小时的交互式压力测试结果。",
+      "limitations_cn": "论文的理论保证主要是有限时域、条件性的，不能自动控制训练监督范围之外的失败，也不保证延长时域必然带来单调改进。效果依赖扩展时域教师的质量、教师与学生在访问状态上的匹配程度，以及教师从退化状态中恢复的能力。实验中的超长 rollout 主要是定性压力测试，核心定量评估仍集中在 30 秒或 60 秒范围，尚未证明 24 小时生成在严格基准上的可靠性。论文还指出，即使采用 321 帧监督，长时域漂移仍然存在；持久记忆、层次化规划和长期目标行为被列为未来方向。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归视频扩散模型已成为实现长时域世界 rollout 的基础。然而，当生成过程远超训练窗口时，这些模型会出现逐步漂移：视觉质量下降，运动变得不一致，并且由于生成帧被递归地重新用作上下文，物体身份会逐渐崩溃。我们研究了监督时域差距：短时域蒸馏使后续 rollout 状态缺乏直接监督。我们表明，匹配短窗口边缘分布未必能够决定长时域行为，而更长的在线策略轨迹能够将延迟失败暴露给训练过程。这促使我们为长时域世界模型开展大规模时序流形匹配。在此基础上，我们提出 LongForcing，一种将教师监督扩展到学生长时域自回归 rollout 的蒸馏方法。LongForcing 保留短时域教师强制和因果 ODE 蒸馏阶段，同时在最终的分布匹配阶段，用扩展时域的双向教师替代真实分数教师。长时域教师使用标准的分布匹配形式监督学生的扩展时域自回归 rollout，无需修改学生架构，也不会增加推理成本。我们在文生视频和交互式动作条件世界模型上评估 LongForcing，取得了 85.52 的 VBench Quality 分数，并在第一人称消融实验中将 WorldRoamBench 60 秒动作分数提高了 23.9 分。定性压力测试还采样了最长达 24 小时的交互式 rollout，远超训练时域。这些结果表明，沿时间轴扩展监督是构建长时域世界模型的一项实用途径。项目网站和代码地址为 https://github.com/Fantasy-AMAP/LongForcing。",
+      "note_path": "2026-10-16/2610.18289-longforcing-scaling-temporal-manifold-matching-f.md"
+    },
+    {
+      "id": "2610.19327",
+      "date": "2026-10-14",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models",
+      "abstract": "Robotic ultrasound can standardize image acquisition and reduce operator workload and variability, but policy learning remains limited by the lack of realistic, controllable simulation environments. While controllable world models have advanced rapidly in natural-image domains, ultrasound world modeling remains challenging because each frame captures only a cross-section of unobserved 3D anatomy, causing small probe motions to induce large appearance changes. Existing approaches rely on robot-tracked poses and latent-space prediction, but do not directly generate the observations required for interactive control. We propose SonoWorld, a causal ultrasound world model that learns video dynamics from unlabeled clinical videos and grounds them to 6-DoF control using a small set of freehand clinical scans tracked with an EM sensor. SonoWorld is trained in three stages: pretraining a latent-action-conditioned video diffusion model on around 6.9 million unlabeled multi-organ ultrasound frames; grounding the learned video dynamics to metric probe poses with a small EM-tracked thyroid dataset; and applying distribution matching distillation to enable causal, long-horizon autoregressive generation with selectively caching eviction tokens at inference time. We evaluate controllability through pose-following fidelity, round-trip consistency, and axis-specific control under synthetic actions on held-out tracked scans, and further validate it with a user study. In model-based action discrimination, SonoWorld correctly ranks the target-directed probe motion over an equal-magnitude opposite motion in up to 74.8% of trials. To our knowledge, SonoWorld is the first causal, pose-controllable ultrasound world model learned primarily from freehand clinical videos, providing a data-driven interactive environment for robotic ultrasound data acquisition and policy evaluation.",
+      "authors": [
+        "Zefan Yang",
+        "Zheyuan Zhang",
+        "Boris Maihe",
+        "Yikang Liu",
+        "Hang Yu",
+        "Ankush Mukherjee",
+        "Xiao Chen",
+        "Pingkun Yan",
+        "Terrence Chen",
+        "Shanhui Sun"
+      ],
+      "url": "http://arxiv.org/abs/2610.19327v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "论文提出 SonoWorld，用于根据六自由度探头运动生成未来超声观测，从而构建面向机器人超声的交互式世界模型。模型先在约 690 万帧无标注的腹部、心脏和甲状腺临床超声视频上学习潜在动作和视频动态，再利用 42 名受试者的少量 EM 跟踪甲状腺扫描将动态对齐到实际探头位姿，最后通过自强制分布匹配蒸馏转换为支持流式长时域生成的因果模型。模型在原始轨迹、零运动、加速运动和往返运动等测试中表现出动作敏感性，并可在单张 H100 上以 256×256 分辨率、四步去噪达到 40.6 fps。用户研究显示其生成结果具有较好的视频一致性和探头—解剖结构对齐能力；在目标动作与等幅反向动作的判别中，最高成功率为 74.8%。",
+      "contribution_cn": "1. 提出 SonoWorld，据作者所知，这是首个能够直接根据六自由度探头动作生成未来超声观测的因果、交互式、位姿可控超声世界模型。 2. 提出从大规模无标注多器官临床视频中学习超声动态、再用少量 EM 跟踪扫描进行物理动作对齐的可扩展训练方案。 3. 使用自强制将双向视频扩散模型转换为因果自回归生成器，并提出基于注意力质量选择历史令牌的 KV-cache 保留策略，以支持长时域流式推理。 4. 通过实测、加速、往返和轴向合成探头运动评估可控性，并通过经验超声评估者的用户研究评估图像质量、视频一致性和探头—解剖结构对齐。 5. 展示其可用于模型驱动的动作选择：在位移阈值为 15 和 20 时，目标动作优于反向动作的成功率分别为 74.8% 和 66.7%。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件视觉世界模型和闭环仿真：以初始超声帧和六自由度探头动作作为条件，生成未来观测，可用于机器人策略评估、探头导航和反事实动作选择。其生成器采用因果、分块自回归结构，支持动作到达后逐块输出，符合流式和长视频生成方向。模型通过分布匹配蒸馏和自强制减少自回归曝光偏差，并以选择性 KV-cache 令牌保留控制长时域上下文，从而降低缓存和注意力开销。论文还报告了实时生成性能（256×256 分辨率、四步去噪、单张 H100 上 40.6 fps），与实时生成、蒸馏和缓存复用方向直接相关。",
+      "limitations_cn": "论文明确指出，探头位姿不能完全决定超声外观，组织形变和生理运动等因素未被观测，因此模型存在内在局限。动作对齐实验主要在甲状腺超声上进行，尚未充分验证其他器官和更广泛的解剖场景。模型需要少量 EM 跟踪扫描进行物理动作对齐，不能完全摆脱昂贵的跟踪数据采集。因果模型在往返和长时域自回归生成中会出现误差累积，性能低于双向模型。用户研究中图像质量评分相对视频一致性和探头—解剖结构对齐更低，说明生成图像保真度仍有限。基于模型的动作判别成功率最高为 74.8%，并非始终正确。论文还指出缺乏公开统一的跟踪超声基准，因而无法与最接近的动作条件超声世界模型进行直接定量比较。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "机器人超声能够使图像采集标准化，并减少操作者的工作负担和差异性，但由于缺乏真实且可控的仿真环境，策略学习仍受到限制。尽管可控世界模型在自然图像领域取得了快速发展，超声世界建模仍然面临挑战，因为每一帧只捕捉未观测三维解剖结构的一个横截面，探头的微小运动就可能引起显著的外观变化。现有方法依赖机器人跟踪的位姿和潜空间预测，但无法直接生成交互控制所需的观测结果。我们提出 SonoWorld，这是一种因果超声世界模型，从无标注临床视频中学习视频动态，并利用少量配备电磁（EM）传感器跟踪的徒手临床扫描，将其映射到六自由度控制。SonoWorld 分三个阶段训练：首先，在约 690 万帧无标注的多器官超声图像上预训练潜动作条件视频扩散模型；其次，利用少量 EM 跟踪的甲状腺数据，将学习到的视频动态映射到具有度量意义的探头位姿；最后，应用分布匹配蒸馏，使模型能够进行因果、长时域的自回归生成，并在推理时选择性地缓存和驱逐令牌。我们通过位姿跟随保真度、往返一致性以及合成动作下的轴向控制来评估可控性，这些实验基于留出的跟踪扫描，并进一步通过用户研究进行验证。在基于模型的动作判别实验中，SonoWorld 在最多 74.8% 的试验中，能够将朝向目标的探头运动正确排在等幅反向运动之前。据我们所知，SonoWorld 是首个主要基于徒手临床视频学习的因果、位姿可控超声世界模型，为机器人超声数据采集和策略评估提供了数据驱动的交互式环境。",
+      "note_path": "2026-10-16/2610.19327-sonoworld-towards-interactive-pose-controllable.md"
+    },
+    {
+      "id": "2610.20220",
+      "date": "2026-10-14",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance",
+      "abstract": "Autoregressive generation underlies real-time, causal video synthesis and is the backbone of video world models. Today's dominant approach distills a bidirectional diffusion model into a causal few-step student, but existing pipelines make this conversion prohibitively expensive, requiring offline Probability Flow ODE} (PF-ODE) trajectories that cost tens of thousands of GPU-hours and terabytes of storage. We show it can be made dramatically more efficient. Pushing this efficiency to its extreme, we reduce trajectory supervision to a single sample, the strictest setting possible, and find that it causes severe quality collapse. We trace this to the teacher's trajectory geometry: the high-noise regime, governing semantic layout and motion, and the low-noise regime, governing fine texture exhibit fundamentally different curvature and optimization behavior, so a single monolithic student cannot jointly fit both, causing severe representation interference. Motivated by this, we propose Glance Forcing, a lightweight distillation framework that decouples the denoising trajectory into two complementary slow and fast experts, each guided by a tailored, stage-specific objective, while keeping the pretrained teacher entirely frozen. This decoupling further reveals a general mechanism underlying few-step distillation: PF-ODE distillation mainly straightens the few-step trajectory geometry, while the subsequent distribution-matching stage independently governs distributional quality. Using only one PF-ODE trajectory, Glance Forcing already surpasses the fully-trained state-of-the-art baseline, raising the VBench Total score from 84.04 to 84.22 while cutting trajectory-collection cost from thousands of GPU-hours to about one A100-GPU-hour, with markedly larger gains in dynamic degree, VisionReward, and instruction-following, and consistent preference from human raters over strong baselines.",
+      "authors": [
+        "Zhuobai Dong",
+        "Junchao Yi",
+        "Hu Jian Guo",
+        "Linjie Li",
+        "Rui Zhao",
+        "Alex Jinpeng Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.20220v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 75,
+      "priority": "must-read",
+      "summary_cn": "论文研究如何以极少的PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为因果少步自回归生成器。作者发现，高噪声阶段主要负责布局与运动，低噪声阶段主要负责细节，二者的轨迹曲率和优化行为差异导致单一学生模型在单样本训练下发生表示干扰。为此，Glance Forcing采用双LoRA结构，将去噪过程分为负责语义和运动的Slow专家与负责纹理细节的Fast专家，并配合时间频谱损失和空间高通损失。实验表明，仅一条轨迹即可大幅降低数据收集成本，同时保持或提升VBench、动态程度、视觉奖励和指令遵循表现；该方法也能用于加速双向扩散采样。",
+      "contribution_cn": "1. 分析PF-ODE蒸馏与分布匹配的作用，指出前者主要拉直少步轨迹，后者主要改善生成分布质量，并证明单条轨迹可提供足够的轨迹几何监督。2. 提出Glance Forcing双LoRA框架，将高噪声阶段的布局和运动建模交给Slow专家，将低噪声阶段的细节建模交给Fast专家。3. 设计阶段专用目标函数，包括用于抑制时间闪烁、保持运动一致性的时间频谱损失，以及用于增强边缘和纹理的空间高通损失。4. 在单样本及更大训练预算下进行系统实验，展示相较既有自回归蒸馏方法的质量、效率和人类偏好优势，并验证其对双向扩散加速的可迁移性。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向因果、自回归和流式视频生成，通过分块自回归扩散、历史KV缓存和少步去噪降低长视频生成的计算与延迟成本。其双LoRA阶段解耦策略针对视频扩散轨迹中运动布局与纹理细节的不同需求，适用于实时生成和视频世界模型所需的连续闭环式视频预测基础。论文还涉及蒸馏、稀疏轨迹监督和专家复用，但重点不是显式的闭环动作条件控制或交互式世界模型评测。实验报告单样本轨迹可将轨迹收集成本降至约一个A100 GPU小时，并在4步或8步采样设置下提高生成吞吐。",
+      "limitations_cn": "论文的实验主要基于Wan2.1-1.3B、480×832分辨率、81帧视频和有限的VBench及100条提示词，跨模型、跨分辨率、超长视频和真实在线交互场景的有效性仍未充分验证。单样本初始化对样本特征敏感：高运动内容和特定领域内容的表现下降更明显。方法仍需在8张A100 GPU上训练，并依赖后续DMD等阶段；论文未明确说明端到端闭环动作控制、长期世界模型一致性或真实部署功耗方面的结果。人类偏好实验仅包含3名评 annotator、50条提示词，规模有限。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归生成是实时、因果视频合成的基础，也是视频世界模型的核心。当前主流方法将双向扩散模型蒸馏为因果少步学生模型，但现有流程通常需要离线概率流常微分方程（PF-ODE）轨迹，成本高达数万GPU小时并产生数TB存储开销，使这一转换代价极其昂贵。我们证明，这一过程可以显著提高效率。将效率推向极致时，我们把轨迹监督减少为单个样本，这是可能的最严格设置，但发现这会导致严重的质量崩溃。我们将其归因于教师模型的轨迹几何特性：负责语义布局和运动的高噪声阶段，与负责精细纹理的低噪声阶段具有根本不同的曲率和优化行为，因此单一的整体学生模型无法同时拟合二者，并产生严重的表示干扰。基于这一观察，我们提出Glance Forcing，一种轻量级蒸馏框架，将去噪轨迹解耦为互补的慢速专家和快速专家，并分别采用针对阶段特性设计的目标函数，同时完全冻结预训练教师模型。这种解耦进一步揭示了少步蒸馏背后的一般机制：PF-ODE蒸馏主要负责拉直少步轨迹，而后续的分布匹配阶段则独立决定分布质量。仅使用一条PF-ODE轨迹，Glance Forcing便已超过经过完整训练的当前最先进基线，将VBench总分从84.04提升至84.22，同时将轨迹收集成本从数千GPU小时降至约一个A100 GPU小时；在动态程度、VisionReward和指令遵循方面取得更大幅度的提升，并且在人类评测者中持续获得相较强基线的偏好。",
+      "note_path": "2026-10-16/2610.20220-glance-forcing-making-bidirectional-diffusion-au.md"
+    },
+    {
+      "id": "2610.19201",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Into the LidarVerse: A Real-Time Unified LiDAR World Model Across Tasks and Sensors",
+      "abstract": "We present LidarVerse, a real-time unified LiDAR world model for sensor simulation across tasks and sensors. Existing LiDAR simulators largely follow one of two complementary paradigms: reconstruction-based methods preserve the geometry of a captured scene but require lengthy per-scene optimization, whereas generative methods amortize learning across data but lack the consistency needed for long-horizon rollouts. LidarVerse brings both paradigms into a single, unified conditional generative framework. A universal tokenizer maps LiDAR range sequences into a shared latent space, where a bidirectional teacher learns a common interface for conditioning on a LiDAR prefix, an HD-Map, a persistent spatial cache, and optionally, text. Varying the available scene evidence turns the same model into a generator of new worlds, a point-cloud forecaster, or a generalizable resimulator of observed scenes without per-scene optimization. We distill the teacher into a four-step autoregressive causal student and maintain both a rolling temporal K/V cache and a world-aligned spatial cache, enabling persistent long-horizon rollouts with real-time inference at 11 FPS on a single H100 GPU. LidarVerse achieves state-of-the-art performance on most reported metrics across all three evaluation protocols, while its tokenizer supports 32-, 64-, and 128-beam LiDAR and generalizes to an unseen scanning pattern. These results demonstrate that generative and reconstruction-grounded LiDAR simulation can be realized within one model, providing the core capabilities for future closed-loop sensor simulation.",
+      "authors": [
+        "Henry Che",
+        "Xuanchi Ren",
+        "Sanja Fidler",
+        "Shenlong Wang",
+        "Laura Leal-Taixé",
+        "Shengyu Huang"
+      ],
+      "url": "http://arxiv.org/abs/2610.19201v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "31 pages, 17 figures. Project page: https://research.nvidia.com/labs/sil/projects/lidarverse",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "We present LidarVerse, a real-time unified LiDAR world model for sensor simulation across tasks and sensors.",
+      "contribution_cn": "We present LidarVerse, a real-time unified LiDAR world model for sensor simulation across tasks and sensors.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, simulation, autoregressive, real-time, cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18873",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LoopWAM: Closed-Loop Generalist Policy Improvement from Deployment Rollouts",
+      "abstract": "Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment. Real-world rollouts contain successes, suboptimal behavior, and failures: imitating every recorded action can reinforce poor behavior, while filtering out failures discards evidence of physical interactions and their consequences. We introduce \\textbf{LoopWAM}, a closed-loop world-action model that learns directly from this full quality spectrum, using rollouts from both itself and other deployed policies. Source-dependent noise sampling unifies behavior learning and action-conditioned world modeling, while quality steering and quality-weighted supervision retain full video supervision across qualities and regulate action imitation. Video and action tokens interact throughout parallel denoising, allowing learned consequences to inform action generation directly. On RoboChallenge Table30-V2, three deployment-and-training rounds raise success from 23.67\\% to 43.33\\%, a 19.7-percentage-point gain, with a final score of 56.80. LoopWAM also achieves 94.5\\% average success on RoboTwin~2.0 and 49.5\\% overall success on RoboCasa365 without additional embodied pretraining, obtaining the best overall results among the compared methods across all three benchmarks. On challenging shirt folding task, two rounds of deployment-driven improvement after single-task post-training raise success from 13.20\\% to 55.56\\%. These results demonstrate closed-loop improvement from mixed-quality experience under both multi-task learning and single-task post-training. \\href{https://loop-wam.github.io/}{\\textcolor{orange}{Project Page}}",
+      "authors": [
+        "Wenxuan Guo",
+        "Yingping Liang",
+        "Zhaoguo Wang",
+        "Ziyuan Li",
+        "Angyuan Ma",
+        "Zhenyu Wu",
+        "Chengkun Wang",
+        "Bingyao Yu",
+        "Ze Chen",
+        "Borui Zhang",
+        "Xiuwei Xu",
+        "Meng Zhang",
+        "Erjin Zhou",
+        "Jiwen Lu"
+      ],
+      "url": "http://arxiv.org/abs/2610.18873v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "Project page: https://loop-wam.github.io/",
+      "score": 73,
+      "priority": "skim",
+      "summary_cn": "Scaling expert demonstrations alone does not enable generalist robot policies to improve from deployment.",
+      "contribution_cn": "We introduce \\textbf{LoopWAM}, a closed-loop world-action model that learns directly from this full quality spectrum, using rollouts from both itself and other deployed policies.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18125",
+      "date": "2026-10-13",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "H-DDCM: Hadamard Codebooks for Fast Generative Image and Video Compression",
+      "abstract": "Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs. Recent codebook-based approaches such as Turbo-DDCM achieve strong perceptual quality at ultra-low bitrates, but their reliance on dense Gaussian codebooks remains costly in both memory and computation, and scales poorly with the large latent dimensions of modern image and video generators. Their combinatorial bitstream encoding further becomes computationally heavy at this scale. We introduce H-DDCM, a scalable generative compression framework that replaces Gaussian codebooks with implicit randomized Hadamard dictionaries. The fast Walsh-Hadamard transform allows for implicitly synthesizing full-dimensional dictionaries with $O(d \\log d)$ compute for projection and reconstruction and $O(d)$ memory, without materializing the full-dimensional dictionary. We further introduce an efficient table-free lexicographic coding scheme that makes combinatorial encoding practical at larger dimensions. Beyond images, we adapt the framework to an autoregressive video flow model and develop a streaming compression scheme that periodically re-encodes recently reconstructed frames into a fresh KV-cache prefix, preserving temporal context across segments at no additional transmitted bits. This enables long-form, close to real-time generative video compression on a single GPU. Across image and video benchmarks, H-DDCM achieves competitive rate-distortion-perception performance while substantially reducing the memory and computational overhead of codebook-based training-free generative compression.",
+      "authors": [
+        "Or Ronai",
+        "Vladimir Kulikov",
+        "Tomer Michaeli"
+      ],
+      "url": "http://arxiv.org/abs/2610.18125v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "Project's webpage at https://h-ddcm.github.io/",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Training-free diffusion-based compression methods repurpose the generative priors of a diffusion or a flow model to compress data without retraining them as task-specific codecs.",
+      "contribution_cn": "We introduce H-DDCM, a scalable generative compression framework that replaces Gaussian codebooks with implicit randomized Hadamard dictionaries.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, streaming, real-time, cache, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18774",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "GreenWAM: A World Foundation Model for Robotics",
+      "abstract": "A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions. Models are usually built and evaluated for only one of these roles, and every robot records its actions in its own format. We ask whether one robot world model can serve both roles across different bodies, and what makes this work. We present GreenWAM, a world foundation model for robotics, together with the recipe that produces it: (1) a shared anatomical action space that describes 20 robot families, from bimanual arms to dexterous humanoids, in common joint coordinates; (2) joint training on these families in visual, action-conditioned and world-action modes; and (3) policies that split an action expert off the generator. As a world model, GreenWAM attains top-tier trajectory, depth and 3D accuracy on WorldArena 1.0, ahead of every world-action model and video generator in our comparison. As a policy, it scores among the top entries of the RoboTwin 2.0 leaderboard, reaches the highest zero-shot LIBERO-plus success among the compared methods and is competitive with dedicated vision-language-action and world-action policies on CALVIN and LIBERO. We further adapt GreenWAM to a real humanoid, where it succeeds more often than policies adapted from $π_{0.5}$ and from Cosmos 3 Edge, and distill it into a single-step policy for real-time control. Controlled experiments yield three findings: robot specialization improves world prediction and control together; an action expert helps when split off at the start of adaptation; and keeping world-model modes during policy adaptation preserves robustness to scene changes.",
+      "authors": [
+        "Gennady Sidorov",
+        "Valerii Kornilov",
+        "Denis Grankin",
+        "Polina Fedotova",
+        "Aleksey Postnikov"
+      ],
+      "url": "http://arxiv.org/abs/2610.18774v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "Technical report. Project page: https://greenvla.github.io/GreenWAM",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions.",
+      "contribution_cn": "We present GreenWAM, a world foundation model for robotics, together with the recipe that produces it: (1) a shared anatomical action space that describes 20 robot families, from bimanual arms to dexterous humanoids, in common joint coordinates; (2) joint training on these families in visual, action-conditioned and world-action modes; and (3) policies that split an action expert off the generator.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, real-time",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18135",
+      "date": "2026-10-13",
+      "topics": [
+        "World Models"
+      ],
+      "title": "SkipWorld: Latent Skip Planning with Distilled World Models for Efficient Visual Navigation",
+      "abstract": "World-model-based visual navigation enables action planning by predicting future states under candidate trajectories. However, long-horizon rollout remains challenging: models are often trained with ground-truth visual histories but deployed in closed-loop prediction, and evaluating many candidates with step-by-step rollout is computationally expensive. We propose SkipWorld, a latent skip planning framework for efficient visual navigation. SkipWorld introduces three components: (i) Latent AutoRoll, which trains a world model to recursively roll out future states in latent space, reducing the mismatch between training and closed-loop inference; (ii) SkipDistill, which distills the latent autoregressive model into a skip world model that directly predicts long-stride future latent states; and (iii) Skip-then-Refine Planning, a dual-model coarse-to-fine planner that first filters candidate trajectories with the skip model and then reranks selected candidates with the stronger autoregressive model. This design preserves accurate trajectory evaluation while reducing redundant rollout computation. Experiments on RECON, HuRoN, SCAND, and TartanDrive show that, compared with NWM, SkipWorld reduces the average ATE by 4.2% and RPE by 2.7%, while decreasing planning time by 62.4% with a 2.7-fold speedup.",
+      "authors": [
+        "Yifei Yang",
+        "Zehua Fan",
+        "Zike Yan",
+        "Zhongyu Li",
+        "Yan Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.18135v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "World-model-based visual navigation enables action planning by predicting future states under candidate trajectories.",
+      "contribution_cn": "We propose SkipWorld, a latent skip planning framework for efficient visual navigation.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, closed-loop, autoregressive, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.18779",
+      "date": "2026-10-13",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "GAD: Geometry Attention Distillation for Consistent Video Generation",
+      "abstract": "Video diffusion models generate visually compelling short-term sequences but often struggle to preserve scene geometry and object structure over time. In this paper, we first demonstrate that current video attention cannot identify reliable correspondences across frames, with responses dispersed across multiple regions even after recognizable scene structure has emerged. We argue that reliable cross-frame associations are essential for information exchange as scene structure forms in video generation. Thus, we introduce Geometry Attention Distillation (GAD), which transfers correspondences from a frozen geometry model's attention to video attention. Extracted from clean videos, these correspondences link the same static surface or moving object across frames. Since structure formation begins in deeper layers at higher noise and shallower layers at lower noise, we apply attention distillation at a student layer selected according to the noise timestep. After training, video attention focuses more consistently on corresponding locations. Experiments across all three video backbones demonstrate improved long-range scene consistency and dynamic temporal consistency, with geometric gains across generation lengths. On Wan2.2 5B, GAD improves cross-frame matching accuracy by at least 30% over the Wan baseline on both long-range benchmarks. Notably, GAD achieves these gains without additional inference modules, offering a promising approach to efficient and consistent video-based world simulation. Project page: https://fantasy-amap.github.io/GAD/.",
+      "authors": [
+        "Junfeng Ni",
+        "Ziyu Zhu",
+        "Fan Jiang",
+        "Yu Liu",
+        "Chiyu Wang",
+        "Jiawei Zhang",
+        "Zhaoxu Sun",
+        "Mu Xu",
+        "Siyuan Huang",
+        "Yixin Chen"
+      ],
+      "url": "http://arxiv.org/abs/2610.18779v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://fantasy-amap.github.io/GAD/",
+      "score": 68,
+      "priority": "skim",
+      "summary_cn": "Video diffusion models generate visually compelling short-term sequences but often struggle to preserve scene geometry and object structure over time.",
+      "contribution_cn": "Thus, we introduce Geometry Attention Distillation (GAD), which transfers correspondences from a frozen geometry model's attention to video attention.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：simulation, temporal consistency, distillation, efficient, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.19795",
+      "date": "2026-10-14",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "StateCraft: Augmenting Video World Models with Abstract-State Reasoning",
+      "abstract": "Video world models aim to simulate complex environments with realistic appearance and dynamics. Maintaining consistency over long interactions requires tracking past actions and understanding how those actions affect the environment. Video world models can only generate partial observations of the entire world at a time. Remembering past observations alone may not be sufficient in every scenario, as they may no longer reflect the world after a sequence of actions. We introduce a paradigm that decouples a persistent, updatable abstract state from the visual state. The abstract state keeps track of the entities' changes as the world evolves, and is used to condition the visual state, which represents the current view. We propose StateCraft, a novel architecture that pairs a language model with a video diffusion model to evolve the dynamic world. We evaluate our approach on generative interfaces, which pose a substantial challenge because a single action may change parts of the state that are not currently visible. To support training and evaluation, we develop a data collection pipeline that produces informative, densely annotated trajectories at scale without human or agent supervision, together with a benchmark measuring generation quality, memory, and controllability. On this benchmark, our approach improves surpasses the state-of-the-art baselines. We demonstrate that StateCraft maintains high self-consistency and strong generation quality over long trajectories. Because the abstract state is explicit, it can be edited directly, and generation follows edits to states never observed in the data. Finally, a proof-of-concept 3D experiment, in which actions change the illumination of an unobserved room, shows that the paradigm can also be applied to spatial environments. Project page: https://insait-institute.github.io/StateCraft/.",
+      "authors": [
+        "Lorenzo Venturoli",
+        "Nedko Savov",
+        "Xi Wang",
+        "Marc Pollefeys",
+        "Luc Van Gool"
+      ],
+      "url": "http://arxiv.org/abs/2610.19795v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 66,
+      "priority": "skim",
+      "summary_cn": "Video world models aim to simulate complex environments with realistic appearance and dynamics.",
+      "contribution_cn": "We introduce a paradigm that decouples a persistent, updatable abstract state from the visual state.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}

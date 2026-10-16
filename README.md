@@ -1,4 +1,4 @@
-## Updated on 2026.10.15
+## Updated on 2026.10.16
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -1507,12 +1507,22 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20261015>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261016>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-15**|**Learning Intrinsic Dynamics in Latent World Models**|Jiamin Shi et.al.|[2610.21612](http://arxiv.org/abs/2610.21612)|null|
+|**2026-10-15**|**From Optical Flow to Safety: Visual Safety Certification via Scale-Free Relative Motion**|Bazeela Banday et.al.|[2610.21374](http://arxiv.org/abs/2610.21374)|null|
+|**2026-10-15**|**Constrained Multi-Agent Reinforcement Learning in Imagination**|Raz Shmueli et.al.|[2610.21319](http://arxiv.org/abs/2610.21319)|null|
+|**2026-10-15**|**Mallea: Building, Steering, and Memorizing Worlds with Coding Agent**|Xuanyi Liu et.al.|[2610.21283](http://arxiv.org/abs/2610.21283)|null|
+|**2026-10-15**|**Can World and Action Modeling Benefit Each Other under Unified Causal Training?**|Yue Su et.al.|[2610.21095](http://arxiv.org/abs/2610.21095)|null|
+|**2026-10-14**|**EgoJEPA: Beyond Retargeting for Dexterous Manipulation from Egocentric Videos**|Meng Cao et.al.|[2610.20904](http://arxiv.org/abs/2610.20904)|null|
+|**2026-10-14**|**Sign Betting for Misspecified Regression: Variance Adaptivity and Optimal Approximation**|Yinan Li et.al.|[2610.20903](http://arxiv.org/abs/2610.20903)|null|
+|**2026-10-14**|**When Reality Outpaces Cognition: A New Scaling Principle for Reliable Intelligence**|Ahsan Adeel et.al.|[2610.20764](http://arxiv.org/abs/2610.20764)|null|
+|**2026-10-14**|**WorldCast: Exploring Intelligent Visual Generation in World State Prediction**|Wenhao Yan et.al.|[2610.20731](http://arxiv.org/abs/2610.20731)|null|
+|**2026-10-14**|**Orbia: Do Generated Videos Form a Consistent 3D World?**|Dongyue Lu et.al.|[2610.20693](http://arxiv.org/abs/2610.20693)|null|
 |**2026-10-14**|**SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving**|Shaoyuan Xie et.al.|[2610.20609](http://arxiv.org/abs/2610.20609)|null|
 |**2026-10-14**|**VITAL: From Visual Motion to Precise Action**|Ao Liang et.al.|[2610.20604](http://arxiv.org/abs/2610.20604)|null|
 |**2026-10-14**|**Towards Agentic Robots: Model, Data, Environment, and Harness**|Chonghan Qin et.al.|[2610.20442](http://arxiv.org/abs/2610.20442)|null|
@@ -2297,7 +2307,7 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20261015>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261016>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
@@ -2402,7 +2412,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20261015>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261016>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -2441,5 +2451,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20261015>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261016>back to top</a>)</p>
 
