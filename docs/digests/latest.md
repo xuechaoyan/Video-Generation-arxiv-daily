@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-16T15:37:27+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-17T01:40:55+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,16 +10,16 @@
 - **评分**：75/100
 - **作者**：Zefan Yang, Zheyuan Zhang, Boris Maihe et al.
 - **方向**：Video Generation, World Models
-- **一句话**：本文提出SonoWorld，一种面向机器人超声的因果、六自由度位姿可控世界模型。模型先从约690万帧无标注的多器官临床超声视频中学习潜在视频动态，再用少量EM跟踪的甲状腺扫描将潜动作映射到真实探头运动，最后通过分布匹配蒸馏和自强制训练实现流式自回归生成，并用选择性KV缓存支持长时域推理。实验表明，模型能够根据探头轨迹生成具有路径依赖、解剖一致性和时间一致性…
-- **精读笔记**：[打开笔记](../notes/2026-10-16/2610.19327-sonoworld-towards-interactive-pose-controllable.md)
+- **一句话**：SonoWorld面向机器人超声，利用约690万帧无标注多器官临床视频学习超声视频动态，再用少量EM跟踪的甲状腺扫描将潜动作映射到实际六自由度探头运动。模型通过分布匹配蒸馏和自强制训练转换为因果、自回归生成器，并采用选择性KV缓存支持长时域流式推理。在原始轨迹、零运动、加速运动和往返运动测试中，模型能够根据探头动作生成相应的未来超声观测；在H100上以四步…
+- **精读笔记**：[打开笔记](../notes/2026-10-17/2610.19327-sonoworld-towards-interactive-pose-controllable.md)
 
 ### 2. [Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance](http://arxiv.org/abs/2610.20220v1)
 
 - **评分**：75/100
 - **作者**：Zhuobai Dong, Junchao Yi, Hu Jian Guo et al.
 - **方向**：Video Generation, World Models
-- **一句话**：论文研究如何以极少的PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为因果、少步的自回归视频生成器。作者发现，单样本监督本身足以建立少步轨迹的整体几何结构，但单一学生模型难以同时拟合高噪声阶段的布局与运动以及低噪声阶段的细节，原因在于两阶段的曲率和优化行为差异显著。为此，Glance Forcing采用双LoRA结构，将去噪过程分为负责语义和运动的Slow…
-- **精读笔记**：[打开笔记](../notes/2026-10-16/2610.20220-glance-forcing-making-bidirectional-diffusion-au.md)
+- **一句话**：本文研究如何以极少的PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为因果式少步自回归生成器。作者发现，单一轨迹已足以建立少步流的几何结构，但单一学生模型难以同时拟合高噪声阶段的布局与运动以及低噪声阶段的细节。为此提出Glance Forcing：利用双LoRA将去噪过程划分为Slow专家和Fast专家，并分别使用时间频谱损失和空间高通损失进行优化；随后通…
+- **精读笔记**：[打开笔记](../notes/2026-10-17/2610.20220-glance-forcing-making-bidirectional-diffusion-au.md)
 
 ### 3. [Into the LidarVerse: A Real-Time Unified LiDAR World Model Across Tasks and Sensors](http://arxiv.org/abs/2610.19201v1)
 
