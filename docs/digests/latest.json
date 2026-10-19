@@ -1,43 +1,7 @@
 {
-  "generated_at": "2026-10-19T01:54:56+00:00",
+  "generated_at": "2026-10-19T17:48:23+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
-    {
-      "id": "2610.19327",
-      "date": "2026-10-14",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "SonoWorld: Towards Interactive Pose-Controllable Ultrasound World Models",
-      "abstract": "Robotic ultrasound can standardize image acquisition and reduce operator workload and variability, but policy learning remains limited by the lack of realistic, controllable simulation environments. While controllable world models have advanced rapidly in natural-image domains, ultrasound world modeling remains challenging because each frame captures only a cross-section of unobserved 3D anatomy, causing small probe motions to induce large appearance changes. Existing approaches rely on robot-tracked poses and latent-space prediction, but do not directly generate the observations required for interactive control. We propose SonoWorld, a causal ultrasound world model that learns video dynamics from unlabeled clinical videos and grounds them to 6-DoF control using a small set of freehand clinical scans tracked with an EM sensor. SonoWorld is trained in three stages: pretraining a latent-action-conditioned video diffusion model on around 6.9 million unlabeled multi-organ ultrasound frames; grounding the learned video dynamics to metric probe poses with a small EM-tracked thyroid dataset; and applying distribution matching distillation to enable causal, long-horizon autoregressive generation with selectively caching eviction tokens at inference time. We evaluate controllability through pose-following fidelity, round-trip consistency, and axis-specific control under synthetic actions on held-out tracked scans, and further validate it with a user study. In model-based action discrimination, SonoWorld correctly ranks the target-directed probe motion over an equal-magnitude opposite motion in up to 74.8% of trials. To our knowledge, SonoWorld is the first causal, pose-controllable ultrasound world model learned primarily from freehand clinical videos, providing a data-driven interactive environment for robotic ultrasound data acquisition and policy evaluation.",
-      "authors": [
-        "Zefan Yang",
-        "Zheyuan Zhang",
-        "Boris Maihe",
-        "Yikang Liu",
-        "Hang Yu",
-        "Ankush Mukherjee",
-        "Xiao Chen",
-        "Pingkun Yan",
-        "Terrence Chen",
-        "Shanhui Sun"
-      ],
-      "url": "http://arxiv.org/abs/2610.19327v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 75,
-      "priority": "must-read",
-      "summary_cn": "论文提出 SonoWorld，用于机器人超声的交互式仿真。模型先从约690万帧无位姿标注的多器官临床超声视频中学习潜在动态，再用42名受试者中的少量 EM 跟踪甲状腺扫描，将动态映射到实际六自由度探头动作，最后通过自强制分布匹配蒸馏转化为带 KV 缓存的因果自回归生成器。实验表明，模型能响应零动作、加速、往返及逐轴动作，并在256×256分辨率、4步去噪下达到40.6 fps。用户评价显示其探头—解剖结构对齐和视频一致性较好；在目标动作与反向动作判别中，成功率最高为74.8%。",
-      "contribution_cn": "1. 提出首个能够直接依据度量六自由度探头动作生成未来超声观测的因果、交互式、位姿可控超声世界模型。2. 提出利用大规模无标注多器官视频学习视觉动态、再用少量 EM 跟踪扫描进行物理动作对齐的分阶段训练方案。3. 通过自强制蒸馏将双向视频扩散模型转为因果自回归生成器，并提出基于注意力质量选择历史帧的 KV 缓存保留策略，以支持长时程流式生成。4. 在真实跟踪轨迹、零动作、速度加倍、往返和逐轴合成动作下进行可控性评估，并通过超声专家用户研究和基于模型的动作选择验证其实用性。",
-      "relevance_cn": "与研究重点高度相关：该工作是面向动作条件视觉世界模型和闭环模拟的具体实例，直接根据六自由度探头动作生成未来超声观测，可用于机器人扫描策略评估、反事实动作比较和交互式数据采集。其因果、分块自回归结构支持动作到达后流式生成；自强制训练缓解自回归曝光偏差，选择性 KV 缓存降低长视频生成的内存和注意力开销，符合因果、长视频、实时生成、蒸馏和缓存复用方向。模型还展示了在单张 H100 上以40.6 fps生成视频的实时潜力。",
-      "limitations_cn": "论文明确指出，探头位姿并不能完全决定超声外观，组织形变和生理运动等因素未被充分观测；动作控制实验主要在甲状腺超声上进行，跨器官泛化尚未验证；论文缺少公开统一基准，因此无法与最接近的动作条件超声世界模型进行直接定量比较。因果模型在往返长时程生成中的性能下降更明显，反映出自回归误差累积问题。用户研究中图像质量评分相对较低，且动作判别成功率并非完美。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "机器人超声可以规范图像采集，减少操作者的工作负担和操作差异，但由于缺乏逼真且可控的仿真环境，策略学习仍然受到限制。尽管可控世界模型在自然图像领域发展迅速，超声世界建模仍面临挑战，因为每一帧只呈现未观测三维解剖结构的一个横截面，探头的微小运动就可能引起显著的外观变化。现有方法依赖机器人跟踪的位姿和潜空间预测，但无法直接生成交互式控制所需的观测结果。我们提出 SonoWorld，一种因果超声世界模型：它从无标注临床视频中学习视频动态，并利用少量由电磁（EM）传感器跟踪的徒手临床扫描，将这些动态与六自由度控制相结合。SonoWorld 分三个阶段训练：首先，在约690万帧无标注、多器官超声图像上预训练潜动作条件视频扩散模型；其次，利用少量由 EM 跟踪的甲状腺数据，将学习到的视频动态与具有度量意义的探头位姿相对应；最后，应用分布匹配蒸馏，使模型能够进行因果的、长时程自回归生成，并在推理时有选择地缓存和淘汰令牌。我们通过位姿跟随保真度、往返一致性以及合成动作下的逐轴控制，在留出的跟踪扫描数据上评估可控性，并进一步通过用户研究进行验证。在基于模型的动作判别任务中，SonoWorld 在最多74.8%的试验中能够正确地将指向目标的探头运动排在幅度相同但方向相反的运动之前。据我们所知，SonoWorld 是首个主要从徒手临床视频中学习的因果、可通过位姿控制的超声世界模型，为机器人超声数据采集和策略评估提供了数据驱动的交互式环境。",
-      "note_path": "2026-10-19/2610.19327-sonoworld-towards-interactive-pose-controllable.md"
-    },
     {
       "id": "2610.20220",
       "date": "2026-10-14",
@@ -62,12 +26,12 @@
       "comment": "",
       "score": 75,
       "priority": "must-read",
-      "summary_cn": "论文研究如何以极少PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为因果少步自回归模型。作者发现，单样本监督本身足以提供轨迹几何校正，但单一学生模型难以同时拟合高噪声阶段的布局与运动以及低噪声阶段的纹理细节。为此，Glance Forcing采用双LoRA结构，将去噪过程分为负责语义和运动的Slow专家与负责细节的Fast专家，并分别引入时间频谱损失和空间高通损失。在Wan2.1-1.3B上的实验表明，该方法只用一条轨迹即可获得有竞争力的结果，降低轨迹收集成本，并在扩大训练预算后进一步提升VBench、动态程度、视觉奖励和指令遵循表现；该思想也被验证可用于双向扩散模型加速。",
-      "contribution_cn": "1. 发现PF-ODE蒸馏主要作用是拉直少步生成轨迹，而分布匹配负责后续的分布质量优化，因此单条轨迹即可提供足够的轨迹几何监督。 2. 提出Glance Forcing双LoRA框架，按噪声阶段解耦为Slow专家和Fast专家，分别处理全局布局与运动、局部纹理与细节。 3. 为不同专家设计时间频谱损失和空间高通损失，以抑制时间闪烁、增强运动一致性和空间细节。 4. 在极少样本设置下实现大幅降低轨迹收集成本，并通过实验、消融和人类偏好评测验证方法效果。 5. 展示该阶段感知蒸馏策略不仅适用于自回归视频生成，也可用于双向扩散模型的采样加速。",
-      "relevance_cn": "该工作直接关注视频扩散模型向因果、自回归和少步生成器的转换，服务于实时视频生成和视频世界模型所需的流式生成能力。其按噪声阶段划分专家的设计针对高噪声语义与运动建模、低噪声细节 refinement之间的冲突，能够改善长视频块级自回归生成中的时间一致性和生成质量。框架基于chunk-wise自回归扩散和KV缓存进行逐块生成，因此与因果推理、在线生成和闭环视觉模拟具有直接技术关联。通过单条PF-ODE轨迹、双LoRA参数高效训练以及4步或8步推理，该方法也与实时生成、蒸馏、稀疏训练监督和计算成本降低高度相关。",
-      "limitations_cn": "论文显示单样本初始化对样本特征较为敏感：低运动、开放域样本效果较好，而高运动、特定领域样本会造成更明显的性能下降；单样本训练的有效性取决于样本选择。实验主要基于Wan2.1-1.3B、480×832分辨率、81帧视频和特定的自回归蒸馏流程，对更大模型、不同架构、更多视频长度及更广泛数据分布的泛化能力验证有限。该方法仍需进行后续DMD分布匹配蒸馏，且训练实验使用8张A100 GPU。人类评测仅包含3名评测者和50个提示词。论文未明确说明在真实闭环世界模型交互、长期滚动稳定性以及部署端总延迟和显存占用方面的局限。",
+      "summary_cn": "本文研究如何以极少的PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为可因果、自回归、少步生成的模型。作者发现，单样本监督本身足以建立少步轨迹的整体几何结构，但单一学生网络难以同时拟合高噪声阶段的布局与运动，以及低噪声阶段的纹理细节，原因在于两者的曲率和优化行为不同。为此提出Glance Forcing：使用双LoRA结构，将去噪过程划分为Slow专家和Fast专家，分别处理高噪声语义运动与低噪声细节，并引入时间频谱损失和空间高通损失。实验基于Wan2.1-1.3B的分块自回归生成，在单样本设置下显著降低轨迹收集成本；扩大训练预算后，VBench、动态程度、视觉奖励和指令遵循等指标进一步提升。消融实验验证了阶段解耦、时间频谱损失和空间高通损失的作用；此外，该方法也被用于将Wan2.1从50步压缩到8步或4步的双向扩散生成。",
+      "contribution_cn": "1. 分析PF-ODE蒸馏与分布匹配的作用，指出前者主要拉直少步去噪轨迹，后者主要改善生成分布质量，并证明单条轨迹可提供足够的轨迹几何监督。 2. 提出Glance Forcing双LoRA蒸馏框架，将去噪过程解耦为负责布局和运动的Slow专家，以及负责纹理和细节的Fast专家。 3. 为两个阶段设计专门目标：利用时间频谱损失抑制闪烁并保持运动动态，利用空间高通损失增强边缘和精细纹理。 4. 在极少轨迹监督下实现较高的数据与计算效率，并通过系统实验、消融实验和人类偏好评测验证方法有效性。 5. 展示该阶段感知优化策略不仅适用于自回归视频生成，也可用于双向扩散模型的采样步数压缩。",
+      "relevance_cn": "本文与研究重点高度相关。它直接面向视频扩散模型到因果、自回归视频生成器的蒸馏，解决了长视频和实时生成中因果分块推理的训练成本问题。其分块自回归架构支持利用历史帧的KV缓存进行流式生成，适合实时视频合成和视频世界模型。双LoRA专家分别处理高噪声阶段的全局运动与语义布局、低噪声阶段的局部细节，属于针对视频时空生成过程的稀疏阶段建模和高效适配。单条PF-ODE轨迹将轨迹收集从数千GPU小时降低到约一个A100小时，直接涉及蒸馏、计算效率和训练数据压缩；4步或8步推理结果也与少步生成和实时生成相关。论文没有重点研究闭环动作条件控制或交互式世界模型中的策略反馈，但其因果生成和流式自回归机制可作为此类系统的视频预测模块。",
+      "limitations_cn": "论文显示，单样本ODE初始化对样本特征较敏感：高运动强度、特定领域和复杂内容会导致更明显的性能下降；单样本训练的效果取决于样本选择。虽然DMD能够在一定程度上恢复质量，但不同样本设置下的结果仍有差异。方法的实验主要基于Wan2.1-1.3B、特定分辨率和81帧分块生成，跨模型、分辨率、视频长度及更复杂场景的泛化能力未被充分验证。实时性结果是在单张H100 GPU上、且不计VAE时间的条件下测量，实际端到端延迟可能更高。论文主要评估离线生成质量和效率，没有充分验证动作条件控制、闭环交互、长期世界模型稳定性或误差累积。论文未明确说明在极长视频、连续流式运行或更大规模模型上的性能上限。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归生成是实时、因果视频合成的基础，也是视频世界模型的核心。当前主流方法将双向扩散模型蒸馏为因果少步学生模型，但现有流程通常需要离线概率流常微分方程（PF-ODE）轨迹作为监督，成本高昂，需耗费数万GPU小时和数TB存储空间。我们证明这一过程可以大幅提高效率。将效率推向极致时，我们把轨迹监督减少到单个样本这一最严格的设置，并发现这会导致严重的质量崩溃。我们追溯其原因至教师模型的轨迹几何：负责语义布局和运动的高噪声阶段，与负责细粒度纹理的低噪声阶段具有根本不同的曲率和优化行为，因此单一的整体学生模型无法同时拟合二者，导致严重的表征干扰。基于这一观察，我们提出Glance Forcing，这是一种轻量级蒸馏框架，将去噪轨迹解耦为互补的慢速专家和快速专家，并分别使用针对阶段特性设计的目标函数进行引导，同时完全冻结预训练教师模型。这种解耦进一步揭示了少步蒸馏背后的一般机制：PF-ODE蒸馏主要负责拉直少步轨迹的几何形状，而后续的分布匹配阶段则独立负责分布质量。仅使用一条PF-ODE轨迹，Glance Forcing便已经超过充分训练的最先进基线，将VBench总分从84.04提升至84.22，同时将轨迹收集成本从数千GPU小时降低至约一个A100 GPU小时；该方法在动态程度、VisionReward和指令遵循方面取得了更明显的提升，并且在人类评测者中持续获得相对于强基线的偏好。",
+      "abstract_cn": "自回归生成是实时、因果视频合成的基础，也是视频世界模型的核心。当前主流方法将双向扩散模型蒸馏为因果少步学生模型，但现有流程需要离线概率流常微分方程（PF-ODE）轨迹，成本高得难以承受，需消耗数万GPU小时和数TB存储。我们证明，这一过程可以大幅提高效率。为将效率推向极致，我们将轨迹监督减少到单个样本这一最严格的设置，并发现这会导致严重的质量崩溃。我们追溯其原因发现，教师模型的轨迹几何存在明显差异：负责语义布局和运动的高噪声阶段，与负责精细纹理的低噪声阶段具有根本不同的曲率和优化行为，因此单一的整体学生模型无法同时拟合二者，导致严重的表示干扰。基于这一观察，我们提出Glance Forcing，一种轻量级蒸馏框架，将去噪轨迹解耦为互补的慢速专家和快速专家，并分别采用针对阶段特点设计的目标函数，同时完全冻结预训练教师模型。这种解耦进一步揭示了少步蒸馏背后的一般机制：PF-ODE蒸馏主要负责拉直少步轨迹的几何结构，而后续的分布匹配阶段则独立决定分布质量。仅使用一条PF-ODE轨迹，Glance Forcing就已经超过了经过完整训练的先进基线，将VBench总分从84.04提高到84.22，同时将轨迹收集成本从数千GPU小时降至约一个A100 GPU小时；在动态程度、VisionReward和指令遵循方面取得了更显著的提升，并且在人类评测者中持续获得相对于强基线的偏好。",
       "note_path": "2026-10-19/2610.20220-glance-forcing-making-bidirectional-diffusion-au.md"
     },
     {
@@ -94,12 +58,12 @@
       "comment": "",
       "score": 73,
       "priority": "must-read",
-      "summary_cn": "本文针对自回归长视频生成中逐块去噪、历史上下文增长以及误差跨块累积导致的高推理成本和质量下降问题，提出无需训练的TRAC框架。RCS根据跨视频块和提示词的累积误差、尾部风险及最终状态偏差，利用动态规划选择缓存复用计划，并为首个视频块分配更密集的计算；ATGS将CFG残差刷新建模为覆盖全局AR路径的调度问题，在误差较大的位置刷新、其余位置复用；SSC利用首个视频块作为低频结构参考，并依据局部运动强度自适应注入低频校正，从而抑制长期结构漂移。实验覆盖SkyReels-V2和FramePack-F1，在SkyReels-V2上达到6.0283倍加速、VBench 82.4440，相比原始模型仅下降约0.6%；在FramePack-F1上达到1.668倍加速且总体质量接近原始模型。消融实验表明，RCS主要贡献效率，SSC主要贡献质量，ATGS降低CFG相关开销。",
-      "contribution_cn": "1. 提出面向顺序耦合AR视频轨迹的TRAC训练免除框架，系统处理缓存近似误差在视频块之间累积和传播的问题。2. 提出稳健累积调度（RCS），综合局部误差、跨视频块和跨提示词鲁棒性、CVaR尾部风险以及终点状态偏差，并通过动态规划选择缓存计划。3. 提出自回归轨迹感知引导调度（ATGS），沿全局AR去噪路径安排CFG残差刷新，以较少的刷新次数控制累积引导误差。4. 提出谱结构校正（SSC），通过低分辨率注意力和首个视频块的低频结构先验，根据局部运动自适应校正长期结构漂移，同时保留动态细节。5. 在SkyReels-V2和FramePack-F1上验证了方法在推理速度与生成质量之间的优势，并提供了固定校准调度以实现无在线评分开销的确定性推理。",
-      "relevance_cn": "与研究重点高度相关。该工作直接面向自回归、长视频和视频扩散生成，针对按固定长度视频块顺序生成的闭环式历史上下文依赖，研究缓存复用、稀疏执行和误差校正。RCS通过选择性执行完整模型、复用中间结果来减少去噪计算；ATGS减少分类器自由引导刷新次数；SSC利用频域低频结构信息抑制长序列中的外观和布局漂移。其核心目标是提高AR视频生成的实时性和可扩展性，实验在SkyReels-V2上实现6.03倍加速，但论文未涉及动作条件世界模型或真正的交互式闭环控制，也未实现量化、蒸馏或稀疏注意力等互补加速技术。",
-      "limitations_cn": "论文明确指出，TRAC仅在SkyReels-V2和FramePack-F1两个AR视频骨干上进行了验证，对新兴AR视频模型的泛化能力仍是开放问题，进一步验证需要较多计算资源。TRAC目前尚未与量化、蒸馏、稀疏注意力等互补加速技术结合，因此潜在的额外效率收益尚未得到验证。论文还表明，SSC去除后速度略有提升但质量下降，RCS和ATGS依赖校准得到的固定调度；其对不同数据分布、模型、提示词和视频长度的适应能力未被充分评估。",
+      "summary_cn": "本文提出一种无需训练的TRAC框架，用于加速由连续视频块组成的自回归长视频生成。针对缓存复用误差沿AR轨迹累积、CFG计算开销高以及长期低频结构漂移三个问题，TRAC分别采用RCS、ATGS和SSC进行风险感知的缓存调度、全局CFG刷新调度和自适应低频结构校正。在SkyReels-V2上，TRAC达到6.03倍加速，VBench得分为82.44，相比原始模型仅下降约0.6%；在FramePack-F1上达到1.668倍加速，并保持接近原始模型的总体质量。",
+      "contribution_cn": "提出面向序列耦合AR生成轨迹的TRAC训练免费加速框架；提出RCS，通过跨视频块和提示词的稳健统计、累积 rollout 误差、尾部风险及终点误差来优化缓存调度，并为首个视频块分配更密集的计算；提出ATGS，将CFG残差刷新建模为全局AR路径上的预算调度问题，在高误差位置刷新、其他位置复用；提出SSC，利用首个视频块的低频结构作为参考，并依据局部运动强度自适应注入校正，从而缓解长期结构漂移；在SkyReels-V2和FramePack-F1上验证了效率与生成质量的提升。",
+      "relevance_cn": "与研究重点高度相关。该工作直接面向自回归、因果式的长视频生成，核心目标是降低连续块式生成中的重复去噪、增长历史上下文注意力和CFG开销。RCS和ATGS分别涉及跨轨迹缓存复用与全局引导调度，SSC则通过低频结构保持改善长时一致性。其结果表明，在SkyReels-V2上可实现6.03倍推理加速，在FramePack-F1上可实现1.668倍加速；方法为训练免费，并明确指出可与量化、蒸馏和稀疏注意力等实时生成技术结合。",
+      "limitations_cn": "论文明确指出，TRAC仅在两个自回归视频骨干模型上进行了验证，能否推广到新兴AR视频模型仍是开放问题；验证更广泛模型需要目前无法承担的大量计算资源。TRAC尚未与量化、蒸馏、稀疏注意力等互补加速技术结合，因此联合方案的效果尚未评估。论文还依赖校准阶段对提示词、视频块和调度进行误差统计，并将调度固定用于推理；不同数据分布、模型或运行条件下的校准成本和泛化表现未作充分说明。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归（AR）视频生成通过依次生成固定长度的视频块，实现了可扩展的长视频合成，但由于需要反复去噪并对不断增长的历史上下文执行注意力计算，因此计算成本很高。近期的缓存复用方法利用时间冗余来降低成本，但主要针对单轨迹生成而设计，不太适用于各个AR轨迹按顺序耦合的场景，因为近似误差可能在视频块之间累积并传播。为应对这一挑战，我们提出TRAC（Trajectory-aware Reuse and Adaptive Correction，轨迹感知复用与自适应校正）框架，以实现高效且稳健的AR视频生成。TRAC包含三个互补组件：（1）稳健累积调度（RCS），通过考虑累积的展开误差及其在不同视频块和提示词之间的变化来选择缓存复用调度；（2）自回归轨迹感知引导调度（ATGS），沿全局AR轨迹协调无分类器引导的刷新；（3）谱结构校正（SSC），自适应地恢复低频结构信息，以减轻长期误差累积。通过结合这些创新，TRAC显著改善了AR视频生成的效率—质量权衡。例如，在使用SkyReels-V2的VBench上，相比原始模型，TRAC实现了6.03倍加速，同时VBench分数仅下降约0.6%；并且在延迟和生成质量方面持续优于现有AR加速方法。代码已公开于https://github.com/yolosjxhhhhhh/trac。",
+      "abstract_cn": "自回归（AR）视频生成通过依次生成固定长度的视频块，实现了可扩展的长视频合成，但由于需要重复去噪并对不断增长的历史上下文执行注意力计算，因此计算成本很高。近期的缓存复用方法利用时间冗余来降低这一成本，但主要针对单轨迹生成设计，因此不太适用于具有序列耦合关系的AR轨迹；在后者中，近似误差可能跨视频块累积并传播。为应对这一挑战，我们提出TRAC（Trajectory-aware Reuse and Adaptive Correction，轨迹感知复用与自适应校正）框架，以实现高效且稳健的AR视频生成。TRAC包含三个互补组件：（1）稳健累积调度（RCS），通过考虑累积的 rollout 误差及其在不同视频块和提示词之间的变化来选择缓存复用调度；（2）自回归轨迹感知引导调度（ATGS），沿全局AR轨迹协调无分类器引导的刷新；（3）谱结构校正（SSC），自适应地恢复低频结构信息，以减轻长期误差累积。通过结合这些创新，TRAC显著改善了AR视频生成的效率—质量权衡。例如，在使用SkyReels-V2的VBench上，与原始模型相比，它实现了6.03倍加速，而VBench得分仅下降约0.6%；同时，在延迟和生成质量方面始终优于现有AR加速方法。代码已公开于https://github.com/yolosjxhhhhhh/trac。",
       "note_path": "2026-10-19/2610.02779-trac-trajectory-aware-reuse-and-adaptive-correct.md"
     },
     {
@@ -122,12 +86,14 @@
       ],
       "comment": "",
       "score": 73,
-      "priority": "skim",
-      "summary_cn": "Video world models turn actions and camera motion into long visual rollouts, making video a natural interface for interactive simulation.",
-      "contribution_cn": "To address this bottleneck, we introduce Velox, a training-free attention router for region-level context selection using frustum slab correspondences from streaming geometry.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, simulation, streaming, cache",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "论文针对长时视频世界模型中 KV 缓存随生成历史增长、导致后续分块越来越慢的问题，提出无需训练的 Velox 推理路由器。它把历史视觉记忆压缩表示为带深度区间的相机视锥体 slab，通过多重变形估计当前块深度，并以世界坐标系中的 slab 重叠作为几何先验，结合每个 Transformer 层自身的注意力重要性，为当前区域选择有限的历史 KV 块。对几何覆盖不足的区域，系统回退到模型路由；同时保留前一分块、全局 Gilbert 邻域和参考帧等局部连续性保护机制。Velox 使用块稀疏注意力、全局对齐的 Gilbert KV 布局，并在 H200 上异步构建几何记忆。在 48 分块 rollout 的末端，注意力和去噪分别获得 4.36 倍和 2.43 倍加速；在 158 个 WBench 导航案例上，质量接近稠密注意力，并略微提升整体平均分。",
+      "contribution_cn": "1. 提出 Velox，一种无需训练的区域级注意力路由框架，利用视锥体 slab 对应关系降低分块视频世界模型不断增长的 KV 注意力开销。2. 提出软几何融合规则，以 OBB 视锥体 slab 重叠调制各层模型推导的块重要性，同时对几何覆盖不足的区域保留无偏的模型路由回退。3. 在实现层面结合全局对齐的 Gilbert KV 存储、原生索引块稀疏注意力内核，以及与去噪并行的异步视锥体 slab 构建，在第 48 个分块达到 4.36 倍注意力加速和 2.43 倍去噪加速。4. 通过 WBench 导航评测、缩放实验、几何与模型重要性一致性分析及定性 rollout 对比，验证其在降低延迟的同时维持长时空间一致性的能力。",
+      "relevance_cn": "论文与研究重点高度相关：它直接面向动作和相机控制的视频世界模型及闭环式长时视觉 rollout，解决长视频生成中的历史记忆管理和响应速度问题。方法属于推理阶段的稀疏注意力与 KV 缓存复用，通过空间几何对应关系进行区域级上下文路由，而不是让每个当前区域访问全部历史。固定块路由使注意力开销不再随历史长度线性增长，并在单张 H200 上异步执行几何处理，因而与实时生成、长视频生成、缓存复用和高效视频扩散密切相关。它保持预训练生成器和条件接口不变，也体现了无需再训练即可进行生成加速的路线。",
+      "limitations_cn": "论文的实验主要基于 LingBot-Fast-Cam 推理栈、单张 H200 和 158 个 WBench 导航案例，跨模型、硬件和任务的泛化能力未得到充分验证。方法依赖深度、置信度、掩码和相机位姿等流式几何信息；深度空洞、遮挡、错误重建或陈旧的变形深度可能降低路由可靠性。视锥体 slab 状态通常存在两分块的新鲜度延迟，且几何构建与去噪共享同一块 GPU，其他硬件条件下的实际收益可能不同。Velox 使用固定的路由预算和多个校准超参数，可能在不同场景、运动模式或覆盖率下需要重新调整。论文报告了总体质量和部分定性案例，但未明确说明更长于 48 个分块、极端快速相机运动、复杂动态物体或真实交互闭环中的性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "视频世界模型将动作和相机运动转化为长时视觉 rollout，使视频成为交互式模拟的自然接口。这类交互要求生成具有响应性，但连贯的 rollout 必须保留已生成内容的视觉记忆。分块视频扩散模型通常将这些上下文保存在不断增长的 KV 缓存中，因此后续分块会逐渐变慢。为解决这一瓶颈，我们提出 Velox：一种无需训练的注意力路由器，利用流式几何中的视锥体 slab 对应关系进行区域级上下文选择。Velox 将历史块表示为带有深度区间的相机视锥体 slab，并通过基于新近性的多重变形获取当前块的深度。对于覆盖良好的区域，视锥体 slab 的重叠程度会对模型在各层推导出的块重要性进行软调制；未覆盖区域则保留模型推导的路由，不施加几何偏置。固定的 token 块粒度与 FlashAttention 风格的分块执行相匹配，从而降低随 rollout 长度增长的注意力开销。视锥体 slab 的构建与去噪过程在同一块 H200 上异步运行。在第 48 个分块处，Velox 将注意力加速 4.36 倍，将去噪加速 2.43 倍。在完整的 158 个案例 WBench 导航划分上，其无 API 平均分与稠密 LingBot-Fast-Cam 相差不超过 0.15 分。更多细节请参见项目主页 https://velox-world.com/velox/。",
+      "note_path": "2026-10-19/2610.22311-velox-spatial-memory-makes-world-models-efficien.md"
     },
     {
       "id": "2610.23156",
@@ -186,6 +152,36 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2610.23795",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Persistent Planar Memory for Video World Models",
+      "abstract": "Video world models that generate and explore environments at scale need a persistent 3D memory of what they have produced. Plane primitives offer a natural candidate: a compact set of oriented planes captures the dominant structural elements (e.g., walls, floors, facades) of indoor and outdoor scenes, while requiring only 7 parameters per primitive. We present PPMem, a video world model that adopts plane primitives as its persistent 3D memory. PPMem augments a video diffusion transformer with a planar prediction head and a Depth Token Fusion (DTF) module: each autoregressive chunk jointly produces RGB video and planar geometry, which merges into a persistent plane memory that conditions subsequent chunks via rendered depth. The resulting memory is three orders of magnitude more compact than per-pixel point clouds (~100K primitives, 5MB for a full scene), geometrically explicit (metric depth, normals, exportable surfaces), cross-view consistent (jointly predicted by the shared backbone), and adaptive (refined by the merging procedure as generation proceeds). On DL3DV and RealEstate10K, PPMem outperforms prior 3D-grounded world models in video quality while jointly producing metric-scale depth, surface normals, and exportable planar geometry, sustaining coherence across hundreds of frames under large viewpoint changes. Project page: https://hyzcluster.github.io/ppmem.",
+      "authors": [
+        "Yuze He",
+        "Bin Tan",
+        "Zelin Gao",
+        "Yujun Shen",
+        "Yong-Jin Liu",
+        "Nan Xue",
+        "Yinghao Xu"
+      ],
+      "url": "http://arxiv.org/abs/2610.23795v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "20 pages, 9 figures. Accepted by NeurIPS 2026",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "Video world models that generate and explore environments at scale need a persistent 3D memory of what they have produced.",
+      "contribution_cn": "We present PPMem, a video world model that adopts plane primitives as its persistent 3D memory.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, autoregressive, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2610.19795",
       "date": "2026-10-14",
       "topics": [
@@ -213,6 +209,35 @@
       "summary_cn": "Video world models aim to simulate complex environments with realistic appearance and dynamics.",
       "contribution_cn": "We introduce a paradigm that decouples a persistent, updatable abstract state from the visual state.",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23423",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Momentum: Persistent Dynamics for Video World Models",
+      "abstract": "Video world models must capture how a scene evolves beyond the current camera view to generate consistent observations when its content reappears. Existing approaches rely on observation history, static point clouds, or image caches constructed from past frames. These representations are often expensive and, more importantly, cannot update dynamic scene content outside the field of view: generated vehicles and pedestrians may be forgotten after leaving the field of view or reappear in physically inaccurate states. We represent an evolving scene through synchronized videos from reference-camera rigs, each comprising eight cameras that jointly cover the surrounding scene. We connect these rigs in a graph and propagate video generation between neighboring rigs to coordinate scene dynamics across locations and time. We introduce Momentum, a two-stage pipeline: WorldUpdate jointly generates reference-camera videos as a shared memory of scene dynamics, and WorldInteract grounds camera-controlled video generation in this evolving memory, allowing moving content to remain represented outside the target view and reappear consistently. To support training and evaluation, we develop a CARLA pipeline that captures synchronized videos from reference camera rigs and a moving target camera, together with an evaluation framework measuring consistency within the generated world state and the target observations.Experiments on generated street scenes show that grounding target videos in scene dynamics generated by Momentum improves dynamic scene consistency by 126.2% in unseen scenes over static image conditioning, while also improving visual fidelity. Our models and source code will be made publicly available.",
+      "authors": [
+        "Nedko Savov",
+        "Stefan Maria Ailuro",
+        "Danda Pani Paudel",
+        "Yilun Du",
+        "Xi Wang",
+        "Luc Van Gool"
+      ],
+      "url": "http://arxiv.org/abs/2610.23423v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Video world models must capture how a scene evolves beyond the current camera view to generate consistent observations when its content reappears.",
+      "contribution_cn": "We introduce Momentum, a two-stage pipeline: WorldUpdate jointly generates reference-camera videos as a shared memory of scene dynamics, and WorldInteract grounds camera-controlled video generation in this evolving memory, allowing moving content to remain represented outside the target view and reappear consistently.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, cache, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -289,38 +314,6 @@
       "summary_cn": "Distilling pretrained video diffusion models into few-step autoregressive (AR) generators typically combines student initialization with distribution matching distillation (DMD).",
       "contribution_cn": "To address this limitation, we propose Representation Forcing, which learns few-step causal initialization through representation-space supervision rather than intermediate-teacher trajectory regression.",
       "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, few-step, distillation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.20609",
-      "date": "2026-10-14",
-      "topics": [
-        "World Models"
-      ],
-      "title": "SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving",
-      "abstract": "Vision-Language-Action (VLA) models are gaining attention in autonomous driving, inheriting commonsense priors from large language models (LLMs) and widening the navigation interface from a fixed command set to free-form natural-language instructions. However, this open-ended interface exposes a new vulnerability surface: an inattentive driver may issue instructions that are unsafe given the current scene, and a malicious user may issue dangerous ones on purpose. We present the first benchmark suite that evaluates navigation following and conflict awareness together, along with adversarial robustness. Existing VLAs fall short on both: SimLingo completes no language-instructed lane change in closed loop, and all models degrade sharply under conflicting signals. We propose SafeDriveVLA, the first driving VLA that (1) explicitly predicts a three-level navigation-compliance mode to decouple conflict reasoning from action generation, and (2) uses navigation-conditioned world model dreaming to inform this prediction. Unlike prior world models that roll out expert or planned actions, ours dreams of strictly following the navigation signal, showing when following is safe. SafeDriveVLA reaches 88.16 Driving Score (DS) and 68.64% Success Rate (SR) on Bench2Drive, lifts closed-loop language following by 49.3% and reduces collisions under unsafe instructions from 60 to 38 compared to the best SimLingo variant. Video demonstrations are available on our project page.",
-      "authors": [
-        "Shaoyuan Xie",
-        "Zihan Zhang",
-        "Jingxuan Wang",
-        "Jiashu Qu",
-        "Xiaoqing Liang",
-        "Lingdong Kong",
-        "Junchi Lu",
-        "Henrik I. Christensen",
-        "Qi Alfred Chen"
-      ],
-      "url": "http://arxiv.org/abs/2610.20609v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "Accepted at CoRL 2026. Project page: https://safedrive-vla.github.io/SafeDriveVLA/",
-      "score": 61,
-      "priority": "skim",
-      "summary_cn": "Vision-Language-Action (VLA) models are gaining attention in autonomous driving, inheriting commonsense priors from large language models (LLMs) and widening the navigation interface from a fixed command set to free-form natural-language instructions.",
-      "contribution_cn": "We present the first benchmark suite that evaluates navigation following and conflict awareness together, along with adversarial robustness.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

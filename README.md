@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-16**|**Video Diffusion Avatars: Taming Video Diffusion Models into Controllable 3D Avatars**|Simon Giebenhain et.al.|[2610.23772](http://arxiv.org/abs/2610.23772)|null|
 |**2026-10-15**|**AVC-Reward: Event-Centric Audio-Video Consistency Evaluation**|Yuruo Wu et.al.|[2610.22321](http://arxiv.org/abs/2610.22321)|null|
 |**2026-10-15**|**Velox: Spatial Memory Makes World Models Efficient**|Qiuhong Shen et.al.|[2610.22311](http://arxiv.org/abs/2610.22311)|null|
 |**2026-10-14**|**Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance**|Zhuobai Dong et.al.|[2610.20220](http://arxiv.org/abs/2610.20220)|null|
@@ -1515,6 +1516,13 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-16**|**Persistent Planar Memory for Video World Models**|Yuze He et.al.|[2610.23795](http://arxiv.org/abs/2610.23795)|null|
+|**2026-10-16**|**Beyond Large Language Models: A Mental World Model Framework for Mental Modeling, Simulation, Evolution, and Interpretability**|Qingshi Wang et.al.|[2610.23722](http://arxiv.org/abs/2610.23722)|null|
+|**2026-10-16**|**Beyond Action Prediction: Learning Search-Free Planning in Latent Space**|Guanchen Du et.al.|[2610.23615](http://arxiv.org/abs/2610.23615)|null|
+|**2026-10-16**|**Execution Before Memory: Diagnosing Memory Failures in Video World Models**|Weiyang Jin et.al.|[2610.23542](http://arxiv.org/abs/2610.23542)|null|
+|**2026-10-16**|**Momentum: Persistent Dynamics for Video World Models**|Nedko Savov et.al.|[2610.23423](http://arxiv.org/abs/2610.23423)|null|
+|**2026-10-16**|**LithoWorld: An Endpoint World Model for Lithography Process-Window Recovery**|Botong Zhao et.al.|[2610.23408](http://arxiv.org/abs/2610.23408)|null|
+|**2026-10-16**|**AWAM: Active Trajectory-Conditioned View Imagination for Robust Robot Manipulation**|Jiawei Geng et.al.|[2610.23396](http://arxiv.org/abs/2610.23396)|null|
 |**2026-10-16**|**Language Models Learn to Improve Language Models**|Minhua Lin et.al.|[2610.23344](http://arxiv.org/abs/2610.23344)|null|
 |**2026-10-16**|**LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence**|Jiajun Cao et.al.|[2610.23334](http://arxiv.org/abs/2610.23334)|null|
 |**2026-10-16**|**CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots**|Zicheng Liu et.al.|[2610.23288](http://arxiv.org/abs/2610.23288)|null|
