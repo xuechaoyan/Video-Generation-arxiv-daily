@@ -1,4 +1,4 @@
-## Updated on 2026.10.18
+## Updated on 2026.10.19
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -1509,12 +1509,22 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20261018>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-16**|**Language Models Learn to Improve Language Models**|Minhua Lin et.al.|[2610.23344](http://arxiv.org/abs/2610.23344)|null|
+|**2026-10-16**|**LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence**|Jiajun Cao et.al.|[2610.23334](http://arxiv.org/abs/2610.23334)|null|
+|**2026-10-16**|**CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots**|Zicheng Liu et.al.|[2610.23288](http://arxiv.org/abs/2610.23288)|null|
+|**2026-10-16**|**ORD-WM: Learning Object-Centric Rigid Dynamics for 3D World Modeling in Robotic Manipulation**|Yueyang Weng et.al.|[2610.23156](http://arxiv.org/abs/2610.23156)|null|
+|**2026-10-16**|**BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL**|Liyun Yan et.al.|[2610.23127](http://arxiv.org/abs/2610.23127)|null|
+|**2026-10-16**|**Unifying Embodied Foundation Models via a Model-to-Policy Formulation**|Xinyi Hong et.al.|[2610.23053](http://arxiv.org/abs/2610.23053)|null|
+|**2026-10-16**|**World Action Critic (WAC) Model: Joint Foresight and Criticism for Policy Learning**|Xiangteng Zhang et.al.|[2610.22825](http://arxiv.org/abs/2610.22825)|null|
+|**2026-10-15**|**GlobeBench: Evaluating Text-Based World Model Capabilities for Scalable Environment Simulations**|Nicholas Saban et.al.|[2610.22708](http://arxiv.org/abs/2610.22708)|null|
+|**2026-10-15**|**Is a Linear Probe Evidence of a Linear Representation?**|Nadir Kutluozen et.al.|[2610.22655](http://arxiv.org/abs/2610.22655)|null|
+|**2026-10-15**|**DriveWorld3D Evidence Constrained 3D World Modeling and Generative Simulation for Real-World Autonomous Driving**|Wei Wang et.al.|[2610.22450](http://arxiv.org/abs/2610.22450)|null|
 |**2026-10-15**|**T2-z: Test-Time Optimization of Environment Latents for Robotic World Models**|Chenyuan Zhou et.al.|[2610.22364](http://arxiv.org/abs/2610.22364)|null|
 |**2026-10-15**|**Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation**|Zirui Wu et.al.|[2610.22363](http://arxiv.org/abs/2610.22363)|null|
 |**2026-10-15**|**OmniVerifier-C1: Decomposed Graded Verifier for Rule-Governed Generative World Modeling**|Bowei Liu et.al.|[2610.22355](http://arxiv.org/abs/2610.22355)|null|
@@ -1527,7 +1537,7 @@
 |**2026-10-15**|**CoWorld Reasoner: Agentic Multimodal Reasoning with the Evolving Video World Model-Driven Harness**|Dongjie Cheng et.al.|[2610.21910](http://arxiv.org/abs/2610.21910)|null|
 |**2026-10-15**|**Cross-Embodiment Causal Transfer from Human Videos to Robot Manipulation**|Xingyu Zhang et.al.|[2610.21798](http://arxiv.org/abs/2610.21798)|null|
 |**2026-10-15**|**Comfortably Stuck: Evaluation Pitfalls in Bench2Drive's Closed-Loop Protocol**|Thomas Schwarzfischer et.al.|[2610.21741](http://arxiv.org/abs/2610.21741)|null|
-|**2026-10-15**|**MAIA: Anticipating Interaction Anomalies in Contact-Rich Manipulation via Multimodal World Models**|Yi Qiao et.al.|[2610.21686](http://arxiv.org/abs/2610.21686)|null|
+|**2026-10-16**|**MAIA: Anticipating Interaction Anomalies in Contact-Rich Manipulation via Multimodal World Models**|Yi Qiao et.al.|[2610.21686](http://arxiv.org/abs/2610.21686)|null|
 |**2026-10-15**|**Learning Intrinsic Dynamics in Latent World Models**|Jiamin Shi et.al.|[2610.21612](http://arxiv.org/abs/2610.21612)|null|
 |**2026-10-15**|**From Optical Flow to Safety: Visual Safety Certification via Scale-Free Relative Motion**|Bazeela Banday et.al.|[2610.21374](http://arxiv.org/abs/2610.21374)|null|
 |**2026-10-15**|**Constrained Multi-Agent Reinforcement Learning in Imagination**|Raz Shmueli et.al.|[2610.21319](http://arxiv.org/abs/2610.21319)|null|
@@ -2322,7 +2332,7 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20261018>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
@@ -2428,7 +2438,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20261018>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -2467,5 +2477,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20261018>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
 
