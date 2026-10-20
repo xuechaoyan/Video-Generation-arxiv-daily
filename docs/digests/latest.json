@@ -1,99 +1,36 @@
 {
-  "generated_at": "2026-10-19T17:48:23+00:00",
+  "generated_at": "2026-10-20T02:13:22+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2610.20220",
-      "date": "2026-10-14",
+      "id": "2610.25634",
+      "date": "2026-10-19",
       "topics": [
         "Video Generation",
-        "World Models"
-      ],
-      "title": "Glance Forcing: Making Bidirectional Diffusion Autoregressive at a Glance",
-      "abstract": "Autoregressive generation underlies real-time, causal video synthesis and is the backbone of video world models. Today's dominant approach distills a bidirectional diffusion model into a causal few-step student, but existing pipelines make this conversion prohibitively expensive, requiring offline Probability Flow ODE} (PF-ODE) trajectories that cost tens of thousands of GPU-hours and terabytes of storage. We show it can be made dramatically more efficient. Pushing this efficiency to its extreme, we reduce trajectory supervision to a single sample, the strictest setting possible, and find that it causes severe quality collapse. We trace this to the teacher's trajectory geometry: the high-noise regime, governing semantic layout and motion, and the low-noise regime, governing fine texture exhibit fundamentally different curvature and optimization behavior, so a single monolithic student cannot jointly fit both, causing severe representation interference. Motivated by this, we propose Glance Forcing, a lightweight distillation framework that decouples the denoising trajectory into two complementary slow and fast experts, each guided by a tailored, stage-specific objective, while keeping the pretrained teacher entirely frozen. This decoupling further reveals a general mechanism underlying few-step distillation: PF-ODE distillation mainly straightens the few-step trajectory geometry, while the subsequent distribution-matching stage independently governs distributional quality. Using only one PF-ODE trajectory, Glance Forcing already surpasses the fully-trained state-of-the-art baseline, raising the VBench Total score from 84.04 to 84.22 while cutting trajectory-collection cost from thousands of GPU-hours to about one A100-GPU-hour, with markedly larger gains in dynamic degree, VisionReward, and instruction-following, and consistent preference from human raters over strong baselines.",
-      "authors": [
-        "Zhuobai Dong",
-        "Junchao Yi",
-        "Hu Jian Guo",
-        "Linjie Li",
-        "Rui Zhao",
-        "Alex Jinpeng Wang"
-      ],
-      "url": "http://arxiv.org/abs/2610.20220v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 75,
-      "priority": "must-read",
-      "summary_cn": "本文研究如何以极少的PF-ODE轨迹监督，将双向视频扩散模型高效蒸馏为可因果、自回归、少步生成的模型。作者发现，单样本监督本身足以建立少步轨迹的整体几何结构，但单一学生网络难以同时拟合高噪声阶段的布局与运动，以及低噪声阶段的纹理细节，原因在于两者的曲率和优化行为不同。为此提出Glance Forcing：使用双LoRA结构，将去噪过程划分为Slow专家和Fast专家，分别处理高噪声语义运动与低噪声细节，并引入时间频谱损失和空间高通损失。实验基于Wan2.1-1.3B的分块自回归生成，在单样本设置下显著降低轨迹收集成本；扩大训练预算后，VBench、动态程度、视觉奖励和指令遵循等指标进一步提升。消融实验验证了阶段解耦、时间频谱损失和空间高通损失的作用；此外，该方法也被用于将Wan2.1从50步压缩到8步或4步的双向扩散生成。",
-      "contribution_cn": "1. 分析PF-ODE蒸馏与分布匹配的作用，指出前者主要拉直少步去噪轨迹，后者主要改善生成分布质量，并证明单条轨迹可提供足够的轨迹几何监督。 2. 提出Glance Forcing双LoRA蒸馏框架，将去噪过程解耦为负责布局和运动的Slow专家，以及负责纹理和细节的Fast专家。 3. 为两个阶段设计专门目标：利用时间频谱损失抑制闪烁并保持运动动态，利用空间高通损失增强边缘和精细纹理。 4. 在极少轨迹监督下实现较高的数据与计算效率，并通过系统实验、消融实验和人类偏好评测验证方法有效性。 5. 展示该阶段感知优化策略不仅适用于自回归视频生成，也可用于双向扩散模型的采样步数压缩。",
-      "relevance_cn": "本文与研究重点高度相关。它直接面向视频扩散模型到因果、自回归视频生成器的蒸馏，解决了长视频和实时生成中因果分块推理的训练成本问题。其分块自回归架构支持利用历史帧的KV缓存进行流式生成，适合实时视频合成和视频世界模型。双LoRA专家分别处理高噪声阶段的全局运动与语义布局、低噪声阶段的局部细节，属于针对视频时空生成过程的稀疏阶段建模和高效适配。单条PF-ODE轨迹将轨迹收集从数千GPU小时降低到约一个A100小时，直接涉及蒸馏、计算效率和训练数据压缩；4步或8步推理结果也与少步生成和实时生成相关。论文没有重点研究闭环动作条件控制或交互式世界模型中的策略反馈，但其因果生成和流式自回归机制可作为此类系统的视频预测模块。",
-      "limitations_cn": "论文显示，单样本ODE初始化对样本特征较敏感：高运动强度、特定领域和复杂内容会导致更明显的性能下降；单样本训练的效果取决于样本选择。虽然DMD能够在一定程度上恢复质量，但不同样本设置下的结果仍有差异。方法的实验主要基于Wan2.1-1.3B、特定分辨率和81帧分块生成，跨模型、分辨率、视频长度及更复杂场景的泛化能力未被充分验证。实时性结果是在单张H100 GPU上、且不计VAE时间的条件下测量，实际端到端延迟可能更高。论文主要评估离线生成质量和效率，没有充分验证动作条件控制、闭环交互、长期世界模型稳定性或误差累积。论文未明确说明在极长视频、连续流式运行或更大规模模型上的性能上限。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归生成是实时、因果视频合成的基础，也是视频世界模型的核心。当前主流方法将双向扩散模型蒸馏为因果少步学生模型，但现有流程需要离线概率流常微分方程（PF-ODE）轨迹，成本高得难以承受，需消耗数万GPU小时和数TB存储。我们证明，这一过程可以大幅提高效率。为将效率推向极致，我们将轨迹监督减少到单个样本这一最严格的设置，并发现这会导致严重的质量崩溃。我们追溯其原因发现，教师模型的轨迹几何存在明显差异：负责语义布局和运动的高噪声阶段，与负责精细纹理的低噪声阶段具有根本不同的曲率和优化行为，因此单一的整体学生模型无法同时拟合二者，导致严重的表示干扰。基于这一观察，我们提出Glance Forcing，一种轻量级蒸馏框架，将去噪轨迹解耦为互补的慢速专家和快速专家，并分别采用针对阶段特点设计的目标函数，同时完全冻结预训练教师模型。这种解耦进一步揭示了少步蒸馏背后的一般机制：PF-ODE蒸馏主要负责拉直少步轨迹的几何结构，而后续的分布匹配阶段则独立决定分布质量。仅使用一条PF-ODE轨迹，Glance Forcing就已经超过了经过完整训练的先进基线，将VBench总分从84.04提高到84.22，同时将轨迹收集成本从数千GPU小时降至约一个A100 GPU小时；在动态程度、VisionReward和指令遵循方面取得了更显著的提升，并且在人类评测者中持续获得相对于强基线的偏好。",
-      "note_path": "2026-10-19/2610.20220-glance-forcing-making-bidirectional-diffusion-au.md"
-    },
-    {
-      "id": "2610.02779",
-      "date": "2026-10-15",
-      "topics": [
         "Autoregressive and Streaming Video"
       ],
-      "title": "TRAC: Trajectory-aware Reuse and Adaptive Correction for Efficient Autoregressive Video Generation",
-      "abstract": "Autoregressive (AR) video generation enables scalable long-video synthesis by sequentially generating fixed-length chunks, but incurs substantial computational cost from repeated denoising and attention over growing historical contexts. Recent cache reuse methods exploit temporal redundancy to reduce this cost, yet are mainly designed for single-trajectory generation, making them less suitable for sequentially coupled AR trajectories where approximation errors can accumulate and propagate across chunks. To address this challenge, we propose TRAC, a Trajectory-aware Reuse and Adaptive Correction framework for efficient and robust AR video generation. TRAC integrates three complementary components: (1) Robust Cumulative Scheduling (RCS), which selects cache reuse schedules by accounting for cumulative rollout errors and their variation across chunks and prompts; (2) Autoregressive Trajectory-aware Guidance Scheduling (ATGS), which coordinates classifier-free guidance refreshes along the global AR trajectory; and (3) Spectral Structure Correction (SSC), which adaptively restores low-frequency structural information to mitigate long-term error accumulation. By combining these innovations, TRAC substantially improves the efficiency-quality trade-off of AR video generation. For example, on VBench with SkyReels-V2, it achieves a 6.03x speedup over the vanilla model with only ~0.6% VBench score degradation, while consistently outperforming existing AR acceleration methods in both latency and generation quality. The code is publicly available at https://github.com/yolosjxhhhhhh/trac.",
+      "title": "Clean Forcing: Drift-Resistant Autoregressive Video Diffusion with a Frozen Base",
+      "abstract": "Autoregressive (AR) video diffusion models generate streaming video of arbitrary length by conditioning each new chunk of frames on those already generated. However, they suffer from exposure bias, where a model trained on clean context must continue from its own imperfect outputs, and errors compound until quality collapses within seconds (drift). Existing methods either require cluster-scale base retraining, apply training-free inference corrections with inconsistent results, or train frozen-base correctors for sampling and cache errors. We instead find that drift is largely deterministic and therefore learnable, as holding the noisy state fixed while varying only the history reveals a counterfactual velocity gap that is ~95% systematic across noise seeds. Based on this observation, we introduce Clean Forcing, which trains a 5.9M-parameter LoRA corrector on the frozen base model to regress this gap, with a closed-loop stage that adds DAgger-style aggregation and a drift-contraction objective to expose the corrector to its own rollouts. Because the clean histories can be the base model's own single-shot generations, training needs no real videos, and the merged corrector adds no inference cost. In 50 s text-to-video generation, Clean Forcing reduces Δ-drift from +11.3 to +1.65 without real video and to -0.16 with 40 real clips, improving on the best published result of +3.57 with over 150x less data. Extensive experiments demonstrate that Clean Forcing outperforms prior methods in aesthetic quality and data efficiency with reduced drift for long-horizon video generation.",
       "authors": [
-        "Jiaxing Song",
-        "Weiqi Yan",
-        "You Huang",
-        "Mingte Qiu",
-        "Huazhong Liu",
-        "Xiaofeng Zhu",
-        "Yunshan Zhong"
+        "Wenqing Wang",
+        "Joonghyuk Shin",
+        "Jonathan Tremblay",
+        "Chan Hee Song",
+        "Yun Fu"
       ],
-      "url": "http://arxiv.org/abs/2610.02779v2",
+      "url": "http://arxiv.org/abs/2610.25634v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.LG"
       ],
-      "comment": "",
-      "score": 73,
+      "comment": "Project page: https://clean-forcing.github.io/",
+      "score": 81,
       "priority": "must-read",
-      "summary_cn": "本文提出一种无需训练的TRAC框架，用于加速由连续视频块组成的自回归长视频生成。针对缓存复用误差沿AR轨迹累积、CFG计算开销高以及长期低频结构漂移三个问题，TRAC分别采用RCS、ATGS和SSC进行风险感知的缓存调度、全局CFG刷新调度和自适应低频结构校正。在SkyReels-V2上，TRAC达到6.03倍加速，VBench得分为82.44，相比原始模型仅下降约0.6%；在FramePack-F1上达到1.668倍加速，并保持接近原始模型的总体质量。",
-      "contribution_cn": "提出面向序列耦合AR生成轨迹的TRAC训练免费加速框架；提出RCS，通过跨视频块和提示词的稳健统计、累积 rollout 误差、尾部风险及终点误差来优化缓存调度，并为首个视频块分配更密集的计算；提出ATGS，将CFG残差刷新建模为全局AR路径上的预算调度问题，在高误差位置刷新、其他位置复用；提出SSC，利用首个视频块的低频结构作为参考，并依据局部运动强度自适应注入校正，从而缓解长期结构漂移；在SkyReels-V2和FramePack-F1上验证了效率与生成质量的提升。",
-      "relevance_cn": "与研究重点高度相关。该工作直接面向自回归、因果式的长视频生成，核心目标是降低连续块式生成中的重复去噪、增长历史上下文注意力和CFG开销。RCS和ATGS分别涉及跨轨迹缓存复用与全局引导调度，SSC则通过低频结构保持改善长时一致性。其结果表明，在SkyReels-V2上可实现6.03倍推理加速，在FramePack-F1上可实现1.668倍加速；方法为训练免费，并明确指出可与量化、蒸馏和稀疏注意力等实时生成技术结合。",
-      "limitations_cn": "论文明确指出，TRAC仅在两个自回归视频骨干模型上进行了验证，能否推广到新兴AR视频模型仍是开放问题；验证更广泛模型需要目前无法承担的大量计算资源。TRAC尚未与量化、蒸馏、稀疏注意力等互补加速技术结合，因此联合方案的效果尚未评估。论文还依赖校准阶段对提示词、视频块和调度进行误差统计，并将调度固定用于推理；不同数据分布、模型或运行条件下的校准成本和泛化表现未作充分说明。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归（AR）视频生成通过依次生成固定长度的视频块，实现了可扩展的长视频合成，但由于需要重复去噪并对不断增长的历史上下文执行注意力计算，因此计算成本很高。近期的缓存复用方法利用时间冗余来降低这一成本，但主要针对单轨迹生成设计，因此不太适用于具有序列耦合关系的AR轨迹；在后者中，近似误差可能跨视频块累积并传播。为应对这一挑战，我们提出TRAC（Trajectory-aware Reuse and Adaptive Correction，轨迹感知复用与自适应校正）框架，以实现高效且稳健的AR视频生成。TRAC包含三个互补组件：（1）稳健累积调度（RCS），通过考虑累积的 rollout 误差及其在不同视频块和提示词之间的变化来选择缓存复用调度；（2）自回归轨迹感知引导调度（ATGS），沿全局AR轨迹协调无分类器引导的刷新；（3）谱结构校正（SSC），自适应地恢复低频结构信息，以减轻长期误差累积。通过结合这些创新，TRAC显著改善了AR视频生成的效率—质量权衡。例如，在使用SkyReels-V2的VBench上，与原始模型相比，它实现了6.03倍加速，而VBench得分仅下降约0.6%；同时，在延迟和生成质量方面始终优于现有AR加速方法。代码已公开于https://github.com/yolosjxhhhhhh/trac。",
-      "note_path": "2026-10-19/2610.02779-trac-trajectory-aware-reuse-and-adaptive-correct.md"
-    },
-    {
-      "id": "2610.22311",
-      "date": "2026-10-15",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "Velox: Spatial Memory Makes World Models Efficient",
-      "abstract": "Video world models turn actions and camera motion into long visual rollouts, making video a natural interface for interactive simulation. Such interaction requires responsive generation, yet coherent rollouts must retain visual memory of what has already been generated. Chunked video diffusion models usually keep this context in growing KV caches, so later chunks become progressively slower. To address this bottleneck, we introduce Velox, a training-free attention router for region-level context selection using frustum slab correspondences from streaming geometry. Velox represents historical blocks as camera frustum slabs with depth intervals and obtains current-block depth through recency-priority multiwarp. For well-covered regions, frustum slab overlap softly modulates each layer's model-derived block importance. Uncovered regions retain the model-derived route without geometric bias. The fixed token-block granularity matches FlashAttention-style tiled execution and reduces the attention term that grows with rollout length. Frustum slab construction runs asynchronously with denoising on the same H200. At chunk 48, Velox accelerates attention by $4.36\\times$ and denoising by $2.43\\times$. On the full 158-case WBench navigation split, it remains within 0.15 API-free average points of dense LingBot-Fast-Cam. Please see our project page at https://velox-world.com/velox/ for more details.",
-      "authors": [
-        "Qiuhong Shen",
-        "Shizun Wang",
-        "Xinchao Wang"
-      ],
-      "url": "http://arxiv.org/abs/2610.22311v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "",
-      "score": 73,
-      "priority": "must-read",
-      "summary_cn": "论文针对长时视频世界模型中 KV 缓存随生成历史增长、导致后续分块越来越慢的问题，提出无需训练的 Velox 推理路由器。它把历史视觉记忆压缩表示为带深度区间的相机视锥体 slab，通过多重变形估计当前块深度，并以世界坐标系中的 slab 重叠作为几何先验，结合每个 Transformer 层自身的注意力重要性，为当前区域选择有限的历史 KV 块。对几何覆盖不足的区域，系统回退到模型路由；同时保留前一分块、全局 Gilbert 邻域和参考帧等局部连续性保护机制。Velox 使用块稀疏注意力、全局对齐的 Gilbert KV 布局，并在 H200 上异步构建几何记忆。在 48 分块 rollout 的末端，注意力和去噪分别获得 4.36 倍和 2.43 倍加速；在 158 个 WBench 导航案例上，质量接近稠密注意力，并略微提升整体平均分。",
-      "contribution_cn": "1. 提出 Velox，一种无需训练的区域级注意力路由框架，利用视锥体 slab 对应关系降低分块视频世界模型不断增长的 KV 注意力开销。2. 提出软几何融合规则，以 OBB 视锥体 slab 重叠调制各层模型推导的块重要性，同时对几何覆盖不足的区域保留无偏的模型路由回退。3. 在实现层面结合全局对齐的 Gilbert KV 存储、原生索引块稀疏注意力内核，以及与去噪并行的异步视锥体 slab 构建，在第 48 个分块达到 4.36 倍注意力加速和 2.43 倍去噪加速。4. 通过 WBench 导航评测、缩放实验、几何与模型重要性一致性分析及定性 rollout 对比，验证其在降低延迟的同时维持长时空间一致性的能力。",
-      "relevance_cn": "论文与研究重点高度相关：它直接面向动作和相机控制的视频世界模型及闭环式长时视觉 rollout，解决长视频生成中的历史记忆管理和响应速度问题。方法属于推理阶段的稀疏注意力与 KV 缓存复用，通过空间几何对应关系进行区域级上下文路由，而不是让每个当前区域访问全部历史。固定块路由使注意力开销不再随历史长度线性增长，并在单张 H200 上异步执行几何处理，因而与实时生成、长视频生成、缓存复用和高效视频扩散密切相关。它保持预训练生成器和条件接口不变，也体现了无需再训练即可进行生成加速的路线。",
-      "limitations_cn": "论文的实验主要基于 LingBot-Fast-Cam 推理栈、单张 H200 和 158 个 WBench 导航案例，跨模型、硬件和任务的泛化能力未得到充分验证。方法依赖深度、置信度、掩码和相机位姿等流式几何信息；深度空洞、遮挡、错误重建或陈旧的变形深度可能降低路由可靠性。视锥体 slab 状态通常存在两分块的新鲜度延迟，且几何构建与去噪共享同一块 GPU，其他硬件条件下的实际收益可能不同。Velox 使用固定的路由预算和多个校准超参数，可能在不同场景、运动模式或覆盖率下需要重新调整。论文报告了总体质量和部分定性案例，但未明确说明更长于 48 个分块、极端快速相机运动、复杂动态物体或真实交互闭环中的性能。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型将动作和相机运动转化为长时视觉 rollout，使视频成为交互式模拟的自然接口。这类交互要求生成具有响应性，但连贯的 rollout 必须保留已生成内容的视觉记忆。分块视频扩散模型通常将这些上下文保存在不断增长的 KV 缓存中，因此后续分块会逐渐变慢。为解决这一瓶颈，我们提出 Velox：一种无需训练的注意力路由器，利用流式几何中的视锥体 slab 对应关系进行区域级上下文选择。Velox 将历史块表示为带有深度区间的相机视锥体 slab，并通过基于新近性的多重变形获取当前块的深度。对于覆盖良好的区域，视锥体 slab 的重叠程度会对模型在各层推导出的块重要性进行软调制；未覆盖区域则保留模型推导的路由，不施加几何偏置。固定的 token 块粒度与 FlashAttention 风格的分块执行相匹配，从而降低随 rollout 长度增长的注意力开销。视锥体 slab 的构建与去噪过程在同一块 H200 上异步运行。在第 48 个分块处，Velox 将注意力加速 4.36 倍，将去噪加速 2.43 倍。在完整的 158 个案例 WBench 导航划分上，其无 API 平均分与稠密 LingBot-Fast-Cam 相差不超过 0.15 分。更多细节请参见项目主页 https://velox-world.com/velox/。",
-      "note_path": "2026-10-19/2610.22311-velox-spatial-memory-makes-world-models-efficien.md"
+      "summary_cn": "Autoregressive (AR) video diffusion models generate streaming video of arbitrary length by conditioning each new chunk of frames on those already generated.",
+      "contribution_cn": "Based on this observation, we introduce Clean Forcing, which trains a 5.9M-parameter LoRA corrector on the frozen base model to regress this gap, with a closed-loop stage that adds DAgger-style aggregation and a drift-contraction objective to expose the corrector to its own rollouts.",
+      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：closed-loop, autoregressive, streaming, cache, video generation, text-to-video",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
       "id": "2610.23156",
@@ -117,37 +54,71 @@
       ],
       "comment": "",
       "score": 72,
-      "priority": "skim",
-      "summary_cn": "World models provide robots with a predictive mechanism for reasoning about how actions change object states in manipulation tasks.",
-      "contribution_cn": "To address this, we propose ORD-WM, a 3D world model that learns object-centric rigid dynamics for robotic manipulation.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, closed-loop, real-time, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "本文提出 ORD-WM，用于机器人操作中的三维物体中心世界建模。方法通过 SDF 监督的旋转等变向量神经元变分自编码器，将物体点云编码为可进行刚体变换的几何潜变量；随后根据当前场景状态和机器人动作预测各物体的 SE(3) 运动增量，并直接在潜空间中更新物体状态。该结构避免了自由预测潜变量造成的形状漂移，并支持无需重复分割、点云重建和编码的多步 rollout。仿真与真实机器人实验显示，ORD-WM 在多步运动预测、几何一致性和闭环 MPC 方面具有较好表现；在真实推动任务中，使用 1024 个候选动作序列时成功率达到 90%，每次重规划耗时低于 0.3 秒。",
+      "contribution_cn": "1. 提出 ORD-WM，一种面向机器人操作的物体中心三维世界模型，以显式的物体级刚体动力学替代稠密元素或视觉潜变量的无约束演化。2. 设计由 SDF 监督的向量神经元变分自编码器，将物体几何编码为由三维向量特征组成的旋转等变潜在表示，使旋转能够直接作用于潜变量。3. 设计动作条件的物体级 SE(3) 运动预测与解析潜空间更新机制，将持久几何和姿态变化分离，从结构上保持刚体几何并提升长时 rollout 稳定性。4. 将该世界模型用于基于交叉熵方法的闭环模型预测控制，在仿真和真实世界的推动、抓取放置任务中验证了预测精度、推理效率和在线重规划能力。",
+      "relevance_cn": "本文与研究重点中的动作条件视觉世界模型、闭环仿真和实时生成直接相关，但其核心表示不是视频帧或视频扩散潜变量，而是由 RGB-D 观测构建的物体级三维状态。它根据机器人动作预测物体的未来状态，并通过多步潜空间 rollout 为闭环 MPC 评估候选动作，属于动作条件三维世界模型和闭环控制仿真的代表性方法。通过 VN 潜变量上的直接 SE(3) 变换，方法避免每一步重新分割、重建和编码点云，从而实现较高 rollout 吞吐量和实时重规划。论文未涉及视频生成、视频扩散、自回归视频生成、流式长视频生成、扩散蒸馏或稀疏注意力；其缓存复用主要体现为持久化物体潜状态，而非视频生成中的显式 KV cache。",
+      "limitations_cn": "方法将场景物体限定为固定或浮动的刚体，因此不适用于铰接、关节连接或可变形物体。该方法主要面向低动态、位置控制的操作任务，质量、摩擦和接触效应仅从观测转移中隐式学习，无法在相同观测状态和动作下区分不同的未观测物理参数。SE(3) 更新能够保持物体几何，但不显式保证接触约束或非穿透约束。受计算资源限制，论文尚未在更大规模数据集或更加多样的物体、任务分布上进行评估。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "世界模型为机器人提供了预测机制，使其能够推理动作如何改变操作任务中的物体状态。然而，现有的基于图像和稠密三维的世界模型并未显式施加物体层面的刚体运动约束，因此刚体物体的几何形状保持需要通过学习隐式获得，多步 rollout 容易出现形状漂移或物体层面的运动不一致。为此，我们提出 ORD-WM，一种学习面向物体的刚体动力学、用于机器人操作的三维世界模型。ORD-WM 学习一个由有符号距离场监督的向量神经元变分自编码器，将每个物体的点云编码为由三维向量特征组成的几何感知潜在表示，并使用动作条件动力学模型预测面向物体的 SE(3) 运动增量。ORD-WM 不生成不受约束的下一时刻潜在状态，而是以解析方式将预测的、逐物体的刚体变换应用于当前潜在状态，从而将持久的物体几何与姿态变化分离开来。实验表明，ORD-WM 能够实现稳定且保持几何形状的多步预测，并支持在仿真和真实世界操作场景中进行闭环模型预测控制的高效实时重规划。",
+      "note_path": "2026-10-20/2610.23156-ord-wm-learning-object-centric-rigid-dynamics-fo.md"
     },
     {
-      "id": "2610.22347",
-      "date": "2026-10-15",
+      "id": "2610.24534",
+      "date": "2026-10-17",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "Speculative Forcing for Efficient Autoregressive Video Generation",
-      "abstract": "Few-step autoregressive video generators enable streaming generation, yet they run every token through the final denoising step, regardless of how much refinement it needs. We find this uniform computation is often unnecessary: many tokens already closely match their eventual full-step outputs in the initial steps, while others require refinement until the end. We introduce Speculative Forcing, a framework that treats intermediate clean estimates as drafts and predicts when individual tokens can be safely accepted early. Once accepted, a token is frozen as its final output and undergoes no further denoising, while its cached keys and values remain available as context for the remaining tokens. We explore two alternative verifier designs: a training-free one based on similarity to clean content and stability across steps, and a learned one that reads the frozen generator's intermediate features to estimate each token's remaining gap to its full-step output. Across short-video, long-video, and world generation, Speculative Forcing preserves the quality of full-step sampling while substantially reducing computation. On LongLive, it matches the four-step generator with ~1.7 denoising steps per token, running over 1.5x faster at 41.7 and 37.8 fps. On Lingbot-World 2.0, where camera motion continually changes the visible content, it maintains quality with ~2.5 denoising steps per token and runs 1.35x faster at 24.5 fps.",
+      "title": "Structured Latent Dynamics for Long-Horizon Embodied World Models",
+      "abstract": "Reliable long-horizon prediction remains a central challenge for embodied world models. Although recent generative models can synthesize visually plausible action-conditioned futures, their latent dynamics are typically learned through unconstrained transition modules, which may gradually deviate from coherent physical evolution as predictions are recursively rolled forward. We investigate whether explicitly structuring latent state evolution can improve the stability and utility of such imagined trajectories. To this end, we introduce HWM, a structured dynamics framework that represents backbone latents in a learned phase space consisting of generalized coordinates and momenta. Future states are propagated through dissipative Hamiltonian dynamics and mapped back to the original latent representation through a learnable inverse interface. The resulting formulation can be integrated into existing world-model architectures without redesigning their perception or decoding components, while multi-step transition supervision encourages the structured rollout to remain aligned with the latent trajectories induced by real observations. Controlled simulation experiments show that HWM produces more accurate estimates of velocity, acceleration, and jerk and substantially reduces long-horizon energy drift relative to unstructured latent dynamics. We further evaluate the approach across three distinct embodied world-model settings, covering single-arm multi-view prediction with Ctrl-World, dual-arm single-view prediction with EVAC, and task-oriented single-arm prediction with Cosmos-Predict2.5-2B. On RoboCasa, incorporating HWM into Cosmos-Predict2.5-2B yields a 2.7% relative improvement in task success. On real-world AgiBot World trajectories, it improves nDTW by 9.7% with Ctrl-World and Logic by 8.4% with EVAC.",
       "authors": [
-        "Hyunwook Choi",
-        "Seungryong Kim",
-        "Dongyoon Han",
-        "Sangdoo Yun"
+        "Kevin Chen",
+        "Yu-Wei Zhan",
+        "Haoran Liang",
+        "Sen Cui",
+        "Changshui Zhang"
       ],
-      "url": "http://arxiv.org/abs/2610.22347v1",
+      "url": "http://arxiv.org/abs/2610.24534v1",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "本文提出哈密顿世界模型 HWM，用学习到的广义坐标—动量相空间替代普通的黑箱潜在转移，并通过带耗散、控制输入和残差项的哈密顿动力学及半隐式辛 Euler 积分进行长时域滚动。多步潜在一致性损失将滚动轨迹约束在真实观测诱导的潜在流形附近。仿真和三类具身视频世界模型实验表明，HWM 可减少能量漂移、改善物理状态预测、视觉与逻辑一致性，并提升下游任务成功率。",
+      "contribution_cn": "1. 提出将物理一致性直接嵌入潜在转移规律，而非仅依赖辅助损失或事后评估的世界建模观点。2. 提出可插拔的 HWM 框架，将骨干潜变量映射为广义坐标和动量，并使用受控耗散哈密顿动力学进行结构化演化。3. 引入可学习的相空间双向接口、半隐式辛 Euler 滚动以及多步潜在转移一致性监督。4. 在仿真、Ctrl-World、EVAC 和 Cosmos-Predict2.5-2B 上验证了其在物理状态预测、长时域稳定性、生成质量和具身任务执行方面的收益。",
+      "relevance_cn": "该工作直接面向动作条件的具身视觉世界模型和闭环模拟，重点解决递归长时域预测中的物理漂移问题。它通过显式建模潜在状态的坐标、动量、能量、耗散和控制作用，提高动作条件未来预测的动力学一致性，从而增强想象轨迹对规划、策略评估和机器人执行的实用性。方法属于结构化潜在动力学和长视频/长时域生成方向，但论文未重点讨论实时生成、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文明确指出：受计算资源限制，未能评估更多骨干模型，也未在更广泛的任务、训练规模和随机种子上开展实验；学习到的相变量未必对应可识别的物理量，因此哈密顿结构本身不能保证预测具有物理正确性；耗散、外部控制和残差分支会削弱完整动力学的能量守恒特性，尤其是在接触密集的交互中；现有评估尚未证明模型对显著不同环境或超出测试范围的滚动时域具有鲁棒性。此外，HWM 引入了额外的结构化动力学模块和多步滚动训练，可能带来计算与优化开销，但论文未对此作系统量化。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "可靠的长时域预测仍是具身世界模型面临的核心挑战。尽管近期生成模型能够合成视觉上合理的、以动作为条件的未来状态，但其潜在动力学通常通过无约束的转移模块学习；随着预测结果递归滚动，这些模块可能逐渐偏离连贯的物理演化。我们研究了显式组织潜在状态演化是否能够提升此类想象轨迹的稳定性和实用性。为此，我们提出 HWM，一种结构化动力学框架，将骨干网络的潜变量表示在一个由广义坐标和动量组成的学习相空间中。未来状态通过耗散哈密顿动力学进行传播，并通过可学习的逆接口映射回原始潜在表示。该方法无需重新设计感知或解码组件即可集成到现有世界模型架构中，同时，多步转移监督促使结构化滚动结果与真实观测所诱导的潜在轨迹保持一致。受控仿真实验表明，与非结构化潜在动力学相比，HWM 能够更准确地估计速度、加速度和加加速度，并显著减少长时域能量漂移。我们进一步在三种不同的具身世界模型设置中评估该方法，包括使用 Ctrl-World 进行单臂多视角预测、使用 EVAC 进行双臂单视角预测，以及使用 Cosmos-Predict2.5-2B 进行面向任务的单臂预测。在 RoboCasa 上，将 HWM 集成到 Cosmos-Predict2.5-2B 后，任务成功率相对提升了 2.7%。在真实世界的 AgiBot World 轨迹上，HWM 使 Ctrl-World 的 nDTW 提升了 9.7%，使 EVAC 的 Logic 指标提升了 8.4%。"
+    },
+    {
+      "id": "2610.25666",
+      "date": "2026-10-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Frechet Forcing: Training Long-Horizon Streaming World Models from Short Clips",
+      "abstract": "Streaming video world models generate the future chunk by chunk, conditioned on their own past and a stream of actions. Trained on short clips, they drift once a rollout exceeds the training horizon, as prediction errors re-enter the context and compound. A common remedy is to train the model on its own rollouts via distribution matching distillation (DMD). For action-conditioned world models, the teacher becomes a bottleneck: an external video model is agnostic to the actions, whereas the model's own pretrained network drifts in the same manner as the student. We observe that a long rollout need not match a teacher, provided it remains a realistic continuation of its own scene that follows the commanded actions. Realism and scene fidelity can be measured against real-data statistics, which remain valid at any horizon, while action following is preserved by the model's conditional generation loss. We propose Fréchet Forcing, which fine-tunes a world model together with its deployed multi-step sampler under three constraints. Generative anchoring applies the flow-matching loss after a self-generated history ending on real data. Context fidelity, a Fréchet distance (FD) on latent statistics of the free rollout centred on each clip's own ground truth, keeps every rollout faithful to its scene. Reality matching, an FD to real frames in a frozen perceptual space, keeps the generated frames realistic. Because all three targets are derived from short real clips without comparing a rollout against a long recorded future, training requires no teacher, no online critic and no long videos. Fine-tuning MiniWorld-1B, pretrained on 253-frame clips, for at most 36 GPU-hours on 381-frame clips yields rollouts that remain stable beyond 4,000 frames and continue to follow their actions in both robot manipulation and camera-controlled exploration.",
+      "authors": [
+        "Yian Zhao",
+        "Yu Yan",
+        "Hongcan Guo",
+        "Ruochong Zheng",
+        "Jian Zhang",
+        "Jie Chen"
+      ],
+      "url": "http://arxiv.org/abs/2610.25666v1",
       "categories": [
         "cs.CV"
       ],
       "comment": "",
       "score": 70,
       "priority": "skim",
-      "summary_cn": "Few-step autoregressive video generators enable streaming generation, yet they run every token through the final denoising step, regardless of how much refinement it needs.",
-      "contribution_cn": "We introduce Speculative Forcing, a framework that treats intermediate clean estimates as drafts and predicts when individual tokens can be safely accepted early.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, streaming, few-step, cache, efficient, video generation",
+      "summary_cn": "Streaming video world models generate the future chunk by chunk, conditioned on their own past and a stream of actions.",
+      "contribution_cn": "We propose Fréchet Forcing, which fine-tunes a world model together with its deployed multi-step sampler under three constraints.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, action-conditioned, streaming, long video, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -182,37 +153,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.19795",
-      "date": "2026-10-14",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "StateCraft: Augmenting Video World Models with Abstract-State Reasoning",
-      "abstract": "Video world models aim to simulate complex environments with realistic appearance and dynamics. Maintaining consistency over long interactions requires tracking past actions and understanding how those actions affect the environment. Video world models can only generate partial observations of the entire world at a time. Remembering past observations alone may not be sufficient in every scenario, as they may no longer reflect the world after a sequence of actions. We introduce a paradigm that decouples a persistent, updatable abstract state from the visual state. The abstract state keeps track of the entities' changes as the world evolves, and is used to condition the visual state, which represents the current view. We propose StateCraft, a novel architecture that pairs a language model with a video diffusion model to evolve the dynamic world. We evaluate our approach on generative interfaces, which pose a substantial challenge because a single action may change parts of the state that are not currently visible. To support training and evaluation, we develop a data collection pipeline that produces informative, densely annotated trajectories at scale without human or agent supervision, together with a benchmark measuring generation quality, memory, and controllability. On this benchmark, our approach improves surpasses the state-of-the-art baselines. We demonstrate that StateCraft maintains high self-consistency and strong generation quality over long trajectories. Because the abstract state is explicit, it can be edited directly, and generation follows edits to states never observed in the data. Finally, a proof-of-concept 3D experiment, in which actions change the illumination of an unobserved room, shows that the paradigm can also be applied to spatial environments. Project page: https://insait-institute.github.io/StateCraft/.",
-      "authors": [
-        "Lorenzo Venturoli",
-        "Nedko Savov",
-        "Xi Wang",
-        "Marc Pollefeys",
-        "Luc Van Gool"
-      ],
-      "url": "http://arxiv.org/abs/2610.19795v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "comment": "",
-      "score": 66,
-      "priority": "skim",
-      "summary_cn": "Video world models aim to simulate complex environments with realistic appearance and dynamics.",
-      "contribution_cn": "We introduce a paradigm that decouples a persistent, updatable abstract state from the visual state.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2610.23423",
       "date": "2026-10-16",
       "topics": [
@@ -242,81 +182,152 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.20693",
-      "date": "2026-10-14",
+      "id": "2610.25959",
+      "date": "2026-10-19",
       "topics": [
         "World Models"
       ],
-      "title": "Orbia: Do Generated Videos Form a Consistent 3D World?",
-      "abstract": "Video generators serve as interactive worlds for exploration and simulation, yet realistic and visually appealing frames do not necessarily depict a consistent 3D world. Existing benchmarks assess selected geometric properties or use vision-language models to judge memory and consistency, leaving systematic 3D evaluation underexplored. We introduce Orbia, the first benchmark dedicated to a systematic and comprehensive evaluation of 3D consistency in interactive world models. Through controlled exploration and revisit, we organize the evaluation into three dimensions: input preservation, generated-content persistence, and 3D self-consistency. For input preservation, registered RGB-D references and annotated anchors support appearance, geometry, and spatial stability measurements. For generated-content persistence, we compare revisits to regions absent from the input image with their first generated observations to test whether models preserve what they create. For 3D self-consistency, cross-view depth and feature correspondence, regional scale agreement, and held-out Gaussian rendering test whether generated views describe the same 3D scene. Minute-long exploration and revisits further test long-term consistency. Our construction and annotation pipeline brings together public datasets, self-captured scenes, and simulation, yielding 720 instances across indoor and outdoor environments and six exploration-and-revisit protocols. Evaluation spans 27 text-, action-, and camera-conditioned models through native-interface adapters. Our Orbia benchmark provides a systematic basis for diagnosing 3D inconsistency and developing more persistent video world models.",
+      "title": "EmbodiedWorld-200K: Toward Embodied World Agents via Embodied-Planning Dataset and Interactive World Models",
+      "abstract": "Building embodied agents that can perceive, reason, and act across diverse 3D worlds is a central research direction toward artificial general intelligence. Yet most existing work remains confined to specific tasks in a single scene and transfers poorly to new environments, leaving general embodied agents for open-world settings under-explored. We refer to such agents as Embodied World Agents (EWAs), whose defining property is the ability to understand diverse visual environments and execute general actions in open-world conditions. To advance EWA research, we study open-world embodied navigation-planning and release EmbodiedWorld-200K, a large-scale dataset of over 200K samples spanning diverse scenes. Each example is equipped with multi-level annotations, ranging from low-level camera-motion trajectories to high-level semantic instructions. The dataset also provides unified evaluation splits and task-specific metrics, supporting offline pretraining and fair evaluation of EWAs. Beyond offline supervision, a defining characteristic of an EWA is its interaction with the environment; training solely on offline data is therefore insufficient, especially for generalizing to scenes not covered in the training distribution. Building dedicated real interactive environments, however, is often prohibitively expensive. To address this, we propose a novel training scheme that employs a video world model as a low-cost environment proxy and performs interactive reinforcement-learning (RL) post-training of the EWA within it. Empirically, pretraining on EmbodiedWorld-200K substantially improves the open-world embodied planning ability of the EWA, and further RL post-training inside a world model yields clear gains on out-of-distribution scenes. The dataset, baseline checkpoints, and training and evaluation code are available at https://xiaokunfeng.github.io/EmbodiedWorld-200K/.",
       "authors": [
-        "Dongyue Lu",
-        "Guian Fang",
-        "Hur Lim",
-        "Yonggang Wu",
-        "Yanrong Wang",
-        "Hongshan Chen",
-        "Shengju Qian",
-        "Yue Liao",
-        "Wei Chow",
-        "Lingdong Kong",
-        "Tianxin Huang",
-        "Yu Yang",
-        "Hongji Yang",
-        "Junchao Huang",
-        "Ao Liang",
-        "Yihao Wang",
-        "Zihan Wang",
-        "Rong Li",
-        "Hanlin Chen",
-        "Xin Wang",
-        "Wei Tsang Ooi",
-        "Mike Zheng Shou",
-        "Shuicheng Yan"
+        "X. Feng",
+        "J. Tang",
+        "Z. Lin",
+        "L. Chen",
+        "S. Shao",
+        "Q. Lu",
+        "K. Huang"
       ],
-      "url": "http://arxiv.org/abs/2610.20693v1",
+      "url": "http://arxiv.org/abs/2610.25959v1",
       "categories": [
-        "cs.CV"
+        "cs.AI"
       ],
-      "comment": "Technical Report; 70 pages, 43 figures, 12 tables; Project page at https://orbia-bench.github.io/ Code at https://github.com/worldbench/Orbia Dataset at https://huggingface.co/datasets/Orbia/Orbia",
-      "score": 63,
+      "comment": "Accepted by NeurIPS 2026~",
+      "score": 61,
       "priority": "skim",
-      "summary_cn": "Video generators serve as interactive worlds for exploration and simulation, yet realistic and visually appealing frames do not necessarily depict a consistent 3D world.",
-      "contribution_cn": "We introduce Orbia, the first benchmark dedicated to a systematic and comprehensive evaluation of 3D consistency in interactive world models.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive, simulation",
+      "summary_cn": "Building embodied agents that can perceive, reason, and act across diverse 3D worlds is a central research direction toward artificial general intelligence.",
+      "contribution_cn": "To address this, we propose a novel training scheme that employs a video world model as a low-cost environment proxy and performs interactive reinforcement-learning (RL) post-training of the EWA within it.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.20111",
-      "date": "2026-10-14",
+      "id": "2610.23334",
+      "date": "2026-10-16",
       "topics": [
-        "Video Generation",
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "RepForcing: Representation-Space Initialization for Autoregressive Video Distillation",
-      "abstract": "Distilling pretrained video diffusion models into few-step autoregressive (AR) generators typically combines student initialization with distribution matching distillation (DMD). An intermediate AR teacher can provide causally compatible targets for ODE initialization. However, causally compatible targets alone do not ensure high-quality generation under a short sampling schedule. We analyze the posterior-mean predictions favored by direct latent regression and empirically find that causal ODE initialization alleviates blur but still leaves fine detail unresolved. To address this limitation, we propose Representation Forcing, which learns few-step causal initialization through representation-space supervision rather than intermediate-teacher trajectory regression. The student is trained with teacher forcing by comparing clean predictions and training targets through normalized features of a frozen video diffusion transformer. This phase reuses the synthetic videos generated by a bidirectional model for AR teacher training and replaces both teacher training and causal ODE distillation, without generating additional causal ODE trajectories. The subsequent asymmetric DMD procedure remains unchanged. Empirical results show that, at four sampling steps, RepForcing better preserves generation quality than intermediate-teacher-based initialization before DMD. After DMD, our four-step chunk-wise model improves VBench Total from 84.04 to 84.66 (+0.62 points) and VisionReward from 6.326 to 10.074 (+59.25%) over the reported causal-ODE-based baseline.",
+      "title": "LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence",
+      "abstract": "World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection. We present LAW, a closed-loop VLM--WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress. Within the LAW agent, a hybrid-expert vision-language model plans the remaining subtasks, estimates the values of and fuses actions proposed by a world-action model, and asynchronously assesses execution status to support continued execution and subtask transitions. Within the world-action model, Mixture-of-Transformer Experts integrates modality-specific and shared computation for joint video--action modeling. Dual-stream hierarchical visual memory maintains temporal context for both models, while subtask-local value learning aligns action evaluation with semantic objectives and preserves supervision from successful prefixes of failed trajectories. LAW achieves 94.21% average success across 50 RoboTwin tasks. Replacing the WAM backbone with OpenWAM-$alpha$ further raises the average success rate to 95.56%, establishing a new open-source state of the art on RoboTwin. Despite having only 2B parameters, our VLM also outperforms variants using Embodied-R1.5 and GPT-5.5 High. On three long-horizon real-robot tasks, LAW achieves 65% average success, compared with 28.33% for $pi_{0.5}$ and 25% for Fast-WAM.",
       "authors": [
-        "Siming Fu",
-        "Zheming Fu",
-        "Lianrui Mu",
-        "Haoyang Huang",
-        "Chaojie Gu",
-        "Ruizhe He"
+        "Jiajun Cao",
+        "Kai Tang",
+        "Bohua Zhang",
+        "Zezhong Qian",
+        "Ying Li",
+        "Xiaozhu Ju",
+        "Xiaobao Wei",
+        "Jiaming Liu",
+        "Yang Ding",
+        "Sixiang Chen",
+        "Yiding Sun",
+        "Siyuan Qian",
+        "Tinghao Wang",
+        "Jixian Wu",
+        "Yichen Guo",
+        "Yi Zhang",
+        "Shilong Zou",
+        "Yong Dai",
+        "Jian Tang",
+        "Shanghang Zhang"
       ],
-      "url": "http://arxiv.org/abs/2610.20111v1",
+      "url": "http://arxiv.org/abs/2610.23334v1",
       "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection.",
+      "contribution_cn": "We present LAW, a closed-loop VLM--WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.22364",
+      "date": "2026-10-15",
+      "topics": [
+        "World Models"
+      ],
+      "title": "T2-z: Test-Time Optimization of Environment Latents for Robotic World Models",
+      "abstract": "Predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified, from physical properties such as friction and mass to human-defined environmental rules. We introduce T2-Z for test-time optimization of environment latents, which augments a robotic world model with a learnable environment latent to condition world predictions. This compact latent captures underlying environmental variation without supervision of what environmental factors exist or what values they take. During training, T2-Z alternates between two stages: a world-model optimization stage that fixes the latents and learns general action-conditioned dynamics across environments; and an environment-latent optimization stage that freezes the world model and optimizes the conditioning latents, allowing latent structure to emerge purely through world prediction. At test time, the world model remains frozen and a newly initialized environment latent is optimized from one or more test-time interactions, adapting the model to previously unseen environmental configurations. Across 7 simulated settings and 4 real-world robotic tasks, T2-Z reduces object prediction error metric from 15.20 to 7.00 and raises action success from 33.73% to 72.96%. Its emergent latents capture structured representations of individual and compounded factors across diverse visual scenes. Ablations further show that T2-Z can efficiently infer environment latents from as little as a single test-time interaction trajectory.",
+      "authors": [
+        "Chenyuan Zhou",
+        "Yining Hong",
+        "Huang Huang",
+        "Yunfan Jiang",
+        "Wenlong Huang",
+        "David Held",
+        "Vitor Campagnolo Guizilini",
+        "Yue Wang",
+        "Li Fei-Fei",
+        "Jiajun Wu",
+        "Leonidas Guibas",
+        "Yejin Choi"
+      ],
+      "url": "http://arxiv.org/abs/2610.22364v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
         "cs.CV"
       ],
       "comment": "",
-      "score": 62,
+      "score": 57,
       "priority": "skim",
-      "summary_cn": "Distilling pretrained video diffusion models into few-step autoregressive (AR) generators typically combines student initialization with distribution matching distillation (DMD).",
-      "contribution_cn": "To address this limitation, we propose Representation Forcing, which learns few-step causal initialization through representation-space supervision rather than intermediate-teacher trajectory regression.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, few-step, distillation, video diffusion",
+      "summary_cn": "Predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified, from physical properties such as friction and mass to human-defined environmental rules.",
+      "contribution_cn": "We introduce T2-Z for test-time optimization of environment latents, which augments a robotic world model with a learnable environment latent to condition world predictions.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23127",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL",
+      "abstract": "Humanoid control requires coordinating whole-body posture with position and heading in the world frame. Mainstream controllers imitate trajectories in the root frame, but struggle to regain the target world pose after displacement. We introduce BeJEPA, a goal-conditioned Behavior World Model learned through unsupervised reinforcement learning from human motion priors and robot interaction. BeJEPA learns a shared representation of body configuration and world placement through a joint-embedding predictive architecture (JEPA). A Dynamic Predictor predicts the next state embedding under an action, while a Successor Predictor summarizes a goal-conditioned policy's expected discounted future state embeddings in a single vector. During joint training, Dynamic grounds the initial representation in observed physical transitions, while Successor increasingly organizes it around long-term behavior. Their composition guides policy improvement through one physical prediction and one behavioral summary, without long imagined rollouts. In 20-second motion-tracking experiments, BeJEPA with online action refinement using Dynamic outperforms all evaluated baselines in global body-position error, reducing it on AMASS by 61.7% relative to BFM-Zero with world-pose inputs and 58.7% relative to SONIC. Physical deployment on a Unitree G1 demonstrates joint attainment of posture, world position, and heading goals, recovery from the ground, and closed-loop return after disturbances and goal changes. Project page: https://ylyem9x.github.io/BeJEPA-project.",
+      "authors": [
+        "Liyun Yan",
+        "Haoyang Li",
+        "Yang Zhang",
+        "Jialing Zhu",
+        "Zhanxiang Cao",
+        "Zihao Zhou",
+        "Keqi Zhu",
+        "Yizhi Chen",
+        "Huang Chuxuan",
+        "Shengcheng Fu",
+        "Zhong Jiangwei",
+        "Qiao Sun",
+        "Chen Zhang",
+        "Yue Gao"
+      ],
+      "url": "http://arxiv.org/abs/2610.23127v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "Humanoid control requires coordinating whole-body posture with position and heading in the world frame.",
+      "contribution_cn": "We introduce BeJEPA, a goal-conditioned Behavior World Model learned through unsupervised reinforcement learning from human motion priors and robot interaction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 3
+  "cursor_summaries_completed": 2
 }

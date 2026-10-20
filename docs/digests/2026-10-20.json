@@ -1,0 +1,333 @@
+{
+  "generated_at": "2026-10-20T02:13:22+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.25634",
+      "date": "2026-10-19",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Clean Forcing: Drift-Resistant Autoregressive Video Diffusion with a Frozen Base",
+      "abstract": "Autoregressive (AR) video diffusion models generate streaming video of arbitrary length by conditioning each new chunk of frames on those already generated. However, they suffer from exposure bias, where a model trained on clean context must continue from its own imperfect outputs, and errors compound until quality collapses within seconds (drift). Existing methods either require cluster-scale base retraining, apply training-free inference corrections with inconsistent results, or train frozen-base correctors for sampling and cache errors. We instead find that drift is largely deterministic and therefore learnable, as holding the noisy state fixed while varying only the history reveals a counterfactual velocity gap that is ~95% systematic across noise seeds. Based on this observation, we introduce Clean Forcing, which trains a 5.9M-parameter LoRA corrector on the frozen base model to regress this gap, with a closed-loop stage that adds DAgger-style aggregation and a drift-contraction objective to expose the corrector to its own rollouts. Because the clean histories can be the base model's own single-shot generations, training needs no real videos, and the merged corrector adds no inference cost. In 50 s text-to-video generation, Clean Forcing reduces Δ-drift from +11.3 to +1.65 without real video and to -0.16 with 40 real clips, improving on the best published result of +3.57 with over 150x less data. Extensive experiments demonstrate that Clean Forcing outperforms prior methods in aesthetic quality and data efficiency with reduced drift for long-horizon video generation.",
+      "authors": [
+        "Wenqing Wang",
+        "Joonghyuk Shin",
+        "Jonathan Tremblay",
+        "Chan Hee Song",
+        "Yun Fu"
+      ],
+      "url": "http://arxiv.org/abs/2610.25634v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "Project page: https://clean-forcing.github.io/",
+      "score": 81,
+      "priority": "must-read",
+      "summary_cn": "Autoregressive (AR) video diffusion models generate streaming video of arbitrary length by conditioning each new chunk of frames on those already generated.",
+      "contribution_cn": "Based on this observation, we introduce Clean Forcing, which trains a 5.9M-parameter LoRA corrector on the frozen base model to regress this gap, with a closed-loop stage that adds DAgger-style aggregation and a drift-contraction objective to expose the corrector to its own rollouts.",
+      "relevance_cn": "匹配研究线：video generation, streaming video；关键词：closed-loop, autoregressive, streaming, cache, video generation, text-to-video",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23156",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ORD-WM: Learning Object-Centric Rigid Dynamics for 3D World Modeling in Robotic Manipulation",
+      "abstract": "World models provide robots with a predictive mechanism for reasoning about how actions change object states in manipulation tasks. However, existing image-based and dense 3D world models do not explicitly impose object-level rigid motion, leaving rigid-object geometry preservation to be learned implicitly and making multi-step rollouts susceptible to shape drift or object-level motion inconsistency. To address this, we propose ORD-WM, a 3D world model that learns object-centric rigid dynamics for robotic manipulation. ORD-WM learns a vector-neuron variational autoencoder supervised by signed distance fields, which encodes each object point cloud as a geometry-aware latent representation composed of 3D vector features, and uses an action-conditioned dynamics model to predict object-wise SE(3) motion increments. Rather than generating unconstrained next latent states, ORD-WM analytically applies predicted object-wise rigid transformations to the current latent states, separating persistent object geometry from pose changes. Experiments show that ORD-WM enables stable, geometry-preserving multi-step prediction and supports efficient real-time replanning for closed-loop model predictive control in simulated and real-world manipulation scenarios.",
+      "authors": [
+        "Yueyang Weng",
+        "Xiaopeng Zhang",
+        "Yuxi Ou",
+        "Yongjin Mu",
+        "Chengzhi Zhao",
+        "Yanjie Li"
+      ],
+      "url": "http://arxiv.org/abs/2610.23156v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "must-read",
+      "summary_cn": "本文提出 ORD-WM，用于机器人操作中的三维物体中心世界建模。方法通过 SDF 监督的旋转等变向量神经元变分自编码器，将物体点云编码为可进行刚体变换的几何潜变量；随后根据当前场景状态和机器人动作预测各物体的 SE(3) 运动增量，并直接在潜空间中更新物体状态。该结构避免了自由预测潜变量造成的形状漂移，并支持无需重复分割、点云重建和编码的多步 rollout。仿真与真实机器人实验显示，ORD-WM 在多步运动预测、几何一致性和闭环 MPC 方面具有较好表现；在真实推动任务中，使用 1024 个候选动作序列时成功率达到 90%，每次重规划耗时低于 0.3 秒。",
+      "contribution_cn": "1. 提出 ORD-WM，一种面向机器人操作的物体中心三维世界模型，以显式的物体级刚体动力学替代稠密元素或视觉潜变量的无约束演化。2. 设计由 SDF 监督的向量神经元变分自编码器，将物体几何编码为由三维向量特征组成的旋转等变潜在表示，使旋转能够直接作用于潜变量。3. 设计动作条件的物体级 SE(3) 运动预测与解析潜空间更新机制，将持久几何和姿态变化分离，从结构上保持刚体几何并提升长时 rollout 稳定性。4. 将该世界模型用于基于交叉熵方法的闭环模型预测控制，在仿真和真实世界的推动、抓取放置任务中验证了预测精度、推理效率和在线重规划能力。",
+      "relevance_cn": "本文与研究重点中的动作条件视觉世界模型、闭环仿真和实时生成直接相关，但其核心表示不是视频帧或视频扩散潜变量，而是由 RGB-D 观测构建的物体级三维状态。它根据机器人动作预测物体的未来状态，并通过多步潜空间 rollout 为闭环 MPC 评估候选动作，属于动作条件三维世界模型和闭环控制仿真的代表性方法。通过 VN 潜变量上的直接 SE(3) 变换，方法避免每一步重新分割、重建和编码点云，从而实现较高 rollout 吞吐量和实时重规划。论文未涉及视频生成、视频扩散、自回归视频生成、流式长视频生成、扩散蒸馏或稀疏注意力；其缓存复用主要体现为持久化物体潜状态，而非视频生成中的显式 KV cache。",
+      "limitations_cn": "方法将场景物体限定为固定或浮动的刚体，因此不适用于铰接、关节连接或可变形物体。该方法主要面向低动态、位置控制的操作任务，质量、摩擦和接触效应仅从观测转移中隐式学习，无法在相同观测状态和动作下区分不同的未观测物理参数。SE(3) 更新能够保持物体几何，但不显式保证接触约束或非穿透约束。受计算资源限制，论文尚未在更大规模数据集或更加多样的物体、任务分布上进行评估。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "世界模型为机器人提供了预测机制，使其能够推理动作如何改变操作任务中的物体状态。然而，现有的基于图像和稠密三维的世界模型并未显式施加物体层面的刚体运动约束，因此刚体物体的几何形状保持需要通过学习隐式获得，多步 rollout 容易出现形状漂移或物体层面的运动不一致。为此，我们提出 ORD-WM，一种学习面向物体的刚体动力学、用于机器人操作的三维世界模型。ORD-WM 学习一个由有符号距离场监督的向量神经元变分自编码器，将每个物体的点云编码为由三维向量特征组成的几何感知潜在表示，并使用动作条件动力学模型预测面向物体的 SE(3) 运动增量。ORD-WM 不生成不受约束的下一时刻潜在状态，而是以解析方式将预测的、逐物体的刚体变换应用于当前潜在状态，从而将持久的物体几何与姿态变化分离开来。实验表明，ORD-WM 能够实现稳定且保持几何形状的多步预测，并支持在仿真和真实世界操作场景中进行闭环模型预测控制的高效实时重规划。",
+      "note_path": "2026-10-20/2610.23156-ord-wm-learning-object-centric-rigid-dynamics-fo.md"
+    },
+    {
+      "id": "2610.24534",
+      "date": "2026-10-17",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Structured Latent Dynamics for Long-Horizon Embodied World Models",
+      "abstract": "Reliable long-horizon prediction remains a central challenge for embodied world models. Although recent generative models can synthesize visually plausible action-conditioned futures, their latent dynamics are typically learned through unconstrained transition modules, which may gradually deviate from coherent physical evolution as predictions are recursively rolled forward. We investigate whether explicitly structuring latent state evolution can improve the stability and utility of such imagined trajectories. To this end, we introduce HWM, a structured dynamics framework that represents backbone latents in a learned phase space consisting of generalized coordinates and momenta. Future states are propagated through dissipative Hamiltonian dynamics and mapped back to the original latent representation through a learnable inverse interface. The resulting formulation can be integrated into existing world-model architectures without redesigning their perception or decoding components, while multi-step transition supervision encourages the structured rollout to remain aligned with the latent trajectories induced by real observations. Controlled simulation experiments show that HWM produces more accurate estimates of velocity, acceleration, and jerk and substantially reduces long-horizon energy drift relative to unstructured latent dynamics. We further evaluate the approach across three distinct embodied world-model settings, covering single-arm multi-view prediction with Ctrl-World, dual-arm single-view prediction with EVAC, and task-oriented single-arm prediction with Cosmos-Predict2.5-2B. On RoboCasa, incorporating HWM into Cosmos-Predict2.5-2B yields a 2.7% relative improvement in task success. On real-world AgiBot World trajectories, it improves nDTW by 9.7% with Ctrl-World and Logic by 8.4% with EVAC.",
+      "authors": [
+        "Kevin Chen",
+        "Yu-Wei Zhan",
+        "Haoran Liang",
+        "Sen Cui",
+        "Changshui Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.24534v1",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "本文提出哈密顿世界模型 HWM，用学习到的广义坐标—动量相空间替代普通的黑箱潜在转移，并通过带耗散、控制输入和残差项的哈密顿动力学及半隐式辛 Euler 积分进行长时域滚动。多步潜在一致性损失将滚动轨迹约束在真实观测诱导的潜在流形附近。仿真和三类具身视频世界模型实验表明，HWM 可减少能量漂移、改善物理状态预测、视觉与逻辑一致性，并提升下游任务成功率。",
+      "contribution_cn": "1. 提出将物理一致性直接嵌入潜在转移规律，而非仅依赖辅助损失或事后评估的世界建模观点。2. 提出可插拔的 HWM 框架，将骨干潜变量映射为广义坐标和动量，并使用受控耗散哈密顿动力学进行结构化演化。3. 引入可学习的相空间双向接口、半隐式辛 Euler 滚动以及多步潜在转移一致性监督。4. 在仿真、Ctrl-World、EVAC 和 Cosmos-Predict2.5-2B 上验证了其在物理状态预测、长时域稳定性、生成质量和具身任务执行方面的收益。",
+      "relevance_cn": "该工作直接面向动作条件的具身视觉世界模型和闭环模拟，重点解决递归长时域预测中的物理漂移问题。它通过显式建模潜在状态的坐标、动量、能量、耗散和控制作用，提高动作条件未来预测的动力学一致性，从而增强想象轨迹对规划、策略评估和机器人执行的实用性。方法属于结构化潜在动力学和长视频/长时域生成方向，但论文未重点讨论实时生成、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文明确指出：受计算资源限制，未能评估更多骨干模型，也未在更广泛的任务、训练规模和随机种子上开展实验；学习到的相变量未必对应可识别的物理量，因此哈密顿结构本身不能保证预测具有物理正确性；耗散、外部控制和残差分支会削弱完整动力学的能量守恒特性，尤其是在接触密集的交互中；现有评估尚未证明模型对显著不同环境或超出测试范围的滚动时域具有鲁棒性。此外，HWM 引入了额外的结构化动力学模块和多步滚动训练，可能带来计算与优化开销，但论文未对此作系统量化。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "可靠的长时域预测仍是具身世界模型面临的核心挑战。尽管近期生成模型能够合成视觉上合理的、以动作为条件的未来状态，但其潜在动力学通常通过无约束的转移模块学习；随着预测结果递归滚动，这些模块可能逐渐偏离连贯的物理演化。我们研究了显式组织潜在状态演化是否能够提升此类想象轨迹的稳定性和实用性。为此，我们提出 HWM，一种结构化动力学框架，将骨干网络的潜变量表示在一个由广义坐标和动量组成的学习相空间中。未来状态通过耗散哈密顿动力学进行传播，并通过可学习的逆接口映射回原始潜在表示。该方法无需重新设计感知或解码组件即可集成到现有世界模型架构中，同时，多步转移监督促使结构化滚动结果与真实观测所诱导的潜在轨迹保持一致。受控仿真实验表明，与非结构化潜在动力学相比，HWM 能够更准确地估计速度、加速度和加加速度，并显著减少长时域能量漂移。我们进一步在三种不同的具身世界模型设置中评估该方法，包括使用 Ctrl-World 进行单臂多视角预测、使用 EVAC 进行双臂单视角预测，以及使用 Cosmos-Predict2.5-2B 进行面向任务的单臂预测。在 RoboCasa 上，将 HWM 集成到 Cosmos-Predict2.5-2B 后，任务成功率相对提升了 2.7%。在真实世界的 AgiBot World 轨迹上，HWM 使 Ctrl-World 的 nDTW 提升了 9.7%，使 EVAC 的 Logic 指标提升了 8.4%。"
+    },
+    {
+      "id": "2610.25666",
+      "date": "2026-10-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Frechet Forcing: Training Long-Horizon Streaming World Models from Short Clips",
+      "abstract": "Streaming video world models generate the future chunk by chunk, conditioned on their own past and a stream of actions. Trained on short clips, they drift once a rollout exceeds the training horizon, as prediction errors re-enter the context and compound. A common remedy is to train the model on its own rollouts via distribution matching distillation (DMD). For action-conditioned world models, the teacher becomes a bottleneck: an external video model is agnostic to the actions, whereas the model's own pretrained network drifts in the same manner as the student. We observe that a long rollout need not match a teacher, provided it remains a realistic continuation of its own scene that follows the commanded actions. Realism and scene fidelity can be measured against real-data statistics, which remain valid at any horizon, while action following is preserved by the model's conditional generation loss. We propose Fréchet Forcing, which fine-tunes a world model together with its deployed multi-step sampler under three constraints. Generative anchoring applies the flow-matching loss after a self-generated history ending on real data. Context fidelity, a Fréchet distance (FD) on latent statistics of the free rollout centred on each clip's own ground truth, keeps every rollout faithful to its scene. Reality matching, an FD to real frames in a frozen perceptual space, keeps the generated frames realistic. Because all three targets are derived from short real clips without comparing a rollout against a long recorded future, training requires no teacher, no online critic and no long videos. Fine-tuning MiniWorld-1B, pretrained on 253-frame clips, for at most 36 GPU-hours on 381-frame clips yields rollouts that remain stable beyond 4,000 frames and continue to follow their actions in both robot manipulation and camera-controlled exploration.",
+      "authors": [
+        "Yian Zhao",
+        "Yu Yan",
+        "Hongcan Guo",
+        "Ruochong Zheng",
+        "Jian Zhang",
+        "Jie Chen"
+      ],
+      "url": "http://arxiv.org/abs/2610.25666v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Streaming video world models generate the future chunk by chunk, conditioned on their own past and a stream of actions.",
+      "contribution_cn": "We propose Fréchet Forcing, which fine-tunes a world model together with its deployed multi-step sampler under three constraints.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, action-conditioned, streaming, long video, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23795",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Persistent Planar Memory for Video World Models",
+      "abstract": "Video world models that generate and explore environments at scale need a persistent 3D memory of what they have produced. Plane primitives offer a natural candidate: a compact set of oriented planes captures the dominant structural elements (e.g., walls, floors, facades) of indoor and outdoor scenes, while requiring only 7 parameters per primitive. We present PPMem, a video world model that adopts plane primitives as its persistent 3D memory. PPMem augments a video diffusion transformer with a planar prediction head and a Depth Token Fusion (DTF) module: each autoregressive chunk jointly produces RGB video and planar geometry, which merges into a persistent plane memory that conditions subsequent chunks via rendered depth. The resulting memory is three orders of magnitude more compact than per-pixel point clouds (~100K primitives, 5MB for a full scene), geometrically explicit (metric depth, normals, exportable surfaces), cross-view consistent (jointly predicted by the shared backbone), and adaptive (refined by the merging procedure as generation proceeds). On DL3DV and RealEstate10K, PPMem outperforms prior 3D-grounded world models in video quality while jointly producing metric-scale depth, surface normals, and exportable planar geometry, sustaining coherence across hundreds of frames under large viewpoint changes. Project page: https://hyzcluster.github.io/ppmem.",
+      "authors": [
+        "Yuze He",
+        "Bin Tan",
+        "Zelin Gao",
+        "Yujun Shen",
+        "Yong-Jin Liu",
+        "Nan Xue",
+        "Yinghao Xu"
+      ],
+      "url": "http://arxiv.org/abs/2610.23795v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "20 pages, 9 figures. Accepted by NeurIPS 2026",
+      "score": 69,
+      "priority": "skim",
+      "summary_cn": "Video world models that generate and explore environments at scale need a persistent 3D memory of what they have produced.",
+      "contribution_cn": "We present PPMem, a video world model that adopts plane primitives as its persistent 3D memory.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, autoregressive, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23423",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Momentum: Persistent Dynamics for Video World Models",
+      "abstract": "Video world models must capture how a scene evolves beyond the current camera view to generate consistent observations when its content reappears. Existing approaches rely on observation history, static point clouds, or image caches constructed from past frames. These representations are often expensive and, more importantly, cannot update dynamic scene content outside the field of view: generated vehicles and pedestrians may be forgotten after leaving the field of view or reappear in physically inaccurate states. We represent an evolving scene through synchronized videos from reference-camera rigs, each comprising eight cameras that jointly cover the surrounding scene. We connect these rigs in a graph and propagate video generation between neighboring rigs to coordinate scene dynamics across locations and time. We introduce Momentum, a two-stage pipeline: WorldUpdate jointly generates reference-camera videos as a shared memory of scene dynamics, and WorldInteract grounds camera-controlled video generation in this evolving memory, allowing moving content to remain represented outside the target view and reappear consistently. To support training and evaluation, we develop a CARLA pipeline that captures synchronized videos from reference camera rigs and a moving target camera, together with an evaluation framework measuring consistency within the generated world state and the target observations.Experiments on generated street scenes show that grounding target videos in scene dynamics generated by Momentum improves dynamic scene consistency by 126.2% in unseen scenes over static image conditioning, while also improving visual fidelity. Our models and source code will be made publicly available.",
+      "authors": [
+        "Nedko Savov",
+        "Stefan Maria Ailuro",
+        "Danda Pani Paudel",
+        "Yilun Du",
+        "Xi Wang",
+        "Luc Van Gool"
+      ],
+      "url": "http://arxiv.org/abs/2610.23423v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Video world models must capture how a scene evolves beyond the current camera view to generate consistent observations when its content reappears.",
+      "contribution_cn": "We introduce Momentum, a two-stage pipeline: WorldUpdate jointly generates reference-camera videos as a shared memory of scene dynamics, and WorldInteract grounds camera-controlled video generation in this evolving memory, allowing moving content to remain represented outside the target view and reappear consistently.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.25959",
+      "date": "2026-10-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "EmbodiedWorld-200K: Toward Embodied World Agents via Embodied-Planning Dataset and Interactive World Models",
+      "abstract": "Building embodied agents that can perceive, reason, and act across diverse 3D worlds is a central research direction toward artificial general intelligence. Yet most existing work remains confined to specific tasks in a single scene and transfers poorly to new environments, leaving general embodied agents for open-world settings under-explored. We refer to such agents as Embodied World Agents (EWAs), whose defining property is the ability to understand diverse visual environments and execute general actions in open-world conditions. To advance EWA research, we study open-world embodied navigation-planning and release EmbodiedWorld-200K, a large-scale dataset of over 200K samples spanning diverse scenes. Each example is equipped with multi-level annotations, ranging from low-level camera-motion trajectories to high-level semantic instructions. The dataset also provides unified evaluation splits and task-specific metrics, supporting offline pretraining and fair evaluation of EWAs. Beyond offline supervision, a defining characteristic of an EWA is its interaction with the environment; training solely on offline data is therefore insufficient, especially for generalizing to scenes not covered in the training distribution. Building dedicated real interactive environments, however, is often prohibitively expensive. To address this, we propose a novel training scheme that employs a video world model as a low-cost environment proxy and performs interactive reinforcement-learning (RL) post-training of the EWA within it. Empirically, pretraining on EmbodiedWorld-200K substantially improves the open-world embodied planning ability of the EWA, and further RL post-training inside a world model yields clear gains on out-of-distribution scenes. The dataset, baseline checkpoints, and training and evaluation code are available at https://xiaokunfeng.github.io/EmbodiedWorld-200K/.",
+      "authors": [
+        "X. Feng",
+        "J. Tang",
+        "Z. Lin",
+        "L. Chen",
+        "S. Shao",
+        "Q. Lu",
+        "K. Huang"
+      ],
+      "url": "http://arxiv.org/abs/2610.25959v1",
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": "Accepted by NeurIPS 2026~",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Building embodied agents that can perceive, reason, and act across diverse 3D worlds is a central research direction toward artificial general intelligence.",
+      "contribution_cn": "To address this, we propose a novel training scheme that employs a video world model as a low-cost environment proxy and performs interactive reinforcement-learning (RL) post-training of the EWA within it.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23334",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LAW: Unifying Language, Action, and World Modeling for Agentic Physical Intelligence",
+      "abstract": "World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection. We present LAW, a closed-loop VLM--WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress. Within the LAW agent, a hybrid-expert vision-language model plans the remaining subtasks, estimates the values of and fuses actions proposed by a world-action model, and asynchronously assesses execution status to support continued execution and subtask transitions. Within the world-action model, Mixture-of-Transformer Experts integrates modality-specific and shared computation for joint video--action modeling. Dual-stream hierarchical visual memory maintains temporal context for both models, while subtask-local value learning aligns action evaluation with semantic objectives and preserves supervision from successful prefixes of failed trajectories. LAW achieves 94.21% average success across 50 RoboTwin tasks. Replacing the WAM backbone with OpenWAM-$alpha$ further raises the average success rate to 95.56%, establishing a new open-source state of the art on RoboTwin. Despite having only 2B parameters, our VLM also outperforms variants using Embodied-R1.5 and GPT-5.5 High. On three long-horizon real-robot tasks, LAW achieves 65% average success, compared with 28.33% for $pi_{0.5}$ and 25% for Fast-WAM.",
+      "authors": [
+        "Jiajun Cao",
+        "Kai Tang",
+        "Bohua Zhang",
+        "Zezhong Qian",
+        "Ying Li",
+        "Xiaozhu Ju",
+        "Xiaobao Wei",
+        "Jiaming Liu",
+        "Yang Ding",
+        "Sixiang Chen",
+        "Yiding Sun",
+        "Siyuan Qian",
+        "Tinghao Wang",
+        "Jixian Wu",
+        "Yichen Guo",
+        "Yi Zhang",
+        "Shilong Zou",
+        "Yong Dai",
+        "Jian Tang",
+        "Shanghang Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.23334v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "World-action models jointly predict actions and future world states, but long-horizon manipulation further requires language reasoning to plan subtask objectives, assess execution progress, and guide action selection.",
+      "contribution_cn": "We present LAW, a closed-loop VLM--WAM framework that unifies language reasoning, action generation, and world modeling through semantic subtask progress.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.22364",
+      "date": "2026-10-15",
+      "topics": [
+        "World Models"
+      ],
+      "title": "T2-z: Test-Time Optimization of Environment Latents for Robotic World Models",
+      "abstract": "Predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified, from physical properties such as friction and mass to human-defined environmental rules. We introduce T2-Z for test-time optimization of environment latents, which augments a robotic world model with a learnable environment latent to condition world predictions. This compact latent captures underlying environmental variation without supervision of what environmental factors exist or what values they take. During training, T2-Z alternates between two stages: a world-model optimization stage that fixes the latents and learns general action-conditioned dynamics across environments; and an environment-latent optimization stage that freezes the world model and optimizes the conditioning latents, allowing latent structure to emerge purely through world prediction. At test time, the world model remains frozen and a newly initialized environment latent is optimized from one or more test-time interactions, adapting the model to previously unseen environmental configurations. Across 7 simulated settings and 4 real-world robotic tasks, T2-Z reduces object prediction error metric from 15.20 to 7.00 and raises action success from 33.73% to 72.96%. Its emergent latents capture structured representations of individual and compounded factors across diverse visual scenes. Ablations further show that T2-Z can efficiently infer environment latents from as little as a single test-time interaction trajectory.",
+      "authors": [
+        "Chenyuan Zhou",
+        "Yining Hong",
+        "Huang Huang",
+        "Yunfan Jiang",
+        "Wenlong Huang",
+        "David Held",
+        "Vitor Campagnolo Guizilini",
+        "Yue Wang",
+        "Li Fei-Fei",
+        "Jiajun Wu",
+        "Leonidas Guibas",
+        "Yejin Choi"
+      ],
+      "url": "http://arxiv.org/abs/2610.22364v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "Predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified, from physical properties such as friction and mass to human-defined environmental rules.",
+      "contribution_cn": "We introduce T2-Z for test-time optimization of environment latents, which augments a robotic world model with a learnable environment latent to condition world predictions.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.23127",
+      "date": "2026-10-16",
+      "topics": [
+        "World Models"
+      ],
+      "title": "BeJEPA: A Goal-Conditioned Humanoid Behavior World Model via Unsupervised RL",
+      "abstract": "Humanoid control requires coordinating whole-body posture with position and heading in the world frame. Mainstream controllers imitate trajectories in the root frame, but struggle to regain the target world pose after displacement. We introduce BeJEPA, a goal-conditioned Behavior World Model learned through unsupervised reinforcement learning from human motion priors and robot interaction. BeJEPA learns a shared representation of body configuration and world placement through a joint-embedding predictive architecture (JEPA). A Dynamic Predictor predicts the next state embedding under an action, while a Successor Predictor summarizes a goal-conditioned policy's expected discounted future state embeddings in a single vector. During joint training, Dynamic grounds the initial representation in observed physical transitions, while Successor increasingly organizes it around long-term behavior. Their composition guides policy improvement through one physical prediction and one behavioral summary, without long imagined rollouts. In 20-second motion-tracking experiments, BeJEPA with online action refinement using Dynamic outperforms all evaluated baselines in global body-position error, reducing it on AMASS by 61.7% relative to BFM-Zero with world-pose inputs and 58.7% relative to SONIC. Physical deployment on a Unitree G1 demonstrates joint attainment of posture, world position, and heading goals, recovery from the ground, and closed-loop return after disturbances and goal changes. Project page: https://ylyem9x.github.io/BeJEPA-project.",
+      "authors": [
+        "Liyun Yan",
+        "Haoyang Li",
+        "Yang Zhang",
+        "Jialing Zhu",
+        "Zhanxiang Cao",
+        "Zihao Zhou",
+        "Keqi Zhu",
+        "Yizhi Chen",
+        "Huang Chuxuan",
+        "Shengcheng Fu",
+        "Zhong Jiangwei",
+        "Qiao Sun",
+        "Chen Zhang",
+        "Yue Gao"
+      ],
+      "url": "http://arxiv.org/abs/2610.23127v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "Humanoid control requires coordinating whole-body posture with position and heading in the world frame.",
+      "contribution_cn": "We introduce BeJEPA, a goal-conditioned Behavior World Model learned through unsupervised reinforcement learning from human motion priors and robot interaction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 2
+}

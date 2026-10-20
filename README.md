@@ -1,4 +1,4 @@
-## Updated on 2026.10.19
+## Updated on 2026.10.20
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -17,6 +17,18 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**MAPS: A Multi-Agent Personalized Script-Driven Video Advertising System Enhanced by Reinforcement Learning**|Zhongyu Wang et.al.|[2610.25748](http://arxiv.org/abs/2610.25748)|null|
+|**2026-10-19**|**PoSTCache: From Forecasting to Postdictive Smoothing for Revisable Diffusion Caching**|Liwei Lan et.al.|[2610.25664](http://arxiv.org/abs/2610.25664)|null|
+|**2026-10-19**|**FluidGen: Physics-Aware Fluid Video Generation via Motion-Guided Post-Training**|Yang Zheng et.al.|[2610.25660](http://arxiv.org/abs/2610.25660)|null|
+|**2026-10-19**|**Clean Forcing: Drift-Resistant Autoregressive Video Diffusion with a Frozen Base**|Wenqing Wang et.al.|[2610.25634](http://arxiv.org/abs/2610.25634)|null|
+|**2026-10-18**|**Holo4D: Holistic 4D Reconstruction as Geometric Control for Video Diffusion**|Yushi Lan et.al.|[2610.25276](http://arxiv.org/abs/2610.25276)|null|
+|**2026-10-18**|**GeoART: Geometry-Aware Refinement via Test-Time Scaling for Camera-Conditioned Video Diffusion**|Liudi Yang et.al.|[2610.25273](http://arxiv.org/abs/2610.25273)|null|
+|**2026-10-18**|**GeoV2V: Geometry-Grounded Video Diffusion Model for Driving Scene Generation**|Yuchen Xi et.al.|[2610.25245](http://arxiv.org/abs/2610.25245)|null|
+|**2026-10-18**|**Map2Vid: Embodied Navigation Video Generation with Human-Friendly Motion Control**|Yulin Dai et.al.|[2610.25223](http://arxiv.org/abs/2610.25223)|null|
+|**2026-10-18**|**Meta Inverse Prompting for Video Generative Models**|Yerin Jung et.al.|[2610.24965](http://arxiv.org/abs/2610.24965)|null|
+|**2026-10-17**|**SpriteStage: Long Horizon Animation Generation via Progressive Scene Programming and Replay**|Zhaoqi Wang et.al.|[2610.24869](http://arxiv.org/abs/2610.24869)|null|
+|**2026-10-17**|**BodyBridge: Grounded Body Layers for Sim-to-Real Translation of Vulnerable Road Users**|Mark Azer et.al.|[2610.24436](http://arxiv.org/abs/2610.24436)|null|
+|**2026-10-16**|**Self-Improving Video-to-Action Models**|Hyunwoo Ryu et.al.|[2610.24177](http://arxiv.org/abs/2610.24177)|null|
 |**2026-10-16**|**Video Diffusion Avatars: Taming Video Diffusion Models into Controllable 3D Avatars**|Simon Giebenhain et.al.|[2610.23772](http://arxiv.org/abs/2610.23772)|null|
 |**2026-10-15**|**AVC-Reward: Event-Centric Audio-Video Consistency Evaluation**|Yuruo Wu et.al.|[2610.22321](http://arxiv.org/abs/2610.22321)|null|
 |**2026-10-15**|**Velox: Spatial Memory Makes World Models Efficient**|Qiuhong Shen et.al.|[2610.22311](http://arxiv.org/abs/2610.22311)|null|
@@ -1510,12 +1522,38 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261020>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**EmbodiedWorld-200K: Toward Embodied World Agents via Embodied-Planning Dataset and Interactive World Models**|X. Feng et.al.|[2610.25959](http://arxiv.org/abs/2610.25959)|null|
+|**2026-10-19**|**Vision-Language-Delta-Action: Learning Compact Deltas as Actionable Transition Interfaces for Robotic Manipulation**|Lingsen Zhang et.al.|[2610.25874](http://arxiv.org/abs/2610.25874)|null|
+|**2026-10-19**|**ActionRoPE: action as coordinates for spatially consistent control in planar-camera game world models**|Zhiyang Deng et.al.|[2610.25861](http://arxiv.org/abs/2610.25861)|null|
+|**2026-10-19**|**See the Future, Classify the Present: Stochastic Latent World Modeling for Hyperspectral Images**|Muhammad Ahmad et.al.|[2610.25781](http://arxiv.org/abs/2610.25781)|null|
+|**2026-10-19**|**ActTime: Action-Conditioned World Modeling for Time Series**|Xinxing Zhou et.al.|[2610.25764](http://arxiv.org/abs/2610.25764)|null|
+|**2026-10-19**|**TrajWAM: An Efficient Trajectory-Guided World Action Model for Dynamic Robotic Manipulation**|Haohan Geng et.al.|[2610.25763](http://arxiv.org/abs/2610.25763)|null|
+|**2026-10-19**|**Think Densely, Act Sparsely: Latent Expert Cognitive Chains for Vision-Language-Action Autonomous Driving**|Jie Wang et.al.|[2610.25734](http://arxiv.org/abs/2610.25734)|null|
+|**2026-10-19**|**Frechet Forcing: Training Long-Horizon Streaming World Models from Short Clips**|Yian Zhao et.al.|[2610.25666](http://arxiv.org/abs/2610.25666)|null|
+|**2026-10-19**|**Vector-Quantized World Model: Latent Feedback Motion Planning for Robot Manipulation**|Xuezhou Xu et.al.|[2610.25600](http://arxiv.org/abs/2610.25600)|null|
+|**2026-10-18**|**Small-scale neural simulation of Caenorhabditis elegans on Loihi-2 using NeuroML2Loihi**|Danny Rosen et.al.|[2610.25424](http://arxiv.org/abs/2610.25424)|null|
+|**2026-10-18**|**UniState: Unifying Memory and Intervention for Controllable World Simulation**|Jaeseok Jeong et.al.|[2610.25414](http://arxiv.org/abs/2610.25414)|null|
+|**2026-10-18**|**Operator-Mismatch Contrastive Learning for World-Relative Trajectory Coherence**|One Octadion et.al.|[2610.25360](http://arxiv.org/abs/2610.25360)|null|
+|**2026-10-18**|**CoRe-WM: Conditioned Response-State World Modeling for Longitudinal Treatment-Response Prediction in Breast DCE-MRI**|Lin Zhao et.al.|[2610.25333](http://arxiv.org/abs/2610.25333)|null|
+|**2026-10-18**|**World Model Interpretability: From Decoding Representations to Understanding Latent Worlds**|Jize Wang et.al.|[2610.25296](http://arxiv.org/abs/2610.25296)|null|
+|**2026-10-18**|**The Explainability Illusion: Must ViTs Exhibit Patch-Decoding Interpretability?**|Ronen Schaffer et.al.|[2610.25289](http://arxiv.org/abs/2610.25289)|null|
+|**2026-10-18**|**World Models, Trees and Foundation Models for Retail Forecasting: Evidence from Four Public Data Sets**|Karthik Iyer et.al.|[2610.25170](http://arxiv.org/abs/2610.25170)|null|
+|**2026-10-18**|**Latent World Models Should Plan with Distances Along the Latent Manifold**|Zunzhi You et.al.|[2610.25013](http://arxiv.org/abs/2610.25013)|null|
+|**2026-10-17**|**From Prediction to Action: Population Health World Model for Digital Medicine**|Xike Xie et.al.|[2610.24662](http://arxiv.org/abs/2610.24662)|null|
+|**2026-10-17**|**LIBERO-Pro2.0: A Benchmark for Evaluating the Robustness of Embodied Foundation Models**|Xueyang Zhou et.al.|[2610.24587](http://arxiv.org/abs/2610.24587)|null|
+|**2026-10-17**|**Representations Have Trajectories: Characterizing Temporal Representation Dynamics in Neural Networks**|Shivaprasad B. Gowda et.al.|[2610.24571](http://arxiv.org/abs/2610.24571)|null|
+|**2026-10-17**|**Structured Latent Dynamics for Long-Horizon Embodied World Models**|Kevin Chen et.al.|[2610.24534](http://arxiv.org/abs/2610.24534)|null|
+|**2026-10-17**|**Axiomatic World Modeling for Physics Reasoning**|Xinye Yang et.al.|[2610.24519](http://arxiv.org/abs/2610.24519)|null|
+|**2026-10-17**|**Vocal-Tract Acoustics, Aerodynamics, and Overlap-and-Add Synthesis in DYNARTmo**|Bernd J. Kröger et.al.|[2610.24490](http://arxiv.org/abs/2610.24490)|null|
+|**2026-10-17**|**Beyond Next-Screen Prediction: The Decision Value of GUI World Models**|Sizhe Tang et.al.|[2610.24372](http://arxiv.org/abs/2610.24372)|null|
+|**2026-10-17**|**FlashRT-PAI: Fast Kernels Are Not Fast Pipelines for Physical AI Inference**|Liang Su et.al.|[2610.24349](http://arxiv.org/abs/2610.24349)|null|
+|**2026-10-16**|**ACTS: Learning Visuo-Tactile World Models from Human Physical Interaction**|Yuxiang Ma et.al.|[2610.24285](http://arxiv.org/abs/2610.24285)|null|
 |**2026-10-16**|**Persistent Planar Memory for Video World Models**|Yuze He et.al.|[2610.23795](http://arxiv.org/abs/2610.23795)|null|
 |**2026-10-16**|**Beyond Large Language Models: A Mental World Model Framework for Mental Modeling, Simulation, Evolution, and Interpretability**|Qingshi Wang et.al.|[2610.23722](http://arxiv.org/abs/2610.23722)|null|
 |**2026-10-16**|**Beyond Action Prediction: Learning Search-Free Planning in Latent Space**|Guanchen Du et.al.|[2610.23615](http://arxiv.org/abs/2610.23615)|null|
@@ -2340,12 +2378,13 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261020>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**Clean Forcing: Drift-Resistant Autoregressive Video Diffusion with a Frozen Base**|Wenqing Wang et.al.|[2610.25634](http://arxiv.org/abs/2610.25634)|null|
 |**2026-10-15**|**Speculative Forcing for Efficient Autoregressive Video Generation**|Hyunwook Choi et.al.|[2610.22347](http://arxiv.org/abs/2610.22347)|null|
 |**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
 |**2026-10-13**|**LongForcing: Scaling Temporal Manifold Matching for Long-Horizon World Rollout**|Ziyu Zhu et.al.|[2610.18289](http://arxiv.org/abs/2610.18289)|null|
@@ -2446,7 +2485,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261020>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -2485,5 +2524,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20261019>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261020>back to top</a>)</p>
 
