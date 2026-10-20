@@ -17,6 +17,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**Manga2Animate: An Agentic Framework for Faithful Manga Animation with Script and Storyboard Planning**|Sheng-Wei Zhang et.al.|[2610.26851](http://arxiv.org/abs/2610.26851)|null|
+|**2026-10-19**|**PVBench: Quantifying Physical Plausibility in Video Generation with Object-Level Physical Measurements**|Kaiwei Chen et.al.|[2610.26711](http://arxiv.org/abs/2610.26711)|null|
+|**2026-10-19**|**RECAP: Reciprocal Sparse Attention and Hierarchical Caching for Efficient Video Diffusion**|Tiange Xu et.al.|[2610.26244](http://arxiv.org/abs/2610.26244)|null|
 |**2026-10-19**|**MAPS: A Multi-Agent Personalized Script-Driven Video Advertising System Enhanced by Reinforcement Learning**|Zhongyu Wang et.al.|[2610.25748](http://arxiv.org/abs/2610.25748)|null|
 |**2026-10-19**|**PoSTCache: From Forecasting to Postdictive Smoothing for Revisable Diffusion Caching**|Liwei Lan et.al.|[2610.25664](http://arxiv.org/abs/2610.25664)|null|
 |**2026-10-19**|**FluidGen: Physics-Aware Fluid Video Generation via Motion-Guided Post-Training**|Yang Zheng et.al.|[2610.25660](http://arxiv.org/abs/2610.25660)|null|
@@ -1528,6 +1531,16 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience**|Tianqi Liu et.al.|[2610.26855](http://arxiv.org/abs/2610.26855)|null|
+|**2026-10-19**|**Train An Imaginative Agent**|Jiaxin Ge et.al.|[2610.26845](http://arxiv.org/abs/2610.26845)|null|
+|**2026-10-19**|**AnyGoal: On World Model Generalization Beyond Expert Rollouts**|Heejeong Nam et.al.|[2610.26844](http://arxiv.org/abs/2610.26844)|null|
+|**2026-10-19**|**Agent World Model in the Wild: Computer-Use Agent Environment Synthesis**|Zhaoyang Wang et.al.|[2610.26828](http://arxiv.org/abs/2610.26828)|null|
+|**2026-10-19**|**PICA-WAM: Visual Perturbation Invariance via Cross-Appearance Self-Alignment in World Action Models**|Yude Zou et.al.|[2610.26813](http://arxiv.org/abs/2610.26813)|null|
+|**2026-10-19**|**State World Models: Execute the Rules, Generate the Pixels**|Chan Yan Ki et.al.|[2610.26811](http://arxiv.org/abs/2610.26811)|null|
+|**2026-10-19**|**Simulation Priors for Rapid Adaptation in Model-Based RL for Autonomous Racing**|Adrian Remonda et.al.|[2610.26757](http://arxiv.org/abs/2610.26757)|null|
+|**2026-10-19**|**PVBench: Quantifying Physical Plausibility in Video Generation with Object-Level Physical Measurements**|Kaiwei Chen et.al.|[2610.26711](http://arxiv.org/abs/2610.26711)|null|
+|**2026-10-19**|**PrismWAM: Decoupling State Representations in World Action Models**|Tianyu Xin et.al.|[2610.26564](http://arxiv.org/abs/2610.26564)|null|
+|**2026-10-19**|**Learning Goal-Conditioned Subgoals through Frozen Hierarchical World Models**|Xiang Kaibo et.al.|[2610.26179](http://arxiv.org/abs/2610.26179)|null|
 |**2026-10-19**|**EmbodiedWorld-200K: Toward Embodied World Agents via Embodied-Planning Dataset and Interactive World Models**|X. Feng et.al.|[2610.25959](http://arxiv.org/abs/2610.25959)|null|
 |**2026-10-19**|**Vision-Language-Delta-Action: Learning Compact Deltas as Actionable Transition Interfaces for Robotic Manipulation**|Lingsen Zhang et.al.|[2610.25874](http://arxiv.org/abs/2610.25874)|null|
 |**2026-10-19**|**ActionRoPE: action as coordinates for spatially consistent control in planar-camera game world models**|Zhiyang Deng et.al.|[2610.25861](http://arxiv.org/abs/2610.25861)|null|
@@ -2384,6 +2397,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-19**|**VideoMaMa++: Temporally Consistent Video Matting via Preserve-and-Refine Token**|Sangbeom Lim et.al.|[2610.26857](http://arxiv.org/abs/2610.26857)|null|
+|**2026-10-19**|**Dynamics-Aware Sparse Attention for Efficient Autoregressive Video Diffusion**|Yuanyu He et.al.|[2610.26262](http://arxiv.org/abs/2610.26262)|null|
+|**2026-10-19**|**TriTD: Tri-Partite Trajectory-Distribution Distillation for Real-Time Autoregressive Video Generation**|Jia Li et.al.|[2610.26165](http://arxiv.org/abs/2610.26165)|null|
 |**2026-10-19**|**Clean Forcing: Drift-Resistant Autoregressive Video Diffusion with a Frozen Base**|Wenqing Wang et.al.|[2610.25634](http://arxiv.org/abs/2610.25634)|null|
 |**2026-10-15**|**Speculative Forcing for Efficient Autoregressive Video Generation**|Hyunwook Choi et.al.|[2610.22347](http://arxiv.org/abs/2610.22347)|null|
 |**2026-10-14**|**RepForcing: Representation-Space Initialization for Autoregressive Video Distillation**|Siming Fu et.al.|[2610.20111](http://arxiv.org/abs/2610.20111)|null|
@@ -2402,7 +2418,7 @@
 |**2026-10-08**|**ForcingBooster: Adaptive Patch-wise Denoising for Fast Autoregressive Video Diffusion**|Zekai Gu et.al.|[2610.12625](http://arxiv.org/abs/2610.12625)|null|
 |**2026-10-07**|**CORAL-KV: Compact Cross-Layer Prediction and Residual Coding for Autoregressive Video KV Caches**|Albert Ge et.al.|[2610.12514](http://arxiv.org/abs/2610.12514)|null|
 |**2026-10-08**|**Connected Self Forcing: Beyond Local Learning in Video Autoregression**|Dongbin Zhang et.al.|[2610.12156](http://arxiv.org/abs/2610.12156)|null|
-|**2026-10-11**|**Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation**|Jiaming Zhang et.al.|[2610.11756](http://arxiv.org/abs/2610.11756)|null|
+|**2026-10-19**|**Memory Forcing: Attendable Mid-Horizon History for Streaming Video Generation**|Jiaming Zhang et.al.|[2610.11756](http://arxiv.org/abs/2610.11756)|null|
 |**2026-10-08**|**Conditional Residual Prediction: Improving Autoregressive Video Diffusion without a Bidirectional Teacher**|Bowen Zheng et.al.|[2610.11479](http://arxiv.org/abs/2610.11479)|null|
 |**2026-10-08**|**SGF+: Decoupling Gradient Flows for Autoregressive Video Generation**|Zihan Su et.al.|[2610.10429](http://arxiv.org/abs/2610.10429)|null|
 |**2026-10-04**|**FLEX-WAM: Flexible Block-Causal World-Action Models for Long-Horizon Imagination and Planning**|R. Khorrambakht et.al.|[2610.05483](http://arxiv.org/abs/2610.05483)|null|
