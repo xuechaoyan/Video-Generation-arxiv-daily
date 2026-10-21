@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T02:06:49+00:00",
+  "generated_at": "2026-10-21T16:09:35+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -26,12 +26,12 @@
       "comment": "Project page: https://clean-forcing.github.io/",
       "score": 81,
       "priority": "must-read",
-      "summary_cn": "论文研究自回归视频扩散模型在长时间滚动生成中的暴露偏差和质量漂移问题。作者发现，生成历史引起的速度误差在不同噪声种子间约95%具有系统性，因此提出在冻结基础模型上训练轻量LoRA修正器，学习相同噪声状态下干净历史与生成历史之间的反事实速度差距。方法结合DAgger式闭环数据聚合、漂移收缩训练和模型自身单次生成的合成监督，在50秒视频上显著降低漂移，零真实视频版本即可达到+1.65，使用40个真实片段时达到−0.16，并且合并后不增加推理开销。实验显示该方法可迁移至不同模型和更大规模模型，也能改善其他自回归世界模型的稳定性。",
-      "contribution_cn": "1. 证明生成历史导致的速度误差在噪声种子之间主要是系统性的，使漂移修正成为可学习问题。 2. 提出Clean Forcing：在冻结基础模型上使用590万参数、秩为16的LoRA，学习漂移历史与干净历史在相同噪声状态下的速度差距。 3. 引入DAgger式数据聚合和漂移收缩目标，使训练覆盖修正器自身访问的状态并减少其预测对后续块造成的漂移。 4. 使用基础模型的单次双向生成作为干净监督，因此在零真实视频条件下也能训练。 5. 在50秒生成中以远少于基础模型再训练的数据实现显著漂移降低，且合并修正器后不增加推理计算、参数量、显存或采样步数。 6. 验证方法可迁移到独立基础模型、10倍规模模型以及其他自回归世界模型。",
-      "relevance_cn": "论文与自回归、因果、流式和长视频生成直接相关：模型按视频块进行因果生成，支持任意长度滚动和生成过程中即时播放。其核心目标是解决长时域自回归视频中的暴露偏差、误差累积和漂移问题。方法通过冻结基础模型上的轻量LoRA、闭环训练和缓存历史条件来提升长期稳定性，同时保持零额外推理开销，因而也与实时生成、模型蒸馏之外的轻量适配、缓存复用和实时流式部署密切相关。论文还在两个自回归视觉世界模型上验证了漂移降低，涉及闭环模拟和动作条件世界建模的相关稳定性需求，但本文主要实验并非动作条件控制。",
-      "limitations_cn": "论文的主要实验基于Wan2.1-T2V-1.3B，分辨率为832×480、帧率为16 fps，并使用特定的文本生成视频提示集；对其他架构、分辨率、帧率和任务的普适性仍有限。方法依赖能够生成干净单次视频的基础模型以及因果适配阶段，不能完全脱离模型适配。未使用真实视频时，合成干净监督的质量可能限制效果；论文也指出，结合干净历史监督与分布匹配以保留场景进展仍是未来工作。运动平滑度相较基础模型下降，尽管动态程度提高。未融合的LoRA修正器会增加约35%的延迟，只有合并后才能避免额外推理成本。论文未明确说明在更长于50秒的生成时长、极端场景变化、复杂交互控制或大规模真实部署中的稳定性。",
+      "summary_cn": "论文研究自回归视频扩散模型在长时间滚动生成中的暴露偏差和质量漂移问题。作者发现，在相同噪声状态下，由生成历史与干净历史造成的速度预测差异约95%具有跨噪声种子的系统性，因此可以被轻量修正器学习。Clean Forcing在冻结的Wan等基础模型上训练590万参数的LoRA，通过匹配干净历史下的反事实速度预测来纠正漂移，并利用DAgger式闭环数据聚合和漂移收缩损失适应修正模型自身的轨迹。干净监督既可来自少量真实视频，也可来自基础模型的单次双向生成，因此可以在无真实视频的情况下训练。50秒生成实验显示，该方法显著降低漂移并保持较高的美学质量、主体一致性和背景一致性；合并LoRA后不增加推理开销，并可迁移到更大的基础模型及其他自回归世界模型。",
+      "contribution_cn": "1. 证明生成历史导致的速度误差在不同噪声种子之间大体具有系统性，为可学习的漂移校正提供依据。2. 提出Clean Forcing：在冻结基础模型上使用秩16、590万参数的LoRA，学习同一噪声状态下生成历史与干净历史之间的反事实速度差距。3. 引入DAgger式数据聚合和漂移收缩目标，使修正器在自身闭环滚动状态上训练，减轻训练与推理之间的分布偏移。4. 提出利用基础模型自身的单次生成结果构造干净监督的方法，在无需真实视频或仅使用40个真实片段时实现强漂移抑制。5. 在50秒视频生成、10倍规模基础模型、独立基础模型及其他自回归世界模型上验证了方法的有效性，并通过权重合并实现零额外推理开销。",
+      "relevance_cn": "该工作直接针对自回归、因果、流式和长视频生成中的误差累积问题，能够在生成尚未完成时支持播放，并显著延长稳定滚动时长。其核心方法是对历史引起的条件预测误差进行轻量学习式校正，适用于视频扩散模型的闭环生成。方法冻结基础模型，仅训练小型LoRA，训练约需单个GPU日，符合高效微调和蒸馏式部署方向；合并后不增加参数量、采样步数、显存或推理延迟。论文还报告了向其他自回归世界模型的迁移结果，因此与动作条件视觉世界模型和闭环模拟具有方法层面的关联，但论文主体实验并非动作条件控制或交互式策略模拟。",
+      "limitations_cn": "论文的主要实验基于Wan2.1及相关自回归视频模型，泛化到更多模型、任务和真实交互环境的程度仍需进一步验证。实验主要使用文本到视频生成和预设提示词，未系统评估动作条件控制、策略反馈或真正的实时交互闭环。方法依赖能够提供干净历史的单次双向生成模式；若基础模型缺乏这种能力，训练流程可能需要真实视频或额外适配。合并前未融合的修正器会增加约35%的延迟。作者指出，漂移校正可能影响运动平滑度：在实验中运动动态性提高的同时，运动平滑度下降。论文还指出，如何结合干净历史监督与分布匹配以保持场景演进仍是未来工作。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归（AR）视频扩散模型通过以已经生成的帧为条件来生成新的帧块，从而能够生成任意长度的流式视频。然而，这类模型存在暴露偏差：模型训练时使用干净上下文，但必须从自身不完美的输出继续生成，错误会不断累积，直到视频质量在数秒内崩溃（即漂移）。现有方法要么需要集群规模的基础模型再训练，要么在推理时采用结果不稳定的免训练修正方法，要么训练针对采样误差和缓存误差的冻结基础模型修正器。我们发现，漂移在很大程度上是确定性的，因此是可学习的：在固定噪声状态、仅改变历史记录时，可以观察到反事实速度差距，并且该差距在不同噪声种子之间约有95%是系统性的。基于这一观察，我们提出Clean Forcing，在冻结基础模型上训练一个包含590万个参数的LoRA修正器，以回归这一差距；同时加入闭环阶段，通过DAgger式数据聚合和漂移收缩目标，使修正器接触自身生成的轨迹。由于干净历史可以由基础模型自身的单次生成结果提供，训练不需要真实视频；合并后的修正器也不会增加推理成本。在50秒文本生成视频任务中，Clean Forcing将Δ-漂移从+11.3降低到不使用真实视频时的+1.65，使用40个真实视频片段时进一步降低到−0.16；相比之下，已发表的最佳结果为+3.57，而我们的数据量少了150倍以上。大量实验表明，Clean Forcing在长时域视频生成中以更高的数据效率和更低的漂移，优于已有方法，并提升了美学质量。",
+      "abstract_cn": "自回归（AR）视频扩散模型通过依据已生成的视频帧来生成新的帧块，从而能够生成任意长度的流式视频。然而，这类模型存在暴露偏差：模型训练时使用干净的上下文，但推理时必须基于自身不完美的输出继续生成，错误会不断累积，最终在数秒内导致质量崩溃（漂移）。现有方法要么需要集群规模的基础模型重训练，要么在推理时采用训练免费的修正且效果不稳定，要么训练针对采样误差和缓存误差的冻结基础模型修正器。我们发现，漂移在很大程度上是确定性的，因此是可学习的：在固定噪声状态、仅改变历史记录时，可以观察到反事实速度差距；该差距在不同噪声种子之间约有95%是系统性的。基于这一观察，我们提出Clean Forcing：在冻结的基础模型上训练一个拥有590万个参数的LoRA修正器，用于回归这一差距；同时加入闭环阶段，通过DAgger风格的数据聚合和漂移收缩目标，使修正器接触自身生成的轨迹。由于干净历史可以由基础模型自身的单次生成结果提供，训练无需真实视频；合并后的修正器也不会增加推理成本。在50秒文本生成视频任务中，Clean Forcing将Δ-漂移从+11.3降低到+1.65（无需真实视频），使用40个真实视频片段时进一步降至-0.16；相比之下，已发表的最佳结果为+3.57，而我们的数据量少150倍以上。大量实验表明，Clean Forcing在长时域视频生成中具有更高的美学质量和数据效率，并能降低漂移，优于此前的方法。",
       "note_path": "2026-10-21/2610.25634-clean-forcing-drift-resistant-autoregressive-vid.md"
     },
     {
@@ -60,12 +60,12 @@
       "comment": "",
       "score": 77,
       "priority": "must-read",
-      "summary_cn": "论文提出PVBench，用于系统评估视频生成结果的物理合理性。该基准将46个评估维度组织为语义、感知和物理三层以及七个领域，其中物理层包含几何空间、材料与场状态、运动学与持续性、机械与守恒等25个维度。PVBench构建了600组配对的文本到视频和图像到视频提示，30%包含具身智能体、遮挡、视觉杂乱或相机运动等困难因素。评估主要利用VGGT、深度估计、法线估计、分割、跟踪、6D位姿和光流等专门视觉模型提取对象级物理量，再依据物理规律和人工校准阈值映射为分数；难以直接量化的维度辅以多模态大语言模型评分。对12种模型配置的实验显示，语义和感知得分通常高于物理层得分，机械与守恒维度尤其薄弱；复杂场景会进一步降低多数模型的物理表现。自动评分与人工判断具有较高相关性，且数值物理量比直接的多模态模型语义评分更具区分度、更符合人工评价。",
-      "contribution_cn": "1. 提出覆盖46个维度、七个领域和三层评估结构的系统化物理合理性分类体系，其中25个维度属于物理层，覆盖对象固有属性、对象与空间的关系以及跨时空的对象动力学。 2. 构建600组同场景文本到视频/图像到视频配对提示，并将目标评估维度、关键物理量及可观测性要求绑定到提示设计中；其中30%涉及机器人、 humanoid、四足动物和多智能体等具身场景。 3. 提出以物理量为主导的评估协议：使用专门视觉模型提取6D位姿、尺度、表面法线、位移、速度、角速度等数值量，并检查其与物理规律的一致性；对难以计算的属性使用多模态模型补充评分。 4. 通过人工对齐、不同视觉语言模型后端、阈值校准以及物理层消融实验验证评估方法，表明数值物理量评分比多模态语义评分更具区分度且更符合人类判断。 5. 评测六种主流视频生成模型的文本到视频和图像到视频配置，揭示当前模型在机械作用、碰撞、能量与动量守恒以及复杂场景中的持续性不足。",
-      "relevance_cn": "论文与研究重点高度相关，因为它直接面向视频生成和视频扩散模型的物理合理性评估，并覆盖文本到视频、图像到视频以及具身智能体场景。其对象级6D位姿、尺度、运动学、跟踪持续性和守恒律残差测量，可用于检验生成模型是否学习了可用于闭环模拟和物理世界建模的状态与动力学，而不仅是生成外观逼真的视频。具身机器人、四足动物、多智能体、遮挡和相机运动提示也与动作条件视觉世界模型和交互式模拟密切相关。基准本身不是新的生成架构，也没有提出自回归、因果流式生成、实时生成、蒸馏、稀疏注意力或缓存复用方法，但可作为这些长视频、实时和闭环生成系统的物理一致性评测工具。",
-      "limitations_cn": "评估依赖专门的视觉模型；对于材料和相变等维度仍使用多模态大语言模型评分。对于不可观测样本的处理和跳过范围有限。论文只对视觉语言模型后端进行了消融，没有完整消融专门评估器。当前评估主要检查与物理定律的一致性，除少数维度外缺少真实值参考。跟踪能力和可测量物理量的精细程度仍有限。作者计划使用物理引擎和其他模拟工具为条件图像到视频模型构建真实值参考，并进一步扩展基准。",
+      "summary_cn": "论文提出PVBench，用于系统评估视频生成结果的物理合理性。该基准包含600组同时支持T2V和I2V的场景提示，覆盖46个维度、7个领域和语义、感知、物理三层评估，其中25个物理维度通过专用视觉模型提取深度、尺度、位姿、法线、轨迹、速度以及动量和能量守恒等数值量，并依据物理规律进行评分，难以直接量化的维度则结合MLLM判断。对12种模型配置的实验表明，物理层得分普遍低于语义和感知层，机械与守恒维度尤其薄弱；复杂场景会进一步降低多数模型的表现。数值物理量评分比MLLM语义评分更具区分性，也更符合人类判断。",
+      "contribution_cn": "1. 建立涵盖46个维度和7个领域的系统性物理合理性分类，其中25个维度覆盖对象内在属性、对象与空间关系以及跨时空对象动力学。2. 构建600组同场景T2V/I2V配对提示，30%包含具身智能体，并在提示设计中明确目标物理维度、动作阶段和可观测性约束。3. 提出以物理量为核心的评估协议，利用专用视觉模型提取对象级物理量并依据物理定律检查一致性，对难以计算的维度补充MLLM评分。4. 通过人工验证、不同VLM后端实验、阈值校准和消融研究，证明数值物理量评分具有较好的区分性和人类一致性，并分析现有模型在物理合理性方面的主要弱点。",
+      "relevance_cn": "论文与视频生成和视频扩散研究直接相关，因为它为T2V和I2V生成模型提供了面向物理合理性的定量评测工具，并覆盖扩散、流匹配及自回归等视频生成系统可能产生的结果。其对象级六维位姿、尺度、运动学、目标持久性、碰撞、动量和能量守恒指标，可用于评估视频模型是否学习到稳定的时空结构、因果行为和机械规律。具身智能体、遮挡、相机运动和多智能体场景与动作条件视觉世界模型及闭环模拟密切相关；其中物理量评测可作为世界模型状态预测、动作响应和仿真初始化的外部评价信号。论文还揭示，当前模型的视觉质量并不等同于物理可用性，复杂场景和机械守恒仍是瓶颈，这对长视频、流式生成、实时生成、蒸馏、稀疏注意力和缓存复用方法的长期一致性评估具有参考价值，但论文没有专门研究这些生成架构或效率技术。",
+      "limitations_cn": "评估依赖专用视觉模型，且对不可观测样本仅少量跳过；材料和相变维度仍采用MLLM评分。论文只对VLM后端进行了消融，没有完整消融各专用评估器。当前评估主要检查与物理定律的一致性，除少数维度外缺乏真实值参考。目标跟踪和更细粒度物理量仍有改进空间。论文尚未为条件图像到视频模型建立基于物理引擎或其他模拟工具的真实值参考，相关工作留待未来。基准规模还将受计算资源和开源模型发展限制。论文未明确说明其对实时生成、蒸馏、稀疏注意力、缓存复用或闭环交互性能的直接评估。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "近期视频生成模型能够生成视觉上引人注目的结果，但其物理合理性仍缺乏充分测量。物理合理性关注生成对象是否遵守几何学、运动学、动力学和守恒定律。现有基准主要依赖粗粒度的视觉语言模型判断，或面向具身世界模型，而非视频生成本身。我们提出PVBench，这是一个物理视频基准，从七个领域的46个维度对生成视频的合理性进行定量测量，涵盖：i）指令与语义保真度；ii）行为与因果一致性；iii）感知与时间质量；iv）几何与空间一致性；v）材料属性与场状态；vi）运动学及时空持续性；以及vii）遵守守恒定律的机械合理性。PVBench包含600个精心设计的提示，其中30%涉及机器人手臂、人形机器人、四足动物和多智能体系统等物理具身智能体。对于具有挑战性但可进行物理量测量的维度，PVBench为每个维度配备专门的视觉模型，以提取可验证且具有物理依据的测量结果，例如对象级6D位姿、度量尺度、表面法线、运动学量以及守恒定律的数值残差。因此，它不再完全依赖主观评分，同时支持文本到视频和图像到视频生成。最后，我们通过人工评估验证自动指标与人类判断之间的一致性，并评测主流开源和闭源模型，提出若干分析见解。通过发布基准、提示集和校准协议，我们希望推动具有物理依据的视频生成研究。",
+      "abstract_cn": "近期视频生成模型能够产生视觉上引人注目的结果，但其物理合理性仍缺乏充分测量。物理合理性关注生成对象是否遵守几何学、运动学、动力学和守恒定律。现有基准主要依赖粗粒度的视觉语言模型判断，或面向具身世界模型，而不是视频生成本身。我们提出PVBench，一个物理视频基准，从七个领域的46个维度对生成视频的合理性进行定量测量，涵盖：1）指令与语义保真度；2）行为与因果一致性；3）感知与时间质量；4）几何与空间一致性；5）材料属性与场状态；6）运动学及时空持久性；7）机械合理性与守恒定律。PVBench包含600个精心设计的提示，其中30%涉及机器人手臂、人形机器人、四足动物和多智能体系统等物理具身智能体。对于具有挑战性但可进行物理量测量的维度，PVBench为每个维度配备专用视觉模型，以获得可验证且具有物理依据的测量结果，例如对象级六维位姿、度量尺度、表面法线、运动学量以及守恒定律的数值残差。因此，它避免完全依赖主观评分，同时支持文本到视频和图像到视频生成。最后，我们通过人工评估验证自动指标与人类判断之间的一致性。同时，我们评估了主流开源和闭源模型，并提出若干发现。通过发布基准、提示词和校准协议，我们希望推动具有物理依据的视频生成研究。",
       "note_path": "2026-10-21/2610.26711-pvbench-quantifying-physical-plausibility-in-vid.md"
     },
     {
@@ -93,12 +93,12 @@
       "comment": "",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "论文提出MoDDiT，一种在扩散Transformer中对自注意力和MLP分别进行token路由的方法，使模型能够依据内容复杂度、去噪阶段和视频运动动态分配计算。该方法使用Gumbel top-K路由，MLP路由可在批次范围内共享计算预算，同时保持适合GPU并行计算的张量形状。ImageNet实验表明，在相近或更低FLOPs下，MoDDiT可取得优于或接近DiT的图像生成质量；在1X机器人视角视频预测中，12.5%容量的模型以更低去噪计算量获得更高PSNR，且路由比例与运动强度正相关。论文还将Wan2.1蒸馏为稀疏、少步、自回归视频生成模型，在VBench上仅有约5.35%的整体得分下降，同时减少约23.98%的Transformer FLOPs。研究同时指出，FLOPs下降未必直接转化为单样本的实际延迟下降。",
-      "contribution_cn": "1. 提出MoDDiT，通过独立的token路由将计算动态分配给自注意力和MLP模块，无需辅助路由损失或后处理，并支持训练和推理阶段的稀疏计算。2. 设计批次级MLP路由和固定容量的自注意力路由，在保持GPU高效并行和张量形状规则的同时，实现跨token、样本和去噪时间步的计算分配。3. 在ImageNet上验证了MoDDiT的质量—计算量优势：处理12.5%的token时仍具有竞争力，增加模型深度和稀疏性还可改善生成性能。4. 将方法扩展到动作条件视频生成，在1X世界建模数据集上降低视频预测成本并提升PSNR，发现模型会为运动更明显的区域分配更多计算。5. 将稀疏路由与Self-Forcing蒸馏结合，把稠密双向Wan2.1模型转换为稀疏的少步自回归视频生成器，并分析其质量与计算量权衡。6. 通过噪声水平、图像类别、视觉内容和时间变化等分析，展示学习到的计算分配具有可解释性。",
-      "relevance_cn": "论文与研究重点高度相关。它直接针对扩散视频生成的吞吐和延迟瓶颈，通过token级动态稀疏路由减少每个去噪步骤的计算；在动作条件的1X机器人视频预测中，模型根据历史帧和动作条件自回归生成未来latent帧，属于动作条件视觉世界模型和闭环模拟的相关技术基础。其时空注意力设计适用于视频建模，并且路由计算与场景运动强度相关，说明模型能把算力集中到动态区域。论文还结合少步蒸馏和自回归生成，面向长视频和流式生成场景；不过它没有重点研究缓存复用或显式的闭环策略交互。",
-      "limitations_cn": "论文明确指出，实验受计算资源限制，尚未在更多图像数据集、视频数据集、架构和生成算法上进行验证。FLOPs减少不一定带来实际墙钟时间收益：小批量生成时，由于gather/scatter开销以及稠密矩阵乘法高度优化，MoDDiT可能更慢；作者仅在批量大小32时观察到吞吐提升。方法引入了MLP和自注意力容量超参数，目前两者使用相同容量，但其计算分配动态可能不同，最优容量尚未研究。稀疏视频蒸馏模型在VBench上总体得分比稠密基线低5.35%，尤其难以生成空间关系和多个物体。1X视频实验中稀疏与稠密模型的训练批大小不同，因此相同优化器更新次数并不代表相同的数据暴露量。论文未明确说明其在更长时间跨度、真实闭环交互稳定性或缓存复用方面的表现。",
+      "summary_cn": "论文提出MoDDiT，一种在扩散Transformer中分别对自注意力和MLP进行标记路由的方法，以根据内容、样本和去噪阶段动态分配计算量。路由器通过Gumbel top-K选择标记，MLP路由可跨批次共享计算预算，同时保持适合GPU并行处理的张量形状。在ImageNet上，MoDDiT在相近或更低FLOPs下取得优于或接近DiT的图像生成效果；在1X机器人世界模型数据集上，12.5%容量的模型以减少36.92%去噪FLOPs为代价更好地预测视频，并且计算分配与运动强度正相关。论文还将Wan2.1蒸馏为稀疏的少步自回归视频生成器，在VBench上仅比稠密基线低5.35%，同时减少23.98%的Transformer FLOPs。",
+      "contribution_cn": "1. 提出MoDDiT，通过独立的自注意力和MLP标记路由实现扩散Transformer中的动态稀疏计算，无需辅助路由损失或后处理。2. 设计跨批次MLP预算分配和推理阶段的阈值近似，使计算分配能够随图像内容、类别和去噪时间步变化，同时适配并行GPU训练。3. 在ImageNet图像生成、1X动作条件视频预测和Wan2.1稀疏蒸馏中验证方法，展示了更优的质量-计算权衡。4. 分析路由行为，发现计算量倾向于分配给低噪声阶段、高潜变量方差区域以及具有更大时间变化的视频区域。",
+      "relevance_cn": "论文与研究重点直接相关：它面向实时视频生成和交互式世界模型，应用于动作条件的闭环式自回归视频预测；通过标记级稀疏路由降低扩散模型每一步的计算量，并与少步去噪和自回归生成结合。在1X机器人视频任务中，模型根据动作条件和历史帧预测未来潜在帧，且对运动区域分配更多计算，适合闭环模拟中的动态场景建模。MoDDiT还属于扩散模型加速方向，可与蒸馏、稀疏注意力和自回归长视频生成结合，但论文没有重点研究缓存复用。",
+      "limitations_cn": "论文明确指出，实验受计算资源限制，尚未在更多数据集、架构和生成算法上验证；更多图像和视频数据集上的评估仍有待开展。FLOPs降低不一定转化为实际墙钟时间收益：小批量生成可能更慢，原因包括gather/scatter操作开销以及稠密矩阵乘法已经高度优化。论文建议开发针对稀疏MoDDiT模块的优化内核。MLP和自注意力共用同一容量超参数，尽管二者表现出不同的分配动态，最佳容量设置尚未解决。稀疏视频蒸馏模型在空间关系和多物体生成方面尤其较弱，并且整体VBench得分比稠密基线低5.35%。此外，1X实验中稀疏与稠密模型的训练批量大小不同，因此相同的优化器更新次数并不代表相同的训练数据暴露量。论文未明确说明在更长时间范围内的闭环稳定性、真实端到端实时延迟和缓存复用效果。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已经成为现实。扩散Transformer（DiT）能够实现卓越的样本质量，使瓶颈转移到了模型自身的吞吐量上。自然图像本质上具有稀疏性：图像的大部分区域通常是背景，对场景内容贡献很小，也容易去噪。DiT未能利用这种稀疏性，因为它们以静态且统一的方式处理图像token。我们提出MoDDiT，这是一种简单的架构修改方法，能够学习将token路由到MLP和自注意力操作中。通过独立地将token路由经过这两个模块，MoDDiT可以在MLP中实现动态计算分配，并且该分配会随token、图像和去噪时间步而变化。使用MoDDiT从头训练图像生成模型能够显著降低训练和推理成本，处理的token数量最低可达到原来的12.5%。通过提高稀疏性和模型深度，MoDDiT在降低成本的同时，相比未进行路由的基线模型提升了生成性能。学习到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用MoDDiT训练视频生成模型，其中计算分配与运动相关；此外，还将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
+      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已成为现实。扩散Transformer（DiT）能够实现出色的样本质量，使瓶颈转移到了模型本身的吞吐量上。自然图像本质上具有稀疏性：图像的大部分区域通常是背景，对场景内容贡献很少，并且容易去噪。DiT无法利用这种稀疏性，因为它们以静态且统一的方式处理图像标记。我们提出MoDDiT，这是一种简单的架构修改方式，能够学习将标记路由通过MLP和自注意力操作。通过独立地将标记路由通过这两个模块，MoDDiT可以在MLP中实现动态计算分配，并且这种分配会随标记、图像和去噪时间步而变化。使用MoDDiT从头训练图像生成模型，可以显著降低训练和推理的计算成本，处理的标记数量最低可达原来的12.5%。通过提高稀疏性和模型深度，MoDDiT在降低成本的同时，相比不进行路由的基线模型提升了生成性能。学习到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用MoDDiT训练视频生成模型，发现其计算分配与运动相关；此外，我们将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
       "note_path": "2026-10-21/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md"
     },
     {
@@ -129,6 +129,40 @@
       "summary_cn": "Autoregressive Diffusion Transformers have emerged as a powerful paradigm for long video generation.",
       "contribution_cn": "In this paper, we propose Dynamics-Aware Sparse Attention (DASA), a unified framework that shifts from dense computation to sparse, motion-driven generation to eliminate both storage and computational redundancies.",
       "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, long video, distillation, sparse attention, cache, kv cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.28613",
+      "date": "2026-10-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning",
+      "abstract": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators. However, visually plausible predictions can misrepresent contact dynamics, providing unreliable feedback for policy evaluation and learning. We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation. PhysCanvas unifies multi-view RGB, tactile images, marker displacement, task state, and actions within a unified vision space. All modalities share a video VAE and pretrained generative backbone, allowing optical touch to reuse visual and temporal priors. Motion images derived through forward kinematics and camera projection provide spatially aligned action conditioning, while an initial RGB anchor and updated reference observations guide sequential generation. Our consistency-aware post-training uses the frozen Scene Reward Model, Modality Reward Model, and State Reward Model to supervise scene preservation, visual-tactile compatibility, and agreement with real task outcomes. The resulting world model supports closed-loop policy rollouts for evaluation and provides imagined interactions and rewards for GRPO policy updates. Across four real-world manipulation tasks, when policies are rolled out in the world model, State Reward Model supervision increases the arithmetic mean of task-wise Pearson correlations between world-model and real-world success rates from 0.602 to 0.885. Policy post-training in the reward-guided world model further increases $π_{0.5}$'s mean real-world success rate from a 59.1% SFT baseline to 70.8%. These results demonstrate the value of unified multimodal modeling and consistency-aware post-training for robot policy evaluation and learning. Project page: https://zebinx.github.io/PhysCanvas_HomePage/.",
+      "authors": [
+        "Zebin Xing",
+        "Yuhang Zheng",
+        "Yupeng Zheng",
+        "Yichen Zhang",
+        "Zichen Li",
+        "Shangqing Zhou",
+        "Yujie Zang",
+        "Yuchen Liu",
+        "Zhongpu Xia",
+        "Haoran Li",
+        "Qichao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.28613v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.",
+      "contribution_cn": "We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, closed-loop",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -168,40 +202,6 @@
       "summary_cn": "World models enable embodied agents to anticipate action consequences, yet jointly modeling locomotion and manipulation across diverse embodiments remains challenging due to heterogeneous action spaces and limited multimodal supervision.",
       "contribution_cn": "We present Ropedia W0, the first egocentric loco-manipulation world foundation model spanning humans and robots with diverse embodiments.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, embodied, real-time, distillation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2610.28613",
-      "date": "2026-10-20",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning",
-      "abstract": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators. However, visually plausible predictions can misrepresent contact dynamics, providing unreliable feedback for policy evaluation and learning. We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation. PhysCanvas unifies multi-view RGB, tactile images, marker displacement, task state, and actions within a unified vision space. All modalities share a video VAE and pretrained generative backbone, allowing optical touch to reuse visual and temporal priors. Motion images derived through forward kinematics and camera projection provide spatially aligned action conditioning, while an initial RGB anchor and updated reference observations guide sequential generation. Our consistency-aware post-training uses the frozen Scene Reward Model, Modality Reward Model, and State Reward Model to supervise scene preservation, visual-tactile compatibility, and agreement with real task outcomes. The resulting world model supports closed-loop policy rollouts for evaluation and provides imagined interactions and rewards for GRPO policy updates. Across four real-world manipulation tasks, when policies are rolled out in the world model, State Reward Model supervision increases the arithmetic mean of task-wise Pearson correlations between world-model and real-world success rates from 0.602 to 0.885. Policy post-training in the reward-guided world model further increases $π_{0.5}$'s mean real-world success rate from a 59.1% SFT baseline to 70.8%. These results demonstrate the value of unified multimodal modeling and consistency-aware post-training for robot policy evaluation and learning. Project page: https://zebinx.github.io/PhysCanvas_HomePage/.",
-      "authors": [
-        "Zebin Xing",
-        "Yuhang Zheng",
-        "Yupeng Zheng",
-        "Yichen Zhang",
-        "Zichen Li",
-        "Shangqing Zhou",
-        "Yujie Zang",
-        "Yuchen Liu",
-        "Zhongpu Xia",
-        "Haoran Li",
-        "Qichao Zhang"
-      ],
-      "url": "http://arxiv.org/abs/2610.28613v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "",
-      "score": 74,
-      "priority": "skim",
-      "summary_cn": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.",
-      "contribution_cn": "We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, closed-loop",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
