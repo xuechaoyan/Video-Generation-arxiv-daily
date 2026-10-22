@@ -1,0 +1,328 @@
+{
+  "generated_at": "2026-10-22T02:01:29+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.28086",
+      "date": "2026-10-20",
+      "topics": [
+        "Video Generation",
+        "World Models",
+        "Efficient Video Diffusion"
+      ],
+      "title": "MoDDiT: Simple Token Routing in Diffusion Transformers",
+      "abstract": "Real-time video generation, interactive world models, and on-device image synthesis are almost a reality. Diffusion Transformers (DiT) achieve excellent sample quality, shifting the bottleneck to the throughput of the models themselves. Natural images are inherently sparse, as large portions of an image are often background, contribute little to the scene content, and are easy to denoise. DiTs fail to exploit this sparsity, as they process image tokens statically and uniformly. We propose MoDDiT, a simple architecture modification that learns to route tokens through both MLP and self-attention operations. By routing tokens through both blocks independently, MoDDiT allows for dynamic compute allocation in MLPs that varies across tokens, images, and denoising timesteps. Using MoDDiT to train image generation models from scratch significantly reduces computational costs of training and inference, processing as few as 12.5% of the tokens. By increasing sparsity and model depth, MoDDiT reduces costs and improves generation performance over unrouted baselines. The learned allocation is interpretable, revealing how computation varies with visual content and noise level. We also use MoDDiT to train video generation models, where allocation correlates with motion, and to distill a dense bidirectional video model into a sparse autoregressive student.",
+      "authors": [
+        "Jarek Liesen",
+        "Matthew T. Jackson",
+        "Benjamin Ellis",
+        "Shimon Whiteson",
+        "Jakob N. Foerster"
+      ],
+      "url": "http://arxiv.org/abs/2610.28086v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "本文提出MoDDiT，一种在扩散变换器中分别对自注意力和MLP进行令牌路由的稀疏计算机制。MLP路由可在不同令牌、样本和去噪时间步之间动态分配计算，自注意力路由则保持固定容量，从而兼顾动态性与GPU上的高效批处理。ImageNet实验表明，在较低FLOPs下MoDDiT可达到或超过稠密DiT的生成质量；在1X机器人世界建模数据上，12.5%容量的ST-MoDDiT以更少的去噪FLOPs获得更高的视频预测PSNR。对Wan2.1进行稀疏蒸馏后，模型成为少步自回归视频生成器，推理Transformer FLOPs降低约24%，但VBench总分比稠密基线低约5.35%。分析显示，模型会在低噪声阶段、视觉内容更复杂的区域以及运动更明显的视频令牌上分配更多计算。",
+      "contribution_cn": "1. 提出MoDDiT，通过独立的自注意力和MLP令牌路由，在不需要辅助路由损失或不规则批处理的情况下实现扩散变换器的稀疏计算，并同时降低训练和推理FLOPs。\n2. 设计面向MLP的跨样本动态容量分配机制，以及适合高效并行计算的固定容量自注意力路由机制。\n3. 在ImageNet上展示了更优的质量—计算量折中，最低可处理12.5%的令牌；在1X动作条件视频预测任务上验证了稀疏路由的效果，并发现计算分配与运动变化相关。\n4. 将MoDDiT与Self-Forcing结合，把稠密双向Wan2.1模型蒸馏为稀疏、少步、自回归视频生成模型，并分析其路由行为与局限性。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向实时视频生成和交互式世界模型的吞吐与延迟瓶颈，通过内容自适应的令牌路由减少扩散模型每个去噪步骤的计算。在1X机器人数据上，模型以历史视频帧和未来动作作为条件，预测后续视频潜变量并自回归 rollout，属于动作条件视觉世界模型和闭环仿真的基础加速技术。论文还将稀疏路由用于Wan2.1的少步自回归蒸馏，关联到自回归、长视频生成和推理加速。其核心贡献主要是动态稀疏计算，而不是缓存复用；也未直接提出新的实时系统或闭环控制评估。",
+      "limitations_cn": "论文明确指出，实验受计算资源限制，尚未在更多图像和视频数据集、架构及生成算法上验证；FLOPs降低不一定转化为实际墙钟时间降低，小批量生成时由于聚集/分散操作开销及稠密矩阵乘法的高度优化，速度可能更慢；专用稀疏内核仍有待开发。MoDDiT还引入了MLP和自注意力容量超参数，当前两者使用相同容量，尽管其计算分配动态可能不同。稀疏视频蒸馏模型在空间关系、多物体生成及多数VBench类别上弱于稠密基线，VBench总分低5.35%。在1X实验中，稀疏与稠密模型的训练批大小不同，因此相同优化器更新次数并不代表相同的数据暴露量。论文未明确说明更长时域闭环 rollout 中的误差累积、动作控制稳定性以及不同硬件上的实际端到端实时性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已经成为现实。扩散变换器（DiT）能够实现出色的样本质量，使瓶颈转移到了模型自身的吞吐量上。自然图像本质上是稀疏的：图像的大部分区域通常是背景，对场景内容贡献很小，也容易去噪。DiT未能利用这种稀疏性，因为它们以静态且统一的方式处理图像令牌。我们提出MoDDiT，这是一种简单的架构修改方案，能够学习将令牌路由至MLP和自注意力操作。通过分别对两个模块进行令牌路由，MoDDiT使MLP中的计算分配能够随令牌、图像和去噪时间步动态变化。使用MoDDiT从头训练图像生成模型，可以显著降低训练和推理成本，处理的令牌数最低可达全部令牌的12.5%。通过提高稀疏度和模型深度，MoDDiT在降低成本的同时，相比不进行路由的基线提升了生成性能。学习到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用MoDDiT训练视频生成模型，发现其计算分配与运动相关；此外，还将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
+      "note_path": "2026-10-22/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md"
+    },
+    {
+      "id": "2610.29989",
+      "date": "2026-10-21",
+      "topics": [
+        "Video Generation",
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Looking Ahead: Modeling Future Evolution in Autoregressive Video Generation",
+      "abstract": "Autoregressive video diffusion models generate videos chunk by chunk, yet producing plausible continuations does not guarantee that they capture how scenes evolve. Under teacher forcing, strong temporal redundancy may allow local visual continuity to serve as a shortcut for current-chunk denoising, reducing the pressure to model visual evolution. We introduce Future Chunk Prediction (FCP), an auxiliary objective jointly optimized with teacher-forced denoising that predicts temporally separated chunks without access to the intervening visual context. Drawing supervision directly from training videos, FCP requires no additional pretrained visual encoder and leaves autoregressive inference unchanged. Our method achieves superior physical plausibility over standard teacher-forced autoregressive training with a lower overall training compute budget, highlighting the effectiveness and efficiency of future-chunk supervision for modeling visual evolution. Intriguingly, our visualizations suggest that FCP fosters a more structured representation space, which may be valuable for building autoregressive world models.",
+      "authors": [
+        "Ruopeng Gao",
+        "Yukun Huang",
+        "Jiarui Hu",
+        "Shuai Wang",
+        "Wenbo Hu",
+        "Ying Shan",
+        "Limin Wang"
+      ],
+      "url": "http://arxiv.org/abs/2610.29989v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://hellorpg.github.io/looking-ahead/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "Autoregressive video diffusion models generate videos chunk by chunk, yet producing plausible continuations does not guarantee that they capture how scenes evolve.",
+      "contribution_cn": "We introduce Future Chunk Prediction (FCP), an auxiliary objective jointly optimized with teacher-forced denoising that predicts temporally separated chunks without access to the intervening visual context.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, autoregressive, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.29408",
+      "date": "2026-10-21",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LiveAct: Towards Real-Time Multi-Agent World Models with Heterogeneous Action Interfaces",
+      "abstract": "Interactive video world models predict how an environment evolves under user actions, but most existing systems assume one controlled agent and one task-specific action interface. We study multi-agent video world modeling, where one model generates a joint visual future for multiple controlled agents while interpreting heterogeneous controls ranging from binary game buttons to continuous robot commands. This task presents two complementary challenges. First, every agent-indexed action stream must control its intended visual entity independently. Second, the model must adapt the meaning of each control variable across different tasks, where the same tensor dimension may denote an attack, steering command, or robot command. We introduce LiveAct, centered on a Heterogeneous Action Interface (HAI) whose two components mirror this decomposition. To support independent control, Agent-Aware Spatial Modulation uses language-driven spatial gates and agent-specific attention to bind each action stream to its intended visual agent. To accommodate heterogeneous controls, Schema-Guided Action Adaptation describes each control variable in language and modulates its semantic token with the synchronized numerical value. We further transfer the complete interface to a blockwise causal generator through teacher forcing and rollout-aware distribution matching, enabling efficient streaming generation while retaining agent-specific control and action semantics. We instantiate the formulation on six multi-agent sources spanning games and multi-robot manipulation, and evaluate visual quality, action following, agent attribution, and latency. Across games and robot manipulation, LiveAct reaches 0.898 and 0.942 agent-attribution accuracy without agent locations or identity crops, and the causal generator attains 17.70 FPS at $512\\times 448$.",
+      "authors": [
+        "Xinyu Wang",
+        "Huafeng Shi",
+        "Yue Ma",
+        "Zijie Meng",
+        "Teng Xi",
+        "Yuzhuo Chen",
+        "Yucheng Wang",
+        "Ruicheng Zhang",
+        "Guoxin Zhang",
+        "Pengfei Wan",
+        "Xiu Li",
+        "Fangneng Zhan"
+      ],
+      "url": "http://arxiv.org/abs/2610.29408v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://liveact-ai.github.io",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "Interactive video world models predict how an environment evolves under user actions, but most existing systems assume one controlled agent and one task-specific action interface.",
+      "contribution_cn": "We introduce LiveAct, centered on a Heterogeneous Action Interface (HAI) whose two components mirror this decomposition.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, streaming, real-time, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.26855",
+      "date": "2026-10-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience",
+      "abstract": "World models enable embodied agents to anticipate action consequences, yet jointly modeling locomotion and manipulation across diverse embodiments remains challenging due to heterogeneous action spaces and limited multimodal supervision. We present Ropedia W0, the first egocentric loco-manipulation world foundation model spanning humans and robots with diverse embodiments. We curate Xp-Data, comprising 10k hours of egocentric human data and 3k hours of robot data with unified multimodal annotations and systematic quality control. A unified kinematic representation encodes locomotion through camera poses and manipulation through projected skeletons, with robot skeletons combining embodiment-specific forward kinematics with extensive manual keypoint annotation and correction. We also introduce Xp-Teleop, a long-horizon loco-manipulation benchmark based on high-quality dexterous humanoid teleoperation data. Evaluations demonstrate state-of-the-art performance across five cross-embodiment benchmarks (DreamDojo, $Ψ_0$, $ω$-HOME, Xp-Teleop, and AgiBot) and on held-out human egocentric video, from zero-shot inference to few-shot and full-data post-training. Scaling human pre-training data improves performance on both human and robot evaluations. After distillation, our model supports real-time, minute-long rollouts, enabling live VR interaction. Applications in policy evaluation, model-based planning, and world-action modeling further demonstrate the model's utility for embodied decision-making.",
+      "authors": [
+        "Tianqi Liu",
+        "Hanfei Zhao",
+        "Qifeng Liang",
+        "Hui En Pang",
+        "Jiarui Xu",
+        "Sayang Mu",
+        "Penghao Qiu",
+        "YingSheng Zhang",
+        "Jun Wang",
+        "Ziang Cao",
+        "Mingze Sun",
+        "Yukang Cao",
+        "Fangzhou Hong",
+        "Zhaoxi Chen",
+        "Ziwei Liu"
+      ],
+      "url": "http://arxiv.org/abs/2610.26855v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "Project page: https://ropedia.github.io/ropedia-w0/ ; Code: https://github.com/Ropedia/ropedia-w0",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "World models enable embodied agents to anticipate action consequences, yet jointly modeling locomotion and manipulation across diverse embodiments remains challenging due to heterogeneous action spaces and limited multimodal supervision.",
+      "contribution_cn": "We present Ropedia W0, the first egocentric loco-manipulation world foundation model spanning humans and robots with diverse embodiments.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, embodied, real-time, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.28613",
+      "date": "2026-10-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning",
+      "abstract": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators. However, visually plausible predictions can misrepresent contact dynamics, providing unreliable feedback for policy evaluation and learning. We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation. PhysCanvas unifies multi-view RGB, tactile images, marker displacement, task state, and actions within a unified vision space. All modalities share a video VAE and pretrained generative backbone, allowing optical touch to reuse visual and temporal priors. Motion images derived through forward kinematics and camera projection provide spatially aligned action conditioning, while an initial RGB anchor and updated reference observations guide sequential generation. Our consistency-aware post-training uses the frozen Scene Reward Model, Modality Reward Model, and State Reward Model to supervise scene preservation, visual-tactile compatibility, and agreement with real task outcomes. The resulting world model supports closed-loop policy rollouts for evaluation and provides imagined interactions and rewards for GRPO policy updates. Across four real-world manipulation tasks, when policies are rolled out in the world model, State Reward Model supervision increases the arithmetic mean of task-wise Pearson correlations between world-model and real-world success rates from 0.602 to 0.885. Policy post-training in the reward-guided world model further increases $π_{0.5}$'s mean real-world success rate from a 59.1% SFT baseline to 70.8%. These results demonstrate the value of unified multimodal modeling and consistency-aware post-training for robot policy evaluation and learning. Project page: https://zebinx.github.io/PhysCanvas_HomePage/.",
+      "authors": [
+        "Zebin Xing",
+        "Yuhang Zheng",
+        "Yupeng Zheng",
+        "Yichen Zhang",
+        "Zichen Li",
+        "Shangqing Zhou",
+        "Yujie Zang",
+        "Yuchen Liu",
+        "Zhongpu Xia",
+        "Haoran Li",
+        "Qichao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.28613v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.",
+      "contribution_cn": "We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.29061",
+      "date": "2026-10-21",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "OccJEPA: Occlusion as Masking for Amodal Video Segmentation",
+      "abstract": "Amodal video segmentation asks for the complete mask of an object in every frame, including the parts hidden behind other objects. The best current methods generate these masks with fine-tuned video diffusion models, which need many denoising steps and an extra depth network, and give a different answer for every sample. Self-supervised video world models of the JEPA family are trained on a closely related task: predicting the representation of masked space-time regions from the visible ones. We therefore treat occlusion as masking. The tokens that the object's visible mask does not cover are dropped, the pre-trained V-JEPA 2.1 predictor fills them in, and a light head decodes the observed and predicted features into amodal masks. The resulting model, OccJEPA (Occlusion-as-masking JEPA), is deterministic and 33.5x faster than the diffusion-based state of the art, and more accurate on SAIL-VOS, on TAO-Amodal, including a held-out test split (+4.00 AP50) and visible masks tracked by SAM2, and on Kubric. Controlled experiments trace the gain to the predictor's pre-trained weights rather than to its capacity, for world models from 87M to 1.85B parameters. Code is available at https://github.com/zgp110/occjepa.",
+      "authors": [
+        "Genpei Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.29061v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "20 pages (8-page main paper + supplementary material). Code: https://github.com/zgp110/occjepa",
+      "score": 64,
+      "priority": "skim",
+      "summary_cn": "Amodal video segmentation asks for the complete mask of an object in every frame, including the parts hidden behind other objects.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.28402",
+      "date": "2026-10-20",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "StreamEval: Evaluating Interactive Streaming Video Generation Models",
+      "abstract": "As streaming video generation advances, enabling real-time interaction with generated video is becoming increasingly important. We introduce StreamEval, a unified benchmark for interactive streaming video generation spanning five tasks: avatar dialogue, avatar performance, world generation, instruction editing, and reference editing. StreamEval comprises 300 scripted test cases lasting 15-300s, each specifying initial assets, incrementally arriving multimodal requests, and explicit requirements for state changes and content preservation. Performance is assessed along four evaluation dimensions: task execution, state consistency, visual fidelity, and audiovisual coordination, instantiated through ten task-specific metrics on a 0-100 scale. Evaluating 37 distinct models across 300 test cases, we find that high visual quality and identity retention do not necessarily coincide with reliable request execution or sustained state consistency. In particular, request execution remains challenging: the highest task-specific scores are 36.90 for Following among seven avatar-performance models, 25.93 for Following in text-conditioned world generation, and 15.00 for Edit Success among three reported reference-editing models. These findings identify reliable request execution under timing and preservation constraints as a central challenge for advancing omni-modal real-time interactive systems. The leaderboard is available at https://streameval.ai",
+      "authors": [
+        " StreamEval Team"
+      ],
+      "url": "http://arxiv.org/abs/2610.28402v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "As streaming video generation advances, enabling real-time interaction with generated video is becoming increasingly important.",
+      "contribution_cn": "We introduce StreamEval, a unified benchmark for interactive streaming video generation spanning five tasks: avatar dialogue, avatar performance, world generation, instruction editing, and reference editing.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, streaming, real-time, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.28631",
+      "date": "2026-10-20",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "AEON: Unifying Video and 3D World Models",
+      "abstract": "Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail to preserve 3D consistency; and (2) 3D generative models (e.g., Marble), which generate geometrically consistent scenes but often yield static, less realistic observations. We present AEON, a unified framework that bridges video-based and 3D-based world models and combines the benefits of both. The key insight of AEON lies in a generative model that operates within the text- or image-conditioned video latent space while producing renderable 4D graphics primitives---specifically, 4D Gaussian Splatting (4DGS)---as the explicit world representation. We train a 4D reconstruction model to predict both 4DGS and camera poses from monocular videos, serving as our initialized 4D decoder. Furthermore, we design a domain adapter that translates generative video latents into reconstructive 4D latents through a distillation process on the video VAE. AEON naturally supports video-based world modeling by rendering 4DGS at predicted camera trajectories, and constructs a persistent 4D environment with scene dynamics for realistic world simulation. Consequently, AEON empowers a diverse range of world modeling applications and achieves state-of-the-art performance on standard benchmarks. Project Page: https://weiqi-zhang.github.io/AEON",
+      "authors": [
+        "Weiqi Zhang",
+        "Wenyuan Zhang",
+        "Yu-Shen Liu",
+        "Junsheng Zhou"
+      ],
+      "url": "http://arxiv.org/abs/2610.28631v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted to NeurIPS 2026. Project Page: https://weiqi-zhang.github.io/AEON",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail to preserve 3D consistency; and (2) 3D generative models (e.g., Marble), which generate geometrically consistent scenes but often yield static, less realistic observations.",
+      "contribution_cn": "We present AEON, a unified framework that bridges video-based and 3D-based world models and combines the benefits of both.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.27851",
+      "date": "2026-10-21",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "LaLa-World: Scaling Latent World Models with Natural Language Actions",
+      "abstract": "This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation models. We establish this approach as an effective and efficient basis for planning with imagination and downstream policy fine-tuning. To this end, we introduce LaLa-World, a Language-conditioned Latent World model that learns from simulation and robot trajectories together with broader image and video data. Two designs make this work. First, we describe both numerical actions and visual changes in language, enabling joint training of a single future predictor across heterogeneous datasets. Second, we build the predictor on a language model, allowing it to interpret language conditions while predicting future latent states. The resulting predictor achieves higher average MPC planning performance than existing LWMs trained separately for each domain or task. Adding image and video data further improves average planning performance and robustness to action phrasing. In a matched comparison with an RAEv2-based video generation model baseline, LaLa-World reaches comparable planning performance with $6\\times$ less training cost and $13.9\\times$ faster planning. Beyond planning, the pretrained LaLa-World serves as an initialization for LaLa-Policy, which jointly predicts actions and future visual representations. LaLa-Policy performs competitively with Cosmos Policy on LIBERO and RoboCasa, with up to $5.5\\times$ faster inference.",
+      "authors": [
+        "Junha Song",
+        "Geonmo Gu",
+        "Jeongeun Park",
+        "Heejeong Nam",
+        "Lucas Maes",
+        "Byeongho Heo",
+        "Dongyoon Han",
+        "Sangdoo Yun"
+      ],
+      "url": "http://arxiv.org/abs/2610.27851v2",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "Project page: https://june-page.github.io/lala-world/ Code: https://github.com/junha1125/LaLa-World",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation models.",
+      "contribution_cn": "To this end, we introduce LaLa-World, a Language-conditioned Latent World model that learns from simulation and robot trajectories together with broader image and video data.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, simulation, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.27782",
+      "date": "2026-10-20",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "RoboJudge: Multimodal Language Models as Judges for Embodied Video Generation",
+      "abstract": "Video generation models are promising foundations for embodied world models, but only if their generated rollouts are physically valid and faithful to task instructions. Multimodal large language models (MLLMs) are increasingly used to judge these properties, yet their agreement with human judgments on embodied videos has not been systematically evaluated. To address this gap, we introduce RoboJudge-Bench, a benchmark for evaluating MLLMs as judges of embodied video generation. The benchmark measures two fundamental dimensions, Physical Adherence and Instruction Alignment, across 800 human-annotated videos from 8 source corpora and 10 video generators, spanning grippers, human hands, and dexterous hands. Experiments reveal uneven alignment between existing judges and human ratings: general-purpose MLLMs show lower agreement on physical adherence, while specialized video judges designed for general-domain physical reasoning do not consistently transfer to embodied scenarios. Motivated by these findings, we construct RoboJudge-Train, comprising 12K videos annotated with 25K human-verified scores and model-assisted rationales for Physical Adherence and Instruction Alignment. We fine-tune a 9B MLLM on this dataset with supervised learning followed by reinforcement learning, yielding RoboJudge-9B. Among the model judges evaluated on RoboJudge-Bench, RoboJudge-9B achieves the highest overall agreement, reaching a Pearson correlation of 0.719 with a statistically significant 0.089 gain over Gemini-3.7-Flash, the best-performing proprietary baseline in our evaluation. Training on RoboJudge-Train also yields gains on external benchmarks, including VideoPhy2 and Physion-Eval. We further use RoboJudge-9B as a downstream evaluator to benchmark video generation models according to Physical Adherence and Instruction Alignment.",
+      "authors": [
+        "Siyuan Ma",
+        "Yu Qi",
+        "Cheng Ye",
+        "Ruotian Peng",
+        "Xinyi Xu",
+        "Zitiantao Lin",
+        "Zedong Cai",
+        "Yijian Huang",
+        "Weiyang Liu",
+        "Siyuan Wang",
+        "Yandong Wen"
+      ],
+      "url": "http://arxiv.org/abs/2610.27782v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "Project page: https://spherelab.ai/RoboJudge",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "Video generation models are promising foundations for embodied world models, but only if their generated rollouts are physically valid and faithful to task instructions.",
+      "contribution_cn": "To address this gap, we introduce RoboJudge-Bench, a benchmark for evaluating MLLMs as judges of embodied video generation.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, embodied, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 1
+}
