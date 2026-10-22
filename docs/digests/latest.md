@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-22T02:01:29+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-22T16:07:28+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：76/100
 - **作者**：Jarek Liesen, Matthew T. Jackson, Benjamin Ellis et al.
 - **方向**：Video Generation, World Models, Efficient Video Diffusion
-- **一句话**：本文提出MoDDiT，一种在扩散变换器中分别对自注意力和MLP进行令牌路由的稀疏计算机制。MLP路由可在不同令牌、样本和去噪时间步之间动态分配计算，自注意力路由则保持固定容量，从而兼顾动态性与GPU上的高效批处理。ImageNet实验表明，在较低FLOPs下MoDDiT可达到或超过稠密DiT的生成质量；在1X机器人世界建模数据上，12.5%容量的ST-Mo…
+- **一句话**：论文提出 MoDDiT，通过轻量级路由器分别决定 token 是否经过自注意力和 MLP，从而根据内容、样本和去噪阶段动态分配计算。在 ImageNet 上，MoDDiT 在相近或更低 FLOPs 下取得优于或接近 DiT 的图像生成效果，最低可处理 12.5% 的 token。在 1X 机器人第一视角动作条件视频预测中，12.5% 容量的 ST-MoDD…
 - **精读笔记**：[打开笔记](../notes/2026-10-22/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md)
 
 ### 2. [Looking Ahead: Modeling Future Evolution in Autoregressive Video Generation](http://arxiv.org/abs/2610.29989v1)
