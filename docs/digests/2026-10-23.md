@@ -1,17 +1,17 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-23T02:14:47+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-23T15:57:23+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [MoDDiT: Simple Token Routing in Diffusion Transformers](http://arxiv.org/abs/2610.28086v1)
+### 1. [DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models](http://arxiv.org/abs/2610.30781v1)
 
-- **评分**：76/100
-- **作者**：Jarek Liesen, Matthew T. Jackson, Benjamin Ellis et al.
-- **方向**：Video Generation, World Models, Efficient Video Diffusion
-- **一句话**：论文提出MoDDiT，通过为自注意力和MLP分别学习token路由，在扩散Transformer中实现内容、样本和去噪时间步相关的动态计算分配。该方法无需辅助路由损失，并保持适合GPU批处理的张量形状。在ImageNet上，MoDDiT以更低或相近的FLOPs取得了优于或接近DiT的生成质量；在1X机器人第一视角世界建模任务中，12.5%容量的模型将去噪F…
-- **精读笔记**：[打开笔记](../notes/2026-10-23/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md)
+- **评分**：77/100
+- **作者**：Adam Lee, Mutian Xu, Yukang Cao et al.
+- **方向**：Video Generation, World Models
+- **一句话**：Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like.
+- **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
 
 ### 2. [Looking Ahead: Modeling Future Evolution in Autoregressive Video Generation](http://arxiv.org/abs/2610.29989v1)
 
@@ -31,19 +31,19 @@
 
 ## 快速浏览
 
-### 1. [DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models](http://arxiv.org/abs/2610.30781v1)
-
-- **评分**：74/100
-- **作者**：Adam Lee, Mutian Xu, Yukang Cao et al.
-- **方向**：Video Generation
-- **一句话**：Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like.
-
-### 2. [Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning](http://arxiv.org/abs/2610.28613v1)
+### 1. [Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning](http://arxiv.org/abs/2610.28613v1)
 
 - **评分**：74/100
 - **作者**：Zebin Xing, Yuhang Zheng, Yupeng Zheng et al.
 - **方向**：World Models
 - **一句话**：Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.
+
+### 2. [Direct Forcing: A Single-Stage Training Recipe for Few-Step Autoregressive Text-to-Video Generation](http://arxiv.org/abs/2610.30861v1)
+
+- **评分**：71/100
+- **作者**：Haojun Xu, Jie Huang, Xin Lu et al.
+- **方向**：Autoregressive and Streaming Video
+- **一句话**：Few-step autoregressive video generation enables low-latency streaming, yet prevailing training pipelines separate causal adaptation from distribution matching.
 
 ### 3. [OccJEPA: Occlusion as Masking for Amodal Video Segmentation](http://arxiv.org/abs/2610.29061v1)
 
@@ -73,9 +73,9 @@
 - **方向**：Video Generation, World Models
 - **一句话**：This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation mo…
 
-### 7. [RoboJudge: Multimodal Language Models as Judges for Embodied Video Generation](http://arxiv.org/abs/2610.27782v1)
+### 7. [Rethinking Video Autoencoders for Interactive World Models](http://arxiv.org/abs/2610.30129v1)
 
-- **评分**：59/100
-- **作者**：Siyuan Ma, Yu Qi, Cheng Ye et al.
-- **方向**：Video Generation, World Models
-- **一句话**：Video generation models are promising foundations for embodied world models, but only if their generated rollouts are physically valid and faithful to task instructions.
+- **评分**：58/100
+- **作者**：Adrien Ramanana Rahary, Yutong Bai, Nicolas Dufour et al.
+- **方向**：World Models
+- **一句话**：Video world models predict future frames from past frames and actions.

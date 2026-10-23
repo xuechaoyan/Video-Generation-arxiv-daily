@@ -1,39 +1,35 @@
 {
-  "generated_at": "2026-10-23T02:14:47+00:00",
-  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "generated_at": "2026-10-23T15:57:23+00:00",
+  "assessment_mode": "heuristic",
   "papers": [
     {
-      "id": "2610.28086",
-      "date": "2026-10-20",
+      "id": "2610.30781",
+      "date": "2026-10-22",
       "topics": [
         "Video Generation",
-        "World Models",
-        "Efficient Video Diffusion"
+        "World Models"
       ],
-      "title": "MoDDiT: Simple Token Routing in Diffusion Transformers",
-      "abstract": "Real-time video generation, interactive world models, and on-device image synthesis are almost a reality. Diffusion Transformers (DiT) achieve excellent sample quality, shifting the bottleneck to the throughput of the models themselves. Natural images are inherently sparse, as large portions of an image are often background, contribute little to the scene content, and are easy to denoise. DiTs fail to exploit this sparsity, as they process image tokens statically and uniformly. We propose MoDDiT, a simple architecture modification that learns to route tokens through both MLP and self-attention operations. By routing tokens through both blocks independently, MoDDiT allows for dynamic compute allocation in MLPs that varies across tokens, images, and denoising timesteps. Using MoDDiT to train image generation models from scratch significantly reduces computational costs of training and inference, processing as few as 12.5% of the tokens. By increasing sparsity and model depth, MoDDiT reduces costs and improves generation performance over unrouted baselines. The learned allocation is interpretable, revealing how computation varies with visual content and noise level. We also use MoDDiT to train video generation models, where allocation correlates with motion, and to distill a dense bidirectional video model into a sparse autoregressive student.",
+      "title": "DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
+      "abstract": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like. Existing approaches typically entangle action-conditioned dynamics, camera motion, and visual synthesis within a video generation model, or represent dynamics as point trajectories without explicit object structure. We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences. Given an initial scene and a future hand trajectory, a lightweight 3D dynamics network predicts object-centric motion and deformation, providing structured and geometrically grounded future world states. These predictions then serve as a strong scaffold for video generation: appearance is transported through the predicted 3D motion and projected into future views, allowing the renderer to focus on completing uncertain and newly visible content rather than implicitly learning world dynamics from pixels. This explicit-3D-first decomposition also enables efficient causal generation, requiring only two denoising steps per block while conditioning on generated history. Across HOT3D, OakInk2, and PhysTwin, DeXplicit reduces moved-point error by 27-40% relative to PointWorld and improves object fidelity IoU+ by 47% on HOT3D under a shared renderer. Our design with two-step causal generation achieves a 57x speedup from our 14B bi-directional configuration in video synthesis.",
       "authors": [
-        "Jarek Liesen",
-        "Matthew T. Jackson",
-        "Benjamin Ellis",
-        "Shimon Whiteson",
-        "Jakob N. Foerster"
+        "Adam Lee",
+        "Mutian Xu",
+        "Yukang Cao",
+        "Shulin Tian",
+        "Ziwei Liu"
       ],
-      "url": "http://arxiv.org/abs/2610.28086v1",
+      "url": "http://arxiv.org/abs/2610.30781v1",
       "categories": [
-        "cs.CV",
-        "cs.AI"
+        "cs.CV"
       ],
-      "comment": "",
-      "score": 76,
+      "comment": "Project page: https://dexplicit.github.io",
+      "score": 77,
       "priority": "must-read",
-      "summary_cn": "论文提出MoDDiT，通过为自注意力和MLP分别学习token路由，在扩散Transformer中实现内容、样本和去噪时间步相关的动态计算分配。该方法无需辅助路由损失，并保持适合GPU批处理的张量形状。在ImageNet上，MoDDiT以更低或相近的FLOPs取得了优于或接近DiT的生成质量；在1X机器人第一视角世界建模任务中，12.5%容量的模型将去噪FLOPs降低36.92%，同时提升多时间点视频预测PSNR。路由分配与图像潜变量方差及视频中的运动变化呈正相关。论文还将MoDDiT用于Wan2.1的稀疏蒸馏，构建少步数自回归视频生成学生模型，在VBench总分仅下降5.35%的情况下，将Transformer FLOPs降低23.98%。",
-      "contribution_cn": "1. 提出MoDDiT，一种同时对自注意力和MLP进行独立token路由的扩散Transformer架构。2. 提出跨批次共享MLP路由预算及推理阶段阈值跟踪机制，实现随内容、类别和噪声水平变化的动态计算分配，无需辅助路由损失或不规则批处理。3. 在ImageNet上验证了不同稀疏率下的质量—计算量优势，最低处理12.5%的token。4. 构建时空注意力版本并在1X动作条件视频预测任务上验证方法，发现计算分配与视频运动显著相关。5. 将稀疏路由结合Self-Forcing蒸馏，把稠密双向Wan2.1模型转化为稀疏、少步数、自回归视频生成模型。6. 分析路由行为，揭示计算量随视觉复杂度、噪声水平和时间变化的规律。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向实时视频生成和交互式世界模型，通过token级动态稀疏计算降低扩散Transformer每一步的成本；在1X机器人数据上使用连续控制动作作为条件，预测后续视频潜变量并自回归滚动生成，属于动作条件视觉世界建模和闭环仿真的相关技术。其ST-MoDDiT模型将空间注意力与时间注意力分离，并根据视频区域的运动变化分配计算，适用于流式或长视频生成中的局部动态处理。论文还将稀疏路由与少步数蒸馏、自回归生成结合，直接涉及实时生成、蒸馏和稀疏注意力。不过，论文没有重点研究显式缓存复用机制，且其视频实验主要是短时预测而非完整的长期闭环交互评估。",
-      "limitations_cn": "论文明确指出，实验受计算资源限制，覆盖的数据集、架构和生成算法有限，尚未在更多图像和视频数据集上验证。FLOPs降低并不一定转化为实际墙钟时间降低；由于gather/scatter操作开销以及稠密矩阵乘法高度优化，少量并行生成时可能更慢，仍需要针对稀疏MoDDiT模块的专用高效内核。MoDDiT需要为MLP和自注意力设置容量超参数，当前使用相同容量，但两者可能具有不同的最优容量。稀疏蒸馏模型在空间关系和多对象生成方面表现较弱，VBench总分比稠密基线低5.35%。1X实验中稀疏模型和稠密模型的训练批大小不同，因此相同优化器更新次数并不代表相同的数据暴露量。论文未明确说明MoDDiT在更长时间范围、真实闭环控制稳定性、广泛硬件平台或大规模流式部署中的效果。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已经成为现实。扩散Transformer（DiT）能够实现出色的样本质量，使瓶颈转移到了模型自身的吞吐量上。自然图像本质上具有稀疏性：图像的大部分区域通常是背景，对场景内容贡献很少，并且容易去噪。DiT未能利用这种稀疏性，因为它们以静态且均匀的方式处理图像token。我们提出MoDDiT，一种简单的架构修改方法，能够学习将token路由至MLP和自注意力操作。通过独立地将token路由至这两个模块，MoDDiT可以在MLP中实现动态计算分配，并且这种分配会随token、图像和去噪时间步而变化。使用MoDDiT从头训练图像生成模型，可以显著降低训练和推理成本，处理的token数量最低可达到原来的12.5%。通过提高稀疏性和模型深度，MoDDiT在降低成本的同时，相比不进行路由的基线模型改善了生成性能。学习到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用MoDDiT训练视频生成模型，其中计算分配与运动相关；并将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
-      "note_path": "2026-10-23/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md"
+      "summary_cn": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like.",
+      "contribution_cn": "We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, efficient, video generation, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
       "id": "2610.29989",
@@ -103,34 +99,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.30781",
-      "date": "2026-10-22",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
-      "abstract": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like. Existing approaches typically entangle action-conditioned dynamics, camera motion, and visual synthesis within a video generation model, or represent dynamics as point trajectories without explicit object structure. We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences. Given an initial scene and a future hand trajectory, a lightweight 3D dynamics network predicts object-centric motion and deformation, providing structured and geometrically grounded future world states. These predictions then serve as a strong scaffold for video generation: appearance is transported through the predicted 3D motion and projected into future views, allowing the renderer to focus on completing uncertain and newly visible content rather than implicitly learning world dynamics from pixels. This explicit-3D-first decomposition also enables efficient causal generation, requiring only two denoising steps per block while conditioning on generated history. Across HOT3D, OakInk2, and PhysTwin, DeXplicit reduces moved-point error by 27-40% relative to PointWorld and improves object fidelity IoU+ by 47% on HOT3D under a shared renderer. Our design with two-step causal generation achieves a 57x speedup from our 14B bi-directional configuration in video synthesis.",
-      "authors": [
-        "Adam Lee",
-        "Mutian Xu",
-        "Yukang Cao",
-        "Shulin Tian",
-        "Ziwei Liu"
-      ],
-      "url": "http://arxiv.org/abs/2610.30781v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project page: https://dexplicit.github.io",
-      "score": 74,
-      "priority": "skim",
-      "summary_cn": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like.",
-      "contribution_cn": "We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, efficient, video generation, video synthesis",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2610.28613",
       "date": "2026-10-20",
       "topics": [
@@ -161,6 +129,37 @@
       "summary_cn": "Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.",
       "contribution_cn": "We introduce PhysCanvas, a state-consistent visuo-tactile world model for contact-rich robot manipulation.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, closed-loop",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.30861",
+      "date": "2026-10-22",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Direct Forcing: A Single-Stage Training Recipe for Few-Step Autoregressive Text-to-Video Generation",
+      "abstract": "Few-step autoregressive video generation enables low-latency streaming, yet prevailing training pipelines separate causal adaptation from distribution matching. Recent representation-based text-to-video methods retain this separation by starting from ODE-initialized checkpoints, even when the target distribution is defined directly by reference videos. We introduce Direct Forcing, a single-stage framework that uses reference videos both as paired examples of how a history continues and as a target population for self-generated rollouts. Causal Continuation Alignment learns paired spatiotemporal correspondence under reference histories, while Rollout Distribution Matching uses maximum mean discrepancy to align the representation distributions of self-generated and reference videos. Together, these complementary signals allow a pretrained video model to learn causal continuation and the target video distribution in a single training stage. Dynamic Gradient Balancing adapts the relative gradient contributions of continuation alignment and distribution matching during training. Starting from bidirectional Wan2.1-1.3B, Direct Forcing learns a four-step autoregressive generator in 250 updates without a separate initialization stage or online diffusion-score supervision, achieving 84.63 VBench Total and 86.01 Quality. Ablation studies further demonstrate the benefits of dynamic gradient balancing and reveal distinct representation preferences: deeper features benefit continuation alignment, whereas intermediate features yield better performance for rollout distribution matching.",
+      "authors": [
+        "Haojun Xu",
+        "Jie Huang",
+        "Xin Lu",
+        "Mingchen Zhong",
+        "Zihao Fan",
+        "Linjiang Huang",
+        "Si Liu"
+      ],
+      "url": "http://arxiv.org/abs/2610.30861v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "Few-step autoregressive video generation enables low-latency streaming, yet prevailing training pipelines separate causal adaptation from distribution matching.",
+      "contribution_cn": "We introduce Direct Forcing, a single-stage framework that uses reference videos both as paired examples of how a history continues and as a target population for self-generated rollouts.",
+      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：autoregressive, streaming, few-step, video generation, text-to-video",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -277,41 +276,33 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.27782",
-      "date": "2026-10-20",
+      "id": "2610.30129",
+      "date": "2026-10-21",
       "topics": [
-        "Video Generation",
         "World Models"
       ],
-      "title": "RoboJudge: Multimodal Language Models as Judges for Embodied Video Generation",
-      "abstract": "Video generation models are promising foundations for embodied world models, but only if their generated rollouts are physically valid and faithful to task instructions. Multimodal large language models (MLLMs) are increasingly used to judge these properties, yet their agreement with human judgments on embodied videos has not been systematically evaluated. To address this gap, we introduce RoboJudge-Bench, a benchmark for evaluating MLLMs as judges of embodied video generation. The benchmark measures two fundamental dimensions, Physical Adherence and Instruction Alignment, across 800 human-annotated videos from 8 source corpora and 10 video generators, spanning grippers, human hands, and dexterous hands. Experiments reveal uneven alignment between existing judges and human ratings: general-purpose MLLMs show lower agreement on physical adherence, while specialized video judges designed for general-domain physical reasoning do not consistently transfer to embodied scenarios. Motivated by these findings, we construct RoboJudge-Train, comprising 12K videos annotated with 25K human-verified scores and model-assisted rationales for Physical Adherence and Instruction Alignment. We fine-tune a 9B MLLM on this dataset with supervised learning followed by reinforcement learning, yielding RoboJudge-9B. Among the model judges evaluated on RoboJudge-Bench, RoboJudge-9B achieves the highest overall agreement, reaching a Pearson correlation of 0.719 with a statistically significant 0.089 gain over Gemini-3.7-Flash, the best-performing proprietary baseline in our evaluation. Training on RoboJudge-Train also yields gains on external benchmarks, including VideoPhy2 and Physion-Eval. We further use RoboJudge-9B as a downstream evaluator to benchmark video generation models according to Physical Adherence and Instruction Alignment.",
+      "title": "Rethinking Video Autoencoders for Interactive World Models",
+      "abstract": "Video world models predict future frames from past frames and actions. They serve as simulators in which agents train, plan or are evaluated, and that humans can control interactively. They generate in the latent space of a video autoencoder, whose compression sets their cost per frame and how long each action waits to take effect. Yet world models often reuse the autoencoders of text-to-video generators, built for offline generation with no agent waiting and, without their training data and code, not retrainable at another compression. We therefore ask how, where and how much a world model should compress. We build CADRE, an open family of causal diffusion representation autoencoders spanning multiple spatio-temporal compressions. Its members differ only in a small bottleneck on frozen features and share a diffusion decoder self-distilled to one or a few steps. We train the same world model on each autoencoder in two domains, manipulation and navigation, with two environments each. CADRE forms most of the latency-quality frontier, especially with a moving camera. Our study also leads to four findings. At strong compression, a diffusion decoder is sharper than perceptual regression. In robot manipulation, temporal compression is more effective in the autoencoder than in the world model. Manipulation and navigation call for opposite compressions: temporal compression costs little when the camera is still, and spatial compression when it moves. Surprisingly, with a still camera, coarser spatial tokens hurt motion far more than image quality. Code, models and a live demo are at https://kyutai.org/blog/2026-10-21-cadre",
       "authors": [
-        "Siyuan Ma",
-        "Yu Qi",
-        "Cheng Ye",
-        "Ruotian Peng",
-        "Xinyi Xu",
-        "Zitiantao Lin",
-        "Zedong Cai",
-        "Yijian Huang",
-        "Weiyang Liu",
-        "Siyuan Wang",
-        "Yandong Wen"
+        "Adrien Ramanana Rahary",
+        "Yutong Bai",
+        "Nicolas Dufour",
+        "Patrick Pérez",
+        "David Picard"
       ],
-      "url": "http://arxiv.org/abs/2610.27782v1",
+      "url": "http://arxiv.org/abs/2610.30129v1",
       "categories": [
-        "cs.CV",
-        "cs.RO"
+        "cs.CV"
       ],
-      "comment": "Project page: https://spherelab.ai/RoboJudge",
-      "score": 59,
+      "comment": "",
+      "score": 58,
       "priority": "skim",
-      "summary_cn": "Video generation models are promising foundations for embodied world models, but only if their generated rollouts are physically valid and faithful to task instructions.",
-      "contribution_cn": "To address this gap, we introduce RoboJudge-Bench, a benchmark for evaluating MLLMs as judges of embodied video generation.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, embodied, video generation",
+      "summary_cn": "Video world models predict future frames from past frames and actions.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, text-to-video",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 1
+  "cursor_summaries_completed": 0
 }
