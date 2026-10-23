@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T16:07:28+00:00",
+  "generated_at": "2026-10-23T02:14:47+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -27,13 +27,13 @@
       "comment": "",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "论文提出 MoDDiT，通过轻量级路由器分别决定 token 是否经过自注意力和 MLP，从而根据内容、样本和去噪阶段动态分配计算。在 ImageNet 上，MoDDiT 在相近或更低 FLOPs 下取得优于或接近 DiT 的图像生成效果，最低可处理 12.5% 的 token。在 1X 机器人第一视角动作条件视频预测中，12.5% 容量的 ST-MoDDiT 使用更少去噪 FLOPs，同时提升多个预测时刻的 PSNR，且路由比例与视频运动强度正相关。论文还将 Wan2.1 蒸馏为稀疏的少步自回归视频生成器，在 VBench 总分仅下降 5.35% 的情况下减少约 23.98% 的 Transformer FLOPs。",
-      "contribution_cn": "1. 提出 MoDDiT，一种无需辅助路由损失、支持并行 GPU 训练且能同时降低训练和推理 FLOPs 的 token 路由机制。\\n2. 对自注意力采用固定容量路由，对 MLP 采用跨 batch 的动态容量分配，使计算量能够随 token、图像内容和去噪时间步变化。\\n3. 在 ImageNet 图像生成、1X 动作条件视频预测和 Wan2.1 稀疏蒸馏三个场景中进行验证，展示了质量—计算量权衡的改善。\\n4. 分析路由行为的可解释性，发现计算分配偏向低噪声阶段、高潜变量方差区域以及视频中运动变化更大的区域。\\n5. 将稠密双向视频扩散模型转化为稀疏、少步、自回归学生模型，证明 token 路由可以与视频蒸馏和闭环式长程生成技术结合。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向视频扩散和实时生成，通过 token 级稀疏路由减少每个去噪步骤的计算，适合降低实时视频生成和交互式世界模型的延迟。在 1X 世界模型数据集上，模型以历史视频帧和机器人连续动作作为条件，自回归预测后续潜在视频帧，属于动作条件视觉世界建模；路由还会根据时空变化将更多计算分配给动态区域。其 Wan2.1 实验进一步结合少步蒸馏、稀疏注意力和自回归视频生成，说明该方法可用于流式或长视频生成的计算压缩。方法本身不依赖缓存复用，但其对静态区域少分配计算的机制与跨帧复用、稀疏注意力和实时推理优化具有互补性。",
-      "limitations_cn": "论文明确指出，实验受计算资源限制，尚未覆盖更多数据集、架构和生成算法，因此需要在 ArtBench、Food、Taichi-HD、Minecraft VPT 等数据集上进一步验证。FLOPs 的下降不一定转化为实际墙钟时间的下降：小 batch 或少量并行样本生成时，gather/scatter 开销以及高度优化的稠密矩阵乘法可能抵消收益；论文仅在 batch size 32 时报告了吞吐提升。稀疏蒸馏模型在空间关系和多对象生成方面较弱，且 VBench 总分比稠密基线低 5.35%。方法引入了 MLP 和自注意力的容量超参数，目前两者使用相同容量，但论文观察到它们具有不同的分配动态，最佳容量设置尚未确定。论文未明确说明在更长时间范围内的闭环稳定性、动作控制误差累积、端到端实时延迟以及缓存复用方面的表现。",
+      "summary_cn": "论文提出MoDDiT，通过为自注意力和MLP分别学习token路由，在扩散Transformer中实现内容、样本和去噪时间步相关的动态计算分配。该方法无需辅助路由损失，并保持适合GPU批处理的张量形状。在ImageNet上，MoDDiT以更低或相近的FLOPs取得了优于或接近DiT的生成质量；在1X机器人第一视角世界建模任务中，12.5%容量的模型将去噪FLOPs降低36.92%，同时提升多时间点视频预测PSNR。路由分配与图像潜变量方差及视频中的运动变化呈正相关。论文还将MoDDiT用于Wan2.1的稀疏蒸馏，构建少步数自回归视频生成学生模型，在VBench总分仅下降5.35%的情况下，将Transformer FLOPs降低23.98%。",
+      "contribution_cn": "1. 提出MoDDiT，一种同时对自注意力和MLP进行独立token路由的扩散Transformer架构。2. 提出跨批次共享MLP路由预算及推理阶段阈值跟踪机制，实现随内容、类别和噪声水平变化的动态计算分配，无需辅助路由损失或不规则批处理。3. 在ImageNet上验证了不同稀疏率下的质量—计算量优势，最低处理12.5%的token。4. 构建时空注意力版本并在1X动作条件视频预测任务上验证方法，发现计算分配与视频运动显著相关。5. 将稀疏路由结合Self-Forcing蒸馏，把稠密双向Wan2.1模型转化为稀疏、少步数、自回归视频生成模型。6. 分析路由行为，揭示计算量随视觉复杂度、噪声水平和时间变化的规律。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向实时视频生成和交互式世界模型，通过token级动态稀疏计算降低扩散Transformer每一步的成本；在1X机器人数据上使用连续控制动作作为条件，预测后续视频潜变量并自回归滚动生成，属于动作条件视觉世界建模和闭环仿真的相关技术。其ST-MoDDiT模型将空间注意力与时间注意力分离，并根据视频区域的运动变化分配计算，适用于流式或长视频生成中的局部动态处理。论文还将稀疏路由与少步数蒸馏、自回归生成结合，直接涉及实时生成、蒸馏和稀疏注意力。不过，论文没有重点研究显式缓存复用机制，且其视频实验主要是短时预测而非完整的长期闭环交互评估。",
+      "limitations_cn": "论文明确指出，实验受计算资源限制，覆盖的数据集、架构和生成算法有限，尚未在更多图像和视频数据集上验证。FLOPs降低并不一定转化为实际墙钟时间降低；由于gather/scatter操作开销以及稠密矩阵乘法高度优化，少量并行生成时可能更慢，仍需要针对稀疏MoDDiT模块的专用高效内核。MoDDiT需要为MLP和自注意力设置容量超参数，当前使用相同容量，但两者可能具有不同的最优容量。稀疏蒸馏模型在空间关系和多对象生成方面表现较弱，VBench总分比稠密基线低5.35%。1X实验中稀疏模型和稠密模型的训练批大小不同，因此相同优化器更新次数并不代表相同的数据暴露量。论文未明确说明MoDDiT在更长时间范围、真实闭环控制稳定性、广泛硬件平台或大规模流式部署中的效果。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已经成为现实。扩散 Transformer（DiT）能够实现出色的样本质量，使瓶颈转移到了模型本身的吞吐量上。自然图像本质上具有稀疏性，因为图像的大部分区域通常是背景，对场景内容贡献很小，也容易去噪。DiT 未能利用这种稀疏性，因为它以静态且统一的方式处理图像 token。我们提出 MoDDiT，这是一种简单的架构修改方法，能够学习将 token 路由至 MLP 和自注意力操作。通过分别将 token 路由经过这两个模块，MoDDiT 可以在 MLP 中动态分配计算量，并且这种分配会随 token、图像和去噪时间步而变化。使用 MoDDiT 从头训练图像生成模型，可以显著降低训练和推理成本，处理的 token 数量最低可达到原来的 12.5%。通过提高稀疏性和模型深度，MoDDiT 在降低成本的同时，相比不进行路由的基线模型提升了生成性能。学习得到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用 MoDDiT 训练视频生成模型，发现计算分配与运动相关；并将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
-      "note_path": "2026-10-22/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md"
+      "abstract_cn": "实时视频生成、交互式世界模型和端侧图像合成几乎已经成为现实。扩散Transformer（DiT）能够实现出色的样本质量，使瓶颈转移到了模型自身的吞吐量上。自然图像本质上具有稀疏性：图像的大部分区域通常是背景，对场景内容贡献很少，并且容易去噪。DiT未能利用这种稀疏性，因为它们以静态且均匀的方式处理图像token。我们提出MoDDiT，一种简单的架构修改方法，能够学习将token路由至MLP和自注意力操作。通过独立地将token路由至这两个模块，MoDDiT可以在MLP中实现动态计算分配，并且这种分配会随token、图像和去噪时间步而变化。使用MoDDiT从头训练图像生成模型，可以显著降低训练和推理成本，处理的token数量最低可达到原来的12.5%。通过提高稀疏性和模型深度，MoDDiT在降低成本的同时，相比不进行路由的基线模型改善了生成性能。学习到的计算分配具有可解释性，揭示了计算量如何随视觉内容和噪声水平变化。我们还使用MoDDiT训练视频生成模型，其中计算分配与运动相关；并将一个稠密的双向视频模型蒸馏为稀疏的自回归学生模型。",
+      "note_path": "2026-10-23/2610.28086-moddit-simple-token-routing-in-diffusion-transfo.md"
     },
     {
       "id": "2610.29989",
@@ -103,41 +103,30 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.26855",
-      "date": "2026-10-19",
+      "id": "2610.30781",
+      "date": "2026-10-22",
       "topics": [
-        "World Models"
+        "Video Generation"
       ],
-      "title": "Ropedia W0: Scaling Loco-Manipulation World Models across Embodiments with Human Experience",
-      "abstract": "World models enable embodied agents to anticipate action consequences, yet jointly modeling locomotion and manipulation across diverse embodiments remains challenging due to heterogeneous action spaces and limited multimodal supervision. We present Ropedia W0, the first egocentric loco-manipulation world foundation model spanning humans and robots with diverse embodiments. We curate Xp-Data, comprising 10k hours of egocentric human data and 3k hours of robot data with unified multimodal annotations and systematic quality control. A unified kinematic representation encodes locomotion through camera poses and manipulation through projected skeletons, with robot skeletons combining embodiment-specific forward kinematics with extensive manual keypoint annotation and correction. We also introduce Xp-Teleop, a long-horizon loco-manipulation benchmark based on high-quality dexterous humanoid teleoperation data. Evaluations demonstrate state-of-the-art performance across five cross-embodiment benchmarks (DreamDojo, $Ψ_0$, $ω$-HOME, Xp-Teleop, and AgiBot) and on held-out human egocentric video, from zero-shot inference to few-shot and full-data post-training. Scaling human pre-training data improves performance on both human and robot evaluations. After distillation, our model supports real-time, minute-long rollouts, enabling live VR interaction. Applications in policy evaluation, model-based planning, and world-action modeling further demonstrate the model's utility for embodied decision-making.",
+      "title": "DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
+      "abstract": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like. Existing approaches typically entangle action-conditioned dynamics, camera motion, and visual synthesis within a video generation model, or represent dynamics as point trajectories without explicit object structure. We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences. Given an initial scene and a future hand trajectory, a lightweight 3D dynamics network predicts object-centric motion and deformation, providing structured and geometrically grounded future world states. These predictions then serve as a strong scaffold for video generation: appearance is transported through the predicted 3D motion and projected into future views, allowing the renderer to focus on completing uncertain and newly visible content rather than implicitly learning world dynamics from pixels. This explicit-3D-first decomposition also enables efficient causal generation, requiring only two denoising steps per block while conditioning on generated history. Across HOT3D, OakInk2, and PhysTwin, DeXplicit reduces moved-point error by 27-40% relative to PointWorld and improves object fidelity IoU+ by 47% on HOT3D under a shared renderer. Our design with two-step causal generation achieves a 57x speedup from our 14B bi-directional configuration in video synthesis.",
       "authors": [
-        "Tianqi Liu",
-        "Hanfei Zhao",
-        "Qifeng Liang",
-        "Hui En Pang",
-        "Jiarui Xu",
-        "Sayang Mu",
-        "Penghao Qiu",
-        "YingSheng Zhang",
-        "Jun Wang",
-        "Ziang Cao",
-        "Mingze Sun",
+        "Adam Lee",
+        "Mutian Xu",
         "Yukang Cao",
-        "Fangzhou Hong",
-        "Zhaoxi Chen",
+        "Shulin Tian",
         "Ziwei Liu"
       ],
-      "url": "http://arxiv.org/abs/2610.26855v1",
+      "url": "http://arxiv.org/abs/2610.30781v1",
       "categories": [
-        "cs.CV",
-        "cs.RO"
+        "cs.CV"
       ],
-      "comment": "Project page: https://ropedia.github.io/ropedia-w0/ ; Code: https://github.com/Ropedia/ropedia-w0",
+      "comment": "Project page: https://dexplicit.github.io",
       "score": 74,
       "priority": "skim",
-      "summary_cn": "World models enable embodied agents to anticipate action consequences, yet jointly modeling locomotion and manipulation across diverse embodiments remains challenging due to heterogeneous action spaces and limited multimodal supervision.",
-      "contribution_cn": "We present Ropedia W0, the first egocentric loco-manipulation world foundation model spanning humans and robots with diverse embodiments.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, embodied, real-time, distillation",
+      "summary_cn": "Before acting on an object, a robot needs to anticipate how its hand motion will change the physical world and what the resulting scene will look like.",
+      "contribution_cn": "We introduce DeXplicit, a dexterous manipulation world model that instead predicts how the world evolves explicitly in metric 3D before rendering its visual consequences.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, efficient, video generation, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
