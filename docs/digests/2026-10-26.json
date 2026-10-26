@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T01:52:19+00:00",
+  "generated_at": "2026-10-26T17:41:28+00:00",
   "assessment_mode": "heuristic",
   "papers": [
     {
@@ -187,34 +187,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.28631",
-      "date": "2026-10-20",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "AEON: Unifying Video and 3D World Models",
-      "abstract": "Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail to preserve 3D consistency; and (2) 3D generative models (e.g., Marble), which generate geometrically consistent scenes but often yield static, less realistic observations. We present AEON, a unified framework that bridges video-based and 3D-based world models and combines the benefits of both. The key insight of AEON lies in a generative model that operates within the text- or image-conditioned video latent space while producing renderable 4D graphics primitives---specifically, 4D Gaussian Splatting (4DGS)---as the explicit world representation. We train a 4D reconstruction model to predict both 4DGS and camera poses from monocular videos, serving as our initialized 4D decoder. Furthermore, we design a domain adapter that translates generative video latents into reconstructive 4D latents through a distillation process on the video VAE. AEON naturally supports video-based world modeling by rendering 4DGS at predicted camera trajectories, and constructs a persistent 4D environment with scene dynamics for realistic world simulation. Consequently, AEON empowers a diverse range of world modeling applications and achieves state-of-the-art performance on standard benchmarks. Project Page: https://weiqi-zhang.github.io/AEON",
-      "authors": [
-        "Weiqi Zhang",
-        "Wenyuan Zhang",
-        "Yu-Shen Liu",
-        "Junsheng Zhou"
-      ],
-      "url": "http://arxiv.org/abs/2610.28631v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Accepted to NeurIPS 2026. Project Page: https://weiqi-zhang.github.io/AEON",
-      "score": 62,
-      "priority": "skim",
-      "summary_cn": "Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail to preserve 3D consistency; and (2) 3D generative models (e.g., Marble), which generate geometrically consistent scenes but often yield static, less realistic observations.",
-      "contribution_cn": "We present AEON, a unified framework that bridges video-based and 3D-based world models and combines the benefits of both.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, distillation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2610.27851",
       "date": "2026-10-21",
       "topics": [
@@ -301,6 +273,33 @@
       "summary_cn": "Video world models predict future frames from past frames and actions.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, text-to-video",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.32977",
+      "date": "2026-10-23",
+      "topics": [
+        "World Models"
+      ],
+      "title": "UniAction: Unified Action Conditioning for World Models",
+      "abstract": "Actions that condition world models are highly heterogeneous, and thus existing action-conditioned world models are typically built for individual action types, fragmenting already limited action-annotated data across separate models. We introduce UniAction, a unified action-conditioning framework that represents any action as a sparse set of action elements, each with a discrete semantic identity and a continuous spatiotemporal grounding coordinate. By mapping these coordinates directly into the pretrained video model's native positional space, UniAction allows heterogeneous actions to condition a shared world model within the same spatiotemporal structure. We further introduce cardinality-calibrated attention to address the bias from differing action representation granularities. We evaluate UniAction on four representative action forms: force, camera control, hand pose, and robot pose. UniAction outperforms conditioning alternatives in action following, and a single jointly trained model surpasses the action-specific experts, showing that heterogeneous action data benefit from unified model and joint training.",
+      "authors": [
+        "Bowen Xue",
+        "Zizhang Li",
+        "Hong-Xing Yu",
+        "Jiajun Wu"
+      ],
+      "url": "http://arxiv.org/abs/2610.32977v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://uniaction.github.io/",
+      "score": 56,
+      "priority": "skim",
+      "summary_cn": "Actions that condition world models are highly heterogeneous, and thus existing action-conditioned world models are typically built for individual action types, fragmenting already limited action-annotated data across separate models.",
+      "contribution_cn": "We introduce UniAction, a unified action-conditioning framework that represents any action as a sparse set of action elements, each with a discrete semantic identity and a continuous spatiotemporal grounding coordinate.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

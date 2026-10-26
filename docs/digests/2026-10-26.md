@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-26T01:52:19+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
+> 生成时间：2026-10-26T17:41:28+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -52,30 +52,30 @@
 - **方向**：Video Generation, World Models
 - **一句话**：Amodal video segmentation asks for the complete mask of an object in every frame, including the parts hidden behind other objects.
 
-### 4. [AEON: Unifying Video and 3D World Models](http://arxiv.org/abs/2610.28631v1)
-
-- **评分**：62/100
-- **作者**：Weiqi Zhang, Wenyuan Zhang, Yu-Shen Liu et al.
-- **方向**：Video Generation, World Models
-- **一句话**：Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail…
-
-### 5. [LaLa-World: Scaling Latent World Models with Natural Language Actions](http://arxiv.org/abs/2610.27851v2)
+### 4. [LaLa-World: Scaling Latent World Models with Natural Language Actions](http://arxiv.org/abs/2610.27851v2)
 
 - **评分**：62/100
 - **作者**：Junha Song, Geonmo Gu, Jeongeun Park et al.
 - **方向**：Video Generation, World Models
 - **一句话**：This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation mo…
 
-### 6. [ACWM-RM: A Reference-Free Reward Model from Complementary Mismatch Preferences](http://arxiv.org/abs/2610.32222v1)
+### 5. [ACWM-RM: A Reference-Free Reward Model from Complementary Mismatch Preferences](http://arxiv.org/abs/2610.32222v1)
 
 - **评分**：58/100
 - **作者**：Shibo Hong, Siyu Ren, FengJiao Chen et al.
 - **方向**：World Models
 - **一句话**：Reinforcement learning has gained attention for improving action-conditioned world models (ACWMs), as it enables reward-driven optimization of visual quality (VQ) and action-follo…
 
-### 7. [Rethinking Video Autoencoders for Interactive World Models](http://arxiv.org/abs/2610.30129v1)
+### 6. [Rethinking Video Autoencoders for Interactive World Models](http://arxiv.org/abs/2610.30129v1)
 
 - **评分**：58/100
 - **作者**：Adrien Ramanana Rahary, Yutong Bai, Nicolas Dufour et al.
 - **方向**：World Models
 - **一句话**：Video world models predict future frames from past frames and actions.
+
+### 7. [UniAction: Unified Action Conditioning for World Models](http://arxiv.org/abs/2610.32977v1)
+
+- **评分**：56/100
+- **作者**：Bowen Xue, Zizhang Li, Hong-Xing Yu et al.
+- **方向**：World Models
+- **一句话**：Actions that condition world models are highly heterogeneous, and thus existing action-conditioned world models are typically built for individual action types, fragmenting alread…

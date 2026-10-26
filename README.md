@@ -1554,6 +1554,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-23**|**UniAction: Unified Action Conditioning for World Models**|Bowen Xue et.al.|[2610.32977](http://arxiv.org/abs/2610.32977)|null|
+|**2026-10-23**|**Adaptive World-Models for Anomaly Recognition (AWARE): A Framework for Robot Dynamics Prediction and Introspection**|Luke Beddow et.al.|[2610.32742](http://arxiv.org/abs/2610.32742)|null|
+|**2026-10-23**|**DT-JEPA: Learning to Predict Future Representations for Decision-Making**|Changxu Ni et.al.|[2610.32657](http://arxiv.org/abs/2610.32657)|null|
 |**2026-10-23**|**HGWM: Hierarchical Graph-Guided World Model for Zero-Shot Object Navigation via Graph Matching**|I-tak Ieong et.al.|[2610.32554](http://arxiv.org/abs/2610.32554)|null|
 |**2026-10-23**|**When Does Dynamics Randomization Test Context Inference?**|Oleg Smirnov et.al.|[2610.32414](http://arxiv.org/abs/2610.32414)|null|
 |**2026-10-23**|**UniWorld: A Unified World Model for Real-Time Visual World Simulation**|Xin Zhang et.al.|[2610.32381](http://arxiv.org/abs/2610.32381)|null|
