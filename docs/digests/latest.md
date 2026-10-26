@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-25T15:05:20+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
+> 生成时间：2026-10-26T01:52:19+00:00 · 筛选方式：规则评分（未配置 Cursor API Key）
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -31,12 +31,12 @@
 
 ## 快速浏览
 
-### 1. [Physical Canvas: A Vision Tactile World Model For Robot Policy Evaluation And Learning](http://arxiv.org/abs/2610.28613v1)
+### 1. [UniWorld: A Unified World Model for Real-Time Visual World Simulation](http://arxiv.org/abs/2610.32381v1)
 
-- **评分**：74/100
-- **作者**：Zebin Xing, Yuhang Zheng, Yupeng Zheng et al.
-- **方向**：World Models
-- **一句话**：Evaluating and post-training robot policies through physical interaction is costly and difficult to scale, motivating action-conditioned world models as interactive simulators.
+- **评分**：73/100
+- **作者**：Xin Zhang, Yabo Chen, Shuaiwei Wang et al.
+- **方向**：Video Generation, World Models
+- **一句话**：Continuous visual world simulation requires coupling evolving scene geometry with temporally persistent appearance.
 
 ### 2. [Direct Forcing: A Single-Stage Training Recipe for Few-Step Autoregressive Text-to-Video Generation](http://arxiv.org/abs/2610.30861v1)
 
@@ -52,26 +52,26 @@
 - **方向**：Video Generation, World Models
 - **一句话**：Amodal video segmentation asks for the complete mask of an object in every frame, including the parts hidden behind other objects.
 
-### 4. [StreamEval: Evaluating Interactive Streaming Video Generation Models](http://arxiv.org/abs/2610.28402v1)
-
-- **评分**：63/100
-- **作者**：StreamEval Team
-- **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：As streaming video generation advances, enabling real-time interaction with generated video is becoming increasingly important.
-
-### 5. [AEON: Unifying Video and 3D World Models](http://arxiv.org/abs/2610.28631v1)
+### 4. [AEON: Unifying Video and 3D World Models](http://arxiv.org/abs/2610.28631v1)
 
 - **评分**：62/100
 - **作者**：Weiqi Zhang, Wenyuan Zhang, Yu-Shen Liu et al.
 - **方向**：Video Generation, World Models
 - **一句话**：Current world models for explicit world simulation typically follow two distinct pathways: (1) video generative models (e.g., Sora), which simulate realistic appearances but fail…
 
-### 6. [LaLa-World: Scaling Latent World Models with Natural Language Actions](http://arxiv.org/abs/2610.27851v2)
+### 5. [LaLa-World: Scaling Latent World Models with Natural Language Actions](http://arxiv.org/abs/2610.27851v2)
 
 - **评分**：62/100
 - **作者**：Junha Song, Geonmo Gu, Jeongeun Park et al.
 - **方向**：Video Generation, World Models
 - **一句话**：This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation mo…
+
+### 6. [ACWM-RM: A Reference-Free Reward Model from Complementary Mismatch Preferences](http://arxiv.org/abs/2610.32222v1)
+
+- **评分**：58/100
+- **作者**：Shibo Hong, Siyu Ren, FengJiao Chen et al.
+- **方向**：World Models
+- **一句话**：Reinforcement learning has gained attention for improving action-conditioned world models (ACWMs), as it enables reward-driven optimization of visual quality (VQ) and action-follo…
 
 ### 7. [Rethinking Video Autoencoders for Interactive World Models](http://arxiv.org/abs/2610.30129v1)
 
