@@ -17,6 +17,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-26**|**VidEdit3D: Flexible 3D Gaussian Editing with Video Diffusion**|Yanming Yang et.al.|[2610.35756](http://arxiv.org/abs/2610.35756)|null|
+|**2026-10-26**|**Beyond Distribution Matching: Self-Supervised Representation Forcing for Few-Step Video Generation**|Junyi Chen et.al.|[2610.35594](http://arxiv.org/abs/2610.35594)|null|
 |**2026-10-25**|**EditDistill: Is It Possible to Guide Video Editing with Image Editing?**|Guojun Lei et.al.|[2610.34303](http://arxiv.org/abs/2610.34303)|null|
 |**2026-10-25**|**X-World: Transferring Video Priors to Variable-View Robot Control**|Chun Gu et.al.|[2610.34105](http://arxiv.org/abs/2610.34105)|null|
 |**2026-10-24**|**Mix Forcing: Causal Pre-Training via Mixture Attention for Interactive World Models**|Zelin Gao et.al.|[2610.33589](http://arxiv.org/abs/2610.33589)|null|
@@ -1557,6 +1559,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-26**|**OSWAM: An Effective World Action Model with One-Step Action Generation**|Guowen Zhang et.al.|[2610.35850](http://arxiv.org/abs/2610.35850)|null|
+|**2026-10-26**|**Profiling a Frontier Agent with EBench: From Direct Control to Harness with Policy**|Yifei Yao et.al.|[2610.35832](http://arxiv.org/abs/2610.35832)|null|
+|**2026-10-26**|**World Model for Energy Efficiency Maximization in Dynamic Metasurface Antennas**|Abdolrasoul Sakhaei Gharagezlou et.al.|[2610.35813](http://arxiv.org/abs/2610.35813)|null|
+|**2026-10-26**|**Adapt for Planning, Not just Prediction: Optimistic Test-Time World Model Adaptation**|Akshay Mete et.al.|[2610.35636](http://arxiv.org/abs/2610.35636)|null|
+|**2026-10-26**|**WorldPager: Zero-Stall Tiered Memory for Long-Horizon World Models on a Single Consumer GPU**|Bingnan Liu et.al.|[2610.35529](http://arxiv.org/abs/2610.35529)|null|
 |**2026-10-26**|**DriveUniTok: A Unified Multimodal Tokenizer for Driving World-Action Models**|Jingbo Xu et.al.|[2610.35044](http://arxiv.org/abs/2610.35044)|null|
 |**2026-10-26**|**TimeWorld: Towards Action-Conditioned Multimodal World Models for Time Series Forecasting**|Hang Ni et.al.|[2610.34797](http://arxiv.org/abs/2610.34797)|null|
 |**2026-10-26**|**Video World Models Need Predictable Latents**|Mattia Scardecchia et.al.|[2610.34663](http://arxiv.org/abs/2610.34663)|null|
@@ -2631,6 +2638,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-26**|**Beyond Distribution Matching: Self-Supervised Representation Forcing for Few-Step Video Generation**|Junyi Chen et.al.|[2610.35594](http://arxiv.org/abs/2610.35594)|null|
 |**2026-10-20**|**MoDDiT: Simple Token Routing in Diffusion Transformers**|Jarek Liesen et.al.|[2610.28086](http://arxiv.org/abs/2610.28086)|null|
 |**2026-10-12**|**Heuristics are Not Enough: Calibrated and Corrected Caching for Video Diffusion Acceleration**|Jiyue Jiang et.al.|[2610.16545](http://arxiv.org/abs/2610.16545)|null|
 |**2026-10-08**|**Parametric Trajectory Distillation for Few-Step Video Generation**|Lan Feng et.al.|[2610.11498](http://arxiv.org/abs/2610.11498)|null|
