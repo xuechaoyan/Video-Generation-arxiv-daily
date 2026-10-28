@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-28T02:39:34+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-28T17:27:47+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -18,7 +18,7 @@
 - **评分**：78/100
 - **作者**：Zike Wu, Ahmed Hatem, Chintan Trivedi et al.
 - **方向**：World Models
-- **一句话**：BoxWorld 将交互规则执行与视频渲染解耦：编码代理根据用户规则生成世界引擎，维护对象状态并决定交互结果；自回归视频渲染器则通过布局框、持久属性和动态状态，将状态流实时生成视频。作者基于开放领域视频和游戏视频的自动标注，采用布局 grounding、状态动态适配和 rollout 蒸馏三阶段训练，并提出 PairedStateBench。实验显示，该方…
+- **一句话**：BoxWorld提出一种面向实时交互式视频世界的模块化框架，将用户规则驱动的交互推理交给由编码智能体创建的Box World Engine，将视觉呈现交给Box-State Generative Renderer。引擎通过对象中心状态接口输出布局框、持久属性和动态状态，渲染器则基于这些状态以少步、因果、自回归方式生成视频，并在状态变化时保持历史连贯。方法采…
 - **精读笔记**：[打开笔记](../notes/2026-10-28/2610.36371-boxworld-let-world-engines-control-and-video-gen.md)
 
 ### 3. [UniWorld: A Unified World Model for Real-Time Visual World Simulation](http://arxiv.org/abs/2610.32381v2)
@@ -26,7 +26,7 @@
 - **评分**：77/100
 - **作者**：Xin Zhang, Yabo Chen, Shuaiwei Wang et al.
 - **方向**：Video Generation, World Models
-- **一句话**：UniWorld 面向由外部世界源驱动的连续视觉模拟，将不同来源的几何状态统一转换为图像对齐深度，并与参考图像外观共同输入视频生成器。方法通过噪声对齐的重叠续接保留视频潜变量历史，通过滚动深度潜状态增量读取并固定几何条件，只提交每个窗口的新视频后缀。实验覆盖驾驶、人体活动、模拟和合成场景，表明该方法能够支持长时生成、原生或估计深度、外观切换及控制分支，并在…
+- **一句话**：UniWorld 面向由模拟器、记录场景或按需几何输入驱动的连续视觉世界模拟。它将异构世界状态统一转换为图像空间深度，并结合参考图像与文本，通过共享视频 DiT 生成具有持续外观的视频。方法以统一时间线同步维护视频历史、深度条件和噪声：对重叠历史进行逐步噪声对齐，只提交新生成的视频后缀；通过滚动深度潜变量状态仅读取新增几何并保留既有条件。实验覆盖驾驶、人类…
 - **精读笔记**：[打开笔记](../notes/2026-10-28/2610.32381-uniworld-a-unified-world-model-for-real-time-vis.md)
 
 ## 快速浏览
