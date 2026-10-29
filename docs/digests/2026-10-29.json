@@ -1,0 +1,366 @@
+{
+  "generated_at": "2026-10-29T02:58:23+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.33589",
+      "date": "2026-10-24",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Mix Forcing: Causal Pre-Training via Mixture Attention for Interactive World Models",
+      "abstract": "While interactive video world models require autoregressive generation, directly adapting pretrained bidirectional video diffusion models into autoregressive ones with teacher forcing can disrupt their visual priors and degrade autoregressive generation quality. In this paper, we introduce Mix Forcing, a causal pre-training paradigm for interactive video world models, implemented with the Mixture-of-Bidirectional-and-Autoregressive (MoBA) attention. Mix Forcing jointly trains a video diffusion model with both teacher forcing and bidirectional training, yielding a strong causal initialization for few-step post-training. In self-attention, Mix Forcing leverages teacher forcing to learn causal next-chunk prediction for autoregressive rollout, while using bidirectional attention to preserve pretrained visual priors. To support online text interaction, Mix Forcing further adopts a chunk-wise cross-attention design that conditions each video chunk on a shared environment prompt and its own local prompt, without exposing future instructions to the current chunk. Following causal pre-training on a 14B image-to-video model, we apply consistency and distribution matching distillation to obtain a four-step autoregressive generator. Experiments on our internal benchmark and public benchmarks, including WBench and SANA-WM-Bench, show that our model achieves state-of-the-art visual quality and timely event following with precise camera control. Notably, our model supports high-fidelity long-horizon generation without quality degradation even over one-hour rollouts. Project page is here: https://zelingao98.github.io/mixforcing",
+      "authors": [
+        "Zelin Gao",
+        "Hao Ouyang",
+        "Jiapeng Zhu",
+        "Qiuyu Wang",
+        "Jingye Chen",
+        "Zichen Liu",
+        "Xing Zhu",
+        "Yujun Shen",
+        "Yinghao Xu"
+      ],
+      "url": "http://arxiv.org/abs/2610.33589v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 83,
+      "priority": "must-read",
+      "summary_cn": "While interactive video world models require autoregressive generation, directly adapting pretrained bidirectional video diffusion models into autoregressive ones with teacher forcing can disrupt their visual priors and degrade autoregressive generation quality.",
+      "contribution_cn": "In this paper, we introduce Mix Forcing, a causal pre-training paradigm for interactive video world models, implemented with the Mixture-of-Bidirectional-and-Autoregressive (MoBA) attention.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, autoregressive, few-step, distillation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.36371",
+      "date": "2026-10-26",
+      "topics": [
+        "World Models"
+      ],
+      "title": "BoxWorld: Let World Engines Control and Video Generators Render",
+      "abstract": "We tackle the challenge of building real-time interactive video worlds with user-defined behaviors. Such worlds must track object states, apply interaction rules, and render the resulting consequences as users act. Yet existing end-to-end video world models typically learn interaction dynamics within the generator, making it difficult to specify object-level rules and reason about their consequences. In this work, we introduce BoxWorld, which separates interaction reasoning from generative rendering. Given user-specified rules, a coding agent creates a Box World Engine that determines interaction outcomes and exposes the resulting object states through a lightweight interface of layout boxes, persistent object attributes, and dynamic status variables, leaving appearance and physical effects to generative rendering. A Box-State Generative Renderer then renders this evolving state stream into video autoregressively, enabling online control over object motion, state switches, and conditional events. Rendering this state stream is non-trivial: the renderer must respond to object-level state updates in real time while remaining coherent with the generated history. To this end, we introduce a three-stage training strategy that learns object grounding from open-domain videos and state transitions from gameplay videos, both annotated automatically, and finally performs rollout distillation on self-generated histories. We further propose PairedStateBench, a paired benchmark for fine-grained interaction control. BoxWorld substantially outperforms end-to-end world models and remains competitive across multiple public benchmarks. Project page: https://boxworld-web.github.io.",
+      "authors": [
+        "Zike Wu",
+        "Ahmed Hatem",
+        "Chintan Trivedi",
+        "Wallace Michel Pinto Lira",
+        "Xuebin Qin",
+        "Lele Wang",
+        "Renjie Liao"
+      ],
+      "url": "http://arxiv.org/abs/2610.36371v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 78,
+      "priority": "must-read",
+      "summary_cn": "BoxWorld 将交互逻辑与视频渲染解耦：编码代理依据用户规则生成 Box World Engine，显式维护物体的位置、身份外观和动态状态；实时自回归渲染器则根据这些状态流生成视觉结果。该方法通过掩码布局定位、游戏状态动力学适配和自生成历史上的 rollout 蒸馏进行训练，并利用自动视频结构标注避免依赖动作配对交互日志。实验表明，BoxWorld 在条件事件触发、禁止事件抑制、多阶段任务和布局到视频生成方面显著优于端到端基线，同时以约 20.7 FPS 实时运行，并保持接近骨干模型的视频质量。",
+      "contribution_cn": "1. 提出 BoxWorld 框架，将由编码代理创建的 Box World Engine 用于显式执行用户定义的交互规则，将 Box-State Generative Renderer 用于根据对象级状态生成视频。 2. 提出 Object-Centric State Interface，以布局框、持久物体属性和动态状态变量作为轻量级控制表示，并设计逐帧掩码交叉注意力，使视觉区域关注其对应物体。 3. 提出三阶段训练策略：在开放领域视频上进行 Masked Layout Grounding，在游戏视频上进行 State Dynamics Adaptation，并通过 Rollout Distillation 适配模型自身生成的历史、恢复少步实时生成能力。 4. 使用现成感知模型从视频自动提取状态标注，不需要动作配对的交互日志。 5. 提出 PairedStateBench，用成对分支评估条件事件是否正确触发、非指定后果是否被抑制以及多阶段任务是否完成。",
+      "relevance_cn": "本文与研究重点高度相关。它面向实时视频生成和视频扩散式生成，使用少步、因果、自回归渲染器进行异步流式生成，报告约 20.7 FPS。它直接研究动作条件的视觉世界模型和闭环交互模拟：用户动作由 Box World Engine 根据显式规则处理，更新后的对象状态再驱动视频生成，形成“动作—状态更新—渲染—后续动作”的闭环。其 Object-Centric State Interface 提供了比隐式端到端模型更细粒度的对象控制，同时避免完整物理模拟器的高成本。三阶段训练中的 rollout 蒸馏用于缓解自回归生成中的分布偏移，并改善长时域生成；LoRA 适配器最终合并入骨干网络，不增加推理运行时成本。",
+      "limitations_cn": "论文明确指出，BoxWorld 的渲染器仍需处理状态更新导致的历史部分失效问题，并且只能通过粗粒度布局框和状态变量间接生成具体的外观与物理效果；相比提供更细空间支持的表示，布局框的空间精度有限。方法依赖现成感知模型自动提取目标框、跟踪、属性和状态描述，这些标注可能带来感知误差，论文未系统量化其影响。Box World Engine 的规则由编码代理生成，论文未充分讨论代码生成错误、规则复杂度扩展性或安全性。训练状态动力学主要使用约 4,000 段短游戏视频，真实物理世界和更广泛交互类型的泛化能力尚不明确。论文未明确说明长时间运行时的状态缓冲增长、错误累积、用户规则冲突处理以及生成质量和交互延迟之间的完整权衡。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "我们致力于解决构建具有用户自定义行为的实时交互式视频世界这一挑战。这类世界必须跟踪物体状态、应用交互规则，并在用户行动时渲染由此产生的结果。然而，现有端到端视频世界模型通常将交互动力学学习在生成器内部，因此难以指定物体级规则并推理其后果。本文提出 BoxWorld，将交互推理与生成式渲染分离。给定用户指定的规则，一个编码代理会创建 Box World Engine，由其确定交互结果，并通过由布局框、持久物体属性和动态状态变量组成的轻量级接口公开更新后的物体状态；外观和物理效果则交由生成式渲染完成。随后，Box-State Generative Renderer 以自回归方式将不断演化的状态流渲染为视频，从而实现对物体运动、状态切换和条件事件的在线控制。渲染这一状态流并非易事：渲染器必须实时响应物体级状态更新，同时与已生成的历史保持连贯。为此，我们提出三阶段训练策略：从开放领域视频中学习物体定位，从游戏视频中学习状态转移（两者的标注均由自动方式生成），最后在模型自行生成的历史上进行 rollout 蒸馏。我们还提出 PairedStateBench，这是一个用于细粒度交互控制的成对基准。BoxWorld 大幅优于端到端世界模型，并在多个公开基准上保持竞争力。项目主页：https://boxworld-web.github.io。",
+      "note_path": "2026-10-29/2610.36371-boxworld-let-world-engines-control-and-video-gen.md"
+    },
+    {
+      "id": "2610.32381",
+      "date": "2026-10-26",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "UniWorld: A Unified World Model for Real-Time Visual World Simulation",
+      "abstract": "Continuous visual world simulation requires coupling evolving scene geometry with temporally persistent appearance. We present UniWorld, a unified framework that integrates depth trajectories and reference appearance within a shared video generation model. The central design maintains visual and geometric histories on a common timeline. Noise-aligned overlapping continuation places generated history at the prescribed sampling noise level and commits only newly generated latents. Rolling depth latent state preserves the corresponding geometric controls, incrementally reads newly available geometry, and keeps the conditioning fixed within each sampling window. Together, these mechanisms ensure exact preservation of latent history while bounding the active depth state by the window size. We evaluate continuous generation, paired history interventions, and long-horizon behavior across diverse scene categories. The same generator supports estimated, native, and on-demand simulator depth, while cached and incremental execution paths produce bitwise-identical outputs. Appearance changes and geometric control branches operate through the same interface without modifying committed history. The measured steady-state DiT execution path achieves real-time generation throughput, demonstrating the efficiency of UniWorld for continuous visual world simulation. Project page: https://zephipage.github.io/UniWorld.",
+      "authors": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Shuaiwei Wang",
+        "Zixuan Duan",
+        "Haibin Huang",
+        "Feng Xu",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2610.32381v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://zephipage.github.io/UniWorld",
+      "score": 77,
+      "priority": "must-read",
+      "summary_cn": "UniWorld 将异构世界来源转换为图像对齐的深度轨迹，并结合参考图像与文本，通过统一的视频扩散生成器持续渲染视觉世界。方法采用噪声对齐的重叠续接来固定已生成的视频潜变量历史，采用滚动深度潜状态来复用重叠几何条件，仅读取新增深度并提交新增视频后缀。实验覆盖驾驶、人类活动、模拟和合成场景，验证了历史与深度状态的一致性、原生和估计深度的适用性、长时程生成及按需控制分支。该系统在八张 H100 GPU 上的稳态 DiT 路径达到 960×544 分辨率下 14.472 FPS 和 672×384 下 21.361 FPS。",
+      "contribution_cn": "1. 提出 UniWorld 统一视觉模拟框架，将不同世界来源的几何轨迹标准化为图像对齐深度，并与参考外观结合到共享的视频生成接口中。2. 提出噪声对齐的重叠续接机制，在每个流时间步将历史潜变量保持在对应噪声轨迹上，仅提交新生成的后缀，从而精确保留已提交历史。3. 提出滚动深度潜状态，增量读取新深度、保留已提交观测对应的几何条件，并使活动状态大小与总序列长度无关。4. 建立统一的视觉与几何时间状态契约，并通过真实模型执行验证缓存、增量执行和按需深度输入的一致性。5. 在多场景、长视频和交互式几何分支上进行评估，展示实时吞吐能力。",
+      "relevance_cn": "论文与研究重点高度相关：它直接研究视频生成、视频扩散模型和视觉世界模型；通过深度轨迹实现几何条件控制，可用于动作或模拟器驱动的闭环视觉世界渲染；其按窗口顺序生成、历史潜变量固定和边界图像更新机制具有因果、流式和长视频生成特征；滚动深度状态、缓存复用和增量执行降低了重复计算与数据访问；采用 DMD 蒸馏的 8 步 DiT，并报告了实时生成吞吐率，契合实时生成与蒸馏方向。论文主要是由外部几何轨迹驱动的模拟到渲染组件，并非完整的动作决策闭环世界模型。",
+      "limitations_cn": "论文未明确说明统一模型在训练阶段是否针对连续滚动生成进行联合训练；实验依赖预训练的 H3/VDN、ControlNet-Union、Qwen3-VL 和深度估计器，且未进行这些组件的联合训练。实时吞吐率是在八张 H100 GPU、FSDP/Ulysses 通信环境下测得，不能直接代表单 GPU 或普通硬件上的实时性能。生成质量和几何一致性在不同场景类别间存在差异，模拟场景的 PSNR、SSIM、LPIPS 和深度 NMAE 相对较弱。长时程评估使用了不同来源集合，且 120 秒测试包含训练集压力测试，因此对泛化能力的结论有限。系统依赖准确的深度轨迹、相机对齐、归一化和有效的源适配器；深度误差、遮挡和分布外几何可能降低渲染质量。论文主要评估视觉渲染与状态一致性，未明确报告完整闭环控制任务中的策略学习、动作预测或决策性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "连续视觉世界模拟需要将不断演化的场景几何与时间上持续的外观联系起来。我们提出 UniWorld，一个在共享视频生成模型中融合深度轨迹与参考外观的统一框架。其核心设计在共同时间线上维护视觉历史与几何历史。噪声对齐的重叠续接将生成历史置于规定的采样噪声水平，并且只提交新生成的潜变量。滚动深度潜状态保留相应的几何控制，增量读取新获得的几何信息，并在每个采样窗口内保持条件不变。这些机制共同确保潜变量历史被精确保留，同时将活动深度状态限制在窗口大小以内。我们在多种场景类别上评估了连续生成、成对历史干预以及长时程行为。同一个生成器支持估计深度、原生深度和按需模拟器深度；缓存执行路径与增量执行路径能够产生逐比特一致的输出。外观变化与几何控制分支通过同一接口运行，且不会修改已提交的历史。实测的稳态 DiT 执行路径达到了实时生成吞吐率，展示了 UniWorld 用于连续视觉世界模拟的效率。项目主页：https://zephipage.github.io/UniWorld。",
+      "note_path": "2026-10-29/2610.32381-uniworld-a-unified-world-model-for-real-time-vis.md"
+    },
+    {
+      "id": "2610.35850",
+      "date": "2026-10-26",
+      "topics": [
+        "World Models"
+      ],
+      "title": "OSWAM: An Effective World Action Model with One-Step Action Generation",
+      "abstract": "Direct-policy World Action Models (WAM) have demonstrated the benefits of decoupling action generation from explicit future visual prediction for efficient inference in autonomous driving and embodied control. However, they still require tens of denoising steps to achieve competitive action quality, incurring substantial latency and hindering real-time deployment. Simply reducing the number of denoising steps will collapse the nonlinear multi-step denoising trajectory into coarse updates, substantially degrading action quality. To reduce the denoising steps while enabling real-time action generation, we present an effective world action model with one-step action generation, namely OSWAM, for autonomous driving and embodied control. We argue that it is the absence of structured action priors in random noise initialization that forces direct-policy WAMs to recover coherent action sequences through iterative denoising. Hence, we construct imagination tokens to initialize the diffusion process, providing physical priors and action-conditioned representations. We further introduce privileged information distillation with future conditioning to enhance future-aware action generation. As a result, OSWAM can efficiently and effectively generate high quality actions in just one diffusion step. Our experiments demonstrate that OSWAM achieves comparable or even better results in both autonomous driving and embodied control than direct-policy WAM and Joint-WAM that require tens of steps. It obtains approximately $3\\times$ speedup over direct-policy WAM baselines and supports real-time compiled inference with latency as low as 40ms on an NVIDIA RTX 5090 GPU. The project page is available at https://gwenzhang.github.io/OSWAM/",
+      "authors": [
+        "Guowen Zhang",
+        "Liyi Chen",
+        "Xu Hu",
+        "Pengfei Wang",
+        "Jingfan Chen",
+        "Chenhang He",
+        "Lei Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.35850v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "18 pages, 6 figures",
+      "score": 76,
+      "priority": "skim",
+      "summary_cn": "Direct-policy World Action Models (WAM) have demonstrated the benefits of decoupling action generation from explicit future visual prediction for efficient inference in autonomous driving and embodied control.",
+      "contribution_cn": "To reduce the denoising steps while enabling real-time action generation, we present an effective world action model with one-step action generation, namely OSWAM, for autonomous driving and embodied control.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：action-conditioned, driving, embodied, real-time, distillation, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.34564",
+      "date": "2026-10-25",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "FlockWorld: Toward Population-Scale Multi-Agent Video World Models through Artificial Life Simulation",
+      "abstract": "Most action-conditioned video world models remain limited to a single player, while existing multiplayer models support only small, fixed groups of agents. We introduce FlockWorld, an artificial-life environment built on Reynolds's Boids algorithm for studying population-scale multi-agent video world models. Specifically, FlockWorld renders synchronized egocentric crops, assigns distinct colors to preserve camera-agent identity across views, exposes rule-derived accelerations as actions, and lets the number of camera agents be configured independently of the size of the surrounding population. We further introduce FlockDiT, an action-conditioned latent diffusion transformer trained with flow matching on FlockWorld data to jointly generate synchronized egocentric videos for multiple agents. Our results suggest that joint generation benefits agent detection at density-matched settings and that diffusion forcing improves rollout fidelity. Together, FlockWorld and FlockDiT provide a controlled testbed for multi-agent video generation.",
+      "authors": [
+        "Meryem Koksal",
+        "Yunzhe Wang",
+        "Volkan Ustun"
+      ],
+      "url": "http://arxiv.org/abs/2610.34564v1",
+      "categories": [
+        "cs.CV",
+        "cs.MA"
+      ],
+      "comment": "Accepted to NeurIPS 2026, Creative AI Track",
+      "score": 73,
+      "priority": "skim",
+      "summary_cn": "Most action-conditioned video world models remain limited to a single player, while existing multiplayer models support only small, fixed groups of agents.",
+      "contribution_cn": "We introduce FlockWorld, an artificial-life environment built on Reynolds's Boids algorithm for studying population-scale multi-agent video world models.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, action-conditioned, simulation, diffusion forcing, acceleration",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.36729",
+      "date": "2026-10-27",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Hy-Nomas: Towards Free-form Interactive World Generation",
+      "abstract": "Interactive world generation requires models to follow successive commands while preserving relevant history and action consequences. We present Hy-Nomas, a video world model with an 8B diffusion backbone that supports free-form text instructions and continuous camera control across multiple interaction turns. It generates variable-length segments conditioned on current inputs and cached history. Our central design aligns structured video captions with action-aware causal attention: descriptive context remains accessible across segments, while action instructions are restricted to their intended temporal windows. A vision-language Prompt Enhancer (PE) translates user requests and multimodal interaction histories into structured conditions for the next segment. A multi-stage curriculum progressively introduces causal generation, text interaction, camera control, and training on model-generated histories, followed by diffusion distillation. In human evaluation, Hy-Nomas shows superior performance over existing world models. We release model weights, code and benchmarks, together with a lightweight adaptation workflow, to support reproducible research on interactive world generation.",
+      "authors": [
+        "Qiaoling Chen",
+        "Jiaxiang Cheng",
+        "Xueqing Deng",
+        "Tiankai Hang",
+        "Ji Hou",
+        "Jiaqi Li",
+        "Yifan Liu",
+        "Tao Lu",
+        "Junshu Tang",
+        "Yu Tang",
+        "Yao Teng",
+        "Yu Tian",
+        "Heng Wang",
+        "Weizhi Wang",
+        "Xiyao Wang",
+        "Xilun Wu",
+        "Mingyu Yang",
+        "Yangbin Yu",
+        "Rui Zhao",
+        "Longjun Cao",
+        "Linghao Chen",
+        "Haoyi Duan",
+        "Jiaming Han",
+        "Mingji Han",
+        "Enhua Jiang",
+        "Shunkai Li",
+        "Yanzhe Liang",
+        "Qinwei Ma",
+        "Cong Wang",
+        "Lei Wang",
+        "Bing Wu",
+        "Ke Xing",
+        "Ray Ying",
+        "Zhentao Yu",
+        "Key Zhang",
+        "Yuan Zhou",
+        "Zhengguang Zhou",
+        "Kai Zou"
+      ],
+      "url": "http://arxiv.org/abs/2610.36729v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Technical Report",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Interactive world generation requires models to follow successive commands while preserving relevant history and action consequences.",
+      "contribution_cn": "We present Hy-Nomas, a video world model with an 8B diffusion backbone that supports free-form text instructions and continuous camera control across multiple interaction turns.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, distillation, cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.30861",
+      "date": "2026-10-24",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Direct Forcing: Single-Stage Training with Representation-Space Supervision for Few-Step Autoregressive Video Generation",
+      "abstract": "Few-step autoregressive video generation enables low-latency streaming, yet prevailing training pipelines separate causal adaptation from distribution matching. Recent representation-based text-to-video methods retain this separation by starting with an ODE initialization stage, even when the target distribution is defined directly by reference videos. We introduce \\method, the first single-stage framework that uses reference videos both as paired examples of how a history continues and as a target population for self-generated rollouts. Specifically, Direct Forcing is trained with two complementary signals: (1) Causal Continuation Alignment learns paired spatiotemporal correspondence under reference histories; and (2) Rollout Distribution Matching employs maximum mean discrepancy to align the representation distributions of self-generated and reference videos. To coordinate these signals, we introduce Dynamic Gradient Balancing, which adapts their relative gradient contributions during training. Experiments with Wan2.1-1.3B show that Direct Forcing learns a four-step autoregressive generator in 250 updates without a separate ODE initialization stage or online diffusion-score supervision, achieving 84.63 VBench Total and 86.01 Quality.",
+      "authors": [
+        "Haojun Xu",
+        "Jie Huang",
+        "Chuyang Zhao",
+        "Xin Lu",
+        "Mingchen Zhong",
+        "Zihao Fan",
+        "Haoyang Huang",
+        "Linjiang Huang",
+        "Si Liu"
+      ],
+      "url": "http://arxiv.org/abs/2610.30861v2",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "Few-step autoregressive video generation enables low-latency streaming, yet prevailing training pipelines separate causal adaptation from distribution matching.",
+      "contribution_cn": "We introduce \\method, the first single-stage framework that uses reference videos both as paired examples of how a history continues and as a target population for self-generated rollouts.",
+      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：autoregressive, streaming, few-step, video generation, text-to-video",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.37381",
+      "date": "2026-10-27",
+      "topics": [
+        "World Models"
+      ],
+      "title": "PDRVLA: A Vision-Language-Action Model with Physical Dynamics Representations",
+      "abstract": "Vision--Language--Action (VLA) models generate robot actions from visual observations and language instructions, but their understanding of physical dynamics remains limited. Video world models can capture scene dynamics, yet generating future videos introduces high latency into the control loop. We introduce PDRVLA, whose lightweight Physical Dynamics Module extracts physical tokens from vision--language features to condition action generation without online video generation. The module learns through direct prediction of future RGB, depth, and optical-flow features, with auxiliary supervision through a frozen pretrained video world model. Training relies entirely on publicly available data, expanded through human-to-robot synthesis, subtask annotation, and embodied chain-of-thought (ECoT) annotation. Across four simulation benchmarks, PDRVLA achieves success rates of 99.3% on LIBERO, 89.9% on LIBERO-Plus, 93.6% on RoboTwin~2.0, and 81.5% on SimplerEnv. Ablations show improved future prediction with world-model supervision and evaluate how subtask conditioning, future object-pose supervision, and ECoT training affect action success.",
+      "authors": [
+        "Hanqing Wang",
+        "Zhaotian Cai",
+        "Ruichuan An",
+        "Bohan Zeng",
+        "Tao Zhang",
+        "Yilin Chen",
+        "Xu Jiang",
+        "Kaiquan Chen",
+        "Chongyang Wu",
+        "Haoran Li",
+        "Fan Yang",
+        "Mingan Lin",
+        "Wentao Zhang",
+        "Zenan Zhou",
+        "Youzheng Wu"
+      ],
+      "url": "http://arxiv.org/abs/2610.37381v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 67,
+      "priority": "skim",
+      "summary_cn": "Vision--Language--Action (VLA) models generate robot actions from visual observations and language instructions, but their understanding of physical dynamics remains limited.",
+      "contribution_cn": "We introduce PDRVLA, whose lightweight Physical Dynamics Module extracts physical tokens from vision--language features to condition action generation without online video generation.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, simulation, embodied, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.35594",
+      "date": "2026-10-26",
+      "topics": [
+        "Video Generation",
+        "Efficient Video Diffusion"
+      ],
+      "title": "Beyond Distribution Matching: Self-Supervised Representation Forcing for Few-Step Video Generation",
+      "abstract": "Few-step distillation is essential for deploying modern video diffusion models. Among existing approaches, Distribution Matching Distillation (DMD) has emerged as a highly promising paradigm by achieving strong output-space fidelity without adversarial training, while remaining flexible across various student architectures. We observe, however, that DMD fundamentally relies on an output-space objective, lacking explicit regularization on the model's internal representations. As the distillation step count aggressively shrinks, this output-only supervision becomes insufficient, causing the distilled student to degrade in both fine-grained spatial structures and coherent temporal dynamics. To address this limitation, we introduce Self Flow Forcing (SF$^2$), which incorporates a predictive representation loss into the DMD framework without altering its output objective. By providing the student and an Exponential Moving Average (EMA) teacher with heterogeneous noise levels, we establish an information asymmetry. This formulation forces the student to predict the teacher's internal representations from a more corrupted input, effectively integrating self-supervised representation alignment into distribution matching. Extensive experiments demonstrate that SF$^2$ effectively mitigates temporal flickering and consistently improves both spatial fidelity and motion quality. Furthermore, the proposed mechanism is architecture-agnostic - seamlessly supporting both bidirectional and causal models - and requires no external feature extractors, introducing minimal computational overhead.",
+      "authors": [
+        "Junyi Chen",
+        "Haiyu Zhang",
+        "Zhoujie Fu",
+        "Tengfei Wang",
+        "Chunchao Guo"
+      ],
+      "url": "http://arxiv.org/abs/2610.35594v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted to NeurIPS 2026. Project page: https://sotamak1r.github.io/SF2-web/",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Few-step distillation is essential for deploying modern video diffusion models.",
+      "contribution_cn": "To address this limitation, we introduce Self Flow Forcing (SF$^2$), which incorporates a predictive representation loss into the DMD framework without altering its output objective.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：few-step, distillation, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.33894",
+      "date": "2026-10-24",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WMEval: Evaluating Interactive World Models Grounded on Physical Simulations",
+      "abstract": "Interactive world models hold immense potential for high-stakes applications in robotics, game engines, and immersive digital twins, yet existing benchmarks primarily focus on perceptual similarity rather than the physical-causal coherence essential for real-world utility. We introduce WMEval, a comprehensive benchmark that evaluates interactive world models against Unity-based physical simulations. By leveraging Unity as a high-fidelity ground-truth oracle, we shift evaluation beyond perceptual visual assessment toward the objective state-based verification required for downstream applications. Spanning 9 diverse scenes, WMEval assesses action controllability, scene and character consistency, prompt adherence, kinematics, fluid mechanics, physical causality, and lighting. By executing matched action sequences in both the simulator and the world model, WMEval enables evaluation at both the perceptual level and the physical-causal level, using simulator-derived states as reference. Experiments on state-of-the-art models reveal significant room for improvement in dimensions that remain hidden by standard perceptual metrics but are vital for real-world deployments. Our code is available at: https://github.com/hao-ai-lab/WMEval.",
+      "authors": [
+        "Lanxiang Hu",
+        "Yixin Huang",
+        "Abhilash Shankarampeta",
+        "Zilin Dai",
+        "Yuyuan Wu",
+        "Kun Qian",
+        "Junze Liu",
+        "Arvind Srinivasan",
+        "Mingjia Huo",
+        "Will Lin",
+        "Kai Zhong",
+        "Weiqi Zhang",
+        "Tian Wang",
+        "Qingjun Cui",
+        "Tajana Rosing",
+        "Hao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2610.33894v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "Interactive world models hold immense potential for high-stakes applications in robotics, game engines, and immersive digital twins, yet existing benchmarks primarily focus on perceptual similarity rather than the physical-causal coherence essential for real-world utility.",
+      "contribution_cn": "We introduce WMEval, a comprehensive benchmark that evaluates interactive world models against Unity-based physical simulations.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 2
+}
