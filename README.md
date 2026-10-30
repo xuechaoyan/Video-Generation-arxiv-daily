@@ -17,6 +17,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-29**|**LucidLyra: Feed-Forward Generative 3D Scene Reconstruction and Joint Understanding via Multi-Task Distillation**|Oliver Hahn et.al.|[2610.40495](http://arxiv.org/abs/2610.40495)|null|
+|**2026-10-29**|**Wizard: Manipulate Any World in Real Time via Agentic Control**|Yuzhe Wu et.al.|[2610.40339](http://arxiv.org/abs/2610.40339)|null|
 |**2026-10-27**|**GroundControl: Satellite-Conditioned Multi-View Diffusion for Reconstruction-Free Novel View Synthesis**|Akshay Krishnan et.al.|[2610.37545](http://arxiv.org/abs/2610.37545)|null|
 |**2026-10-27**|**Taming Noise Initialization for Zero-shot Video Restoration with Image Diffusion Priors**|Chong Wang et.al.|[2610.37290](http://arxiv.org/abs/2610.37290)|null|
 |**2026-10-27**|**Fast Approximate Line Nearest Neighbor Search**|Jiadong Xie et.al.|[2610.37256](http://arxiv.org/abs/2610.37256)|null|
@@ -1565,10 +1567,35 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-29**|**world2vec: Mechanistic world models through latent dynamics learning**|Tobias Schmidt et.al.|[2610.40637](http://arxiv.org/abs/2610.40637)|null|
+|**2026-10-29**|**L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory**|Jinhyeok Choi et.al.|[2610.40614](http://arxiv.org/abs/2610.40614)|null|
+|**2026-10-29**|**Fight World Model: Customizable Combat through Visual Interaction Proxies**|Jiahua Li et.al.|[2610.40607](http://arxiv.org/abs/2610.40607)|null|
+|**2026-10-29**|**Algebraic World Model: From Exploration to Proofs**|Guancheng Pan et.al.|[2610.40503](http://arxiv.org/abs/2610.40503)|null|
+|**2026-10-29**|**Continuous-Action World Models: Learning Cross-Embodiment Spatiotemporal Dynamics Priors**|Liangyu Li et.al.|[2610.40401](http://arxiv.org/abs/2610.40401)|null|
+|**2026-10-29**|**HiFOR: Hierarchical Foresight with Action-Guided World Grounding for Vision-Language-Action Model**|Rongxing Ding et.al.|[2610.40373](http://arxiv.org/abs/2610.40373)|null|
+|**2026-10-29**|**Wizard: Manipulate Any World in Real Time via Agentic Control**|Yuzhe Wu et.al.|[2610.40339](http://arxiv.org/abs/2610.40339)|null|
+|**2026-10-29**|**Video Generation Meets Agent Harness: Agentic Video Generation, Agentic World Modeling and Recursive Self-Improvement**|Liaoyuan Fan et.al.|[2610.40191](http://arxiv.org/abs/2610.40191)|null|
+|**2026-10-29**|**Cheap Retrieval and Observation Credit Assignment from One Quantity: The Value of Information**|Daniel Strauss et.al.|[2610.40030](http://arxiv.org/abs/2610.40030)|null|
+|**2026-10-29**|**RoboSeed: Multidimensional Evaluation of Vision-Language-Action and World-Action Models: Capability, Resource Affordability, and Research Evidence**|Xin Ma et.al.|[2610.40026](http://arxiv.org/abs/2610.40026)|null|
+|**2026-10-29**|**LOGIV: Graph-Verified Execution with Causal Local Repair for Long-Horizon Robot Tasks**|Enqiao Lu et.al.|[2610.40016](http://arxiv.org/abs/2610.40016)|null|
+|**2026-10-29**|**PASA-KV: Attacking Action-Facing Visual Routes in World Action Models**|Zhongbo Wu et.al.|[2610.39816](http://arxiv.org/abs/2610.39816)|null|
+|**2026-10-29**|**GROME: GROunding Factorized MEmory into Video World Models**|Fang Yu et.al.|[2610.39812](http://arxiv.org/abs/2610.39812)|null|
+|**2026-10-29**|**WorldProbe: When Video World Models Fall Apart under Long-Horizon Spatial Exploration**|Minqi Wang et.al.|[2610.39721](http://arxiv.org/abs/2610.39721)|null|
+|**2026-10-29**|**FutureWorld: A Plug-and-Play Causal Next-State Predictor for Interactive Video World Exploration**|Guangyuan Li et.al.|[2610.39619](http://arxiv.org/abs/2610.39619)|null|
+|**2026-10-29**|**Bayesian Offline Multi-Agent Reinforcement Learning with Latent World Models**|Xi Xiong et.al.|[2610.39576](http://arxiv.org/abs/2610.39576)|null|
+|**2026-10-29**|**Assuring Learning-Enabled Cyber-Physical Systems with Foundation Models: A Neuro-Symbolic Agenda for Testing, Verification, and Runtime Assurance**|Xi Zheng et.al.|[2610.39547](http://arxiv.org/abs/2610.39547)|null|
+|**2026-10-29**|**PRIME W0: Physical Priors from World Models for Embodied Manipulation**|Huabin Peng et.al.|[2610.39528](http://arxiv.org/abs/2610.39528)|null|
+|**2026-10-29**|**Robust LIDAR Sensor-to-Sensor Domain Generalization via Accumulated-Point Scene Completion**|Christoph B Rist et.al.|[2610.39516](http://arxiv.org/abs/2610.39516)|null|
 |**2026-10-29**|**Utility-WAM: Correcting Future-Induced Action Changes**|Feihong Zhang et.al.|[2610.39367](http://arxiv.org/abs/2610.39367)|null|
 |**2026-10-29**|**CAD-WAM: Anticipating Geometry for Text-to-CAD Generation**|Zhengyang Li et.al.|[2610.39306](http://arxiv.org/abs/2610.39306)|null|
 |**2026-10-29**|**WorldFlow: Joint Video and 3D Motion Prediction via Large-Scale Pretraining**|Yuhao Lu et.al.|[2610.39278](http://arxiv.org/abs/2610.39278)|null|
 |**2026-10-29**|**Agentic LinkDreamer: Adaptive Neuro-Fuzzy World-Model Decision Making for Intermittent V2X Cooperative Perception**|Zhaoyu Liu et.al.|[2610.39258](http://arxiv.org/abs/2610.39258)|null|
+|**2026-10-29**|**Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling**|Haitang Feng et.al.|[2610.39232](http://arxiv.org/abs/2610.39232)|null|
+|**2026-10-29**|**Generating Critic-Guided Synthetic Experience in Latent World Models**|Jorge de Freitas et.al.|[2610.39100](http://arxiv.org/abs/2610.39100)|null|
+|**2026-10-29**|**Tactus: Tactile & Pose Sensing Glove for Natural Dexterity Data Collection**|Li Guan et.al.|[2610.39076](http://arxiv.org/abs/2610.39076)|null|
+|**2026-10-28**|**Context Compaction for World Models**|Hayder Tirmazi et.al.|[2610.38980](http://arxiv.org/abs/2610.38980)|null|
+|**2026-10-28**|**Optimization-based lane-changing trajectory planning in mixed traffic with embedded input convex neural networks**|Yuanxiang Yang et.al.|[2610.38939](http://arxiv.org/abs/2610.38939)|null|
+|**2026-10-28**|**Structural-Test Geometry as an Inductive Bias for Partially Observable World Models**|Todd Y. Zhou et.al.|[2610.38903](http://arxiv.org/abs/2610.38903)|null|
 |**2026-10-28**|**Explore Where It Matters: Targeted Exploration for Efficient Rover Adaptation**|Jacob Levy et.al.|[2610.38657](http://arxiv.org/abs/2610.38657)|null|
 |**2026-10-28**|**Cinematize from Unreal: Agentic Choreography for Controllable World Simulation**|Zifan Song et.al.|[2610.38468](http://arxiv.org/abs/2610.38468)|null|
 |**2026-10-28**|**Predict the Reward, Not the World: World Reward Models for ML Agents**|Yuxiao Lee et.al.|[2610.38439](http://arxiv.org/abs/2610.38439)|null|
@@ -2560,6 +2587,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-10-29**|**FutureWorld: A Plug-and-Play Causal Next-State Predictor for Interactive Video World Exploration**|Guangyuan Li et.al.|[2610.39619](http://arxiv.org/abs/2610.39619)|null|
 |**2026-10-28**|**StreamStudio: Exploring Video Authoring with Streaming Autoregressive Generation**|Boyu Li et.al.|[2610.38467](http://arxiv.org/abs/2610.38467)|null|
 |**2026-10-27**|**Hierarchical Diffusion for Camera-controlled Autoregressive Video Generation**|Kaihua Chen et.al.|[2610.37983](http://arxiv.org/abs/2610.37983)|null|
 |**2026-10-27**|**ReferStream: Interactive Subject Injection for Streaming Video Generation**|Shuolin Xu et.al.|[2610.37566](http://arxiv.org/abs/2610.37566)|null|

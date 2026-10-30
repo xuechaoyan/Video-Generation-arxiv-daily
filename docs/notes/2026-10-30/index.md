@@ -2,6 +2,6 @@
 
 > 共 3 篇。返回 [全部日期](../index.md)。
 
-- [BoxWorld: Let World Engines Control and Video Generators Render](2610.36371-boxworld-let-world-engines-control-and-video-gen.md) · 78/100
-- [UniWorld: A Unified World Model for Real-Time Visual World Simulation](2610.32381-uniworld-a-unified-world-model-for-real-time-vis.md) · 77/100
-- [OSWAM: An Effective World Action Model with One-Step Action Generation](2610.35850-oswam-an-effective-world-action-model-with-one-s.md) · 76/100
+- [FutureWorld: A Plug-and-Play Causal Next-State Predictor for Interactive Video World Exploration](2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md) · 81/100
+- [L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory](2610.40614-l3g-world-real-time-infinite-world-generation-wi.md) · 78/100
+- [Wizard: Manipulate Any World in Real Time via Agentic Control](2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md) · 77/100
