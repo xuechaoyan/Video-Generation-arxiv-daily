@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-10-30T17:16:18+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-10-31T02:49:46+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,24 +10,24 @@
 - **评分**：81/100
 - **作者**：Guangyuan Li, Kelu Yao, Shuolin Xu et al.
 - **方向**：World Models, Autoregressive and Streaming Video
-- **一句话**：论文针对交互式视频世界模型中历史潜变量反复复用导致的错误循环传播问题，提出 FutureWorld。其核心是因果下一视频块预测器 C-NCP：根据当前生成潜变量和下一动作，预测完整的下一潜变量块，并通过通道级残差调制将这一未来状态先验注入冻结的自回归视频 DiT。C-NCP 使用 VAE 特定输入适配器和输出头适配不同生成器，采用因果时空注意力、动作条件以…
-- **精读笔记**：[打开笔记](../notes/2026-10-30/2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md)
+- **一句话**：论文针对交互式视频世界模型在长时间动作驱动生成中的错误循环传播问题，提出即插即用的因果下一视频块预测器C-NCP。该模块根据当前生成潜变量和下一动作，利用真实视频转移监督，因果地预测完整的下一潜变量块；随后通过通道级残差调制将预测状态注入冻结的视频生成器，而不是简单拼接额外输入。C-NCP通过VAE特定输入适配器和输出头适配不同生成器的潜变量空间，并采用两…
+- **精读笔记**：[打开笔记](../notes/2026-10-31/2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md)
 
 ### 2. [L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory](http://arxiv.org/abs/2610.40614v1)
 
 - **评分**：78/100
 - **作者**：Jinhyeok Choi, JoungBin Lee, Jongmin Lee et al.
 - **方向**：World Models
-- **一句话**：L3G-World 面向从单张图像和相机轨迹实时生成可探索、空间一致的长时域世界。系统由 L3G-Mem 和 L3G-Gen 组成：前者使用可持续更新的潜在三维高斯记忆，仅在未覆盖区域生成高斯并对已有高斯进行残差细化；后者将记忆中的 VAE 特征直接渲染到潜空间，作为视频扩散 Transformer 生成下一视频块的条件。二者交替构成自回归闭环，并通过少步…
-- **精读笔记**：[打开笔记](../notes/2026-10-30/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md)
+- **一句话**：本文提出 L3G-World，一种从单张图像和相机轨迹出发、进行实时长时域世界生成的交互式视频世界模型。其核心是潜在三维高斯记忆：仅在记忆覆盖不足或重建误差较大的区域生成新高斯，并对已存在的高斯进行残差细化，使记忆主要随场景空间范围增长而非随视频长度增长。同时，每个高斯保存 VAE 潜特征，可直接渲染为视频 DiT 的潜空间条件，避免 RGB 渲染后的 V…
+- **精读笔记**：[打开笔记](../notes/2026-10-31/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md)
 
 ### 3. [Wizard: Manipulate Any World in Real Time via Agentic Control](http://arxiv.org/abs/2610.40339v1)
 
 - **评分**：77/100
 - **作者**：Yuzhe Wu, Zijun Lin, Yeying Jin
 - **方向**：Video Generation, World Models
-- **一句话**：Wizard是一个面向可定制游戏世界的智能体视频世界模型。系统从用户提供的场景图像和角色图像重建近似3D场景几何与可控角色骨骼，并通过动作检索和重定向生成目标角色的动作库。智能体显式维护角色位置、姿态、生命值、攻击阶段和冷却等世界状态，依据玩家输入和规则控制场景、角色及战斗逻辑，再将这些状态编码为几何与骨骼视觉代理，驱动基于Wan2.2-TI2V-5B的视…
-- **精读笔记**：[打开笔记](../notes/2026-10-30/2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md)
+- **一句话**：Wizard 是一个面向可定制游戏世界的智能体视频世界模型。系统从用户提供的场景图像和角色图像中重建近似场景几何、角色网格与骨骼，并通过运动检索和重定向生成可控动作。智能体显式维护角色姿态、位置、生命值、攻击阶段和冷却时间等状态，以实现规则一致的战斗控制；视频模型则根据场景几何、角色骨骼、外观参考和历史帧生成视觉结果。作者构建了包含 50.3 小时数据、7…
+- **精读笔记**：[打开笔记](../notes/2026-10-31/2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md)
 
 ## 快速浏览
 
@@ -59,19 +59,19 @@
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：We address the task of long-video, camera-controlled generation from a single image.
 
-### 5. [ReferStream: Interactive Subject Injection for Streaming Video Generation](http://arxiv.org/abs/2610.37566v1)
-
-- **评分**：61/100
-- **作者**：Shuolin Xu, Guanyuan Li, Boyu Li et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subje…
-
-### 6. [Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling](http://arxiv.org/abs/2610.39232v1)
+### 5. [Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling](http://arxiv.org/abs/2610.39232v1)
 
 - **评分**：61/100
 - **作者**：Haitang Feng, Zhuoman Liu, Zhennan Wang et al.
 - **方向**：World Models
 - **一句话**：Embodied world models should not only imagine plausible futures, but also perceive the geometric, semantic, and motion structure of the evolving world.
+
+### 6. [ReferStream: Interactive Subject Injection for Streaming Video Generation](http://arxiv.org/abs/2610.37566v1)
+
+- **评分**：61/100
+- **作者**：Shuolin Xu, Guanyuan Li, Boyu Li et al.
+- **方向**：Autoregressive and Streaming Video
+- **一句话**：Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subje…
 
 ### 7. [WorldFlow: Joint Video and 3D Motion Prediction via Large-Scale Pretraining](http://arxiv.org/abs/2610.39278v1)
 
