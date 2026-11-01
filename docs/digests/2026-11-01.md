@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-01T02:42:15+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-01T17:16:16+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：81/100
 - **作者**：Guangyuan Li, Kelu Yao, Shuolin Xu et al.
 - **方向**：World Models, Autoregressive and Streaming Video
-- **一句话**：本文针对交互式视频世界模型在长时间动作控制过程中因复用不完美历史而产生的错误循环传播问题，提出FutureWorld框架。其核心是因果下一视频块预测器（C-NCP）：根据当前生成潜变量和下一步动作，预测完整的下一潜变量块，再通过保持张量形状的通道级残差调制引导冻结的自回归视频生成器。C-NCP采用VAE特定输入适配器和输出头以支持不同潜变量空间，并结合因果…
+- **一句话**：论文针对交互式视频世界模型在长时间闭环交互中的错误循环传播问题，提出即插即用的因果下一片段预测器C-NCP。该模块根据当前生成潜变量和下一步动作，预测完整的下一潜变量片段，并通过通道级残差调制引导冻结的自回归视频DiT生成下一片段。C-NCP使用VAE特定适配器连接不同生成器的潜空间，采用因果时空注意力、动作条件和时间差分监督，并通过两阶段训练适应跨片段的…
 - **精读笔记**：[打开笔记](../notes/2026-11-01/2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md)
 
 ### 2. [L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory](http://arxiv.org/abs/2610.40614v1)
@@ -18,7 +18,7 @@
 - **评分**：78/100
 - **作者**：Jinhyeok Choi, JoungBin Lee, Jongmin Lee et al.
 - **方向**：World Models
-- **一句话**：本文提出 L3G-World，一种从单张图像和相机轨迹出发、面向实时长时域交互式世界生成的框架。其核心是 L3G-Mem：采用紧凑的潜在三维高斯记忆，仅在未覆盖或重建误差较大的区域生成新高斯，并通过残差更新细化已有高斯，使记忆主要随场景空间范围增长。每个高斯同时保存几何信息和 VAE 潜特征，因此可直接在视频 DiT 的潜空间中渲染记忆，避免 RGB 渲染…
+- **一句话**：本文提出 L3G-World，一个面向交互式世界模型的实时长时域视频生成框架。它使用带有几何参数和 VAE 潜特征的潜在三维高斯记忆：L3G-Mem 在新区域自适应生成高斯、在已探索区域细化已有高斯；L3G-Gen 则将记忆直接渲染到视频 DiT 的潜空间中，生成下一段视频。两者交替构成自回归闭环，避免了密集三维基元不断累积以及 RGB 渲染后的 VAE…
 - **精读笔记**：[打开笔记](../notes/2026-11-01/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md)
 
 ### 3. [Wizard: Manipulate Any World in Real Time via Agentic Control](http://arxiv.org/abs/2610.40339v1)
@@ -26,7 +26,7 @@
 - **评分**：77/100
 - **作者**：Yuzhe Wu, Zijun Lin, Yeying Jin
 - **方向**：Video Generation, World Models
-- **一句话**：Wizard 是一种面向可定制游戏世界的智能体视频世界模型。它将场景几何、角色骨骼和显式游戏状态与视频生成解耦：用户可通过图像、语言和操作控制场景、角色动作及战斗逻辑。模型使用覆盖 50.3 小时数据、750 个场景和 178 个角色的数据集，以统一视觉代理训练 Wan2.2 视频生成模型，并通过角色感知自适应注意力掩码保持角色身份和空间对齐。结合因果适配…
+- **一句话**：Wizard 是一个面向可定制游戏的智能体视频世界模型。系统从用户提供的场景图像和角色图像出发，利用场景几何代理与角色关节骨骼控制视频生成，并由智能体显式维护角色状态、战斗规则、场景几何和动作规划。作者构建了包含 50.3 小时数据、750 个场景和 178 个角色的数据集，通过动作检索与重定向支持新角色，通过自适应角色注意力掩码保持外观与位置对应。模型基…
 - **精读笔记**：[打开笔记](../notes/2026-11-01/2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md)
 
 ## 快速浏览
@@ -59,19 +59,19 @@
 - **方向**：Autoregressive and Streaming Video
 - **一句话**：We address the task of long-video, camera-controlled generation from a single image.
 
-### 5. [ReferStream: Interactive Subject Injection for Streaming Video Generation](http://arxiv.org/abs/2610.37566v1)
-
-- **评分**：61/100
-- **作者**：Shuolin Xu, Guanyuan Li, Boyu Li et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subje…
-
-### 6. [Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling](http://arxiv.org/abs/2610.39232v1)
+### 5. [Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling](http://arxiv.org/abs/2610.39232v1)
 
 - **评分**：61/100
 - **作者**：Haitang Feng, Zhuoman Liu, Zhennan Wang et al.
 - **方向**：World Models
 - **一句话**：Embodied world models should not only imagine plausible futures, but also perceive the geometric, semantic, and motion structure of the evolving world.
+
+### 6. [ReferStream: Interactive Subject Injection for Streaming Video Generation](http://arxiv.org/abs/2610.37566v1)
+
+- **评分**：61/100
+- **作者**：Shuolin Xu, Guanyuan Li, Boyu Li et al.
+- **方向**：Autoregressive and Streaming Video
+- **一句话**：Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subje…
 
 ### 7. [WorldFlow: Joint Video and 3D Motion Prediction via Large-Scale Pretraining](http://arxiv.org/abs/2610.39278v1)
 

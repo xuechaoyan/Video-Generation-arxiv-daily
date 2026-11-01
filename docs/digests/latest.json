@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T02:42:15+00:00",
+  "generated_at": "2026-11-01T17:16:16+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -29,12 +29,12 @@
       "comment": "17 pages, 6 figures",
       "score": 81,
       "priority": "must-read",
-      "summary_cn": "本文针对交互式视频世界模型在长时间动作控制过程中因复用不完美历史而产生的错误循环传播问题，提出FutureWorld框架。其核心是因果下一视频块预测器（C-NCP）：根据当前生成潜变量和下一步动作，预测完整的下一潜变量块，再通过保持张量形状的通道级残差调制引导冻结的自回归视频生成器。C-NCP采用VAE特定输入适配器和输出头以支持不同潜变量空间，并结合因果时空注意力、动作条件和两阶段训练。集成到四个基础生成器后，在Sekai-val、RealEstate10K-test和WBench上均显示出更好的视觉质量、主体及背景一致性和长时域稳定性；在Matrix-game-3.0上，预测器带来的额外推理开销为每次交互0.617秒，即9.24%。",
-      "contribution_cn": "1. 提出一种通过显式预测未来状态来抑制交互式视频生成错误循环传播的校正范式，使下一视频块在加入历史前获得动作条件的未来状态先验。2. 提出即插即用的因果下一视频块预测器C-NCP，利用VAE特定适配器实现跨生成模型的潜变量适配，并通过因果时空预测生成完整的下一潜变量块。3. 提出预测引导的通道级残差特征调制，将未来状态先验融入基础生成器的主潜变量，而无需扩大其张量形状。4. 采用包含地面真实辅助反馈和预测反馈的两阶段训练，以及状态、平方误差和时间差分损失。5. 将方法集成到四个基础生成器，并在三个基准上验证其对长时域一致性和错误累积的改善。",
-      "relevance_cn": "与研究重点高度相关。该方法直接面向动作条件视觉世界模型和闭环交互模拟：每次交互完成后，将生成结果作为下一次预测输入，并结合下一动作预测未来状态，从而形成持续的自回归闭环。它针对自回归、因果和长视频生成中的历史误差累积问题，使用因果时间注意力进行逐时间片预测，并通过潜变量调制增强后续视频块的一致性。方法具有即插即用特性，可适配多个视频生成器；同时报告了额外推理开销，说明其与实时生成和效率优化有关，但其重点不是蒸馏、稀疏注意力或缓存复用，而是用预测先验补充历史复用。",
-      "limitations_cn": "论文明确显示，加入预测器会增加推理成本：在Matrix-game-3.0生成四个720P视频块时，每次交互增加0.617秒，额外开销为9.24%，因此可能不利于严格实时场景。C-NCP在Sekai上训练，跨数据集泛化虽在RealEstate10K-test等实验中得到支持，但论文未系统分析更广泛领域、动作类型或分布外场景的泛化能力。方法采用点估计未来潜变量，论文指出其理论分析基于平方误差，并不等同于所用归一化混合损失的精确最优解，也不保证闭环误差收缩。推理时基础生成器和VAE均保持冻结，因而对基础模型本身存在的生成缺陷只能进行引导和修正，无法完全消除。论文未明确说明在更长于60秒的交互、极端动作控制、预测失败案例及真实用户闭环部署中的性能上限。",
+      "summary_cn": "论文针对交互式视频世界模型在长时间闭环交互中的错误循环传播问题，提出即插即用的因果下一片段预测器C-NCP。该模块根据当前生成潜变量和下一步动作，预测完整的下一潜变量片段，并通过通道级残差调制引导冻结的自回归视频DiT生成下一片段。C-NCP使用VAE特定适配器连接不同生成器的潜空间，采用因果时空注意力、动作条件和时间差分监督，并通过两阶段训练适应跨片段的预测反馈。集成到四个基础世界模型后，在三个基准上的实验显示，方法普遍改善时间稳定性、主体和背景一致性、视觉质量及长时域场景保持能力；在Matrix-Game 3.0上，推理开销约增加9.24%。",
+      "contribution_cn": "1. 提出面向交互式视频生成错误循环传播的未来状态引导校正范式，在下一片段生成前重新估计动作作用下的未来场景状态，而非仅复用可能有缺陷的历史内容。2. 提出即插即用的因果下一片段预测器C-NCP，通过VAE特定输入适配器和输出头适应不同潜变量表示，并利用共享的因果时空预测骨干预测完整的下一潜变量片段。3. 提出预测引导的残差特征调制机制，以保持生成器主潜变量的形状，并通过通道级尺度与偏移将未来状态先验注入冻结的基础生成器。4. 设计包含地面真实辅助反馈和预测反馈的两阶段训练策略，并结合状态损失与相邻时间片差分损失。5. 将方法集成到四个基础生成器，并在三个基准上验证其跨模型和跨数据集的有效性。",
+      "relevance_cn": "该论文与视频生成、视频扩散和动作条件视觉世界模型高度相关：它直接面向由用户动作驱动的交互式视频世界建模，并在自回归生成过程中形成“生成—动作—下一状态预测—再生成”的闭环。其因果下一片段预测符合因果、流式和长视频生成方向；通过显式预测未来状态来减少历史潜变量中的误差传播，与历史检索、缓存复用和上下文记忆问题直接相关。方法兼容自回归视频DiT，并通过轻量插件方式增强多个基础模型。论文还报告了推理时间开销，但未提出蒸馏、稀疏注意力或缓存复用本身的加速方法。",
+      "limitations_cn": "论文明确显示，预测器会带来额外推理开销：在Matrix-Game 3.0上平均每次交互增加0.617秒，总体相对开销为9.24%。C-NCP需要在Sekai数据集上训练，并依赖不同基础模型的VAE适配器；论文虽报告了跨数据集和跨模型迁移效果，但未系统讨论更广泛场景、动作分布或生成器架构变化下的泛化能力。方法预测的是点估计未来潜状态，论文指出相关贝叶斯分析基于平方误差，并不等价于其归一化混合损失的精确最优解，也不保证闭环误差收缩。推理阶段仍使用自回归预测，且生成输出而非预测先验会继续更新历史，因此错误并未被理论上完全消除。论文未明确说明更大规模交互时的计算扩展性、对复杂或未见动作的鲁棒性，以及用户交互延迟是否满足严格实时要求。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "交互式视频世界模型旨在遵循用户动作，同时在长期交互过程中保持场景一致性。基于历史的方法会复用生成的潜变量以保持场景内容，但这种复用存在三个会导致错误循环传播的局限性：1）每次交互生成的潜变量都会被保留为历史，其中可能包含细节模糊、几何失真或语义漂移；2）尽管检索到的历史内容与当前场景相匹配，但其中仍可能包含会被带入下一个视频块的错误；3）新的输出随后又会成为后续交互的历史，通过反复复用可能强化相同的错误。为限制这一循环，我们尝试在生成下一次交互的视频块之前，根据当前生成的潜变量和下一步动作预测未来场景状态。该未来状态先验为下一视频块提供引导，旨在减少由历史传播而来的错误。为此，我们提出了即插即用的因果下一视频块预测器（C-NCP），具备跨模型适应能力和预测引导调制机制。我们将C-NCP集成到四个基础生成器中，并在三个交互式长视频生成和动作条件世界建模基准上评估增强后的模型。大量实验表明，该方法能够减少错误累积，并在不同生成设置下提升长时域一致性。项目页面见https://GuangYuanKK.github.io/futureworld。",
+      "abstract_cn": "交互式视频世界模型旨在跟随用户动作，同时在长时间交互过程中保持场景一致性。基于历史的方法会复用生成的潜变量以保持场景内容，但这种复用存在三个会导致错误循环传播的局限性：1）每次交互生成的潜变量都会被保留为历史，其中可能包含细节模糊、几何失真或语义漂移；2）尽管检索到的历史内容与当前场景相匹配，但其中仍可能包含错误，并被带入下一个视频片段；3）新的输出随后又会成为之后交互的历史，在反复复用过程中可能强化相同的错误。为限制这一循环，我们希望在生成下一次交互的视频片段之前，根据当前生成的潜变量和下一步动作预测未来场景状态。该未来状态先验为下一片段提供引导，旨在减少从历史中延续的错误。为此，我们提出了即插即用的因果下一片段预测器（C-NCP），具备跨模型适应能力和预测引导调制机制。我们将C-NCP集成到四个基础生成器中，并在三个交互式长视频生成与动作条件世界建模基准上评估增强后的模型。大量实验表明，该方法能够减少错误累积，并在多种生成设置下提升长时域一致性。项目主页为https://GuangYuanKK.github.io/futureworld。",
       "note_path": "2026-11-01/2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md"
     },
     {
@@ -62,12 +62,12 @@
       "comment": "Project page: https://cvlab-kaist.github.io/L3G-World/",
       "score": 78,
       "priority": "must-read",
-      "summary_cn": "本文提出 L3G-World，一种从单张图像和相机轨迹出发、面向实时长时域交互式世界生成的框架。其核心是 L3G-Mem：采用紧凑的潜在三维高斯记忆，仅在未覆盖或重建误差较大的区域生成新高斯，并通过残差更新细化已有高斯，使记忆主要随场景空间范围增长。每个高斯同时保存几何信息和 VAE 潜特征，因此可直接在视频 DiT 的潜空间中渲染记忆，避免 RGB 渲染后的重复 VAE 编码。L3G-Mem 与记忆条件视频生成器 L3G-Gen 按视频块自回归交替运行，并通过少步蒸馏实现实时推理。在 DL3DV 和 RealEstate10K 上，方法在长时域一致性、生成质量和记忆效率方面整体优于多种时间上下文及显式三维记忆基线，报告的实时生成速度为约 9 FPS。",
-      "contribution_cn": "1. 提出潜在三维高斯记忆 L3G，将紧凑的场景级三维表示与可直接渲染的 VAE 潜特征结合起来。\\n2. 提出 L3G-Mem 的自适应记忆更新机制：根据覆盖率和 RGB 误差选择性生成新高斯，并对可见已有高斯进行残差细化，从而减少冗余累积并修正长期生成中的几何误差。\\n3. 提出 L3G-Gen，将渲染后的潜在三维记忆和透明度直接拼接到视频 DiT 的输入中，为目标相机视角提供空间对齐的条件，同时结合历史潜变量和相机射线位置编码。\\n4. 构建 L3G-Mem 与 L3G-Gen 交替运行的自回归世界生成闭环，并采用少步、在策略蒸馏降低视频扩散采样成本。\\n5. 在两个视频数据集和长时域回环轨迹上验证了较好的生成质量、空间一致性、相机可控性及记忆重建和渲染效率。",
-      "relevance_cn": "本文与研究重点高度相关。它直接研究动作或相机轨迹条件下的交互式视觉世界模型和闭环生成：视频生成器产生下一段视频，记忆更新器再利用生成结果更新持久三维场景记忆。其自回归、分块式生成适用于长视频和无限世界扩展；潜在三维高斯记忆使记忆规模主要随空间覆盖范围增长，而非随视频长度线性增长，缓解了长时域生成的内存和注意力开销。直接在 VAE 潜空间渲染高斯特征，避免 RGB 到 VAE 的重复编码；少步视频扩散蒸馏则进一步支持实时生成，论文报告约 9 FPS。因此，该工作同时涉及空间记忆、闭环模拟、潜空间视频扩散、实时推理和缓存/表示复用。",
-      "limitations_cn": "论文未明确说明",
+      "summary_cn": "本文提出 L3G-World，一个面向交互式世界模型的实时长时域视频生成框架。它使用带有几何参数和 VAE 潜特征的潜在三维高斯记忆：L3G-Mem 在新区域自适应生成高斯、在已探索区域细化已有高斯；L3G-Gen 则将记忆直接渲染到视频 DiT 的潜空间中，生成下一段视频。两者交替构成自回归闭环，避免了密集三维基元不断累积以及 RGB 渲染后的 VAE 重编码。实验显示，该方法在 DL3DV 和 RealEstate10K 上改善了长时域空间一致性和生成质量，并以较低的存储与计算开销实现了单张 H100 上约 9 FPS 的生成。",
+      "contribution_cn": "1. 提出潜在三维高斯记忆，将紧凑的三维高斯场景表示与可直接渲染的 VAE 潜特征结合起来。2. 设计 L3G-Mem，通过遮罩驱动的自适应高斯生成和已有高斯的残差细化，使记忆主要随场景空间范围增长，而不是随生成帧数线性累积。3. 设计 L3G-Gen，将记忆中的 VAE 特征和透明度直接渲染到视频 DiT 的潜空间，为目标相机视角提供空间对齐的条件，避免 RGB 渲染和 VAE 重编码。4. 将记忆更新与视频扩散生成组成自回归闭环，并通过少步数、基于策略的蒸馏实现实时推理。5. 在长时域回环轨迹、生成质量、相机控制、三维一致性和记忆效率方面进行了系统评估，并报告了较少的三维基元、更快的记忆更新与潜空间渲染速度。",
+      "relevance_cn": "该工作与研究重点高度相关。它属于动作或相机轨迹条件下的交互式视觉世界模型，通过目标相机运动逐片段生成可探索视频，并以持久三维记忆实现闭环空间一致性。其生成过程是自回归的，记忆更新器和视频扩散 DiT 在每个视频块之间交替运行，支持长时域乃至无限延展的生成。它还直接针对实时生成问题：利用潜空间高斯渲染、紧凑记忆、自适应更新、稀疏的高斯基元以及少步数扩散蒸馏，降低了记忆读写、渲染和采样成本。与仅依赖历史帧或 KV 缓存的方法相比，它将记忆增长从生成流长度转化为场景空间范围，并增强了回环探索中的空间锚定能力。",
+      "limitations_cn": "论文支持或显示的局限包括：1. 方法主要在 DL3DV 和 RealEstate10K 上验证，泛化到其他场景、相机运动和交互动作的能力尚未充分说明。2. 系统从单张图像初始化，远离初始视角时仍依赖视频生成模型进行外推；论文指出其他方法在此情况下可能难以生成可信的几何和外观，但未系统量化 L3G-World 在极端远距离外推中的失败范围。3. 在 RealEstate10K 上，L3G-World 并非所有指标都最优，部分相机姿态误差和 MEt3R 三维几何误差由其他基线取得更好结果。4. L3G-World Fast 的少步数蒸馏版本相较完整模型在若干一致性和生成质量指标上有所下降，表明实时速度与质量之间存在权衡。5. 报告的 9 FPS 是在单张 NVIDIA H100 上、特定分辨率和设置下获得的，论文未明确说明在消费级硬件、不同分辨率或更复杂交互条件下的实时性能。6. 记忆仍依赖几何基础模型、VAE、DiT 和训练数据；论文未明确说明长期运行中误差累积、记忆规模上限以及真正无限生成时的稳定性。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "交互式世界模型根据用户动作生成视觉内容，但如何在实时条件下维持长时域探索中的空间一致性仍然具有挑战性。现有方法要么依赖时间上下文，要么依赖显式三维记忆；由于记忆会随着生成流的长度增长，这两类方法的扩展性都较差。此外，显式三维记忆通常通过重新编码 RGB 渲染结果来为潜空间视频生成器提供条件，这无法满足实时生成的要求。本文提出潜在三维高斯记忆（Latent 3D Gaussian Memory，L3G），将前馈重建的高效率与紧凑且可快速渲染的场景表示相结合。在此记忆基础上，我们提出 L3G-World，其中记忆更新器与视频扩散 Transformer（DiT）以自回归方式交替工作，生成具有空间一致性的世界。记忆更新器在新观测区域生成高斯，并细化已有高斯，使记忆规模随场景范围而非生成流长度增长。每个高斯还存储一个 VAE 潜特征，使记忆能够直接渲染到 DiT 的潜空间中，无需再次进行 VAE 编码。实验表明，L3G-World 在生成质量和长时域空间一致性方面达到最先进水平；与针对各项指标最有效的既有三维记忆基线相比，它最多可减少 38.6 倍三维基元，使记忆更新速度提升 3.2 倍，使记忆渲染速度提升 359 倍，并以 9 FPS 实现实时世界生成。",
+      "abstract_cn": "交互式世界模型根据用户动作生成视觉内容，但在实时条件下维持长时域探索中的空间一致性仍然具有挑战性。现有方法要么依赖时间上下文，要么依赖显式三维记忆；由于记忆会随着生成流的长度增长，这两类方法的扩展性都较差。此外，显式三维记忆通常通过重新编码 RGB 渲染结果来为潜空间视频生成器提供条件，这使得实时生成难以实现。本文提出潜在三维高斯记忆（Latent 3D Gaussian Memory，L3G），将前馈重建的效率与紧凑且可快速渲染的场景表示相结合。在此记忆的基础上，我们提出 L3G-World，其中记忆更新器与视频扩散 Transformer（DiT）以自回归方式交替运行，生成具有空间一致性的世界。记忆更新器仅在新观测区域生成高斯，并对已有高斯进行细化，使记忆规模随场景范围而非生成流长度增长。每个高斯还存储一个 VAE 潜特征，使记忆能够直接渲染到 DiT 的潜空间中，而无需通过 VAE 重新编码。实验表明，L3G-World 在生成质量和长时域自一致性方面达到了当前最优水平；相较于各项指标对应的最高效先前三维记忆基线，它最多可减少 38.6 倍的三维基元数量，使记忆更新速度提高 3.2 倍，并使记忆渲染速度提高 359 倍，从而实现 9 FPS 的实时世界生成。",
       "note_path": "2026-11-01/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md"
     },
     {
@@ -91,12 +91,12 @@
       "comment": "Project Page: https://wyzardwu.github.io/wizard",
       "score": 77,
       "priority": "must-read",
-      "summary_cn": "Wizard 是一种面向可定制游戏世界的智能体视频世界模型。它将场景几何、角色骨骼和显式游戏状态与视频生成解耦：用户可通过图像、语言和操作控制场景、角色动作及战斗逻辑。模型使用覆盖 50.3 小时数据、750 个场景和 178 个角色的数据集，以统一视觉代理训练 Wan2.2 视频生成模型，并通过角色感知自适应注意力掩码保持角色身份和空间对齐。结合因果适配、少步蒸馏和 KV 缓存后，系统可在 2 步去噪下以 24 FPS 实时流式生成，并展示了对未见场景、角色和动作的零样本泛化以及机制一致的闭环战斗交互。",
-      "contribution_cn": "1. 提出 Wizard 智能体游戏世界模型，通过场景几何代理和关节骨骼实现角色与场景的细粒度控制、零样本泛化、实时交互和机制一致的游戏玩法。2. 构建涵盖 750 个场景、178 个角色和 50.3 小时视频的多源数据集，并统一标注场景几何与角色骨骼。3. 提出智能体视频到视频框架，将场景构建、角色动画、游戏逻辑和视频渲染解耦，同时显式维护战斗状态并执行游戏规则。4. 利用骨骼位置构造角色感知的自适应注意力掩码，将角色参考图与对应区域绑定，改善角色身份保持和参考图—生成视频对齐。5. 通过因果适配、少步蒸馏和有限窗口 KV 缓存，实现 2 步去噪、24 FPS 的自回归实时视频生成。",
-      "relevance_cn": "与研究重点高度相关。Wizard 是动作条件视频世界模型和闭环模拟系统：玩家输入驱动角色骨骼、相机与场景几何，智能体维护位置、姿态、生命值、攻击阶段和冷却时间，并依据规则更新状态，再将状态转换为视觉代理条件视频生成。它直接涉及自回归、因果和流式长时生成，采用 20 个近期潜变量帧加一个持久注意力汇聚帧的 KV 缓存以实现有界内存推理；因果适配与少步蒸馏支持 24 FPS 实时生成。结构化代理、稀疏的角色区域注意力以及参考图掩码提升了空间控制、角色一致性和多角色交互能力，面向实时可控视频世界模型和闭环游戏模拟。",
-      "limitations_cn": "论文明确指出两项限制：第一，系统依赖动作库，对于具有罕见身体结构的角色，可能难以找到兼容动作；第二，在更长的视频轨迹中，场景代理与生成视频之间的一致性可能下降。论文还说明，初始化场景和角色处理需要不到五分钟，且当前动作控制依赖检索与重定向得到的目标动作集合。对于更广泛的定量性能、长时生成时长上限或与其他方法的系统比较，论文未明确说明。",
+      "summary_cn": "Wizard 是一个面向可定制游戏的智能体视频世界模型。系统从用户提供的场景图像和角色图像出发，利用场景几何代理与角色关节骨骼控制视频生成，并由智能体显式维护角色状态、战斗规则、场景几何和动作规划。作者构建了包含 50.3 小时数据、750 个场景和 178 个角色的数据集，通过动作检索与重定向支持新角色，通过自适应角色注意力掩码保持外观与位置对应。模型基于 Wan2.2-TI2V-5B，经因果适配和少步蒸馏后，结合有限 KV 缓存以 24 FPS、2 步去噪进行流式生成。实验主要通过定性示例展示其对未见场景、角色和动作的零样本泛化，以及角色变换、场景操纵和机制一致的战斗玩法。",
+      "contribution_cn": "1. 提出 Wizard 智能体游戏世界模型，通过结构化场景几何和角色骨骼实现细粒度控制、零样本泛化、实时交互与机制一致的游戏玩法。\\n2. 构建覆盖 750 个场景和 178 个角色的多源数据集，共 50.3 小时，统一对齐场景几何、角色骨骼与视频。\\n3. 提出基于代理的视频到视频智能体框架，将场景构建、角色动画、游戏逻辑和视觉生成解耦，并支持状态感知的战斗控制。\\n4. 利用骨骼提供的角色位置构建自适应注意力掩码，将角色参考图像绑定到对应区域，改善角色身份保持及参考图像与生成视频之间的对齐。\\n5. 结合因果适配、少步蒸馏和有限 KV 缓存，实现 24 FPS、2 步去噪的实时自回归视频生成。",
+      "relevance_cn": "该工作与视频生成和视频扩散直接相关：它基于 Wan2.2-TI2V-5B，通过几何与骨骼代理条件控制视频生成，并使用自适应注意力掩码保持角色外观一致。它属于动作条件视觉世界模型，将玩家输入转化为角色动作、相机运动和场景编辑，并通过显式世界状态、行为规划和规则控制形成闭环游戏模拟。它还明确涉及自回归、因果生成、长时流式生成、实时生成、少步蒸馏、稀疏的区域注意力约束以及 KV cache 复用。模型保留 20 个近期潜变量帧和 1 个持久汇聚帧，在有限内存下持续生成，并以 24 FPS 运行。",
+      "limitations_cn": "论文明确指出两项局限：第一，系统依赖动作库，因此难以为具有罕见身体结构的角色找到兼容动作；第二，在更长的视频轨迹中，场景代理与生成视频之间的一致性可能下降。论文还将支持更灵活、更真实的角色动作，以及维持长时场景外观一致性列为未来工作。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "近年来，视频世界模型的发展使得生成越来越逼真且具有交互性的虚拟环境成为可能，为玩家可定制的游戏玩法开辟了新的空间。智能体框架进一步推动了这一方向，通过将显式游戏逻辑和可控的世界表示与视觉生成解耦，实现更灵活的控制。然而，现有方法仅支持简单的游戏设定和预定义的运动模式，对未见过的环境和角色泛化能力较差，实时交互能力也有限。本文提出 Wizard，一种智能体游戏世界模型，能够实时、精确地控制角色运动，并以零样本方式泛化到新的场景、角色和动作。为此，我们构建了一个涵盖 750 个场景和 178 个角色的多样化数据集，并将骨骼与几何信息纳入结构化表示。我们利用这些表示作为中间代理来条件控制视频生成模型，同时引入自适应掩码机制，以改善条件信号与生成视频轨迹之间的对齐。此外，我们提出一种智能体框架，能够显式维护和更新游戏状态，使玩家可以自由配置虚拟世界，对角色运动进行细粒度控制，同时保持视觉质量和游戏玩法的一致性。通过结合智能体控制与基于结构化代理的生成，该框架为由玩家驱动的游戏创作提供了新的可能，实现了实时、可泛化且机械规则一致的世界模拟。",
+      "abstract_cn": "近年来，视频世界模型的发展使得生成越来越逼真且具有交互性的虚拟环境成为可能，为玩家可定制的游戏玩法开辟了新的可能性。智能体框架进一步推动了这一方向的发展，将显式游戏逻辑和可控的世界表示与视觉生成解耦。然而，现有方法仅支持简单的游戏设置和预定义的运动模式，对未见过的环境和角色泛化能力较差，并且实时交互能力有限。本文提出 Wizard，一种智能体游戏世界模型，能够实时、精确地控制角色运动，并对新场景、新角色和新动作实现零样本泛化。为此，我们构建了一个涵盖 750 个场景和 178 个角色的多样化数据集，并将骨骼与几何信息作为结构化表示。我们利用这些表示作为中间代理来条件控制视频生成模型，同时引入自适应掩码机制，以改善条件信号与生成视频轨迹之间的对齐。此外，我们提出一个智能体框架，显式维护并更新游戏状态，使玩家能够自由配置虚拟世界、细粒度地控制角色运动，同时保持视觉质量和游戏玩法的一致性。通过将智能体控制与基于结构化代理的生成相结合，我们的框架为玩家驱动的游戏创作带来了新的可能性，实现了实时、可泛化且机制一致的世界模拟。",
       "note_path": "2026-11-01/2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md"
     },
     {
@@ -242,37 +242,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2610.37566",
-      "date": "2026-10-27",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "ReferStream: Interactive Subject Injection for Streaming Video Generation",
-      "abstract": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene. Encoding references independently of the current scene provides little guidance for this integration, while keeping their features in persistent memory can interfere with established context. We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection. Joint Latent places reference latents in target regions of the latest scene latent, allowing reference features to be extracted in context. Cache Restoration uses these features to condition the injection chunk, then restores the overwritten global cache entries while retaining the newly generated history. This procedure incorporates new visual conditions without retraining the generator or revising emitted frames. We further introduce ReferStream Bench, a new benchmark with scheduled reference arrivals, evolving instructions, and explicit annotations of subject presence for InShot and MultiShot generation. Evaluation follows the event schedule and measures both the fidelity of new subjects and the preservation of established subjects, alongside video quality, text adherence, and count accuracy. Experiments on ReferStream Bench show higher scores for text adherence, subject similarity, and count accuracy than the compared baselines, including offline methods given all references in advance. Project page: https://xushuolin.github.io/ReferStream/.",
-      "authors": [
-        "Shuolin Xu",
-        "Guanyuan Li",
-        "Boyu Li",
-        "Kelu Yao",
-        "Xiaogang Xu",
-        "Hongchuan Yu",
-        "Shuicheng Yan",
-        "Xiaobin Hu"
-      ],
-      "url": "http://arxiv.org/abs/2610.37566v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "18 pages. Project page: https://xushuolin.github.io/ReferStream/",
-      "score": 61,
-      "priority": "skim",
-      "summary_cn": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene.",
-      "contribution_cn": "We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection.",
-      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：interactive, streaming, cache, video generation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2610.39232",
       "date": "2026-10-29",
       "topics": [
@@ -301,6 +270,37 @@
       "summary_cn": "Embodied world models should not only imagine plausible futures, but also perceive the geometric, semantic, and motion structure of the evolving world.",
       "contribution_cn": "We present GenSight, a unified embodied world model that brings future video generation and dense perception into a single pretrained video diffusion transformer.",
       "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, embodied, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.37566",
+      "date": "2026-10-27",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "ReferStream: Interactive Subject Injection for Streaming Video Generation",
+      "abstract": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene. Encoding references independently of the current scene provides little guidance for this integration, while keeping their features in persistent memory can interfere with established context. We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection. Joint Latent places reference latents in target regions of the latest scene latent, allowing reference features to be extracted in context. Cache Restoration uses these features to condition the injection chunk, then restores the overwritten global cache entries while retaining the newly generated history. This procedure incorporates new visual conditions without retraining the generator or revising emitted frames. We further introduce ReferStream Bench, a new benchmark with scheduled reference arrivals, evolving instructions, and explicit annotations of subject presence for InShot and MultiShot generation. Evaluation follows the event schedule and measures both the fidelity of new subjects and the preservation of established subjects, alongside video quality, text adherence, and count accuracy. Experiments on ReferStream Bench show higher scores for text adherence, subject similarity, and count accuracy than the compared baselines, including offline methods given all references in advance. Project page: https://xushuolin.github.io/ReferStream/.",
+      "authors": [
+        "Shuolin Xu",
+        "Guanyuan Li",
+        "Boyu Li",
+        "Kelu Yao",
+        "Xiaogang Xu",
+        "Hongchuan Yu",
+        "Shuicheng Yan",
+        "Xiaobin Hu"
+      ],
+      "url": "http://arxiv.org/abs/2610.37566v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "18 pages. Project page: https://xushuolin.github.io/ReferStream/",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene.",
+      "contribution_cn": "We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection.",
+      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：interactive, streaming, cache, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
