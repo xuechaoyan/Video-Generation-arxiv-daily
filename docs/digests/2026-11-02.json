@@ -1,0 +1,346 @@
+{
+  "generated_at": "2026-11-02T02:51:00+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.39619",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "FutureWorld: A Plug-and-Play Causal Next-State Predictor for Interactive Video World Exploration",
+      "abstract": "Interactive video world models aim to follow user actions while maintaining scene consistency over extended interactions. History-based methods reuse generated latents to preserve scene content, but three limitations of this reuse contribute to error recirculation. 1) The latent generated at each interaction is retained as history, potentially containing blurred details, geometric distortions, or semantic drift. 2) Although retrieved historical content matches the current scene, it can still contain errors that are carried into the next chunk. 3) New outputs then become history for later interactions, potentially reinforcing the same errors through repeated reuse. To limit this cycle, we aim to predict the future scene state from the current generated latent and the next action before generating the next interaction's video chunk. This future-state prior provides guidance for the next chunk, with the aim of reducing the errors carried forward from history. To this end, we propose a plug-and-play Causal Next-Chunk Predictor (C-NCP) with cross-model adaptability and prediction-guided modulation. We integrate C-NCP into four base generators and evaluate the augmented models across three benchmarks for interactive long-video generation and action-conditioned world modeling. Extensive experiments demonstrate reduced error accumulation and improved long-horizon consistency across diverse generation settings. The project page is at https://GuangYuanKK.github.io/futureworld.",
+      "authors": [
+        "Guangyuan Li",
+        "Kelu Yao",
+        "Shuolin Xu",
+        "Xinlei Yu",
+        "Wei Xing",
+        "Lei Zhao",
+        "Peng-Tao Jiang",
+        "Xiaogang Xu",
+        "Xiaobin Hu"
+      ],
+      "url": "http://arxiv.org/abs/2610.39619v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "17 pages, 6 figures",
+      "score": 81,
+      "priority": "must-read",
+      "summary_cn": "FutureWorld针对交互式视频世界模型中历史潜变量反复复用导致的误差循环问题，提出因果下一视频块预测器C-NCP。该模块根据当前生成潜变量和下一步动作，利用真实视频转移监督预测完整的下一潜变量块，并通过通道级残差调制引导冻结的自回归视频DiT生成后续视频。C-NCP采用VAE特定输入适配器和输出头，以适应不同基础模型的潜变量空间；训练分为带真实数据辅助的阶段和仅使用预测反馈的阶段，并加入相邻时间切片差分损失。集成到Matrix-Game 3.0、HY-World 1.5、LingBot-World-Fast和SANA-WM后，在Sekai-val、RealEstate10K-test和WBench上总体提升了时序稳定性、主体与背景一致性及视觉质量。以Matrix-Game 3.0为例，RealEstate10K-test平均VBench得分从0.8124提升至0.8314；四个视频块的推理时间增加约9.24%。",
+      "contribution_cn": "1. 提出面向交互式视频生成误差循环的未来状态引导校正范式：不只从历史中选择内容，而是根据当前状态和下一步动作重新估计预期状态，并在生成新视频块前提供先验引导。 2. 提出即插即用的因果下一视频块预测器C-NCP，使用VAE特定适配器将不同模型的潜变量映射到共享表示空间，再通过输出头映射回对应潜变量空间。 3. 设计因果时空预测架构、动作条件融合、两阶段下一视频块预测训练以及相邻切片差分监督，使预测过程符合自回归生成方向并适应跨块预测反馈。 4. 提出预测引导的通道级残差调制，在不改变基础生成器主潜变量形状的情况下融合未来状态先验。 5. 将该模块集成到四个基础生成器，并在三个基准上验证其对长时域场景一致性和误差累积的改善。",
+      "relevance_cn": "该工作与动作条件视觉世界模型和闭环交互仿真直接相关：它根据下一步动作预测未来场景状态，并在每次交互后将生成结果反馈为下一次预测的输入。它也涉及自回归和长视频生成，通过因果时间注意力逐切片预测下一视频块，并在连续交互中更新状态。其核心目标是降低长时域生成中的误差传播和语义漂移。方法与实时生成和效率优化存在一定关联：它采用即插即用设计、冻结基础生成器，并通过潜变量调制避免扩大生成器输入；但不是蒸馏、稀疏注意力或缓存复用方法，且额外预测器带来约9.24%的推理时间开销。",
+      "limitations_cn": "论文明确指出，理论分析基于平方误差，不能直接代表其归一化混合损失的精确最优性，也不能保证部署时的 rollout 误差一定收缩。预测器需要在Sekai数据集上训练，并依赖不同VAE潜变量空间的适配器；论文虽报告了向RealEstate10K-test等数据集的迁移效果，但未证明对更广泛领域和动作分布的泛化能力。推理时每个交互额外增加约0.617秒，整体开销约为9.24%。实验视频长度主要为60秒，论文未明确说明在更长时间尺度、更多样或更复杂交互中的性能上限。预测器采用点估计和平方误差相关目标，论文未明确讨论多模态未来状态、不确定性建模或预测错误对闭环稳定性的影响。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "交互式视频世界模型旨在遵循用户动作，同时在长时间交互中保持场景一致性。基于历史的方法会复用生成的潜变量以保留场景内容，但这种复用存在三个会导致误差循环的局限：1）每次交互生成的潜变量都会被保留为历史，其中可能包含细节模糊、几何畸变或语义漂移；2）尽管检索到的历史内容与当前场景相匹配，但其中仍可能包含会被带入下一个视频块的错误；3）新的输出随后又会成为后续交互的历史，从而可能通过反复复用强化相同错误。为限制这一循环，我们尝试在生成下一次交互的视频块之前，根据当前生成的潜变量和下一步动作预测未来场景状态。该未来状态先验为下一个视频块提供引导，旨在减少从历史中延续的错误。为此，我们提出了即插即用的因果下一视频块预测器（C-NCP），具备跨模型适应能力和预测引导的调制机制。我们将C-NCP集成到四个基础生成器中，并在三个交互式长视频生成和动作条件世界建模基准上评估增强后的模型。大量实验表明，该方法能够减少误差累积，并在多种生成设置下提升长时域一致性。项目主页为https://GuangYuanKK.github.io/futureworld。",
+      "note_path": "2026-11-02/2610.39619-futureworld-a-plug-and-play-causal-next-state-pr.md"
+    },
+    {
+      "id": "2610.40614",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models"
+      ],
+      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
+      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches rely on either temporal context or explicit 3D memory, both of which scale poorly because memory grows with the length of the generated stream. Moreover, explicit 3D memories condition latent video generators by re-encoding RGB renderings, which precludes real-time generation. In this paper, we introduce a Latent 3D Gaussian Memory (L3G) that combines the efficiency of feed-forward reconstruction with a compact, rapidly renderable scene representation. Building on this memory, we propose L3G-World, in which a memory updater and a video diffusion transformer (DiT) alternate autoregressively to generate spatially consistent worlds. The memory updater spawns Gaussians in newly observed regions and refines existing ones, so that the memory grows with scene extent rather than stream length. Each Gaussian further stores a VAE latent feature, allowing the memory to be rendered directly into the DiT's latent space without VAE re-encoding. Experiments show that L3G-World achieves state-of-the-art generation quality and long-horizon spatial consistency, with up to $38.6\\times$ fewer 3D primitives, $3.2\\times$ faster memory updates, and $359\\times$ faster memory rendering relative to the most efficient prior 3D-memory baseline for each metric, enabling real-time world generation at 9 FPS.",
+      "authors": [
+        "Jinhyeok Choi",
+        "JoungBin Lee",
+        "Jongmin Lee",
+        "Minkyeong Jeon",
+        "Jiyoung Kim",
+        "Kaeun Han",
+        "Yoonjin Yoon",
+        "Seungryong Kim"
+      ],
+      "url": "http://arxiv.org/abs/2610.40614v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://cvlab-kaist.github.io/L3G-World/",
+      "score": 78,
+      "priority": "must-read",
+      "summary_cn": "本文研究从单张图像和相机轨迹实时生成可探索、空间一致且可长期扩展的视频世界。作者提出 L3G-World，由 L3G-Mem 和 L3G-Gen 两个模块组成：前者维护潜空间三维高斯记忆，只在记忆未覆盖或重建误差较大的区域生成新高斯，并对已存在的高斯进行残差细化；后者是以记忆为条件的自回归视频扩散 DiT，通过将高斯中保存的 VAE 特征直接渲染到目标视角的潜空间来生成后续视频块。两模块在生成循环中交替运行，生成的视频又用于更新持久场景记忆。结合少步蒸馏后，系统在单张 H100 GPU 上达到约 9 FPS。DL3DV 和 RealEstate10K 实验显示，该方法在长时域自一致性、部分生成质量指标和记忆效率方面优于多种时间上下文及显式三维记忆基线；消融实验表明，自适应生成、记忆细化、全局自注意力和 VAE 潜特征提升对性能均有重要作用。",
+      "contribution_cn": "1. 提出潜空间三维高斯记忆 L3G，将紧凑的场景级三维表示与可直接渲染的 VAE 潜特征结合，避免 RGB 渲染后的 VAE 重编码。 2. 提出 L3G-Mem 的自适应记忆更新机制，仅在新覆盖区域生成高斯，并通过残差更新细化已有高斯，使记忆主要随场景空间范围增长而非随视频长度累积。 3. 提出 L3G-Gen，将渲染的潜空间记忆、透明度、历史潜变量、相机信息和文本条件输入视频扩散 Transformer，形成记忆条件下的自回归视频生成器。 4. 构建 L3G-Mem 与 L3G-Gen 交替运行的闭环世界生成框架，并采用少步、在线策略蒸馏降低扩散采样成本。 5. 在长时域环回轨迹、生成质量、相机控制、三维一致性和记忆效率方面进行系统评估，报告了较少的三维基元、更快的重建与渲染速度以及约 9 FPS 的实时生成性能。",
+      "relevance_cn": "该工作与研究重点高度相关。它是一个动作或相机轨迹条件下的交互式视觉世界模型，通过自回归视频扩散生成后续视频块，并将生成结果反馈给持久三维记忆，形成面向闭环模拟的读写循环。其核心贡献直接涉及长视频和流式生成：记忆规模不再随生成帧数线性累积，而主要随探索到的场景范围增长。它还针对实时生成提出了两项关键优化：在三维高斯中缓存 VAE 潜特征并直接进行潜空间渲染，从而避免重复编码；使用少步蒸馏降低视频扩散采样延迟。此外，自适应高斯生成、已有高斯细化、局部记忆读取以及轻量记忆条件输入，也与稀疏记忆、缓存复用和高效长时域一致性维护密切相关。需要注意的是，论文主要使用相机轨迹作为用户控制信号，重点验证视觉世界生成与空间一致性，而不是完整的基于动作的物理交互或控制策略学习。",
+      "limitations_cn": "论文明确的局限性相对有限。实验主要在 DL3DV 和 RealEstate10K 数据集、单张输入图像和预设相机轨迹上进行，因此对复杂真实环境、动态物体、多智能体交互以及更广泛动作条件的泛化能力尚未得到充分验证。方法依赖几何基础模型、VAE、视频 DiT 和深度估计来初始化及更新记忆，这些模块可能带来额外计算成本和误差传播。尽管记忆会细化已有高斯，论文结果仍显示其在部分 RealEstate10K 的相机姿态和 MEt3R 三维一致性指标上不如某些基线。少步蒸馏的 L3G-World Fast 相比完整模型也会损失部分质量或一致性指标。论文未明确说明在无限长、超大范围探索下的实际内存上限、误差长期累积情况，以及对动态场景和复杂物理世界建模的能力。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "交互式世界模型根据用户动作生成视觉内容，但要在实时条件下支持长时域探索并保持空间一致性，仍然具有挑战性。现有方法通常依赖时间上下文或显式三维记忆；由于记忆会随生成流长度增长，这两类方法的扩展性都较差。此外，显式三维记忆通过重新编码 RGB 渲染结果来为潜空间视频生成器提供条件，这使实时生成难以实现。本文提出潜空间三维高斯记忆（Latent 3D Gaussian Memory，L3G），将前馈重建的效率与紧凑、可快速渲染的场景表示相结合。在此记忆基础上，我们提出 L3G-World，其中记忆更新器与视频扩散 Transformer（DiT）以自回归方式交替工作，生成空间一致的世界。记忆更新器仅在新观察区域生成高斯，并细化已有高斯，使记忆规模随场景范围而非生成流长度增长。每个高斯还存储一个 VAE 潜特征，因此记忆可以直接渲染到 DiT 的潜空间中，无需通过 VAE 重新编码 RGB 图像。实验表明，L3G-World 在生成质量和长时域空间一致性方面达到当前最优水平；相较于针对各项指标最有效的既有三维记忆基线，它最多使用少 38.6 倍的三维基元，记忆更新速度提高 3.2 倍，记忆渲染速度提高 359 倍，并实现了 9 FPS 的实时世界生成。",
+      "note_path": "2026-11-02/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md"
+    },
+    {
+      "id": "2610.40339",
+      "date": "2026-10-29",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "Wizard: Manipulate Any World in Real Time via Agentic Control",
+      "abstract": "Recent advances in video world models have enabled the generation of increasingly realistic and interactive virtual environments, opening new possibilities for player-customizable gameplay. Agentic frameworks further advance this direction by decoupling explicit game logic and controllable world representations from visual generation. However, existing approaches support only simple game settings and predefined motion patterns, generalize poorly to unseen environments and characters, and offer limited real-time interactivity. In this paper, we introduce Wizard, an agentic game world model that enables real-time, precise control over character motions while generalizing zero-shot across novel scenes, characters, and actions. To achieve this, we construct a diverse dataset spanning 750 scenes and 178 characters, incorporating skeleton and geometry information as structured representations. We leverage these representations as intermediate proxies to condition a video generation model, together with an adaptive masking mechanism that improves alignment between the conditioning signals and generated video rollouts. Furthermore, we introduce an agentic framework that explicitly maintains and updates game states, allowing players to freely configure their virtual worlds and exercise fine-grained control over character motions while preserving visual quality and gameplay consistency. By combining agentic control with structured proxy-based generation, our framework unlocks new possibilities for player-driven game creation with real-time, generalizable, and mechanically consistent world simulation.",
+      "authors": [
+        "Yuzhe Wu",
+        "Zijun Lin",
+        "Yeying Jin"
+      ],
+      "url": "http://arxiv.org/abs/2610.40339v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project Page: https://wyzardwu.github.io/wizard",
+      "score": 77,
+      "priority": "must-read",
+      "summary_cn": "Wizard 是一个面向可定制游戏世界的智能体视频世界模型。系统从用户提供的场景图像和角色图像出发，利用几何重建、角色网格与骨骼绑定，将场景表示为可编辑的几何代理，将角色表示为可控的关节骨骼；再通过动作检索和重定向为新角色构建动作集合。智能体显式维护角色位置、姿态、生命值、攻击阶段、技能冷却等状态，并通过规则控制器和行为规划器实现具有战斗机制一致性的闭环交互。视频生成器基于 Wan2.2-TI2V-5B，以场景几何、角色骨骼、参考图像和历史帧为条件，通过角色感知的自适应注意力掩码保持角色外观与位置对齐。作者构建了包含 50.3 小时数据、750 个场景和 178 个角色的数据集，并采用因果适配、少步蒸馏和 KV 缓存实现实时自回归生成。论文展示了对未见场景、角色和动作的零样本泛化，以及角色变换、场景操纵和状态感知战斗等开放式玩法；系统报告可在 24 FPS 下、仅用 2 步去噪生成视频。",
+      "contribution_cn": "1. 提出 Wizard 智能体游戏世界模型，通过结构化场景几何和角色骨骼实现细粒度角色与场景控制、零样本泛化、实时交互和机制一致的游戏玩法。 2. 构建包含 50.3 小时数据、750 个场景和 178 个角色的多源数据集，统一提供对齐的场景几何、角色骨骼和视频数据。 3. 提出基于代理的视频到视频智能体框架，将场景构建、角色动画、游戏逻辑和视觉生成解耦，并支持状态感知的战斗控制。 4. 提出利用骨骼位置构造的角色感知自适应注意力掩码，将角色参考图像绑定到对应空间区域，改善角色身份保持和参考图像与生成视频之间的对齐。 5. 结合因果适配、少步蒸馏以及保留近期潜变量和持久注意力汇聚帧的 KV 缓存，实现面向实时交互的流式自回归视频生成。",
+      "relevance_cn": "该工作与研究重点高度相关：它是一个动作条件和状态条件的视频世界模型，将玩家输入转换为角色骨骼、场景几何和游戏状态，再由因果视频生成器闭环渲染未来观测。其显式状态维护、规则执行和行为规划支持闭环模拟，而不是单纯根据像素历史生成视频。方法直接涉及因果、自回归、流式和长时生成，通过 20 个近期潜变量帧加一个持久汇聚帧的 KV 缓存实现有界内存推理，并通过因果适配与少步蒸馏达到 24 FPS、2 步去噪的实时生成。结构化代理、稀疏的角色感知注意力掩码和缓存复用共同提升了空间控制、角色身份保持与多角色交互能力。论文还展示了对新场景、新角色和新动作的零样本泛化，以及角色召唤或变换、场景编辑和机制一致战斗等可交互世界模拟能力。",
+      "limitations_cn": "论文明确指出两项局限：第一，系统依赖动作库，对于具有罕见身体结构的角色，可能难以找到兼容动作；第二，在更长的视频 rollout 中，场景代理与生成视频之间的一致性可能下降。论文还指出未来需要支持更灵活、更真实、更加贴合实际游戏的角色动作，并维持长时间 rollout 中的场景外观一致性。除此之外，论文未明确说明更长时长下的定量一致性指标、与现有方法的系统性定量比较、生成延迟和硬件配置对 24 FPS 结果的影响，以及复杂开放世界中的物理真实性和可扩展性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "近年来，视频世界模型的发展使生成越来越逼真且具有交互性的虚拟环境成为可能，为玩家可定制的游戏玩法开辟了新的方向。智能体框架进一步推动了这一方向的发展，将显式游戏逻辑和可控的世界表示与视觉生成解耦。然而，现有方法仅支持简单的游戏场景和预定义的运动模式，对未见过的环境和角色泛化能力较差，且实时交互能力有限。本文提出 Wizard，一种智能体游戏世界模型，能够实时、精确地控制角色运动，并以零样本方式泛化到全新的场景、角色和动作。为此，我们构建了一个涵盖 750 个场景和 178 个角色的多样化数据集，并将骨骼与几何信息纳入结构化表示。我们利用这些表示作为中间代理来条件化视频生成模型，并结合自适应掩码机制，改善条件信号与生成视频 rollout 之间的对齐。此外，我们引入一种智能体框架，显式维护和更新游戏状态，使玩家能够自由配置虚拟世界并对角色运动进行细粒度控制，同时保持视觉质量和游戏玩法一致性。通过结合智能体控制与基于结构化代理的生成，我们的框架为玩家驱动的游戏创作带来了新的可能，实现了实时、可泛化且具有机制一致性的世界模拟。",
+      "note_path": "2026-11-02/2610.40339-wizard-manipulate-any-world-in-real-time-via-age.md"
+    },
+    {
+      "id": "2610.32381",
+      "date": "2026-10-28",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "UniWorld: A Unified World Model for Real-Time Visual World Simulation",
+      "abstract": "Continuous visual world simulation requires coupling evolving scene geometry with temporally persistent appearance. We present UniWorld, a unified framework that integrates depth trajectories and reference appearance within a shared video generation model. The central design maintains visual and geometric histories on a common timeline. Noise-aligned overlapping continuation places generated history at the prescribed sampling noise level and commits only newly generated latents. Rolling depth latent state preserves the corresponding geometric controls, incrementally reads newly available geometry, and keeps the conditioning fixed within each sampling window. Together, these mechanisms ensure exact preservation of latent history while bounding the active depth state by the window size. We evaluate continuous generation, paired history interventions, and long-horizon behavior across diverse scene categories. The same generator supports estimated, native, and on-demand simulator depth, while cached and incremental execution paths produce bitwise-identical outputs. Appearance changes and geometric control branches operate through the same interface without modifying committed history. The measured steady-state DiT execution path achieves real-time generation throughput, demonstrating the efficiency of UniWorld for continuous visual world simulation. Project page: https://zephipage.github.io/UniWorld.",
+      "authors": [
+        "Xin Zhang",
+        "Yabo Chen",
+        "Shuaiwei Wang",
+        "Zixuan Duan",
+        "Haibin Huang",
+        "Feng Xu",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2610.32381v3",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://zephipage.github.io/UniWorld",
+      "score": 77,
+      "priority": "skim",
+      "summary_cn": "Continuous visual world simulation requires coupling evolving scene geometry with temporally persistent appearance.",
+      "contribution_cn": "We present UniWorld, a unified framework that integrates depth trajectories and reference appearance within a shared video generation model.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, simulation, real-time, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.40191",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Video Generation Meets Agent Harness: Agentic Video Generation, Agentic World Modeling and Recursive Self-Improvement",
+      "abstract": "Video generation is shifting from end-to-end synthesis toward agentic generation, where planning, tool use, and feedback enable coherent, controllable multi-shot videos. In parallel, video world models provide action-conditioned observations and predicted futures, serving as interactive environments for agents. We study their intersection through the agent harness: an executable runtime that constructs context, exposes tools, maintains state, routes feedback, and manages budgets around video models. This report examines three directions. First, agentic video generation, where harnesses coordinate scripting, shot planning, asset management, production, and editing, alongside the evaluation challenges of these systems. Second, agentic world modeling, where harnesses mediate observation, control, execution, and state. We discuss hybrid designs in which game engines or agent-written programs maintain world state while video models render observations, and how agents and world models can mutually evaluate and improve one another. Third, recursive self-improvement (RSI) in video model development, distinguishing output revisions, updates to harness state, generator parameters, and evaluators, and changes to the improvement procedure itself. We identify how these improvements feed back into subsequent development. Across these directions, we analyze essential agent capabilities, including audiovisual perception, long-horizon planning, memory, code-based interaction, feedback-guided control, skill reuse, and multi-agent coordination. We conclude with challenges in autonomous video production, lifelong memory, programmable hybrid control, autonomous model development, provenance, cost accounting, and evaluation linking video quality and task performance to sustained improvements in models and harnesses.",
+      "authors": [
+        "Liaoyuan Fan",
+        "Yuhao Zheng",
+        "Dongxing Mao",
+        "Hangyu Ran",
+        "Siyuan Hu",
+        "Weijia Mao",
+        "Rui Zhao",
+        "Weijia Wu",
+        "Guian Fang",
+        "Yanzhe Chen",
+        "Zeyu Zhu",
+        "Yuxin Jiang",
+        "Yiren Song",
+        "Yuchao Gu",
+        "Junchao Yi",
+        "Qi Hu",
+        "Dan Kong",
+        "Alex Jinpeng Wang",
+        "Kevin Qinghong Lin",
+        "Mike Zheng Shou",
+        "Wei Liu"
+      ],
+      "url": "http://arxiv.org/abs/2610.40191v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "website: https://agentic-videogen.github.io/ github: https://github.com/agentic-videogen/awesome-agentic-videogen",
+      "score": 76,
+      "priority": "skim",
+      "summary_cn": "Video generation is shifting from end-to-end synthesis toward agentic generation, where planning, tool use, and feedback enable coherent, controllable multi-shot videos.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, action-conditioned, interactive, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.37381",
+      "date": "2026-10-27",
+      "topics": [
+        "World Models"
+      ],
+      "title": "PDRVLA: A Vision-Language-Action Model with Physical Dynamics Representations",
+      "abstract": "Vision--Language--Action (VLA) models generate robot actions from visual observations and language instructions, but their understanding of physical dynamics remains limited. Video world models can capture scene dynamics, yet generating future videos introduces high latency into the control loop. We introduce PDRVLA, whose lightweight Physical Dynamics Module extracts physical tokens from vision--language features to condition action generation without online video generation. The module learns through direct prediction of future RGB, depth, and optical-flow features, with auxiliary supervision through a frozen pretrained video world model. Training relies entirely on publicly available data, expanded through human-to-robot synthesis, subtask annotation, and embodied chain-of-thought (ECoT) annotation. Across four simulation benchmarks, PDRVLA achieves success rates of 99.3% on LIBERO, 89.9% on LIBERO-Plus, 93.6% on RoboTwin~2.0, and 81.5% on SimplerEnv. Ablations show improved future prediction with world-model supervision and evaluate how subtask conditioning, future object-pose supervision, and ECoT training affect action success.",
+      "authors": [
+        "Hanqing Wang",
+        "Zhaotian Cai",
+        "Ruichuan An",
+        "Bohan Zeng",
+        "Tao Zhang",
+        "Yilin Chen",
+        "Xu Jiang",
+        "Kaiquan Chen",
+        "Chongyang Wu",
+        "Haoran Li",
+        "Fan Yang",
+        "Mingan Lin",
+        "Wentao Zhang",
+        "Zenan Zhou",
+        "Youzheng Wu"
+      ],
+      "url": "http://arxiv.org/abs/2610.37381v2",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 67,
+      "priority": "skim",
+      "summary_cn": "Vision--Language--Action (VLA) models generate robot actions from visual observations and language instructions, but their understanding of physical dynamics remains limited.",
+      "contribution_cn": "We introduce PDRVLA, whose lightweight Physical Dynamics Module extracts physical tokens from vision--language features to condition action generation without online video generation.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, simulation, embodied, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.37983",
+      "date": "2026-10-27",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Hierarchical Diffusion for Camera-controlled Autoregressive Video Generation",
+      "abstract": "We address the task of long-video, camera-controlled generation from a single image. The dominant autoregressive paradigm suffers from two key limitations: (1) error accumulation over time, as distant frames are conditioned on previously generated outputs rather than ground truth, leading to drift; and (2) ambiguity in how to incorporate camera control. Standard solutions to both--such as self-forcing and conditioning on explicit 6-DOF poses--either incur significant computational overhead or produce drifting scene geometries over time. We propose a simple and lightweight framework that combines autoregressive generation (WanAR) with hierarchical long-context denoising (FixAR). To enforce scene geometry remains consistent with input cameras, we draw from feed-forward novel-view synthesis and reformulate video generation as a warping-and-inpainting problem. To mitigate drift, we introduce a hierarchical denoising strategy in which different stages condition on different temporal histories. Specifically, we first generate frames conditioned on the immediate past, and then refine them using a second denoiser conditioned on a temporally subsampled long-range history to enforce global consistency. This fine-to-coarse scheme enables each generated frame to effectively condition on the full temporal context without incurring a prohibitive cost. Experiments on RealEstate10k and DL3DV demonstrate that WanAR+FixAR outperforms prior methods for camera-controlled long-video generation, producing results that are both temporally stable and consistent with input camera trajectories.",
+      "authors": [
+        "Kaihua Chen",
+        "Yiming Gong",
+        "Deva Ramanan",
+        "Tarasha Khurana"
+      ],
+      "url": "http://arxiv.org/abs/2610.37983v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://kaihua-chen.github.io/wanar_fixar/",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "We address the task of long-video, camera-controlled generation from a single image.",
+      "contribution_cn": "We propose a simple and lightweight framework that combines autoregressive generation (WanAR) with hierarchical long-context denoising (FixAR).",
+      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：autoregressive, self-forcing, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.37566",
+      "date": "2026-10-27",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "ReferStream: Interactive Subject Injection for Streaming Video Generation",
+      "abstract": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene. Encoding references independently of the current scene provides little guidance for this integration, while keeping their features in persistent memory can interfere with established context. We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection. Joint Latent places reference latents in target regions of the latest scene latent, allowing reference features to be extracted in context. Cache Restoration uses these features to condition the injection chunk, then restores the overwritten global cache entries while retaining the newly generated history. This procedure incorporates new visual conditions without retraining the generator or revising emitted frames. We further introduce ReferStream Bench, a new benchmark with scheduled reference arrivals, evolving instructions, and explicit annotations of subject presence for InShot and MultiShot generation. Evaluation follows the event schedule and measures both the fidelity of new subjects and the preservation of established subjects, alongside video quality, text adherence, and count accuracy. Experiments on ReferStream Bench show higher scores for text adherence, subject similarity, and count accuracy than the compared baselines, including offline methods given all references in advance. Project page: https://xushuolin.github.io/ReferStream/.",
+      "authors": [
+        "Shuolin Xu",
+        "Guanyuan Li",
+        "Boyu Li",
+        "Kelu Yao",
+        "Xiaogang Xu",
+        "Hongchuan Yu",
+        "Shuicheng Yan",
+        "Xiaobin Hu"
+      ],
+      "url": "http://arxiv.org/abs/2610.37566v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "18 pages. Project page: https://xushuolin.github.io/ReferStream/",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene.",
+      "contribution_cn": "We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection.",
+      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：interactive, streaming, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.39232",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Seeing and Imagining as One: Unified Video Generation and 4D Perception for Embodied World Modeling",
+      "abstract": "Embodied world models should not only imagine plausible futures, but also perceive the geometric, semantic, and motion structure of the evolving world. We present GenSight, a unified embodied world model that brings future video generation and dense perception into a single pretrained video diffusion transformer. GenSight uses a unified spatiotemporal representation for video, depth, embodiment segmentation, and first-frame-relative 2D flow. Built on a shared DiT backbone, GenSight uses lightweight task modulation to predict all modalities within the same architecture. All tasks are jointly optimized within a unified velocity prediction space. At inference, GenSight supports two complementary modes: multi-step future video generation with aligned dense predictions and single-step dense perception from an observed video. By unifying modality representation, model architecture, and prediction space, GenSight avoids separate modality-specific pipelines and couples appearance, geometry, semantics, and motion in a shared representation. It promotes cross-modal consistency and allows dense perception to benefit from the spatiotemporal priors learned through video generation. Trained on embodied manipulation data spanning multiple robot embodiments and human-hand interactions, GenSight demonstrates strong performance in both video generation and dense 4D perception, highlighting the effectiveness of unifying seeing and imagining for embodied world modeling.",
+      "authors": [
+        "Haitang Feng",
+        "Zhuoman Liu",
+        "Zhennan Wang",
+        "Sheng Wang",
+        "Juelin Li",
+        "Chengzhi Zhao",
+        "Hexiang Wei",
+        "Lin Shao"
+      ],
+      "url": "http://arxiv.org/abs/2610.39232v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "Project page: https://gensight-rbs.github.io/",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Embodied world models should not only imagine plausible futures, but also perceive the geometric, semantic, and motion structure of the evolving world.",
+      "contribution_cn": "We present GenSight, a unified embodied world model that brings future video generation and dense perception into a single pretrained video diffusion transformer.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, embodied, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.39278",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WorldFlow: Joint Video and 3D Motion Prediction via Large-Scale Pretraining",
+      "abstract": "Predicting future physical states stands as a central challenge in embodied intelligence. Existing video world models leave 3D dynamics implicit, action-based formulations remain tied to specific robot configurations, and 3D motion prediction models use flow-only supervision, providing a limited learning signal for physical dynamics. To circumvent these limitations, we introduce \\method{}, a generative world model that jointly predicts future video and query-based 3D trajectories. By parameterizing 3D motion as continuous displacement tokens aligned with the video grid, a unified Mixture-of-Transformers (MoT) backbone jointly denoises both modalities under a rectified-flow objective. This formulation couples explicit geometric dynamics with visual evolution, effectively unlocking the physical commonsense embedded within pretrained video models. To empirically scale and validate this unified architecture, we train \\method{} on a heterogeneous mixture of 1.44 million object-level samples spanning simulated and real-world domains. We further introduce WorldFlowBench, comprising 1,678 evaluation samples from 11 data sources across simulated and real-world interactions, including spatial reasoning tasks. Across all three evaluation sets, WorldFlow achieves the lowest average displacement error (ADE) and final displacement error (FDE) among the evaluated learning-based methods. Notably, on the challenging SpatialCog set, WorldFlow achieves an ADE of 0.060 m, a 54.2\\% reduction compared with the strongest external baseline. It also reduces ADE and FDE by 55.9\\% and 68.5\\%, respectively, compared with its flow-only variant. Project page: https://worldflow-rbs.github.io/.",
+      "authors": [
+        "Yuhao Lu",
+        "Jiongxu Chen",
+        "Hexiang Wei",
+        "Jiajin Wu",
+        "Juelin Li",
+        "Mingjian Liang",
+        "Fan Yang",
+        "Zhuowei Liang",
+        "Zihao Liu",
+        "Zhennan Wang",
+        "Sheng Wang",
+        "Lin Shao"
+      ],
+      "url": "http://arxiv.org/abs/2610.39278v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 55,
+      "priority": "skim",
+      "summary_cn": "Predicting future physical states stands as a central challenge in embodied intelligence.",
+      "contribution_cn": "To circumvent these limitations, we introduce \\method{}, a generative world model that jointly predicts future video and query-based 3D trajectories.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}
