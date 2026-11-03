@@ -1,39 +1,76 @@
 {
-  "generated_at": "2026-11-03T04:07:43+00:00",
+  "generated_at": "2026-11-03T18:42:11+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2610.40614",
-      "date": "2026-10-29",
+      "id": "2611.02822",
+      "date": "2026-11-02",
       "topics": [
-        "World Models"
+        "Video Generation",
+        "Autoregressive and Streaming Video"
       ],
-      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
-      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches rely on either temporal context or explicit 3D memory, both of which scale poorly because memory grows with the length of the generated stream. Moreover, explicit 3D memories condition latent video generators by re-encoding RGB renderings, which precludes real-time generation. In this paper, we introduce a Latent 3D Gaussian Memory (L3G) that combines the efficiency of feed-forward reconstruction with a compact, rapidly renderable scene representation. Building on this memory, we propose L3G-World, in which a memory updater and a video diffusion transformer (DiT) alternate autoregressively to generate spatially consistent worlds. The memory updater spawns Gaussians in newly observed regions and refines existing ones, so that the memory grows with scene extent rather than stream length. Each Gaussian further stores a VAE latent feature, allowing the memory to be rendered directly into the DiT's latent space without VAE re-encoding. Experiments show that L3G-World achieves state-of-the-art generation quality and long-horizon spatial consistency, with up to $38.6\\times$ fewer 3D primitives, $3.2\\times$ faster memory updates, and $359\\times$ faster memory rendering relative to the most efficient prior 3D-memory baseline for each metric, enabling real-time world generation at 9 FPS.",
+      "title": "Disen-Forcing: Disentangling Semantic Anchoring from Motion for Autoregressive Video Diffusion",
+      "abstract": "Autoregressive video diffusion models (AR-VDMs) enable real-time, long-horizon video generation but degrade rapidly once the inference horizon outruns the training horizon, due to compounding exposure bias. To stabilize long rollouts, recent methods heuristically adopt frame sink, keeping initial frames as a persistent model context, inspired by attention sinks in LLMs. We revisit this design and find that the mechanism by which initial frames stabilize long-range consistency in AR-VDMs is not an LLM-style attention sink; instead, long-range consistency is anchored through a sparse subset of attention heads, while the majority of heads predominantly capture local temporal dynamics. This observation reveals an over-conditioning pathology in existing frame-sink strategies: by universally exposing every head to the pinned initial-frame context, the model becomes prone to collapsing motion toward the low-dynamic modes of the teacher during model distillation. We propose Disen-Forcing, a distillation-time plug-in for AR-VDMs that disentangles and reinforces this head specialization through disentangled context routing and motion-disentangling regularization. On long-horizon video generation benchmarks, Disen-Forcing simultaneously improves long-range consistency and motion dynamics of base AR-VDMs, a trade-off that sink-based methods fail to balance.",
       "authors": [
-        "Jinhyeok Choi",
-        "JoungBin Lee",
-        "Jongmin Lee",
-        "Minkyeong Jeon",
-        "Jiyoung Kim",
-        "Kaeun Han",
-        "Yoonjin Yoon",
-        "Seungryong Kim"
+        "Zhengyang Yu",
+        "Akio Hayakawa",
+        "Masato Ishii",
+        "Qingtao Yu",
+        "Xuesong Li",
+        "Takashi Shibuya",
+        "Yuki Mitsufuji",
+        "Jing Zhang"
       ],
-      "url": "http://arxiv.org/abs/2610.40614v1",
+      "url": "http://arxiv.org/abs/2611.02822v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "NeurIPS 2026. Project page: https://disen-forcing.github.io/",
+      "score": 78,
+      "priority": "must-read",
+      "summary_cn": "Autoregressive video diffusion models (AR-VDMs) enable real-time, long-horizon video generation but degrade rapidly once the inference horizon outruns the training horizon, due to compounding exposure bias.",
+      "contribution_cn": "We propose Disen-Forcing, a distillation-time plug-in for AR-VDMs that disentangles and reinforces this head specialization through disentangled context routing and motion-disentangling regularization.",
+      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：autoregressive, real-time, distillation, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.02782",
+      "date": "2026-11-02",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "History Forcing: Distilling History-Dependent Continuations for Long-Horizon Video World Models",
+      "abstract": "Few-step autoregressive video diffusion enables efficient generation, yet maintaining consistency over long rollouts remains challenging, especially when subjects or scenes reappear after going out of sight. Despite progress in fidelity and rollout robustness, existing distillation methods do not fully exploit richer historical information to constrain the student's current prediction. To address this gap, we introduce \\textbf{History Forcing}, a unified on-policy distillation framework that strengthens historical supervision for few-step autoregressive video generators. The framework uses the residual between teacher predictions with and without informative historical context to decouple this supervision. Such a historical context can be obtained using earlier generated chunks with less accumulated drift or a fixed-view teacher rollout that keeps the scene visible while the student looks away. The residual is then weighted and added to the score or velocity prediction used for distillation, forming a corrected target. By aligning the student with this corrected target through distillation, History Forcing incorporates long-range historical constraints into autoregressive generation. Our method achieves state-of-the-art performance among 1.3B models, with a VBench quality score of 85.07 for 15s video generation and a VBench-Long aggregate score of 79.82 for 60s generation. For out-of-sight world modeling, evaluations further demonstrate more plausible scene evolution and more consistent states when the camera returns, with Evolution Quality improving from 2.35 to 2.70 on PlayWorld and Object Consistency from 58.43 to 62.18 on MemoBench.",
+      "authors": [
+        "Hangyi Kuang",
+        "Chengzhi Wang",
+        "Yefei He",
+        "Weijie Wang",
+        "Yuke Zhao",
+        "Zhuokun Chen",
+        "Zisu Huang",
+        "Yifan Yang",
+        "Xiaoxuan He",
+        "Feng Chen",
+        "Bohan Zhuang"
+      ],
+      "url": "http://arxiv.org/abs/2611.02782v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project page: https://cvlab-kaist.github.io/L3G-World/",
-      "score": 78,
+      "comment": "Project Page: https://ziplab.co/History-Forcing-Project-Page/",
+      "score": 77,
       "priority": "must-read",
-      "summary_cn": "本文提出 L3G-World，一个从单张图像和相机轨迹出发、能够实时生成可探索且空间一致的长时域世界模型。其核心是潜空间三维高斯记忆 L3G：L3G-Mem 仅在记忆未覆盖或重建误差较大的区域生成新高斯，并对已有高斯进行残差细化，使记忆规模主要随场景空间范围增长；每个高斯同时存储 VAE 潜特征，可直接渲染为视频 DiT 的条件，避免 RGB 渲染后的 VAE 重编码。L3G-Gen 根据记忆和历史潜变量自回归生成视频块，生成结果再反馈给记忆更新器，形成闭环。结合少步蒸馏后，模型在 DL3DV 和 RealEstate10K 上取得较好的长时域一致性、生成质量、相机控制和三维一致性，并在单张 H100 GPU 上达到约 9 FPS。消融实验表明，自适应生成、记忆细化、全局自注意力和 VAE 潜特征提升都对效果或效率有重要作用。",
-      "contribution_cn": "1. 提出潜空间三维高斯记忆，将紧凑的三维场景表示与可直接渲染的视频潜特征结合，避免 RGB 渲染后的 VAE 重编码。 2. 提出 L3G-Mem，通过自适应生成新高斯和对已有高斯进行残差细化，减少重复累积并逐步纠正几何误差。 3. 提出 L3G-World，将记忆更新器与记忆条件视频扩散 DiT 交替组成自回归闭环，用持久化空间记忆支持长时域世界生成和回环一致性。 4. 使用少步、在策略蒸馏降低视频生成采样成本，实现实时生成。 5. 在多个数据集和指标上验证了方法的生成质量、长时域自一致性、三维记忆效率和相机可控性，并报告了显著的基元数量、重建速度和潜空间渲染速度优势。",
-      "relevance_cn": "本文与研究重点高度相关。它是一个动作或相机轨迹条件下的交互式视觉世界模型，通过自回归视频扩散生成器和持久化三维记忆实现闭环世界模拟；用户提供的相机运动作为生成条件，生成的视频块又用于更新记忆。方法直接针对长视频和无限延展生成中的空间漂移、回环不一致及记忆随时间增长的问题。其潜空间三维高斯表示、直接潜特征渲染、自适应记忆更新和少步蒸馏分别对应稀疏表示、缓存或记忆复用、实时推理与生成加速。论文报告在单张 H100 GPU 上约 9 FPS，说明其重点不仅是视频质量，也包括实时流式生成和可扩展的长时域计算。",
-      "limitations_cn": "论文主要在单张输入图像、预设相机轨迹和 DL3DV、RealEstate10K 数据集上评估，尚未证明对更复杂动态场景、真实交互动作或更广泛环境的泛化能力。生成质量和一致性依赖三维记忆的几何重建；消融实验表明，记忆细化或 VAE 潜特征 lifting 缺失会导致质量下降、模糊或渲染伪影。论文还报告了在 RealEstate10K 上部分方法在相机位姿误差和 MEt3R 三维一致性指标上优于 L3G-World，表明该方法并非所有指标都达到最优。模型训练需要多张 A100 GPU，实时推理结果则基于 H100，实际部署成本和不同硬件上的速度未充分讨论。论文未明确说明在更长时间、极大场景范围、快速或非平滑相机运动，以及复杂闭环交互下的性能上限。",
+      "summary_cn": "论文提出 History Forcing，用于解决少步自回归视频扩散在长时间生成和视野外世界建模中的历史依赖与一致性问题。核心做法是让自回归教师模型对同一噪声样本分别使用有、无额外历史上下文进行预测，以二者差异提取历史影响，并将其作为残差加到双向教师的得分目标或EMA教师的速度目标中。这样既保留双向教师对视觉质量的监督，又独立强化历史约束，避免将历史一致性与自回归教师的整体生成质量绑定。实验显示，该方法在15秒和60秒视频生成、摄像机离开后再访问的场景演化与物体保持方面均优于所比较的多数基线，且长视频训练开销仅小幅增加。",
+      "contribution_cn": "1. 提出 History Forcing 统一蒸馏框架，通过比较教师模型在有、无额外历史条件下的预测，提取上下文残差，并独立增强历史监督。该机制可用于DMD和在线策略自蒸馏，并兼容现有长视频训练方法。 2. 针对长视频生成，使用同一学生滚动过程中较早的视频块作为额外历史，以减轻主体外观和场景结构的累积漂移。 3. 针对视野外世界建模，使用保持初始摄像机视角的教师滚动生成来模拟学生视野之外的场景演化，并将其历史信息用于指导回访时的状态预测。 4. 在1.3B模型上，15秒视频的VBench质量分数达到85.07，60秒视频的VBench-Long综合分数达到79.82；在PlayWorld和MemoBench上也显著提升场景演化和物体一致性。 5. 通过消融实验证明历史权重、监督噪声时间步、共享近期上下文、历史构造方式及联合梯度归一化的重要性；历史监督仅使每步训练时间和峰值显存分别增加约2.31%和1.99%。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频扩散、自回归生成、长视频生成和因果/在线蒸馏，并通过历史残差监督增强长时间滚动中的一致性。其固定视角教师滚动生成机制面向动作条件或摄像机控制的视觉世界模型，能够在学生模型暂时看不到场景时模拟并保留场景状态，支持闭环式的离开—演化—回访过程。方法采用少步生成器和DMD/速度蒸馏，关注降低自回归视频生成成本；但论文没有直接提出稀疏注意力、缓存复用或实时推理系统。实验还表明，学生只需使用最长15秒的训练滚动即可外推生成60秒视频，这与长视频和流式生成目标直接相关。",
+      "limitations_cn": "论文明确指出，长视频生成实验限于1.3B规模的教师和学生模型，世界建模实验使用5B骨干网络。两类任务中的历史监督都受底层模型捕捉时间动态能力的限制。对于世界建模，固定视角教师滚动生成中的场景演化可能有限，从而削弱对视野外状态变化的监督。论文还指出，未来需要更大规模的教师和学生模型、更长的上下文训练，以及更强的物理合理动态模拟能力。除此之外，论文未明确说明该方法在真实实时交互延迟、极长时间跨度、复杂动作控制或更大规模模型上的表现。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "交互式世界模型根据用户动作生成视觉内容，但在实时长时域探索中保持空间一致性仍然具有挑战性。现有方法依赖时间上下文或显式三维记忆，这两类方法都难以扩展，因为记忆会随生成流的长度增长。此外，显式三维记忆通过重新编码 RGB 渲染结果来为潜空间视频生成器提供条件，这使实时生成难以实现。本文提出潜空间三维高斯记忆（Latent 3D Gaussian Memory，L3G），将前馈重建的高效率与紧凑、可快速渲染的场景表示相结合。在此记忆基础上，我们提出 L3G-World，其中记忆更新器与视频扩散 Transformer（DiT）以自回归方式交替工作，生成空间一致的世界。记忆更新器仅在新观测区域生成高斯，并细化已有高斯，使记忆规模随场景范围而非生成流长度增长。每个高斯还存储一个 VAE 潜特征，因此记忆可以直接渲染到 DiT 的潜空间中，无需通过 VAE 重新编码。实验表明，L3G-World 在生成质量和长时域自一致性方面达到了当前最优水平；相较于在各项指标上最高效的既有三维记忆基线，它最多可减少 38.6 倍三维基元，将记忆重建速度提高 3.2 倍，并将记忆渲染速度提高 359 倍，从而实现 9 FPS 的实时世界生成。",
-      "note_path": "2026-11-03/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md"
+      "abstract_cn": "少步自回归视频扩散能够实现高效生成，但在长时间滚动生成中保持一致性仍然具有挑战性，尤其是当主体或场景离开视野后再次出现时。尽管视频保真度和滚动生成的稳健性已有提升，现有蒸馏方法仍未充分利用更丰富的历史信息来约束学生模型当前的预测。为解决这一问题，我们提出 History Forcing，一种统一的在线策略蒸馏框架，用于增强对少步自回归视频生成器的历史监督。该框架利用教师模型在有信息历史上下文和无该上下文条件下预测结果之间的残差，将这类监督因素解耦。历史上下文可以来自较早生成且累积漂移更少的视频块，也可以来自固定视角的教师滚动生成：在学生模型转移视线时，教师模型持续观察场景。随后，将残差加权并加入用于蒸馏的得分或速度预测中，从而形成经过校正的目标。通过蒸馏使学生模型与该校正目标对齐，History Forcing 将长程历史约束融入自回归生成。在1.3B模型中，我们的方法取得了当前最先进的性能：生成15秒视频时，VBench质量分数达到85.07；生成60秒视频时，VBench-Long综合分数达到79.82。对于视野外世界建模，评估进一步表明，该方法能够产生更合理的场景演化，并在摄像机返回时保持更一致的场景状态：PlayWorld上的演化质量从2.35提升至2.70，MemoBench上的物体一致性从58.43提升至62.18。",
+      "note_path": "2026-11-03/2611.02782-history-forcing-distilling-history-dependent-con.md"
     },
     {
       "id": "2611.01677",
@@ -76,12 +113,12 @@
       "comment": "40 pages, 20 figures. Project page: https://xiaomiautoworldmodel.github.io/CausalWorldModel/",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文提出 Xiaomi Auto World Model 2.0，一个统一的流式因果世界模型，面向自动驾驶、机器人和通用视频生成。模型以 Wan2.2-5B 为基础，通过 VTA 分解视角与时间注意力，引入多视角 RoPE 和 Fused-PRoPE 处理可变视角及相机位姿，并以 VAE 潜空间拼接统一图像、动作、布局和场景上下文等条件。WorldRec 2.0 从多视角、多时刻观测重建静态和动态 3D 高斯，作为持续的显式场景记忆。数据方面，模型融合通用视频、驾驶与机器人数据，以及由仿真器、视频生成器和公开媒体构造的物理因果长尾数据，并采用预训练、中期训练和蒸馏后训练三阶段流程。GLA、流式 DMD 和随机梯度采样提升了长视频滚动生成的效率与稳定性。实验显示，模型在视频质量、深度预测、相机控制、多视角驾驶和机器人动作条件生成方面具有较强表现，并可用于闭环驾驶仿真、闭环强化学习训练和 WAM 规划。",
-      "contribution_cn": "1. 提出统一的流式因果世界模型，支持单视角至七视角、文本/图像/动作/布局/场景上下文等异构条件，以及通用视频、自动驾驶和机器人任务。 2. 设计 VTA，将时间注意力与视角注意力交替分解，使多视角建模复杂度由原始联合注意力的二次增长降低为与时间和视角规模相乘的形式。 3. 在时间分支中引入 GLA，并保留周期性的全 Softmax 注意力锚点；论文报告其相较全 Softmax 注意力将代表性层延迟降低 7.15 倍，并使时间缓存减少 97% 以上。 4. 提出 WorldRec 2.0，通过点对齐表示、场景结构化寄存器交互以及静态/动态 3D 高斯解码，构建可渲染的显式 3D 场景记忆，增强长时域生成的几何、外观和跨视角一致性。 5. 构建包含真实驾驶、机器人、仿真器、视频生成器和公开媒体的物理交互数据管线，覆盖碰撞、危险规避和物体故障等长尾或反事实事件。 6. 提出包含一致性蒸馏、流式 DMD、长视频滚动和随机梯度采样的后训练流程，以改善少步推理、流式生成和长期稳定性。 7. 将模型用于闭环仿真、闭环强化学习训练和 WAM；在论文所述实验中，闭环训练降低了碰撞率并提高了场景完成率和最小 TTC。",
-      "relevance_cn": "与研究重点高度相关。它直接研究视频扩散式世界模型的因果、自回归和流式生成，并将动作、物体状态、相机位姿及场景控制作为条件来预测后续视觉状态。其 VTA 和多视角 RoPE 面向跨视角视频生成，GLA、KV 缓存复用、固定缓存窗口、CUDA Graph、模型蒸馏和多 GPU 并行则针对实时生成与长视频效率。WorldRec 2.0 提供显式 3D 场景记忆，用于保持长时域和多视角几何一致性。模型还支持自动驾驶和机器人中的动作条件滚动、闭环仿真、闭环策略训练以及 WAM 决策，直接覆盖行动条件视觉世界模型和闭环模拟。论文报告在七视角设置下将因果 DiT 每块生成延迟降至 1.742 秒、潜空间吞吐达到每秒 1.148 帧，并展示最长 45 秒的内部驾驶生成。",
-      "limitations_cn": "论文明确显示 GLA 虽显著提升效率，但相较 VTA 的 FID 增加约 2.3%，说明效率提升伴随一定生成质量损失。长视频生成仍存在质量退化：在论文表 8 的单视角长视频设置中，模型的 FID 和 FVD 并非所有视角配置下都占优。机器人 TriWorldBench 的总体 TWB-Score 为 64.79，并非对比方法中的最高值，尽管轨迹准确率最佳。指代视频分割性能随时间偏移明显下降，IoU 从参考时刻的 0.6726 降至 t+30 的 0.1705。物理因果数据大量依赖仿真器、视频生成器和人工筛选，可能存在模拟到现实的分布差异；论文未量化这种差异。部分驾驶长时域结果使用内部数据，且 MiData、后训练数据及部署配置具有私有或场景特定性质，因此外部可复现性有限。闭环仿真中的车辆未来位姿还结合了 LQR 和线性二自由度运动学模型，不能完全代表真实车辆动力学。论文未明确说明模型在真实世界部署中的系统性安全边界、失效概率或对抗性条件下的可靠性。",
+      "summary_cn": "论文提出小米汽车世界模型2.0，一个统一的流式因果视频世界模型，面向自动驾驶和具身机器人等物理人工智能任务。模型通过VTA和多视角RoPE处理可变视角，通过VAE潜变量拼接统一文本、图像、动作、布局和场景上下文等条件，并利用WorldRec 2.0重建静态与动态3D高斯作为持久场景记忆。数据方面融合通用视频、驾驶与机器人数据，以及由仿真器和视频生成器构造的物理因果长尾数据。三阶段训练流程依次获得通用生成能力、多视角与可控生成能力，再通过一致性蒸馏和Streaming DMD提升流式推理效率及长视频稳定性。实验覆盖通用视频生成、深度与分割感知、相机控制、闭环仿真、闭环训练和WAM规划，结果显示模型具备较好的多视角一致性、物理交互建模和下游驾驶应用能力。",
+      "contribution_cn": "1. 提出统一的流式因果世界模型架构，将单视角视频生成、自动驾驶多视角生成和机器人动作条件生成纳入同一框架。2. 提出VTA，将时间注意力与视角注意力分解，降低多视角建模复杂度；结合GLA减少时间分支的计算量和KV缓存，在实验中相对全软注意力显著提升吞吐。3. 设计多视角RoPE和Fused-PRoPE，将视角位置、相机内外参及相机运动直接注入注意力计算，实现可控的跨视角生成。4. 提出WorldRec 2.0，在单次前向传播中从多视角、多时间观测重建静态和动态3D高斯，并将渲染结果作为显式、持久的几何场景记忆。5. 构建包含真实数据、仿真数据、生成数据和长尾物理事件的数据流水线，并采用预训练、中期训练和后训练的渐进式训练方案。6. 引入一致性蒸馏、Streaming DMD和随机梯度采样，改善少步推理、长时域滚动稳定性和训练显存占用。7. 将模型用于闭环驾驶仿真、基于世界模型的闭环策略训练和WAM规划，并在驾驶安全、相机控制、多视角一致性等任务上进行评估。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频生成和视频扩散式世界建模，并采用因果、自回归、流式滚动生成来支持长视频和闭环仿真。模型能够接收驾驶布局、机器人布局、场景上下文、相机位姿和动作序列等条件，预测动作及物体状态变化导致的后续场景演化，适用于动作条件视觉世界模型和闭环模拟。VTA降低多视角注意力的复杂度，GLA减少时间注意力的计算和KV缓存，WorldRec 2.0通过3D高斯场景记忆保持长时域的几何与外观一致性；一致性蒸馏和Streaming DMD则对应实时生成、少步推理和长视频稳定性。论文还展示了模型作为闭环训练环境和WAM组件的用途，支持策略学习、规划和动作生成。",
+      "limitations_cn": "论文明确指出，物理仿真器生成的数据虽然具有较好的物理一致性，但场景类型受限；视频生成器数据虽能扩大长尾覆盖范围，却仍需人工审查和过滤，且可能存在视觉或物理不一致。GLA相较VTA虽然显著降低延迟，但FID增加约2.3%，说明效率与生成质量之间存在权衡。模型的部署实验依赖多GPU并行、固定KV缓存、CUDA Graph和专用渲染加速，文中未证明其在一般硬件上的独立实时性。后训练容易导致模式坍塌和多样性下降，因此需要针对应用场景进行精心的数据平衡和单独训练。部分长时域结果来自内部驾驶数据，闭环仿真与真实世界之间仍可能存在分布差异。论文未明确说明在极长时间跨度、更加开放的环境或未覆盖的物理交互中的失效边界。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 Xiaomi Auto World Model 2.0，这是一种面向物理人工智能的统一流式因果世界模型。该模型对现实世界中的因果物理演化进行建模与生成，并在共享框架中统一异构条件输入，以实现视角一致的生成。具体而言，我们的架构集成了视角—时间注意力（VTA），用于捕捉跨视角空间依赖和时间动态；同时采用多视角旋转位置编码（RoPE），用于编码跨视角和跨时间的位置关系。我们进一步提出 WorldRec 2.0，在单次前向传播中根据多视角、多时间观测重建静态和动态 3D 高斯，并将其渲染结果作为显式场景上下文，以在长时域生成中保持几何结构和外观。异构条件输入通过共享表示空间中的基于 VAE 的潜特征拼接进行融合。我们将门控线性注意力（GLA）引入 VTA 的时间层，以实现高效流式推理，降低多视角滚动生成中的计算成本和 KV 缓存内存占用。为增强物理动力学建模能力，我们构建了覆盖多样交互和长尾事件的物理交互数据管线。从预训练阶段开始，这些数据便与大规模视频和异构视觉模态共同用于学习视觉、几何和动态先验。在中期训练阶段，跨多种视角配置进行质量感知的混合训练，进一步提升模型捕捉动作和物体状态如何影响后续场景演化的能力。在基于蒸馏的后训练之后，我们将所得模型应用于闭环仿真、闭环训练和世界动作模型（WAM）任务。这些应用表明，该模型能够生成物理一致的未来状态，并支持面向物理人工智能的世界状态预测、策略学习和动作生成。",
+      "abstract_cn": "我们提出小米汽车世界模型2.0，这是一个面向物理人工智能的统一流式因果世界模型。该模型对现实世界中的因果物理演化进行建模与生成，并统一异构条件输入，以实现视角一致的生成。其架构集成了视角-时间注意力（VTA），用于捕获跨视角空间依赖和时间动态；同时采用多视角旋转位置编码（RoPE），对跨视角和跨时间的位置关系进行编码。WorldRec 2.0在单次前向传播中，根据多视角、多时间观测重建静态和动态3D高斯，并将其渲染结果作为显式场景上下文，以在长时域生成过程中保持几何结构和外观。不同条件输入通过共享表示空间中的VAE潜变量拼接进行融合。我们将门控线性注意力（GLA）引入VTA的时间层，以实现高效流式推理，降低多视角滚动生成过程中的计算量和KV缓存内存占用。我们构建了覆盖多种交互和长尾事件的物理交互数据流水线。从预训练阶段开始，这些数据与大规模视频及异构视觉模态结合，用于学习视觉、几何和动态先验。在中期训练阶段，跨多种视角配置进行训练，进一步提升模型捕捉动作和物体状态如何塑造后续场景演化的能力。经过基于蒸馏的后训练后，我们将模型应用于闭环仿真、闭环训练和世界动作模型（WAM）。这些应用能够生成物理一致的未来状态，并支持物理人工智能中的世界状态预测、策略学习和动作生成。",
       "note_path": "2026-11-03/2611.01677-xiaomi-auto-world-model-2-0-causal-world-models.md"
     },
     {
@@ -136,14 +173,12 @@
       ],
       "comment": "Technical Report",
       "score": 72,
-      "priority": "must-read",
-      "summary_cn": "X-World 1.6 是面向自动驾驶的可控多摄像机生成式世界模型和闭环模拟器。它在 X-World 1.0 基础上扩大并筛选驾驶数据，增强自车运动、交通参与者、道路几何、交通信号灯和道路标线控制，并利用点云、3D 高斯场景、参考图像等实现绝对静态场景控制。模型通过双向基础训练以及因果少步适配、Connected Self Forcing、长时域调优和奖励引导强化学习，提升了流式生成、跨块反馈和长时间滚动的一致性。系统还提供基于人类评估、VLM 辅助标注和自动一致性指标的评测框架，并用于闭环策略评估、策略训练、失败复现和单目行车视频到环视视频的数据合成。实验显示其在若干时间、跨视角和轨迹一致性指标及失败行为复现方面优于 1.0，但长时间遮挡、远距离运动和不一致控制仍会导致场景记忆或世界演化不连贯。",
-      "contribution_cn": "1. 提出增强的可控基础模型，支持自车运动、交通参与者、道路几何、交通信号灯、道路标线和环境条件控制，并通过 GeoPE 提升多摄像机空间关联。 2. 引入绝对静态场景控制，利用点云、3D 高斯场景和参考图像保持特定地点的建筑、道路结构及外观，同时允许交通和动作条件变化。 3. 提出面向长时交互的后训练流程，包括因果少步适配、Causal Consistency Distillation、Connected Self Forcing、Shortcut Gradient Replay、长时域调优和 One Packed NFT 奖励优化。 4. 构建状态化流式推理系统，结合 KV 缓存、因果 VAE 状态、融合内核和 X-Cache，在报告配置下将吞吐提升至基线的 2.05 倍。 5. 建立结合人工评估、VLM 预标注与自动化跟踪/压缩/重建诊断的评测套件，用于分析视觉质量、时间一致性和跨视角几何一致性。 6. 展示其在 Virtual City 场景复用、闭环策略评估与训练、失败案例复现及行车视频多摄像机数据合成中的应用。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件、多摄像机、因果式、流式和自回归视频生成，并将生成模型用于自动驾驶中的闭环世界模拟。Connected Self Forcing 通过对生成历史进行可回传的跨块反馈，针对长视频滚动中的误差累积和时间一致性问题；长时域教师监督与学生滚动训练进一步面向长时生成。推理阶段使用状态化 KV 缓存、滑动窗口、因果 VAE 状态和 X-Cache，涉及缓存复用、稀疏/受限注意力与实时生成优化。系统还明确支持策略动作驱动的观测生成、闭环策略交互和世界演化，因此与动作条件视觉世界模型和闭环仿真直接对应。",
-      "limitations_cn": "论文明确指出，尽管模型支持超过 30 秒的多视角滚动，长时间遮挡和远距离运动仍可能使此前观察到的场景内容无法被忠实恢复，因此长滚动时长不等于持久场景记忆。此外，时间上不一致的控制输入可能造成画面断 discontinuity 或行为不一致。论文还指出，绝对静态场景控制依赖所提供参考覆盖范围，覆盖之外的内容由模型先验补全；不同控制条件之间需要相互兼容。部分下游结果仅基于选定案例，不能外推到全部模拟数据；内部道路测试的定量结果和业务相关训练细节未报告。论文未明确说明真实部署中的总体生成质量、完整资源成本及跨环境泛化能力。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "将生成式世界模型用于端到端闭环评估和策略学习，需要精确的场景控制、一致的观测，以及在长时间交互中持续保持生成质量。本报告介绍了 X-World 1.6，在 X-World 1.0 的基础上将其发展为更加可靠且多用途的驾驶模拟器。升级后的基础模型能够对交通语义进行更细粒度的控制，包括交通信号灯和道路标线，并提升了跨摄像机的空间一致性。Virtual City 能力通过一系列以多样化二维和三维参考为条件的模型扩展了场景构建能力，其中包括从单张图像生成多摄像机未来视频的支持。增强后的后训练框架实现了高效的因果式少步生成，具有更强的时间一致性、更好的长时滚动质量保持能力，以及更符合人类偏好的生成结果。我们还引入了专门的评测套件，以支持系统化评估并指导模型迭代。总体而言，这些升级扩展了 X-World 能够模拟的场景范围，并提高了生成观测的效率和可靠性，从而支持其在自动驾驶开发中的更广泛应用。",
-      "note_path": "2026-11-03/2611.00596-x-world-1-6-building-controllable-virtual-cities.md"
+      "priority": "skim",
+      "summary_cn": "Deploying generative world models for end-to-end closed-loop evaluation and policy learning requires precise scenario control, consistent observations, and sustained generation quality during extended interactions.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, driving, few-step, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
       "id": "2611.01858",
@@ -301,65 +336,36 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.01600",
-      "date": "2026-11-01",
+      "id": "2611.02526",
+      "date": "2026-11-02",
       "topics": [
         "World Models"
       ],
-      "title": "SCOUT: Planning under Occlusion via Object-Centric World Model Rollouts",
-      "abstract": "Robots manipulating in cluttered spaces must often plan from partial views where foreground objects occlude the target, surrounding geometry, and usable free space. Reactive policies often miss these hidden constraints, while exhaustive search becomes computationally prohibitive in dense clutter. We present SCOUT, an occlusion-aware planning framework that bridges high-level deliberation with grounded physical rollouts. SCOUT leverages an object-centric scene representation to reconstruct hidden geometry and derive a relational planning state capturing blocker hierarchies and accessibility corridors. To navigate the vast action space in clutter, an LLM proposes structured action candidates which are then rigorously evaluated via Monte Carlo Tree Search (MCTS) using a learned action-conditioned world model. Evaluations on 'Reveal' and 'Placement' tasks show that SCOUT outperforms Vision-Language-Action (VLA) policies, embodied agents, and 3D world models, with significant gains in long-horizon tasks requiring reasoning over occluded geometry. We further validate the framework's robustness through real-world robotic manipulation in a cluttered shelf environment.",
+      "title": "INTERACT: Learning Interaction-Aware World Dynamics from Driving Videos for Autonomous Driving",
+      "abstract": "Safe autonomous driving requires more than recognizing the current scene: the ego vehicle must anticipate how surrounding traffic participants will evolve under its own motion. However, existing end-to-end driving models typically encode scenes into dense visual or BEV features, leaving object-level interactions implicit. We propose (INTERACT INTERaction-aware Action-Conditioned Trajectory learning), a three-stage framework that learns a slot-based object-centric world model from unlabeled driving videos and transfers it to trajectory planning. INTERACT first learns recurrent slots that group dense visual features into temporally structured scene-entity representations without object annotations. It then infers latent ego actions from slot context and video transitions, and uses them to condition future slot prediction, capturing how ego motion and surrounding entities co-evolve. Finally, the learned slots, latent actions, and future slot predictions are distilled into a trajectory planner to guide trajectory generation and selection. Extensive experiments on NAVSIM and nuScenes validate the effectiveness of INTERACT. In particular, it achieves state-of-the-art performance on NAVSIM, with improvements in safety-critical collision metrics.",
       "authors": [
-        "Amir Hossain Raj",
-        "Xuesu Xiao"
+        "Zhan Chen",
+        "Songyan Zhang",
+        "Wenhui Huang",
+        "Zirui Li",
+        "Zhidong Wang",
+        "Qihang Huang",
+        "Shiyu Fang",
+        "Chen Lv"
       ],
-      "url": "http://arxiv.org/abs/2611.01600v1",
+      "url": "http://arxiv.org/abs/2611.02526v1",
       "categories": [
-        "cs.RO",
-        "cs.AI",
         "cs.CV"
       ],
       "comment": "",
-      "score": 59,
+      "score": 61,
       "priority": "skim",
-      "summary_cn": "Robots manipulating in cluttered spaces must often plan from partial views where foreground objects occlude the target, surrounding geometry, and usable free space.",
-      "contribution_cn": "We present SCOUT, an occlusion-aware planning framework that bridges high-level deliberation with grounded physical rollouts.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.01844",
-      "date": "2026-11-01",
-      "topics": [
-        "World Models"
-      ],
-      "title": "OpenNWM: A Generalist Navigation World Model with Latent Action Pretraining",
-      "abstract": "Navigation world models predict future observations conditioned on navigation actions to support planning, but their generalization across real-world environments remains constrained by the limited coverage of action-labeled data. Action-free navigation videos provide diverse visual experience, yet lack the recorded actions required for action-conditioned training. We introduce OpenNWM, a generalist navigation world model with latent action pretraining. It learns universal latent actions from large-scale action-free videos through visual prediction pretraining, and further aligns them with physical motions via action-conditioned post-training. To support video pretraining, we curate NavAnywhere, a large-scale action-free navigation video dataset comprising 17.5 million visual observations from 15 heterogeneous sources. It captures navigation by ground robots, humans, and drones, with diverse viewpoints and motion patterns across five broad scene types: residential areas, public and commercial spaces, urban settings, parks, and natural landscapes. Experiments demonstrate improved visual prediction on in-domain and out-of-domain benchmarks, together with improved navigation performance. These results show that latent-action pretraining enables diverse, action-free videos to improve dynamics learning and generalization for open-world navigation.",
-      "authors": [
-        "Dujun Nie",
-        "Ruiqi Song",
-        "Zixuan Wang",
-        "Hanqing Wang",
-        "Yifan Han",
-        "Baiyong Ding",
-        "Wenzhao Zheng",
-        "Hangbin Wu",
-        "Long Chen"
-      ],
-      "url": "http://arxiv.org/abs/2611.01844v1",
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "comment": "Project page: https://openspace-lab.github.io/OpenNWM/ Code: https://github.com/OpenSpace-Lab/OpenNWM",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "Navigation world models predict future observations conditioned on navigation actions to support planning, but their generalization across real-world environments remains constrained by the limited coverage of action-labeled data.",
-      "contribution_cn": "We introduce OpenNWM, a generalist navigation world model with latent action pretraining.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
+      "summary_cn": "Safe autonomous driving requires more than recognizing the current scene: the ego vehicle must anticipate how surrounding traffic participants will evolve under its own motion.",
+      "contribution_cn": "We propose (INTERACT INTERaction-aware Action-Conditioned Trajectory learning), a three-stage framework that learns a slot-based object-centric world model from unlabeled driving videos and transfers it to trajectory planning.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, driving",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 3
+  "cursor_summaries_completed": 2
 }

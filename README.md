@@ -17,6 +17,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-02**|**Omni-Life: Benchmarking Omnimodal Real-Time AI Assistants in People's Daily Lives**|Mengze Hong et.al.|[2611.02835](http://arxiv.org/abs/2611.02835)|null|
+|**2026-11-02**|**Disen-Forcing: Disentangling Semantic Anchoring from Motion for Autoregressive Video Diffusion**|Zhengyang Yu et.al.|[2611.02822](http://arxiv.org/abs/2611.02822)|null|
+|**2026-11-02**|**W2A: Distilling World Priors into Action Models for Real-Time Robotic Control**|Xiaopeng Zhang et.al.|[2611.02600](http://arxiv.org/abs/2611.02600)|null|
 |**2026-11-01**|**Synthetic Realities: Evaluating Human Ability to Distinguish AIGenerated Videos from Real Footage**|Danyal Sarfraz et.al.|[2611.01990](http://arxiv.org/abs/2611.01990)|null|
 |**2026-10-31**|**UniCaMo: Unified Camera and Motion Control for Video Diffusion Models**|Long Vu et.al.|[2611.00810](http://arxiv.org/abs/2611.00810)|null|
 |**2026-10-30**|**Seeing the Unseen: Unified Visible--Invisible Motion for Physically Consistent Video Generation**|Mingyang Bao et.al.|[2611.00293](http://arxiv.org/abs/2611.00293)|null|
@@ -1574,6 +1577,22 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-02**|**Isekai3D SDG: A Platform for Diverse Synthetic Gameplay Visual Data**|Rafal Karp et.al.|[2611.03626](http://arxiv.org/abs/2611.03626)|null|
+|**2026-11-02**|**Seeing Through the Illusion: Test-Time Scaling for World Action Models**|Cheikh Ahmed et.al.|[2611.03585](http://arxiv.org/abs/2611.03585)|null|
+|**2026-11-02**|**Toward Uncertainty-Aware, Physics-Grounded Human World Models**|Yufei Zhang et.al.|[2611.03428](http://arxiv.org/abs/2611.03428)|null|
+|**2026-11-02**|**Can You Predict the Next Mind? Toward Multi-Turn Multi-Party Mental World Modeling**|Jiahao Huang et.al.|[2611.02988](http://arxiv.org/abs/2611.02988)|null|
+|**2026-11-02**|**An intelligent satellite must do nothing well**|Fabrizio Pilone et.al.|[2611.02922](http://arxiv.org/abs/2611.02922)|null|
+|**2026-11-02**|**Predictive Safety Guardrails Do Not Always Make LLM Agents Safer**|Weixiang Zhao et.al.|[2611.02815](http://arxiv.org/abs/2611.02815)|null|
+|**2026-11-02**|**Creating Hybrid Interactive Narrative Systems with LLM: From Formal Description to Evaluation**|Jules Clerc et.al.|[2611.02807](http://arxiv.org/abs/2611.02807)|null|
+|**2026-11-02**|**History Forcing: Distilling History-Dependent Continuations for Long-Horizon Video World Models**|Hangyi Kuang et.al.|[2611.02782](http://arxiv.org/abs/2611.02782)|null|
+|**2026-11-02**|**Right Ranking, Wrong Scale: Reproducing the Robotic World Model's Dynamics Model and Testing the Uncertainty of Its Follow-up**|Joyjeet Singh et.al.|[2611.02699](http://arxiv.org/abs/2611.02699)|null|
+|**2026-11-02**|**Human-Oriented World Model**|Saihui Hou et.al.|[2611.02690](http://arxiv.org/abs/2611.02690)|null|
+|**2026-11-02**|**W2A: Distilling World Priors into Action Models for Real-Time Robotic Control**|Xiaopeng Zhang et.al.|[2611.02600](http://arxiv.org/abs/2611.02600)|null|
+|**2026-11-02**|**INTERACT: Learning Interaction-Aware World Dynamics from Driving Videos for Autonomous Driving**|Zhan Chen et.al.|[2611.02526](http://arxiv.org/abs/2611.02526)|null|
+|**2026-11-02**|**Gnomon4D: Learning Where and When to Focus for Geometric Motion-Grounded World-Action Modeling**|Lingwei Dang et.al.|[2611.02474](http://arxiv.org/abs/2611.02474)|null|
+|**2026-11-02**|**MirrorComm: A Communication-Efficient Cooperative Perception Framework via Mirrored World Models**|Shenghan Luo et.al.|[2611.02405](http://arxiv.org/abs/2611.02405)|null|
+|**2026-11-02**|**AgiWorld: An Agentic Video World Model for Building Persistent Worlds**|Shaoheng Fang et.al.|[2611.02341](http://arxiv.org/abs/2611.02341)|null|
+|**2026-11-01**|**Beyond Ensemble Disagreement: Predictive STL Monitoring of RL Locomotion under Distribution Shift**|Qurban Ali et.al.|[2611.02218](http://arxiv.org/abs/2611.02218)|null|
 |**2026-11-01**|**RubricWorld: World Model-Guided Rubric Optimization for LLM Graders**|Hongji Pu et.al.|[2611.01986](http://arxiv.org/abs/2611.01986)|null|
 |**2026-11-01**|**The (Butter)fly Dream: Linear Separability of World-Model Rollouts in a Connectome-Constrained Visual Model**|Junichiro Niimi et.al.|[2611.01866](http://arxiv.org/abs/2611.01866)|null|
 |**2026-11-01**|**OpenNWM: A Generalist Navigation World Model with Latent Action Pretraining**|Dujun Nie et.al.|[2611.01844](http://arxiv.org/abs/2611.01844)|null|
@@ -2631,6 +2650,8 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-02**|**Disen-Forcing: Disentangling Semantic Anchoring from Motion for Autoregressive Video Diffusion**|Zhengyang Yu et.al.|[2611.02822](http://arxiv.org/abs/2611.02822)|null|
+|**2026-11-02**|**History Forcing: Distilling History-Dependent Continuations for Long-Horizon Video World Models**|Hangyi Kuang et.al.|[2611.02782](http://arxiv.org/abs/2611.02782)|null|
 |**2026-11-01**|**Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation**|Haowei Zhu et.al.|[2611.01858](http://arxiv.org/abs/2611.01858)|null|
 |**2026-11-01**|**FinishStrong: Learning to End Well after Imperfect Start in Video Temporal Grounding**|Yuda Zou et.al.|[2611.01765](http://arxiv.org/abs/2611.01765)|null|
 |**2026-11-01**|**dKV Forcing: Separating Generation and Memory Representations through a Differentiable KV Cache**|Zhiqi Li et.al.|[2611.01648](http://arxiv.org/abs/2611.01648)|null|
