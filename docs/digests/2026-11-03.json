@@ -1,0 +1,365 @@
+{
+  "generated_at": "2026-11-03T04:07:43+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2610.40614",
+      "date": "2026-10-29",
+      "topics": [
+        "World Models"
+      ],
+      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
+      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches rely on either temporal context or explicit 3D memory, both of which scale poorly because memory grows with the length of the generated stream. Moreover, explicit 3D memories condition latent video generators by re-encoding RGB renderings, which precludes real-time generation. In this paper, we introduce a Latent 3D Gaussian Memory (L3G) that combines the efficiency of feed-forward reconstruction with a compact, rapidly renderable scene representation. Building on this memory, we propose L3G-World, in which a memory updater and a video diffusion transformer (DiT) alternate autoregressively to generate spatially consistent worlds. The memory updater spawns Gaussians in newly observed regions and refines existing ones, so that the memory grows with scene extent rather than stream length. Each Gaussian further stores a VAE latent feature, allowing the memory to be rendered directly into the DiT's latent space without VAE re-encoding. Experiments show that L3G-World achieves state-of-the-art generation quality and long-horizon spatial consistency, with up to $38.6\\times$ fewer 3D primitives, $3.2\\times$ faster memory updates, and $359\\times$ faster memory rendering relative to the most efficient prior 3D-memory baseline for each metric, enabling real-time world generation at 9 FPS.",
+      "authors": [
+        "Jinhyeok Choi",
+        "JoungBin Lee",
+        "Jongmin Lee",
+        "Minkyeong Jeon",
+        "Jiyoung Kim",
+        "Kaeun Han",
+        "Yoonjin Yoon",
+        "Seungryong Kim"
+      ],
+      "url": "http://arxiv.org/abs/2610.40614v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://cvlab-kaist.github.io/L3G-World/",
+      "score": 78,
+      "priority": "must-read",
+      "summary_cn": "本文提出 L3G-World，一个从单张图像和相机轨迹出发、能够实时生成可探索且空间一致的长时域世界模型。其核心是潜空间三维高斯记忆 L3G：L3G-Mem 仅在记忆未覆盖或重建误差较大的区域生成新高斯，并对已有高斯进行残差细化，使记忆规模主要随场景空间范围增长；每个高斯同时存储 VAE 潜特征，可直接渲染为视频 DiT 的条件，避免 RGB 渲染后的 VAE 重编码。L3G-Gen 根据记忆和历史潜变量自回归生成视频块，生成结果再反馈给记忆更新器，形成闭环。结合少步蒸馏后，模型在 DL3DV 和 RealEstate10K 上取得较好的长时域一致性、生成质量、相机控制和三维一致性，并在单张 H100 GPU 上达到约 9 FPS。消融实验表明，自适应生成、记忆细化、全局自注意力和 VAE 潜特征提升都对效果或效率有重要作用。",
+      "contribution_cn": "1. 提出潜空间三维高斯记忆，将紧凑的三维场景表示与可直接渲染的视频潜特征结合，避免 RGB 渲染后的 VAE 重编码。 2. 提出 L3G-Mem，通过自适应生成新高斯和对已有高斯进行残差细化，减少重复累积并逐步纠正几何误差。 3. 提出 L3G-World，将记忆更新器与记忆条件视频扩散 DiT 交替组成自回归闭环，用持久化空间记忆支持长时域世界生成和回环一致性。 4. 使用少步、在策略蒸馏降低视频生成采样成本，实现实时生成。 5. 在多个数据集和指标上验证了方法的生成质量、长时域自一致性、三维记忆效率和相机可控性，并报告了显著的基元数量、重建速度和潜空间渲染速度优势。",
+      "relevance_cn": "本文与研究重点高度相关。它是一个动作或相机轨迹条件下的交互式视觉世界模型，通过自回归视频扩散生成器和持久化三维记忆实现闭环世界模拟；用户提供的相机运动作为生成条件，生成的视频块又用于更新记忆。方法直接针对长视频和无限延展生成中的空间漂移、回环不一致及记忆随时间增长的问题。其潜空间三维高斯表示、直接潜特征渲染、自适应记忆更新和少步蒸馏分别对应稀疏表示、缓存或记忆复用、实时推理与生成加速。论文报告在单张 H100 GPU 上约 9 FPS，说明其重点不仅是视频质量，也包括实时流式生成和可扩展的长时域计算。",
+      "limitations_cn": "论文主要在单张输入图像、预设相机轨迹和 DL3DV、RealEstate10K 数据集上评估，尚未证明对更复杂动态场景、真实交互动作或更广泛环境的泛化能力。生成质量和一致性依赖三维记忆的几何重建；消融实验表明，记忆细化或 VAE 潜特征 lifting 缺失会导致质量下降、模糊或渲染伪影。论文还报告了在 RealEstate10K 上部分方法在相机位姿误差和 MEt3R 三维一致性指标上优于 L3G-World，表明该方法并非所有指标都达到最优。模型训练需要多张 A100 GPU，实时推理结果则基于 H100，实际部署成本和不同硬件上的速度未充分讨论。论文未明确说明在更长时间、极大场景范围、快速或非平滑相机运动，以及复杂闭环交互下的性能上限。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "交互式世界模型根据用户动作生成视觉内容，但在实时长时域探索中保持空间一致性仍然具有挑战性。现有方法依赖时间上下文或显式三维记忆，这两类方法都难以扩展，因为记忆会随生成流的长度增长。此外，显式三维记忆通过重新编码 RGB 渲染结果来为潜空间视频生成器提供条件，这使实时生成难以实现。本文提出潜空间三维高斯记忆（Latent 3D Gaussian Memory，L3G），将前馈重建的高效率与紧凑、可快速渲染的场景表示相结合。在此记忆基础上，我们提出 L3G-World，其中记忆更新器与视频扩散 Transformer（DiT）以自回归方式交替工作，生成空间一致的世界。记忆更新器仅在新观测区域生成高斯，并细化已有高斯，使记忆规模随场景范围而非生成流长度增长。每个高斯还存储一个 VAE 潜特征，因此记忆可以直接渲染到 DiT 的潜空间中，无需通过 VAE 重新编码。实验表明，L3G-World 在生成质量和长时域自一致性方面达到了当前最优水平；相较于在各项指标上最高效的既有三维记忆基线，它最多可减少 38.6 倍三维基元，将记忆重建速度提高 3.2 倍，并将记忆渲染速度提高 359 倍，从而实现 9 FPS 的实时世界生成。",
+      "note_path": "2026-11-03/2610.40614-l3g-world-real-time-infinite-world-generation-wi.md"
+    },
+    {
+      "id": "2611.01677",
+      "date": "2026-11-01",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Xiaomi Auto World Model 2.0: Causal World Models for Real-World Driving and Embodied Intelligence",
+      "abstract": "We present Xiaomi Auto World Model 2.0, a unified streaming causal world model for Physical AI. It models and generates causal physical evolution in the real world, and unifies heterogeneous conditioning inputs for view-consistent generation. The architecture integrates View-Temporal Attention (VTA) to capture cross-view spatial dependencies and temporal dynamics, together with Multi-view Rotary Position Encoding (RoPE) to encode positional relationships across views and time. WorldRec 2.0 reconstructs static and dynamic 3D Gaussians from multi-view, multi-temporal observations in a single forward pass and uses their renderings as explicit scene context to preserve geometry and appearance during long-horizon generation. Conditioning inputs are fused through VAE latent concatenation in a shared representation space. We incorporate Gated Linear Attention (GLA) into the temporal layers of VTA for efficient streaming inference, reducing computation and KV-cache memory during multi-view rollouts. A physical-interaction data pipeline covers diverse interactions and long-tailed events. From Pre-train onward, these data are combined with large-scale videos and heterogeneous visual modalities to learn visual, geometric, and dynamic priors. During Mid-train, training across diverse view configurations further improves the model's ability to capture how actions and object states shape subsequent scene evolution. After distillation-based Post-train, we apply the model to closed-loop simulation, closed-loop training, and World Action Model (WAM) applications. These applications generate physically consistent future states and support world-state prediction, policy learning, and action generation for Physical AI.",
+      "authors": [
+        "Zhenxin Zhu",
+        "Zhijian Huang",
+        "Cheng Chi",
+        "Yuru Wang",
+        "Jianhua Wu",
+        "Jiayi Guan",
+        "Yonggang Li",
+        "Mingfei Tu",
+        "JiaKui Hu",
+        "Tao Xu",
+        "Xianqi Wang",
+        "Hao Li",
+        "Yuechuan Pu",
+        "Qizeng Jia",
+        "Ruiling Yang",
+        "Hongxiao Yu",
+        "Xuhan Sheng",
+        "Jian Mao",
+        "Ruiqiang Zhang",
+        "Yu Zhu",
+        "Guang Chen",
+        "Hangjun Ye",
+        "Bing Wang"
+      ],
+      "url": "http://arxiv.org/abs/2611.01677v1",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "40 pages, 20 figures. Project page: https://xiaomiautoworldmodel.github.io/CausalWorldModel/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文提出 Xiaomi Auto World Model 2.0，一个统一的流式因果世界模型，面向自动驾驶、机器人和通用视频生成。模型以 Wan2.2-5B 为基础，通过 VTA 分解视角与时间注意力，引入多视角 RoPE 和 Fused-PRoPE 处理可变视角及相机位姿，并以 VAE 潜空间拼接统一图像、动作、布局和场景上下文等条件。WorldRec 2.0 从多视角、多时刻观测重建静态和动态 3D 高斯，作为持续的显式场景记忆。数据方面，模型融合通用视频、驾驶与机器人数据，以及由仿真器、视频生成器和公开媒体构造的物理因果长尾数据，并采用预训练、中期训练和蒸馏后训练三阶段流程。GLA、流式 DMD 和随机梯度采样提升了长视频滚动生成的效率与稳定性。实验显示，模型在视频质量、深度预测、相机控制、多视角驾驶和机器人动作条件生成方面具有较强表现，并可用于闭环驾驶仿真、闭环强化学习训练和 WAM 规划。",
+      "contribution_cn": "1. 提出统一的流式因果世界模型，支持单视角至七视角、文本/图像/动作/布局/场景上下文等异构条件，以及通用视频、自动驾驶和机器人任务。 2. 设计 VTA，将时间注意力与视角注意力交替分解，使多视角建模复杂度由原始联合注意力的二次增长降低为与时间和视角规模相乘的形式。 3. 在时间分支中引入 GLA，并保留周期性的全 Softmax 注意力锚点；论文报告其相较全 Softmax 注意力将代表性层延迟降低 7.15 倍，并使时间缓存减少 97% 以上。 4. 提出 WorldRec 2.0，通过点对齐表示、场景结构化寄存器交互以及静态/动态 3D 高斯解码，构建可渲染的显式 3D 场景记忆，增强长时域生成的几何、外观和跨视角一致性。 5. 构建包含真实驾驶、机器人、仿真器、视频生成器和公开媒体的物理交互数据管线，覆盖碰撞、危险规避和物体故障等长尾或反事实事件。 6. 提出包含一致性蒸馏、流式 DMD、长视频滚动和随机梯度采样的后训练流程，以改善少步推理、流式生成和长期稳定性。 7. 将模型用于闭环仿真、闭环强化学习训练和 WAM；在论文所述实验中，闭环训练降低了碰撞率并提高了场景完成率和最小 TTC。",
+      "relevance_cn": "与研究重点高度相关。它直接研究视频扩散式世界模型的因果、自回归和流式生成，并将动作、物体状态、相机位姿及场景控制作为条件来预测后续视觉状态。其 VTA 和多视角 RoPE 面向跨视角视频生成，GLA、KV 缓存复用、固定缓存窗口、CUDA Graph、模型蒸馏和多 GPU 并行则针对实时生成与长视频效率。WorldRec 2.0 提供显式 3D 场景记忆，用于保持长时域和多视角几何一致性。模型还支持自动驾驶和机器人中的动作条件滚动、闭环仿真、闭环策略训练以及 WAM 决策，直接覆盖行动条件视觉世界模型和闭环模拟。论文报告在七视角设置下将因果 DiT 每块生成延迟降至 1.742 秒、潜空间吞吐达到每秒 1.148 帧，并展示最长 45 秒的内部驾驶生成。",
+      "limitations_cn": "论文明确显示 GLA 虽显著提升效率，但相较 VTA 的 FID 增加约 2.3%，说明效率提升伴随一定生成质量损失。长视频生成仍存在质量退化：在论文表 8 的单视角长视频设置中，模型的 FID 和 FVD 并非所有视角配置下都占优。机器人 TriWorldBench 的总体 TWB-Score 为 64.79，并非对比方法中的最高值，尽管轨迹准确率最佳。指代视频分割性能随时间偏移明显下降，IoU 从参考时刻的 0.6726 降至 t+30 的 0.1705。物理因果数据大量依赖仿真器、视频生成器和人工筛选，可能存在模拟到现实的分布差异；论文未量化这种差异。部分驾驶长时域结果使用内部数据，且 MiData、后训练数据及部署配置具有私有或场景特定性质，因此外部可复现性有限。闭环仿真中的车辆未来位姿还结合了 LQR 和线性二自由度运动学模型，不能完全代表真实车辆动力学。论文未明确说明模型在真实世界部署中的系统性安全边界、失效概率或对抗性条件下的可靠性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "我们提出 Xiaomi Auto World Model 2.0，这是一种面向物理人工智能的统一流式因果世界模型。该模型对现实世界中的因果物理演化进行建模与生成，并在共享框架中统一异构条件输入，以实现视角一致的生成。具体而言，我们的架构集成了视角—时间注意力（VTA），用于捕捉跨视角空间依赖和时间动态；同时采用多视角旋转位置编码（RoPE），用于编码跨视角和跨时间的位置关系。我们进一步提出 WorldRec 2.0，在单次前向传播中根据多视角、多时间观测重建静态和动态 3D 高斯，并将其渲染结果作为显式场景上下文，以在长时域生成中保持几何结构和外观。异构条件输入通过共享表示空间中的基于 VAE 的潜特征拼接进行融合。我们将门控线性注意力（GLA）引入 VTA 的时间层，以实现高效流式推理，降低多视角滚动生成中的计算成本和 KV 缓存内存占用。为增强物理动力学建模能力，我们构建了覆盖多样交互和长尾事件的物理交互数据管线。从预训练阶段开始，这些数据便与大规模视频和异构视觉模态共同用于学习视觉、几何和动态先验。在中期训练阶段，跨多种视角配置进行质量感知的混合训练，进一步提升模型捕捉动作和物体状态如何影响后续场景演化的能力。在基于蒸馏的后训练之后，我们将所得模型应用于闭环仿真、闭环训练和世界动作模型（WAM）任务。这些应用表明，该模型能够生成物理一致的未来状态，并支持面向物理人工智能的世界状态预测、策略学习和动作生成。",
+      "note_path": "2026-11-03/2611.01677-xiaomi-auto-world-model-2-0-causal-world-models.md"
+    },
+    {
+      "id": "2611.00596",
+      "date": "2026-10-31",
+      "topics": [
+        "World Models"
+      ],
+      "title": "X-World 1.6: Building Controllable Virtual Cities with World Models",
+      "abstract": "Deploying generative world models for end-to-end closed-loop evaluation and policy learning requires precise scenario control, consistent observations, and sustained generation quality during extended interactions. This report presents \\emph{X-World~1.6}, advancing X-World~1.0 toward a more reliable and versatile driving simulator. The upgraded base model offers finer-grained control over traffic semantics, including traffic lights and road markings, together with improved spatial consistency across cameras. Virtual City capabilities broaden scenario construction through a family of models conditioned on diverse 2D and 3D references, including support for generating multi-camera future videos from a single image. An enhanced post-training framework enables efficient causal, few-step generation with stronger temporal coherence, better quality retention over longer rollouts, and improved alignment with human preferences. We also introduce a dedicated evaluation suite to support systematic assessment and guide model iteration. Together, these upgrades expand the scenarios X-World can simulate and improve the efficiency and reliability of its generated observations, supporting broader use in autonomous-driving development.",
+      "authors": [
+        " XPeng",
+        " :",
+        "Boyang Wang",
+        "Boyi Sun",
+        "Chaoda Zheng",
+        "Dongbin Zhang",
+        "Guangfeng Jiang",
+        "Hanlong Chen",
+        "Hongbin Lin",
+        "Jianlei Zheng",
+        "Jinhao Deng",
+        "Kai Yang",
+        "Kangjie Chen",
+        "Linkun Xu",
+        "Minqi Wang",
+        "Puyi Wang",
+        "Rongliang Cheng",
+        "Ruixin Liu",
+        "Shijia Chen",
+        "Shuang Deng",
+        "Sijia Chen",
+        "Sin Wai Choo",
+        "Tianyuan Xie",
+        "Xiangyu Li",
+        "Xianming Liu",
+        "Xingjie Liu",
+        "Xinlong Zheng",
+        "Xuejie Lv",
+        "Xuezhi Yang",
+        "Yi Guo",
+        "Yixiao Zeng",
+        "Yu Zhang",
+        "Yuecheng Ma",
+        "Yuhao Wang",
+        "Yuqi Zhang",
+        "Yuxin Peng"
+      ],
+      "url": "http://arxiv.org/abs/2611.00596v1",
+      "categories": [
+        "cs.AI"
+      ],
+      "comment": "Technical Report",
+      "score": 72,
+      "priority": "must-read",
+      "summary_cn": "X-World 1.6 是面向自动驾驶的可控多摄像机生成式世界模型和闭环模拟器。它在 X-World 1.0 基础上扩大并筛选驾驶数据，增强自车运动、交通参与者、道路几何、交通信号灯和道路标线控制，并利用点云、3D 高斯场景、参考图像等实现绝对静态场景控制。模型通过双向基础训练以及因果少步适配、Connected Self Forcing、长时域调优和奖励引导强化学习，提升了流式生成、跨块反馈和长时间滚动的一致性。系统还提供基于人类评估、VLM 辅助标注和自动一致性指标的评测框架，并用于闭环策略评估、策略训练、失败复现和单目行车视频到环视视频的数据合成。实验显示其在若干时间、跨视角和轨迹一致性指标及失败行为复现方面优于 1.0，但长时间遮挡、远距离运动和不一致控制仍会导致场景记忆或世界演化不连贯。",
+      "contribution_cn": "1. 提出增强的可控基础模型，支持自车运动、交通参与者、道路几何、交通信号灯、道路标线和环境条件控制，并通过 GeoPE 提升多摄像机空间关联。 2. 引入绝对静态场景控制，利用点云、3D 高斯场景和参考图像保持特定地点的建筑、道路结构及外观，同时允许交通和动作条件变化。 3. 提出面向长时交互的后训练流程，包括因果少步适配、Causal Consistency Distillation、Connected Self Forcing、Shortcut Gradient Replay、长时域调优和 One Packed NFT 奖励优化。 4. 构建状态化流式推理系统，结合 KV 缓存、因果 VAE 状态、融合内核和 X-Cache，在报告配置下将吞吐提升至基线的 2.05 倍。 5. 建立结合人工评估、VLM 预标注与自动化跟踪/压缩/重建诊断的评测套件，用于分析视觉质量、时间一致性和跨视角几何一致性。 6. 展示其在 Virtual City 场景复用、闭环策略评估与训练、失败案例复现及行车视频多摄像机数据合成中的应用。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件、多摄像机、因果式、流式和自回归视频生成，并将生成模型用于自动驾驶中的闭环世界模拟。Connected Self Forcing 通过对生成历史进行可回传的跨块反馈，针对长视频滚动中的误差累积和时间一致性问题；长时域教师监督与学生滚动训练进一步面向长时生成。推理阶段使用状态化 KV 缓存、滑动窗口、因果 VAE 状态和 X-Cache，涉及缓存复用、稀疏/受限注意力与实时生成优化。系统还明确支持策略动作驱动的观测生成、闭环策略交互和世界演化，因此与动作条件视觉世界模型和闭环仿真直接对应。",
+      "limitations_cn": "论文明确指出，尽管模型支持超过 30 秒的多视角滚动，长时间遮挡和远距离运动仍可能使此前观察到的场景内容无法被忠实恢复，因此长滚动时长不等于持久场景记忆。此外，时间上不一致的控制输入可能造成画面断 discontinuity 或行为不一致。论文还指出，绝对静态场景控制依赖所提供参考覆盖范围，覆盖之外的内容由模型先验补全；不同控制条件之间需要相互兼容。部分下游结果仅基于选定案例，不能外推到全部模拟数据；内部道路测试的定量结果和业务相关训练细节未报告。论文未明确说明真实部署中的总体生成质量、完整资源成本及跨环境泛化能力。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "将生成式世界模型用于端到端闭环评估和策略学习，需要精确的场景控制、一致的观测，以及在长时间交互中持续保持生成质量。本报告介绍了 X-World 1.6，在 X-World 1.0 的基础上将其发展为更加可靠且多用途的驾驶模拟器。升级后的基础模型能够对交通语义进行更细粒度的控制，包括交通信号灯和道路标线，并提升了跨摄像机的空间一致性。Virtual City 能力通过一系列以多样化二维和三维参考为条件的模型扩展了场景构建能力，其中包括从单张图像生成多摄像机未来视频的支持。增强后的后训练框架实现了高效的因果式少步生成，具有更强的时间一致性、更好的长时滚动质量保持能力，以及更符合人类偏好的生成结果。我们还引入了专门的评测套件，以支持系统化评估并指导模型迭代。总体而言，这些升级扩展了 X-World 能够模拟的场景范围，并提高了生成观测的效率和可靠性，从而支持其在自动驾驶开发中的更广泛应用。",
+      "note_path": "2026-11-03/2611.00596-x-world-1-6-building-controllable-virtual-cities.md"
+    },
+    {
+      "id": "2611.01858",
+      "date": "2026-11-01",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation",
+      "abstract": "Autoregressive video generation has achieved impressive results on short clips, yet generating long videos remains challenging due to error accumulation over extended horizons, where each predicted frame depends on potentially imperfect previous frames. Existing approaches typically rely on static context management strategies, such as sliding-window caches that discard early frames or fixed sink frames that permanently preserve initial content. These designs either lose critical long-range context or anchor generation to outdated information, which can lead to degraded fidelity, motion stagnation, and reduced diversity. In this paper, we propose Learning to Memorize (L2M), a learned context memory management framework that dynamically retains, evicts, and evolves historical frames according to predicted importance. The framework consists of an importance prediction router that estimates the relevance of each historical frame, degradation-aware training that improves robustness to noisy or corrupted context, and a dynamic memory initialization and evolution mechanism that updates long-term memory using exponential moving average (EMA) importance scores. This allows high-quality frames to replace stale anchors and enables memory to adapt naturally to scene evolution. Trained with a teacher-student distillation objective and sparsity regularization, L2M makes efficient use of a fixed KV-cache budget while preserving the most informative contextual information. Extensive experiments demonstrate that L2M improves long-horizon video generation quality and temporal consistency over existing baselines, providing a learned strategy for context memory management in long autoregressive video generation.",
+      "authors": [
+        "Haowei Zhu",
+        "Qijie Wang",
+        "Jia Li",
+        "Xing Wang",
+        "Tianyu Zhao",
+        "Jiexi Wang",
+        "Xurui Peng",
+        "Xinglong Wu",
+        "Junhai Yong",
+        "Bin Wan"
+      ],
+      "url": "http://arxiv.org/abs/2611.01858v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted at NeurIPS 2026",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Autoregressive video generation has achieved impressive results on short clips, yet generating long videos remains challenging due to error accumulation over extended horizons, where each predicted frame depends on potentially imperfect previous frames.",
+      "contribution_cn": "In this paper, we propose Learning to Memorize (L2M), a learned context memory management framework that dynamically retains, evicts, and evolves historical frames according to predicted importance.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, long video, temporal consistency, distillation, cache, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.00859",
+      "date": "2026-10-31",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Wave Forcing: Towards Speed-of-Light Streaming Video Generation",
+      "abstract": "Real-time long-video generation requires continuous output with consistent appearance and natural motion. Existing chunk-wise autoregressive methods face challenges in both generation efficiency and long-video quality: serialized denoising and history-cache refresh require two forward passes even with one-step denoising, and longer rollouts can degrade quality and cause camera drift. We propose Wave Forcing (WF), which co-designs generation, training, and execution for continuous video output with multi-step denoising. WF uses chunk-wise causal attention to access earlier, cleaner chunks before their denoising is complete, and distributes staggered denoising and cache-refresh stages across full-model replicas to achieve 1F1C: one output chunk per concurrent forward round after pipeline fill. To adapt the model to this continuous generation process, we develop a three-stage training procedure that successively introduces mixed-noise denoising, motion supervision, and causal adaptation using self-generated history. To execute this process efficiently, Wave Runtime (WaveRT) uses Wave Parallelism (WP) for early K/V delivery and communication-computation overlap, together with optimized kernels and pipelined VAE decoding. Experiments on Wan2.1-T2V-1.3B show that 5-step WF maintains overall quality comparable to Rolling Forcing while achieving higher Dynamic Degree on both short and long videos. Our system efficiency experiments show that 4-step WF achieves 147.6 DiT FPS and 134.8 end-to-end FPS on eight H200 GPUs, yielding 7.07x the single-GPU end-to-end throughput. In DiT-only tests with matched SageAttention+W8A8 backends, denoising steps, and GPU counts, WP delivers up to 2.53x the throughput of the faster of the Ulysses and Ring context-parallel baselines across six model scales (1.3B-14B).",
+      "authors": [
+        "Yijie Jin",
+        "Yuxuan Liu",
+        "Jiajun Xu",
+        "Ye Huang",
+        "Chuzhi Wang",
+        "Jiayang Li",
+        "Ruiyang Chen",
+        "Chenling Hong",
+        "Xu Wang",
+        "Zhijie Deng"
+      ],
+      "url": "http://arxiv.org/abs/2611.00859v1",
+      "categories": [
+        "cs.CV",
+        "cs.DC"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Real-time long-video generation requires continuous output with consistent appearance and natural motion.",
+      "contribution_cn": "We propose Wave Forcing (WF), which co-designs generation, training, and execution for continuous video output with multi-step denoising.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, long video, real-time, cache, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2610.42031",
+      "date": "2026-10-30",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Any Forcing: Any-Step Generality and One-Step Stability for Autoregressive Video Generation",
+      "abstract": "Autoregressive video generation enables efficient inference through streaming prediction. However, existing methods are typically restricted to fixed sampling steps, limiting the flexibility to balance generation quality and efficiency, while one-step generation suffers from degraded visual quality and error accumulation over long sequences, leading to content drift and generation collapse. To address these issues, we propose Any Forcing, a unified framework for achieving Any-Step Generality and One-Step Stability. Specifically, we introduce a unified adversarial discriminator that jointly performs real-distribution alignment, inter-step consistency alignment, and first-frame quality enhancement, enabling flexible sampling while preserving one-step generation quality. Furthermore, we propose a training-free adaptive long-term memory selection mechanism that selects historical states based on global semantic relevance and local value contribution, while remapping their temporal positions to preserve temporal relationships within the memory cache, thereby enabling stable one-step long-video generation. Experiments demonstrate that Any Forcing achieves high-quality and stable one-step autoregressive video generation, achieving 20.9 FPS and 24.7 FPS for short and long video generation on a single H100 GPU, respectively.",
+      "authors": [
+        "Jiahua Xu",
+        "Yijie Fang",
+        "Nannan Wang",
+        "Xunhao Lin",
+        "Li Cao",
+        "Lei Hao",
+        "Mingrui Zhu",
+        "Fei Gao",
+        "Xinbo Gao"
+      ],
+      "url": "http://arxiv.org/abs/2610.42031v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Autoregressive video generation",
+      "score": 71,
+      "priority": "skim",
+      "summary_cn": "Autoregressive video generation enables efficient inference through streaming prediction.",
+      "contribution_cn": "To address these issues, we propose Any Forcing, a unified framework for achieving Any-Step Generality and One-Step Stability.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, streaming, long video, cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.01815",
+      "date": "2026-11-01",
+      "topics": [
+        "World Models"
+      ],
+      "title": "When Does Latent Prediction Error Support Physical Surprise Claims in Video World Models?",
+      "abstract": "Prediction errors from video world models are often treated as physical surprise, but they can also reflect appearance, static content, motion, or ordinary prediction difficulty. We present an evaluation framework that separates what frozen representations contain, how they organize appearance and physical differences, and what changes a model's own prediction error. On IntPhys2, a benchmark of physically possible and impossible events, we compare representations from latent prediction, masked pixel reconstruction, and simple visual statistics. Appearance remains easy to decode, while V-JEPA2 exposes modest information about whether events are possible or impossible. Looking at the latent geometry, appearance changes become smaller compared with differences between videos, their directions line up more consistently across scenes, and their overlap with physical changes decreases in deeper layers. Across action-conditioned models, incorrect actions raise prediction error, while appearance changes also produce substantial responses. In Physion++ video clips, repeating a single frame can produce higher error than the original clip, while changing color throughout the clip can lower it. Using Kubric, a simulation and rendering framework, we find that impossible events can produce lower error than possible events. A fixed error threshold also incorrectly flags many possible events as impossible. A model can therefore represent physical information and respond to incorrect actions without its native prediction error reliably measuring physical surprise.",
+      "authors": [
+        "Anton Hristov",
+        "Aleksandar Slavov",
+        "Vasil Vasilev"
+      ],
+      "url": "http://arxiv.org/abs/2611.01815v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "28 pages, 12 figures, 25 tables. Accepted at the World Models in Physical AI Workshop, NeurIPS 2026",
+      "score": 67,
+      "priority": "skim",
+      "summary_cn": "Prediction errors from video world models are often treated as physical surprise, but they can also reflect appearance, static content, motion, or ordinary prediction difficulty.",
+      "contribution_cn": "We present an evaluation framework that separates what frozen representations contain, how they organize appearance and physical differences, and what changes a model's own prediction error.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.00455",
+      "date": "2026-10-30",
+      "topics": [
+        "World Models"
+      ],
+      "title": "TacMind: Benchmarking and Modeling Tactile Interaction States for Robotic Manipulation",
+      "abstract": "Tactile sensing provides robots with direct observations of contact physics, local geometry, and interaction dynamics, making it a vital source of feedback for contact-rich manipulation. However, existing tactile manipulation studies are often developed and evaluated within specific task settings, making it difficult to systematically compare how tactile information contributes under different interaction conditions. In this work, we develop a benchmark in simulation comprising 128 tasks organized around three complementary evaluation regimes: Precise, Recognition, and Dynamic. The benchmark further includes controlled static and dynamic task variants and 12 perturbation settings for evaluating robustness under changes in visual and physical conditions. These settings motivate studying tactile information as a temporally evolving interaction representation rather than only as an instantaneous observation. We therefore propose an action-conditioned latent predictive world model that integrates tactile history and learns a tactile state through prediction of future tactile latents. Building on this representation, we design a model that conditions action generation on the learned tactile state and uses predicted future tactile information to refine candidate actions through predictive tactile reflection. Experiments on the proposed benchmark show consistent gains from incorporating tactile information across the evaluated regimes. Project Page: https://tacmind-bench.github.io/",
+      "authors": [
+        "Jiaxin Shi",
+        "Zibin Wu",
+        "Yichi Zhang",
+        "Jianghua Duan",
+        "Siyu Zhu",
+        "Weihao Yuan"
+      ],
+      "url": "http://arxiv.org/abs/2611.00455v1",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "Project Page: https://tacmind-bench.github.io/",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Tactile sensing provides robots with direct observations of contact physics, local geometry, and interaction dynamics, making it a vital source of feedback for contact-rich manipulation.",
+      "contribution_cn": "In this work, we develop a benchmark in simulation comprising 128 tasks organized around three complementary evaluation regimes: Precise, Recognition, and Dynamic.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.01600",
+      "date": "2026-11-01",
+      "topics": [
+        "World Models"
+      ],
+      "title": "SCOUT: Planning under Occlusion via Object-Centric World Model Rollouts",
+      "abstract": "Robots manipulating in cluttered spaces must often plan from partial views where foreground objects occlude the target, surrounding geometry, and usable free space. Reactive policies often miss these hidden constraints, while exhaustive search becomes computationally prohibitive in dense clutter. We present SCOUT, an occlusion-aware planning framework that bridges high-level deliberation with grounded physical rollouts. SCOUT leverages an object-centric scene representation to reconstruct hidden geometry and derive a relational planning state capturing blocker hierarchies and accessibility corridors. To navigate the vast action space in clutter, an LLM proposes structured action candidates which are then rigorously evaluated via Monte Carlo Tree Search (MCTS) using a learned action-conditioned world model. Evaluations on 'Reveal' and 'Placement' tasks show that SCOUT outperforms Vision-Language-Action (VLA) policies, embodied agents, and 3D world models, with significant gains in long-horizon tasks requiring reasoning over occluded geometry. We further validate the framework's robustness through real-world robotic manipulation in a cluttered shelf environment.",
+      "authors": [
+        "Amir Hossain Raj",
+        "Xuesu Xiao"
+      ],
+      "url": "http://arxiv.org/abs/2611.01600v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "Robots manipulating in cluttered spaces must often plan from partial views where foreground objects occlude the target, surrounding geometry, and usable free space.",
+      "contribution_cn": "We present SCOUT, an occlusion-aware planning framework that bridges high-level deliberation with grounded physical rollouts.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.01844",
+      "date": "2026-11-01",
+      "topics": [
+        "World Models"
+      ],
+      "title": "OpenNWM: A Generalist Navigation World Model with Latent Action Pretraining",
+      "abstract": "Navigation world models predict future observations conditioned on navigation actions to support planning, but their generalization across real-world environments remains constrained by the limited coverage of action-labeled data. Action-free navigation videos provide diverse visual experience, yet lack the recorded actions required for action-conditioned training. We introduce OpenNWM, a generalist navigation world model with latent action pretraining. It learns universal latent actions from large-scale action-free videos through visual prediction pretraining, and further aligns them with physical motions via action-conditioned post-training. To support video pretraining, we curate NavAnywhere, a large-scale action-free navigation video dataset comprising 17.5 million visual observations from 15 heterogeneous sources. It captures navigation by ground robots, humans, and drones, with diverse viewpoints and motion patterns across five broad scene types: residential areas, public and commercial spaces, urban settings, parks, and natural landscapes. Experiments demonstrate improved visual prediction on in-domain and out-of-domain benchmarks, together with improved navigation performance. These results show that latent-action pretraining enables diverse, action-free videos to improve dynamics learning and generalization for open-world navigation.",
+      "authors": [
+        "Dujun Nie",
+        "Ruiqi Song",
+        "Zixuan Wang",
+        "Hanqing Wang",
+        "Yifan Han",
+        "Baiyong Ding",
+        "Wenzhao Zheng",
+        "Hangbin Wu",
+        "Long Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.01844v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "comment": "Project page: https://openspace-lab.github.io/OpenNWM/ Code: https://github.com/OpenSpace-Lab/OpenNWM",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "Navigation world models predict future observations conditioned on navigation actions to support planning, but their generalization across real-world environments remains constrained by the limited coverage of action-labeled data.",
+      "contribution_cn": "We introduce OpenNWM, a generalist navigation world model with latent action pretraining.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}

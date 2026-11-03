@@ -1,4 +1,4 @@
-## Updated on 2026.11.02
+## Updated on 2026.11.03
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -17,6 +17,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-01**|**Synthetic Realities: Evaluating Human Ability to Distinguish AIGenerated Videos from Real Footage**|Danyal Sarfraz et.al.|[2611.01990](http://arxiv.org/abs/2611.01990)|null|
+|**2026-10-31**|**UniCaMo: Unified Camera and Motion Control for Video Diffusion Models**|Long Vu et.al.|[2611.00810](http://arxiv.org/abs/2611.00810)|null|
+|**2026-10-30**|**Seeing the Unseen: Unified Visible--Invisible Motion for Physically Consistent Video Generation**|Mingyang Bao et.al.|[2611.00293](http://arxiv.org/abs/2611.00293)|null|
 |**2026-10-30**|**GeoFlip: Benchmarking Geometry-Sensitive Physics in Video Generation**|Yuqi Li et.al.|[2610.42002](http://arxiv.org/abs/2610.42002)|null|
 |**2026-10-30**|**Optimizing Stochastic Policy Geometry for Few-Step Flow Reinforcement Learning**|Zhuguanyu Wu et.al.|[2610.41949](http://arxiv.org/abs/2610.41949)|null|
 |**2026-10-30**|**GenDSR: Transferring Representations from Video Generation Models for Dynamic Spatial Reasoning**|Ke Yang et.al.|[2610.41314](http://arxiv.org/abs/2610.41314)|null|
@@ -27,7 +30,7 @@
 |**2026-10-27**|**Taming Noise Initialization for Zero-shot Video Restoration with Image Diffusion Priors**|Chong Wang et.al.|[2610.37290](http://arxiv.org/abs/2610.37290)|null|
 |**2026-10-27**|**Fast Approximate Line Nearest Neighbor Search**|Jiadong Xie et.al.|[2610.37256](http://arxiv.org/abs/2610.37256)|null|
 |**2026-10-27**|**TAPESTRY: A Single Backbone for Video Generation and Robot Control**|Jeremy A. Collins et.al.|[2610.36823](http://arxiv.org/abs/2610.36823)|null|
-|**2026-10-27**|**Adapting Video Models for Robot Control via Motion-guided Asymmetric Prediction**|Taeyoung Kim et.al.|[2610.36624](http://arxiv.org/abs/2610.36624)|null|
+|**2026-11-01**|**Adapting Video Models for Robot Control via Motion-guided Asymmetric Prediction**|Taeyoung Kim et.al.|[2610.36624](http://arxiv.org/abs/2610.36624)|null|
 |**2026-10-27**|**VibeVideoBench: Evaluating Multimodal Agents on Code-Driven Video Generation**|Muxi Diao et.al.|[2610.35864](http://arxiv.org/abs/2610.35864)|null|
 |**2026-10-26**|**VidEdit3D: Flexible 3D Gaussian Editing with Video Diffusion**|Yanming Yang et.al.|[2610.35756](http://arxiv.org/abs/2610.35756)|null|
 |**2026-10-26**|**Beyond Distribution Matching: Self-Supervised Representation Forcing for Few-Step Video Generation**|Junyi Chen et.al.|[2610.35594](http://arxiv.org/abs/2610.35594)|null|
@@ -1565,12 +1568,32 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20261102>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261103>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-01**|**RubricWorld: World Model-Guided Rubric Optimization for LLM Graders**|Hongji Pu et.al.|[2611.01986](http://arxiv.org/abs/2611.01986)|null|
+|**2026-11-01**|**The (Butter)fly Dream: Linear Separability of World-Model Rollouts in a Connectome-Constrained Visual Model**|Junichiro Niimi et.al.|[2611.01866](http://arxiv.org/abs/2611.01866)|null|
+|**2026-11-01**|**OpenNWM: A Generalist Navigation World Model with Latent Action Pretraining**|Dujun Nie et.al.|[2611.01844](http://arxiv.org/abs/2611.01844)|null|
+|**2026-11-01**|**When Does Latent Prediction Error Support Physical Surprise Claims in Video World Models?**|Anton Hristov et.al.|[2611.01815](http://arxiv.org/abs/2611.01815)|null|
+|**2026-11-01**|**ODE Policy: Robot Learning via Action Dynamics, Not Actions**|Jindou Jia et.al.|[2611.01729](http://arxiv.org/abs/2611.01729)|null|
+|**2026-11-01**|**Xiaomi Auto World Model 2.0: Causal World Models for Real-World Driving and Embodied Intelligence**|Zhenxin Zhu et.al.|[2611.01677](http://arxiv.org/abs/2611.01677)|null|
+|**2026-11-01**|**Stand-In Effects and Pooling Amplification: Design-Based Tests of Whether Biological World Models Use Actions**|Bowen Xu et.al.|[2611.01666](http://arxiv.org/abs/2611.01666)|null|
+|**2026-11-01**|**SCOUT: Planning under Occlusion via Object-Centric World Model Rollouts**|Amir Hossain Raj et.al.|[2611.01600](http://arxiv.org/abs/2611.01600)|null|
+|**2026-10-31**|**World Models Need Not Be Right to Rank Policies Right: Relative Bounds and Audit Limits**|Ahanaf Hasan Ariq et.al.|[2611.01139](http://arxiv.org/abs/2611.01139)|null|
+|**2026-10-31**|**pico-WAM: Evaluating Counterfactual Prediction and Planning Error in a Compact World Action Model**|Keivalya Pandya et.al.|[2611.01039](http://arxiv.org/abs/2611.01039)|null|
+|**2026-10-31**|**GURU: A Hierarchical Neuro-Symbolic Multi-Agent System for Verification-Aware Automation of Mission-Critical Digital Engineering and Operations**|Allan Grosvenor et.al.|[2611.01001](http://arxiv.org/abs/2611.01001)|null|
+|**2026-10-31**|**Why Koopman Structure Does Not Help Differentiable World Models for Humanoid Whole-Body Tracking**|Haizhou Ge et.al.|[2611.00951](http://arxiv.org/abs/2611.00951)|null|
+|**2026-10-31**|**Old Is Not False: Valid-Time Memory for Interactive Video World Models**|Ziming Wang et.al.|[2611.00758](http://arxiv.org/abs/2611.00758)|null|
+|**2026-10-31**|**Roz: A Taste Test for World Model Latents**|Kenneth Ge et.al.|[2611.00612](http://arxiv.org/abs/2611.00612)|null|
+|**2026-10-31**|**X-World 1.6: Building Controllable Virtual Cities with World Models**| XPeng et.al.|[2611.00596](http://arxiv.org/abs/2611.00596)|null|
+|**2026-10-31**|**WorldSketch: Sketching World Models for Zero-Shot Mobile Manipulation**|Jiaming Wang et.al.|[2611.00513](http://arxiv.org/abs/2611.00513)|null|
+|**2026-10-30**|**TacMind: Benchmarking and Modeling Tactile Interaction States for Robotic Manipulation**|Jiaxin Shi et.al.|[2611.00455](http://arxiv.org/abs/2611.00455)|null|
+|**2026-10-30**|**Spoofing the Latent State: Imperceptible Goal-Image Attacks Derail Planning in LeWorldModel**|Kunal Bhosikar et.al.|[2611.00427](http://arxiv.org/abs/2611.00427)|null|
+|**2026-10-30**|**TAP-Out: Tracking Any Point in 360° via Outpainting**|Finlay G. C. Hudson et.al.|[2611.00406](http://arxiv.org/abs/2611.00406)|null|
+|**2026-10-30**|**AuroraWorld: Structured 4D World Modeling for Exo-to-Ego Video Generation in Robot Manipulation**|Hao Xue et.al.|[2611.00177](http://arxiv.org/abs/2611.00177)|null|
 |**2026-10-30**|**Hierarchical World Models with Implicit Dynamics**|Gaoyue Zhou et.al.|[2610.42146](http://arxiv.org/abs/2610.42146)|null|
 |**2026-10-30**|**CausalWAM: Learning the Causes of Actions in World Action Models**|Juntao Cheng et.al.|[2610.42096](http://arxiv.org/abs/2610.42096)|null|
 |**2026-10-30**|**When Does Test-Time Search Help World Action Models? An Empirical Audit of Candidate Selection and Simulator Integrity**|Jun Liu et.al.|[2610.41970](http://arxiv.org/abs/2610.41970)|null|
@@ -2602,12 +2625,17 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20261102>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261103>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-01**|**Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation**|Haowei Zhu et.al.|[2611.01858](http://arxiv.org/abs/2611.01858)|null|
+|**2026-11-01**|**FinishStrong: Learning to End Well after Imperfect Start in Video Temporal Grounding**|Yuda Zou et.al.|[2611.01765](http://arxiv.org/abs/2611.01765)|null|
+|**2026-11-01**|**dKV Forcing: Separating Generation and Memory Representations through a Differentiable KV Cache**|Zhiqi Li et.al.|[2611.01648](http://arxiv.org/abs/2611.01648)|null|
+|**2026-10-31**|**What Helps Denoising Can Hurt Memory: Rethinking History in Long Video Generation**|Yubin Jing et.al.|[2611.00937](http://arxiv.org/abs/2611.00937)|null|
+|**2026-10-31**|**Wave Forcing: Towards Speed-of-Light Streaming Video Generation**|Yijie Jin et.al.|[2611.00859](http://arxiv.org/abs/2611.00859)|null|
 |**2026-10-30**|**Any Forcing: Any-Step Generality and One-Step Stability for Autoregressive Video Generation**|Jiahua Xu et.al.|[2610.42031](http://arxiv.org/abs/2610.42031)|null|
 |**2026-10-29**|**FutureWorld: A Plug-and-Play Causal Next-State Predictor for Interactive Video World Exploration**|Guangyuan Li et.al.|[2610.39619](http://arxiv.org/abs/2610.39619)|null|
 |**2026-10-28**|**StreamStudio: Exploring Video Authoring with Streaming Autoregressive Generation**|Boyu Li et.al.|[2610.38467](http://arxiv.org/abs/2610.38467)|null|
@@ -2726,7 +2754,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20261102>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261103>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -2767,5 +2795,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20261102>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261103>back to top</a>)</p>
 
