@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-04T03:26:13+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-04T18:54:45+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -18,25 +18,25 @@
 - **评分**：77/100
 - **作者**：Hangyi Kuang, Chengzhi Wang, Yefei He et al.
 - **方向**：World Models, Autoregressive and Streaming Video
-- **一句话**：论文提出History Forcing，用于解决少步自回归视频扩散在长时间生成和视野外世界建模中的历史一致性问题。核心做法是让自回归教师模型分别在有无额外历史条件下预测同一个噪声视频块，并利用两者的预测残差表示历史信息的影响，再将该残差加到双向教师的DMD分数或EMA教师的速度目标上。对于长视频，额外历史来自学生滚动过程中较早、漂移较小的视频块；对于视野外…
+- **一句话**：论文提出History Forcing，用于解决少步自回归视频扩散在长时生成和视野外世界建模中的历史一致性问题。方法比较自回归教师在有无额外历史条件下对同一噪声视频块的预测，提取历史引起的上下文残差，并将其加到双向教师的分数目标或EMA教师的速度目标中，从而把历史监督与整体视觉质量监督解耦。长视频任务使用学生滚动过程中较早且漂移较小的视频块作为历史；视野外…
 - **精读笔记**：[打开笔记](../notes/2026-11-04/2611.02782-history-forcing-distilling-history-dependent-con.md)
 
-### 3. [Xiaomi Auto World Model 2.0: Causal World Models for Real-World Driving and Embodied Intelligence](http://arxiv.org/abs/2611.01677v1)
+### 3. [PrimeSim: A Generalist World Model Simulator from Large-Scale Cross-Embodiment Demonstrations](http://arxiv.org/abs/2611.04870v1)
+
+- **评分**：74/100
+- **作者**：Travis Davies, Wentao Ma, Lihao Guo et al.
+- **方向**：World Models
+- **一句话**：PrimeSim 将预训练视频生成器改造为面向机器人操作的动作条件、多视角、长时域自回归世界模型。模型在 30,110 小时、22 个机器人平台的数据上进行中期训练，通过统一跨具身动作表示、帧对齐双路径动作条件和视角感知交错注意力提升动作执行与多视角一致性。后训练阶段结合因果分块生成、四步一致性蒸馏、自 rollout 分布匹配和分层 KV-cache 时…
+- **精读笔记**：[打开笔记](../notes/2026-11-04/2611.04870-primesim-a-generalist-world-model-simulator-from.md)
+
+## 快速浏览
+
+### 1. [Xiaomi Auto World Model 2.0: Causal World Models for Real-World Driving and Embodied Intelligence](http://arxiv.org/abs/2611.01677v1)
 
 - **评分**：74/100
 - **作者**：Zhenxin Zhu, Zhijian Huang, Cheng Chi et al.
 - **方向**：World Models
-- **一句话**：论文提出一个面向自动驾驶和具身机器人的统一流式因果世界模型，支持单视角至七视角、文本/图像/相机位姿/驾驶或机器人动作等异构条件输入。模型以VTA分解跨时间与跨视角注意力，以GLA降低长序列推理的计算和缓存开销，并通过WorldRec 2.0重建静态与动态3D高斯场景作为持续的几何记忆。论文构建了融合通用视频、真实物理世界数据、仿真数据和视频生成长尾数据的…
-- **精读笔记**：[打开笔记](../notes/2026-11-04/2611.01677-xiaomi-auto-world-model-2-0-causal-world-models.md)
-
-## 快速浏览
-
-### 1. [X-World 1.6: Building Controllable Virtual Cities with World Models](http://arxiv.org/abs/2611.00596v1)
-
-- **评分**：72/100
-- **作者**：XPeng,  :, Boyang Wang et al.
-- **方向**：World Models
-- **一句话**：Deploying generative world models for end-to-end closed-loop evaluation and policy learning requires precise scenario control, consistent observations, and sustained generation qu…
+- **一句话**：We present Xiaomi Auto World Model 2.0, a unified streaming causal world model for Physical AI.
 
 ### 2. [Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation](http://arxiv.org/abs/2611.01858v1)
 
@@ -73,9 +73,9 @@
 - **方向**：World Models
 - **一句话**：Predicting how the world evolves in response to robot actions is central to policy learning, evaluation, and planning.
 
-### 7. [TacMind: Benchmarking and Modeling Tactile Interaction States for Robotic Manipulation](http://arxiv.org/abs/2611.00455v1)
+### 7. [INTERACT: Learning Interaction-Aware World Dynamics from Driving Videos for Autonomous Driving](http://arxiv.org/abs/2611.02526v1)
 
-- **评分**：65/100
-- **作者**：Jiaxin Shi, Zibin Wu, Yichi Zhang et al.
+- **评分**：61/100
+- **作者**：Zhan Chen, Songyan Zhang, Wenhui Huang et al.
 - **方向**：World Models
-- **一句话**：Tactile sensing provides robots with direct observations of contact physics, local geometry, and interaction dynamics, making it a vital source of feedback for contact-rich manipu…
+- **一句话**：Safe autonomous driving requires more than recognizing the current scene: the ego vehicle must anticipate how surrounding traffic participants will evolve under its own motion.
