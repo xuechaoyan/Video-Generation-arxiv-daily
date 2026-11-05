@@ -19,7 +19,7 @@
 |---|---|---|---|---|
 |**2026-11-04**|**ReactWorld: Structuring Interaction Responses for Embodied Video Generation**|Hanwei Liu et.al.|[2611.06120](http://arxiv.org/abs/2611.06120)|null|
 |**2026-11-03**|**DreamX: Video Diffusion Model is a Universal Latent Action Learner**|Jisoo Kim et.al.|[2611.05377](http://arxiv.org/abs/2611.05377)|null|
-|**2026-11-03**|**RoboTryOn: Synthesizing Dexterous Robot Demonstrations from Human Videos via Virtual Try-On**|Seungyong Lee et.al.|[2611.05163](http://arxiv.org/abs/2611.05163)|null|
+|**2026-11-04**|**RoboTryOn: Synthesizing Dexterous Robot Demonstrations from Human Videos via Virtual Try-On**|Seungyong Lee et.al.|[2611.05163](http://arxiv.org/abs/2611.05163)|null|
 |**2026-11-04**|**FloMo: 3D Scene Flow as a World Action Model Intermediate for Learning from Human Video**|Jeremy Collins et.al.|[2611.05062](http://arxiv.org/abs/2611.05062)|null|
 |**2026-11-04**|**Future Representation Distillation for Imagination-free World Action Models**|Jaehyeong Jo et.al.|[2611.04527](http://arxiv.org/abs/2611.04527)|null|
 |**2026-11-03**|**CounterSketch: Physics-Grounded Counterfactual Reasoning for Sketch-to-Video Generation**|Hien Trinh et.al.|[2611.04244](http://arxiv.org/abs/2611.04244)|null|
@@ -29,7 +29,7 @@
 |**2026-11-01**|**Synthetic Realities: Evaluating Human Ability to Distinguish AIGenerated Videos from Real Footage**|Danyal Sarfraz et.al.|[2611.01990](http://arxiv.org/abs/2611.01990)|null|
 |**2026-10-31**|**UniCaMo: Unified Camera and Motion Control for Video Diffusion Models**|Long Vu et.al.|[2611.00810](http://arxiv.org/abs/2611.00810)|null|
 |**2026-10-30**|**Seeing the Unseen: Unified Visible--Invisible Motion for Physically Consistent Video Generation**|Mingyang Bao et.al.|[2611.00293](http://arxiv.org/abs/2611.00293)|null|
-|**2026-10-30**|**GeoFlip: Benchmarking Geometry-Sensitive Physics in Video Generation**|Yuqi Li et.al.|[2610.42002](http://arxiv.org/abs/2610.42002)|null|
+|**2026-11-04**|**GeoFlip Preview: Benchmarking Geometry-Sensitive Physics in Video Generation**|Yuqi Li et.al.|[2610.42002](http://arxiv.org/abs/2610.42002)|null|
 |**2026-10-30**|**Optimizing Stochastic Policy Geometry for Few-Step Flow Reinforcement Learning**|Zhuguanyu Wu et.al.|[2610.41949](http://arxiv.org/abs/2610.41949)|null|
 |**2026-10-30**|**GenDSR: Transferring Representations from Video Generation Models for Dynamic Spatial Reasoning**|Ke Yang et.al.|[2610.41314](http://arxiv.org/abs/2610.41314)|null|
 |**2026-10-30**|**MotorSense: A Video-EMG Dataset of Motoric Representations for Action Understanding**|Eadom Dessalene et.al.|[2610.41127](http://arxiv.org/abs/2610.41127)|null|
@@ -1583,6 +1583,10 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-04**|**Motion-guided Contrastive Regularization For Latent World Models**|Yiwen Chen et.al.|[2611.06901](http://arxiv.org/abs/2611.06901)|null|
+|**2026-11-04**|**Open-HumanScale: An Open Recipe for Scaling Human and Robot Experience for Embodied Foundation Models**|Juncheng Ma et.al.|[2611.06817](http://arxiv.org/abs/2611.06817)|null|
+|**2026-11-04**|**Detecting Silent Action-Interface Mismatch with Calibrated Relational World Models**|Rui Zhu et.al.|[2611.06653](http://arxiv.org/abs/2611.06653)|null|
+|**2026-11-04**|**MKD2World: A Typed Spatial MarkDown World Model For Web Agents**|Zhihao Nan et.al.|[2611.06544](http://arxiv.org/abs/2611.06544)|null|
 |**2026-11-04**|**Traffic-VL: Reinforced Vision-Language Models for Generalizable End-to-End Traffic Signal Control**|Xingchen Zou et.al.|[2611.06353](http://arxiv.org/abs/2611.06353)|null|
 |**2026-11-04**|**ReactWorld: Structuring Interaction Responses for Embodied Video Generation**|Hanwei Liu et.al.|[2611.06120](http://arxiv.org/abs/2611.06120)|null|
 |**2026-11-04**|**TouchéWorld tech report : Towards Online Unified Camera--Hand Exploration in Generative Worlds**|Jiaao Yu et.al.|[2611.06061](http://arxiv.org/abs/2611.06061)|null|
@@ -2686,6 +2690,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-04**|**EvoWorld: Towards Out-of-Sight World Evolution in Generative Video Models**|Yequan Bie et.al.|[2611.06748](http://arxiv.org/abs/2611.06748)|null|
 |**2026-11-04**|**NanoKV: High-Ratio KV Cache Compression for Autoregressive Video Generation**|Jiacheng Lu et.al.|[2611.06377](http://arxiv.org/abs/2611.06377)|null|
 |**2026-11-03**|**Runway Characters: Serving a 57B Video Diffusion Transformer for Real-Time Conversation**|Rohan Agarwal et.al.|[2611.05642](http://arxiv.org/abs/2611.05642)|null|
 |**2026-11-03**|**What Remains in Sight? Autoregressive Video Decoding as Representation-Guided Context Rewriting**|Lixuan He et.al.|[2611.04164](http://arxiv.org/abs/2611.04164)|null|

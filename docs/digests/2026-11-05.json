@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T03:49:06+00:00",
+  "generated_at": "2026-11-05T19:06:06+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -64,12 +64,12 @@
       "comment": "Project Page: https://ziplab.co/History-Forcing-Project-Page/",
       "score": 77,
       "priority": "must-read",
-      "summary_cn": "本文提出History Forcing，用于解决少步自回归视频扩散在长时间生成和视野外场景演化中的历史一致性问题。方法比较自回归教师在有、无额外历史信息时对同一噪声片段的预测，以提取历史残差，并将其加入双向教师的分数目标或EMA教师的速度目标，从而在保留视觉质量监督的同时强化长程历史约束。实验显示，该方法改善了15秒和60秒视频的主体、背景及运动一致性，也提升了摄像机离开后场景演化和返回时的物体状态一致性，同时训练开销仅小幅增加。",
-      "contribution_cn": "1. 提出History Forcing统一蒸馏框架，通过有历史与无历史教师预测之间的上下文残差，将历史监督与整体生成质量监督解耦，并可用于DMD和在线策略自蒸馏。 2. 针对长视频生成，使用同一学生滚动中的较早生成片段构造历史，减轻主体外观和场景布局的累积漂移。 3. 针对视野外世界建模，使用保持固定视角的教师滚动生成构造不可见期间的历史，监督场景演化及摄像机返回后的状态恢复。 4. 在1.3B模型上取得15秒VBench质量85.07和60秒VBench-Long聚合79.82；在PlayWorld和MemoBench上提升场景演化、主体身份和物体一致性。 5. 通过仅对一个随机片段施加历史监督，将相对DMD的每步训练时间和峰值显存增幅控制在2.31%和1.99%。",
-      "relevance_cn": "与研究重点高度相关。该工作直接研究视频扩散、自回归生成、长视频生成和视频世界模型。其核心方法通过历史残差蒸馏增强长程一致性，适用于少步生成器，因而兼顾生成效率与长期稳定性；固定视角教师滚动还支持摄像机离开视野后的闭环场景模拟和状态演化。方法建立在DMD、在线策略蒸馏和速度目标之上，与实时生成、蒸馏和流式/因果生成密切相关，但论文未以缓存复用或稀疏注意力为主要技术贡献。",
-      "limitations_cn": "论文明确指出，长视频实验仅使用1.3B规模的教师和学生模型，世界建模实验使用5B骨干网络。历史监督的有效性仍受底层模型捕捉时间动态能力的限制；在世界建模中，固定视角教师滚动生成的场景演化可能有限，从而削弱对视野外状态变化的监督。论文还指出需要进一步研究更大规模的教师和学生、更长上下文训练，以及物理上更合理的世界模型动态模拟。",
+      "summary_cn": "论文提出History Forcing，用于解决少步自回归视频扩散在长时间生成和视野外世界建模中的历史一致性问题。方法比较自回归教师模型在有、无额外历史上下文时对同一噪声视频块的预测，提取历史引起的上下文残差，并将其加权加入双向教师的分数目标或EMA教师的速度目标。长视频生成使用较早的学生生成片段约束主体和场景漂移；视野外建模则使用固定摄像机的教师滚动结果模拟不可见区域的演化。实验显示，该方法在15秒和60秒视频生成、摄像机离开后重访的一致性及场景演化方面均优于主要基线，同时仅带来约2.31%的训练时间和1.99%的显存开销。",
+      "contribution_cn": "1. 提出History Forcing统一蒸馏框架，通过比较教师模型有无额外历史时的预测，提取并强化历史监督，同时将其与整体视觉质量监督解耦。该框架可用于DMD和在线策略自蒸馏，并兼容已有长视频训练策略。 2. 针对长视频生成提出基于较早生成片段的历史构造方式，以减少主体外观和场景结构的长期漂移。 3. 针对视野外世界建模提出固定视角教师滚动生成，通过提供不可见期间的场景历史来改善场景演化和重访一致性。 4. 在1.3B模型上取得15秒VBench质量分数85.07和60秒VBench-Long综合分数79.82；在PlayWorld和MemoBench上显著提升视野外演化质量、主体身份和物体一致性。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频扩散、自回归和少步生成，并通过历史条件蒸馏解决长视频生成中的误差累积、外观漂移和场景布局漂移。其固定视角教师滚动机制面向动作条件、摄像机控制的视觉世界模型，能够模拟摄像机离开视野期间的状态演化，并在重访时恢复更一致的场景。方法属于在线策略蒸馏和教师—学生目标校正，可降低少步自回归生成的推理成本；同时通过历史片段复用和共享上下文强化长程记忆。论文报告的额外训练开销较小，但未直接针对稀疏注意力、缓存复用或实时推理速度进行系统研究。",
+      "limitations_cn": "长视频生成实验仅使用1.3B规模的教师和学生模型，世界建模实验使用5B骨干模型，规模覆盖有限。历史监督的效果仍受底层模型捕捉时间动态能力的限制。对于世界建模，固定视角教师滚动生成中的场景演化可能有限，从而削弱对视野外状态变化的监督。论文还指出，未来需要研究更大规模的教师和学生模型、更长上下文训练，以及提升世界模型模拟物理合理动态的能力。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "少步自回归视频扩散能够实现高效生成，但在长时间滚动生成中保持一致性仍然具有挑战性，尤其是当主体或场景离开视野后再次出现时。尽管视频保真度和滚动鲁棒性已有提升，现有蒸馏方法仍未充分利用更丰富的历史信息来约束学生模型当前的预测。为解决这一问题，我们提出 History Forcing，一种统一的在线策略蒸馏框架，用于强化少步自回归视频生成器中的历史监督。该框架利用教师模型在有信息历史上下文和无该上下文条件下预测结果之间的残差，将这种监督信号解耦出来。历史上下文可以通过累积漂移较小的早期生成片段获得，也可以通过固定视角的教师滚动生成获得；后者在学生模型转移视线时保持场景可见。随后，将该残差加权并加入蒸馏所使用的分数或速度预测中，从而形成修正后的目标。通过蒸馏使学生模型对齐这一修正目标，History Forcing 将长程历史约束融入自回归生成。在1.3B模型中，我们的方法取得了当前最优的性能：15秒视频生成的VBench质量得分为85.07，60秒生成的VBench-Long聚合得分为79.82。在视野外世界建模任务中，评估进一步表明，该方法能够产生更合理的场景演化，并在摄像机返回时保持更一致的状态；在PlayWorld上，Evolution Quality从2.35提升至2.70，在MemoBench上，Object Consistency从58.43提升至62.18。",
+      "abstract_cn": "少步自回归视频扩散能够实现高效生成，但在长时间滚动生成中保持一致性仍然具有挑战性，尤其是当主体或场景在离开视野后再次出现时。尽管视频保真度和滚动鲁棒性已有提升，现有蒸馏方法仍未充分利用更丰富的历史信息来约束学生模型当前的预测。为解决这一问题，我们提出 History Forcing，一种统一的在线策略蒸馏框架，用于强化对少步自回归视频生成器的历史监督。该框架利用教师模型在有信息历史上下文和无该上下文条件下预测结果之间的残差，将这种监督因素解耦出来。历史上下文可以通过使用累积漂移较小的较早生成片段获得，也可以通过固定视角的教师滚动生成获得；在后一种方式中，教师保持场景可见，而学生转向其他方向。随后，将该残差加权并添加到用于蒸馏的分数或速度预测中，从而形成校正后的目标。通过蒸馏使学生模型与这一校正目标对齐，History Forcing 将长程历史约束融入自回归生成。在1.3B模型中，我们的方法取得了当前最佳性能：15秒视频生成的VBench质量分数为85.07，60秒生成的VBench-Long综合分数为79.82。在视野外世界建模任务中，评估进一步表明，该方法能够生成更合理的场景演化，并在摄像机返回时保持更一致的状态；PlayWorld上的演化质量从2.35提升至2.70，MemoBench上的物体一致性从58.43提升至62.18。",
       "note_path": "2026-11-05/2611.02782-history-forcing-distilling-history-dependent-con.md"
     },
     {
@@ -102,46 +102,13 @@
       "comment": "",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "PrimeSim 将预训练视频生成器改造成面向机器人操作的动作条件、多视角、因果自回归世界模型模拟器。模型在 30,110 小时、22 个机器人平台的数据上训练，通过统一的 31 维跨具身动作表示、帧对齐双路径动作条件和带摄像机身份的交错注意力，实现动作跟随与多视角一致性。后期训练依次采用块因果建模、四步一致性蒸馏、自 rollout 分布匹配以及分层 KV 时间记忆，使模型能够以 10.1 FPS 进行最长约 105 秒的长时域模拟。实验显示，PrimeSim 在 WorldSimProbe 的五项测试中领先四项，EWMBench 总分为 6.09，并能较准确地预测策略成功率、支持在模型内部进行 GRPO 策略优化。模型对未见平台和场景具有一定迁移能力，但仍存在分辨率较低、局部动作校准不足以及尚未在真实硬件上验证闭环策略训练等问题。",
-      "contribution_cn": "1. 提出 PrimeSim，一种将通用视频生成器转化为动作条件、多视角、长时域机器人模拟器的渐进式训练框架。2. 构建涵盖 22 个机器人平台的 30,110 小时演示数据，并提出统一的跨具身动作表示和以窗口首帧为基准的相对动作块。3. 提出帧对齐双路径动作条件机制，将帧级动作注意力与动作-帧适配器结合，增强动作与生成运动之间的精确对应。4. 提出带显式摄像机身份的视角感知交错注意力，在跨视角交换信息的同时保留视角特定表示。5. 提出“快速视频、慢速记忆”的后期训练流程，结合块因果生成、四步一致性蒸馏、自 rollout 非对称分布匹配和分层时间记忆，降低推理成本并缓解长时域误差累积。6. 通过 WorldSimProbe、EWMBench、未见平台迁移和闭环策略实验验证模拟器的动作保真度、长时域稳定性与策略优化价值，并发布权重及代码。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件视觉世界模型和闭环模拟：根据机器人动作预测多摄像机未来观测，并用世界模型自身生成的历史驱动后续 rollout。其块因果注意力、四步一致性蒸馏和自 rollout 训练对应因果、自回归、流式及实时视频生成；10.1 FPS 的推理速度面向控制环路。分层 KV-cache 将初始场景、稀疏长期历史和密集近期运动结合，直接涉及缓存复用与长视频生成。模型还通过在 PrimeSim 内进行 GRPO 训练并转移到 LIBERO 模拟器，展示了闭环策略优化和世界模型作为学习环境的用途。",
-      "limitations_cn": "论文明确指出，PrimeSim 每个视角仅生成 192×256 分辨率，因此结论主要涉及模拟器保真度、动作实现和环境响应，而非高分辨率像素级真实感。迁移到新平台仍需要该平台数据上的 100 至 200 个梯度步，并非零样本迁移。大多数定量结果以及全部闭环策略训练和评估都来自 LIBERO 等模拟环境；真实机器人数据上的结果尚未证明其能够在真实硬件上承担策略改进所需的模拟器角色。WorldSimProbe 中 PrimeSim 的细粒度局部动作校准不如 LingBot-VA。EWMBench 结果主要来自训练分布内的 AgiBot World，且不同模型的推理分辨率、预测时域和去噪步数并未完全匹配；吞吐率比较也不是端到端控制环路测试。论文未明确说明在更复杂真实接触、长期真实部署和更长训练预算下的性能上限。",
+      "summary_cn": "PrimeSim 将 Wan2.2-TI2V-5B 视频生成器改造为面向机器人操作的动作条件、多视角、因果自回归世界模型。它在 30,110 小时、22 个机器人平台的数据上学习统一动作空间，通过帧对齐双路径条件增强动作跟随，并用视角感知交错注意力保持多摄像机一致性。后训练依次采用块因果建模、四步一致性蒸馏、自展开分布匹配和分层 KV 时间记忆，实现 10.1 FPS 的长时域生成，最长可达约 105 秒。实验显示，PrimeSim 在 WorldSimProbe 四个套件和 EWMBench 总分上领先多数基线，能够迁移到未见平台，并可用于在模拟世界中评估和优化策略；但其真实硬件闭环能力尚未得到验证。",
+      "contribution_cn": "1. 提出 PrimeSim，一种统一的动作条件、多视角、长时域机器人世界模型模拟器。 2. 构建覆盖 22 个机器人平台、30,110 小时演示数据的跨具身中期训练框架，并提出 31 维统一动作表示和以窗口首帧为基准的相对动作块。 3. 提出帧对齐双路径动作条件机制，将帧级注意力约束与动作-帧适配器结合，以强化动作和生成帧的时间对应。 4. 提出带显式摄像机身份的视角感知交错注意力，在跨视角信息交换和视角特定表示保持之间取得平衡。 5. 提出“快速视频、慢速记忆”的后训练流程，结合块因果生成、四步一致性蒸馏、自展开训练、非对称分布匹配和分层时间记忆，降低自回归生成的计算成本和长时域误差累积。 6. 在机器人操作基准、未见具身迁移、长时域展开以及基于 GRPO 的策略优化中验证了模型的有效性，并发布权重及代码。",
+      "relevance_cn": "该论文与研究重点高度相关：它直接研究动作条件视觉世界模型和闭环模拟，将机器人动作映射为未来多视角视频，并用自回归自展开训练使模型适应自身生成历史。块因果建模、四步一致性蒸馏、KV-cache 复用和分层时间记忆分别对应因果生成、实时生成、采样加速、缓存复用与长视频生成。模型在单张 A100 上达到约 10.1 个时间步 FPS，支持最长约 105 秒的连续展开，并用于在世界模型内部进行 GRPO 策略优化。不过，闭环策略实验主要在 LIBERO 等模拟环境中完成，尚不能证明其可直接替代真实机器人环境。",
+      "limitations_cn": "论文明确指出：1. 每个视角的生成分辨率为 192×256，重点是模拟器忠实度和动作实现，而不是高分辨率像素级真实感；论文未进行与更高分辨率模型的同条件视觉保真度比较。 2. 新平台迁移并非零样本，需要该平台自身数据上的 100 至 200 个梯度步骤。 3. 大多数定量结果以及全部闭环策略训练和评估结果来自模拟环境；真实平台上的视频生成结果不能证明模型已经能够在真实机器人上承担模拟器角色。 4. WorldSimProbe、EWMBench 和速度比较存在分辨率、预测时长、采样步数或条件形式不完全匹配的情况，部分结果属于不同协议下的比较。 5. 模型在 WorldSimProbe 的细粒度局部动作校准上不如最佳竞争方法。 6. 长时域和 RL 实验采用有限训练预算及现成成功分类器，论文未系统评估更长时间优化可能带来的收益和风险。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "作为模拟器使用的机器人世界模型不能只生成看似合理的视频：它还必须忠实执行指定动作、保持不同摄像机视角之间的一致性，并维持长时域 rollout 的连贯性。我们提出 PrimeSim，一种通过渐进式中期训练和后期训练解决这些挑战的动作条件多视角世界模型模拟器。PrimeSim 从预训练视频生成器出发，在涵盖 22 个平台的 30,110 小时机器人演示数据上进行中期训练。为改进行为跟随能力，我们提出统一的跨具身动作表示和帧对齐双路径条件机制，以增强动作与帧之间的对应关系。为保持多视角一致性，我们设计了带有显式摄像机身份的视角感知交错注意力，使不同视角能够交换信息，同时保留各视角特有的表示。我们进一步提出快速视频、慢速记忆的后期训练框架，将双向视频生成器转换为高效的自回归模拟器。该框架结合快速因果生成、自 rollout 训练和分层时间记忆，减轻自生成历史带来的误差累积，并支持连贯的长时域模拟。PrimeSim 的运行速度为 10.1 FPS，在刚性和可变形物体操作任务上能够进行稳定的长时域 rollout；在预训练骨干无法实现的情况下，它可在 100 至 200 个梯度步内迁移到未参与训练的平台。在与五个开源动作条件世界模型的比较中，PrimeSim 在五个 WorldSimProbe 套件中的四个取得领先，并获得 EWMBench 最高的总体分数；但其细粒度局部校准仍落后于最佳方法。其 rollout 的保真度足以支持基于 GRPO 的策略优化。我们发布模型权重、推理代码和训练代码。",
+      "abstract_cn": "作为模拟器使用的机器人世界模型不能只生成看似合理的视频：它必须忠实执行指定动作、保持跨摄像机视角的一致性，并维持连贯的长时域展开。我们提出 PrimeSim，一种通过渐进式中期训练和后训练解决这些挑战的动作条件多视角世界模型模拟器。PrimeSim 从预训练视频生成器出发，在覆盖 22 个平台的 30,110 小时机器人演示数据上进行中期训练。为提升动作跟随能力，我们引入统一的跨具身动作表示和帧对齐双路径条件机制，以强化动作与帧之间的对应关系。为保持多视角一致性，我们设计了带有显式摄像机身份的视角感知交错注意力，使不同视角能够交换信息，同时保留各视角特有的表示。我们进一步提出“视频快速生成、记忆慢速更新”的后训练框架，将双向视频生成器转换为高效的自回归模拟器。通过结合快速因果生成、自展开训练和分层时间记忆，PrimeSim 减轻了由模型自身生成历史导致的误差累积，并支持连贯的长时域模拟。PrimeSim 的运行速度为 10.1 FPS，在刚性和可变形物体操作任务的长时域展开中保持稳定；在预训练骨干无法实现的情况下，它能在 100 至 200 个梯度步骤内迁移到未参与训练的平台。与五个开源动作条件世界模型相比，PrimeSim 在五个 WorldSimProbe 测试套件中的四个取得领先，并获得最佳的 EWMBench 总分，但其细粒度局部校准仍落后于当前最佳方法；其展开结果已足够忠实，可支持基于 GRPO 的策略优化。我们发布模型权重、推理代码和训练代码。",
       "note_path": "2026-11-05/2611.04870-primesim-a-generalist-world-model-simulator-from.md"
-    },
-    {
-      "id": "2611.01858",
-      "date": "2026-11-01",
-      "topics": [
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "Learning-to-Memorize: Dynamic Context Management for Long-Horizon Autoregressive Video Generation",
-      "abstract": "Autoregressive video generation has achieved impressive results on short clips, yet generating long videos remains challenging due to error accumulation over extended horizons, where each predicted frame depends on potentially imperfect previous frames. Existing approaches typically rely on static context management strategies, such as sliding-window caches that discard early frames or fixed sink frames that permanently preserve initial content. These designs either lose critical long-range context or anchor generation to outdated information, which can lead to degraded fidelity, motion stagnation, and reduced diversity. In this paper, we propose Learning to Memorize (L2M), a learned context memory management framework that dynamically retains, evicts, and evolves historical frames according to predicted importance. The framework consists of an importance prediction router that estimates the relevance of each historical frame, degradation-aware training that improves robustness to noisy or corrupted context, and a dynamic memory initialization and evolution mechanism that updates long-term memory using exponential moving average (EMA) importance scores. This allows high-quality frames to replace stale anchors and enables memory to adapt naturally to scene evolution. Trained with a teacher-student distillation objective and sparsity regularization, L2M makes efficient use of a fixed KV-cache budget while preserving the most informative contextual information. Extensive experiments demonstrate that L2M improves long-horizon video generation quality and temporal consistency over existing baselines, providing a learned strategy for context memory management in long autoregressive video generation.",
-      "authors": [
-        "Haowei Zhu",
-        "Qijie Wang",
-        "Jia Li",
-        "Xing Wang",
-        "Tianyu Zhao",
-        "Jiexi Wang",
-        "Xurui Peng",
-        "Xinglong Wu",
-        "Junhai Yong",
-        "Bin Wan"
-      ],
-      "url": "http://arxiv.org/abs/2611.01858v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Accepted at NeurIPS 2026",
-      "score": 72,
-      "priority": "skim",
-      "summary_cn": "Autoregressive video generation has achieved impressive results on short clips, yet generating long videos remains challenging due to error accumulation over extended horizons, where each predicted frame depends on potentially imperfect previous frames.",
-      "contribution_cn": "In this paper, we propose Learning to Memorize (L2M), a learned context memory management framework that dynamically retains, evicts, and evolves historical frames according to predicted importance.",
-      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：autoregressive, long video, temporal consistency, distillation, cache, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
     },
     {
       "id": "2611.05642",
@@ -262,33 +229,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.01815",
-      "date": "2026-11-01",
-      "topics": [
-        "World Models"
-      ],
-      "title": "When Does Latent Prediction Error Support Physical Surprise Claims in Video World Models?",
-      "abstract": "Prediction errors from video world models are often treated as physical surprise, but they can also reflect appearance, static content, motion, or ordinary prediction difficulty. We present an evaluation framework that separates what frozen representations contain, how they organize appearance and physical differences, and what changes a model's own prediction error. On IntPhys2, a benchmark of physically possible and impossible events, we compare representations from latent prediction, masked pixel reconstruction, and simple visual statistics. Appearance remains easy to decode, while V-JEPA2 exposes modest information about whether events are possible or impossible. Looking at the latent geometry, appearance changes become smaller compared with differences between videos, their directions line up more consistently across scenes, and their overlap with physical changes decreases in deeper layers. Across action-conditioned models, incorrect actions raise prediction error, while appearance changes also produce substantial responses. In Physion++ video clips, repeating a single frame can produce higher error than the original clip, while changing color throughout the clip can lower it. Using Kubric, a simulation and rendering framework, we find that impossible events can produce lower error than possible events. A fixed error threshold also incorrectly flags many possible events as impossible. A model can therefore represent physical information and respond to incorrect actions without its native prediction error reliably measuring physical surprise.",
-      "authors": [
-        "Anton Hristov",
-        "Aleksandar Slavov",
-        "Vasil Vasilev"
-      ],
-      "url": "http://arxiv.org/abs/2611.01815v1",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "28 pages, 12 figures, 25 tables. Accepted at the World Models in Physical AI Workshop, NeurIPS 2026",
-      "score": 67,
-      "priority": "skim",
-      "summary_cn": "Prediction errors from video world models are often treated as physical surprise, but they can also reflect appearance, static content, motion, or ordinary prediction difficulty.",
-      "contribution_cn": "We present an evaluation framework that separates what frozen representations contain, how they organize appearance and physical differences, and what changes a model's own prediction error.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned, simulation",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2611.06120",
       "date": "2026-11-04",
       "topics": [
@@ -352,6 +292,66 @@
       "summary_cn": "Predicting how the world evolves in response to robot actions is central to policy learning, evaluation, and planning.",
       "contribution_cn": "We introduce 3D World Simulator, an action-conditioned multimodal world modeling framework that jointly predicts appearance, geometry, and tactile observations from a unified 3D representation.",
       "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, interactive, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.06377",
+      "date": "2026-11-04",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "NanoKV: High-Ratio KV Cache Compression for Autoregressive Video Generation",
+      "abstract": "Autoregressive video models rely on historical key-value (KV) caches to preserve scene consistency over extended rollouts, making KV storage and repeated attention over history a growing memory and computational bottleneck. Aggressive compression can degrade generation quality, while reconstructing full-dimensional KV leaves attention computation largely unchanged. We introduce NanoKV, a frozen-backbone framework for generation-aware high-ratio KV compression. NanoKV exploits redundancy across tokens and attention heads by storing shared content in cluster centers and encoding joint head-channel residuals into low-bit coefficients. Crucially, NanoKV uses different fitting objectives for Keys and Values according to their distinct roles in attention: Key decoders are optimized to preserve downstream block outputs, whereas Value encoders and decoders are fitted for faithful reconstruction through the deployed quantization path. Building on the same compressed representation, the optional NanoKV-Fast variant reuses the stored coefficients for mixed-dimensional attention, reducing computation without modifying the video backbone. Across three autoregressive video backbones, NanoKV consistently improves the quality-storage trade-off. On HY-WorldPlay, NanoKV achieves $26.09\\times$ effective KV compression, nearly twice that of KVTC, while improving PSNR by 1.0 dB. NanoKV-Fast retains $20.53\\times$ effective compression and achieves an approximately $1.15\\times$ end-to-end speedup over KVTC.",
+      "authors": [
+        "Jiacheng Lu",
+        "Haoyi Zhu",
+        "Sipei Yi",
+        "Enze Xie",
+        "Cheng Zhuo",
+        "Yu Li"
+      ],
+      "url": "http://arxiv.org/abs/2611.06377v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "25 pages, 13 figures. Project page: https://jiacheng-lu03.github.io/NanoKV/ . Code: https://github.com/jiacheng-lu03/NanoKV",
+      "score": 64,
+      "priority": "skim",
+      "summary_cn": "Autoregressive video models rely on historical key-value (KV) caches to preserve scene consistency over extended rollouts, making KV storage and repeated attention over history a growing memory and computational bottleneck.",
+      "contribution_cn": "We introduce NanoKV, a frozen-backbone framework for generation-aware high-ratio KV compression.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.06544",
+      "date": "2026-11-04",
+      "topics": [
+        "World Models"
+      ],
+      "title": "MKD2World: A Typed Spatial MarkDown World Model For Web Agents",
+      "abstract": "Graphical user interface (GUI) agents can improve decision-making with world-model foresight, provided that predicted states accurately reflect post-action interfaces. Existing state representations fail to jointly capture interface layout, UI semantics, and explicit locations. We introduce Typed Spatial Markdown (TSM), a Markdown-style textual state representation for desktop web interfaces. TSM serializes block-level and atomic-level UI elements according to their spatial relationships, jointly encoding their types, visual semantics, explicit locations, optional control states, and hierarchical membership. To train a screenshot-to-TSM renderer, we construct AtomBlock-WebUI, a dataset with precise annotations at both granularities. By injecting element-type labels into HTML and directly extracting bounding boxes after rendering, we avoid annotation errors caused by post-hoc inference from webpage structures. Building on TSM, we propose MKD2World, a desktop web world model trained in two stages for current-state description and action-conditioned next-state prediction. During inference, the web agent queries MKD2World as needed and performs a ``digest'' step, in which it interprets each predicted state and extracts task-relevant evidence for selecting the best action. Experiments show that MKD2World-9B achieves an EleF1 score of 26.50 on the out-of-domain test set, outperforming GPT-5.6-Sol(14.98) by 11.52 points. Across Online-Mind2Web tasks, MKD2World-9B improves the success rate of the Qwen3.5-35B web agent from 22.94% to 37.61%, achieving competitive performance among leading open-source GUI world models. Code is available at https://github.com/OmniAI-Lab-CUHKSZ/MKD2World.",
+      "authors": [
+        "Zhihao Nan",
+        "Sifan Zhou",
+        "Yiming Cheng",
+        "Jinkai Zheng",
+        "Zheng Zhu",
+        "Si Shi",
+        "Ming Li",
+        "Fei Yu"
+      ],
+      "url": "http://arxiv.org/abs/2611.06544v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "40 pages",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Graphical user interface (GUI) agents can improve decision-making with world-model foresight, provided that predicted states accurately reflect post-action interfaces.",
+      "contribution_cn": "We introduce Typed Spatial Markdown (TSM), a Markdown-style textual state representation for desktop web interfaces.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
