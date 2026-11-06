@@ -1585,6 +1585,12 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-05**|**VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding**|Yu-Cheng Chou et.al.|[2611.08449](http://arxiv.org/abs/2611.08449)|null|
+|**2026-11-05**|**Learning a patient world model for health system simulation in intensive care**|Yingtai Li et.al.|[2611.08392](http://arxiv.org/abs/2611.08392)|null|
+|**2026-11-05**|**GPWM: Modeling the World as 3D Particle Motion**|Robert Ren et.al.|[2611.08338](http://arxiv.org/abs/2611.08338)|null|
+|**2026-11-05**|**La-JEPA: Compact Robot Policies with Latent World Modeling**|Mateo Clémente et.al.|[2611.08156](http://arxiv.org/abs/2611.08156)|null|
+|**2026-11-05**|**FreeOcc: Decoupling Ego-Motion for Efficient 4D Occupancy Forecasting via Continuous Flow Matching**|Zeping Zhang et.al.|[2611.08128](http://arxiv.org/abs/2611.08128)|null|
+|**2026-11-05**|**Reinforcing End-to-End Autonomous Driving Safety via Negative-Aware Planning in a Unified World-Action Model**|Zihao Zhang et.al.|[2611.08111](http://arxiv.org/abs/2611.08111)|null|
 |**2026-11-05**|**WAM-Sim0.1: World Anchored Memory Meets Online RL for Consistent and Realistic Driving Simulation**|Jiahao Cui et.al.|[2611.07939](http://arxiv.org/abs/2611.07939)|null|
 |**2026-11-05**|**GuidedWAM: Training-Free Energy Guidance for World Action Models in Autonomous Driving**|Xiyan Su et.al.|[2611.07912](http://arxiv.org/abs/2611.07912)|null|
 |**2026-11-05**|**PVDepth: Panoramic Video Depth Estimation via Geometry-Aware Spatiotemporal Adaptation**|Chuanxin Song et.al.|[2611.07873](http://arxiv.org/abs/2611.07873)|null|
@@ -1594,7 +1600,7 @@
 |**2026-11-04**|**MAC-v2: Long-horizon model-based value expansion from pixels**|Kwanyoung Park et.al.|[2611.07245](http://arxiv.org/abs/2611.07245)|null|
 |**2026-11-04**|**Spatial-UMI-Dream: Scaling World Action Models with Metric Geometry for UMI Manipulation**|Weiduo Yuan et.al.|[2611.07229](http://arxiv.org/abs/2611.07229)|null|
 |**2026-11-04**|**Motion-guided Contrastive Regularization For Latent World Models**|Yiwen Chen et.al.|[2611.06901](http://arxiv.org/abs/2611.06901)|null|
-|**2026-11-04**|**Open-HumanScale: An Open Recipe for Scaling Human and Robot Experience for Embodied Foundation Models**|Juncheng Ma et.al.|[2611.06817](http://arxiv.org/abs/2611.06817)|null|
+|**2026-11-05**|**Open-HumanWAM: An Open Recipe for Scaling Human and Robot Experience for Embodied Foundation Models**|Juncheng Ma et.al.|[2611.06817](http://arxiv.org/abs/2611.06817)|null|
 |**2026-11-04**|**Detecting Silent Action-Interface Mismatch with Calibrated Relational World Models**|Rui Zhu et.al.|[2611.06653](http://arxiv.org/abs/2611.06653)|null|
 |**2026-11-04**|**MKD2World: A Typed Spatial MarkDown World Model For Web Agents**|Zhihao Nan et.al.|[2611.06544](http://arxiv.org/abs/2611.06544)|null|
 |**2026-11-04**|**Traffic-VL: Reinforced Vision-Language Models for Generalizable End-to-End Traffic Signal Control**|Xingchen Zou et.al.|[2611.06353](http://arxiv.org/abs/2611.06353)|null|
@@ -2700,6 +2706,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-05**|**GPWM: Modeling the World as 3D Particle Motion**|Robert Ren et.al.|[2611.08338](http://arxiv.org/abs/2611.08338)|null|
 |**2026-11-05**|**Training-Free Predictive Spatio-Temporal Token Pruning for Few-Step Autoregressive Video Diffusion**|Jia Li et.al.|[2611.07551](http://arxiv.org/abs/2611.07551)|null|
 |**2026-11-05**|**Householder Motion Embedding: Noise Modulation for Motion-Controllable Video Generation**|Tao Jun Lin et.al.|[2611.07294](http://arxiv.org/abs/2611.07294)|null|
 |**2026-11-05**|**EvoWorld: Towards Out-of-Sight World Evolution in Generative Video Models**|Yequan Bie et.al.|[2611.06748](http://arxiv.org/abs/2611.06748)|null|

@@ -1,33 +1,33 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-06T03:46:20+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-06T18:33:02+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [Disen-Forcing: Disentangling Semantic Anchoring from Motion for Autoregressive Video Diffusion](http://arxiv.org/abs/2611.02822v1)
-
-- **评分**：78/100
-- **作者**：Zhengyang Yu, Akio Hayakawa, Masato Ishii et al.
-- **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：Autoregressive video diffusion models (AR-VDMs) enable real-time, long-horizon video generation but degrade rapidly once the inference horizon outruns the training horizon, due to…
-- **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
-
-### 2. [PrimeSim: A Generalist World Model Simulator from Large-Scale Cross-Embodiment Demonstrations](http://arxiv.org/abs/2611.04870v1)
+### 1. [PrimeSim: A Generalist World Model Simulator from Large-Scale Cross-Embodiment Demonstrations](http://arxiv.org/abs/2611.04870v1)
 
 - **评分**：74/100
 - **作者**：Travis Davies, Wentao Ma, Lihao Guo et al.
 - **方向**：World Models
-- **一句话**：本文提出 PrimeSim，将 Wan2.2-TI2V-5B 视频生成骨干改造成面向机器人操作的动作条件、多视角、因果自回归世界模型模拟器。模型首先利用 30,110 小时、22 个机器人平台的数据进行中期训练：以 31 维统一动作表示处理跨具身控制，以帧对齐双路径条件增强动作跟随，并用带摄像机身份的视角感知交错注意力保持多视角一致性。随后通过分块因果建模…
+- **一句话**：PrimeSim 将 Wan2.2-TI2V-5B 视频生成器改造为动作条件、多视角、因果自回归机器人世界模型模拟器。方法分为两部分：首先利用 30,110 小时、22 个机器人平台的数据进行中期训练，通过统一的 31 维跨具身相对动作表示、帧对齐双路径动作条件和带摄像机身份的视角感知交错注意力，学习动作到多视角视觉结果的映射；随后通过分块因果建模、四步一…
 - **精读笔记**：[打开笔记](../notes/2026-11-06/2611.04870-primesim-a-generalist-world-model-simulator-from.md)
 
-### 3. [PlayGen2: Learning Real-Time Playable Worlds with Explicit 3D State](http://arxiv.org/abs/2611.07867v1)
+### 2. [PlayGen2: Learning Real-Time Playable Worlds with Explicit 3D State](http://arxiv.org/abs/2611.07867v1)
 
 - **评分**：74/100
 - **作者**：Jihai Zhang, Yuhan Zhou, Junyou Li et al.
 - **方向**：World Models
-- **一句话**：PlayGen2提出一种面向实时可玩世界的显式三维状态建模框架，将世界状态演化与神经渲染分离。模型以持久世界记忆保存体素几何和按身份索引的动态实体，在玩家中心的固定大小局部区域内，根据动作、历史和几何上下文进行实体状态转移、未知几何补全与新实体发现；渲染器则依据状态投影得到的深度图、语义图和有限 RGB 历史生成第一人称视频。基于仅在单张 Freedoom…
+- **一句话**：PlayGen2提出一种面向实时可游玩世界的显式三维状态建模框架，将持久化世界状态演化与神经视频渲染解耦。模型在玩家中心的固定大小三维局部区域内，根据动作、实体历史和几何上下文，联合完成未知几何、发现新实体并预测玩家和实体的状态更新；更新后的几何与实体信息写回持久世界记忆。渲染器则利用投影得到的深度图和语义图，以及有限的 RGB 历史生成第一人称画面，生成…
 - **精读笔记**：[打开笔记](../notes/2026-11-06/2611.07867-playgen2-learning-real-time-playable-worlds-with.md)
+
+### 3. [GPWM: Modeling the World as 3D Particle Motion](http://arxiv.org/abs/2611.08338v1)
+
+- **评分**：73/100
+- **作者**：Robert Ren, Matthew Bronars, He Zhu et al.
+- **方向**：World Models, Autoregressive and Streaming Video
+- **一句话**：论文提出 GPWM，一种直接在三维粒子和刚体运动空间中建模物理世界的生成式世界模型。它采用共享的粒子/刚体表示、物体感知的多分辨率时空 Transformer，以及流匹配与扩散强制，能够在多种材料、物体和机器人交互场景中生成长时域、可流式延展的物理轨迹。基于包含 2550 万帧、六类物理领域的 ParticleWorlds 数据集，GPWM 平均将预测误差…
+- **精读笔记**：[打开笔记](../notes/2026-11-06/2611.08338-gpwm-modeling-the-world-as-3d-particle-motion.md)
 
 ## 快速浏览
 
