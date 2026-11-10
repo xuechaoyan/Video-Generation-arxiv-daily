@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-09**|**PhysOPSD: Code as Privilege for Physically Plausible Video Generation**|Harold Haodong Chen et.al.|[2611.12411](http://arxiv.org/abs/2611.12411)|null|
 |**2026-11-08**|**GenRM-Flow: Generators are Process-aware Reward Models in Flow Matching**|Siming Fu et.al.|[2611.11421](http://arxiv.org/abs/2611.11421)|null|
 |**2026-11-08**|**TransArt3D: From Two States to Articulated 3D Reconstruction with Video Transition Priors**|Chenhao Guan et.al.|[2611.11304](http://arxiv.org/abs/2611.11304)|null|
 |**2026-11-07**|**OneReel: Efficient Multi-Scene Video Generation with Scene-Structured Attention**|Wei Zhang et.al.|[2611.10594](http://arxiv.org/abs/2611.10594)|null|
@@ -24,7 +25,7 @@
 |**2026-11-06**|**AR-Edit: Training-Free Autoregressive Video Editing without Inversion**|Hovhannes Margaryan et.al.|[2611.09795](http://arxiv.org/abs/2611.09795)|null|
 |**2026-11-06**|**Trajectory Forcing: Exploiting Diffusion Trajectories for Autoregressive Long Video Generation**|Bohan Wang et.al.|[2611.09096](http://arxiv.org/abs/2611.09096)|null|
 |**2026-11-06**|**UniRGBA: Unifying RGB and Alpha in Pretrained Video Diffusion Models**|Lei Xu et.al.|[2611.09069](http://arxiv.org/abs/2611.09069)|null|
-|**2026-11-06**|**MotionCore: A Latent Neural Simulator for Video Generation with Rigid-Body Dynamics**|Zheng Wang et.al.|[2611.08904](http://arxiv.org/abs/2611.08904)|null|
+|**2026-11-09**|**MotionCore: A Latent Neural Simulator for Video Generation with Rigid-Body Dynamics**|Zheng Wang et.al.|[2611.08904](http://arxiv.org/abs/2611.08904)|null|
 |**2026-11-06**|**Decoding spatial and semantic information from large-scale visual cortical activity for natural-movie reconstruction**|Yukai Huang et.al.|[2611.08887](http://arxiv.org/abs/2611.08887)|null|
 |**2026-11-05**|**CoGenRec: A Unified Generative Framework for Complementary Vision Reconstruction**|Yapeng Meng et.al.|[2611.07665](http://arxiv.org/abs/2611.07665)|null|
 |**2026-11-06**|**Training-Free Predictive Spatio-Temporal Token Pruning for Few-Step Autoregressive Video Diffusion**|Jia Li et.al.|[2611.07551](http://arxiv.org/abs/2611.07551)|null|
@@ -1594,6 +1595,29 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-09**|**SWAM: Scaling World Action Models with Cross-Modal Alignment**|Yu Zhou et.al.|[2611.12870](http://arxiv.org/abs/2611.12870)|null|
+|**2026-11-09**|**DreamLander: A 6-DOF World Model based Reinforcement Learning Planetary Lander**|George Nehma et.al.|[2611.12824](http://arxiv.org/abs/2611.12824)|null|
+|**2026-11-09**|**$Σ$ -LeWM: Learning World Models via S-Information for Robot Control**|Xinrui Zu et.al.|[2611.12732](http://arxiv.org/abs/2611.12732)|null|
+|**2026-11-09**|**Library of Hands: Fix the Hands, Not the World Model**|Hasaan Ahmad et.al.|[2611.12678](http://arxiv.org/abs/2611.12678)|null|
+|**2026-11-09**|**WanderBench: Can World Models Explore Dynamic Worlds from Video?**|Yuhang Chen et.al.|[2611.12557](http://arxiv.org/abs/2611.12557)|null|
+|**2026-11-09**|**QCC-WM: Linking Macro-State Dynamics and Visual Generation via Quotient Causal Construction**|Zhizhong Fu et.al.|[2611.12353](http://arxiv.org/abs/2611.12353)|null|
+|**2026-11-09**|**How Many Exposures Does a World Model Need? Learning Unseen Game Mechanics at Test Time**|Ku Onoda et.al.|[2611.12324](http://arxiv.org/abs/2611.12324)|null|
+|**2026-11-09**|**Mitigating SM-Level Load Imbalance in 3D Gaussian Splatting on GPUs**|Junha Ryu et.al.|[2611.12319](http://arxiv.org/abs/2611.12319)|null|
+|**2026-11-09**|**Learning to Act with World Models by Valuing What Comes Next**|Chenghao Gao et.al.|[2611.12200](http://arxiv.org/abs/2611.12200)|null|
+|**2026-11-09**|**Benchmarking language models and agents for scientific reasoning in evolving materials laboratories**|Xuyu Dong et.al.|[2611.12014](http://arxiv.org/abs/2611.12014)|null|
+|**2026-11-09**|**OriDynamics: Towards a World Model for Biomolecular Dynamics**|Jiahao Yang et.al.|[2611.11958](http://arxiv.org/abs/2611.11958)|null|
+|**2026-11-09**|**An Evaluation of Tabular Foundation Models as Training-Free World Models**|Xian Yeow Lee et.al.|[2611.11921](http://arxiv.org/abs/2611.11921)|null|
+|**2026-11-09**|**LO-World: Unified BEV Latent Modeling for Joint 4D Occupancy and LiDAR Forecasting**|Zhimin Liao et.al.|[2611.11912](http://arxiv.org/abs/2611.11912)|null|
+|**2026-11-09**|**ShopMind: A Mental World Model for Personalized and Realistic E-commerce User Simulation**|Peixuan Hou et.al.|[2611.11897](http://arxiv.org/abs/2611.11897)|null|
+|**2026-11-09**|**How Many Candidates Does a One-Step World Model Need? A Random-Codebook Account of Nearest-of-m Training on Frozen DINO Tokens**|Yong Hwi Song et.al.|[2611.11887](http://arxiv.org/abs/2611.11887)|null|
+|**2026-11-09**|**Action Representation for Spatial Generalization in Robot World Models**|Yuhang Sun et.al.|[2611.11869](http://arxiv.org/abs/2611.11869)|null|
+|**2026-11-09**|**Planners Exploit Deterministic Error: Dithered Low-Bit World Models**|Yong Hwi Song et.al.|[2611.11780](http://arxiv.org/abs/2611.11780)|null|
+|**2026-11-08**|**SurgTAP-3D: A Large-Scale Cross-Surgery Video Dataset with Contact-Aware 3D Motion Tracking**|Jiaxin Guo et.al.|[2611.11697](http://arxiv.org/abs/2611.11697)|null|
+|**2026-11-08**|**ScanDreamer: A Map-Grounded World Model for Quadrotor Navigation**|Yunyi Gao et.al.|[2611.11605](http://arxiv.org/abs/2611.11605)|null|
+|**2026-11-08**|**Kimodo-Policy: Learning Kinematic Action Models for Humanoid Loco-Manipulation**|Yunheng Wang et.al.|[2611.11554](http://arxiv.org/abs/2611.11554)|null|
+|**2026-11-08**|**K-PWM: Control-Oriented Structured Bilinear World Models under Partial Observation**|Santosh Mohan Rajkumar et.al.|[2611.11521](http://arxiv.org/abs/2611.11521)|null|
+|**2026-11-08**|**Breaking survivorship bias in driving world models**|Zihao Sheng et.al.|[2611.11516](http://arxiv.org/abs/2611.11516)|null|
+|**2026-11-08**|**ForeAct: Geometry-Guided Action Learning from World Representations**|Wei Lu et.al.|[2611.11500](http://arxiv.org/abs/2611.11500)|null|
 |**2026-11-08**|**DexForesight: Grounding Dexterous Policies with Implicit Spatial Foresight**|Zhongxi Chen et.al.|[2611.11166](http://arxiv.org/abs/2611.11166)|null|
 |**2026-11-08**|**SurgWorld: Learning Surgical Representations Beyond Observation via Latent Prediction**|Jingkun Yue et.al.|[2611.11140](http://arxiv.org/abs/2611.11140)|null|
 |**2026-11-08**|**ObjectWorld: Scaling Object-Centric World Models with A Large-Scale 3D Full-Object Flow Dataset**|Haonan Chen et.al.|[2611.11085](http://arxiv.org/abs/2611.11085)|null|

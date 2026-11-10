@@ -1,39 +1,7 @@
 {
-  "generated_at": "2026-11-10T04:50:19+00:00",
+  "generated_at": "2026-11-10T18:56:10+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
-    {
-      "id": "2611.07867",
-      "date": "2026-11-05",
-      "topics": [
-        "World Models"
-      ],
-      "title": "PlayGen2: Learning Real-Time Playable Worlds with Explicit 3D State",
-      "abstract": "Building a playable world requires more than generating plausible video: it demands responsive control, persistent spatial structure, and coherent interactions with dynamic entities. Using generated frames as the sole recurrent world representation ties these requirements to view-dependent appearance synthesis, making it difficult to maintain long-term spatial and temporal consistency in generation and interaction. We present PlayGen2, a real-time interactive world model that separates learned 3D state evolution from neural rendering. PlayGen2 maintains a persistent world memory comprising static geometry represented by a volumetric occupancy grid and identity-indexed 3D states for the player and other entities. Within a fixed-size local region, its world-state model jointly learns action-conditioned entity dynamics, geometry completion, and entity discovery, committing updates to a persistent world memory. A separate neural renderer synthesizes first-person observations from depth and semantic projections of the world state, without feeding generated images back into state prediction. Using Doom as a testbed, we demonstrate that the model successfully learns world dynamics including geometry-aware player motion and player--NPC interactions. The framework is computationally efficient, enabling the complete simulation and rendering pipeline to achieve approximately 160ms backend latency on a MacBook Pro with an M4 Pro chip. Beyond single-player interaction, we demonstrate zero-shot deployment on unseen Doom maps, multiplayer interaction through the composition of single-player models, and programmable gameplay through rule-based state interventions. These capabilities demonstrate the transferability and extensibility of the learned game-world model. Code and pretrained model weights are publicly available.",
-      "authors": [
-        "Jihai Zhang",
-        "Yuhan Zhou",
-        "Junyou Li",
-        "Deheng Ye",
-        "Qi Dou",
-        "Yu Cheng"
-      ],
-      "url": "http://arxiv.org/abs/2611.07867v1",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "comment": "Code: https://github.com/MajorDavidZhang/PlayGen-2",
-      "score": 74,
-      "priority": "must-read",
-      "summary_cn": "PlayGen2提出一种面向实时可游玩世界的显式三维状态建模框架，将世界状态演化与神经视频渲染分离。模型以持久化世界记忆保存体素几何、玩家状态和按身份索引的实体状态，在玩家中心的固定大小局部区域内，根据动作、历史和几何上下文预测实体运动、补全未知几何并发现新实体；随后将状态投影为深度和语义条件，由扩散渲染器生成第一人称视频，生成的RGB帧不再反馈到状态预测。基于仅在一个 Freedoom2 地图上训练的约500小时数据，模型能够进行具有碰撞意识的玩家移动、玩家-NPC交互、长时段探索和未见地图上的零样本世界扩展，并支持单人模型组合成多人交互及基于状态的规则干预。在M4 Pro笔记本上，串行运行约4.98 FPS、平均后端延迟200.6毫秒，重叠执行可达7.16 FPS。",
-      "contribution_cn": "1. 提出显式三维世界状态框架，以持久化体素占用网格和按身份索引的实体状态表示世界，并联合学习几何补全、实体发现和动作条件状态转移。 2. 将学习到的世界模拟与独立的状态条件神经渲染解耦，避免生成图像误差通过视觉历史反馈并累积到世界状态预测中。 3. 在Doom测试平台上实现几何感知的玩家运动、玩家-NPC交互、长期闭环探索和实时运行。 4. 展示未见地图零样本迁移、由单人模型组合实现的多人交互，以及无需重新训练的可编程状态干预。 5. 通过局部固定大小更新、持久化记忆和历史截断/扰动训练，提高了计算效率及对不完整或漂移历史的鲁棒性。",
-      "relevance_cn": "该论文与研究重点高度相关。它是一个动作条件的视觉世界模型和闭环模拟系统：玩家动作驱动显式三维世界状态更新，状态再决定下一步观测和后续动作，支持长时间探索与实体交互。它采用独立的世界状态演化和扩散渲染，避免纯视频自回归表示在长期空间一致性、实体持久性和离视野动态方面的不足。方法还涉及实时生成与效率优化，包括固定大小局部计算、持久化世界记忆、状态与渲染解耦、RGB历史缓存，以及8步扩散采样。论文报告在消费级M4 Pro硬件上达到约4.98 FPS串行或7.16 FPS重叠执行，并实现约160至200.6毫秒级后端延迟，因此对实时生成、缓存复用和可扩展闭环世界建模具有直接参考价值。",
-      "limitations_cn": "论文明确说明的局限包括：训练数据仅来自 Freedoom2 MAP01，且由规则控制器自动收集，训练分布较窄；未见地图上的外观仍主要呈现训练数据中的 Freedoom2 风格，深度和语义条件无法提供原生 Scythe 纹理，因此参考指标同时受到结构和外观差异影响；实体状态仅在当前局部三维区域内持续模拟，区域外实体不会被连续更新；系统不使用运行时碰撞校正，玩家和实体仍可能发生穿透；NPC追踪实验成功率为55%（200步内），并非所有交互都能成功；渲染和完整流程仍未达到高帧率实时视频，串行执行约4.98 FPS、平均后端延迟200.6毫秒。论文未明确说明更广泛游戏类型、复杂物理、多样视觉风格或更长时间尺度上的泛化能力。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "构建一个可游玩的世界不仅需要生成合理的视频，还要求具备灵敏的控制、持久的空间结构，以及与动态实体进行连贯交互的能力。将生成帧作为唯一的循环世界表示，会把这些要求都绑定到依赖视角的外观合成上，从而难以在生成和交互过程中维持长期的空间与时间一致性。我们提出 PlayGen2，一种将学习到的三维状态演化与神经渲染分离的实时交互式世界模型。PlayGen2维护一个持久化世界记忆，其中包括由体素占用网格表示的静态几何结构，以及为玩家和其他实体建立的、按身份索引的三维状态。在固定大小的局部区域内，其世界状态模型联合学习动作条件下的实体动态、几何补全和实体发现，并将更新提交到持久化世界记忆中。一个独立的神经渲染器根据世界状态的深度投影和语义投影合成第一人称观测，而不会将生成图像反馈给状态预测过程。我们以 Doom 作为测试平台，证明该模型能够成功学习世界动态，包括具有几何感知能力的玩家运动以及玩家与非玩家角色之间的交互。在配备 M4 Pro 芯片的 MacBook Pro 上，完整的模拟与渲染流程后端延迟约为 160 毫秒，体现了该框架的计算效率。除单人交互外，我们还展示了其在未见过的 Doom 地图上的零样本部署、通过组合单人模型实现的多人交互，以及通过基于规则的状态干预实现的可编程游戏玩法。这些能力体现了所学习游戏世界模型的可迁移性和可扩展性。代码和预训练模型权重已公开。",
-      "note_path": "2026-11-10/2611.07867-playgen2-learning-real-time-playable-worlds-with.md"
-    },
     {
       "id": "2611.07551",
       "date": "2026-11-06",
@@ -56,12 +24,12 @@
       "comment": "19 pages, 10 figures, 11 tables, including appendices",
       "score": 73,
       "priority": "must-read",
-      "summary_cn": "本文针对少步自回归视频扩散模型的推理加速问题，分析了跨帧静态内容和跨去噪步收敛令牌两类冗余，并利用模型自身产生的早期干净估计在线识别它们。提出的PreSTP通过统一令牌掩码跳过冗余令牌计算，以最近计算值维持输出与KV缓存一致性，并通过首帧密集预热、内容自适应掩码复用和定期重新锚定控制误差累积。在CausVid、Self-Forcing、AnyFlow、LongLive以及单步One-Forcing和Causal Forcing++上，方法在5秒生成中获得1.52至3.20倍加速，在30秒生成中最高获得1.96倍加速，同时保持接近原始密集模型的质量，并改善部分模型的长时稳定性。消融实验表明，首帧保护对质量至关重要，跨帧和跨步剪枝具有互补性；加速效果依赖内容，静态或缓慢变化的视频收益更大。",
-      "contribution_cn": "1. 识别少步自回归视频扩散中的两类令牌级冗余：跨帧静态冗余和跨步收敛冗余，并证明去噪早期的干净估计可以在无需参考视频、辅助预测器或重新训练的情况下提供在线识别信号。2. 提出PreSTP免训练时空令牌剪枝框架，将两类冗余整合为在线令牌级掩码，跳过冗余令牌计算，并通过最近计算值恢复保持输出和KV缓存一致性。3. 提出首帧密集预热、内容自适应静态掩码复用和周期性重新锚定机制，以降低探测成本并抑制长视频误差漂移。4. 在多种少步和单步自回归视频扩散模型上进行验证，短视频最高加速3.20倍，30秒视频最高加速1.96倍，并取得优于TeaCache和FlowCache的效率—保真度折中。",
-      "relevance_cn": "该工作与视频生成和视频扩散高度相关，直接面向少步自回归视频扩散的推理加速。它利用跨帧冗余和跨去噪步冗余减少Transformer令牌计算，属于令牌剪枝、稀疏计算和缓存复用方向。其按视频块逐步生成、保留历史KV缓存并通过重新锚定抑制长时漂移的设计，也与因果、流式和长视频生成密切相关。方法无需训练即可将少步模型推向更低延迟，并且在单步模型中仍可利用跨帧冗余，因此对实时视频生成尤其具有直接意义。论文主要聚焦文本到视频的AR扩散生成，尚未覆盖动作条件视觉世界模型或闭环交互仿真。",
-      "limitations_cn": "论文明确指出，加速效果依赖视频内容；运动密集、跨帧冗余较少的视频收益较小。方法虽然减少查询侧令牌计算，但注意力仍需作用于完整的历史KV上下文，因此上下文注意力成本尚未被共同压缩。静态掩码复用可能因内容变化而过时，论文通过内容门控和周期性重新探测缓解这一问题，但仍存在探测开销和潜在误差累积。方法需要首帧密集生成，且阈值、复用门限和重新锚定周期会影响速度与保真度。实验主要采用Wan2.1-1.3B骨干、832×480分辨率及特定AR视频生成模型和基准，论文表示未来还需扩展到更广泛的视频生成任务，例如图像到视频生成；对动作条件世界模型和闭环交互场景的适用性论文未明确说明。",
+      "summary_cn": "论文提出 PreSTP，用模型去噪过程中产生的早期干净估计在线识别两类逐令牌冗余：相邻帧间静态区域的跨帧冗余，以及同一帧内较早稳定令牌的跨步冗余。方法通过统一掩码跳过冗余令牌，并用最近计算值保持输出和 KV 缓存一致；同时根据内容变化复用静态掩码，以减少探测开销。实验覆盖 CausVid、Self-Forcing、AnyFlow、LongLive 以及 One-Forcing、Causal Forcing++ 等模型，在 5 秒视频上最高加速 3.20 倍，在 30 秒视频上最高加速 1.96 倍，并通常保持接近或优于密集基线的质量和长时域稳定性。",
+      "contribution_cn": "1. 识别并分析少步自回归视频扩散中的跨帧静态冗余和跨步收敛冗余，证明模型自身的早期干净估计可以作为无需外部参考的在线信号。 2. 提出 PreSTP，将两类冗余统一为在线逐令牌掩码，利用最近一次计算值恢复跳过令牌，从而保持输出布局和 KV 缓存一致。 3. 提出内容自适应的静态掩码复用和定期重新锚定机制，降低密集探测成本并缓解长期复用造成的漂移。 4. 在少步和单步自回归视频扩散模型上验证方法，在保持视觉质量的同时获得最高 3.20 倍加速，并改善部分长视频生成的稳定性。",
+      "relevance_cn": "该工作直接面向视频扩散推理加速、实时生成、因果自回归生成和长视频生成。它不依赖重新训练或额外预测器，而是在推理时利用时空令牌冗余进行细粒度剪枝，适合少步蒸馏模型中传统跨步缓存收益有限的场景。其跨帧掩码复用和重新锚定机制与长视频闭环 rollout、历史上下文一致性及长时域漂移抑制密切相关；其单步模型实验也表明，跨帧剪枝在跨步缓存失效时仍然有效。论文主要关注视频生成加速，并未直接研究动作条件、交互式闭环控制或视觉世界模型中的策略反馈。",
+      "limitations_cn": "加速效果依赖视频内容；对于运动密集、跨帧冗余较少的视频，收益会明显降低。方法只减少查询侧令牌计算，而注意力仍需作用于完整的历史 KV 上，因此未同时解决历史上下文压缩问题。静态掩码复用可能产生过时掩码误差，虽然定期重新探测可缓解该问题。论文当前实验主要基于 Wan2.1-1.3B、832×480 分辨率及若干特定自回归视频扩散模型，尚未覆盖更广泛的视频生成任务，例如图像到视频生成；对高度动态内容的冗余预测仍有待改进。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "少步自回归（AR）视频扩散模型以视频块为单位逐块生成视频，使高效视频生成成为现实。然而，进一步将这类模型加速至实时生成仍然面临挑战，因为少步蒸馏几乎消除了现有免训练缓存方法可以利用的跨步冗余。本文重新考察这一场景，并发现了两种令牌级冗余模式：相邻帧之间由静态内容共享产生的跨帧冗余，以及去噪过程中较早收敛的令牌产生的跨步冗余。关键在于，模型自身去噪轨迹中的早期干净估计可以作为定位这两类冗余的有效在线信号，而且无需重新训练、辅助预测器或参考视频。基于这些发现，我们提出PreSTP（预测式时空令牌剪枝），一种免训练框架，通过结合跨帧相似性和跨步收敛性构建统一的令牌级冗余掩码。被标记为冗余的令牌会跳过后续计算，并按照一致的最近计算值恢复规则进行恢复；内容自适应的掩码复用策略则进一步降低了密集探测开销。在5秒视频生成任务中，PreSTP实现了1.52至3.20倍的加速，并且相比TeaCache和FlowCache等粗粒度缓存基线取得了更优的效率—保真度折中。在30秒视频生成任务中，它最高实现1.96倍加速，同时提升VBench-Long得分并抑制长时间范围的漂移。值得注意的是，即使在跨步冗余完全消失、粗粒度逐步缓存不再适用的极端单步场景中，它仍能降低推理成本。",
+      "abstract_cn": "少步自回归（AR）视频扩散模型以视频片段为单位逐块生成视频，使高效视频生成成为现实。然而，进一步将这类模型加速到实时生成仍然具有挑战性，因为少步蒸馏几乎消除了现有免训练缓存方法能够利用的跨步冗余。我们重新考察了这一场景，并发现了两种令牌级冗余模式：相邻帧之间由静态内容共享产生的跨帧冗余，以及去噪过程中较早收敛的令牌产生的跨步冗余。关键在于，模型自身去噪轨迹中的早期干净估计能够提供一种有效的在线信号，用于定位这两种冗余，无需重新训练、辅助预测器或参考视频。基于这些发现，我们提出了 PreSTP（预测式时空令牌剪枝），一种免训练框架，通过跨帧相似性和跨步收敛性构建统一的逐令牌冗余掩码。被标记为冗余的令牌在后续计算中跳过，并按照一致的“保留最近一次计算值”规则进行恢复；内容自适应的掩码复用策略则进一步降低了密集探测成本。在 5 秒视频生成任务中，PreSTP 可实现 1.52 倍至 3.20 倍加速，并且相比 TeaCache、FlowCache 等粗粒度缓存基线取得更优的效率—保真度权衡。在 30 秒视频生成任务中，PreSTP 的加速比最高达到 1.96 倍，同时提升 VBench-Long 得分并抑制长时域漂移。值得注意的是，即使在完全不存在跨步冗余、粗粒度逐步缓存不再适用的极端单步场景中，它仍能降低推理成本。",
       "note_path": "2026-11-10/2611.07551-training-free-predictive-spatio-temporal-token-p.md"
     },
     {
@@ -90,12 +58,12 @@
       "comment": "39 pages, 27 figures, 7 tables. Robert Ren and Matthew Bronars contributed equally (ordered by coin flip). Project page: https://robertren1122.github.io/gpwm/",
       "score": 73,
       "priority": "must-read",
-      "summary_cn": "论文提出 GPWM，一种直接在三维粒子和刚体运动空间中建模物理世界的生成式世界模型。它采用共享的粒子/刚体表示、多分辨率时空 Transformer、流匹配和扩散强制，能够统一处理刚体、可变形物体、布料、颗粒材料及机器人交互，并通过流式自回归生成实现远超训练窗口的长期预测。基于 2550 万帧的 ParticleWorlds 数据集，GPWM 在六类物理任务上平均降低预测误差 31%，还对未见几何形状、材料属性、物体数量和更长时域具有较好泛化能力。模型进一步联合生成执行器与物体轨迹，在潜在噪声空间中进行规划，从而改善推动、抓取等接触丰富任务的目标达成效果。",
-      "contribution_cn": "1. 提出 GPWM，将粒子位移与刚体变换结合到统一的生成式三维物理世界模型中，覆盖多种材料、动力学机制和机器人交互。2. 设计具备物体感知能力的多分辨率时空 Transformer，通过对象内聚合、粗粒度跨对象交互和相对三维几何建模来处理最多 12000 个粒子的场景。3. 将流匹配与扩散强制结合，并采用分帧噪声和流式去噪调度，实现稳定的长期、流式和自回归轨迹生成，实验中可滚动到训练预测窗口的 55 倍以上。4. 构建包含 2550 万帧、覆盖六类物理领域的 ParticleWorlds 数据集。5. 在六个物理领域取得相对最强基线平均 31% 的误差降低，并展示统一模型跨异质领域训练以及对未见几何、物理属性、物体数量和滚动时域的泛化能力。6. 提出基于执行器—物体联合生成先验的噪声空间规划，通过潜在噪声优化或交叉熵方法进行接触丰富的操作规划，并在推动和抓取任务中优于动作空间搜索。",
-      "relevance_cn": "与研究重点高度相关。GPWM 是三维物理世界模型，直接预测粒子和刚体运动，而不是生成二维视频外观，因此为视频生成模型提供了显式的物理状态和交互建模路径。它使用扩散强制实现流式、因果式的长期自回归生成，允许近未来状态逐步确定并提交、远期状态持续修订，直接对应长视频生成、流式生成和长期 rollout。其多分辨率对象级注意力通过压缩粒子并在粗分辨率建模全局交互，具有稀疏化和计算扩展意义。统一模型覆盖多种动力学领域，执行器与物体轨迹的联合生成支持动作条件世界建模和闭环规划；在潜在噪声空间搜索交互先验，则将生成模型与目标导向控制结合。论文还展示了从单幅图像重建物体几何后进行动力学预测，但尚未完成从原始视频到持续三维状态的完整感知闭环。",
-      "limitations_cn": "论文明确指出：1. GPWM 假设能够获得完整且具有时间追踪关系的三维场景状态，因此没有解决从原始 RGB 或 RGB-D 视频中恢复持续粒子和物体身份的问题。2. Unified GPWM 在部分设置中仍落后于领域专用模型，表明异质动力学之间存在干扰和专业化差距。3. 潜在噪声优化需要对完整生成过程求梯度；长时域规划还需跨多个流式生成窗口反向传播，计算成本随规划时域增加，目前限制了快速在线控制。4. 规划结果是在仿真中以开环方式执行，论文未证明其在真实机器人上的部署效果。5. 物理预测指标通常只评估 GPWM 的一个样本，而单一真实未来不足以完整衡量多模态物理合理性；论文通过定性结果补充这一问题。",
+      "summary_cn": "论文提出 GPWM，将三维场景表示为粒子、刚体和执行器的运动，并用物体感知的多分辨率时空 Transformer 建模刚体、可变形体、布料和颗粒材料的动力学。流匹配与扩散强制支持流式、自回归的长时域生成，使模型能够在固定训练窗口之外持续推演。基于包含 2550 万帧、六类物理场景的 ParticleWorlds 数据集，GPWM 在各领域取得优于已有方法的预测结果，并展示了统一模型跨物理体系的泛化能力。进一步地，模型联合生成执行器和物体轨迹，通过在潜在噪声空间中进行优化，实现了基于物体目标的接触丰富操作规划。",
+      "contribution_cn": "1. 提出 GPWM，一种统一建模粒子和刚体运动的生成式三维物理世界模型，覆盖刚体、可变形体、布料和颗粒等异构动力学。2. 设计物体感知的多分辨率时空 Transformer，通过对象内外的分层注意力提升对大规模粒子场景的建模能力。3. 将流匹配与扩散强制结合，采用逐帧噪声水平和交错去噪机制，实现稳定的流式长时域生成，推演长度可超过训练窗口 55 倍。4. 提出包含 2550 万帧、多种材料、几何形状、交互方式和机器人实体的 ParticleWorlds 数据集。5. 在六个物理领域中取得领先的动力学预测性能，并证明单一 Unified 模型可以跨异构领域学习，同时泛化到未见几何形状、材料属性、物体数量和推演时域。6. 学习执行器—物体联合运动的生成式交互先验，在潜在噪声空间中进行规划，从而改善推动、抓取等接触丰富任务的目标导向操作。",
+      "relevance_cn": "论文与研究重点高度相关，但其核心输出不是像素视频，而是三维物理状态轨迹。它直接研究动作条件的视觉世界模型所需的物理状态预测、机器人交互和闭环模拟基础：执行器运动可作为条件输入，也可与物体运动联合生成，并能依据物体空间目标进行规划。其扩散强制和交错去噪机制与自回归、因果、流式及长视频生成密切相关，因为模型可以逐步提交近未来状态，同时继续修正远未来状态，并在固定训练窗口外持续生成。多分辨率对象级注意力降低了数千粒子场景的计算负担，与稀疏注意力和缓存式长时域推演具有相关性。不过，论文主要处理显式三维粒子/刚体状态，而非直接从视频生成视觉内容；因此它更适合作为三维物理世界模型和动作条件模拟器，而不是端到端的视频扩散模型。",
+      "limitations_cn": "论文明确指出，GPWM 假设能够获得完整且具有时间跟踪关系的三维场景状态，因此实验将物理预测与感知分离，尚未解决从原始视觉观测中恢复持久粒子和物体身份的问题。统一模型在部分场景仍落后于领域专用模型，说明异构动力学之间存在干扰。潜在噪声优化需要对完整生成过程求导；长时域任务还需要跨多个流式窗口反向传播，因此规划计算成本会随时域增长，目前限制了快速在线控制。论文还指出，未来需要结合三维重建与跟踪，以直接从 RGB 或 RGB-D 视频学习物理世界模型。论文未明确说明真实机器人上的实际部署性能。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 GPWM（生成式粒子世界模型），通过生成粒子和刚体随时间的运动来预测三维场景如何演化。不同于生成场景外观的视频世界模型，GPWM 直接在三维物理空间中运行。单一的表示和架构即可覆盖刚体、可变形物体、布料和颗粒材料，并同时支持被动物理过程与机器人交互。GPWM 是一种具备物体感知能力的多分辨率 Transformer，将流匹配与扩散强制相结合，以生成远超训练时域且连贯的物理轨迹。我们在 ParticleWorlds 数据集上训练和评估 GPWM，该数据集包含 2550 万帧，涵盖多样的几何形状、材料、交互方式和机器人实体。在六个物理领域中，GPWM 的表现均优于最佳已有学习动力学基线，平均将预测误差降低 31%。不同于以往方法按领域划分的设定，单一的 Unified GPWM 使用一组权重对这些异质场景进行建模，其性能大幅超过各领域基线，并在两个领域中甚至超过我们自己的专用模型。GPWM 还能够泛化到未见过的几何形状、物理属性、物体数量和滚动时域。除预测之外，GPWM 还能通过学习关节执行器—物体运动的生成式先验来支持接触丰富的规划。规划不再搜索不受约束的动作，而是搜索模型的潜在噪声，以找到能够实现目标物体空间状态的交互。在推动和抓取任务中，噪声空间规划显著优于动作空间搜索，因为复杂的接触序列很难被发现。在仿真中以开环方式执行时，这些规划能够在没有参考动作轨迹或特定目标策略的情况下实现目标导向的操作。",
+      "abstract_cn": "我们提出 GPWM，一种生成式粒子世界模型，通过生成粒子和刚体随时间的运动来预测三维场景的演化。不同于生成场景外观的视频世界模型，GPWM 直接在三维物理空间中运行。单一的表示和架构即可覆盖刚体、可变形体、布料和颗粒材料，并支持被动物理过程与机器人交互。GPWM 是一种具备物体感知能力的多分辨率 Transformer，将流匹配与扩散强制相结合，以生成远超训练时域的连贯物理轨迹。我们在 ParticleWorlds 数据集上训练和评估 GPWM，该数据集包含 2550 万帧，涵盖多样的几何形状、材料、交互方式和机器人实体。在六个物理领域中，GPWM 均优于此前最佳的学习动力学基线，平均将预测误差降低 31%。不同于以往针对特定领域的方法，单一的 Unified GPWM 使用一组权重对这些异构场景进行建模，在很大程度上优于各领域基线，并且在两个领域中甚至超过了我们自己的专用模型。GPWM 还能够泛化到未见过的几何形状、物理属性、物体数量和推演时域。除预测之外，GPWM 还通过学习联合执行器—物体运动的生成式先验，实现了接触丰富的规划。规划不再搜索不受约束的动作，而是搜索模型的潜在噪声，以找到能够实现目标物体空间状态的交互。使用同一个世界模型，在推动和抓取任务中，噪声空间规划显著优于动作空间搜索；这些任务中的复杂接触序列很难被发现。在仿真中以开环方式执行时，所得规划无需参考动作轨迹或特定目标的策略，即可实现面向目标的操作。",
       "note_path": "2026-11-10/2611.08338-gpwm-modeling-the-world-as-3d-particle-motion.md"
     },
     {
@@ -119,76 +87,14 @@
       ],
       "comment": "",
       "score": 73,
-      "priority": "skim",
-      "summary_cn": "Editing a video stream in real time, without access to future frames, is essential for interactive applications.",
-      "contribution_cn": "Based on this insight, we introduce AR-Edit, a training-free, inversion-free method that caches source values once and selectively injects them during denoising.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, autoregressive, streaming, real-time, few-step, cache",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.07850",
-      "date": "2026-11-05",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Learning Robotic World Models with Semantic and Visual Feedback",
-      "abstract": "Robot world models predict action-conditioned future visual states to support robotic planning and decision making. However, visual reconstruction does not fully capture task progress, semantic evaluation alone provides limited constraints on fine-grained visual errors, and homogeneous predictions limit comparative feedback. We present RoboImagine, a framework for post-training autoregressive robotic world models through candidate-future comparisons with semantic and visual feedback. Diverse search promotes diversity among candidate trajectories under shared visual observations, action sequences, and task instructions. A frozen multimodal evaluator provides task-relevant semantic preferences through pairwise video comparisons in both presentation orders, complemented by pixel- and perceptual-level visual consistency feedback that constrains local structural and appearance errors. These signals drive policy optimization through group-relative advantages. Fixed initial context and branch-specific rolling histories support long-sequence generation with bounded context and consistent conditioning between candidate generation and policy optimization. Experiments with separately trained models on RT-1, BridgeV2, and RoboCasa cover real-world and simulated manipulation. On RT-1, under matched initialization, update counts, and evaluation protocols, RoboImagine improves PSNR by 1.26 dB and reduces LPIPS by 11.93% relative to continued supervised fine-tuning. Ablations show that diverse search improves prediction quality and that combined semantic and visual feedback yields higher external multimodal evaluation scores than visual feedback alone while maintaining comparable visual fidelity. Rolling histories further improve long-horizon prediction. These results support improving visual fidelity, task relevance, and long-horizon prediction through candidate comparison and complementary feedback.",
-      "authors": [
-        "Hao Wu",
-        "Yuqi Li",
-        "Yizhou Zhao",
-        "Kun Wang",
-        "Xiao Luo",
-        "Yu Cheng",
-        "Bo An",
-        "Yingli Tian",
-        "Laszlo A. Jeni",
-        "Ming-Hsuan Yang"
-      ],
-      "url": "http://arxiv.org/abs/2611.07850v1",
-      "categories": [
-        "cs.RO",
-        "cs.CV"
-      ],
-      "comment": "27 pages, including supplementary material. Project and code: https://github.com/Alexander-wu/RoboImagine . Data and weights: https://huggingface.co/easylearning/RoboImagine",
-      "score": 72,
-      "priority": "skim",
-      "summary_cn": "Robot world models predict action-conditioned future visual states to support robotic planning and decision making.",
-      "contribution_cn": "We present RoboImagine, a framework for post-training autoregressive robotic world models through candidate-future comparisons with semantic and visual feedback.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.06061",
-      "date": "2026-11-04",
-      "topics": [
-        "World Models"
-      ],
-      "title": "TouchéWorld tech report : Towards Online Unified Camera--Hand Exploration in Generative Worlds",
-      "abstract": "Recent video world models allow users to explore generated environments through camera navigation. Continuous hand motion provides a fine-grained action channel for interacting with the people and objects encountered during exploration. We present TouchéWorld, a framework that integrates gesture-driven interaction into a camera-controlled video world model. Given an initial image and a scene-description prompt, the model generates video conditioned on temporally aligned camera and hand controls. We construct joint camera--hand training data from heterogeneous egocentric videos through annotation completion, consistency-based filtering, and temporal alignment. Building on a pretrained camera-controlled world model, we combine spatial hand-skeleton conditioning with numerical hand-motion features through parameter-efficient adaptation. Causal adaptation and few-step distillation support chunk-level online generation, allowing users to update their controls based on generated visual feedback. We further introduce TouchéBench to evaluate hand-motion following, camera--hand coordination, online interaction, and object response. Together, these components establish a framework for studying continuous exploration and hand-driven interaction within generative worlds.",
-      "authors": [
-        "Jiaao Yu",
-        "Yanjian Zhang",
-        "Haoyang Jiang",
-        "Guillaume Wisniewski",
-        "Nadi Tomeh",
-        "Shijie Jia"
-      ],
-      "url": "http://arxiv.org/abs/2611.06061v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 70,
-      "priority": "skim",
-      "summary_cn": "Recent video world models allow users to explore generated environments through camera navigation.",
-      "contribution_cn": "We present TouchéWorld, a framework that integrates gesture-driven interaction into a camera-controlled video world model.",
-      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, video world model, few-step, distillation, efficient",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "priority": "must-read",
+      "summary_cn": "本文研究DMD蒸馏自回归视频扩散模型上的实时、因果、免训练视频编辑。作者发现，在不同噪声时间步中，自注意力的查询和键基本稳定，而值特征显著变化并承载视频身份与内容。基于此，AR-Edit通过一次源视频前向传播缓存干净值特征，从随机高斯噪声出发，在目标提示词引导的少步去噪中选择性注入这些值，并利用Commit-then-Anchor策略保护未编辑区域。实验在Reward Forcing、CausVid和Self Forcing等AR骨干上表明，该方法无需反演或额外训练，在源内容保持、色调保真、视频质量和实时性之间取得了更好的平衡。",
+      "contribution_cn": "1. 揭示DMD蒸馏AR视频扩散模型及其双向教师中的自注意力不对称性：查询和键跨噪声时间步保持稳定，而值特征发生明显变化并控制生成内容。 2. 证明从单次干净源视频前向传播得到的值特征，结合随机高斯噪声即可实现高保真源视频重建，使少步AR模型中的反演变得不必要。 3. 提出AR-Edit，一种无需训练、无需反演的流式视频编辑方法，通过缓存并选择性注入源值，在目标提示词下进行因果编辑。 4. 构建面向AR约束的流式视频编辑基准，并在多个AR骨干上验证了方法在源内容保持、伪影抑制、吞吐量和延迟方面的优势。",
+      "relevance_cn": "与研究重点高度相关。该工作直接面向自回归、因果、流式和长视频生成基础设施上的实时视频编辑；利用DMD蒸馏将每个视频块的编辑限制在3至4步去噪，并结合滚动KV缓存维持跨块因果上下文。其核心技术是缓存和复用自注意力值特征，以避免昂贵的反演和多次网络评估，从而降低实时编辑的延迟与计算开销。实验报告了3至4步编辑、约10至12 FPS吞吐量及亚秒级首帧延迟，体现了对实时生成、缓存复用和少步蒸馏的直接贡献。该方法主要针对视频编辑，而不是动作条件视觉世界模型或闭环模拟。",
+      "limitations_cn": "论文指出，AR-Edit存在源内容保持与目标文本遵循之间的权衡：增加值注入会提高源一致性，但可能削弱编辑语义；作者也明确承认方法会牺牲部分文本遵循度。该方法依赖DMD蒸馏的AR视频扩散模型及其少步高噪声工作区间，论文没有证明其适用于非蒸馏模型、低噪声采样或其他生成架构。评测基准由120个手工筛选的Pexels视频组成，规模和场景覆盖有限；用户研究仅包含20名参与者和33个视频。论文还未系统评估极长时间范围内的误差累积、复杂动态编辑、闭环交互模拟或更广泛的真实部署场景。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "在无法访问未来帧的情况下实时编辑视频流，对于交互式应用至关重要。然而，现有的免训练视频编辑方法通常假设可以离线访问完整序列，而流式方法要么依赖额外训练，要么仅限于特定的编辑技术。我们通过分析经DMD蒸馏的自回归（AR）视频扩散模型中的自注意力动态，证明了这一限制可以被消除。我们发现了一个关键的不对称性：在不同去噪时间步之间，查询和键始终保持稳定，并与其源对应项对齐；而值则发生偏离，并编码不断演化的内容。这种继承自非蒸馏双向教师模型的不对称性，在高噪声阶段最为明显，而少步数流式模型正工作于该阶段。由此得到的机制非常简单：只需一次前向传播，就能在值特征中捕获源视频的身份信息，并在整个生成过程中重复使用。从纯高斯噪声开始，仅注入这些源值即可高保真地重建输入，其效果达到或超过基于反演的方法，从而有效消除了反演过程。基于这一洞见，我们提出AR-Edit：一种无需训练、无需反演的方法，它只需缓存一次源值，并在去噪过程中选择性地注入这些值。在多个AR骨干模型上，AR-Edit以极小的额外开销实现了实时流式编辑，并在源视频保持和色调保真度方面取得了更优表现。",
+      "note_path": "2026-11-10/2611.09795-ar-edit-training-free-autoregressive-video-editi.md"
     },
     {
       "id": "2611.09096",
@@ -293,36 +199,123 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.06120",
-      "date": "2026-11-04",
+      "id": "2611.11452",
+      "date": "2026-11-08",
       "topics": [
-        "Video Generation",
-        "World Models"
+        "Autoregressive and Streaming Video"
       ],
-      "title": "ReactWorld: Structuring Interaction Responses for Embodied Video Generation",
-      "abstract": "Embodied video world models predict scene changes caused by robot actions, yet generated object responses may remain inconsistent with task intent and contact dynamics. Critical responses in embodied scenes often concentrate in local regions and specific time intervals. Inspired by chain-of-thought reasoning, we introduce ReactWorld, an embodied video generation model guided by structured interaction anticipation. In the generation backbone's feature space, an interaction response field predictor anticipates how the interaction will unfold, explicitly describing participant roles, future motion response intensity, and local motion changes. A response feedback adapter forms increments to object features from the difference between the object branch's outputs with predicted and zeroed local dynamics inputs. It also converts predicted displacements into positional biases for temporal attention. These two mechanisms guide object feature updates and information retrieval across frames, respectively. Through interaction anticipation and generative feedback, ReactWorld achieves an average score of 77.51 on RBench, outperforming PhysisForcing by 3.29 points with improvements in all nine categories. On EZS-Bench, it achieves a Domain score of 86.98 and an average score of 81.87.",
+      "title": "Semantically Aligned KV Cache Compression for Efficient Agentic Autoregressive Video Generation",
+      "abstract": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis. Growing visual histories enlarge the key-value (KV) cache, increasing memory use and attention costs across candidate rollouts. Existing compression methods primarily optimize individual generators without the planner's semantic constraints, risking low priority for states supporting requested attributes or actions. We introduce SemanticKV, a training-free method for semantically aligned KV cache compression. To our knowledge, SemanticKV is the first KV cache compression method for agentic autoregressive video generation that explicitly uses planner-extracted semantic constraints to guide retention. Text cross-attention identifies constraint-related video positions, whose self-attention queries are collected into separate groups. Attention weights are averaged within each group and maximized across groups, giving each cached entry a high score when strongly used by any represented constraint. A single top-k selection retains high-scoring entries under the memory budget, leaving their keys, values, and positions unchanged. For fixed query groups and equal entry costs, this selection minimizes an additive upper bound on worst-group discarded attention. The method operates independently within each candidate without retraining or additional video generations. We evaluate four AR video backbones on three benchmarks for 5-, 30-, and 60-second generation. On Causal Forcing at a compression ratio of 0.7, SemanticKV obtains a VBench Total Score of 84.10, compared with 84.05 for the strongest compressed baseline and 83.99 for Full KV. It achieves a 1.22x speedup over Full KV and reduces KV-cache memory from 6.04 GB to 1.81 GB, a 3.35x reduction.",
       "authors": [
-        "Hanwei Liu",
-        "Huijia Zhang",
-        "Hanzhang Wang",
-        "Guangyu Liu",
-        "Hanbei Zhan",
-        "Linjie Hu",
-        "Bin Xiao",
-        "Xuan Zhou",
-        "Dong Zhang"
+        "Weizhong Huang",
+        "Huaijia Kou",
+        "Tianyu Xie",
+        "Xiawu Zheng",
+        "Liujuan Cao"
       ],
-      "url": "http://arxiv.org/abs/2611.06120v1",
+      "url": "http://arxiv.org/abs/2611.11452v1",
       "categories": [
         "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "32 pages, 12 figures",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis.",
+      "contribution_cn": "We introduce SemanticKV, a training-free method for semantically aligned KV cache compression.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.10392",
+      "date": "2026-11-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Tiresias: Towards Language-Conditioned World Models",
+      "abstract": "World models enable planning through internal simulation, while natural language provides intuitive task specification. Yet, language-conditioned world modeling remains fragmented across domains with disparate action spaces, datasets, and evaluation protocols. We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction. Its accompanying benchmark, LCWM-Bench, integrates 15 datasets across navigation, robotics, 3D gaming, and driving under a shared action interface and evaluation protocol, pairing 142,987 episodes with 428,961 instructions in three styles. We further propose Tiresias, an agent that plans via selective imagination: a language-conditioned diffusion policy generates candidate trajectories, a trajectory ranker shortlists them, and a video-pretrained world model imagines their visual consequences. A visual ranker evaluates these rollouts, complementing trajectory scores to select the final plan. Tiresias achieves competitive planning and imagination performance on LCWM-Bench. Ablations demonstrate the complementary benefits of trajectory ranking and visual verification, while experiments with alternative proposal methods show that the trained rankers remain effective beyond our diffusion policy. Together, LCWM-Bench and Tiresias provide a unified evaluation setting and an effective starting point for studying language-guided planning through world models.",
+      "authors": [
+        "Fengyi Wu",
+        "Yifei Dong",
+        "Yetong Sha",
+        "Lingdong Kong",
+        "Qiyu Hu",
+        "Bohan Xiong",
+        "Qi Dai",
+        "Alexander G. Hauptmann",
+        "Zhi-Qi Cheng"
+      ],
+      "url": "http://arxiv.org/abs/2611.10392v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "33 pages, including appendix and references. Code: https://github.com/UWMILab/Tiresias",
+      "score": 60,
+      "priority": "skim",
+      "summary_cn": "World models enable planning through internal simulation, while natural language provides intuitive task specification.",
+      "contribution_cn": "We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, driving, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.11166",
+      "date": "2026-11-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "DexForesight: Grounding Dexterous Policies with Implicit Spatial Foresight",
+      "abstract": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand. Existing world-action models often acquire such predictive knowledge through explicit future prediction. We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy. During training, DexForesight learns an action-conditioned spatial world model from offline scene depth, kinematic hand geometry, and demonstration trajectories. The world model predicts 3D hand-point motion and visual feature changes, capturing both articulated hand dynamics and scene changes under demonstrated actions, including the motion of fingers occluded from the cameras. We then freeze the world model and align policy queries with its predictive world queries, transferring the learned spatial dynamics into policy latents and using them to condition action generation. At deployment, only the policy is retained, operating on RGB observations, language, and robot state without depth input or explicit future prediction. On 11 DexJoCo simulation tasks, DexForesight improves the overall success rate of the base policy from 49.4% to 60.5%. On three real-robot dexterous manipulation tasks, DexForesight achieves 58.3% success, compared with 50.0% for the strongest baseline.Project page https://dexforesight.github.io/",
+      "authors": [
+        "Zhongxi Chen",
+        "Yi Yang",
+        "Xinyi Chen",
+        "Mingzhe Ye",
+        "Yaping Li",
+        "Zhihong Liu",
+        "Congsheng Xu",
+        "Haonan Wang",
+        "Zhijie Deng"
+      ],
+      "url": "http://arxiv.org/abs/2611.11166v1",
+      "categories": [
         "cs.RO"
       ],
-      "comment": "10 pages, 7 figures. Project page: https://metaengine-world.github.io/ReactWorld/",
-      "score": 67,
+      "comment": "13 pages, 4 figures",
+      "score": 59,
       "priority": "skim",
-      "summary_cn": "Embodied video world models predict scene changes caused by robot actions, yet generated object responses may remain inconsistent with task intent and contact dynamics.",
-      "contribution_cn": "Inspired by chain-of-thought reasoning, we introduce ReactWorld, an embodied video generation model guided by structured interaction anticipation.",
-      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, embodied, video generation",
+      "summary_cn": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand.",
+      "contribution_cn": "We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.11912",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LO-World: Unified BEV Latent Modeling for Joint 4D Occupancy and LiDAR Forecasting",
+      "abstract": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity. However, existing world models typically forecast these modalities independently or cascade them heuristically, missing the opportunity for reciprocal cross-modal regularization. To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space. This single-stream formulation enables dense semantics and metric geometry to mutually reinforce each other, while eliminating multi-pipeline redundancy. Specifically, LO-World couples an efficient hybrid range-voxel autoencoder with a flow-matching generator that caches historical context to reduce iterative sampling latency. Extensive experiments demonstrate that LO-World outperforms prior state-of-the-art baselines, improving occupancy forecasting IoU by 10.9% and reducing LiDAR Chamfer Distance by 30.1%. Meanwhile, it sustains a real-time throughput exceeding $25$~FPS on a single RTX 4090. Our code is available at https://github.com/lzzzzzm/LO-World.",
+      "authors": [
+        "Zhimin Liao",
+        "Ping Wei",
+        "Kai Mao",
+        "Shuaijia Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.11912v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity.",
+      "contribution_cn": "To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, real-time, cache, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
