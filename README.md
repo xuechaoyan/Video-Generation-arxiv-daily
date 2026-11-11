@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-10**|**From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models**|Guoqiang Liang et.al.|[2611.14365](http://arxiv.org/abs/2611.14365)|null|
 |**2026-11-10**|**When to Start Denoising? Adaptive Denoising Entry for Generative Video Compression**|Zifu Zhang et.al.|[2611.13620](http://arxiv.org/abs/2611.13620)|null|
 |**2026-11-09**|**PhysOPSD: Code as Privilege for Physically Plausible Video Generation**|Harold Haodong Chen et.al.|[2611.12411](http://arxiv.org/abs/2611.12411)|null|
 |**2026-11-08**|**GenRM-Flow: Generators are Process-aware Reward Models in Flow Matching**|Siming Fu et.al.|[2611.11421](http://arxiv.org/abs/2611.11421)|null|
@@ -1596,6 +1597,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-10**|**OnlyAct: Extracting Action Representations from Foundation Models for World Models**|Runjia Li et.al.|[2611.14420](http://arxiv.org/abs/2611.14420)|null|
+|**2026-11-10**|**Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning**|Souhaila Djaffal et.al.|[2611.14419](http://arxiv.org/abs/2611.14419)|null|
+|**2026-11-10**|**An Energy-Based Perspective on Machine Learning**|Bo Dai et.al.|[2611.14383](http://arxiv.org/abs/2611.14383)|null|
+|**2026-11-10**|**From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models**|Guoqiang Liang et.al.|[2611.14365](http://arxiv.org/abs/2611.14365)|null|
+|**2026-11-10**|**Elastic-WAM: Adaptive Spatiotemporal Imagination for Efficient Robot Control**|Haitian Li et.al.|[2611.14257](http://arxiv.org/abs/2611.14257)|null|
 |**2026-11-10**|**LaST0.5: A Generalist World Action Model with Interaction-Centric Latent Reasoning**|Xuheng Zhang et.al.|[2611.14048](http://arxiv.org/abs/2611.14048)|null|
 |**2026-11-10**|**WAM is capable in BEHAVIOR-1K: the 2nd-place solution to the 2026 BEHAVIOR Challenge**|Yelin He et.al.|[2611.13818](http://arxiv.org/abs/2611.13818)|null|
 |**2026-11-10**|**Few-Shot Residual Adaptation of Pretrained Latent World Models**|Jakub Suliga et.al.|[2611.13592](http://arxiv.org/abs/2611.13592)|null|

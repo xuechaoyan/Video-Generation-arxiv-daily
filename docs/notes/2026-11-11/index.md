@@ -2,4 +2,4 @@
 
 > 共 1 篇。返回 [全部日期](../index.md)。
 
-- [AR-Edit: Training-Free Autoregressive Video Editing without Inversion](2611.09795-ar-edit-training-free-autoregressive-video-editi.md) · 73/100
+- [OnlyAct: Extracting Action Representations from Foundation Models for World Models](2611.14420-onlyact-extracting-action-representations-from-f.md) · 74/100
