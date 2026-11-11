@@ -1,71 +1,7 @@
 {
-  "generated_at": "2026-11-10T18:56:10+00:00",
+  "generated_at": "2026-11-11T03:14:19+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
-    {
-      "id": "2611.07551",
-      "date": "2026-11-06",
-      "topics": [
-        "Video Generation",
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "Training-Free Predictive Spatio-Temporal Token Pruning for Few-Step Autoregressive Video Diffusion",
-      "abstract": "Few-step autoregressive (AR) video diffusion models generate videos chunk by chunk and have made efficient video generation practical. However, further accelerating these models toward real-time generation remains challenging, as few-step distillation leaves little cross-step redundancy for existing training-free caching methods to exploit. We revisit this regime and identify two token-level redundancy patterns: cross-frame redundancy from static content shared across adjacent frames, and cross-step redundancy from tokens that converge early during denoising. Crucially, we find that early clean estimates along the model's own denoising trajectory provide an effective online signal for locating both patterns, requiring no retraining, auxiliary predictor, or reference video. Based on these findings, we propose PreSTP (Predictive Spatio-Temporal Token Pruning), a training-free framework that constructs a unified token-wise redundancy mask from cross-frame similarity and cross-step convergence. Tokens marked as redundant skip subsequent computation under a consistent last-computed-value restoration rule, and a content-adaptive mask reuse strategy further reduces dense probing cost. On 5-second generation, PreSTP achieves 1.52x-3.20x speedups and a better efficiency-fidelity trade-off than coarse-grained caching baselines such as TeaCache and FlowCache. On 30-second generation, it reaches up to 1.96x speedup while improving VBench-Long and suppressing long-horizon drift. Notably, it continues to reduce inference cost even in the extreme one-step regime, where cross-step redundancy vanishes entirely and coarse step-wise caching is no longer applicable.",
-      "authors": [
-        "Jia Li",
-        "Xurui Peng",
-        "Xing Wang",
-        "Hayden Kwok-Hay So"
-      ],
-      "url": "http://arxiv.org/abs/2611.07551v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "19 pages, 10 figures, 11 tables, including appendices",
-      "score": 73,
-      "priority": "must-read",
-      "summary_cn": "论文提出 PreSTP，用模型去噪过程中产生的早期干净估计在线识别两类逐令牌冗余：相邻帧间静态区域的跨帧冗余，以及同一帧内较早稳定令牌的跨步冗余。方法通过统一掩码跳过冗余令牌，并用最近计算值保持输出和 KV 缓存一致；同时根据内容变化复用静态掩码，以减少探测开销。实验覆盖 CausVid、Self-Forcing、AnyFlow、LongLive 以及 One-Forcing、Causal Forcing++ 等模型，在 5 秒视频上最高加速 3.20 倍，在 30 秒视频上最高加速 1.96 倍，并通常保持接近或优于密集基线的质量和长时域稳定性。",
-      "contribution_cn": "1. 识别并分析少步自回归视频扩散中的跨帧静态冗余和跨步收敛冗余，证明模型自身的早期干净估计可以作为无需外部参考的在线信号。 2. 提出 PreSTP，将两类冗余统一为在线逐令牌掩码，利用最近一次计算值恢复跳过令牌，从而保持输出布局和 KV 缓存一致。 3. 提出内容自适应的静态掩码复用和定期重新锚定机制，降低密集探测成本并缓解长期复用造成的漂移。 4. 在少步和单步自回归视频扩散模型上验证方法，在保持视觉质量的同时获得最高 3.20 倍加速，并改善部分长视频生成的稳定性。",
-      "relevance_cn": "该工作直接面向视频扩散推理加速、实时生成、因果自回归生成和长视频生成。它不依赖重新训练或额外预测器，而是在推理时利用时空令牌冗余进行细粒度剪枝，适合少步蒸馏模型中传统跨步缓存收益有限的场景。其跨帧掩码复用和重新锚定机制与长视频闭环 rollout、历史上下文一致性及长时域漂移抑制密切相关；其单步模型实验也表明，跨帧剪枝在跨步缓存失效时仍然有效。论文主要关注视频生成加速，并未直接研究动作条件、交互式闭环控制或视觉世界模型中的策略反馈。",
-      "limitations_cn": "加速效果依赖视频内容；对于运动密集、跨帧冗余较少的视频，收益会明显降低。方法只减少查询侧令牌计算，而注意力仍需作用于完整的历史 KV 上，因此未同时解决历史上下文压缩问题。静态掩码复用可能产生过时掩码误差，虽然定期重新探测可缓解该问题。论文当前实验主要基于 Wan2.1-1.3B、832×480 分辨率及若干特定自回归视频扩散模型，尚未覆盖更广泛的视频生成任务，例如图像到视频生成；对高度动态内容的冗余预测仍有待改进。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "少步自回归（AR）视频扩散模型以视频片段为单位逐块生成视频，使高效视频生成成为现实。然而，进一步将这类模型加速到实时生成仍然具有挑战性，因为少步蒸馏几乎消除了现有免训练缓存方法能够利用的跨步冗余。我们重新考察了这一场景，并发现了两种令牌级冗余模式：相邻帧之间由静态内容共享产生的跨帧冗余，以及去噪过程中较早收敛的令牌产生的跨步冗余。关键在于，模型自身去噪轨迹中的早期干净估计能够提供一种有效的在线信号，用于定位这两种冗余，无需重新训练、辅助预测器或参考视频。基于这些发现，我们提出了 PreSTP（预测式时空令牌剪枝），一种免训练框架，通过跨帧相似性和跨步收敛性构建统一的逐令牌冗余掩码。被标记为冗余的令牌在后续计算中跳过，并按照一致的“保留最近一次计算值”规则进行恢复；内容自适应的掩码复用策略则进一步降低了密集探测成本。在 5 秒视频生成任务中，PreSTP 可实现 1.52 倍至 3.20 倍加速，并且相比 TeaCache、FlowCache 等粗粒度缓存基线取得更优的效率—保真度权衡。在 30 秒视频生成任务中，PreSTP 的加速比最高达到 1.96 倍，同时提升 VBench-Long 得分并抑制长时域漂移。值得注意的是，即使在完全不存在跨步冗余、粗粒度逐步缓存不再适用的极端单步场景中，它仍能降低推理成本。",
-      "note_path": "2026-11-10/2611.07551-training-free-predictive-spatio-temporal-token-p.md"
-    },
-    {
-      "id": "2611.08338",
-      "date": "2026-11-05",
-      "topics": [
-        "World Models",
-        "Autoregressive and Streaming Video"
-      ],
-      "title": "GPWM: Modeling the World as 3D Particle Motion",
-      "abstract": "We introduce GPWM, a Generative Particle World Model that predicts how 3D scenes evolve by generating the motion of particles and rigid bodies over time. Unlike video world models that generate scene appearance, GPWM operates directly in 3D physical space. A single representation and architecture cover rigid, deformable, cloth, and granular materials, in both passive physics and robotic interaction. GPWM is an object-aware multi-resolution transformer that combines flow matching with diffusion forcing to generate coherent physical trajectories far beyond its training horizon. We train and evaluate GPWM on ParticleWorlds, a 25.5-million-frame corpus spanning diverse geometries, materials, interactions, and robot embodiments. GPWM outperforms the best prior learned-dynamics baseline in each of six physical domains, reducing prediction error by 31% on average. Breaking from the domain-specific setting of prior methods, a single Unified GPWM models these heterogeneous regimes with one set of weights, largely outperforming per-domain baselines and even surpassing our own specialist models in two domains. GPWM further generalizes to unseen geometries, physical properties, object counts, and rollout horizons. Beyond prediction, GPWM enables contact-rich planning by learning a generative prior over joint actuator-object motion. Instead of searching over unconstrained actions, planning searches the model's latent noise for interactions that achieve a desired object-space goal. With the same world model, noise-space planning substantially outperforms action-space search on pushing and picking, where complex contact sequences are hard to discover. Executed open-loop in simulation, the resulting plans achieve goal-directed manipulation without reference action trajectories or goal-specific policies.",
-      "authors": [
-        "Robert Ren",
-        "Matthew Bronars",
-        "He Zhu",
-        "Yikai Tang",
-        "Jianing Zhang",
-        "Sergey Zakharov",
-        "Pavel Tokmakov",
-        "Katerina Fragkiadaki"
-      ],
-      "url": "http://arxiv.org/abs/2611.08338v1",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "39 pages, 27 figures, 7 tables. Robert Ren and Matthew Bronars contributed equally (ordered by coin flip). Project page: https://robertren1122.github.io/gpwm/",
-      "score": 73,
-      "priority": "must-read",
-      "summary_cn": "论文提出 GPWM，将三维场景表示为粒子、刚体和执行器的运动，并用物体感知的多分辨率时空 Transformer 建模刚体、可变形体、布料和颗粒材料的动力学。流匹配与扩散强制支持流式、自回归的长时域生成，使模型能够在固定训练窗口之外持续推演。基于包含 2550 万帧、六类物理场景的 ParticleWorlds 数据集，GPWM 在各领域取得优于已有方法的预测结果，并展示了统一模型跨物理体系的泛化能力。进一步地，模型联合生成执行器和物体轨迹，通过在潜在噪声空间中进行优化，实现了基于物体目标的接触丰富操作规划。",
-      "contribution_cn": "1. 提出 GPWM，一种统一建模粒子和刚体运动的生成式三维物理世界模型，覆盖刚体、可变形体、布料和颗粒等异构动力学。2. 设计物体感知的多分辨率时空 Transformer，通过对象内外的分层注意力提升对大规模粒子场景的建模能力。3. 将流匹配与扩散强制结合，采用逐帧噪声水平和交错去噪机制，实现稳定的流式长时域生成，推演长度可超过训练窗口 55 倍。4. 提出包含 2550 万帧、多种材料、几何形状、交互方式和机器人实体的 ParticleWorlds 数据集。5. 在六个物理领域中取得领先的动力学预测性能，并证明单一 Unified 模型可以跨异构领域学习，同时泛化到未见几何形状、材料属性、物体数量和推演时域。6. 学习执行器—物体联合运动的生成式交互先验，在潜在噪声空间中进行规划，从而改善推动、抓取等接触丰富任务的目标导向操作。",
-      "relevance_cn": "论文与研究重点高度相关，但其核心输出不是像素视频，而是三维物理状态轨迹。它直接研究动作条件的视觉世界模型所需的物理状态预测、机器人交互和闭环模拟基础：执行器运动可作为条件输入，也可与物体运动联合生成，并能依据物体空间目标进行规划。其扩散强制和交错去噪机制与自回归、因果、流式及长视频生成密切相关，因为模型可以逐步提交近未来状态，同时继续修正远未来状态，并在固定训练窗口外持续生成。多分辨率对象级注意力降低了数千粒子场景的计算负担，与稀疏注意力和缓存式长时域推演具有相关性。不过，论文主要处理显式三维粒子/刚体状态，而非直接从视频生成视觉内容；因此它更适合作为三维物理世界模型和动作条件模拟器，而不是端到端的视频扩散模型。",
-      "limitations_cn": "论文明确指出，GPWM 假设能够获得完整且具有时间跟踪关系的三维场景状态，因此实验将物理预测与感知分离，尚未解决从原始视觉观测中恢复持久粒子和物体身份的问题。统一模型在部分场景仍落后于领域专用模型，说明异构动力学之间存在干扰。潜在噪声优化需要对完整生成过程求导；长时域任务还需要跨多个流式窗口反向传播，因此规划计算成本会随时域增长，目前限制了快速在线控制。论文还指出，未来需要结合三维重建与跟踪，以直接从 RGB 或 RGB-D 视频学习物理世界模型。论文未明确说明真实机器人上的实际部署性能。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "我们提出 GPWM，一种生成式粒子世界模型，通过生成粒子和刚体随时间的运动来预测三维场景的演化。不同于生成场景外观的视频世界模型，GPWM 直接在三维物理空间中运行。单一的表示和架构即可覆盖刚体、可变形体、布料和颗粒材料，并支持被动物理过程与机器人交互。GPWM 是一种具备物体感知能力的多分辨率 Transformer，将流匹配与扩散强制相结合，以生成远超训练时域的连贯物理轨迹。我们在 ParticleWorlds 数据集上训练和评估 GPWM，该数据集包含 2550 万帧，涵盖多样的几何形状、材料、交互方式和机器人实体。在六个物理领域中，GPWM 均优于此前最佳的学习动力学基线，平均将预测误差降低 31%。不同于以往针对特定领域的方法，单一的 Unified GPWM 使用一组权重对这些异构场景进行建模，在很大程度上优于各领域基线，并且在两个领域中甚至超过了我们自己的专用模型。GPWM 还能够泛化到未见过的几何形状、物理属性、物体数量和推演时域。除预测之外，GPWM 还通过学习联合执行器—物体运动的生成式先验，实现了接触丰富的规划。规划不再搜索不受约束的动作，而是搜索模型的潜在噪声，以找到能够实现目标物体空间状态的交互。使用同一个世界模型，在推动和抓取任务中，噪声空间规划显著优于动作空间搜索；这些任务中的复杂接触序列很难被发现。在仿真中以开环方式执行时，所得规划无需参考动作轨迹或特定目标的策略，即可实现面向目标的操作。",
-      "note_path": "2026-11-10/2611.08338-gpwm-modeling-the-world-as-3d-particle-motion.md"
-    },
     {
       "id": "2611.09795",
       "date": "2026-11-06",
@@ -88,13 +24,13 @@
       "comment": "",
       "score": 73,
       "priority": "must-read",
-      "summary_cn": "本文研究DMD蒸馏自回归视频扩散模型上的实时、因果、免训练视频编辑。作者发现，在不同噪声时间步中，自注意力的查询和键基本稳定，而值特征显著变化并承载视频身份与内容。基于此，AR-Edit通过一次源视频前向传播缓存干净值特征，从随机高斯噪声出发，在目标提示词引导的少步去噪中选择性注入这些值，并利用Commit-then-Anchor策略保护未编辑区域。实验在Reward Forcing、CausVid和Self Forcing等AR骨干上表明，该方法无需反演或额外训练，在源内容保持、色调保真、视频质量和实时性之间取得了更好的平衡。",
-      "contribution_cn": "1. 揭示DMD蒸馏AR视频扩散模型及其双向教师中的自注意力不对称性：查询和键跨噪声时间步保持稳定，而值特征发生明显变化并控制生成内容。 2. 证明从单次干净源视频前向传播得到的值特征，结合随机高斯噪声即可实现高保真源视频重建，使少步AR模型中的反演变得不必要。 3. 提出AR-Edit，一种无需训练、无需反演的流式视频编辑方法，通过缓存并选择性注入源值，在目标提示词下进行因果编辑。 4. 构建面向AR约束的流式视频编辑基准，并在多个AR骨干上验证了方法在源内容保持、伪影抑制、吞吐量和延迟方面的优势。",
-      "relevance_cn": "与研究重点高度相关。该工作直接面向自回归、因果、流式和长视频生成基础设施上的实时视频编辑；利用DMD蒸馏将每个视频块的编辑限制在3至4步去噪，并结合滚动KV缓存维持跨块因果上下文。其核心技术是缓存和复用自注意力值特征，以避免昂贵的反演和多次网络评估，从而降低实时编辑的延迟与计算开销。实验报告了3至4步编辑、约10至12 FPS吞吐量及亚秒级首帧延迟，体现了对实时生成、缓存复用和少步蒸馏的直接贡献。该方法主要针对视频编辑，而不是动作条件视觉世界模型或闭环模拟。",
-      "limitations_cn": "论文指出，AR-Edit存在源内容保持与目标文本遵循之间的权衡：增加值注入会提高源一致性，但可能削弱编辑语义；作者也明确承认方法会牺牲部分文本遵循度。该方法依赖DMD蒸馏的AR视频扩散模型及其少步高噪声工作区间，论文没有证明其适用于非蒸馏模型、低噪声采样或其他生成架构。评测基准由120个手工筛选的Pexels视频组成，规模和场景覆盖有限；用户研究仅包含20名参与者和33个视频。论文还未系统评估极长时间范围内的误差累积、复杂动态编辑、闭环交互模拟或更广泛的真实部署场景。",
+      "summary_cn": "本文研究经DMD蒸馏的自回归视频扩散模型中的训练免费流式视频编辑。作者发现，自注意力中的查询和键在不同噪声水平下基本稳定，而值特征携带主要的视觉内容和身份信息；该特性在少步数模型运行的高噪声区域尤其明显。因此，方法无需传统反演，只需对每个输入视频块进行一次干净前向传播以缓存值特征，再从随机高斯噪声出发、在目标文本提示下去噪，并选择性注入缓存的源值。AR-Edit通过Commit-then-Anchor策略和跨注意力生成的区域掩码，在编辑区域保持目标语义，在非编辑区域保持源内容。实验在120个Pexels视频和Reward Forcing、CausVid、Self Forcing三个AR骨干上进行，结果显示该方法在源内容保持、视频质量和色调保真度方面具有竞争力，同时维持较低的步数、延迟和内存开销。",
+      "contribution_cn": "1. 揭示DMD蒸馏的AR视频扩散模型及其双向教师中的自注意力不对称性：查询和键跨去噪时间步保持稳定，而值特征显著变化并决定生成内容。\n2. 证明从一次源视频的干净前向传播中提取的值特征，结合随机高斯噪声即可实现高保真源视频重建，使少步数AR模型中的反演变得不必要。\n3. 提出AR-Edit，一种无需训练、无需反演的流式视频编辑方法，通过缓存并在目标提示条件下选择性注入源值特征实现编辑。\n4. 提出用于AR约束下流式视频编辑的基准，并在多个AR骨干模型上验证其源内容保持、伪影抑制、吞吐量和延迟表现。",
+      "relevance_cn": "论文与研究重点高度相关：它直接面向自回归、因果、流式和长序列视频生成骨干上的实时视频编辑；利用DMD少步数蒸馏模型，将每个视频块的处理限制在一次缓存前向传播和3至4步去噪内；通过源值特征缓存和现有滚动KV缓存复用降低编辑开销；采用因果注意力处理到达的视频块，不访问未来帧；并通过跨注意力掩码和Commit-then-Anchor机制实现闭环式、在线的源内容保持与目标语义编辑。论文不主要研究动作条件视觉世界模型或闭环环境模拟，但其因果流式视频建模与缓存机制可为这些方向提供相关技术基础。",
+      "limitations_cn": "论文报告了源内容保持与目标文本遵循之间的权衡：增加值注入通常会提高源一致性，但可能降低编辑语义的遵循程度。AR-Edit在少步数蒸馏模型上运行，编辑能力和质量受其固定的3至4步去噪预算限制。实验主要基于Wan 2.1的Reward Forcing、CausVid和Self Forcing学生模型，并在单张H100上测试，尚未证明对更广泛模型和硬件的普适性。评测基准由120个手工筛选的Pexels视频构成，用户研究仅包含20名参与者和33个视频，因此规模有限。论文还指出AR视频生成骨干本身存在长时域暴露偏差和注意力汇过度依赖等问题；AR-Edit将这些骨干视为既定基础，并未解决这些生成问题。论文未明确说明更长视频时域、更多样化编辑类型以及真实交互式部署环境下的性能上限。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "在无法访问未来帧的情况下实时编辑视频流，对于交互式应用至关重要。然而，现有的免训练视频编辑方法通常假设可以离线访问完整序列，而流式方法要么依赖额外训练，要么仅限于特定的编辑技术。我们通过分析经DMD蒸馏的自回归（AR）视频扩散模型中的自注意力动态，证明了这一限制可以被消除。我们发现了一个关键的不对称性：在不同去噪时间步之间，查询和键始终保持稳定，并与其源对应项对齐；而值则发生偏离，并编码不断演化的内容。这种继承自非蒸馏双向教师模型的不对称性，在高噪声阶段最为明显，而少步数流式模型正工作于该阶段。由此得到的机制非常简单：只需一次前向传播，就能在值特征中捕获源视频的身份信息，并在整个生成过程中重复使用。从纯高斯噪声开始，仅注入这些源值即可高保真地重建输入，其效果达到或超过基于反演的方法，从而有效消除了反演过程。基于这一洞见，我们提出AR-Edit：一种无需训练、无需反演的方法，它只需缓存一次源值，并在去噪过程中选择性地注入这些值。在多个AR骨干模型上，AR-Edit以极小的额外开销实现了实时流式编辑，并在源视频保持和色调保真度方面取得了更优表现。",
-      "note_path": "2026-11-10/2611.09795-ar-edit-training-free-autoregressive-video-editi.md"
+      "abstract_cn": "在无法访问未来帧的情况下实时编辑视频流，对于交互式应用至关重要。然而，现有的免训练视频编辑方法通常假设能够离线访问完整序列，而流式方法则要么依赖额外训练，要么局限于特定的编辑技术。我们通过分析经DMD蒸馏的自回归（AR）视频扩散模型中的自注意力动态，表明这一限制可以被消除。我们发现了一种关键的不对称性：在不同去噪时间步之间，查询和键保持稳定，并与源对应物对齐；而值则发生变化，并编码不断演化的内容。这种不对称性继承自未经蒸馏的双向教师模型，并且在高噪声水平下最为明显，而少步数流式模型正是在这一范围内运行的。由此得到的机制十分简单：只需一次前向传播，就足以在值特征中捕获源视频的身份信息，并在整个生成过程中重复使用这些特征。从纯高斯噪声开始，仅注入这些源值特征，就可以高保真地重建输入，其效果达到或超过基于反演的方法，从而实际上消除了反演过程。基于这一观察，我们提出AR-Edit：一种无需训练、无需反演的方法，在一次前向传播中缓存源值，并在去噪过程中有选择地注入这些值。在多个AR骨干模型上，AR-Edit以极小的额外开销实现了实时流式编辑，同时具备更好的源内容保持能力和色调保真度。",
+      "note_path": "2026-11-11/2611.09795-ar-edit-training-free-autoregressive-video-editi.md"
     },
     {
       "id": "2611.09096",
@@ -120,11 +56,12 @@
       "comment": "Accepted at NeurIPS 2026",
       "score": 70,
       "priority": "skim",
-      "summary_cn": "Autoregressive (AR) modeling is arguably the only way to extend a fixed-length video diffusion model to longer or even streaming videos.",
-      "contribution_cn": "To this end, we propose Trajectory Forcing (TraF), an AR diffusion method that exploits the denoising trajectories of previous video chunks as context.",
-      "relevance_cn": "匹配研究线：streaming video, video generation；关键词：autoregressive, streaming, long video, video generation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "summary_cn": "本文指出，现有自回归视频扩散方法通常只使用前一视频块的最终预测作为上下文，忽略了多步去噪过程中包含的中间生成信息。作者提出Trajectory Forcing（TraF），将每个历史视频块的去噪轨迹纳入自回归条件，同时为控制计算和显存开销，在当前去噪步骤选择历史轨迹中的单个点作为上下文。方法包含两个阶段：监督学习阶段利用真实视频和线性插值构造伪轨迹，并通过流匹配训练；随后在学生模型自身的自回归展开上，利用真实去噪轨迹和分布匹配蒸馏进行训练。基于Wan2.1-T2V-1.3B的实验表明，TraF在5秒VBench和30秒长视频生成中均取得较强结果，并降低了长视频中的质量漂移。消融实验支持性能提升主要来自轨迹结构，而非简单加入噪声。",
+      "contribution_cn": "1. 从逐个去噪步骤的角度重新形式化自回归视频扩散，指出历史视频块的完整去噪轨迹是生成上下文的重要组成部分。 2. 提出Trajectory Forcing，通过随当前去噪进度选择历史轨迹点，在不显著增加注意力和KV缓存开销的情况下利用轨迹信息。 3. 设计监督学习阶段的伪轨迹构造方法：使用高斯插值和单次速度预测从真实视频生成近似去噪轨迹。 4. 设计基于学生模型自回归展开的训练阶段，使用真实去噪轨迹、分布匹配蒸馏和SNR启发的轨迹点选择。 5. 在短视频和长视频实验中验证了方法的有效性：5秒VBench Total达到85.15，30秒生成Total达到73.98，并表现出较低的质量漂移。",
+      "relevance_cn": "该工作与研究重点高度相关。它直接研究自回归、因果和长视频生成，通过将固定长度的视频扩散模型扩展到30秒（训练时长的6倍）来缓解长时序生成中的误差累积。方法使用去噪轨迹作为历史上下文，属于扩散过程中的缓存信息复用，并通过每个历史块只选择一个轨迹点来控制稀疏注意力、KV缓存规模和计算成本。其学生模型自回归展开、流式生成能力以及对视频块间时序一致性的改善，也与实时生成和闭环世界模拟所需的持续生成机制相关。论文报告的推理吞吐率为15 FPS，低于Self Forcing的17 FPS，因此它提升了长视频质量，但并未证明达到实时生成要求。",
+      "limitations_cn": "论文明确说明的局限包括：仅在单一基础模型Wan2.1-1.3B、单一分辨率和单一帧率上进行研究；尚未验证跨架构、跨分辨率以及更广泛去噪步数设置的泛化能力；尚未探索将轨迹条件与长视频专门训练策略结合；在报告设置下，TraF吞吐率低于Self Forcing（15.0 FPS对17.0 FPS），且未评估严格匹配吞吐率的运行点。此外，论文未明确说明其在真实交互式闭环环境或动作条件控制下的有效性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归（AR）建模可以说是将固定长度的视频扩散模型扩展到更长视频乃至流式视频的唯一途径。然而，现有的AR扩散方法仅使用此前预测的视频块作为下一个视频块的上下文，丢弃了构成该视频块生成历史的中间预测。相比之下，传统的AR模型（如大语言模型）会以此前全部历史标记为条件。为此，我们提出Trajectory Forcing（TraF），一种利用先前视频块去噪轨迹作为上下文的AR扩散方法。TraF采用两种训练机制：（1）使用真实视频，在这种机制中通过高斯插值构造伪轨迹，并由模型重新预测；（2）使用教师模型，在这种机制中从学生模型自身的去噪展开过程中获得真实轨迹。第一种机制能够自然地为第二种机制提供良好的初始化。在5秒VBench基准测试中，TraF取得85.15的Total分数，优于Self Forcing（+0.84）和Causal Forcing（+1.11），并同时提升了Quality和Semantic。在30秒生成任务中——其长度为训练时长的6倍——TraF在所有比较方法中取得了最高的总体质量。"
     },
     {
       "id": "2611.10660",
@@ -152,11 +89,12 @@
       "comment": "",
       "score": 68,
       "priority": "skim",
-      "summary_cn": "Latent world models enable visual control by planning action sequences in compact representation spaces, but a gap remains between how latent dynamics are learned and how they are used for planning.",
-      "contribution_cn": "We introduce Dynamics-Informed Action Learning (DIAL) to bridge these two gaps.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, action-conditioned, autoregressive",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
+      "summary_cn": "论文提出 DIAL，用于改进基于潜在世界模型的目标条件规划。方法包含三部分：通过滚动对齐训练前向动力学，使其适应自回归预测状态；通过多步逆动力学监督，使潜在状态保留触发状态转移的动作信息；在规划时递归结合逆动力学头和前向模型，生成面向目标的动作序列，并将其作为 CEM 初始提议分布的均值。CEM 后续仍执行标准采样、精英筛选和分布更新。基于四个视觉控制环境的实验显示，DIAL 在 25 步和 50 步目标偏移下都取得更高成功率，尤其在搜索预算有限或目标距离较远时优势明显。消融实验表明，模型生成滚动上的逆向监督对性能提升尤其重要。",
+      "contribution_cn": "1. 提出 DIAL，将潜在动力学学习与目标条件动作搜索连接起来，用学习到的逆动力学构造 CEM 的初始提议。2. 提出滚动对齐训练，使前向模型在自回归生成的潜在状态上学习，减轻训练与规划之间的输入分布不一致。3. 提出多步逆动力学监督，并在模型生成的状态转移上固定逆动力学头进行监督，以保留与动作相关的信息。4. 在四个视觉控制基准、不同目标距离和搜索预算下进行受控实验，验证了方法在标准及长时域规划中的性能提升。",
+      "relevance_cn": "论文与研究重点直接相关：它研究动作条件潜在世界模型、目标条件视觉规划和闭环式模型预测控制。滚动对齐训练处理了自回归、因果的潜在状态预测及误差累积问题；逆动力学与前向动力学的递归耦合为目标导向的动作序列生成提供了机制；将该序列用于 CEM 初始化则提高了有限搜索预算下的规划效率。50 步目标偏移实验还表明，该方法能够改善较长时域的潜在滚动规划。论文未涉及实时生成、扩散模型、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文指出，逆动力学头是在有限时间跨度的状态转移上训练的，因此当目标潜在状态超出训练时的时间偏移范围时，生成的动作序列不被假设为准确的开环计划，只用于初始化 CEM；后续搜索仍然是必要的。方法依赖潜在世界模型预测的准确性，长时域自回归滚动仍可能存在误差。实验仅覆盖四个视觉控制基准和离线数据集，论文未明确说明在更复杂环境、真实机器人或更大规模任务上的泛化能力。论文未明确说明实时推理延迟和计算开销。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "潜在世界模型通过在紧凑的表示空间中规划动作序列来实现视觉控制，但潜在动力学的学习方式与其在规划中的使用方式之间仍存在差距。首先，教师强制训练不会使动力学模型接触规划过程中遇到的递归预测潜在状态。其次，基于采样的规划器通常从与目标无关的提议分布开始动作搜索，没有利用世界模型所学习的动作条件动力学。我们提出动力学感知动作学习（DIAL），以弥合这两个差距。在训练过程中，滚动对齐使前向模型接触自身自回归生成的潜在预测；多步逆向监督则训练一个轻量级逆动力学头，从潜在状态转移中推断动作。我们进一步将参数固定的逆动力学头应用于模型生成的状态转移，促使预测滚动保留与动作相关的信息。在测试时，DIAL 自回归地耦合逆动力学与前向动力学，构造一个朝向目标的动力学感知动作序列，并用其初始化交叉熵方法（CEM）提议分布的均值。随后，CEM 使用标准的采样和更新过程细化这一初始化结果。在四个视觉控制基准上的实验表明，在标准场景和长时域场景中，DIAL 均优于现有潜在世界模型和规划基线。"
     },
     {
       "id": "2611.10771",
@@ -228,6 +166,41 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2611.14033",
+      "date": "2026-11-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Few-Step Streaming Video Generation via Condition Shifting",
+      "abstract": "Few-step sampling reduces the cost of streaming video generation. Distribution Matching Distillation (DMD) supervises few-step generators with a separate fake-score network, which adds training memory and computation and must track the evolving generator. We extend APEX to streaming video by using condition shifting to estimate the velocity field of the generated distribution within the generator. The original text condition selects generation, while a shifted condition selects fake estimation using the same parameters. This removes the independent fake network while retaining S2-Avatar's frozen reference teacher, Self-Replay Forcing, and perceptual regularization. We evaluate APEX on 180-second videos using three backbone evaluations per block and a one-step spatial Refiner, with a 70-case human study and a 320-case StreamAV-Bench comparison. Compared with S2-Avatar, APEX achieves higher video instruction fulfillment on the Progressive track (3.856 versus 3.831) and higher visual aesthetics across both tracks (0.641898 versus 0.632606). Human raters favor APEX most strongly on instruction following, with +30.0% net preference, followed by consistency and video quality at +4.3% each. Motion quality favors S2-Avatar, audiovisual synchronization is predominantly tied, and usability is unchanged. Separate measurements under matched training settings show 4.4% lower peak allocated GPU memory per GPU and 9.2% shorter mean iteration time than DMD.",
+      "authors": [
+        "Deyuan Liu",
+        "Jungang Li",
+        "Kaiwen Zheng",
+        "Kai Jiang",
+        "Jintao Chen",
+        "Yaole Wang",
+        "Ming Lin",
+        "Tao Lin",
+        "Jianfei Chen",
+        "Jun Zhu",
+        "Jintao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.14033v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Few-step sampling reduces the cost of streaming video generation.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：streaming, few-step, distillation, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2611.10392",
       "date": "2026-11-07",
       "topics": [
@@ -266,7 +239,7 @@
         "World Models"
       ],
       "title": "DexForesight: Grounding Dexterous Policies with Implicit Spatial Foresight",
-      "abstract": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand. Existing world-action models often acquire such predictive knowledge through explicit future prediction. We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy. During training, DexForesight learns an action-conditioned spatial world model from offline scene depth, kinematic hand geometry, and demonstration trajectories. The world model predicts 3D hand-point motion and visual feature changes, capturing both articulated hand dynamics and scene changes under demonstrated actions, including the motion of fingers occluded from the cameras. We then freeze the world model and align policy queries with its predictive world queries, transferring the learned spatial dynamics into policy latents and using them to condition action generation. At deployment, only the policy is retained, operating on RGB observations, language, and robot state without depth input or explicit future prediction. On 11 DexJoCo simulation tasks, DexForesight improves the overall success rate of the base policy from 49.4% to 60.5%. On three real-robot dexterous manipulation tasks, DexForesight achieves 58.3% success, compared with 50.0% for the strongest baseline.Project page https://dexforesight.github.io/",
+      "abstract": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand. Existing world-action models often acquire such predictive knowledge through explicit future prediction. We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy. During training, DexForesight learns an action-conditioned spatial world model from offline scene depth, kinematic hand geometry, and demonstration trajectories. The world model predicts 3D hand-point motion and visual feature changes, capturing both articulated hand dynamics and scene changes under demonstrated actions, including the motion of fingers occluded from the cameras. We then freeze the world model and align policy queries with its predictive world queries, transferring the learned spatial dynamics into policy latents and using them to condition action generation. At deployment, only the policy is retained, operating on RGB observations, language, and robot state without depth input or explicit future prediction. On 11 DexJoCo simulation tasks, DexForesight improves the overall success rate of the base policy from 49.4% to 60.5%. On three real-robot dexterous manipulation tasks, DexForesight achieves 58.3% success, compared with 50.0% for the strongest baseline. Project page https://dexforesight.github.io/",
       "authors": [
         "Zhongxi Chen",
         "Yi Yang",
@@ -278,7 +251,7 @@
         "Haonan Wang",
         "Zhijie Deng"
       ],
-      "url": "http://arxiv.org/abs/2611.11166v1",
+      "url": "http://arxiv.org/abs/2611.11166v2",
       "categories": [
         "cs.RO"
       ],
@@ -316,6 +289,38 @@
       "summary_cn": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity.",
       "contribution_cn": "To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space.",
       "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, real-time, cache, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.13348",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ProTEUS: A mutation-resolved world model for closed-loop protein evolution",
+      "abstract": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space. Thus, a central challenge is to efficiently traverse the large combinatorial space of mutations in silico. We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution. Pretrained on deep mutational scanning assays, ProTEUS learns a joint representation of sequence, evolutionary, and structural information using MutationFormer, a mutation-biased attention architecture. Variants are represented as states in this joint latent space, and mutations define actions whose functional consequences are predicted. To support exploration of many mutants, we developed a fast, physics-constrained all-atom predictor that utilizes explicit geometric constraint enforcement to achieve >10 fold increase in speed than AlphaFold3 with guaranteed physical validity. Lastly, ProTEUS refines its prediction and understanding of protein activity through closed loop experimental feedback to guide evolution toward a desired phenotype. ProTEUS surpasses established models in both zero-shot and supervised fine-tuning mutation prediction tasks. We experimentally demonstrate its utility in two closed-loop multi-objective engineering campaigns on aldehyde dehydrogenase and levansucrase, yielding variants with >10 fold higher activity than wild type. ProTEUS provides a world-model framework that connects virtual evaluation of mutational outcomes with experimental learning for efficient protein evolution.",
+      "authors": [
+        "Yikun Zhang",
+        "Minghao Guo",
+        "Guangxue Xu",
+        "Peter Yichen Chen",
+        "Wojciech Matusik",
+        "Wengong Jin",
+        "Jingjing Chai",
+        "Kaiyi Jiang"
+      ],
+      "url": "http://arxiv.org/abs/2611.13348v1",
+      "categories": [
+        "q-bio.BM",
+        "cs.AI"
+      ],
+      "comment": "64 pages, 5 main figures, 5 supplementary figures",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space.",
+      "contribution_cn": "We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }

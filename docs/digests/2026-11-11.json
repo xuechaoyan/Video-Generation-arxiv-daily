@@ -1,0 +1,329 @@
+{
+  "generated_at": "2026-11-11T03:14:19+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2611.09795",
+      "date": "2026-11-06",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "AR-Edit: Training-Free Autoregressive Video Editing without Inversion",
+      "abstract": "Editing a video stream in real time, without access to future frames, is essential for interactive applications. Existing training-free video editing methods, however, assume full offline access to the entire sequence, while streaming approaches either rely on additional training or are limited to specific editing techniques. We show that this limitation can be removed by analyzing the self-attention dynamics of DMD-distilled autoregressive (AR) video diffusion models. We uncover a key asymmetry: queries and keys remain stable and aligned with their source counterparts across denoising timesteps, while values diverge and encode the evolving content. Inherited from the non-distilled bidirectional teacher, this asymmetry is strongest at high noise, where few-step streaming models operate. The resulting mechanism is simple: a single forward pass suffices to capture source identity in the value features, which can be reused throughout generation. Starting from pure Gaussian noise and injecting only these source values reconstructs the input with fidelity matching or surpassing inversion-based methods, effectively eliminating inversion. Based on this insight, we introduce AR-Edit, a training-free, inversion-free method that caches source values once and selectively injects them during denoising. Across multiple AR backbones, AR-Edit enables real-time streaming editing with superior source preservation and tonal fidelity at minimal overhead.",
+      "authors": [
+        "Hovhannes Margaryan",
+        "Quentin Bammey",
+        "Christian Sandor",
+        "Vicky Kalogeiton"
+      ],
+      "url": "http://arxiv.org/abs/2611.09795v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 73,
+      "priority": "must-read",
+      "summary_cn": "本文研究经DMD蒸馏的自回归视频扩散模型中的训练免费流式视频编辑。作者发现，自注意力中的查询和键在不同噪声水平下基本稳定，而值特征携带主要的视觉内容和身份信息；该特性在少步数模型运行的高噪声区域尤其明显。因此，方法无需传统反演，只需对每个输入视频块进行一次干净前向传播以缓存值特征，再从随机高斯噪声出发、在目标文本提示下去噪，并选择性注入缓存的源值。AR-Edit通过Commit-then-Anchor策略和跨注意力生成的区域掩码，在编辑区域保持目标语义，在非编辑区域保持源内容。实验在120个Pexels视频和Reward Forcing、CausVid、Self Forcing三个AR骨干上进行，结果显示该方法在源内容保持、视频质量和色调保真度方面具有竞争力，同时维持较低的步数、延迟和内存开销。",
+      "contribution_cn": "1. 揭示DMD蒸馏的AR视频扩散模型及其双向教师中的自注意力不对称性：查询和键跨去噪时间步保持稳定，而值特征显著变化并决定生成内容。\n2. 证明从一次源视频的干净前向传播中提取的值特征，结合随机高斯噪声即可实现高保真源视频重建，使少步数AR模型中的反演变得不必要。\n3. 提出AR-Edit，一种无需训练、无需反演的流式视频编辑方法，通过缓存并在目标提示条件下选择性注入源值特征实现编辑。\n4. 提出用于AR约束下流式视频编辑的基准，并在多个AR骨干模型上验证其源内容保持、伪影抑制、吞吐量和延迟表现。",
+      "relevance_cn": "论文与研究重点高度相关：它直接面向自回归、因果、流式和长序列视频生成骨干上的实时视频编辑；利用DMD少步数蒸馏模型，将每个视频块的处理限制在一次缓存前向传播和3至4步去噪内；通过源值特征缓存和现有滚动KV缓存复用降低编辑开销；采用因果注意力处理到达的视频块，不访问未来帧；并通过跨注意力掩码和Commit-then-Anchor机制实现闭环式、在线的源内容保持与目标语义编辑。论文不主要研究动作条件视觉世界模型或闭环环境模拟，但其因果流式视频建模与缓存机制可为这些方向提供相关技术基础。",
+      "limitations_cn": "论文报告了源内容保持与目标文本遵循之间的权衡：增加值注入通常会提高源一致性，但可能降低编辑语义的遵循程度。AR-Edit在少步数蒸馏模型上运行，编辑能力和质量受其固定的3至4步去噪预算限制。实验主要基于Wan 2.1的Reward Forcing、CausVid和Self Forcing学生模型，并在单张H100上测试，尚未证明对更广泛模型和硬件的普适性。评测基准由120个手工筛选的Pexels视频构成，用户研究仅包含20名参与者和33个视频，因此规模有限。论文还指出AR视频生成骨干本身存在长时域暴露偏差和注意力汇过度依赖等问题；AR-Edit将这些骨干视为既定基础，并未解决这些生成问题。论文未明确说明更长视频时域、更多样化编辑类型以及真实交互式部署环境下的性能上限。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "在无法访问未来帧的情况下实时编辑视频流，对于交互式应用至关重要。然而，现有的免训练视频编辑方法通常假设能够离线访问完整序列，而流式方法则要么依赖额外训练，要么局限于特定的编辑技术。我们通过分析经DMD蒸馏的自回归（AR）视频扩散模型中的自注意力动态，表明这一限制可以被消除。我们发现了一种关键的不对称性：在不同去噪时间步之间，查询和键保持稳定，并与源对应物对齐；而值则发生变化，并编码不断演化的内容。这种不对称性继承自未经蒸馏的双向教师模型，并且在高噪声水平下最为明显，而少步数流式模型正是在这一范围内运行的。由此得到的机制十分简单：只需一次前向传播，就足以在值特征中捕获源视频的身份信息，并在整个生成过程中重复使用这些特征。从纯高斯噪声开始，仅注入这些源值特征，就可以高保真地重建输入，其效果达到或超过基于反演的方法，从而实际上消除了反演过程。基于这一观察，我们提出AR-Edit：一种无需训练、无需反演的方法，在一次前向传播中缓存源值，并在去噪过程中有选择地注入这些值。在多个AR骨干模型上，AR-Edit以极小的额外开销实现了实时流式编辑，同时具备更好的源内容保持能力和色调保真度。",
+      "note_path": "2026-11-11/2611.09795-ar-edit-training-free-autoregressive-video-editi.md"
+    },
+    {
+      "id": "2611.09096",
+      "date": "2026-11-06",
+      "topics": [
+        "Video Generation",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Trajectory Forcing: Exploiting Diffusion Trajectories for Autoregressive Long Video Generation",
+      "abstract": "Autoregressive (AR) modeling is arguably the only way to extend a fixed-length video diffusion model to longer or even streaming videos. However, existing AR diffusion methods use only the previously predicted chunk as context for the next, discarding the intermediate predictions that constitute the chunk's generation history. In contrast, conventional AR models such as LLMs condition on the entire history of preceding tokens. To this end, we propose Trajectory Forcing (TraF), an AR diffusion method that exploits the denoising trajectories of previous video chunks as context. TraF operates under two training regimes: (1) with ground-truth videos, where pseudo-trajectories are constructed from Gaussian interpolations and re-predicted by the model, and (2) with a teacher model, where real trajectories are obtained from the student's own denoising rollout. The first regime naturally provides a strong initialization for the second. On the 5-second VBench benchmark, TraF achieves a Total score of 85.15, outperforming Self Forcing (+0.84) and Causal Forcing (+1.11), with Quality and Semantic improving simultaneously. On 30-second generation---6$\\times$ the training horizon---TraF achieves the highest overall quality among all compared methods.",
+      "authors": [
+        "Bohan Wang",
+        "Shuo Chen",
+        "Yunzhi Li",
+        "Zhaozheng Chen",
+        "Junzhe Zhang",
+        "Hanwang Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.09096v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Accepted at NeurIPS 2026",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "本文指出，现有自回归视频扩散方法通常只使用前一视频块的最终预测作为上下文，忽略了多步去噪过程中包含的中间生成信息。作者提出Trajectory Forcing（TraF），将每个历史视频块的去噪轨迹纳入自回归条件，同时为控制计算和显存开销，在当前去噪步骤选择历史轨迹中的单个点作为上下文。方法包含两个阶段：监督学习阶段利用真实视频和线性插值构造伪轨迹，并通过流匹配训练；随后在学生模型自身的自回归展开上，利用真实去噪轨迹和分布匹配蒸馏进行训练。基于Wan2.1-T2V-1.3B的实验表明，TraF在5秒VBench和30秒长视频生成中均取得较强结果，并降低了长视频中的质量漂移。消融实验支持性能提升主要来自轨迹结构，而非简单加入噪声。",
+      "contribution_cn": "1. 从逐个去噪步骤的角度重新形式化自回归视频扩散，指出历史视频块的完整去噪轨迹是生成上下文的重要组成部分。 2. 提出Trajectory Forcing，通过随当前去噪进度选择历史轨迹点，在不显著增加注意力和KV缓存开销的情况下利用轨迹信息。 3. 设计监督学习阶段的伪轨迹构造方法：使用高斯插值和单次速度预测从真实视频生成近似去噪轨迹。 4. 设计基于学生模型自回归展开的训练阶段，使用真实去噪轨迹、分布匹配蒸馏和SNR启发的轨迹点选择。 5. 在短视频和长视频实验中验证了方法的有效性：5秒VBench Total达到85.15，30秒生成Total达到73.98，并表现出较低的质量漂移。",
+      "relevance_cn": "该工作与研究重点高度相关。它直接研究自回归、因果和长视频生成，通过将固定长度的视频扩散模型扩展到30秒（训练时长的6倍）来缓解长时序生成中的误差累积。方法使用去噪轨迹作为历史上下文，属于扩散过程中的缓存信息复用，并通过每个历史块只选择一个轨迹点来控制稀疏注意力、KV缓存规模和计算成本。其学生模型自回归展开、流式生成能力以及对视频块间时序一致性的改善，也与实时生成和闭环世界模拟所需的持续生成机制相关。论文报告的推理吞吐率为15 FPS，低于Self Forcing的17 FPS，因此它提升了长视频质量，但并未证明达到实时生成要求。",
+      "limitations_cn": "论文明确说明的局限包括：仅在单一基础模型Wan2.1-1.3B、单一分辨率和单一帧率上进行研究；尚未验证跨架构、跨分辨率以及更广泛去噪步数设置的泛化能力；尚未探索将轨迹条件与长视频专门训练策略结合；在报告设置下，TraF吞吐率低于Self Forcing（15.0 FPS对17.0 FPS），且未评估严格匹配吞吐率的运行点。此外，论文未明确说明其在真实交互式闭环环境或动作条件控制下的有效性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "自回归（AR）建模可以说是将固定长度的视频扩散模型扩展到更长视频乃至流式视频的唯一途径。然而，现有的AR扩散方法仅使用此前预测的视频块作为下一个视频块的上下文，丢弃了构成该视频块生成历史的中间预测。相比之下，传统的AR模型（如大语言模型）会以此前全部历史标记为条件。为此，我们提出Trajectory Forcing（TraF），一种利用先前视频块去噪轨迹作为上下文的AR扩散方法。TraF采用两种训练机制：（1）使用真实视频，在这种机制中通过高斯插值构造伪轨迹，并由模型重新预测；（2）使用教师模型，在这种机制中从学生模型自身的去噪展开过程中获得真实轨迹。第一种机制能够自然地为第二种机制提供良好的初始化。在5秒VBench基准测试中，TraF取得85.15的Total分数，优于Self Forcing（+0.84）和Causal Forcing（+1.11），并同时提升了Quality和Semantic。在30秒生成任务中——其长度为训练时长的6倍——TraF在所有比较方法中取得了最高的总体质量。"
+    },
+    {
+      "id": "2611.10660",
+      "date": "2026-11-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Dynamics-Informed Action Learning for Goal-Conditioned Latent Planning",
+      "abstract": "Latent world models enable visual control by planning action sequences in compact representation spaces, but a gap remains between how latent dynamics are learned and how they are used for planning. First, teacher-forced training does not expose the dynamics model to the recursively predicted latent states encountered during planning. Second, sampling-based planners typically initialize action search from goal-agnostic proposals, without exploiting the action-conditioned dynamics learned by the world model. We introduce Dynamics-Informed Action Learning (DIAL) to bridge these two gaps. During training, rollout alignment exposes the forward model to its own autoregressive latent predictions, while multi-step inverse supervision trains a lightweight inverse dynamics head to infer actions from latent-state transitions. We further apply the inverse head to model-generated transitions with its parameters held fixed, encouraging predicted rollouts to retain action-relevant information. At test time, DIAL autoregressively couples the inverse and forward dynamics to construct a dynamics-informed action sequence toward the goal, which initializes the mean of the Cross-Entropy Method (CEM) proposal distribution. The subsequent CEM search then refines this initialization using the standard sampling and updating procedure. Experiments across four visual control benchmarks demonstrate that DIAL outperforms existing latent world models and planning baselines in both standard and long-horizon scenarios.",
+      "authors": [
+        "Yinuo Jiang",
+        "Guangzhi Wang",
+        "Yiran Wang",
+        "Junfu Pu",
+        "Cheng Cheng",
+        "Honghao Chen",
+        "Cheng Cheng",
+        "Ying Shan"
+      ],
+      "url": "http://arxiv.org/abs/2611.10660v1",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "comment": "",
+      "score": 68,
+      "priority": "skim",
+      "summary_cn": "论文提出 DIAL，用于改进基于潜在世界模型的目标条件规划。方法包含三部分：通过滚动对齐训练前向动力学，使其适应自回归预测状态；通过多步逆动力学监督，使潜在状态保留触发状态转移的动作信息；在规划时递归结合逆动力学头和前向模型，生成面向目标的动作序列，并将其作为 CEM 初始提议分布的均值。CEM 后续仍执行标准采样、精英筛选和分布更新。基于四个视觉控制环境的实验显示，DIAL 在 25 步和 50 步目标偏移下都取得更高成功率，尤其在搜索预算有限或目标距离较远时优势明显。消融实验表明，模型生成滚动上的逆向监督对性能提升尤其重要。",
+      "contribution_cn": "1. 提出 DIAL，将潜在动力学学习与目标条件动作搜索连接起来，用学习到的逆动力学构造 CEM 的初始提议。2. 提出滚动对齐训练，使前向模型在自回归生成的潜在状态上学习，减轻训练与规划之间的输入分布不一致。3. 提出多步逆动力学监督，并在模型生成的状态转移上固定逆动力学头进行监督，以保留与动作相关的信息。4. 在四个视觉控制基准、不同目标距离和搜索预算下进行受控实验，验证了方法在标准及长时域规划中的性能提升。",
+      "relevance_cn": "论文与研究重点直接相关：它研究动作条件潜在世界模型、目标条件视觉规划和闭环式模型预测控制。滚动对齐训练处理了自回归、因果的潜在状态预测及误差累积问题；逆动力学与前向动力学的递归耦合为目标导向的动作序列生成提供了机制；将该序列用于 CEM 初始化则提高了有限搜索预算下的规划效率。50 步目标偏移实验还表明，该方法能够改善较长时域的潜在滚动规划。论文未涉及实时生成、扩散模型、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文指出，逆动力学头是在有限时间跨度的状态转移上训练的，因此当目标潜在状态超出训练时的时间偏移范围时，生成的动作序列不被假设为准确的开环计划，只用于初始化 CEM；后续搜索仍然是必要的。方法依赖潜在世界模型预测的准确性，长时域自回归滚动仍可能存在误差。实验仅覆盖四个视觉控制基准和离线数据集，论文未明确说明在更复杂环境、真实机器人或更大规模任务上的泛化能力。论文未明确说明实时推理延迟和计算开销。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "潜在世界模型通过在紧凑的表示空间中规划动作序列来实现视觉控制，但潜在动力学的学习方式与其在规划中的使用方式之间仍存在差距。首先，教师强制训练不会使动力学模型接触规划过程中遇到的递归预测潜在状态。其次，基于采样的规划器通常从与目标无关的提议分布开始动作搜索，没有利用世界模型所学习的动作条件动力学。我们提出动力学感知动作学习（DIAL），以弥合这两个差距。在训练过程中，滚动对齐使前向模型接触自身自回归生成的潜在预测；多步逆向监督则训练一个轻量级逆动力学头，从潜在状态转移中推断动作。我们进一步将参数固定的逆动力学头应用于模型生成的状态转移，促使预测滚动保留与动作相关的信息。在测试时，DIAL 自回归地耦合逆动力学与前向动力学，构造一个朝向目标的动力学感知动作序列，并用其初始化交叉熵方法（CEM）提议分布的均值。随后，CEM 使用标准的采样和更新过程细化这一初始化结果。在四个视觉控制基准上的实验表明，在标准场景和长时域场景中，DIAL 均优于现有潜在世界模型和规划基线。"
+    },
+    {
+      "id": "2611.10771",
+      "date": "2026-11-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WorldFoundry: Towards Unified Infrastructure for World Intelligence",
+      "abstract": "Visual generative models increasingly blur the line between synthesizing observations and simulating environments. Yet visual plausibility alone does not constitute successful world modeling: compelling outputs may lack persistent state, physical dynamics, or causally consistent responses to interactions. We define a generative world model as a predictive dynamical system that maintains a persistent, history-conditioned representation of an environment, updates that representation in response to actions or interventions, and generates temporally coherent trajectories that reflect outcomes under observed and counterfactual interventions. From this definition, we derive an intelligence-oriented framework spanning perceptual grounding, persistent state modeling, controllable transformation, dynamics-aware prediction, and closed-loop interaction. We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems. WorldFoundry unifies model and benchmark discovery, runtime and asset preparation, execution orchestration, artifact management, and interactive visualization, while modality-specific adapters preserve native inputs, execution semantics, output representations, and evaluation protocols. Explicit manifests, durable artifact contracts, and evidence-aware scorecards separate execution readiness from evaluative claims, making each claim traceable to its supporting artifacts. The catalog contains 270 model entries, 74 benchmarks, and 62 registered metric entries, with readiness and execution evidence recorded separately. WorldFoundry enables reproducible comparison of persistent, controllable dynamics across heterogeneous systems, advancing the field from perceptual synthesis toward measurable world intelligence.",
+      "authors": [
+        "Juanxi Tian",
+        "Jiadong Hou",
+        "Baiang Li",
+        "Xin Lin",
+        "Zhengbo Jiao",
+        "Weijia Zhang",
+        "Yeying Jin",
+        "Truong Nguyen",
+        "Haitian Zheng",
+        "Zhifei Zhang",
+        "Jianfei Yang",
+        "Ming-Hsuan Yang",
+        "Felix Heide",
+        "Wei Xiong",
+        "Enze Xie",
+        "Wanhua Li"
+      ],
+      "url": "http://arxiv.org/abs/2611.10771v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "39 pages, 10 figures. This technical report will be updated periodically",
+      "score": 67,
+      "priority": "skim",
+      "summary_cn": "Visual generative models increasingly blur the line between synthesizing observations and simulating environments.",
+      "contribution_cn": "We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, closed-loop, embodied",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.11452",
+      "date": "2026-11-08",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Semantically Aligned KV Cache Compression for Efficient Agentic Autoregressive Video Generation",
+      "abstract": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis. Growing visual histories enlarge the key-value (KV) cache, increasing memory use and attention costs across candidate rollouts. Existing compression methods primarily optimize individual generators without the planner's semantic constraints, risking low priority for states supporting requested attributes or actions. We introduce SemanticKV, a training-free method for semantically aligned KV cache compression. To our knowledge, SemanticKV is the first KV cache compression method for agentic autoregressive video generation that explicitly uses planner-extracted semantic constraints to guide retention. Text cross-attention identifies constraint-related video positions, whose self-attention queries are collected into separate groups. Attention weights are averaged within each group and maximized across groups, giving each cached entry a high score when strongly used by any represented constraint. A single top-k selection retains high-scoring entries under the memory budget, leaving their keys, values, and positions unchanged. For fixed query groups and equal entry costs, this selection minimizes an additive upper bound on worst-group discarded attention. The method operates independently within each candidate without retraining or additional video generations. We evaluate four AR video backbones on three benchmarks for 5-, 30-, and 60-second generation. On Causal Forcing at a compression ratio of 0.7, SemanticKV obtains a VBench Total Score of 84.10, compared with 84.05 for the strongest compressed baseline and 83.99 for Full KV. It achieves a 1.22x speedup over Full KV and reduces KV-cache memory from 6.04 GB to 1.81 GB, a 3.35x reduction.",
+      "authors": [
+        "Weizhong Huang",
+        "Huaijia Kou",
+        "Tianyu Xie",
+        "Xiawu Zheng",
+        "Liujuan Cao"
+      ],
+      "url": "http://arxiv.org/abs/2611.11452v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "comment": "32 pages, 12 figures",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis.",
+      "contribution_cn": "We introduce SemanticKV, a training-free method for semantically aligned KV cache compression.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.14033",
+      "date": "2026-11-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Few-Step Streaming Video Generation via Condition Shifting",
+      "abstract": "Few-step sampling reduces the cost of streaming video generation. Distribution Matching Distillation (DMD) supervises few-step generators with a separate fake-score network, which adds training memory and computation and must track the evolving generator. We extend APEX to streaming video by using condition shifting to estimate the velocity field of the generated distribution within the generator. The original text condition selects generation, while a shifted condition selects fake estimation using the same parameters. This removes the independent fake network while retaining S2-Avatar's frozen reference teacher, Self-Replay Forcing, and perceptual regularization. We evaluate APEX on 180-second videos using three backbone evaluations per block and a one-step spatial Refiner, with a 70-case human study and a 320-case StreamAV-Bench comparison. Compared with S2-Avatar, APEX achieves higher video instruction fulfillment on the Progressive track (3.856 versus 3.831) and higher visual aesthetics across both tracks (0.641898 versus 0.632606). Human raters favor APEX most strongly on instruction following, with +30.0% net preference, followed by consistency and video quality at +4.3% each. Motion quality favors S2-Avatar, audiovisual synchronization is predominantly tied, and usability is unchanged. Separate measurements under matched training settings show 4.4% lower peak allocated GPU memory per GPU and 9.2% shorter mean iteration time than DMD.",
+      "authors": [
+        "Deyuan Liu",
+        "Jungang Li",
+        "Kaiwen Zheng",
+        "Kai Jiang",
+        "Jintao Chen",
+        "Yaole Wang",
+        "Ming Lin",
+        "Tao Lin",
+        "Jianfei Chen",
+        "Jun Zhu",
+        "Jintao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.14033v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Few-step sampling reduces the cost of streaming video generation.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：streaming, few-step, distillation, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.10392",
+      "date": "2026-11-07",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Tiresias: Towards Language-Conditioned World Models",
+      "abstract": "World models enable planning through internal simulation, while natural language provides intuitive task specification. Yet, language-conditioned world modeling remains fragmented across domains with disparate action spaces, datasets, and evaluation protocols. We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction. Its accompanying benchmark, LCWM-Bench, integrates 15 datasets across navigation, robotics, 3D gaming, and driving under a shared action interface and evaluation protocol, pairing 142,987 episodes with 428,961 instructions in three styles. We further propose Tiresias, an agent that plans via selective imagination: a language-conditioned diffusion policy generates candidate trajectories, a trajectory ranker shortlists them, and a video-pretrained world model imagines their visual consequences. A visual ranker evaluates these rollouts, complementing trajectory scores to select the final plan. Tiresias achieves competitive planning and imagination performance on LCWM-Bench. Ablations demonstrate the complementary benefits of trajectory ranking and visual verification, while experiments with alternative proposal methods show that the trained rankers remain effective beyond our diffusion policy. Together, LCWM-Bench and Tiresias provide a unified evaluation setting and an effective starting point for studying language-guided planning through world models.",
+      "authors": [
+        "Fengyi Wu",
+        "Yifei Dong",
+        "Yetong Sha",
+        "Lingdong Kong",
+        "Qiyu Hu",
+        "Bohan Xiong",
+        "Qi Dai",
+        "Alexander G. Hauptmann",
+        "Zhi-Qi Cheng"
+      ],
+      "url": "http://arxiv.org/abs/2611.10392v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "33 pages, including appendix and references. Code: https://github.com/UWMILab/Tiresias",
+      "score": 60,
+      "priority": "skim",
+      "summary_cn": "World models enable planning through internal simulation, while natural language provides intuitive task specification.",
+      "contribution_cn": "We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, driving, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.11166",
+      "date": "2026-11-08",
+      "topics": [
+        "World Models"
+      ],
+      "title": "DexForesight: Grounding Dexterous Policies with Implicit Spatial Foresight",
+      "abstract": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand. Existing world-action models often acquire such predictive knowledge through explicit future prediction. We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy. During training, DexForesight learns an action-conditioned spatial world model from offline scene depth, kinematic hand geometry, and demonstration trajectories. The world model predicts 3D hand-point motion and visual feature changes, capturing both articulated hand dynamics and scene changes under demonstrated actions, including the motion of fingers occluded from the cameras. We then freeze the world model and align policy queries with its predictive world queries, transferring the learned spatial dynamics into policy latents and using them to condition action generation. At deployment, only the policy is retained, operating on RGB observations, language, and robot state without depth input or explicit future prediction. On 11 DexJoCo simulation tasks, DexForesight improves the overall success rate of the base policy from 49.4% to 60.5%. On three real-robot dexterous manipulation tasks, DexForesight achieves 58.3% success, compared with 50.0% for the strongest baseline. Project page https://dexforesight.github.io/",
+      "authors": [
+        "Zhongxi Chen",
+        "Yi Yang",
+        "Xinyi Chen",
+        "Mingzhe Ye",
+        "Yaping Li",
+        "Zhihong Liu",
+        "Congsheng Xu",
+        "Haonan Wang",
+        "Zhijie Deng"
+      ],
+      "url": "http://arxiv.org/abs/2611.11166v2",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "13 pages, 4 figures",
+      "score": 59,
+      "priority": "skim",
+      "summary_cn": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand.",
+      "contribution_cn": "We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.11912",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "LO-World: Unified BEV Latent Modeling for Joint 4D Occupancy and LiDAR Forecasting",
+      "abstract": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity. However, existing world models typically forecast these modalities independently or cascade them heuristically, missing the opportunity for reciprocal cross-modal regularization. To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space. This single-stream formulation enables dense semantics and metric geometry to mutually reinforce each other, while eliminating multi-pipeline redundancy. Specifically, LO-World couples an efficient hybrid range-voxel autoencoder with a flow-matching generator that caches historical context to reduce iterative sampling latency. Extensive experiments demonstrate that LO-World outperforms prior state-of-the-art baselines, improving occupancy forecasting IoU by 10.9% and reducing LiDAR Chamfer Distance by 30.1%. Meanwhile, it sustains a real-time throughput exceeding $25$~FPS on a single RTX 4090. Our code is available at https://github.com/lzzzzzm/LO-World.",
+      "authors": [
+        "Zhimin Liao",
+        "Ping Wei",
+        "Kai Mao",
+        "Shuaijia Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.11912v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 58,
+      "priority": "skim",
+      "summary_cn": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity.",
+      "contribution_cn": "To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space.",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, real-time, cache, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.13348",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ProTEUS: A mutation-resolved world model for closed-loop protein evolution",
+      "abstract": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space. Thus, a central challenge is to efficiently traverse the large combinatorial space of mutations in silico. We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution. Pretrained on deep mutational scanning assays, ProTEUS learns a joint representation of sequence, evolutionary, and structural information using MutationFormer, a mutation-biased attention architecture. Variants are represented as states in this joint latent space, and mutations define actions whose functional consequences are predicted. To support exploration of many mutants, we developed a fast, physics-constrained all-atom predictor that utilizes explicit geometric constraint enforcement to achieve >10 fold increase in speed than AlphaFold3 with guaranteed physical validity. Lastly, ProTEUS refines its prediction and understanding of protein activity through closed loop experimental feedback to guide evolution toward a desired phenotype. ProTEUS surpasses established models in both zero-shot and supervised fine-tuning mutation prediction tasks. We experimentally demonstrate its utility in two closed-loop multi-objective engineering campaigns on aldehyde dehydrogenase and levansucrase, yielding variants with >10 fold higher activity than wild type. ProTEUS provides a world-model framework that connects virtual evaluation of mutational outcomes with experimental learning for efficient protein evolution.",
+      "authors": [
+        "Yikun Zhang",
+        "Minghao Guo",
+        "Guangxue Xu",
+        "Peter Yichen Chen",
+        "Wojciech Matusik",
+        "Wengong Jin",
+        "Jingjing Chai",
+        "Kaiyi Jiang"
+      ],
+      "url": "http://arxiv.org/abs/2611.13348v1",
+      "categories": [
+        "q-bio.BM",
+        "cs.AI"
+      ],
+      "comment": "64 pages, 5 main figures, 5 supplementary figures",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space.",
+      "contribution_cn": "We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}
