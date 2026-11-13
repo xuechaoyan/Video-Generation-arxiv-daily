@@ -17,6 +17,13 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-12**|**Back to Pixels: Lifting Latent Video Diffusion into Pixel Space**|Yanke Song et.al.|[2611.17336](http://arxiv.org/abs/2611.17336)|null|
+|**2026-11-12**|**K2V: Generative Keyframing For Physically Plausible Video Generation**|Felix O'Mahony et.al.|[2611.17324](http://arxiv.org/abs/2611.17324)|null|
+|**2026-11-12**|**PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation Models**|Yuxuan Chen et.al.|[2611.16748](http://arxiv.org/abs/2611.16748)|null|
+|**2026-11-12**|**UniSpark: Exploring Hybrid Attention for Multimodal Understanding and Generation**|Jiancheng Pan et.al.|[2611.16517](http://arxiv.org/abs/2611.16517)|null|
+|**2026-11-12**|**VBot Exo2Ego Policy: Lightweight Data Collection and Exocentric-to-Egocentric Video Generation**|Tong Rao et.al.|[2611.16417](http://arxiv.org/abs/2611.16417)|null|
+|**2026-11-12**|**BWM-Forge: Agentic World Programming for Embodied Intelligence**| BWM Team et.al.|[2611.16221](http://arxiv.org/abs/2611.16221)|null|
+|**2026-11-11**|**VibePrevisBench: Evaluating Agentic Coding for 4D Scene Generation in Blender**|Yuzhe Chen et.al.|[2611.15789](http://arxiv.org/abs/2611.15789)|null|
 |**2026-11-11**|**Track4D: Representing Dense 3D Tracking for Video Diffusion Models**|Yushi Lan et.al.|[2611.15287](http://arxiv.org/abs/2611.15287)|null|
 |**2026-11-10**|**From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models**|Guoqiang Liang et.al.|[2611.14365](http://arxiv.org/abs/2611.14365)|null|
 |**2026-11-10**|**When to Start Denoising? Adaptive Denoising Entry for Generative Video Compression**|Zifu Zhang et.al.|[2611.13620](http://arxiv.org/abs/2611.13620)|null|
@@ -1598,6 +1605,16 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-12**|**Spatial Foundry: A Multimodal Dataset for Spatial Intelligence**|Ethan Lin et.al.|[2611.17318](http://arxiv.org/abs/2611.17318)|null|
+|**2026-11-12**|**SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models**|Jiachun Jin et.al.|[2611.17110](http://arxiv.org/abs/2611.17110)|null|
+|**2026-11-12**|**InertiaMPDD: Multimodal Personalized Depression Detection via Emotional Inertia-Inspired Dynamics Modeling**|Changzeng Fu et.al.|[2611.16647](http://arxiv.org/abs/2611.16647)|null|
+|**2026-11-12**|**Rethinking Actions: Continuity-Aware Priors for World-Model Planning**|Shaobo Yang et.al.|[2611.16645](http://arxiv.org/abs/2611.16645)|null|
+|**2026-11-12**|**ActWorld-JEPA: Action-Conditioned JEPA World Models Meet Latent Planning for End-to-End Autonomous Driving**|Ziying Song et.al.|[2611.16579](http://arxiv.org/abs/2611.16579)|null|
+|**2026-11-12**|**PhysCapBench: A Cross-Domain Benchmark for Physically Grounded Video Captioning**|Haofeng Wang et.al.|[2611.16424](http://arxiv.org/abs/2611.16424)|null|
+|**2026-11-12**|**BlinkMimic: Training a Humanoid Motion Tracker in Minutes on a Single GPU**|Fuyi Chen et.al.|[2611.16422](http://arxiv.org/abs/2611.16422)|null|
+|**2026-11-11**|**Latent Imagination for Parameterized Action Spaces**|Atahan Cilan et.al.|[2611.15744](http://arxiv.org/abs/2611.15744)|null|
+|**2026-11-11**|**What World Model Does Active Object Search Need? A Study under Imperfect Detection**|Kyeongryeol Go et.al.|[2611.15689](http://arxiv.org/abs/2611.15689)|null|
+|**2026-11-11**|**CoCode-World: Shared 3D Proxy Representation for Multi-Player World Models**|Qirui Li et.al.|[2611.15602](http://arxiv.org/abs/2611.15602)|null|
 |**2026-11-11**|**An Approach to Hinton's Mother-Child Proposal: Neural Networks Learning and Preserving Care in a Finite World**|Csaba Balogh et.al.|[2611.15523](http://arxiv.org/abs/2611.15523)|null|
 |**2026-11-11**|**Advancing global water cycle science with the upcoming MAGIC satellite mission through data assimilation**|Helena Gerdener et.al.|[2611.15421](http://arxiv.org/abs/2611.15421)|null|
 |**2026-11-11**|**Bind-WAM: Binding-Uncertainty-Guided Selective Future Imagination in World Action Models**|Chenhao Qiu et.al.|[2611.15368](http://arxiv.org/abs/2611.15368)|null|

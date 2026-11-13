@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T03:41:25+00:00",
+  "generated_at": "2026-11-13T18:49:06+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -25,12 +25,12 @@
       "comment": "",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "OnlyAct 旨在从无标签视频中学习可迁移、场景不变且表达能力强的动作表示，用于动作条件视频世界模型。方法以预训练视频基础模型 V-JEPA 2 的帧对嵌入为起点，通过低秩适配器和无标签对比学习进行调整：利用光流引导的场景替换构造保持运动、改变场景的正样本，并从同一视频的其他时间窗口构造共享场景但动作不同的困难负样本。该目标使表示空间突出动作信息、抑制场景信息，避免重建式潜在动作模型中表达能力与场景分离之间的瓶颈权衡。适配后的动作编码器为自回归视频世界模型提供连续动作条件，并支持从演示中迁移动作以及通过少量动作标注进行真实动作控制。作者在机器人操作、相机导航、游戏和驾驶等多个数据集上评估动作表达能力、场景泄漏和视频生成质量。结果显示，OnlyAct 在大多数基准上具有更强的动作预测能力，场景不变性与潜在动作基线相当，并在跨场景动作迁移和下游可控性方面取得更好表现。",
-      "contribution_cn": "1. 提出从预训练视频基础模型的表示空间中提取动作，而不是从零开始学习动作空间的新视角。2. 提出无标签对比适配框架，结合光流引导的场景交换正样本和同视频困难负样本，在无需重建瓶颈的情况下将动作与场景信息解耦。3. 提出覆盖动作表达能力、场景不变性和动作条件视频生成质量的统一评估协议，并在机器人、导航、游戏和驾驶基准上验证了相对于无标注潜在动作方法的改进。4. 将学习到的表示用于动作演示迁移和少量标注下的真实动作控制。",
-      "relevance_cn": "论文直接针对视频生成和视频扩散世界模型中的动作条件建模问题。它使用预训练视频表示提取动作，并将连续动作嵌入输入自回归视频世界模型，用于闭环式逐帧预测和长序列滚动生成。其演示动作迁移机制支持从一个场景提取动作、在另一个初始场景中生成相同动作，符合动作条件视觉世界模型和跨场景模拟的研究方向。无标签对比适配降低了对动作标注的依赖，适合利用大规模视频预训练语料；低秩适配器、固定维度嵌入和场景不变性设计也与可扩展表示学习、跨域泛化和控制接口学习相关。论文的世界模型采用自回归生成，但未重点研究实时生成、蒸馏、稀疏注意力或缓存复用。",
-      "limitations_cn": "论文明确指出，光流引导的场景交换正样本仅适用于静态相机；对于相机运动、第一视角手持视频或驾驶视频，只能退化为使用不同光度增强的原始帧对，因此正样本构造可能较弱。动作表示仍需通过少量带动作标签的数据学习真实动作到潜在空间的映射，不能完全消除动作监督。方法依赖预训练 V-JEPA 2、光流估计器以及特定的视频基础模型结构，适用性和计算成本可能受这些组件限制。实验中的世界模型使用最多六帧上下文并进行自回归生成，论文未系统评估极长视频滚动中的误差累积、实时性能、蒸馏、稀疏注意力或缓存复用。论文未明确说明在更复杂、多主体或动作定义不清的场景中表示的表现，也未明确说明真实部署中的整体推理延迟和资源消耗。",
+      "summary_cn": "OnlyAct研究如何从无标签视频中学习可迁移的动作表示，用于动作条件视频世界模型。方法以预训练的视频基础模型 V-JEPA 2 为起点，通过低秩适配器和无标签对比学习，将同一动作在不同场景中的表示拉近，并利用同一视频中不同动作构造困难负样本，以减少场景信息泄漏。该表示随后作为连续动作流，训练自回归视频世界模型进行示范动作迁移和真实动作控制。在13个动作探测与场景泄漏数据集，以及多个机器人、导航、游戏和驾驶视频生成任务上的实验表明，OnlyAct通常具有更强的动作表达能力，达到与瓶颈式潜在动作方法相当的场景不变性，并改善跨场景动作迁移和控制效果。",
+      "contribution_cn": "1. 提出一种从预训练视频基础模型表示空间中提取动作、而非从头学习动作空间的新视角。2. 提出无标签对比适配框架，结合光流引导的场景替换正样本和同视频困难负样本，在不使用重建瓶颈的情况下 disentangle 动作与场景。3. 建立统一评估协议，从动作表达能力、场景不变性和动作条件视频生成质量三个维度评估表示。4. 在机器人操作、相机导航、游戏和驾驶基准上验证了该方法在动作表达、动作迁移和世界模型可控性方面相对于现有无标注潜在动作方法的优势。",
+      "relevance_cn": "该工作直接面向视频生成和视频扩散世界模型：它将从连续帧提取的动作嵌入作为自回归视频生成模型的条件信号。其世界模型根据历史帧和动作流逐帧预测未来，支持闭环式滚动生成、示范动作跨场景迁移以及通过少量动作标注进行真实动作控制。方法还涉及预训练视频表示、动作条件生成、跨领域泛化和场景信息抑制，与动作条件视觉世界模型和可控长视频生成高度相关。论文未重点讨论实时生成、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文明确的方法限制包括：光流引导的场景替换正样本主要适用于静态相机；相机移动、手持拍摄或驾驶视频中无法直接替换背景，只能退化为不同光度增强。方法依赖光流估计质量，并将动作定义为由智能体或相机造成的帧间变化，因此可能难以处理更复杂或定义不同的动作因素。真实动作控制仍需少量动作标注数据以及额外的动作到潜在空间映射和微调。实验主要采用 V-JEPA 2、特定数据集和 AdaWorld 架构，计算开销、对更长时间跨度的稳定性以及实时部署性能论文未明确说明。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺，分散在彼此不兼容的规格中，并且无法随无标签视频预训练语料的规模扩展。一种常见的解决方法是联合训练动作编码器和解码器：编码器将连续帧压缩为潜在动作，解码器则根据前一帧和该潜在动作重建下一帧，从而迫使潜在表示只捕获新的信息。这种方法有两个局限：从零开始学习动作空间可能限制对未见领域的泛化能力；此外，瓶颈在表达能力与分离能力之间进行权衡，过紧的瓶颈会损失细节，过松的瓶颈则可能在领域变化时导致场景信息泄漏。我们提出一种不同的出发点：不从零开始学习动作，而是从预训练基础模型 V-JEPA 2 开始。该模型经过大规模、多样化的视频预训练，其帧对嵌入已经包含大量动作信息。这为动作表示提供了更具泛化性的基础。剩下的挑战是提取动作信息，同时丢弃场景信息。为此，我们提出一种无标签对比适配框架：将不同场景中具有相同运动的帧对拉近，并将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而无需施加重建瓶颈。我们提出统一的评估协议，从三个方面考察动作表示——动作表达能力、场景不变性以及动作条件视频生成质量——并在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适配阶段未被使用。与无需标注的潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并且能够使世界模型更忠实地将演示动作迁移到新场景中。",
+      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺，分散在彼此不兼容的规范中，并且无法扩展到规模庞大的无标签视频预训练语料。一个常见的解决方法是联合训练动作编码器，将连续帧压缩为潜在动作，并训练解码器根据前一帧和该潜在动作重建下一帧，从而迫使潜在表示只捕捉新的信息。这存在两个局限：从头学习动作空间可能限制对未见领域的泛化能力；同时，瓶颈在表达能力与分离性之间进行权衡，更严格的瓶颈会损失细节，而更宽松的瓶颈则可能在领域变化下导致场景信息泄漏。我们提出一种不同的出发点：不再从头学习动作表示，而是从预训练基础模型 V-JEPA 2 开始。该模型经过大规模、多样化的视频预训练，其对帧对的嵌入已经包含大量动作信息。这为动作表示提供了更具泛化性的基础。剩下的挑战是提取动作并丢弃场景信息。为此，我们提出一种无标签对比适配框架：将不同场景中具有相同运动的帧对拉近，并将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而不施加重建瓶颈。我们提出统一的评估协议，从动作表达能力、场景不变性以及动作条件视频生成质量三个方面，在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适配阶段未被见过。与无需标注的潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并使世界模型能够更忠实地将示范动作迁移到新场景中。",
       "note_path": "2026-11-13/2611.14420-onlyact-extracting-action-representations-from-f.md"
     },
     {
@@ -100,40 +100,47 @@
       "comment": "https://duo-v1.github.io/",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文提出互惠世界模型RWM及其模块化实现Duo v1，将世界模型从单纯模拟物理环境扩展为同时包含交互智能与视听现实。系统由自回归多模态Intent模块和因果视听Realization模块组成，以约0.71秒的17帧视频块为基本单位，在统一时间线上持续接收用户音频、视频和文本，并生成文本决策、视频和立体声音频。Intent模块决定说话或等待并生成语义隐藏状态，Realization模块通过因果联合扩散生成连续的视听响应。训练分为Intent监督微调、因果视听生成训练和基于双重rollout的分布匹配蒸馏；数据来自脚本合成的视频通话、真实录制交互及相关音频视频数据。运行时采用流水线调度、因果潜变量解码、KV缓存管理、并行计算和四步生成，以支持实时流式交互。在30个案例的人工评测中，180项检查有168项通过（93.3%），但内容响应性为73.3%，论文指出长期对话、隐含意图以及音视频联合理解仍是主要难点。",
-      "contribution_cn": "1. 提出互惠世界模型RWM，将Intent（交互认知与决策）和Realization（连贯视听行为）视为世界模型的两个基本组成部分，并实现Duo v1全双工交互系统。 2. 设计自回归Intent模块，使系统按交互分块持续推理，并显式决定<speak>或<wait>，而非仅作为扩散模型的指令编码器。 3. 在统一时间线上构造分块条件和同步标记，通过模块专属注意力掩码实现分块内外的因果约束，避免未来信息泄漏。 4. 提出双重rollout分布匹配蒸馏，在训练中同时使用Intent自回归生成的语言历史和Realization自生成的视听历史，使训练条件更接近推理阶段。 5. 构建因果联合音视频扩散生成器、流式VAE解码和面向实时交互的流水线，包括KV缓存滑动窗口、周期性重置、设备感知并行与分块级调度。 6. 建立结合脚本合成与真实录制数据的因果对齐数据构造流程，并通过固定质量参考减轻长序列视频生成中的误差累积。",
-      "relevance_cn": "论文与研究重点高度相关。它直接面向视频生成和视频扩散，使用因果联合音视频扩散Transformer在潜空间中逐块生成视频与音频；其Realization模块通过历史视听潜变量保持跨块连续性，属于长视频和持续流式生成范式。Intent模块采用自回归交互推理，结合用户视频、音频和文本做参与决策，适用于动作条件视觉世界模型和闭环模拟：系统生成的视听响应会重新进入后续交互历史，用户输入也持续影响下一分块。论文还明确涉及实时生成、少步蒸馏、因果注意力、双重自生成rollout、KV缓存复用、流式解码和分块流水线加速。其17帧分块约708毫秒，报告的Intent推理为90–160毫秒、视听潜变量生成为200–450毫秒，体现了面向实时交互的系统设计。",
-      "limitations_cn": "论文明确指出Duo v1仍是初步系统，目前主要支持基础视听对话；更长会话中的响应时序、长期一致性以及误解后的恢复仍需更广泛评估。人工评测仅覆盖30个实时双工交互案例，样本规模有限，且未提供与其他系统的对照实验或完整的客观基准。内容响应性仅为73.3%（22/30），在笑话、异常言论、需要超越字面理解的长期对话，以及必须联合理解语音和视频的场景中表现不足。音视频同步通过率为90.0%，情绪一致性为96.7%，仍存在失败案例。系统依赖单台八GPU服务器，计算和显存开销较高；论文未明确说明在更低算力设备、更多样用户、开放环境或更长时间运行下的性能。",
+      "summary_cn": "论文提出互惠世界模型RWM，将交互智能与物理世界模拟统一起来，并以Duo v1实现实时全双工视听交互。系统由自回归多模态Intent模块和因果联合视听Realization模块组成，以约0.71秒的视频块为单位，在统一时间轴上处理用户输入、参与决策和助手生成结果。通过因果注意力、双重rollout蒸馏、流式VAE解码、KV缓存管理和跨模块流水线调度，Duo能够在持续接收用户输入的同时生成语音和视频。论文还构建了合成与真实交互数据，并在30个实时案例上进行人工评估，180项检查中通过168项（93.3%）；但内容响应性仅为73.3%。",
+      "contribution_cn": "1. 提出互惠世界模型RWM，将Intent认知与Realization视听行为视为世界模型的两个同等基础组成部分，并实现Duo v1模块化系统。2. 设计基于自回归Intent模块的持续交互推理与<speak>/<wait>参与决策机制，使系统能够处理等待、连续发言和打断。3. 在统一时间轴上构造块级条件和同步标记，结合模块专用因果注意力掩码，避免块内及块间的信息泄漏。4. 提出双重rollout分布匹配蒸馏，同时使用自回归生成的语言意图和Realization生成的视听历史，使训练条件更接近推理时分布，并将生成压缩为四步。5. 构建因果联合音视频扩散生成器及流式推理系统，包括因果潜变量解码、KV缓存管理、块级流水线重叠和设备感知并行。6. 建立包含合成视频通话、同步或异步双流视频、直播、全双工音频等来源的数据构建与质量控制流程。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究自回归、因果和流式视频生成：以17帧、约0.708秒为生成块，Realization模块仅访问当前可用条件和历史，持续生成音频与视频。它也涉及实时生成与加速，通过四步蒸馏、流式VAE解码、KV缓存复用、缓存滑动窗口和周期性重置，在八GPU服务器上实现连续输出；Intent推理约需90–160毫秒，视听潜变量生成约需200–450毫秒。其RWM还与动作条件视觉世界模型和闭环模拟相关：用户的语音、视频和行为持续进入系统，系统生成的视听行为又作为后续交互历史，从而形成感知—决策—生成—再感知的闭环。不过，论文重点是实时交互式视听响应，而非具有明确物理动作空间和环境状态转移的通用具身模拟。",
+      "limitations_cn": "论文明确指出Duo v1仍处于初步阶段，目前主要支持基础视听对话；更长会话中的响应时序与一致性、对误解的恢复能力仍需更广泛评估。人工评估中，内容响应性仅为73.3%（22/30），主要受复杂语用、笑话或需要联合理解语音与视频的意图影响。音视频同步通过率为90.0%，情绪一致性为96.7%，仍存在改进空间。系统评估仅覆盖30个实时双工交互案例，且部分展示场景来自脚本条件合成数据，不能充分代表开放环境中的真实交互。论文未明确说明更广泛的长时稳定性、真实世界闭环控制能力、计算成本可扩展性以及与其他方法的系统性定量对比。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "本文介绍了 Reciprocal World Model（RWM），并提出 Duo v1——一种能够持续感知视听输入并实时回应用户的全双工世界模型。RWM认为，智能与物理现实同等构成世界的基本要素。现有世界模型大多侧重模拟后者，将推理与决策作为外部控制，而非世界本身的内在组成。在RWM中，我们确定了两种同等重要的能力：Intent，提供世界交互所需的认知；Realization，生成连贯的视听行为。为实现这一构想，Duo v1引入了三项关键技术设计：（1）采用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间线上为Intent和Realization构建分块专属条件与同步标记。模块专属的注意力掩码在分块内部及分块之间强制执行因果依赖，防止访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移：训练使用自回归生成的Intent标记以及由Realization合成的视听历史。两个模块都能持续感知实时音频、视频和文本，从而支持包含自然对话与打断的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、指导助手，或在无需鼠标键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域开展更广泛的探索。",
+      "abstract_cn": "本文介绍了 Reciprocal World Model（RWM，互惠世界模型），并提出 Duo v1——一种能够持续感知视听输入并实时响应用户的全双工世界模型。RWM认为，构成世界的要素中，智能与物理现实同等基础。现有世界模型主要关注对后者的模拟，将推理和决策作为外部控制，而非世界本身的内在组成。在RWM中，我们确定了两种同等基础的能力：Intent（意图），为世界交互提供认知；Realization（实现），生成连贯的视听行为。为实现这一框架，Duo v1引入了三项关键技术设计：（1）采用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间轴上，为Intent和Realization构造特定于块的条件与同步标记。模块专用的注意力掩码在块内和块间都强制执行因果依赖，防止访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移：使用自回归生成的Intent标记以及Realization合成的视听历史进行训练。两个模块都持续感知实时音频、视频和文本，从而支持包含自然对话与打断的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、引导助手，或在无需鼠标和键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域开展更广泛的探索。",
       "note_path": "2026-11-13/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md"
     },
     {
-      "id": "2611.11452",
-      "date": "2026-11-08",
+      "id": "2611.16579",
+      "date": "2026-11-12",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "World Models"
       ],
-      "title": "Semantically Aligned KV Cache Compression for Efficient Agentic Autoregressive Video Generation",
-      "abstract": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis. Growing visual histories enlarge the key-value (KV) cache, increasing memory use and attention costs across candidate rollouts. Existing compression methods primarily optimize individual generators without the planner's semantic constraints, risking low priority for states supporting requested attributes or actions. We introduce SemanticKV, a training-free method for semantically aligned KV cache compression. To our knowledge, SemanticKV is the first KV cache compression method for agentic autoregressive video generation that explicitly uses planner-extracted semantic constraints to guide retention. Text cross-attention identifies constraint-related video positions, whose self-attention queries are collected into separate groups. Attention weights are averaged within each group and maximized across groups, giving each cached entry a high score when strongly used by any represented constraint. A single top-k selection retains high-scoring entries under the memory budget, leaving their keys, values, and positions unchanged. For fixed query groups and equal entry costs, this selection minimizes an additive upper bound on worst-group discarded attention. The method operates independently within each candidate without retraining or additional video generations. We evaluate four AR video backbones on three benchmarks for 5-, 30-, and 60-second generation. On Causal Forcing at a compression ratio of 0.7, SemanticKV obtains a VBench Total Score of 84.10, compared with 84.05 for the strongest compressed baseline and 83.99 for Full KV. It achieves a 1.22x speedup over Full KV and reduces KV-cache memory from 6.04 GB to 1.81 GB, a 3.35x reduction.",
+      "title": "ActWorld-JEPA: Action-Conditioned JEPA World Models Meet Latent Planning for End-to-End Autonomous Driving",
+      "abstract": "Joint-Embedding Predictive Architectures (JEPAs) enable future prediction in latent space without pixel reconstruction. However, latent predictive consistency alone does not establish the relative driving quality of candidate plans. We present ActWorld-JEPA, a joint-embedding formulation for candidate-based driving. Where Plan-Conditioned JEPA (PC-JEPA) uses global and step-wise trajectory intentions to guide recurrent latent prediction, then combines the predicted future with the current scene through gated cross-attention; Relational Residual Reranking ($R^3$) models agreement and discrepancy between plan and future representations under planning supervision, yielding bounded, gated residual corrections to the base planning scores. This formulation connects latent prediction to candidate selection using only observed context and proposed trajectories at inference. Benchmark-specific implementations report 94.1 PDMS on NAVSIM v1 navtest, with the final selector calibrated using aggregate NAVTEST feedback, and 91.6 and 42.7 EPDMS on NAVSIM v2 navtest and navhard, respectively. The nuScenes evaluation reports a mean $L_2$ error of 1.20 m and a predicted collision rate of 0.76% over 1--6 s. This work provides an effective path from JEPA's predictive representations to driving decisions informed by anticipated consequences.",
       "authors": [
-        "Weizhong Huang",
-        "Huaijia Kou",
-        "Tianyu Xie",
-        "Xiawu Zheng",
-        "Liujuan Cao"
+        "Ziying Song",
+        "Shengkai Zhang",
+        "Caiyan Jia",
+        "Lei Yang",
+        "Lin Liu",
+        "Yuchen Liu",
+        "Ziyang Liu",
+        "Zirui Li",
+        "Gang Wang",
+        "Peiliang Wu",
+        "Li Wang",
+        "Yadan Luo",
+        "Chen Lv"
       ],
-      "url": "http://arxiv.org/abs/2611.11452v1",
+      "url": "http://arxiv.org/abs/2611.16579v1",
       "categories": [
-        "cs.CV",
-        "cs.LG"
+        "cs.CV"
       ],
-      "comment": "32 pages, 12 figures",
-      "score": 62,
+      "comment": "19 pages, including appendix. Code: https://github.com/adept-thu/ActWorld-JEPA. Project: https://adept-thu.github.io/ActWorld-JEPA/",
+      "score": 65,
       "priority": "skim",
-      "summary_cn": "Agentic autoregressive video generation combines semantic planning, sequential generation, and visual verification for controllable synthesis.",
-      "contribution_cn": "We introduce SemanticKV, a training-free method for semantically aligned KV cache compression.",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, cache, kv cache, efficient, video generation",
+      "summary_cn": "Joint-Embedding Predictive Architectures (JEPAs) enable future prediction in latent space without pixel reconstruction.",
+      "contribution_cn": "We present ActWorld-JEPA, a joint-embedding formulation for candidate-based driving.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, driving",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -195,38 +202,6 @@
       "summary_cn": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.11166",
-      "date": "2026-11-08",
-      "topics": [
-        "World Models"
-      ],
-      "title": "DexForesight: Grounding Dexterous Policies with Implicit Spatial Foresight",
-      "abstract": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand. Existing world-action models often acquire such predictive knowledge through explicit future prediction. We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy. During training, DexForesight learns an action-conditioned spatial world model from offline scene depth, kinematic hand geometry, and demonstration trajectories. The world model predicts 3D hand-point motion and visual feature changes, capturing both articulated hand dynamics and scene changes under demonstrated actions, including the motion of fingers occluded from the cameras. We then freeze the world model and align policy queries with its predictive world queries, transferring the learned spatial dynamics into policy latents and using them to condition action generation. At deployment, only the policy is retained, operating on RGB observations, language, and robot state without depth input or explicit future prediction. On 11 DexJoCo simulation tasks, DexForesight improves the overall success rate of the base policy from 49.4% to 60.5%. On three real-robot dexterous manipulation tasks, DexForesight achieves 58.3% success, compared with 50.0% for the strongest baseline. Project page https://dexforesight.github.io/",
-      "authors": [
-        "Zhongxi Chen",
-        "Yi Yang",
-        "Xinyi Chen",
-        "Mingzhe Ye",
-        "Yaping Li",
-        "Zhihong Liu",
-        "Congsheng Xu",
-        "Haonan Wang",
-        "Zhijie Deng"
-      ],
-      "url": "http://arxiv.org/abs/2611.11166v2",
-      "categories": [
-        "cs.RO"
-      ],
-      "comment": "13 pages, 4 figures",
-      "score": 59,
-      "priority": "skim",
-      "summary_cn": "Dexterous manipulation requires rich spatial foresight over both the surrounding scene and the robot hand.",
-      "contribution_cn": "We introduce DexForesight, a framework that learns spatial foresight implicitly by injecting dynamics-aware world representations into the latent space of a dexterous policy.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -315,6 +290,35 @@
       "summary_cn": "3D Gaussian Splatting (3DGS) enables photorealistic, real-time rendering on commodity GPUs and is increasingly adopted in generative world models and autonomous driving simulators.",
       "contribution_cn": "To address this, we present a software-defined GPU scheduling approach that mitigates the execution tail.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, driving, real-time",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.12557",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "WanderBench: Can World Models Explore Dynamic Worlds from Video?",
+      "abstract": "Video world models conditioned on an input video make it possible to explore real, recorded dynamic scenes, enabling re-shooting of footage, free-viewpoint replay, and real-to-sim environments for embodied agents. Such uses require the generated rollout to stay faithful to the recorded world, yet existing benchmarks start from a single image or a text prompt, and video-conditioned generation is evaluated mainly on perceptual quality and camera following. These evaluations do not directly assess whether exploration preserves subject identity, event progression, and scene consistency upon revisiting a location. We introduce WanderBench, a benchmark for exploring dynamic worlds from video. It comprises 745 single-shot source videos of real and AI-generated content in three difficulty tiers (3-25 s), paired with camera routes given as keyboard actions, and evaluates six dimensions with 24 human-validated sub-metrics. Benchmarking eight models, we find that as clips grow longer, models keep the static scene and visual quality but lose camera control and the source dynamics, and that none keeps revisited places consistent. We further propose WanderLand, a training-free framework that conditions each frame of a frozen model on the same-instant source and, on revisits, on its own earlier static content. WanderLand improves five models on every dimension, by up to 8.3 points in source-dynamics fidelity.",
+      "authors": [
+        "Yuhang Chen",
+        "Jiheng Li",
+        "Jiale Wang",
+        "Zai Wang",
+        "Guangyue Liu"
+      ],
+      "url": "http://arxiv.org/abs/2611.12557v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "10 pages, 4 figures",
+      "score": 53,
+      "priority": "skim",
+      "summary_cn": "Video world models conditioned on an input video make it possible to explore real, recorded dynamic scenes, enabling re-shooting of footage, free-viewpoint replay, and real-to-sim environments for embodied agents.",
+      "contribution_cn": "We introduce WanderBench, a benchmark for exploring dynamic worlds from video.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, embodied",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
