@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T19:13:41+00:00",
+  "generated_at": "2026-11-13T03:41:25+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -25,86 +25,88 @@
       "comment": "",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "OnlyAct 研究如何在没有动作标签的海量视频上学习可迁移的动作表示，以训练动作条件视频世界模型。方法以预训练视频基础模型 V-JEPA 2 的帧对嵌入为起点，通过低秩适配器和无标签对比学习提取动作信息：利用光流引导的跨场景正样本保持运动不变、改变场景，并利用同视频不同时间窗口的难负样本抑制场景信息泄漏。适配后的表示既可从演示视频中提取动作并迁移到新场景，也可通过少量带标签数据映射真实动作进行直接控制。实验覆盖机器人操作、相机导航、游戏和驾驶等领域，结果表明 OnlyAct 在大多数数据集上具有更强的动作表达能力，达到与瓶颈式潜在动作方法相当的场景不变性，并提升了动作迁移和世界模型可控性。",
-      "contribution_cn": "1. 提出从预训练基础模型的表示空间中提取动作、而非从零学习动作空间的新视角。2. 提出无标签对比适配框架，结合光流引导的场景替换正样本和同视频难负样本，在不使用重建瓶颈的情况下实现动作与场景的解耦，并同时提升动作表达能力和场景不变性。3. 建立统一评估协议，从动作表达能力、场景不变性和动作条件视频生成质量三个维度进行系统评估，并在机器人、导航、游戏和驾驶基准上验证其相对于无标注潜在动作基线的优势。4. 将所得动作表示用于演示动作迁移和少量真实动作标注下的直接控制。",
-      "relevance_cn": "该工作直接对应动作条件视觉世界模型和闭环模拟方向：它从连续帧中提取动作流，并将其作为自回归视频世界模型的条件来逐帧预测和滚动生成未来视频。其跨场景动作表示支持从演示中提取动作、在新初始场景中复现动作，也支持通过少量真实动作数据实现控制，因此与动作条件生成、跨域迁移和交互式模拟高度相关。方法依赖预训练视频基础模型和轻量低秩适配，重点解决无标签视频规模化利用、动作与场景解耦及动作条件生成可控性问题；论文未涉及视频扩散采样加速、稀疏注意力、缓存复用或专门的实时生成优化。",
-      "limitations_cn": "论文明确指出，光流引导的场景替换正样本只适用于静态相机；对于相机移动、第一视角手持或驾驶视频，方法只能退化为使用不同光度增强的原始帧对，场景与动作的解耦可能因此受到限制。方法依赖现成的光流估计器，其质量可能影响正样本构造。动作表示被定义为由智能体或相机造成的帧间变化，因此难以覆盖无法从视觉变化中可靠推断的动作因素。实验虽然涵盖多个领域，但适配数据和评测数据仍是有限的数据集组合，论文未明确说明在更大规模、极端领域变化或长时闭环滚动中的性能边界。论文未明确说明实时推理速度、计算开销以及长视频生成中的误差累积问题。",
+      "summary_cn": "OnlyAct 旨在从无标签视频中学习可迁移、场景不变且表达能力强的动作表示，用于动作条件视频世界模型。方法以预训练视频基础模型 V-JEPA 2 的帧对嵌入为起点，通过低秩适配器和无标签对比学习进行调整：利用光流引导的场景替换构造保持运动、改变场景的正样本，并从同一视频的其他时间窗口构造共享场景但动作不同的困难负样本。该目标使表示空间突出动作信息、抑制场景信息，避免重建式潜在动作模型中表达能力与场景分离之间的瓶颈权衡。适配后的动作编码器为自回归视频世界模型提供连续动作条件，并支持从演示中迁移动作以及通过少量动作标注进行真实动作控制。作者在机器人操作、相机导航、游戏和驾驶等多个数据集上评估动作表达能力、场景泄漏和视频生成质量。结果显示，OnlyAct 在大多数基准上具有更强的动作预测能力，场景不变性与潜在动作基线相当，并在跨场景动作迁移和下游可控性方面取得更好表现。",
+      "contribution_cn": "1. 提出从预训练视频基础模型的表示空间中提取动作，而不是从零开始学习动作空间的新视角。2. 提出无标签对比适配框架，结合光流引导的场景交换正样本和同视频困难负样本，在无需重建瓶颈的情况下将动作与场景信息解耦。3. 提出覆盖动作表达能力、场景不变性和动作条件视频生成质量的统一评估协议，并在机器人、导航、游戏和驾驶基准上验证了相对于无标注潜在动作方法的改进。4. 将学习到的表示用于动作演示迁移和少量标注下的真实动作控制。",
+      "relevance_cn": "论文直接针对视频生成和视频扩散世界模型中的动作条件建模问题。它使用预训练视频表示提取动作，并将连续动作嵌入输入自回归视频世界模型，用于闭环式逐帧预测和长序列滚动生成。其演示动作迁移机制支持从一个场景提取动作、在另一个初始场景中生成相同动作，符合动作条件视觉世界模型和跨场景模拟的研究方向。无标签对比适配降低了对动作标注的依赖，适合利用大规模视频预训练语料；低秩适配器、固定维度嵌入和场景不变性设计也与可扩展表示学习、跨域泛化和控制接口学习相关。论文的世界模型采用自回归生成，但未重点研究实时生成、蒸馏、稀疏注意力或缓存复用。",
+      "limitations_cn": "论文明确指出，光流引导的场景交换正样本仅适用于静态相机；对于相机运动、第一视角手持视频或驾驶视频，只能退化为使用不同光度增强的原始帧对，因此正样本构造可能较弱。动作表示仍需通过少量带动作标签的数据学习真实动作到潜在空间的映射，不能完全消除动作监督。方法依赖预训练 V-JEPA 2、光流估计器以及特定的视频基础模型结构，适用性和计算成本可能受这些组件限制。实验中的世界模型使用最多六帧上下文并进行自回归生成，论文未系统评估极长视频滚动中的误差累积、实时性能、蒸馏、稀疏注意力或缓存复用。论文未明确说明在更复杂、多主体或动作定义不清的场景中表示的表现，也未明确说明真实部署中的整体推理延迟和资源消耗。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺、分散在相互不兼容的规格中，并且无法扩展到规模庞大的无标签视频预训练语料。一种常见的变通方法是联合训练动作编码器和解码器：编码器将连续帧压缩为潜在动作，解码器则根据前一帧和该潜在动作重建下一帧，从而迫使潜在变量只捕捉新的信息。这种方法存在两个局限：从零开始学习动作空间可能限制对未见领域的泛化能力；同时，瓶颈在表达能力与分离性之间进行权衡，过紧的瓶颈会损失细节，过松的瓶颈则可能在领域变化下泄漏场景信息。我们提出一种不同的出发点：不再从零学习动作，而是从预训练基础模型 V-JEPA 2 开始。该模型经过大规模、多样化的视频预训练，其帧对嵌入已经包含大量动作信息。剩余的挑战是提取动作并丢弃场景信息。为此，我们提出一种无标签对比适配框架：将不同场景中具有相同运动的帧对拉近，并将同一场景中具有不同运动的帧对推远，从而重新塑造预训练空间的几何结构，而不施加重建瓶颈。我们提出统一的评估协议，从三个维度考察动作表示：动作表达能力、场景不变性以及动作条件视频生成质量，并在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适配阶段未被见过。与无标注潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并且能够使世界模型更忠实地将已展示的动作迁移到新场景中。",
-      "note_path": "2026-11-12/2611.14420-onlyact-extracting-action-representations-from-f.md"
+      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺，分散在彼此不兼容的规格中，并且无法随无标签视频预训练语料的规模扩展。一种常见的解决方法是联合训练动作编码器和解码器：编码器将连续帧压缩为潜在动作，解码器则根据前一帧和该潜在动作重建下一帧，从而迫使潜在表示只捕获新的信息。这种方法有两个局限：从零开始学习动作空间可能限制对未见领域的泛化能力；此外，瓶颈在表达能力与分离能力之间进行权衡，过紧的瓶颈会损失细节，过松的瓶颈则可能在领域变化时导致场景信息泄漏。我们提出一种不同的出发点：不从零开始学习动作，而是从预训练基础模型 V-JEPA 2 开始。该模型经过大规模、多样化的视频预训练，其帧对嵌入已经包含大量动作信息。这为动作表示提供了更具泛化性的基础。剩下的挑战是提取动作信息，同时丢弃场景信息。为此，我们提出一种无标签对比适配框架：将不同场景中具有相同运动的帧对拉近，并将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而无需施加重建瓶颈。我们提出统一的评估协议，从三个方面考察动作表示——动作表达能力、场景不变性以及动作条件视频生成质量——并在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适配阶段未被使用。与无需标注的潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并且能够使世界模型更忠实地将演示动作迁移到新场景中。",
+      "note_path": "2026-11-13/2611.14420-onlyact-extracting-action-representations-from-f.md"
     },
     {
-      "id": "2611.10660",
-      "date": "2026-11-07",
+      "id": "2611.14815",
+      "date": "2026-11-10",
       "topics": [
         "World Models"
       ],
-      "title": "Dynamics-Informed Action Learning for Goal-Conditioned Latent Planning",
-      "abstract": "Latent world models enable visual control by planning action sequences in compact representation spaces, but a gap remains between how latent dynamics are learned and how they are used for planning. First, teacher-forced training does not expose the dynamics model to the recursively predicted latent states encountered during planning. Second, sampling-based planners typically initialize action search from goal-agnostic proposals, without exploiting the action-conditioned dynamics learned by the world model. We introduce Dynamics-Informed Action Learning (DIAL) to bridge these two gaps. During training, rollout alignment exposes the forward model to its own autoregressive latent predictions, while multi-step inverse supervision trains a lightweight inverse dynamics head to infer actions from latent-state transitions. We further apply the inverse head to model-generated transitions with its parameters held fixed, encouraging predicted rollouts to retain action-relevant information. At test time, DIAL autoregressively couples the inverse and forward dynamics to construct a dynamics-informed action sequence toward the goal, which initializes the mean of the Cross-Entropy Method (CEM) proposal distribution. The subsequent CEM search then refines this initialization using the standard sampling and updating procedure. Experiments across four visual control benchmarks demonstrate that DIAL outperforms existing latent world models and planning baselines in both standard and long-horizon scenarios.",
+      "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
+      "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle motion from perspective video alone is challenging because motion is entangled with appearance and vehicles can be occluded. Prior work therefore conditions video generation on layouts that specify vehicle motion, providing control over surrounding vehicles but requiring their future trajectories as inputs. We introduce BirdDreams, an autoregressive driving world model that jointly generates perspective video and a schematic bird's-eye-view (BEV) video, making scene layout part of the predicted future. The BEV, rendered from scene annotations for training, depicts roads and vehicles as simple shapes at a fixed metric scale, providing a top-down view of their positions and motion with reduced occlusion between vehicles. Perspective video, by contrast, retains scene details that the BEV omits, such as traffic signals and object appearance. Joint attention between two video diffusion transformers, one per stream, lets each stream inform the other during generation. The predicted BEV also provides a geometric interface for ego control: we translate and rotate its latest frame along an input ego trajectory and use the resulting frames as a soft condition that shows how the scene would appear to move if only the ego vehicle moved. At inference, BirdDreams generates both videos from a single camera image without requiring an HD map or vehicle-state inputs. On PhysicalAI-AV and nuScenes, BirdDreams follows input ego trajectories more faithfully than prior driving world models and generates more plausible ego motion without ego-action conditioning. Human evaluation shows that BirdDreams outperforms a perspective-only baseline in generating realistic surrounding-vehicle behavior.",
       "authors": [
-        "Yinuo Jiang",
-        "Guangzhi Wang",
-        "Yiran Wang",
-        "Junfu Pu",
-        "Cheng Cheng",
-        "Honghao Chen",
-        "Cheng Cheng",
-        "Ying Shan"
+        "Junyoung Seo",
+        "Jaewoo Seo",
+        "Seungryong Kim",
+        "Laura Leal-Taixé",
+        "Xiuming Zhang",
+        "Seung Wook Kim"
       ],
-      "url": "http://arxiv.org/abs/2611.10660v1",
+      "url": "http://arxiv.org/abs/2611.14815v1",
       "categories": [
-        "cs.CV",
-        "cs.RO"
+        "cs.CV"
       ],
-      "comment": "",
-      "score": 68,
-      "priority": "skim",
-      "summary_cn": "论文提出 DIAL，用于改进基于潜在世界模型的目标条件规划。方法针对两个问题：教师强制训练与规划时自回归滚动之间的分布不一致，以及 CEM 从与目标无关的动作分布开始搜索。DIAL 通过滚动对齐训练前向动力学，使其适应自身生成的潜在状态；通过多步逆动力学监督，使潜在状态保留可恢复的动作信息；再利用逆动力学和前向动力学递归生成目标导向的动作序列，用其初始化 CEM 的提议均值，而不改变后续 CEM 搜索流程。在 TwoRoom、PushT、Reacher 和 Cube 四个任务上，DIAL 在 25 步和 50 步目标偏移下均取得较高成功率，尤其在搜索预算受限或目标距离较远时优势明显。消融实验表明，模型生成滚动上的逆监督对性能提升尤其重要。",
-      "contribution_cn": "1. 提出 DIAL，将潜在动力学学习与目标条件规划连接起来，并使用学习到的逆动力学构造 CEM 的初始提议。2. 引入滚动对齐训练，使前向模型适应自回归预测状态；引入多步逆监督，使观测转移及模型生成转移保留与动作相关的信息。3. 在四个视觉控制基准、不同目标距离和搜索预算下进行受控实验，证明该方法能稳定提升目标到达性能，尤其适用于长时域规划和受限搜索预算。4. 在不增加 CEM 搜索预算、不直接执行逆解码动作序列的情况下，将动力学信息用于初始化搜索。",
-      "relevance_cn": "论文与研究重点高度相关。它研究动作条件潜在世界模型及其闭环式目标规划，使用前向模型预测动作后果，并通过逆动力学从目标导出动作，从而形成前向预测与动作生成的递归耦合。滚动对齐直接针对自回归和长时域生成中的误差累积问题；DIAL 生成目标导向的初始动作序列并交由 CEM 迭代修正，体现了模型预测控制和闭环模拟。该工作也涉及高效规划、有限搜索预算下的提议初始化和潜在状态信息保留，但没有重点研究视频生成、视频扩散、实时生成、稀疏注意力或缓存复用。",
-      "limitations_cn": "论文未明确说明与视频生成或视频扩散质量相关的局限。根据论文内容，其方法依赖已训练的潜在世界模型、逆动力学头和 CEM 搜索，仍需要多次候选动作采样与模型滚动，因此并非无搜索成本的实时生成方案。逆动力学生成的动作序列被明确指出不一定是准确的开环计划，只用于初始化 CEM；最终性能仍依赖前向模型准确性、潜在表示质量和 CEM 搜索。实验仅覆盖四个离线视觉控制基准，且主要报告成功率，未展示更广泛环境、真实机器人场景或与计算开销、延迟和扩展性的系统评估。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "潜在世界模型通过在紧凑的表示空间中规划动作序列来实现视觉控制，但潜在动力学的学习方式与其在规划中的使用方式之间仍存在差距。首先，教师强制训练不会使动力学模型接触规划过程中遇到的递归预测潜在状态。其次，基于采样的规划器通常从与目标无关的提议分布开始动作搜索，没有利用世界模型所学习的动作条件动力学。我们提出动力学知情动作学习（Dynamics-Informed Action Learning，DIAL）来弥合这两个差距。在训练过程中，滚动对齐使前向模型接触自身的自回归潜在预测；多步逆监督则训练一个轻量级逆动力学头，从潜在状态转移中推断动作。我们进一步将逆动力学头应用于模型生成的状态转移，并固定其参数，以促使预测滚动保留与动作相关的信息。在测试时，DIAL 以自回归方式耦合逆动力学和前向动力学，构造朝向目标的、由动力学提供信息的动作序列，并将其用于初始化交叉熵方法（CEM）提议分布的均值。随后，CEM 使用标准的采样和更新过程对该初始化进行优化。在四个视觉控制基准上的实验表明，在标准场景和长时域场景中，DIAL 均优于现有潜在世界模型和规划基线。"
-    },
-    {
-      "id": "2611.10771",
-      "date": "2026-11-07",
-      "topics": [
-        "World Models"
-      ],
-      "title": "WorldFoundry: Towards Unified Infrastructure for World Intelligence",
-      "abstract": "Visual generative models increasingly blur the line between synthesizing observations and simulating environments. Yet visual plausibility alone does not constitute successful world modeling: compelling outputs may lack persistent state, physical dynamics, or causally consistent responses to interactions. We define a generative world model as a predictive dynamical system that maintains a persistent, history-conditioned representation of an environment, updates that representation in response to actions or interventions, and generates temporally coherent trajectories that reflect outcomes under observed and counterfactual interventions. From this definition, we derive an intelligence-oriented framework spanning perceptual grounding, persistent state modeling, controllable transformation, dynamics-aware prediction, and closed-loop interaction. We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems. WorldFoundry unifies model and benchmark discovery, runtime and asset preparation, execution orchestration, artifact management, and interactive visualization, while modality-specific adapters preserve native inputs, execution semantics, output representations, and evaluation protocols. Explicit manifests, durable artifact contracts, and evidence-aware scorecards separate execution readiness from evaluative claims, making each claim traceable to its supporting artifacts. The catalog contains 270 model entries, 74 benchmarks, and 62 registered metric entries, with readiness and execution evidence recorded separately. WorldFoundry enables reproducible comparison of persistent, controllable dynamics across heterogeneous systems, advancing the field from perceptual synthesis toward measurable world intelligence.",
-      "authors": [
-        "Juanxi Tian",
-        "Jiadong Hou",
-        "Baiang Li",
-        "Xin Lin",
-        "Zhengbo Jiao",
-        "Weijia Zhang",
-        "Yeying Jin",
-        "Truong Nguyen",
-        "Haitian Zheng",
-        "Zhifei Zhang",
-        "Jianfei Yang",
-        "Ming-Hsuan Yang",
-        "Felix Heide",
-        "Wei Xiong",
-        "Enze Xie",
-        "Wanhua Li"
-      ],
-      "url": "http://arxiv.org/abs/2611.10771v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "39 pages, 10 figures. This technical report will be updated periodically",
-      "score": 67,
-      "priority": "skim",
-      "summary_cn": "Visual generative models increasingly blur the line between synthesizing observations and simulating environments.",
-      "contribution_cn": "We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, closed-loop, embodied",
+      "comment": "Project page: https://research.nvidia.com/labs/sil/projects/birddreams/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "Driving world models aim to simulate how a scene unfolds under different ego actions.",
+      "contribution_cn": "We introduce BirdDreams, an autoregressive driving world model that jointly generates perspective video and a schematic bird's-eye-view (BEV) video, making scene layout part of the predicted future.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, driving, autoregressive, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.15131",
+      "date": "2026-11-11",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
+      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The RWM treats intelligence and physical reality as equally fundamental to what constitutes a world. Existing world models largely focus on simulating the latter, leaving reasoning and decision-making as external controls rather than intrinsic parts of the world itself. In RWM, we identify two equally fundamental capabilities: Intent, which provides the cognition underlying world interactions, and Realization, which generates coherent audio-visual behavior. To realize this formulation, Duo v1 introduces three key technical designs: (1) Leveraging autoregressive modeling for continuous interaction reasoning and participation decisions, rather than restricting it to instruction understanding for diffusion models. (2) Constructing chunk-specific conditions and synchronize tokens across Intent and Realization on a unified timeline. Module-specific attention masks enforce causal dependencies both within and across chunks, preventing access to future inputs. (3) Mitigating distribution shift in both modules through dual rollout distillation, training on autoregressively generated Intent tokens and synthesized audiovisual histories from Realization. Both modules continuously perceive real-time audio, video, and text, enabling full-duplex interaction with spontaneous conversations and interruptions. Beyond conversation, users can share real objects, reshape virtual scenes, guide assistants, or play audiovisual games without mouse or keyboard controls. The release of Duo v1 makes our first step, with the next version coming soon. We look forward to broader exploration of this emerging field.",
+      "authors": [
+        "Hengyuan Cao",
+        "Biao Gong",
+        "Guoshan Lu",
+        "Qiyuan Zhang",
+        "Lin Liu",
+        "Yiding Tian",
+        "Yilei Jiang",
+        "Yuxin Ma",
+        "Chengzhang Wu",
+        "Kun Chen",
+        "Yiqian Xie",
+        "Ting Liu",
+        "Xin Zheng",
+        "Xijun Gu",
+        "Tianren Ma",
+        "Jiancheng Pan",
+        "Chi Zhang",
+        "Xuzhe Zheng",
+        "Siyi Li",
+        "Zhenzhong Lan"
+      ],
+      "url": "http://arxiv.org/abs/2611.15131v1",
+      "categories": [
+        "cs.CV",
+        "cs.SD"
+      ],
+      "comment": "https://duo-v1.github.io/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文提出互惠世界模型RWM及其模块化实现Duo v1，将世界模型从单纯模拟物理环境扩展为同时包含交互智能与视听现实。系统由自回归多模态Intent模块和因果视听Realization模块组成，以约0.71秒的17帧视频块为基本单位，在统一时间线上持续接收用户音频、视频和文本，并生成文本决策、视频和立体声音频。Intent模块决定说话或等待并生成语义隐藏状态，Realization模块通过因果联合扩散生成连续的视听响应。训练分为Intent监督微调、因果视听生成训练和基于双重rollout的分布匹配蒸馏；数据来自脚本合成的视频通话、真实录制交互及相关音频视频数据。运行时采用流水线调度、因果潜变量解码、KV缓存管理、并行计算和四步生成，以支持实时流式交互。在30个案例的人工评测中，180项检查有168项通过（93.3%），但内容响应性为73.3%，论文指出长期对话、隐含意图以及音视频联合理解仍是主要难点。",
+      "contribution_cn": "1. 提出互惠世界模型RWM，将Intent（交互认知与决策）和Realization（连贯视听行为）视为世界模型的两个基本组成部分，并实现Duo v1全双工交互系统。 2. 设计自回归Intent模块，使系统按交互分块持续推理，并显式决定<speak>或<wait>，而非仅作为扩散模型的指令编码器。 3. 在统一时间线上构造分块条件和同步标记，通过模块专属注意力掩码实现分块内外的因果约束，避免未来信息泄漏。 4. 提出双重rollout分布匹配蒸馏，在训练中同时使用Intent自回归生成的语言历史和Realization自生成的视听历史，使训练条件更接近推理阶段。 5. 构建因果联合音视频扩散生成器、流式VAE解码和面向实时交互的流水线，包括KV缓存滑动窗口、周期性重置、设备感知并行与分块级调度。 6. 建立结合脚本合成与真实录制数据的因果对齐数据构造流程，并通过固定质量参考减轻长序列视频生成中的误差累积。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向视频生成和视频扩散，使用因果联合音视频扩散Transformer在潜空间中逐块生成视频与音频；其Realization模块通过历史视听潜变量保持跨块连续性，属于长视频和持续流式生成范式。Intent模块采用自回归交互推理，结合用户视频、音频和文本做参与决策，适用于动作条件视觉世界模型和闭环模拟：系统生成的视听响应会重新进入后续交互历史，用户输入也持续影响下一分块。论文还明确涉及实时生成、少步蒸馏、因果注意力、双重自生成rollout、KV缓存复用、流式解码和分块流水线加速。其17帧分块约708毫秒，报告的Intent推理为90–160毫秒、视听潜变量生成为200–450毫秒，体现了面向实时交互的系统设计。",
+      "limitations_cn": "论文明确指出Duo v1仍是初步系统，目前主要支持基础视听对话；更长会话中的响应时序、长期一致性以及误解后的恢复仍需更广泛评估。人工评测仅覆盖30个实时双工交互案例，样本规模有限，且未提供与其他系统的对照实验或完整的客观基准。内容响应性仅为73.3%（22/30），在笑话、异常言论、需要超越字面理解的长期对话，以及必须联合理解语音和视频的场景中表现不足。音视频同步通过率为90.0%，情绪一致性为96.7%，仍存在失败案例。系统依赖单台八GPU服务器，计算和显存开销较高；论文未明确说明在更低算力设备、更多样用户、开放环境或更长时间运行下的性能。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "本文介绍了 Reciprocal World Model（RWM），并提出 Duo v1——一种能够持续感知视听输入并实时回应用户的全双工世界模型。RWM认为，智能与物理现实同等构成世界的基本要素。现有世界模型大多侧重模拟后者，将推理与决策作为外部控制，而非世界本身的内在组成。在RWM中，我们确定了两种同等重要的能力：Intent，提供世界交互所需的认知；Realization，生成连贯的视听行为。为实现这一构想，Duo v1引入了三项关键技术设计：（1）采用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间线上为Intent和Realization构建分块专属条件与同步标记。模块专属的注意力掩码在分块内部及分块之间强制执行因果依赖，防止访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移：训练使用自回归生成的Intent标记以及由Realization合成的视听历史。两个模块都能持续感知实时音频、视频和文本，从而支持包含自然对话与打断的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、指导助手，或在无需鼠标键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域开展更广泛的探索。",
+      "note_path": "2026-11-13/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md"
     },
     {
       "id": "2611.11452",
@@ -171,34 +173,28 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.10392",
-      "date": "2026-11-07",
+      "id": "2611.15082",
+      "date": "2026-11-11",
       "topics": [
         "World Models"
       ],
-      "title": "Tiresias: Towards Language-Conditioned World Models",
-      "abstract": "World models enable planning through internal simulation, while natural language provides intuitive task specification. Yet, language-conditioned world modeling remains fragmented across domains with disparate action spaces, datasets, and evaluation protocols. We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction. Its accompanying benchmark, LCWM-Bench, integrates 15 datasets across navigation, robotics, 3D gaming, and driving under a shared action interface and evaluation protocol, pairing 142,987 episodes with 428,961 instructions in three styles. We further propose Tiresias, an agent that plans via selective imagination: a language-conditioned diffusion policy generates candidate trajectories, a trajectory ranker shortlists them, and a video-pretrained world model imagines their visual consequences. A visual ranker evaluates these rollouts, complementing trajectory scores to select the final plan. Tiresias achieves competitive planning and imagination performance on LCWM-Bench. Ablations demonstrate the complementary benefits of trajectory ranking and visual verification, while experiments with alternative proposal methods show that the trained rankers remain effective beyond our diffusion policy. Together, LCWM-Bench and Tiresias provide a unified evaluation setting and an effective starting point for studying language-guided planning through world models.",
+      "title": "Prediction or Persistence? What Future-Prediction Scores Miss About World Models",
+      "abstract": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores. On its own, such a score cannot be read as evidence of prediction, because it mixes encoder quality, the near future's resemblance to the recent past, and the predictor's own contribution. We separate the three with a matched control. On 27,000 future-retrieval trials from household egocentric video, a model must pick the true continuation of a clip among eleven candidates from the same video (chance 0.091), ranked zero-shot by its own training criterion. Each model is paired with a persistence control, an identical copy whose predictor is never invoked, so the paired difference isolates the predictor. Score and contribution dissociate within the native-video V-JEPA family alone: the predictor adds +0.291 top-1 for V-JEPA 2.1 but +0.03 to +0.04 for V-JEPA 2 on the identical trials. Across five models the contribution ranges from +0.291 to negative, and it is negative only for the two action-conditioned models, which we evaluate outside their training regime. Persistence alone recovers the encoder ordering expected from pretraining, a sign that the probe tracks real signal. We suggest reporting each future-prediction score together with its persistence baseline. The gap between them, not the score, is what makes the number interpretable: a necessary check costing one forward pass. Establishing downstream usefulness is a separate matter, for a planning or control evaluation.",
       "authors": [
-        "Fengyi Wu",
-        "Yifei Dong",
-        "Yetong Sha",
-        "Lingdong Kong",
-        "Qiyu Hu",
-        "Bohan Xiong",
-        "Qi Dai",
-        "Alexander G. Hauptmann",
-        "Zhi-Qi Cheng"
+        "Animesh Maheshwari"
       ],
-      "url": "http://arxiv.org/abs/2611.10392v1",
+      "url": "http://arxiv.org/abs/2611.15082v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
       ],
-      "comment": "33 pages, including appendix and references. Code: https://github.com/UWMILab/Tiresias",
+      "comment": "Accepted at the CoRL 2026 Workshop \"Do Robots Need World Models?\"",
       "score": 60,
       "priority": "skim",
-      "summary_cn": "World models enable planning through internal simulation, while natural language provides intuitive task specification.",
-      "contribution_cn": "We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, driving, simulation",
+      "summary_cn": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },

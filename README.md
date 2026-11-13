@@ -1,4 +1,4 @@
-## Updated on 2026.11.12
+## Updated on 2026.11.13
 > Welcome to Video Generation papers! 
 
 > [Read the ranked daily research digest](docs/digests/latest.md) and [must-read notes](docs/notes/index.md).
@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-11**|**Track4D: Representing Dense 3D Tracking for Video Diffusion Models**|Yushi Lan et.al.|[2611.15287](http://arxiv.org/abs/2611.15287)|null|
 |**2026-11-10**|**From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models**|Guoqiang Liang et.al.|[2611.14365](http://arxiv.org/abs/2611.14365)|null|
 |**2026-11-10**|**When to Start Denoising? Adaptive Denoising Entry for Generative Video Compression**|Zifu Zhang et.al.|[2611.13620](http://arxiv.org/abs/2611.13620)|null|
 |**2026-11-09**|**PhysOPSD: Code as Privilege for Physically Plausible Video Generation**|Harold Haodong Chen et.al.|[2611.12411](http://arxiv.org/abs/2611.12411)|null|
@@ -1591,12 +1592,25 @@
 |**2023-07-11**|**Physics-Driven Diffusion Models for Impact Sound Synthesis from Videos**|Kun Su et.al.|[2303.16897](http://arxiv.org/abs/2303.16897)|null|
 |**2022-10-06**|**Imagen Video: High Definition Video Generation with Diffusion Models**|Jonathan Ho et.al.|[2210.02303](http://arxiv.org/abs/2210.02303)|null|
 
-<p align=right>(<a href=#updated-on-20261112>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261113>back to top</a>)</p>
 
 ## World Models
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-11**|**An Approach to Hinton's Mother-Child Proposal: Neural Networks Learning and Preserving Care in a Finite World**|Csaba Balogh et.al.|[2611.15523](http://arxiv.org/abs/2611.15523)|null|
+|**2026-11-11**|**Advancing global water cycle science with the upcoming MAGIC satellite mission through data assimilation**|Helena Gerdener et.al.|[2611.15421](http://arxiv.org/abs/2611.15421)|null|
+|**2026-11-11**|**Bind-WAM: Binding-Uncertainty-Guided Selective Future Imagination in World Action Models**|Chenhao Qiu et.al.|[2611.15368](http://arxiv.org/abs/2611.15368)|null|
+|**2026-11-11**|**Driving World Models Move the Camera, Not the Scene**|Yuqiao Feng et.al.|[2611.15260](http://arxiv.org/abs/2611.15260)|null|
+|**2026-11-11**|**AFTER: A World Model with Adaptive Fast--Slow Timescales for Error-Driven Retention**|Haoyi Zhang et.al.|[2611.15215](http://arxiv.org/abs/2611.15215)|null|
+|**2026-11-11**|**Duo: A Reciprocal World Model for Full-Duplex Interaction**|Hengyuan Cao et.al.|[2611.15131](http://arxiv.org/abs/2611.15131)|null|
+|**2026-11-11**|**Prediction or Persistence? What Future-Prediction Scores Miss About World Models**|Animesh Maheshwari et.al.|[2611.15082](http://arxiv.org/abs/2611.15082)|null|
+|**2026-11-11**|**Does Your World Model Know Actions Have Consequences?**|Ayush Gaggar et.al.|[2611.15048](http://arxiv.org/abs/2611.15048)|null|
+|**2026-11-11**|**Fast Inference-Time Policy Refinement via Action-Affine World Models**|Run Wang et.al.|[2611.15011](http://arxiv.org/abs/2611.15011)|null|
+|**2026-11-11**|**From Forecasting to World Modeling: Can Temporal Foundation Models Recover Causal Response?**|Juwon Hong et.al.|[2611.15009](http://arxiv.org/abs/2611.15009)|null|
+|**2026-11-11**|**The Posterior-Prior Epistemic Gap: When World Model Imagination Fails to Carry Task-Relevant Signals**|Jaerock Kwon et.al.|[2611.14955](http://arxiv.org/abs/2611.14955)|null|
+|**2026-11-11**|**FOE-Dreamer: Deployment-Efficient Learning of Cyber Defense Policies in Operational Networks**|Yinuo Du et.al.|[2611.14880](http://arxiv.org/abs/2611.14880)|null|
+|**2026-11-10**|**BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model**|Junyoung Seo et.al.|[2611.14815](http://arxiv.org/abs/2611.14815)|null|
 |**2026-11-10**|**OnlyAct: Extracting Action Representations from Foundation Models for World Models**|Runjia Li et.al.|[2611.14420](http://arxiv.org/abs/2611.14420)|null|
 |**2026-11-10**|**Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning**|Souhaila Djaffal et.al.|[2611.14419](http://arxiv.org/abs/2611.14419)|null|
 |**2026-11-10**|**An Energy-Based Perspective on Machine Learning**|Bo Dai et.al.|[2611.14383](http://arxiv.org/abs/2611.14383)|null|
@@ -1609,7 +1623,7 @@
 |**2026-11-09**|**ProTEUS: A mutation-resolved world model for closed-loop protein evolution**|Yikun Zhang et.al.|[2611.13348](http://arxiv.org/abs/2611.13348)|null|
 |**2026-11-09**|**Incorporating World Models in Decision Making for Next Best View Selection in Active Sensing**|Nikita Sarawgi et.al.|[2611.13229](http://arxiv.org/abs/2611.13229)|null|
 |**2026-11-09**|**Building World Models from Intrinsic Motivation**|Reece Keller et.al.|[2611.13113](http://arxiv.org/abs/2611.13113)|null|
-|**2026-11-09**|**SWAM: Scaling World Action Models with Cross-Modal Alignment**|Yu Zhou et.al.|[2611.12870](http://arxiv.org/abs/2611.12870)|null|
+|**2026-11-11**|**SWAM: Scaling World Action Models with Cross-Modal Alignment**|Yu Zhou et.al.|[2611.12870](http://arxiv.org/abs/2611.12870)|null|
 |**2026-11-09**|**DreamLander: A 6-DOF World Model based Reinforcement Learning Planetary Lander**|George Nehma et.al.|[2611.12824](http://arxiv.org/abs/2611.12824)|null|
 |**2026-11-09**|**$Σ$ -LeWM: Learning World Models via S-Information for Robot Control**|Xinrui Zu et.al.|[2611.12732](http://arxiv.org/abs/2611.12732)|null|
 |**2026-11-09**|**Library of Hands: Fix the Hands, Not the World Model**|Hasaan Ahmad et.al.|[2611.12678](http://arxiv.org/abs/2611.12678)|null|
@@ -2769,7 +2783,7 @@
 |**2026-08-18**|**Electromagnetic World Model for 6G: A Unified Framework for Joint Environment Reconstruction and Channel Prediction**|Yizhu Zhao et.al.|[2608.17769](http://arxiv.org/abs/2608.17769)|null|
 |**2026-08-18**|**Offline Multi-Agent Reinforcement Learning with a Physics-Informed World Model for Cooperative Mixed Traffic Control**|Lu Liu et.al.|[2608.17739](http://arxiv.org/abs/2608.17739)|null|
 
-<p align=right>(<a href=#updated-on-20261112>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261113>back to top</a>)</p>
 
 ## Autoregressive and Streaming Video
 
@@ -2912,7 +2926,7 @@
 |**2026-07-22**|**Diffusion ReRoll: Revisable Denoising for Robotic Sequential Prediction**|Seonsoo Kim et.al.|[2607.19919](http://arxiv.org/abs/2607.19919)|null|
 |**2026-07-20**|**Surprise Forcing: What to Remember, When to Skip in Long Video Generation**|Shuwei Shi et.al.|[2607.18436](http://arxiv.org/abs/2607.18436)|null|
 
-<p align=right>(<a href=#updated-on-20261112>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261113>back to top</a>)</p>
 
 ## Efficient Video Diffusion
 
@@ -2954,5 +2968,5 @@
 |**2025-02-27**|**Real-Time Video Generation with Pyramid Attention Broadcast**|Xuanlei Zhao et.al.|[2408.12588](http://arxiv.org/abs/2408.12588)|null|
 |**2024-03-19**|**AnimateDiff-Lightning: Cross-Model Diffusion Distillation**|Shanchuan Lin et.al.|[2403.12706](http://arxiv.org/abs/2403.12706)|null|
 
-<p align=right>(<a href=#updated-on-20261112>back to top</a>)</p>
+<p align=right>(<a href=#updated-on-20261113>back to top</a>)</p>
 
