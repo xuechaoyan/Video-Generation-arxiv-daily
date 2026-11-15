@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-14T17:21:00+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-15T03:16:07+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,8 +10,8 @@
 - **评分**：74/100
 - **作者**：Runjia Li, Minghao Chen, Junyu Xie et al.
 - **方向**：World Models
-- **一句话**：OnlyAct利用预训练视频基础模型V-JEPA 2的帧对嵌入，通过低秩适配器和无标签对比学习提取动作信息。方法使用光流引导的跨场景动作保持正样本，以及同一视频中的不同动作作为困难负样本，使表示保留运动信息并减少场景泄漏，无需传统的重建瓶颈。实验覆盖机器人操作、相机导航、游戏和驾驶等任务，结果显示OnlyAct在大多数数据集上具有更强的动作表达能力，同时保…
-- **精读笔记**：[打开笔记](../notes/2026-11-14/2611.14420-onlyact-extracting-action-representations-from-f.md)
+- **一句话**：OnlyAct研究如何从无动作标签的视频中学习可迁移的动作表示，用于动作条件视频世界模型。方法以预训练视频基础模型V-JEPA 2为起点，通过低秩适配器和无标签对比学习进行调整：利用光流引导的跨场景动作区域替换构造正样本，并从同一视频的其他时间窗口构造难负样本，使表示保留运动信息、减少场景泄漏。得到的动作表示既可从演示视频中提取并迁移到新场景，也可通过少量…
+- **精读笔记**：[打开笔记](../notes/2026-11-15/2611.14420-onlyact-extracting-action-representations-from-f.md)
 
 ### 2. [BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model](http://arxiv.org/abs/2611.14815v1)
 
@@ -26,8 +26,8 @@
 - **评分**：74/100
 - **作者**：Hengyuan Cao, Biao Gong, Guoshan Lu et al.
 - **方向**：World Models
-- **一句话**：论文提出互惠世界模型RWM，将世界建模从单纯模拟物理现实扩展为同时建模智能与物理现实，并以Duo v1实现全双工、实时视听交互。系统由多模态Intent模块和因果视听Realization模块组成：前者按约0.71秒的17帧区块自回归地决定说话或等待并生成文本，后者依据意图隐状态、用户视听输入、参考图像和历史输出，通过联合因果扩散生成视频与立体音频。两者在…
-- **精读笔记**：[打开笔记](../notes/2026-11-14/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md)
+- **一句话**：论文提出互惠世界模型RWM，将交互智能与物理世界模拟统一起来，并实现了Duo v1。系统由自回归多模态Intent模块和因果视听Realization模块组成，以约0.71秒的视频块为单位，在持续接收用户音频、视频和文本的同时生成文本决策及同步的音视频响应。论文设计了统一时间线、分块因果注意力、双重rollout分布匹配蒸馏、因果潜变量解码和KV缓存管理等…
+- **精读笔记**：[打开笔记](../notes/2026-11-15/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md)
 
 ## 快速浏览
 
