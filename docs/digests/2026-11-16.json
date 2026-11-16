@@ -1,0 +1,331 @@
+{
+  "generated_at": "2026-11-16T03:18:43+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2611.14420",
+      "date": "2026-11-10",
+      "topics": [
+        "World Models"
+      ],
+      "title": "OnlyAct: Extracting Action Representations from Foundation Models for World Models",
+      "abstract": "Video world models promise general-purpose interactive simulators, but their training is limited by action supervision: action labels are scarce, fragmented across incompatible specifications, and do not scale with the unlabeled video pretraining corpus. A common workaround jointly trains an action encoder to compress consecutive frames into a latent action and a decoder to reconstruct the next frame from the previous frame and that latent, forcing the latent to capture only new information. This has two limitations: learning the action space from scratch can limit generalization to unseen domains, and the bottleneck trades expressiveness for separation, with tighter settings losing nuance and looser ones risking scene leakage under domain shifts. We argue for a different starting point: rather than learning actions from scratch, we start from a pretrained foundation model (V-JEPA 2), whose embeddings of a frame pair already carry substantial action information after large-scale, diverse video pretraining. The remaining challenge is to extract the action while discarding the scene. We propose a label-free contrastive adaptation framework that pulls together frame pairs sharing the same motion under a different scene and pushes apart pairs from the same scene with different motion, reshaping the geometry of the pretrained space without imposing a reconstruction bottleneck. We introduce a unified evaluation protocol along three axes (action expressiveness, scene invariance, and action-conditioned video generation quality) across robot manipulation, camera navigation, game, and driving benchmarks, most of which are unseen during adaptation. Compared with annotation-free latent-action methods, our representations are substantially more expressive while matching their scene invariance, and they yield world models that transfer demonstrated actions to new scenes more faithfully.",
+      "authors": [
+        "Runjia Li",
+        "Minghao Chen",
+        "Junyu Xie",
+        "Philip Torr",
+        "Andrea Vedaldi",
+        "Tomas Jakab"
+      ],
+      "url": "http://arxiv.org/abs/2611.14420v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "OnlyAct研究如何从无标签视频中提取可迁移的动作表示，用于训练动作条件视频世界模型。它以预训练视频基础模型V-JEPA 2的帧对表示为起点，通过光流引导的跨场景正样本和同视频硬负样本进行低秩对比适应，使表示突出运动而抑制场景信息。实验覆盖机器人操作、相机导航、游戏和驾驶等任务，结果表明OnlyAct相比现有无标注潜在动作方法具有更强的动作表达能力、相当的场景不变性，并能提升动作迁移和真实动作控制效果。",
+      "contribution_cn": "1. 提出从预训练基础模型表示空间中提取动作、而非从零学习动作空间的新思路。2. 提出无标签对比适应框架，利用光流引导的场景替换正样本和同视频硬负样本，在不使用重建瓶颈的情况下实现动作与场景的解耦。3. 建立涵盖动作表达能力、场景不变性和动作条件视频生成质量的统一评估协议。4. 在机器人、导航、游戏和驾驶基准上验证了表示在动作迁移、视频生成和下游真实动作控制方面的优势。",
+      "relevance_cn": "该工作直接面向视频生成和视频扩散世界模型：它将连续帧编码为动作流，并把动作流作为自回归视频世界模型的条件来预测后续帧。其方法涉及动作条件视觉世界模型、闭环/自回归 rollout、跨场景动作迁移以及无标签视频预训练。预训练基础模型和低秩适应也与视频表示迁移、参数高效适应和可扩展生成相关。不过，论文重点是动作表示学习与动作条件生成，并未主要研究实时生成、稀疏注意力、缓存复用、蒸馏或超长视频生成。",
+      "limitations_cn": "论文明确说明，光流引导的场景替换正样本只适用于静态相机；对于移动相机、手持相机和驾驶视频，只能退化为使用不同光度增强的原始帧对，因此动作与场景的解耦可能更弱。该方法依赖现成的光流估计器，光流质量可能影响训练样本构造。动作被定义为由智能体或相机造成的两帧变化，无法覆盖这一设定之外的动作语义。实验主要在选定的机器人操作、相机导航、游戏和驾驶数据集上进行，论文未明确说明在更广泛视频分布、极长时序或实时部署场景中的性能。论文未明确说明其方法在计算开销、推理速度和大规模在线闭环交互方面的限制。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺、分散于彼此不兼容的规格中，并且无法扩展到无标签的视频预训练语料。一种常见的解决方案是联合训练动作编码器和解码器：动作编码器将连续帧压缩为潜在动作，解码器则根据前一帧和该潜在动作重建下一帧，从而迫使潜在变量只捕捉新的信息。这种方法有两个局限：从零开始学习动作空间可能限制对未见领域的泛化能力；此外，瓶颈结构需要在表达能力与分离性之间权衡——更严格的瓶颈会损失细节，而更宽松的瓶颈则可能在领域变化下引入场景信息。我们提出一种不同的出发点：不从零开始学习动作，而是利用预训练基础模型 V-JEPA 2。该模型经过大规模、多样化的视频预训练，其帧对嵌入已经包含大量动作信息。剩下的挑战是提取动作并丢弃场景信息。为此，我们提出一种无标签的对比适应框架：将不同场景中具有相同运动的帧对拉近，将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而不施加重建瓶颈。我们提出统一的评估协议，从动作表达能力、场景不变性和动作条件视频生成质量三个维度，在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适应阶段未被使用。与无标注潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并且能够使世界模型更忠实地将示范动作迁移到新场景中。",
+      "note_path": "2026-11-16/2611.14420-onlyact-extracting-action-representations-from-f.md"
+    },
+    {
+      "id": "2611.14815",
+      "date": "2026-11-10",
+      "topics": [
+        "World Models"
+      ],
+      "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
+      "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle motion from perspective video alone is challenging because motion is entangled with appearance and vehicles can be occluded. Prior work therefore conditions video generation on layouts that specify vehicle motion, providing control over surrounding vehicles but requiring their future trajectories as inputs. We introduce BirdDreams, an autoregressive driving world model that jointly generates perspective video and a schematic bird's-eye-view (BEV) video, making scene layout part of the predicted future. The BEV, rendered from scene annotations for training, depicts roads and vehicles as simple shapes at a fixed metric scale, providing a top-down view of their positions and motion with reduced occlusion between vehicles. Perspective video, by contrast, retains scene details that the BEV omits, such as traffic signals and object appearance. Joint attention between two video diffusion transformers, one per stream, lets each stream inform the other during generation. The predicted BEV also provides a geometric interface for ego control: we translate and rotate its latest frame along an input ego trajectory and use the resulting frames as a soft condition that shows how the scene would appear to move if only the ego vehicle moved. At inference, BirdDreams generates both videos from a single camera image without requiring an HD map or vehicle-state inputs. On PhysicalAI-AV and nuScenes, BirdDreams follows input ego trajectories more faithfully than prior driving world models and generates more plausible ego motion without ego-action conditioning. Human evaluation shows that BirdDreams outperforms a perspective-only baseline in generating realistic surrounding-vehicle behavior.",
+      "authors": [
+        "Junyoung Seo",
+        "Jaewoo Seo",
+        "Seungryong Kim",
+        "Laura Leal-Taixé",
+        "Xiuming Zhang",
+        "Seung Wook Kim"
+      ],
+      "url": "http://arxiv.org/abs/2611.14815v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://research.nvidia.com/labs/sil/projects/birddreams/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "Driving world models aim to simulate how a scene unfolds under different ego actions.",
+      "contribution_cn": "We introduce BirdDreams, an autoregressive driving world model that jointly generates perspective video and a schematic bird's-eye-view (BEV) video, making scene layout part of the predicted future.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, driving, autoregressive, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.15131",
+      "date": "2026-11-11",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
+      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The RWM treats intelligence and physical reality as equally fundamental to what constitutes a world. Existing world models largely focus on simulating the latter, leaving reasoning and decision-making as external controls rather than intrinsic parts of the world itself. In RWM, we identify two equally fundamental capabilities: Intent, which provides the cognition underlying world interactions, and Realization, which generates coherent audio-visual behavior. To realize this formulation, Duo v1 introduces three key technical designs: (1) Leveraging autoregressive modeling for continuous interaction reasoning and participation decisions, rather than restricting it to instruction understanding for diffusion models. (2) Constructing chunk-specific conditions and synchronize tokens across Intent and Realization on a unified timeline. Module-specific attention masks enforce causal dependencies both within and across chunks, preventing access to future inputs. (3) Mitigating distribution shift in both modules through dual rollout distillation, training on autoregressively generated Intent tokens and synthesized audiovisual histories from Realization. Both modules continuously perceive real-time audio, video, and text, enabling full-duplex interaction with spontaneous conversations and interruptions. Beyond conversation, users can share real objects, reshape virtual scenes, guide assistants, or play audiovisual games without mouse or keyboard controls. The release of Duo v1 makes our first step, with the next version coming soon. We look forward to broader exploration of this emerging field.",
+      "authors": [
+        "Hengyuan Cao",
+        "Biao Gong",
+        "Guoshan Lu",
+        "Qiyuan Zhang",
+        "Lin Liu",
+        "Yiding Tian",
+        "Yilei Jiang",
+        "Yuxin Ma",
+        "Chengzhang Wu",
+        "Kun Chen",
+        "Yiqian Xie",
+        "Ting Liu",
+        "Xin Zheng",
+        "Xijun Gu",
+        "Tianren Ma",
+        "Jiancheng Pan",
+        "Chi Zhang",
+        "Xuzhe Zheng",
+        "Siyi Li",
+        "Zhenzhong Lan"
+      ],
+      "url": "http://arxiv.org/abs/2611.15131v1",
+      "categories": [
+        "cs.CV",
+        "cs.SD"
+      ],
+      "comment": "https://duo-v1.github.io/",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文提出互惠世界模型RWM，将负责交互认知的Intent模块与负责视听行为生成的Realization模块结合，构建Duo v1全双工实时交互系统。系统以约0.71秒的视频块为单位，在统一时间线上因果地处理用户音频、视频和文本，并持续生成助手的语言、视频和音频。训练包括Intent自回归监督、因果联合视听生成，以及结合自生成语言和视听历史的双重rollout分布匹配蒸馏。论文还设计了流式VAE解码、流水线调度和KV缓存管理，以支持长时间实时运行。30个交互案例的180项人工检查中有93.3%通过，但内容响应性仅为73.3%，且长时一致性、误解恢复和更广泛评估仍待改进。",
+      "contribution_cn": "1. 提出互惠世界模型RWM，将智能推理与物理世界模拟视为同等基础，并明确划分Intent与Realization两类功能。2. 设计Duo v1的全双工因果架构：Intent模块自回归地产生<speak>/<wait>参与决策及文本，Realization模块依据其隐藏状态联合生成音频和视频。3. 在统一时间线上构建分块条件、同步标记和模块专属注意力掩码，避免块内及块间未来信息泄漏。4. 提出双重rollout分布匹配蒸馏，使训练同时使用自回归生成的意图历史和模型自身生成的视听历史，缩小训练与推理分布差异，并将生成压缩为四步。5. 构建流式推理系统，包括因果潜变量解码、分块流水线重叠、设备感知并行和Intent/Realization分开管理的KV缓存。6. 结合合成双人视频通话数据与多类真实录制数据，形成带有音频、视频、文本和时间对齐信息的交互训练数据。",
+      "relevance_cn": "论文与研究重点高度相关。它以自回归、因果分块方式进行连续视听生成，直接涉及流式和长时视频生成；Realization模块采用因果联合音视频扩散Transformer，并通过分布匹配蒸馏将生成压缩为四步，涉及扩散加速与实时生成；统一时间线和模块专属注意力掩码实现了对未来信息的隔离，适用于闭环交互和动作条件世界模型；模型持续接收用户音视频输入，并将自身生成的视听历史反馈到后续块中，形成面向全双工交互的闭环模拟；流式VAE解码、流水线重叠和KV缓存复用则直接对应实时推理、缓存复用和受限内存下的长时间运行。其局限在于系统主要面向视听对话与交互场景，并非通用具身动作控制或完整物理世界模拟。",
+      "limitations_cn": "论文明确指出，Duo v1仍处于初步阶段，目前主要支持基础视听对话；响应时序、长会话中的一致性以及从误解中恢复的能力仍需更广泛评估。人工评测中，内容响应性仅为22/30（73.3%），尤其容易在笑话、特殊言论以及必须联合理解语音和视频的意图上失败。唇形与语音同步通过率为90.0%，视听情绪一致性为96.7%，仍存在少量问题。论文还指出，双重蒸馏可能引入摄像机旋转漂移，因此需要额外的旋转感知加权。除此之外，论文未明确说明大规模真实用户部署成本、不同硬件配置下的普适性能、隐私与安全风险，以及在更复杂物理动作和开放世界任务中的泛化能力。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "本文介绍了互惠世界模型（RWM），并提出Duo v1，一种能够持续感知视听输入并实时响应用户的全双工世界模型。RWM认为，智能与物理现实对于构成一个世界同等重要。现有世界模型主要关注对后者的模拟，将推理和决策视为外部控制，而不是世界本身的内在组成部分。在RWM中，我们确定了两种同等基础的能力：意图（Intent），为世界交互提供认知；实现（Realization），生成连贯的视听行为。为实现这一理念，Duo v1引入了三项关键技术设计：（1）利用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间线上为意图模块和实现模块构建分块特定条件与同步标记。模块特定的注意力掩码在块内和块间施加因果依赖，防止模型访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移，使模型在自回归生成的意图标记和实现模块合成的视听历史上进行训练。两个模块都持续感知实时音频、视频和文本，从而支持具有自发对话和打断能力的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、引导助手，或在无需鼠标和键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域展开更广泛的探索。",
+      "note_path": "2026-11-16/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md"
+    },
+    {
+      "id": "2611.16579",
+      "date": "2026-11-12",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ActWorld-JEPA: Action-Conditioned JEPA World Models Meet Latent Planning for End-to-End Autonomous Driving",
+      "abstract": "Joint-Embedding Predictive Architectures (JEPAs) enable future prediction in latent space without pixel reconstruction. However, latent predictive consistency alone does not establish the relative driving quality of candidate plans. We present ActWorld-JEPA, a joint-embedding formulation for candidate-based driving. Where Plan-Conditioned JEPA (PC-JEPA) uses global and step-wise trajectory intentions to guide recurrent latent prediction, then combines the predicted future with the current scene through gated cross-attention; Relational Residual Reranking ($R^3$) models agreement and discrepancy between plan and future representations under planning supervision, yielding bounded, gated residual corrections to the base planning scores. This formulation connects latent prediction to candidate selection using only observed context and proposed trajectories at inference. Benchmark-specific implementations report 94.1 PDMS on NAVSIM v1 navtest, with the final selector calibrated using aggregate NAVTEST feedback, and 91.6 and 42.7 EPDMS on NAVSIM v2 navtest and navhard, respectively. The nuScenes evaluation reports a mean $L_2$ error of 1.20 m and a predicted collision rate of 0.76% over 1--6 s. This work provides an effective path from JEPA's predictive representations to driving decisions informed by anticipated consequences.",
+      "authors": [
+        "Ziying Song",
+        "Shengkai Zhang",
+        "Caiyan Jia",
+        "Lei Yang",
+        "Lin Liu",
+        "Yuchen Liu",
+        "Ziyang Liu",
+        "Zirui Li",
+        "Gang Wang",
+        "Peiliang Wu",
+        "Li Wang",
+        "Yadan Luo",
+        "Chen Lv"
+      ],
+      "url": "http://arxiv.org/abs/2611.16579v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "19 pages, including appendix. Code: https://github.com/adept-thu/ActWorld-JEPA. Project: https://adept-thu.github.io/ActWorld-JEPA/",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Joint-Embedding Predictive Architectures (JEPAs) enable future prediction in latent space without pixel reconstruction.",
+      "contribution_cn": "We present ActWorld-JEPA, a joint-embedding formulation for candidate-based driving.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, driving",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.14033",
+      "date": "2026-11-10",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Few-Step Streaming Video Generation via Condition Shifting",
+      "abstract": "Few-step sampling reduces the cost of streaming video generation. Distribution Matching Distillation (DMD) supervises few-step generators with a separate fake-score network, which adds training memory and computation and must track the evolving generator. We extend APEX to streaming video by using condition shifting to estimate the velocity field of the generated distribution within the generator. The original text condition selects generation, while a shifted condition selects fake estimation using the same parameters. This removes the independent fake network while retaining S2-Avatar's frozen reference teacher, Self-Replay Forcing, and perceptual regularization. We evaluate APEX on 180-second videos using three backbone evaluations per block and a one-step spatial Refiner, with a 70-case human study and a 320-case StreamAV-Bench comparison. Compared with S2-Avatar, APEX achieves higher video instruction fulfillment on the Progressive track (3.856 versus 3.831) and higher visual aesthetics across both tracks (0.641898 versus 0.632606). Human raters favor APEX most strongly on instruction following, with +30.0% net preference, followed by consistency and video quality at +4.3% each. Motion quality favors S2-Avatar, audiovisual synchronization is predominantly tied, and usability is unchanged. Separate measurements under matched training settings show 4.4% lower peak allocated GPU memory per GPU and 9.2% shorter mean iteration time than DMD.",
+      "authors": [
+        "Deyuan Liu",
+        "Jungang Li",
+        "Kaiwen Zheng",
+        "Kai Jiang",
+        "Jintao Chen",
+        "Yaole Wang",
+        "Ming Lin",
+        "Tao Lin",
+        "Jianfei Chen",
+        "Jun Zhu",
+        "Jintao Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.14033v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Few-step sampling reduces the cost of streaming video generation.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：streaming, few-step, distillation, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.18078",
+      "date": "2026-11-13",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "TelePhysica: Agentic Reconstruction of Physically Interactive Scenes",
+      "abstract": "Direct image-to-video diffusion models entangle pixel synthesis with implicit latent motion, precluding persistent 3D mechanical equilibrium, mid-rollout intervention, and counterfactual force control. Conversely, single-pass programmatic 3D reconstruction from an uncalibrated photograph leaves monocular depth and support clearance underconstrained, causing reconstructed scenes to interpenetrate or collapse under gravity. We present TelePhysica, a closed-loop framework that reconstructs an executable, multi-regime physical world from a single photograph to drive stateful 3D interaction and trajectory-grounded video synthesis. A vision-language coding agent synthesizes separable visual meshes and declarative physical models within a two-stage verification loop that pairs pixel-aligned silhouette critique with a zero-force gravitational equilibrium preflight. The verified world compiles into a unified solver coupling rigid bodies, articulated chains, co-dimensional cloth shells, and 3D tetrahedral elastodynamics, whose simulated rollouts condition pretrained video diffusion models through pixel-aligned structural streams. On a 100-scene single-image benchmark, closed-loop execution raises equilibrium-verified world recovery from $0\\%$ in single-pass synthesis to $81\\%$. Controlled constitutive ablations show over an order-of-magnitude larger localized corner displacement and out-of-plane pleating in finite-element cloth than in matched rigid-plate proxies. Conditioning video diffusion on simulated trajectories increases dynamic motion-mask overlap by $2{\\times}\\text{--}5{\\times}$ and preserves motion direction under counterfactual force reversals where direct image-to-video models fail.",
+      "authors": [
+        "Ruiqi Shu",
+        "Xufeng Zhan",
+        "Yuanzhi Liang",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2611.18078v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "Ongoing Work. Homepage: https://interactive4d.vercel.app/",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Direct image-to-video diffusion models entangle pixel synthesis with implicit latent motion, precluding persistent 3D mechanical equilibrium, mid-rollout intervention, and counterfactual force control.",
+      "contribution_cn": "We present TelePhysica, a closed-loop framework that reconstructs an executable, multi-regime physical world from a single photograph to drive stateful 3D interaction and trajectory-grounded video synthesis.",
+      "relevance_cn": "匹配研究线：video generation, world model；关键词：interactive, closed-loop, image-to-video, video diffusion, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.15082",
+      "date": "2026-11-11",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Prediction or Persistence? What Future-Prediction Scores Miss About World Models",
+      "abstract": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores. On its own, such a score cannot be read as evidence of prediction, because it mixes encoder quality, the near future's resemblance to the recent past, and the predictor's own contribution. We separate the three with a matched control. On 27,000 future-retrieval trials from household egocentric video, a model must pick the true continuation of a clip among eleven candidates from the same video (chance 0.091), ranked zero-shot by its own training criterion. Each model is paired with a persistence control, an identical copy whose predictor is never invoked, so the paired difference isolates the predictor. Score and contribution dissociate within the native-video V-JEPA family alone: the predictor adds +0.291 top-1 for V-JEPA 2.1 but +0.03 to +0.04 for V-JEPA 2 on the identical trials. Across five models the contribution ranges from +0.291 to negative, and it is negative only for the two action-conditioned models, which we evaluate outside their training regime. Persistence alone recovers the encoder ordering expected from pretraining, a sign that the probe tracks real signal. We suggest reporting each future-prediction score together with its persistence baseline. The gap between them, not the score, is what makes the number interpretable: a necessary check costing one forward pass. Establishing downstream usefulness is a separate matter, for a planning or control evaluation.",
+      "authors": [
+        "Animesh Maheshwari"
+      ],
+      "url": "http://arxiv.org/abs/2611.15082v1",
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "comment": "Accepted at the CoRL 2026 Workshop \"Do Robots Need World Models?\"",
+      "score": 60,
+      "priority": "skim",
+      "summary_cn": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.13348",
+      "date": "2026-11-09",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ProTEUS: A mutation-resolved world model for closed-loop protein evolution",
+      "abstract": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space. Thus, a central challenge is to efficiently traverse the large combinatorial space of mutations in silico. We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution. Pretrained on deep mutational scanning assays, ProTEUS learns a joint representation of sequence, evolutionary, and structural information using MutationFormer, a mutation-biased attention architecture. Variants are represented as states in this joint latent space, and mutations define actions whose functional consequences are predicted. To support exploration of many mutants, we developed a fast, physics-constrained all-atom predictor that utilizes explicit geometric constraint enforcement to achieve >10 fold increase in speed than AlphaFold3 with guaranteed physical validity. Lastly, ProTEUS refines its prediction and understanding of protein activity through closed loop experimental feedback to guide evolution toward a desired phenotype. ProTEUS surpasses established models in both zero-shot and supervised fine-tuning mutation prediction tasks. We experimentally demonstrate its utility in two closed-loop multi-objective engineering campaigns on aldehyde dehydrogenase and levansucrase, yielding variants with >10 fold higher activity than wild type. ProTEUS provides a world-model framework that connects virtual evaluation of mutational outcomes with experimental learning for efficient protein evolution.",
+      "authors": [
+        "Yikun Zhang",
+        "Minghao Guo",
+        "Guangxue Xu",
+        "Peter Yichen Chen",
+        "Wojciech Matusik",
+        "Wengong Jin",
+        "Jingjing Chai",
+        "Kaiyi Jiang"
+      ],
+      "url": "http://arxiv.org/abs/2611.13348v1",
+      "categories": [
+        "q-bio.BM",
+        "cs.AI"
+      ],
+      "comment": "64 pages, 5 main figures, 5 supplementary figures",
+      "score": 57,
+      "priority": "skim",
+      "summary_cn": "Protein engineering requires navigating rugged fitness landscapes, where small sequence changes can produce large functional differences, but experimental screening can only sample a small fraction of sequence space.",
+      "contribution_cn": "We introduce ProTEUS, a mutation-resolved world model for closed-loop protein evolution.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.15602",
+      "date": "2026-11-11",
+      "topics": [
+        "World Models"
+      ],
+      "title": "CoCode-World: Shared 3D Proxy Representation for Multi-Player World Models",
+      "abstract": "Multiplayer generative world models must produce observations that agree on shared entities despite different camera motions and occlusions. Explicit world representations provide spatial control, but precise modeling of individual game maps limits scene diversity, while shared geometry alone cannot ensure consistent appearance across views. We present CoCode-World, a shared 3D proxy framework that separates structural control from visual synthesis for two-player video generation. Programmable proxies specify scene layout, motion, and occlusion, while RGB references guide character and scene appearance. To coordinate visual details across players, we concatenate paired proxy videos, appearance references, and target views in a consistent spatial layout and generate both views jointly with a pretrained video model. This formulation uses the model's native attention for cross-view communication within a single generation branch, with LoRA adaptation learning proxy adherence and appearance correspondence from paired observations. We construct a two-player GTA~V dataset that pairs synchronized RGB observations with proxy videos derived from shared map geometry and game-engine state. Experiments demonstrate appearance transfer to characters and scene styles unseen during training, with improvements in video quality and cross-view player identity over the evaluated baseline. Ablations further examine how proxy construction and cross-view communication affect generation. Project page: https://iapple233.github.io/CCW/.",
+      "authors": [
+        "Qirui Li",
+        "Xin Zhang",
+        "Yabo Chen",
+        "Jinkun Hao",
+        "Paul L Rosin",
+        "Yu-Kun Lai",
+        "Haibin Huang",
+        "Yin Chen",
+        "Ran Yi",
+        "Chi Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.15602v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 53,
+      "priority": "skim",
+      "summary_cn": "Multiplayer generative world models must produce observations that agree on shared entities despite different camera motions and occlusions.",
+      "contribution_cn": "We present CoCode-World, a shared 3D proxy framework that separates structural control from visual synthesis for two-player video generation.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.14383",
+      "date": "2026-11-10",
+      "topics": [
+        "World Models"
+      ],
+      "title": "An Energy-Based Perspective on Machine Learning",
+      "abstract": "Energy-based models (EBMs) define a distribution through a scalar energy, $p_θ(x)\\propto\\exp(-E_θ(x))$, and are usually presented as one model family among many. This tutorial has a broader goal: beyond introducing EBMs, it uses them as a single lens that connects the different aspects of machine learning. Any EBM is specified by three choices, the energy, which determines what the model represents; the inference procedure, which samples from or optimizes the energy; and the learning method, which fits the energy to data. We first develop these components, including sampling, variational inference, and learning by maximum likelihood, noise contrastive estimation, pseudolikelihood, score matching, and adversarial training, and show that the learning methods share one contrastive structure. We then show that discriminative models, generative models such as GANs, normalizing flows, diffusion and autoregressive models, representation learning methods such as contrastive learning, word2vec, BERT, denoising auto-encoders, and diffusion representations, reinforcement learning with EBM policies and world models, inverse reinforcement learning, and planning, as well as inference-time computation with verifiers, are all EBMs that differ in these three choices, mostly in how they handle the partition function and sampling. This view explains existing methods, organizes them into a common framework, and suggests new algorithms by replacing one component while keeping the others, with composition of energies as a principled way to combine learned models at inference time.",
+      "authors": [
+        "Bo Dai",
+        "Yilun Du"
+      ],
+      "url": "http://arxiv.org/abs/2611.14383v1",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 48,
+      "priority": "skim",
+      "summary_cn": "Energy-based models (EBMs) define a distribution through a scalar energy, $p_θ(x)\\propto\\exp(-E_θ(x))$, and are usually presented as one model family among many.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, autoregressive",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 2
+}

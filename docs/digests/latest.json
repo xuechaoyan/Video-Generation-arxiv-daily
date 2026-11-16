@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T18:01:31+00:00",
+  "generated_at": "2026-11-16T03:18:43+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -25,13 +25,13 @@
       "comment": "",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "OnlyAct研究如何从无标注视频中学习可迁移的动作表示，以训练动作条件视频世界模型。方法以预训练视频基础模型V-JEPA 2为起点，通过低秩适配器和无标签对比学习进行适应：利用光流引导的跨场景动作保持样本作为正样本，并利用同一视频中不同时间窗口的帧对作为困难负样本，使嵌入更关注动作而非场景。所得表示既可从示范视频中提取动作并迁移到新场景，也可通过少量带动作标签的数据映射到真实动作，实现直接控制。跨机器人、相机导航、游戏和驾驶数据集的实验表明，OnlyAct在大多数数据集上具有更强的动作表达能力，达到与瓶颈式潜在动作方法相近的场景不变性，并提升世界模型的动作迁移和可控性。",
-      "contribution_cn": "1. 提出从预训练视频基础模型的表示空间中提取动作，而不是从头学习动作空间的新视角。2. 提出无标签对比适应框架，结合光流引导的场景替换正样本与同视频困难负样本，在不使用重建瓶颈的情况下解耦动作和场景。3. 提出统一评估协议，从动作表达能力、场景不变性和动作条件视频生成质量三个维度进行评测。4. 在机器人操作、相机导航、游戏和驾驶基准上验证了表示的跨域泛化、动作迁移和真实动作控制能力。",
-      "relevance_cn": "该工作直接面向动作条件视频生成和视频世界模型：它将连续帧编码为潜在动作流，并将其作为自回归视频世界模型的条件来预测后续帧。其示范动作迁移机制支持在新初始场景中复现动作，符合动作条件视觉世界模型和闭环模拟的研究方向；自回归地逐帧预测并滚动生成视频，与因果和长序列世界模型相关。方法还利用预训练表示和低秩适配器提高跨域迁移能力，并通过少量标注将真实动作映射到潜在空间，涉及可扩展的视频预训练、动作控制和模型适应。不过，论文主要关注动作表示与世界模型控制质量，没有重点讨论实时生成、蒸馏、稀疏注意力或缓存复用。",
-      "limitations_cn": "论文明确指出，光流引导的场景替换正样本仅适用于静态相机；对于移动相机、手持视频或驾驶视频，只能退化为对锚定帧对进行不同光度增强。预训练基础模型的嵌入仍可能包含场景信息，适应前的V-JEPA 2在部分领域动作信息不稳定。OnlyAct的动作表示仍需训练动作条件世界模型，真实动作控制还需要少量带动作标签的数据和额外接口微调。论文报告在Habitat上的Control提升处于噪声范围内，且部分数据集上的自重建保真度并非最佳。对于实时生成、超长视频生成、蒸馏、稀疏注意力和缓存复用，论文未明确说明。",
+      "summary_cn": "OnlyAct研究如何从无标签视频中提取可迁移的动作表示，用于训练动作条件视频世界模型。它以预训练视频基础模型V-JEPA 2的帧对表示为起点，通过光流引导的跨场景正样本和同视频硬负样本进行低秩对比适应，使表示突出运动而抑制场景信息。实验覆盖机器人操作、相机导航、游戏和驾驶等任务，结果表明OnlyAct相比现有无标注潜在动作方法具有更强的动作表达能力、相当的场景不变性，并能提升动作迁移和真实动作控制效果。",
+      "contribution_cn": "1. 提出从预训练基础模型表示空间中提取动作、而非从零学习动作空间的新思路。2. 提出无标签对比适应框架，利用光流引导的场景替换正样本和同视频硬负样本，在不使用重建瓶颈的情况下实现动作与场景的解耦。3. 建立涵盖动作表达能力、场景不变性和动作条件视频生成质量的统一评估协议。4. 在机器人、导航、游戏和驾驶基准上验证了表示在动作迁移、视频生成和下游真实动作控制方面的优势。",
+      "relevance_cn": "该工作直接面向视频生成和视频扩散世界模型：它将连续帧编码为动作流，并把动作流作为自回归视频世界模型的条件来预测后续帧。其方法涉及动作条件视觉世界模型、闭环/自回归 rollout、跨场景动作迁移以及无标签视频预训练。预训练基础模型和低秩适应也与视频表示迁移、参数高效适应和可扩展生成相关。不过，论文重点是动作表示学习与动作条件生成，并未主要研究实时生成、稀疏注意力、缓存复用、蒸馏或超长视频生成。",
+      "limitations_cn": "论文明确说明，光流引导的场景替换正样本只适用于静态相机；对于移动相机、手持相机和驾驶视频，只能退化为使用不同光度增强的原始帧对，因此动作与场景的解耦可能更弱。该方法依赖现成的光流估计器，光流质量可能影响训练样本构造。动作被定义为由智能体或相机造成的两帧变化，无法覆盖这一设定之外的动作语义。实验主要在选定的机器人操作、相机导航、游戏和驾驶数据集上进行，论文未明确说明在更广泛视频分布、极长时序或实时部署场景中的性能。论文未明确说明其方法在计算开销、推理速度和大规模在线闭环交互方面的限制。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺，分散在彼此不兼容的规范中，并且无法扩展到规模庞大的无标注视频预训练语料。一种常见的解决方法是联合训练动作编码器和解码器：前者将连续帧压缩为潜在动作，后者根据前一帧和该潜在动作重建下一帧，从而迫使潜在变量仅捕捉新增信息。这种方法存在两个局限：从头学习动作空间可能限制对未见领域的泛化能力；同时，瓶颈在表达能力和解耦性之间进行权衡——更严格的瓶颈会丢失细节，更宽松的瓶颈则可能在领域变化时引入场景信息。我们提出一种不同的出发点：不再从头学习动作，而是从预训练基础模型（V-JEPA 2）开始。该模型经过大规模、多样化的视频预训练，其对帧对的嵌入已经包含了大量动作信息。剩下的挑战是提取动作并舍弃场景信息。为此，我们提出一种无标签对比适应框架：将不同场景中具有相同运动的帧对拉近，将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而不施加重建瓶颈。我们提出一个统一的评估协议，从三个方面评估动作表示——动作表达能力、场景不变性以及动作条件视频生成质量——并在机器人操作、相机导航、游戏和驾驶基准上进行评测，其中大多数基准在适应阶段未被使用。与无标注潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并使世界模型能够更忠实地将示范动作迁移到新场景。",
-      "note_path": "2026-11-15/2611.14420-onlyact-extracting-action-representations-from-f.md"
+      "abstract_cn": "视频世界模型有望成为通用交互式模拟器，但其训练受到动作监督的限制：动作标签稀缺、分散于彼此不兼容的规格中，并且无法扩展到无标签的视频预训练语料。一种常见的解决方案是联合训练动作编码器和解码器：动作编码器将连续帧压缩为潜在动作，解码器则根据前一帧和该潜在动作重建下一帧，从而迫使潜在变量只捕捉新的信息。这种方法有两个局限：从零开始学习动作空间可能限制对未见领域的泛化能力；此外，瓶颈结构需要在表达能力与分离性之间权衡——更严格的瓶颈会损失细节，而更宽松的瓶颈则可能在领域变化下引入场景信息。我们提出一种不同的出发点：不从零开始学习动作，而是利用预训练基础模型 V-JEPA 2。该模型经过大规模、多样化的视频预训练，其帧对嵌入已经包含大量动作信息。剩下的挑战是提取动作并丢弃场景信息。为此，我们提出一种无标签的对比适应框架：将不同场景中具有相同运动的帧对拉近，将同一场景中具有不同运动的帧对推远，从而重塑预训练空间的几何结构，而不施加重建瓶颈。我们提出统一的评估协议，从动作表达能力、场景不变性和动作条件视频生成质量三个维度，在机器人操作、相机导航、游戏和驾驶基准上进行评估，其中大多数基准在适应阶段未被使用。与无标注潜在动作方法相比，我们的表示具有显著更强的表达能力，同时保持相当的场景不变性，并且能够使世界模型更忠实地将示范动作迁移到新场景中。",
+      "note_path": "2026-11-16/2611.14420-onlyact-extracting-action-representations-from-f.md"
     },
     {
       "id": "2611.14815",
@@ -100,13 +100,13 @@
       "comment": "https://duo-v1.github.io/",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文提出互惠世界模型RWM，将世界建模从单纯模拟物理环境扩展为同时建模环境与其中的智能交互者。Duo v1由自回归多模态意图模块和因果视听实现模块组成：前者按约0.71秒的时间块持续决定说话或等待并生成文本，后者依据意图隐藏状态、用户视听输入、参考图像和历史媒体生成同步的语音与视频。系统通过统一时间线、跨块因果注意力、双重 rollout 蒸馏、四步生成、流式VAE解码以及KV缓存管理实现全双工实时交互。在30个案例、180项人工检查中总体通过率为93.3%，但内容响应性仅为73.3%。",
-      "contribution_cn": "1. 提出互惠世界模型RWM的概念，将Intent（交互认知与参与决策）和Realization（连贯视听行为生成）视为世界模型的两个核心组成部分。 2. 构建Duo v1模块化架构，以自回归多模态语言模型持续进行交互推理和说话/等待决策，并以因果联合视听扩散模型生成语音和视频。 3. 设计统一时间线上的分块条件、同步标记和模块特定因果注意力掩码，避免块内及块间的信息泄漏并保持长时连续性。 4. 提出双重 rollout 分布匹配蒸馏，使训练同时适应自回归生成的意图历史和实现模块自生成的视听历史，将生成压缩为四步流式过程。 5. 构建包含合成对话、录制对话和双流视听数据的数据流程，并设计支持持续输入、因果潜变量解码、GPU调度、KV缓存复用与定期重置的流式推理系统。",
-      "relevance_cn": "与研究重点高度相关。该工作直接面向视频生成与视频扩散，使用因果联合视听扩散Transformer在连续时间块中生成视频和音频；其Realization模块依据用户视听输入、意图隐藏状态和历史生成媒体实现闭环交互，属于具有行动/参与决策能力的交互式视觉世界模型。系统采用自回归、因果分块和持续流式生成，支持用户在生成过程中继续输入并进行打断，契合长视频与闭环模拟方向。其四步分布匹配蒸馏、流式VAE解码、分块重叠调度以及Intent和Realization的KV缓存管理，直接涉及实时生成、蒸馏、缓存复用和推理加速。论文报告的单块处理延迟约为330–650毫秒，目标是将每个17帧块的周期控制在约708毫秒以内。",
-      "limitations_cn": "论文明确指出Duo v1仍处于初步阶段，目前主要支持基础视听对话；更长会话中的响应时序和一致性、对误解的恢复能力仍需更广泛评估。人工评测仅包含30个实时双工交互案例，且内容响应性为73.3%（22/30），主要在需要结合语音、视频和语境推断用户真实意图时失败。音视频同步通过率为90.0%，情绪一致性为96.7%，仍存在改进空间。系统首个可见输出还可能受到最多约708毫秒的采样窗口等待影响，并依赖单台八GPU服务器维持持续生成。论文未明确说明更长时间尺度上的定量生成质量、与其他实时视频生成系统的全面对比，以及真实用户规模化部署成本。",
+      "summary_cn": "论文提出互惠世界模型RWM，将负责交互认知的Intent模块与负责视听行为生成的Realization模块结合，构建Duo v1全双工实时交互系统。系统以约0.71秒的视频块为单位，在统一时间线上因果地处理用户音频、视频和文本，并持续生成助手的语言、视频和音频。训练包括Intent自回归监督、因果联合视听生成，以及结合自生成语言和视听历史的双重rollout分布匹配蒸馏。论文还设计了流式VAE解码、流水线调度和KV缓存管理，以支持长时间实时运行。30个交互案例的180项人工检查中有93.3%通过，但内容响应性仅为73.3%，且长时一致性、误解恢复和更广泛评估仍待改进。",
+      "contribution_cn": "1. 提出互惠世界模型RWM，将智能推理与物理世界模拟视为同等基础，并明确划分Intent与Realization两类功能。2. 设计Duo v1的全双工因果架构：Intent模块自回归地产生<speak>/<wait>参与决策及文本，Realization模块依据其隐藏状态联合生成音频和视频。3. 在统一时间线上构建分块条件、同步标记和模块专属注意力掩码，避免块内及块间未来信息泄漏。4. 提出双重rollout分布匹配蒸馏，使训练同时使用自回归生成的意图历史和模型自身生成的视听历史，缩小训练与推理分布差异，并将生成压缩为四步。5. 构建流式推理系统，包括因果潜变量解码、分块流水线重叠、设备感知并行和Intent/Realization分开管理的KV缓存。6. 结合合成双人视频通话数据与多类真实录制数据，形成带有音频、视频、文本和时间对齐信息的交互训练数据。",
+      "relevance_cn": "论文与研究重点高度相关。它以自回归、因果分块方式进行连续视听生成，直接涉及流式和长时视频生成；Realization模块采用因果联合音视频扩散Transformer，并通过分布匹配蒸馏将生成压缩为四步，涉及扩散加速与实时生成；统一时间线和模块专属注意力掩码实现了对未来信息的隔离，适用于闭环交互和动作条件世界模型；模型持续接收用户音视频输入，并将自身生成的视听历史反馈到后续块中，形成面向全双工交互的闭环模拟；流式VAE解码、流水线重叠和KV缓存复用则直接对应实时推理、缓存复用和受限内存下的长时间运行。其局限在于系统主要面向视听对话与交互场景，并非通用具身动作控制或完整物理世界模拟。",
+      "limitations_cn": "论文明确指出，Duo v1仍处于初步阶段，目前主要支持基础视听对话；响应时序、长会话中的一致性以及从误解中恢复的能力仍需更广泛评估。人工评测中，内容响应性仅为22/30（73.3%），尤其容易在笑话、特殊言论以及必须联合理解语音和视频的意图上失败。唇形与语音同步通过率为90.0%，视听情绪一致性为96.7%，仍存在少量问题。论文还指出，双重蒸馏可能引入摄像机旋转漂移，因此需要额外的旋转感知加权。除此之外，论文未明确说明大规模真实用户部署成本、不同硬件配置下的普适性能、隐私与安全风险，以及在更复杂物理动作和开放世界任务中的泛化能力。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "本文介绍了互惠世界模型（Reciprocal World Model，RWM），并提出Duo v1——一种能够持续感知视听输入、同时实时回应用户的全双工世界模型。RWM认为，智能与物理现实同等构成“世界”的基本要素。现有世界模型主要关注对后者的模拟，将推理和决策留作外部控制，而非世界内在的一部分。在RWM中，我们确定了两种同等基础的能力：意图（Intent），为世界交互提供认知能力；实现（Realization），生成连贯的视听行为。为实现这一构想，Duo v1引入了三项关键技术设计：（1）采用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间线上为意图模块和实现模块构建分块特定的条件与同步标记。模块特定的注意力掩码在块内和块间强制执行因果依赖，防止模型访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移，在训练中使用自回归生成的意图标记以及由实现模块合成的视听历史。两个模块都持续感知实时音频、视频和文本，从而支持带有自发对话和打断的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、指导助手，或在没有鼠标和键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域开展更广泛的探索。",
-      "note_path": "2026-11-15/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md"
+      "abstract_cn": "本文介绍了互惠世界模型（RWM），并提出Duo v1，一种能够持续感知视听输入并实时响应用户的全双工世界模型。RWM认为，智能与物理现实对于构成一个世界同等重要。现有世界模型主要关注对后者的模拟，将推理和决策视为外部控制，而不是世界本身的内在组成部分。在RWM中，我们确定了两种同等基础的能力：意图（Intent），为世界交互提供认知；实现（Realization），生成连贯的视听行为。为实现这一理念，Duo v1引入了三项关键技术设计：（1）利用自回归建模进行持续的交互推理和参与决策，而不是将其局限于扩散模型的指令理解；（2）在统一时间线上为意图模块和实现模块构建分块特定条件与同步标记。模块特定的注意力掩码在块内和块间施加因果依赖，防止模型访问未来输入；（3）通过双重 rollout 蒸馏缓解两个模块中的分布偏移，使模型在自回归生成的意图标记和实现模块合成的视听历史上进行训练。两个模块都持续感知实时音频、视频和文本，从而支持具有自发对话和打断能力的全双工交互。除对话外，用户还可以分享真实物体、重塑虚拟场景、引导助手，或在无需鼠标和键盘控制的情况下进行视听游戏。Duo v1的发布是我们的第一步，下一版本即将推出。我们期待对这一新兴领域展开更广泛的探索。",
+      "note_path": "2026-11-16/2611.15131-duo-a-reciprocal-world-model-for-full-duplex-int.md"
     },
     {
       "id": "2611.16579",
@@ -180,6 +180,36 @@
       "assessment_source": "heuristic"
     },
     {
+      "id": "2611.18078",
+      "date": "2026-11-13",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "TelePhysica: Agentic Reconstruction of Physically Interactive Scenes",
+      "abstract": "Direct image-to-video diffusion models entangle pixel synthesis with implicit latent motion, precluding persistent 3D mechanical equilibrium, mid-rollout intervention, and counterfactual force control. Conversely, single-pass programmatic 3D reconstruction from an uncalibrated photograph leaves monocular depth and support clearance underconstrained, causing reconstructed scenes to interpenetrate or collapse under gravity. We present TelePhysica, a closed-loop framework that reconstructs an executable, multi-regime physical world from a single photograph to drive stateful 3D interaction and trajectory-grounded video synthesis. A vision-language coding agent synthesizes separable visual meshes and declarative physical models within a two-stage verification loop that pairs pixel-aligned silhouette critique with a zero-force gravitational equilibrium preflight. The verified world compiles into a unified solver coupling rigid bodies, articulated chains, co-dimensional cloth shells, and 3D tetrahedral elastodynamics, whose simulated rollouts condition pretrained video diffusion models through pixel-aligned structural streams. On a 100-scene single-image benchmark, closed-loop execution raises equilibrium-verified world recovery from $0\\%$ in single-pass synthesis to $81\\%$. Controlled constitutive ablations show over an order-of-magnitude larger localized corner displacement and out-of-plane pleating in finite-element cloth than in matched rigid-plate proxies. Conditioning video diffusion on simulated trajectories increases dynamic motion-mask overlap by $2{\\times}\\text{--}5{\\times}$ and preserves motion direction under counterfactual force reversals where direct image-to-video models fail.",
+      "authors": [
+        "Ruiqi Shu",
+        "Xufeng Zhan",
+        "Yuanzhi Liang",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Xuelong Li"
+      ],
+      "url": "http://arxiv.org/abs/2611.18078v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "Ongoing Work. Homepage: https://interactive4d.vercel.app/",
+      "score": 61,
+      "priority": "skim",
+      "summary_cn": "Direct image-to-video diffusion models entangle pixel synthesis with implicit latent motion, precluding persistent 3D mechanical equilibrium, mid-rollout intervention, and counterfactual force control.",
+      "contribution_cn": "We present TelePhysica, a closed-loop framework that reconstructs an executable, multi-regime physical world from a single photograph to drive stateful 3D interaction and trajectory-grounded video synthesis.",
+      "relevance_cn": "匹配研究线：video generation, world model；关键词：interactive, closed-loop, image-to-video, video diffusion, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
       "id": "2611.15082",
       "date": "2026-11-11",
       "topics": [
@@ -202,34 +232,6 @@
       "summary_cn": "Pretrained video world models are compared and chosen as components for robot learning largely by future-prediction scores.",
       "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
       "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, action-conditioned",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.11912",
-      "date": "2026-11-09",
-      "topics": [
-        "World Models"
-      ],
-      "title": "LO-World: Unified BEV Latent Modeling for Joint 4D Occupancy and LiDAR Forecasting",
-      "abstract": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity. However, existing world models typically forecast these modalities independently or cascade them heuristically, missing the opportunity for reciprocal cross-modal regularization. To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space. This single-stream formulation enables dense semantics and metric geometry to mutually reinforce each other, while eliminating multi-pipeline redundancy. Specifically, LO-World couples an efficient hybrid range-voxel autoencoder with a flow-matching generator that caches historical context to reduce iterative sampling latency. Extensive experiments demonstrate that LO-World outperforms prior state-of-the-art baselines, improving occupancy forecasting IoU by 10.9% and reducing LiDAR Chamfer Distance by 30.1%. Meanwhile, it sustains a real-time throughput exceeding $25$~FPS on a single RTX 4090. Our code is available at https://github.com/lzzzzzm/LO-World.",
-      "authors": [
-        "Zhimin Liao",
-        "Ping Wei",
-        "Kai Mao",
-        "Shuaijia Chen"
-      ],
-      "url": "http://arxiv.org/abs/2611.11912v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "",
-      "score": 58,
-      "priority": "skim",
-      "summary_cn": "LiDAR point clouds and 3D semantic occupancy represent two distinct modalities capturing fine-grained metric geometry and dense volumetric semantics, respectively, holding natural potential for mutual complementarity.",
-      "contribution_cn": "To address this, we propose \\textbf{LO-World}, a unified 4D world model that forecasts both modalities within a shared BEV latent space.",
-      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：world model, real-time, cache, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -266,59 +268,61 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.12319",
-      "date": "2026-11-09",
+      "id": "2611.15602",
+      "date": "2026-11-11",
       "topics": [
         "World Models"
       ],
-      "title": "Mitigating SM-Level Load Imbalance in 3D Gaussian Splatting on GPUs",
-      "abstract": "3D Gaussian Splatting (3DGS) enables photorealistic, real-time rendering on commodity GPUs and is increasingly adopted in generative world models and autonomous driving simulators. However, existing optimizations rely on algorithmic changes that often require retraining, or on specialized accelerators that lack flexibility across evolving 3DGS variants. In this paper, we identify a fundamental inefficiency in GPU-based 3DGS rendering: severe SM-level load imbalance caused by uneven workloads across screen tiles. This imbalance creates a long execution tail, leaving most SMs idle while a few process computationally intensive tiles, particularly in large-scale urban scenes. To address this, we present a software-defined GPU scheduling approach that mitigates the execution tail. Our approach uses a persistent kernel to schedule heavy tiles first and selectively chunks outlier tiles across multiple CTAs. A lightweight per-frame policy determines when and how much to chunk using tile statistics already available in the rendering pipeline. Our approach requires neither retraining nor specialized hardware and can be applied orthogonally to existing optimizations across diverse 3DGS variants. Averaged per scene, it accelerates alpha blending by up to 2.93x on a large-scale urban scene, and by up to 5.6x on its most imbalanced frames, while retaining the original alpha blending formulation.",
+      "title": "CoCode-World: Shared 3D Proxy Representation for Multi-Player World Models",
+      "abstract": "Multiplayer generative world models must produce observations that agree on shared entities despite different camera motions and occlusions. Explicit world representations provide spatial control, but precise modeling of individual game maps limits scene diversity, while shared geometry alone cannot ensure consistent appearance across views. We present CoCode-World, a shared 3D proxy framework that separates structural control from visual synthesis for two-player video generation. Programmable proxies specify scene layout, motion, and occlusion, while RGB references guide character and scene appearance. To coordinate visual details across players, we concatenate paired proxy videos, appearance references, and target views in a consistent spatial layout and generate both views jointly with a pretrained video model. This formulation uses the model's native attention for cross-view communication within a single generation branch, with LoRA adaptation learning proxy adherence and appearance correspondence from paired observations. We construct a two-player GTA~V dataset that pairs synchronized RGB observations with proxy videos derived from shared map geometry and game-engine state. Experiments demonstrate appearance transfer to characters and scene styles unseen during training, with improvements in video quality and cross-view player identity over the evaluated baseline. Ablations further examine how proxy construction and cross-view communication affect generation. Project page: https://iapple233.github.io/CCW/.",
       "authors": [
-        "Junha Ryu",
-        "Hoi-Jun Yoo"
+        "Qirui Li",
+        "Xin Zhang",
+        "Yabo Chen",
+        "Jinkun Hao",
+        "Paul L Rosin",
+        "Yu-Kun Lai",
+        "Haibin Huang",
+        "Yin Chen",
+        "Ran Yi",
+        "Chi Zhang"
       ],
-      "url": "http://arxiv.org/abs/2611.12319v1",
+      "url": "http://arxiv.org/abs/2611.15602v1",
       "categories": [
-        "cs.DC",
-        "cs.CV",
-        "cs.GR",
-        "cs.LG"
+        "cs.CV"
       ],
       "comment": "",
-      "score": 56,
+      "score": 53,
       "priority": "skim",
-      "summary_cn": "3D Gaussian Splatting (3DGS) enables photorealistic, real-time rendering on commodity GPUs and is increasingly adopted in generative world models and autonomous driving simulators.",
-      "contribution_cn": "To address this, we present a software-defined GPU scheduling approach that mitigates the execution tail.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, driving, real-time",
+      "summary_cn": "Multiplayer generative world models must produce observations that agree on shared entities despite different camera motions and occlusions.",
+      "contribution_cn": "We present CoCode-World, a shared 3D proxy framework that separates structural control from visual synthesis for two-player video generation.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.12557",
-      "date": "2026-11-09",
+      "id": "2611.14383",
+      "date": "2026-11-10",
       "topics": [
         "World Models"
       ],
-      "title": "WanderBench: Can World Models Explore Dynamic Worlds from Video?",
-      "abstract": "Video world models conditioned on an input video make it possible to explore real, recorded dynamic scenes, enabling re-shooting of footage, free-viewpoint replay, and real-to-sim environments for embodied agents. Such uses require the generated rollout to stay faithful to the recorded world, yet existing benchmarks start from a single image or a text prompt, and video-conditioned generation is evaluated mainly on perceptual quality and camera following. These evaluations do not directly assess whether exploration preserves subject identity, event progression, and scene consistency upon revisiting a location. We introduce WanderBench, a benchmark for exploring dynamic worlds from video. It comprises 745 single-shot source videos of real and AI-generated content in three difficulty tiers (3-25 s), paired with camera routes given as keyboard actions, and evaluates six dimensions with 24 human-validated sub-metrics. Benchmarking eight models, we find that as clips grow longer, models keep the static scene and visual quality but lose camera control and the source dynamics, and that none keeps revisited places consistent. We further propose WanderLand, a training-free framework that conditions each frame of a frozen model on the same-instant source and, on revisits, on its own earlier static content. WanderLand improves five models on every dimension, by up to 8.3 points in source-dynamics fidelity.",
+      "title": "An Energy-Based Perspective on Machine Learning",
+      "abstract": "Energy-based models (EBMs) define a distribution through a scalar energy, $p_θ(x)\\propto\\exp(-E_θ(x))$, and are usually presented as one model family among many. This tutorial has a broader goal: beyond introducing EBMs, it uses them as a single lens that connects the different aspects of machine learning. Any EBM is specified by three choices, the energy, which determines what the model represents; the inference procedure, which samples from or optimizes the energy; and the learning method, which fits the energy to data. We first develop these components, including sampling, variational inference, and learning by maximum likelihood, noise contrastive estimation, pseudolikelihood, score matching, and adversarial training, and show that the learning methods share one contrastive structure. We then show that discriminative models, generative models such as GANs, normalizing flows, diffusion and autoregressive models, representation learning methods such as contrastive learning, word2vec, BERT, denoising auto-encoders, and diffusion representations, reinforcement learning with EBM policies and world models, inverse reinforcement learning, and planning, as well as inference-time computation with verifiers, are all EBMs that differ in these three choices, mostly in how they handle the partition function and sampling. This view explains existing methods, organizes them into a common framework, and suggests new algorithms by replacing one component while keeping the others, with composition of energies as a principled way to combine learned models at inference time.",
       "authors": [
-        "Yuhang Chen",
-        "Jiheng Li",
-        "Jiale Wang",
-        "Zai Wang",
-        "Guangyue Liu"
+        "Bo Dai",
+        "Yilun Du"
       ],
-      "url": "http://arxiv.org/abs/2611.12557v1",
+      "url": "http://arxiv.org/abs/2611.14383v1",
       "categories": [
-        "cs.CV",
-        "cs.AI"
+        "cs.AI",
+        "cs.LG"
       ],
-      "comment": "10 pages, 4 figures",
-      "score": 53,
+      "comment": "",
+      "score": 48,
       "priority": "skim",
-      "summary_cn": "Video world models conditioned on an input video make it possible to explore real, recorded dynamic scenes, enabling re-shooting of footage, free-viewpoint replay, and real-to-sim environments for embodied agents.",
-      "contribution_cn": "We introduce WanderBench, a benchmark for exploring dynamic worlds from video.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, embodied",
+      "summary_cn": "Energy-based models (EBMs) define a distribution through a scalar energy, $p_θ(x)\\propto\\exp(-E_θ(x))$, and are usually presented as one model family among many.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, autoregressive",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
