@@ -17,6 +17,7 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-16**|**SciWorldBench: Do Video World Models Really Understand Scientific Experiments?**|Xue Yang et.al.|[2611.20899](http://arxiv.org/abs/2611.20899)|null|
 |**2026-11-15**|**PoCoAttn: Position-Content Collaborative Sparse Attention for Fast and High-Fidelity Video Generation**|Jianwen Wu et.al.|[2611.20307](http://arxiv.org/abs/2611.20307)|null|
 |**2026-11-14**|**ResWAM: Learning What Changes, Not What Stays, for World-Action Models**|Chongyu Fan et.al.|[2611.19559](http://arxiv.org/abs/2611.19559)|null|
 |**2026-11-13**|**Découpage: Directorial Audio-Visual Control for Long Multi-Shot Video Generation**|Yifan Wang et.al.|[2611.18866](http://arxiv.org/abs/2611.18866)|null|
@@ -1610,6 +1611,11 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-16**|**Lazy-MOSAIC: Accelerating Skill-Centric Manipulation Planning with Learned Skill-Effect World Models**|Itamar Mishani et.al.|[2611.21517](http://arxiv.org/abs/2611.21517)|null|
+|**2026-11-16**|**LynnReal-Hand: Unlocking World Interaction with Hand Control**|Shaohao Rui et.al.|[2611.21479](http://arxiv.org/abs/2611.21479)|null|
+|**2026-11-16**|**ThinkWAM: Rethinking Latent Futures for Action Refinement**|Haoyun Tang et.al.|[2611.21258](http://arxiv.org/abs/2611.21258)|null|
+|**2026-11-16**|**SciWorldBench: Do Video World Models Really Understand Scientific Experiments?**|Xue Yang et.al.|[2611.20899](http://arxiv.org/abs/2611.20899)|null|
+|**2026-11-16**|**Auditing World-Model Explanations in Retail Forecasting: Faithfulness, Accuracy and Price Response**|Kathik Iyer et.al.|[2611.20811](http://arxiv.org/abs/2611.20811)|null|
 |**2026-11-16**|**XMimic and XSoma: Learning Humanoid Motion Tracking and Locomotion in Under a Minute**|Nico Bohlinger et.al.|[2611.20452](http://arxiv.org/abs/2611.20452)|null|
 |**2026-11-15**|**SAFER: Navigating the Exploration-Exploitation Dilemma in World-Model-Based Planning for Autonomous Driving**|Yansong Qu et.al.|[2611.20107](http://arxiv.org/abs/2611.20107)|null|
 |**2026-11-15**|**Latent World Modeling for Point-Cloud Video Pretraining**|Zhuoyue Zhang et.al.|[2611.20090](http://arxiv.org/abs/2611.20090)|null|
@@ -2845,6 +2851,9 @@
 
 |Publish Date|Title|Authors|PDF|Code|
 |---|---|---|---|---|
+|**2026-11-16**|**Reference Forcing: Long Video Generation with Region-Guided Drift Correction**|Sheng Zhao et.al.|[2611.21559](http://arxiv.org/abs/2611.21559)|null|
+|**2026-11-16**|**MovieRoll: A Systematic Framework for Rolling Out Long-Form Videos**|Yunyang Ge et.al.|[2611.21339](http://arxiv.org/abs/2611.21339)|null|
+|**2026-11-16**|**ScoutCache: Efficient Few-Step Autoregressive Video Diffusion via Conditional Readout and Selective Caching**|Hao Tan et.al.|[2611.21038](http://arxiv.org/abs/2611.21038)|null|
 |**2026-11-16**|**VAHBench: A Harness Benchmark for Agentic Long-Video Generation**|Hongbo Zhang et.al.|[2611.20535](http://arxiv.org/abs/2611.20535)|null|
 |**2026-11-10**|**Few-Step Streaming Video Generation via Condition Shifting**|Deyuan Liu et.al.|[2611.14033](http://arxiv.org/abs/2611.14033)|null|
 |**2026-11-08**|**Semantically Aligned KV Cache Compression for Efficient Agentic Autoregressive Video Generation**|Weizhong Huang et.al.|[2611.11452](http://arxiv.org/abs/2611.11452)|null|
