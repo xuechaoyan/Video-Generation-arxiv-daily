@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-18T04:46:40+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-18T19:39:19+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：80/100
 - **作者**：Sheng Zhao, Haitian Zheng, Weikai Lin et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文针对自回归长视频生成中的外观漂移问题提出Reference Forcing。该方法将初始视频块作为稳定的外观参考：通过带有主体分割和背景光流掩码的教师注意力，将区域匹配行为蒸馏到学生模型独立的锚点注意力路径中，并学习锚点门控以区分初始帧中已有内容和后来出现的新内容。同时，方法在KV缓存中通过键相似度匹配，将较早缓存块的漂移值向初始帧对应值校正，但保留最…
+- **一句话**：论文针对自回归长视频生成中的主体和背景外观随时间漂移问题，提出Reference Forcing。该方法以初始视频块为稳定外观参考，通过教师模型中的区域掩码注意力学习主体和背景的对应关系，并将其蒸馏为无需外部模型的独立锚点注意力路径；同时利用学习到的锚点门控，对KV缓存中较早、已漂移的值进行匹配和校正。实验基于LongLive和Self-Forcing，在…
 - **精读笔记**：[打开笔记](../notes/2026-11-18/2611.21559-reference-forcing-long-video-generation-with-reg.md)
 
 ### 2. [FastFrames: Video Generation at Interactive Latency](http://arxiv.org/abs/2611.23226v1)
@@ -18,7 +18,7 @@
 - **评分**：79/100
 - **作者**：Gene Chou, Guandao Yang, Fujun Luan et al.
 - **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：本文针对自回归视频扩散模型端到端响应延迟过高的问题，提出 FastFrames。作者通过延迟剖析发现，VAE 像素解码和 KV 缓存更新等非去噪环节是主要瓶颈，而不仅仅是扩散采样步骤。为此，FastFrames 使用基于 ConvNeXt 的轻量级像素解码器替代 VAE，使用轻量级网络修复 KV 缓存，并结合持久化缓存、条件预计算、分段注意力、算子融合、C…
+- **一句话**：本文针对自回归视频扩散模型端到端响应速度过慢的问题，提出 FastFrames。作者通过延迟剖析发现，VAE 解码和 KV 缓存更新等非去噪操作是主要瓶颈，因此分别使用轻量级 ConvNeXt 像素解码器和 KV 修复网络替代原组件，并结合持久化缓存、分段注意力、算子融合、CUDA Graph 及上下文并行等系统优化。在 480p 条件下，1.3B 模型单…
 - **精读笔记**：[打开笔记](../notes/2026-11-18/2611.23226-fastframes-video-generation-at-interactive-laten.md)
 
 ### 3. [SAFER: Navigating the Exploration-Exploitation Dilemma in World-Model-Based Planning for Autonomous Driving](http://arxiv.org/abs/2611.20107v1)
@@ -26,7 +26,7 @@
 - **评分**：76/100
 - **作者**：Yansong Qu, Zilin Huang, Zihao Sheng et al.
 - **方向**：World Models
-- **一句话**：本文提出 SAFER，用于解决依赖世界模型的自动驾驶规划中的探索—利用困境。其核心思路是先在仿真中利用较弱驾驶策略和可恢复扰动主动制造失败，再由专家为失败轨迹中的每个状态提供动作和值标注，使世界模型同时学习错误行为的后果和正确恢复方式。模型采用可一次性预测未来动作块的因果分块潜在动力学、奖励与价值预测、行为克隆动作先验以及碰撞风险头；规划器使用带风险惩罚的…
+- **一句话**：论文研究依赖世界模型进行自动驾驶规划时的探索—利用困境：模型在训练数据覆盖范围内较可靠但难以超越数据，超出覆盖范围后又会因模型误差偏向错误的高估动作。SAFER通过三个环节缓解该问题。首先，在仿真中利用能力较弱的驾驶策略和脚本化可恢复扰动制造失败，并由专家为每个状态提供正确动作和值标签，使世界模型同时学习错误行为的后果和应采取的恢复动作。其次，构建带有分块…
 - **精读笔记**：[打开笔记](../notes/2026-11-18/2611.20107-safer-navigating-the-exploration-exploitation-di.md)
 
 ## 快速浏览
