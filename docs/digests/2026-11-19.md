@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-19T04:37:46+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-19T19:39:16+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：79/100
 - **作者**：Gene Chou, Guandao Yang, Fujun Luan et al.
 - **方向**：Video Generation, Autoregressive and Streaming Video
-- **一句话**：本文研究如何将自回归视频扩散模型的端到端单帧响应延迟降至交互式范围。作者分析发现，VAE 解码和 KV 缓存更新等非去噪操作是主要瓶颈，并提出轻量级像素解码器、KV 缓存修复网络以及面向硬件的系统优化。FastFrames 在 480p 下使用两步扩散生成单个潜在帧：1.3B 版本在单张 B200 GPU 上达到 36 毫秒延迟，14B 版本在 8 张 B…
+- **一句话**：本文研究自回归视频扩散模型的端到端交互延迟，指出 VAE 解码和 KV 缓存更新等非去噪组件是主要瓶颈。FastFrames 用基于 ConvNeXt 的轻量像素解码器替代 VAE，用轻量 KV 修复网络替代额外的 DiT 缓存更新，并结合持久化缓存、注意力分段、算子融合、CUDA Graph 和上下文并行等系统优化。在 480p 和 B200 GPU 上…
 - **精读笔记**：[打开笔记](../notes/2026-11-19/2611.23226-fastframes-video-generation-at-interactive-laten.md)
 
 ### 2. [Code World Model 2.0: Towards Infinite Controllable Video Generation](http://arxiv.org/abs/2611.22925v2)
@@ -18,7 +18,7 @@
 - **评分**：75/100
 - **作者**：Ruoyu Wang, Hao Zhong, Yanming Yang et al.
 - **方向**：Video Generation, World Models
-- **一句话**：论文提出 Invoker-Render，一种由视觉代理驱动的视频渲染框架，将双向离线视频创作与四步因果实时流式生成统一在同一条件接口下。模型可处理语义布局、几何结构等不同代理及粗细不同的控制粒度：粗代理约束场景布局、相机和主体根轨迹，细代理进一步约束关节和表面几何。作者提出 ProForcing 训练流程，依次进行因果教师强制与重采样强制、基于数据历史的四…
+- **一句话**：本文提出 Invoker-Render，一种将双向视频创作与四步因果流式渲染统一起来的代理条件视频生成框架。模型通过共享接口接收结构代理、外观参考和语言，可同时处理粗粒度布局与精细关节几何，并在缺少细节时生成合理的局部运动。作者构建了约 200 小时的多粒度对齐数据集，并提出 Progressive Forcing：先通过教师强制和重采样强制进行因果适配，…
 - **精读笔记**：[打开笔记](../notes/2026-11-19/2611.22925-code-world-model-2-0-towards-infinite-controllab.md)
 
 ### 3. [Towards Data-Efficient, Real-Time World Models](http://arxiv.org/abs/2611.22497v1)
@@ -26,7 +26,7 @@
 - **评分**：72/100
 - **作者**：Raluca Stevenson, David Bignell, Jennifer C. White et al.
 - **方向**：World Models
-- **一句话**：本文针对动作条件世界模型的两个关键问题展开研究：高质量长时游戏生成速度慢，以及训练所需数据量过大。作者提出WHAM-RT，将大规模双向骨干Transformer的一次性下一帧预测与轻量级离散扩散细化Transformer结合，并通过可学习寄存器式上下文压缩保留长时序信息。在Bleeding Edge游戏环境中，WHAM-RT在单个H100上最高达到17 F…
+- **一句话**：本文提出WHAM-RT，一种面向实时交互和低数据训练的动作条件世界模型。它以大型双向骨干Transformer一次性预测下一帧图像草稿，并利用压缩的长时上下文和轻量级离散扩散细化Transformer进行多轮掩码预测，从而缓解自回归逐词元生成的速度瓶颈。在Bleeding Edge游戏环境中，WHAM-RT在单张H100上最高达到17 FPS，相比WHAM…
 - **精读笔记**：[打开笔记](../notes/2026-11-19/2611.22497-towards-data-efficient-real-time-world-models.md)
 
 ## 快速浏览
