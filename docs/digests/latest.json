@@ -1,142 +1,134 @@
 {
-  "generated_at": "2026-11-19T19:39:16+00:00",
+  "generated_at": "2026-11-20T04:28:02+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2611.23226",
-      "date": "2026-11-17",
+      "id": "2611.25838",
+      "date": "2026-11-19",
       "topics": [
-        "Video Generation",
+        "World Models",
         "Autoregressive and Streaming Video"
       ],
-      "title": "FastFrames: Video Generation at Interactive Latency",
-      "abstract": "Autoregressive video diffusion models generate frames based on new observations and inputs, making them a promising medium for interactive visual experiences. However, existing models are orders of magnitude too slow for fluid interaction. This paper introduces FastFrames, a family of fast autoregressive video diffusion models that achieves interactive latency without compromising quality. We profile the inference pipeline of state-of-the-art models and find that operations often treated as fixed implementation details, such as VAE decoding and KV cache updates, in fact account for over half of end-to-end inference latency. We challenge the assumption that these components are indispensable and replace them with lightweight alternatives. Our 1.3B variant runs at 36 ms per frame, or 28 responses per second (RPS), on a single B200 GPU while matching the generation quality of a state-of-the-art model that is nearly 8x slower. Our 14B variant runs at 45 ms per frame, or 22 RPS, on an 8x B200 GPU node and yields significantly better visual quality and realism. We show that FastFrames enables real-time interaction in applications such as camera-conditioned and physics-conditioned video generation.",
+      "title": "ContextRenderer: Dynamic-Context Video Generation for Interactive Game Worlds",
+      "abstract": "Interactive game world models separate executable world evolution from visual generation, using video models to render engine-provided scene representations into detailed observations. During sustained gameplay, however, existing generative renderers struggle to follow changing conditions while preserving visual continuity across diverse proxies and target styles. We therefore introduce ContextRenderer, an autoregressive video diffusion framework designed for both dynamic conditioning and cross-proxy generalization. It couples Dynamic-Context Learning (DCL) for chunk-level interaction supervision with Recurrent History Compression (RHC) to follow condition updates while preserving visual continuity within a bounded token budget. Across proxy representations, Cross-Representation Flow Alignment (CRFA) connects proxy reconstruction with appearance and interaction variation through a shared high-fidelity reconstruction. WorldPrism, our interaction-centric dataset constructed from agent-built worlds, AAA gameplay, and open-source videos, supplies the corresponding renderings and chunk-level annotations for these learning tasks. Experiments on GWM-Bench and Solar-Bench show improved reconstruction and visual quality, while qualitative results demonstrate minute-long interactive rendering under changing prompts and subject references. Project page: https://rainzor.github.io/contextrenderer/",
       "authors": [
-        "Gene Chou",
-        "Guandao Yang",
-        "Fujun Luan",
-        "Lars Mescheder",
-        "Wei Dong",
-        "Stephan Richter",
-        "Vladlen Koltun"
+        "Runze Wang",
+        "Fei Zha",
+        "Bing He",
+        "Ke Xu",
+        "Zhongyuan Wu",
+        "Yuxuan Xie",
+        "Wenzheng Wu",
+        "Zhongyuan Liu",
+        "Youcheng Cai",
+        "Ligang Liu"
       ],
-      "url": "http://arxiv.org/abs/2611.23226v1",
+      "url": "http://arxiv.org/abs/2611.25838v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.GR"
       ],
-      "comment": "Project page: https://apple-aiml-research.github.io/ml-fastframes/",
-      "score": 79,
+      "comment": "10 pages, 7 figures, 3 tables",
+      "score": 83,
       "priority": "must-read",
-      "summary_cn": "本文研究自回归视频扩散模型的端到端交互延迟，指出 VAE 解码和 KV 缓存更新等非去噪组件是主要瓶颈。FastFrames 用基于 ConvNeXt 的轻量像素解码器替代 VAE，用轻量 KV 修复网络替代额外的 DiT 缓存更新，并结合持久化缓存、注意力分段、算子融合、CUDA Graph 和上下文并行等系统优化。在 480p 和 B200 GPU 上，1.3B 模型达到 36 毫秒/帧，14B 模型在 8 张 GPU 上达到 45 毫秒/帧，质量与相应基线相当或更优；这些优化也显著加速了相机条件和物理条件视频生成。",
-      "contribution_cn": "1. 提出 FastFrames，一系列面向交互式延迟的快速自回归视频扩散模型，并以端到端每帧延迟和 RPS 作为交互性指标。 2. 设计轻量级 ConvNeXt 像素解码器，在保持视觉质量的同时将解码延迟从 147 毫秒降至约 1 毫秒，并支持直接在像素空间进行对抗训练。 3. 提出轻量 KV 修复网络，用于替代基于 DiT 的 KV 缓存更新，在保持质量的同时显著降低缓存更新开销。 4. 结合硬件感知的缓存管理、QKV 融合、注意力序列分段、CUDA Graph 和上下文并行等系统级优化，降低 DiT 推理延迟。 5. 在 1.3B 和 14B 模型上取得 36 毫秒和 45 毫秒的端到端延迟，并将方法迁移到相机条件和物理条件的视频生成模型。",
-      "relevance_cn": "本文与研究重点高度相关。它直接针对自回归、因果和流式视频生成中的实时性问题，通过减少 VAE 解码、KV 缓存更新和 DiT 执行开销，实现低于 50 毫秒的交互延迟。KV 缓存复用与修复、注意力分段和上下文并行对长上下文及持续生成具有直接参考价值。论文还验证了相机条件和物理条件生成，涉及动作或环境控制下的闭环视觉交互，并讨论了其在世界模拟和机器人预测模型中的应用潜力。不过，实验主体仍集中于文本到视频生成，动作条件扩展仍是未来方向。",
-      "limitations_cn": "论文的评估主要集中在 480p 分辨率和高端 B200 GPU 上，尚未证明在更高分辨率或更轻量硬件上的表现。动作条件模型仍需要更多扩散步数、预测更多潜变量帧并处理额外条件，因此其延迟明显高于本文的文本到视频模型；降低动作条件带来的延迟仍是未来工作。作者指出，长期一致性和物理合理性仍需改进。像素解码器必须针对每个具体模型分别微调，不能像通用 VAE 一样在同系列模型间共享。论文未报告更广泛真实交互场景中的用户体验或闭环任务成功率。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "自回归视频扩散模型根据新的观测和输入生成帧，因此有望成为交互式视觉体验的媒介。然而，现有模型的速度通常慢了几个数量级，无法实现流畅交互。本文提出 FastFrames，一系列快速自回归视频扩散模型，在不牺牲质量的情况下实现交互式延迟。我们对当前最先进模型的推理流程进行了分析，发现通常被视为固定实现细节的操作（如 VAE 解码和 KV 缓存更新）实际上占据了端到端推理延迟的一半以上。我们质疑这些组件是否不可或缺，并以轻量替代方案取代它们。1.3B 版本在单张 B200 GPU 上每帧运行时间为 36 毫秒，即每秒 28 次响应（RPS），同时达到了与当前最先进模型相当的生成质量，而后者速度几乎慢 8 倍。14B 版本在一台配备 8 张 B200 GPU 的节点上每帧运行时间为 45 毫秒，即每秒 22 次响应，并实现了显著更好的视觉质量和真实感。我们展示了 FastFrames 如何在相机条件和物理条件视频生成等应用中实现实时交互。",
-      "note_path": "2026-11-19/2611.23226-fastframes-video-generation-at-interactive-laten.md"
+      "summary_cn": "Interactive game world models separate executable world evolution from visual generation, using video models to render engine-provided scene representations into detailed observations.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, interactive, autoregressive, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
     },
     {
-      "id": "2611.22925",
-      "date": "2026-11-18",
-      "topics": [
-        "Video Generation",
-        "World Models"
-      ],
-      "title": "Code World Model 2.0: Towards Infinite Controllable Video Generation",
-      "abstract": "Visual proxies decouple explicit world-state simulation from photorealistic video synthesis, offering a controllable interface for both offline clip creation and real-time interactive streaming. Yet a practical renderer must address two challenges. Upstream proxies vary from coarse layouts to fine articulated geometry depending on the interaction, and streaming inference must operate in a few causal steps without accumulating drift across self-generated history. We present Invoker-Render, pairing a bidirectional creation model with a causal four-step streaming model under a shared conditioning interface over structural proxies, an appearance reference, and language. Trained on an aligned approximately 200-hour multi-granularity corpus, Invoker-Render honors fine geometric constraints when supplied while synthesizing plausible local motion under coarse proxies, enabling runtime selection of input detail. To bridge bidirectional creation and real-time streaming without compounding step compression and rollout drift, we introduce Progressive Forcing (ProForcing). ProForcing first trains a causal predictor and distills it into a four-step renderer using histories derived from training videos. Training then shifts to continuous self-generated rollouts. A pipelined serving stack supports efficient streaming inference. Experiments show versatile control across proxy families, granularities, and camera paths, consistent gains over recent streaming baselines, and stable 30-minute racing rollouts that preserve scene and subject appearance.",
-      "authors": [
-        "Ruoyu Wang",
-        "Hao Zhong",
-        "Yanming Yang",
-        "Jiahao Tian",
-        "Lin Liu",
-        "Biao Gong",
-        "Guoshan Lu",
-        "Yiding Tian",
-        "Chunhua Shen",
-        "Zhenzhong Lan",
-        "Chi Zhang"
-      ],
-      "url": "http://arxiv.org/abs/2611.22925v2",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project Page: https://www.inclusion-ai.org/CodeWorldModel/",
-      "score": 75,
-      "priority": "must-read",
-      "summary_cn": "本文提出 Invoker-Render，一种将双向视频创作与四步因果流式渲染统一起来的代理条件视频生成框架。模型通过共享接口接收结构代理、外观参考和语言，可同时处理粗粒度布局与精细关节几何，并在缺少细节时生成合理的局部运动。作者构建了约 200 小时的多粒度对齐数据集，并提出 Progressive Forcing：先通过教师强制和重采样强制进行因果适配，再在数据锚定历史上进行四步 DMD/GAN 蒸馏，最后使用自生成历史进行长序列训练。结合 KV 缓存、异步编解码和流水线服务，系统在 1344×768 分辨率下将稳定块周期降至 930 毫秒、吞吐提升至 18 FPS。在 140 个测试序列上，模型在视觉质量、结构与运动、参考保持和总体偏好方面均优于所比较的流式基线，并展示了约 30 分钟的稳定赛车生成。",
-      "contribution_cn": "1. 提出 Invoker-Render，在统一条件接口下支持双向视频创作和四步因果流式视频渲染。2. 提出混合粒度代理条件机制，使同一模型能够遵循精细几何约束，并在粗略代理下补全自然的局部运动。3. 提出 Progressive Forcing 训练流程，将教师/重采样强制、数据锚定历史上的四步 DMD 与 GAN 蒸馏，以及自生成长序列训练分阶段结合，以缓解步数压缩与 rollout 漂移。4. 构建约 200 小时的多粒度视频—代理对齐语料库，包含结构代理、外观参考和层次化文本标注。5. 设计包含非对称流式编解码、KV 缓存复用、融合执行、跨数据包流水线和异步 CPU 传输的低延迟服务架构。6. 在多种代理表示、结构粒度、摄像机路径和长时长流式生成场景下进行评估，取得优于近期基线的结果。",
-      "relevance_cn": "本文与研究重点高度相关。它直接研究视频扩散模型的因果、流式和长视频生成，并通过四步蒸馏降低实时推理成本。其显式结构代理、外观参考和语言条件接口适用于动作条件视觉世界模型：上游引擎可提供布局、摄像机轨迹、实体运动或关节姿态，渲染器负责生成逼真观测。ProForcing 针对自回归历史中的误差累积和长时段漂移，适合闭环交互式仿真。服务端的 KV 缓存持久化、编码/解码重叠、融合执行和流水线调度则直接对应实时生成、缓存复用和低延迟部署。论文还展示了约 30 分钟的连续赛车 rollout，但当前系统主要是代理到视频的渲染器，并非完整的动作决策与环境状态闭环模型。",
-      "limitations_cn": "论文明确指出，静态前缀 sink 和滑动 KV 窗口虽然限制了推理成本并支持长时段生成，但局部上下文之外的视觉细节会在被移出窗口后最终被驱逐，导致模型缺乏真正的长期记忆。作者提出可研究可学习的记忆压缩、时空上下文检索以及持久化的三维状态缓存。当前训练还要求每个 rollout 窗口使用固定的代理粒度，因此尚不支持流式过程中动态切换细节等级。此外，系统尚未与交互式状态引擎实现闭环耦合。论文未明确说明在更广泛的真实世界视频、更多动作类型、不同硬件规模以及人工评估之外的客观指标上的泛化能力。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视觉代理将显式世界状态模拟与逼真视频合成解耦，为离线片段创作和实时交互式流式传输提供了可控接口。然而，实用的渲染器需要解决两个挑战：上游代理会根据交互需求在粗略布局到精细关节几何之间变化；流式推理必须在少量因果步骤中运行，同时避免自生成历史不断累积漂移。我们提出 Invoker-Render，在统一的条件接口下，将双向创作模型与因果四步流式模型结合起来，该接口接收结构代理、外观参考和语言条件。Invoker-Render 在一个经过对齐的约 200 小时多粒度语料库上训练：在提供精细几何约束时遵循这些约束，在粗略代理下合成合理的局部运动，从而支持运行时选择输入细节。为在不叠加步数压缩误差和 rollout 漂移的情况下连接双向创作与实时流式传输，我们引入渐进式强制（Progressive Forcing，ProForcing）。ProForcing 首先训练因果预测器，再利用从训练视频中得到的历史将其蒸馏为四步渲染器；随后，训练转向连续的自生成 rollout。流水线式服务架构支持高效的流式推理。实验表明，该方法能够在不同代理类型、粒度和摄像机路径下实现灵活控制，相较近期流式基线取得稳定提升，并在 30 分钟的赛车 rollout 中保持场景和主体外观的一致性。",
-      "note_path": "2026-11-19/2611.22925-code-world-model-2-0-towards-infinite-controllab.md"
-    },
-    {
-      "id": "2611.22497",
-      "date": "2026-11-17",
+      "id": "2611.26615",
+      "date": "2026-11-19",
       "topics": [
         "World Models"
       ],
-      "title": "Towards Data-Efficient, Real-Time World Models",
-      "abstract": "State-of-the-art world models have been used to produce sequences of gameplay that accord with provided user-input actions. However, high quality, consistent gameplay generation often comes at the cost of inference speed, making real-time interactive play and ideation challenging. The substantial quantities of data used to train state-of-the-art models have also made custom training of these models appear impractical, limiting many of their potential uses in creative fields. In this work we demonstrate a major step towards efficient world models: achieving both fast high-quality inference, and improved data efficiency. This is done by replacing the next-token prediction paradigm with a two-stage discrete diffusion-based approach, introducing a lightweight refinement transformer which carries out iterative masked predictions. Building on an autoregressive world model capable of generating highly consistent and complex sequences over minutes (Kanervisto et al., 2025), we achieve substantial model speed-up (79x) with a modest quality trade-off. Additionally, we demonstrate that this model can be trained to reproduce high-quality, consistent gameplay using a dataset containing approximately one day (28 hours) of gameplay data. Our results demonstrate progress towards removing barriers to the use of world models in settings where real-time inference and data efficiency are essential.",
+      "title": "ScaleWorld: High-Resolution World Generation through Shared Prediction and Refinement",
+      "abstract": "High-resolution generation enables video world models to render fine-grained scene structures and textures, but directly generating high-resolution video incurs substantial computational and memory costs. We present ScaleWorld, a causal video model that unifies low-resolution world prediction and high-resolution refinement within a single shared backbone. By refining its own predictions, ScaleWorld produces high-resolution world videos without requiring a separate refinement model. For each video chunk, the shared backbone first completes a low-resolution prediction and then performs one-step high-resolution refinement conditioned on that prediction. To support efficient streaming generation, we maintain separate causal states with a long low-resolution history for prediction and a short high-resolution history for refinement. To address task interference during distillation, we separate specialist optimization from capability consolidation and introduce task-asymmetric on-policy distillation (TA-OPD). This procedure transfers prediction and refinement behaviors from specialized teachers into a shared student through local velocity matching under their respective sampling and history policies. {Extensive experiments demonstrate that ScaleWorld achieves high-quality world generation with improved computational and memory efficiency.",
       "authors": [
-        "Raluca Stevenson",
-        "David Bignell",
-        "Jennifer C. White",
-        "Tabish Rashid",
-        "Emanuele Aiello",
-        "Mariya Hendriksen",
-        "Junha Hyung",
-        "Sadegh Aliakbarian",
-        "Abdelhak Lemkhenter",
-        "Marko Tot",
-        "Katja Hofmann",
-        "Sarah Parisot"
+        "Yansong Qu",
+        "Wesker Zheng",
+        "Quanjian Song",
+        "Zhiyuan Zhang",
+        "Xiao Cao",
+        "Shengchuan Zhang",
+        "Liujuan Cao"
       ],
-      "url": "http://arxiv.org/abs/2611.22497v1",
+      "url": "http://arxiv.org/abs/2611.26615v1",
       "categories": [
-        "cs.AI"
+        "cs.CV"
       ],
-      "comment": "18 pages, 12 figures, 1 table. Includes supplementary material",
+      "comment": "",
       "score": 72,
       "priority": "must-read",
-      "summary_cn": "本文提出WHAM-RT，一种面向实时交互和低数据训练的动作条件世界模型。它以大型双向骨干Transformer一次性预测下一帧图像草稿，并利用压缩的长时上下文和轻量级离散扩散细化Transformer进行多轮掩码预测，从而缓解自回归逐词元生成的速度瓶颈。在Bleeding Edge游戏环境中，WHAM-RT在单张H100上最高达到17 FPS，相比WHAM加速超过79倍，并能生成至少5分钟的连贯 gameplay。通过对地图覆盖和稀有事件进行有意筛选，仅用约28小时数据训练的模型在长时域稳定性上优于完整数据模型，但仍存在一定质量损失。",
-      "contribution_cn": "1. 提出WHAM-RT两阶段世界模型架构：大型骨干Transformer负责一次性建模时间依赖并生成下一帧草稿，轻量级离散扩散Transformer负责迭代掩码细化。2. 引入基于可学习寄存器式token的上下文压缩，将长历史压缩为紧凑表示，以支持高效细化。3. 在Bleeding Edge环境中实现最高17 FPS、相对WHAM最高约79倍的推理加速，同时保持长时域和复杂交互的一致性。4. 设计基于空间覆盖、偏差抑制和稀有事件保留的数据筛选方法，仅用约28小时游戏数据从头训练模型。5. 通过定量评测、消融实验、长时域测试和小规模人工评估，分析速度、质量、上下文压缩及数据规模之间的权衡。",
-      "relevance_cn": "论文直接对应动作条件视觉世界模型、闭环交互模拟、实时生成和长视频生成方向。模型以控制器动作作为条件，逐帧自回归更新上下文，可在用户控制下生成连贯的游戏世界，最高达到17 FPS，适合实时交互和闭环游玩。其两阶段离散扩散设计通过并行草稿预测、少量掩码细化和上下文压缩，针对自回归模型的顺序解码瓶颈，体现了离散扩散、稀疏式计算和缓存/上下文复用思路。论文还研究了长达至少5分钟的生成、长时域一致性，以及通过数据精选降低训练成本，对低数据世界模型和创意原型开发具有直接参考价值。",
-      "limitations_cn": "实验主要限于单一的Bleeding Edge游戏环境，尚未验证跨环境训练和适应能力。相较于WHAM，WHAM-RT的加速伴随世界建模质量下降，尤其是运动一致性可能因上下文压缩而降低，并且对较高采样温度更不稳定。低数据实验只覆盖一个角色和更窄的数据分布，因此不能直接代表多角色、多环境场景。人工评估规模较小，仅有6名专家评审180次判断。论文未明确说明在真实物理环境、机器人或自动驾驶任务中的泛化性能。",
+      "summary_cn": "ScaleWorld 提出一种面向相机控制视频世界模型的共享因果骨干，将低分辨率流式世界预测与高分辨率流式细化统一在同一个模型中。模型先按块生成可独立使用的低分辨率预测，再利用其上采样潜变量进行单步高分辨率细化；高分辨率结果不会反馈到低分辨率预测历史。为适应两种任务不同的时序需求，预测端维护较长的低分辨率干净 KV 历史，细化端维护较短的高分辨率带噪前向 KV 历史，从而避免额外的高分辨率历史重编码。训练方面，作者先分别优化预测和细化专家，再使用任务非对称在线策略蒸馏，将两者整合到共享学生中，以缓解联合蒸馏的梯度冲突。基于 Wan2.2 TI2V-5B 的实验显示，该方法在 480×832 预测和 960×1664 细化设置下保持了有竞争力的原生预测能力，并取得与独立专家级联相当的高分辨率质量；共享权重降低了峰值显存，带噪前向历史使细化生成阶段速度提升约 2 倍。",
+      "contribution_cn": "1. 提出共享因果世界模型，在单一骨干中同时支持流式低分辨率世界预测和流式高分辨率细化，并保留独立可用的原生预测路径。2. 提出结合任务非对称在线策略蒸馏与非对称因果历史的训练和推理框架，以处理预测与细化在采样方式、历史长度和状态构建上的差异。3. 设计高分辨率细化的带噪前向 KV 历史复用机制，利用生成当前高分辨率块时已经计算的 KV 状态，避免额外的历史构建前向传播。4. 通过实验验证共享模型的预测保持能力、高分辨率生成质量、显存节省和推理加速效果。",
+      "relevance_cn": "ScaleWorld 与研究重点高度相关。它是一个因果、块级自回归的视频世界模型，支持基于相机控制的流式闭环式环境生成，并在生成过程中结合低分辨率预测和高分辨率细化。其长低分辨率历史、短高分辨率历史、KV 缓存复用和共享权重直接涉及长视频生成、实时生成、稀疏或分层时序记忆以及缓存重用。TA-OPD 属于面向少步生成的蒸馏与能力整合方法，有助于在保留世界预测能力的同时实现单步高分辨率细化。论文报告的流式设置为 960p、12 FPS，并显示带噪前向历史使细化阶段生成速度从 26.7 FPS 提升至 53.3 FPS；共享部署使峰值 GPU 内存降低 21.1%，同时保持端到端吞吐。",
+      "limitations_cn": "论文的实验主要基于 Wan2.2 TI2V-5B、相机控制条件以及固定的 480×832 低分辨率和 960×1664 高分辨率设置，能否推广到其他模型、控制信号、场景和分辨率，论文未明确说明。模型采用独立的预测与细化因果状态，且高分辨率结果不反馈到预测历史，因此高分辨率细节无法反过来修正世界状态，论文未明确说明该设计对长期一致性的影响。共享部署虽然降低了权重存储和峰值显存，但两种角色的 KV 状态仍需同时保留；论文未证明其在更长历史、更长视频或更大规模部署中的总体资源优势。带噪前向历史在实验中带来轻微更高的运动补偿残差，说明其可能存在时间稳定性与速度、感知质量之间的权衡。论文提到限制在附录 E 中讨论，但所提供文本未包含该附录的具体内容。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "当前最先进的世界模型已被用于生成与用户输入动作相一致的游戏序列。然而，高质量且连贯的游戏生成通常以推理速度为代价，使实时交互式游玩和创意构思变得困难。用于训练先进模型的大量数据也使这些模型的定制化训练看似不切实际，限制了它们在创意领域中的许多潜在用途。在本工作中，我们朝着高效世界模型迈出重要一步：同时实现快速的高质量推理和更高的数据效率。具体而言，我们用两阶段离散扩散方法取代下一词元预测范式，并引入一个执行迭代掩码预测的轻量级细化Transformer。基于一种能够在数分钟内生成高度连贯且复杂序列的自回归世界模型（Kanervisto等，2025），我们实现了79倍的显著加速，同时仅带来有限的质量损失。此外，我们证明该模型仅使用约一天（28小时）的游戏数据集进行训练，也能够复现高质量且连贯的游戏过程。结果表明，在实时推理和数据效率至关重要的场景中，本工作推动了消除世界模型应用障碍的进程。",
-      "note_path": "2026-11-19/2611.22497-towards-data-efficient-real-time-world-models.md"
+      "abstract_cn": "高分辨率生成能够使视频世界模型呈现细粒度的场景结构与纹理，但直接生成高分辨率视频会带来巨大的计算和内存开销。我们提出 ScaleWorld，这是一种因果视频模型，通过单一共享骨干网络统一低分辨率世界预测与高分辨率细化。ScaleWorld 通过细化自身的预测结果生成高分辨率世界视频，无需独立的细化模型。对于每个视频块，共享骨干网络首先完成低分辨率预测，然后以该预测为条件执行一次高分辨率细化。为支持高效的流式生成，我们维护独立的因果状态：预测使用较长的低分辨率历史，细化使用较短的高分辨率历史。为解决蒸馏过程中的任务干扰问题，我们将专家模型优化与能力整合分开，并提出任务非对称在线策略蒸馏（TA-OPD）。该过程在各自的采样策略和历史状态策略下，通过局部速度匹配，将专门化教师模型的预测与细化行为迁移到共享学生模型中。大量实验表明，ScaleWorld 能够以更高的计算和内存效率实现高质量的世界生成。",
+      "note_path": "2026-11-20/2611.26615-scaleworld-high-resolution-world-generation-thro.md"
     },
     {
-      "id": "2611.22691",
-      "date": "2026-11-17",
+      "id": "2611.26040",
+      "date": "2026-11-19",
       "topics": [
-        "World Models"
+        "Autoregressive and Streaming Video"
       ],
-      "title": "Making the World React Realistically: A Closed-Loop Interactive World Model for Autonomous Driving",
-      "abstract": "World models (WMs) generate driving scenarios beyond recorded logs, enabling the training and evaluation of autonomous driving systems in unseen interactions. However, existing WMs struggle to ensure both behavioral realism and visual fidelity, since they overlook the relationship between vehicle interactions and the ego visual observations. We propose a closed-loop interactive WM that couples behavior modeling and visual rendering. First, imitation-learned background-vehicle (BV) policies are fine-tuned with multi-agent reinforcement learning in the closed loop against an end-to-end ego planner that reacts to the rendered images, so that their interaction behaviors match those in real logs. Second, the viewpoints exposed by these interactions guide a per-Gaussian diagnosis of each 3D Gaussian vehicle asset, which attenuates view-dependent colors on under-observed Gaussians and fills never-observed surfaces with generated Gaussians, while preserving the observed appearance. Third, signal lights are rendered according to the driving intentions of the vehicles, by an editor that learns the light states unobserved for a vehicle through counterfactual fine-tuning with a light-state classifier. On long-tail closed-loop scenarios, our method reduces the divergence from real-world interaction behaviors by 85% and improves novel-view vehicle PSNR by 2.0dB over the state-of-the-art WM. The significance of BV light signaling in WMs is shown, as the rendered signal lights conveying BV driving intentions indirectly impact ego driving behaviors in a quarter of the scenarios.",
+      "title": "Streaming-AAA: Streaming AAA Game Video Generation at High Resolution, High Frame Rate, and Low Latency",
+      "abstract": "Controllable streaming video generation offers a promising route toward interactive game simulation, yet existing methods remain far from practical gameplay. They often fail to jointly achieve high visual fidelity, high frame rates, and low interaction latency, resulting in poor responsiveness and degraded user experience. We present Streaming-AAA, a new paradigm for controllable infinite generation of AAA-quality game videos. Our system generates 1080p gameplay videos at 43 FPS with 198 ms end-to-end latency interaction on merely NVIDIA A800 GPUs, while supporting long-horizon play without severe temporal degradation or collapse. Streaming-AAA is built upon three key designs. First, we redesign the VAE architecture for efficient high-resolution decoding, enabling real-time synthesis at 1080p. Second, we pretrain the diffusion model using diffusion forcing and significantly extend the temporal training horizon, allowing the model to capture long-term dependencies and maintain persistent memory. Third, we perform post-training distillation and memory compression to improve inference efficiency while retaining visual quality and temporal consistency. Experiments show that Streaming-AAA substantially improves visual fidelity, frame rate, latency, and long-term stability over prior controllable video generation approaches, enabling a significantly more playable experience for interactive AAA game video generation.",
       "authors": [
-        "Jia Hu",
-        "Yang Chang",
-        "Panqu Wang",
-        "Zhijun Fu",
-        "Chang Liu",
-        "Changjian Yu",
-        "Jintao Lai"
+        "Zhihao Hu",
+        "Jianqi Ma",
+        "Jun Zhang",
+        "Jiayang Bai",
+        "Haifeng Shi",
+        "Yanxiang Zhuang",
+        "Zhongqian Sun",
+        "Weidong Zhang",
+        "Wei Yang"
       ],
-      "url": "http://arxiv.org/abs/2611.22691v1",
+      "url": "http://arxiv.org/abs/2611.26040v1",
       "categories": [
-        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "must-read",
+      "summary_cn": "本文提出 Streaming-AAA，用于根据玩家动作、天气和时间等条件，因果地持续生成高分辨率 AAA 游戏视频。系统面向《原神》构建了自动化数据采集系统，收集约 2.2 万段 1080p、30 FPS 视频和约 4000 万帧数据。方法采用高分辨率视频 VAE、因子化时空 3D-UNet 扩散模型、Diffusion Forcing 长上下文预训练、DMD 训练后蒸馏，以及结合长短期信息的混合 KV 缓存。实验显示，系统可在 1080p 下达到约 43 FPS，理论动作到像素延迟约 198 毫秒，并在一小时连续生成中保持稳定；但模型主要针对单一游戏训练，跨游戏泛化能力有限。",
+      "contribution_cn": "1. 提出 Streaming-AAA，一种面向 AAA 游戏的可控无限时域流式视频生成框架，在 1080p 下达到 43 FPS 和约 198 毫秒端到端交互延迟。\n2. 设计因果高分辨率视频 VAE，通过时空压缩、多阶段课程训练和 Pixel Shuffle 解码降低高分辨率重建开销。\n3. 构建因子化时空 3D-UNet 潜空间扩散模型，将空间纹理、时间动态和条件控制解耦，并支持动作、天气、时间等帧对齐条件。\n4. 使用逐帧独立噪声调度的 Diffusion Forcing 进行短期到长上下文预训练，并通过 DMD 将模型对齐到两步流式推理。\n5. 提出混合长短期 KV 缓存和并行化教师强制推理，在仅缓存 30 个 token 的情况下保留长期场景信息并降低推理延迟。",
+      "relevance_cn": "本文与研究重点高度相关。它直接研究动作条件的视频扩散世界模型和闭环交互式模拟：模型根据历史帧、未来用户控制和记忆状态持续预测后续视频。Diffusion Forcing、长上下文训练和混合 KV 缓存分别对应长视频生成、因果流式生成、稀疏注意力与缓存复用；DMD 蒸馏和两步去噪则用于实时生成加速。系统在 1080p、43 FPS 和约 198 毫秒延迟下进行动作响应，体现了面向实时交互和可玩性的工程优化。",
+      "limitations_cn": "论文明确指出，当前方法主要针对单一游戏《原神》的可玩性进行设计和优化，训练数据来自单一游戏，因此对未见过的游戏环境、艺术风格和游戏机制的泛化能力有限。将其扩展为无需针对每款游戏单独微调、能够处理多种游戏的通用游戏生成模型，仍是开放问题。此外，论文报告的 198 毫秒延迟是理论计算延迟，不包含网络传输和编解码开销；天气和时间标注由视觉语言模型估计而非直接从游戏引擎读取。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "可控流式视频生成是实现交互式游戏模拟的一条有前景的路径，但现有方法距离实际游戏体验仍相去甚远。它们通常无法同时实现高视觉保真度、高帧率和低交互延迟，导致响应性差、用户体验下降。我们提出 Streaming-AAA，一种用于可控无限生成 AAA 级游戏视频的新范式。我们的系统仅使用 NVIDIA A800 GPU，即可生成 1080p、43 FPS 的游戏视频，并实现 198 毫秒的端到端交互延迟，同时支持长时段游玩，且不会出现严重的时间退化或崩溃。Streaming-AAA 建立在三项关键设计之上。首先，我们重新设计了 VAE 架构，以实现高效的高分辨率解码，从而支持 1080p 实时合成。其次，我们使用 Diffusion Forcing 对扩散模型进行预训练，并显著延长时间训练跨度，使模型能够捕获长期依赖并维持持久记忆。第三，我们进行训练后蒸馏和记忆压缩，在保留视觉质量与时间一致性的同时提升推理效率。实验表明，与以往的可控视频生成方法相比，Streaming-AAA 在视觉保真度、帧率、延迟和长期稳定性方面均取得了显著提升，从而为交互式 AAA 游戏视频生成带来了更具可玩性的体验。",
+      "note_path": "2026-11-20/2611.26040-streaming-aaa-streaming-aaa-game-video-generatio.md"
+    },
+    {
+      "id": "2611.26540",
+      "date": "2026-11-19",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "AURA: AUdio-dRiven streaming Avatar",
+      "abstract": "Current audio-driven video diffusion models can synthesize realistic talking-head videos but generally require dozens of diffusion denoising steps over multi-second video chunks, making them unsuitable for streaming applications such as voice assistants and virtual avatars, where low-latency and online causal generation are required properties. AURA generates video chunk by chunk with a rolling KV cache, requiring only the audio of the current chunk to start generating, rather than a multi-second audio look-ahead like bidirectional models. It comes in two sizes: AURA 1.3B streams 576p video in real time on a single GPU (20.7 fps for a 16 Hz playback rate), making it suited to interactive avatar applications, and AURA 5B streams 720p video at 9.7 fps. Our two-stage distillation pipeline first aligns the causal student with the teacher, by training it to match the teacher's trajectories with fewer diffusion steps and a chunk-wise sliding window causal attention mask, then applies Distribution Matching Distillation (DMD) with backward simulation to close the remaining quality gap. On standard talking-head benchmarks, AURA 1.3B runs 23x faster than its own bidirectional teacher and reaches a quality comparable to TalkVerse at a lower resolution, and AURA 5B matches its TalkVerse teacher at 720p while running 17x faster. To support reproducibility and further research on streaming avatar generation, we release the weights of both models along with a dataset of 30K synthetic videos and their precomputed teacher trajectories.",
+      "authors": [
+        "Nathaniel Cohen",
+        "Nicolas Dufour",
+        "Amélie Royer",
+        "Alasdair Newson",
+        "Patrick Pérez"
+      ],
+      "url": "http://arxiv.org/abs/2611.26540v1",
+      "categories": [
+        "cs.CV",
         "cs.AI"
       ],
-      "comment": "11 pages, 5 figures",
-      "score": 65,
+      "comment": "BMVC 2026. Project page: https://kyutai.org/aura",
+      "score": 72,
       "priority": "skim",
-      "summary_cn": "World models (WMs) generate driving scenarios beyond recorded logs, enabling the training and evaluation of autonomous driving systems in unseen interactions.",
-      "contribution_cn": "We propose a closed-loop interactive WM that couples behavior modeling and visual rendering.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, closed-loop, driving",
+      "summary_cn": "Current audio-driven video diffusion models can synthesize realistic talking-head videos but generally require dozens of diffusion denoising steps over multi-second video chunks, making them unsuitable for streaming applications such as voice assistants and virtual avatars, where low-latency and online causal generation are required properties.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：interactive, simulation, streaming, distillation, cache, kv cache",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -170,58 +162,87 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.22592",
-      "date": "2026-11-17",
+      "id": "2611.26211",
+      "date": "2026-11-19",
       "topics": [
         "World Models"
       ],
-      "title": "Distilling World Action Models for Efficient Bimanual Manipulation via Anchored Path Matching",
-      "abstract": "World Action Models (WAMs) jointly generate future video and robot actions through iterative denoising. Few-step distillation reduces the number of model evaluations, but its coarse updates can move the student away from the teacher's trajectory. We propose Anchored Path Matching (APM), which supervises endpoint and short-transition predictions from states reached by the student. From each state, we continue the teacher to zero noise and use its endpoint and first intermediate state as targets. Modality-routed adapters learn to match both targets from the same starting state. When the two gradients conflict, anchor-priority updates preserve the endpoint gradient and remove the opposing component of the local gradient within each modality. One checkpoint supports 1-, 2-, and 4-step joint generation. The sampling budget can be chosen at deployment without retraining or teacher queries. On RoboTwin 2.0, we train only on Clean demonstrations and evaluate directly on the domain-randomized Random setting. At one step, APM improves closed-loop success over continued base distillation at matched inference budgets by 2.0 percentage points on Clean and 1.4 on Random. Video peak signal-to-noise ratio (PSNR) rises from 30.169 to 32.317 dB, with gains in structural similarity (SSIM) and learned perceptual image patch similarity (LPIPS). On two real-robot tasks, APM improves success over the one-step teacher and reduces control-cycle latency by $21.3\\times$ relative to the eight-step teacher.Project page: https://jialonglong.github.io/Anchored-Path-Matching/.",
+      "title": "SpecWM: Turning Verification into Refinement for Streaming World Models",
+      "abstract": "Recently, video world models have advanced interactive generation, with large models offering higher quality and smaller models enabling faster inference. Existing speculative methods combine their strengths through fast draft generation and selective target regeneration guided by rewards on decoded frames. However, verification covers only the external scorer's evaluation dimensions and adds decoding and scoring costs. Moreover, these scores provide no correction, requiring costly target regeneration for rejected drafts. To address these limitations, we propose Speculative World Model (SpecWM), a unified, training-free inference framework for streaming world models. It verifies draft chunks using the target's latent velocity field. Verification also yields a reusable correction; two thresholds select Accept, Refine, or Reject. Specifically, one-step refinement reuses it to improve perceptual quality, while three-step refinement strengthens camera following and trajectory consistency. These findings motivate transition-aware refinement. On WBench Navigation, SpecWM improves visual quality at 1.63$\\times$ speedup over the target and raises NavScore from the draft's 75.99 to 85.63, achieving the best quality-speed-control trade-off. Additionally, our LongSpecBench shows sustained quality and control over long, multi-turn rollouts, while experiments on Hy-Nomas validate SpecWM across backbones and denoising budgets.",
       "authors": [
-        "Jialong Liu",
-        "Junjie He",
-        "Yandu Chen",
-        "Bin Zhou",
-        "Heng Su",
-        "Peijun Tang",
-        "Jianan Wang",
-        "Changhao Chen"
+        "Jiaming Li",
+        "Lingzhen Li",
+        "Xiaze Yang",
+        "Chenyu Zhu",
+        "Kaiqi Liu",
+        "Xiaotong Zhao",
+        "Songlian Li",
+        "Toyota Li",
+        "Alan Zhao",
+        "Haobin Zhong",
+        "Yue Ma",
+        "Zhiyuan Ma"
       ],
-      "url": "http://arxiv.org/abs/2611.22592v1",
+      "url": "http://arxiv.org/abs/2611.26211v1",
       "categories": [
-        "cs.CV",
-        "cs.RO"
+        "cs.CV"
       ],
       "comment": "",
-      "score": 63,
+      "score": 64,
       "priority": "skim",
-      "summary_cn": "World Action Models (WAMs) jointly generate future video and robot actions through iterative denoising.",
-      "contribution_cn": "We propose Anchored Path Matching (APM), which supervises endpoint and short-transition predictions from states reached by the student.",
-      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：closed-loop, few-step, distillation, efficient",
+      "summary_cn": "Recently, video world models have advanced interactive generation, with large models offering higher quality and smaller models enabling faster inference.",
+      "contribution_cn": "To address these limitations, we propose Speculative World Model (SpecWM), a unified, training-free inference framework for streaming world models.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, streaming",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.24171",
-      "date": "2026-11-18",
+      "id": "2611.26178",
+      "date": "2026-11-19",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "FlexVSR: Continuous-Scale Super-Resolution for Streaming Video Generation",
+      "abstract": "Real-time streaming video generation has gained rapid momentum in live content creation and interactive media. Deploying such systems in practice requires flexible scaling factors to accommodate diverse source resolutions, target displays, and computational budgets. However, extending fixed-scale generative video super-resolution (VSR) to varying target scales poses two challenges: downsampling from a larger fixed scale incurs redundant cost, while re-optimizing the diffusion transformer (DiT) is costly and alters the shared generative prior. To address both, we propose FlexVSR, a decoupled framework for continuous-scale streaming generative VSR with supervision at only a few scales. Our key insight is that naively resampling fixed-scale latents onto a new target grid induces scale-dependent input mismatch, which can be effectively addressed through parameter-efficient, scale-aware adaptation of the latent interface without updating the DiT. To this end, FlexVSR introduces ReLSA (Refined Latent Scale Adaptation), a lightweight latent adapter that constructs and refines target-grid latents before they enter the DiT, enabling a shared frozen VSR prior to generalize across continuous scales with only 0.274M trainable parameters and an adaptation cost of 7.3 H100 GPU-hours, while introducing no additional temporal dependencies and preserving the native causal streaming protocol. Extensive experiments demonstrate competitive or superior reconstruction and temporal quality, lower latency than most native-scale streaming baselines and offline methods, and effective generalization to unseen continuous scales, filling the continuous-scale gap in real-time streaming generative VSR.",
+      "authors": [
+        "Ji Wang",
+        "Haonan An",
+        "Jiasheng Zhang",
+        "Renlong Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.26178v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "23 pages, 5 figures",
+      "score": 63,
+      "priority": "skim",
+      "summary_cn": "Real-time streaming video generation has gained rapid momentum in live content creation and interactive media.",
+      "contribution_cn": "To address both, we propose FlexVSR, a decoupled framework for continuous-scale streaming generative VSR with supervision at only a few scales.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, streaming, real-time, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.25667",
+      "date": "2026-11-19",
       "topics": [
         "World Models"
       ],
-      "title": "Efficient World-Model Planning via Physics-Guided Search Distillation",
-      "abstract": "World models support autonomous driving by evaluating candidate trajectories through predicted future scene evolution. However, accurate future prediction does not ensure road-compliant execution; when all candidates violate road boundaries, re-ranking cannot select a feasible trajectory. We propose Physics-Guided Search Distillation (PGSD), a single-view planning framework that combines future representations and execution feedback for verified beyond-pool repair through three components: (1) Execution-Aware Selection checks ego-vehicle road compliance under simulated execution and selects the highest-scoring feasible trajectory; (2) a Clearance-Aware Search Teacher generates beyond-pool corrections and selects demonstrations with larger minimum road-boundary clearance during execution to buffer imitation errors; and (3) a Future-Conditioned Repair Student predicts one correction from rewarder features and execution feedback for single-rollout verification. The pretrained planner and rewarder remain frozen; no future scenes are generated online. On NAVSIM v1, single-view PGSD achieves 90.97 PDMS, exceeding all compared prior single-view planners and retaining 73.2% of the search teacher's PDMS gain over execution-aware selection. On NAVSIM v2 navhard, it reaches 38.96 EPDMS, improving on WorldDrive by 11.24 points (40.5%). The student replaces up to ten search rollouts with a single verification rollout per repair trigger. HUGSIM Hard examples provide qualitative evidence of zero-shot transfer.",
+      "title": "CauSyncVLA: Causal Latent World Modeling for Asynchronous Robot Control",
+      "abstract": "Vision-Language-Action (VLA) policies must react while visual inference is still running. Overlapping computation and execution reduces waiting, yet leaves perceptual memory stale and successive action chunks disconnected. We present CauSyncVLA, an asynchronous dual-system controller that aligns perceptual-memory prediction and trajectory correction with actual robot execution. Rather than forecasting pixels or physical states, a Causal Latent World Model predicts current perceptual memory from delayed visual anchors and executed state-action history, supervised through action-sensitive distillation to retain the frozen expert's control response. Conditioned on this updated memory, Predictive Flow Warm-Starting (PFWS) aligns the unexecuted action horizon for single-step flow correction without extra training. On LIBERO-10, CauSyncVLA reaches 93.8% success at 5.04$\\times$ inference throughput, improving closed-loop robustness and robot motion smoothness.",
       "authors": [
-        "Hongyu Zhang",
-        "Xiaoshuai Hao",
-        "Heye Huang",
-        "Qingwen Meng",
-        "Wenjun Shi",
-        "Jianao Xu",
-        "Xin Hu",
-        "Xuanru Jin",
-        "Jingyi Zhang",
-        "Baicang Guo"
+        "Xu Pan",
+        "Chubin Zhang",
+        "Xingrui Yu",
+        "Runmin Lan",
+        "Zihao Wang",
+        "Wenkai Guo",
+        "Bofang Jia",
+        "Bo An",
+        "Ziwei Wang"
       ],
-      "url": "http://arxiv.org/abs/2611.24171v1",
+      "url": "http://arxiv.org/abs/2611.25667v1",
       "categories": [
         "cs.RO",
         "cs.CV"
@@ -229,102 +250,71 @@
       "comment": "",
       "score": 58,
       "priority": "skim",
-      "summary_cn": "World models support autonomous driving by evaluating candidate trajectories through predicted future scene evolution.",
-      "contribution_cn": "We propose Physics-Guided Search Distillation (PGSD), a single-view planning framework that combines future representations and execution feedback for verified beyond-pool repair through three components: (1) Execution-Aware Selection checks ego-vehicle road compliance under simulated execution and selects the highest-scoring feasible trajectory; (2) a Clearance-Aware Search Teacher generates beyond-pool corrections and selects demonstrations with larger minimum road-boundary clearance during execution to buffer...",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, driving, distillation, efficient",
+      "summary_cn": "Vision-Language-Action (VLA) policies must react while visual inference is still running.",
+      "contribution_cn": "We present CauSyncVLA, an asynchronous dual-system controller that aligns perceptual-memory prediction and trajectory correction with actual robot execution.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, closed-loop, distillation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.22880",
-      "date": "2026-11-17",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Learning Agent-Centric Vision-Language-Action World Models for Autonomous Driving",
-      "abstract": "Recent progress in integrating vision-language-action (VLA) models with world modeling has significantly advanced end-to-end autonomous driving by allowing systems to reason about imagined futures instead of merely reacting to current observations. However, most world VLA models generate future frames at the pixel level with plenty of dense visual tokens. Although such generated futures can be visually plausible, they preserve many driving-irrelevant appearance details, i.e., only a small portion of the tokens directly encode critical planning-relevant factors, such as agent geometry, motion dynamics, and interactions. This introduces a significant performance bottleneck. An important question thus arises: what world state should a world VLA model reason over to support planning beyond pixel-level prediction? We argue that planning-oriented world modeling should focus on a compact and structured agent-centric latent state that captures the interactions between objects in the driving scene over time. As such, we introduce AgentWorld, an agent-centric VLA world model that uses discrete agent tokens jointly for reasoning and trajectory planning. Each token is dynamically grounded to a surrounding agent associated with its object's state, such as semantic identity, 3D geometry, motion, and interaction context. AgentWorld learns these tokens through three key processes: explicit geometric grounding, reasoning-oriented supervised fine-tuning, and agent-oriented reinforcement learning. Extensive open-loop and closed-loop experiments under diverse driving scenarios show that AgentWorld enhances planning capabilities, fully exploits visual evidence and agent dynamics, and yields interpretable agent-centric world states.",
-      "authors": [
-        "Guoqing Wang",
-        "Pin Tang",
-        "Xiangxuan Ren",
-        "Chao Ma"
-      ],
-      "url": "http://arxiv.org/abs/2611.22880v1",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "comment": "Accepted by NeurIPS 2026",
-      "score": 57,
-      "priority": "skim",
-      "summary_cn": "Recent progress in integrating vision-language-action (VLA) models with world modeling has significantly advanced end-to-end autonomous driving by allowing systems to reason about imagined futures instead of merely reacting to current observations.",
-      "contribution_cn": "As such, we introduce AgentWorld, an agent-centric VLA world model that uses discrete agent tokens jointly for reasoning and trajectory planning.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, closed-loop, driving",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.24408",
+      "id": "2611.24869",
       "date": "2026-11-18",
       "topics": [
         "World Models"
       ],
-      "title": "StrideWorld: Benchmarking Scene Rigidity and Action Consistency in Interactive Video World Model",
-      "abstract": "Interactive video world models turn user commands into the exploration of a generated scene, which requires the scene to keep its 3D structure as the camera moves and each action to keep a stable effect. Existing benchmarks mostly evaluate these properties against references fitted to the video under test, either a scene reconstructed from its own frames or a camera trajectory aligned to the command path with a free scale. Such references can absorb gradual scene deformation and changes in pace and route length, so these errors can pass undetected. We therefore introduce StrideWorld, a benchmark whose references are fixed before the motion they judge. It evaluates scene rigidity against the ground-truth geometry of the start view, and action consistency against the stride of each action, the camera motion of one command. The stride is measured on the model's first steps and then used to test the steps that follow, so each model is judged only against its own steps. Its measurements are validated on rendered videos with known camera motion, and its scores agree with human judgments. Across \\nvideos{} videos generated by \\nmodels{} open models from $140$ start views, all models but one deform their scenes as the camera moves, with offsets up to $7.3$ times those of a rigid rendering along the same camera path. Most models keep a steady pace when a single action is held. Along composed routes, several models often stall, and most completed routes end away from the positions predicted by each model's own strides. Only the two models that scale commands by the estimated scene depth bring most routes close to these positions. Fine-tuning two models on a few rendered clips removes most of their mid-route stalls. Code, data, and a leaderboard are publicly available at https://github.com/chuangwang123/strideworld.",
+      "title": "WorldRuler: Interactive World Modeling under Configurable Rules",
+      "abstract": "Rules govern how player actions change interactive worlds. Different rules create distinct gameplay experiences within similar scenes and action spaces. For customizable gameplay, generative world models must follow user-defined rules beyond real-world behaviors. However, realizing user-defined rules presents two challenges: Rule-State Persistence and Rule-to-Visual Realization. The former requires preserving rule definitions, dependencies, and world states across saving and loading, so that restored worlds follow the established rules. The latter requires accurately realizing rule-induced changes on designated objects and attributes, particularly when affected objects are unseen. In this paper, we propose WorldRuler, which organizes rule definitions, dependencies, and object states in an executable 3D rule graph and connects rule execution, video generation, and perceptual feedback in a closed loop. The graph supports joint saving and restoration of rules and world states, while dynamic object binding grounds rule-specified entities in visual instances and uses stored states to constrain generation from their first appearance. We further introduce object attribute state replacement and counterfactual reconstruction training, enabling accurate attribute control and compatible appearance and motion changes while limiting interference with unrelated content. We develop an automated data collection and annotation pipeline using GTA-V and Habitat to construct RuleVerse, a dataset of rule-driven interactions with detailed state and event annotations, including cases where rules take effect before affected objects become visible. Extensive experiments demonstrate the effectiveness of WorldRuler in preserving rule-state consistency across saving and loading and accurately realizing rule outcomes on designated objects and attributes.",
       "authors": [
-        "Chuang Wang",
-        "Rui Nie",
-        "Jie Song",
-        "Junyuan Gao",
-        "Jiahe Song",
-        "Haitao Zhou",
-        "Boyu Zhu",
-        "Xing Li",
-        "Jiang Wu",
-        "Conghui He",
-        "Qian Yu",
-        "Weijia Li"
+        "Mingliang Zhai",
+        "Chuanhao Li",
+        "Jiaming Tan",
+        "Zhen Li",
+        "Yuwei Wu",
+        "Yunde Jia",
+        "Zian Meng",
+        "Yuanyang Yin",
+        "Kaipeng Zhang"
       ],
-      "url": "http://arxiv.org/abs/2611.24408v1",
+      "url": "http://arxiv.org/abs/2611.24869v2",
       "categories": [
-        "cs.CV"
+        "cs.AI"
       ],
-      "comment": "",
-      "score": 56,
+      "comment": "V2 corrects errors in the author list and institutional affiliations. Homepage: https://alaya-lab.github.io/WorldRuler/",
+      "score": 57,
       "priority": "skim",
-      "summary_cn": "Interactive video world models turn user commands into the exploration of a generated scene, which requires the scene to keep its 3D structure as the camera moves and each action to keep a stable effect.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive",
+      "summary_cn": "Rules govern how player actions change interactive worlds.",
+      "contribution_cn": "In this paper, we propose WorldRuler, which organizes rule definitions, dependencies, and object states in an executable 3D rule graph and connects rule execution, video generation, and perceptual feedback in a closed loop.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, interactive, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.22561",
-      "date": "2026-11-17",
+      "id": "2611.26334",
+      "date": "2026-11-19",
       "topics": [
-        "World Models"
+        "Autoregressive and Streaming Video"
       ],
-      "title": "Plausible Videos Can Lead to Poor Decisions: Diagnosing and CURE-ing World Models for Planning",
-      "abstract": "Action-conditioned world models are increasingly used as world models for planning, yet a world model that makes plausible, realistic-looking videos that are consistent with the training data can produce poor decisions. We address two key questions: (1) when can we trust a world model for planning, and (2) what should we do when we cannot? We introduce CURE (Certify, Upweight, Rollout, Explore), a certificate-guided technique that assesses whether a world model can be trusted for planning and determines what to do next: whether to upweight the training data to debias the model; roll out more samples at test time; or explore by collecting new data where support (how well the training data cover the planner's decisions) is missing. We deploy CURE across multiple domains, spanning simulated physics based on PhyWorld, MuJoCo arm control, and Language-Table pushing in simulation and on real videos. The decisions our certificate trusts have lower regret than those it does not (e.g., 0.06 vs. 0.38 on Language-Table sim and 0.07 vs. 0.38 on MuJoCo contact), whereas video perceptual quality does not identify good decisions. By focusing on decision quality rather than perceptual quality, CURE lowers regret over the best pessimistic decision rule by 10-25% across support levels, and over world-action models, search and policy learning by 41-64%, given the same data.",
+      "title": "Online Temporal Rotations for 2 Bit KV-Cache Quantization in Video Diffusion Transformers",
+      "abstract": "Video diffusion transformers reuse key--value (KV) caches across denoising steps, which quickly becomes a bottleneck for long video generation. We find that quantizing temporally distant cache vectors leads to a large range and high quantization error, but that nearby video tokens in the KV-cache share a persistent pattern per channel. These patterns also vary across videos, motivating rotations that are adapted to each video's unique cache. We propose Temporal Rotation Quantization (TRQ), a method that rotates frames in the cache that are adjacent in time before quantization. For each block of temporally adjacent cache vectors, TRQ fits an orthogonal transform that maps the block's per-channel means to a vector that is close to a constant across channels. To keep the quantization format lightweight, we parameterize this rotation as a tree of $2 \\times 2$ planar rotations, each stored with only two bits, followed by a fixed Hadamard transform shared across all blocks. The rotations are fit without gradients or changes to model weights, and we prove that a simple greedy fit is globally optimal for our 'mean-flattening' objective. The transforms are fit online for each new video, and we release fused Triton kernels to make this process efficient at inference. At 2-bit precision and matched compression, TRQ improves VBench subject consistency over the state-of-the-art method QVG from 90.38 to 92.02 on LongCat-Video-13B and from 86.33 to 87.61 on HY-WorldPlay-8B, as well as improving other metrics.",
       "authors": [
-        "Raphael C. Kim",
-        "Michele Santacatterina",
-        "Jingsen Zhu",
-        "Ramin Zabih"
+        "Ryan Lucas",
+        "Petros Prastakos",
+        "Rahul Mazumder"
       ],
-      "url": "http://arxiv.org/abs/2611.22561v1",
+      "url": "http://arxiv.org/abs/2611.26334v1",
       "categories": [
-        "cs.CV"
+        "cs.CV",
+        "cs.AI"
       ],
       "comment": "",
-      "score": 55,
+      "score": 56,
       "priority": "skim",
-      "summary_cn": "Action-conditioned world models are increasingly used as world models for planning, yet a world model that makes plausible, realistic-looking videos that are consistent with the training data can produce poor decisions.",
-      "contribution_cn": "We introduce CURE (Certify, Upweight, Rollout, Explore), a certificate-guided technique that assesses whether a world model can be trusted for planning and determines what to do next: whether to upweight the training data to debias the model; roll out more samples at test time; or explore by collecting new data where support (how well the training data cover the planner's decisions) is missing.",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, simulation",
+      "summary_cn": "Video diffusion transformers reuse key--value (KV) caches across denoising steps, which quickly becomes a bottleneck for long video generation.",
+      "contribution_cn": "We propose Temporal Rotation Quantization (TRQ), a method that rotates frames in the cache that are adjacent in time before quantization.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：long video, cache, efficient, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 3
+  "cursor_summaries_completed": 2
 }
