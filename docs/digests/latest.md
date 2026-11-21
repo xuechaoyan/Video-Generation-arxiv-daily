@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-21T04:21:29+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-21T18:18:41+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -18,7 +18,7 @@
 - **评分**：72/100
 - **作者**：Yansong Qu, Wesker Zheng, Quanjian Song et al.
 - **方向**：World Models
-- **一句话**：论文提出 ScaleWorld，一个使用单一共享骨干网络同时完成低分辨率流式世界预测和高分辨率流式细化的因果视频模型。模型先逐块生成低分辨率视频，再利用同一模型将其细化为高分辨率结果；预测与细化分别维护较长的低分辨率清晰历史和较短的高分辨率噪声前向历史。训练上先分别优化预测和细化专家，再通过 TA-OPD 将两种能力整合到共享学生模型中。实验显示，该方法在…
+- **一句话**：论文提出 SCALEWORLD，用一个共享因果视频骨干同时完成低分辨率、摄像机控制的流式世界预测和高分辨率流式细化。模型先逐块生成低分辨率结果，再基于该结果执行单步高分辨率细化；两种任务使用独立的因果状态，预测保留较长的低分辨率清洁历史，细化保留较短的高分辨率噪声前向 KV 历史。训练上先分别优化预测和细化专家，再通过 TA-OPD 将能力整合到共享模型。…
 - **精读笔记**：[打开笔记](../notes/2026-11-21/2611.26615-scaleworld-high-resolution-world-generation-thro.md)
 
 ### 3. [Streaming-AAA: Streaming AAA Game Video Generation at High Resolution, High Frame Rate, and Low Latency](http://arxiv.org/abs/2611.26040v1)
@@ -26,7 +26,7 @@
 - **评分**：72/100
 - **作者**：Zhihao Hu, Jianqi Ma, Jun Zhang et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：Streaming-AAA 面向可控的无限长 AAA 游戏视频生成，重点解决高分辨率、高帧率、低延迟和长时稳定性难以兼顾的问题。系统使用重新设计的高分辨率因果视频 VAE、分解空间与时间建模的 3D UNet 潜空间扩散模型，以及支持动作、天气、时间等条件的统一跨注意力机制。通过 Diffusion Forcing 长上下文预训练、DMD 训练后蒸馏、混合…
+- **一句话**：论文提出 Streaming-AAA，用于根据玩家动作、天气和时间等条件，以流式方式无限生成 AAA 游戏视频。系统针对高分辨率解码、长时域一致性和实时推理三类瓶颈，采用高效视频 VAE、因子化 3D UNet 潜空间扩散模型、Diffusion Forcing 长上下文预训练、DMD 训练后蒸馏以及混合长短期 KV 缓存。基于《原神》数据，系统在 NVI…
 - **精读笔记**：[打开笔记](../notes/2026-11-21/2611.26040-streaming-aaa-streaming-aaa-game-video-generatio.md)
 
 ## 快速浏览
