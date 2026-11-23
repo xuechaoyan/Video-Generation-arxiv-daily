@@ -1,0 +1,317 @@
+{
+  "generated_at": "2026-11-23T04:09:04+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2611.27074",
+      "date": "2026-11-20",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Hindsight Forcing: Learning Better History from the Future in Autoregressive Video Diffusion",
+      "abstract": "Few-step autoregressive video diffusion enables real-time streaming generation, with each generated chunk serving as historical context for subsequent generation. To avoid the memory explosion of backpropagation through time, previous self-rollout methods typically truncate cross-chunk gradients or detach historical latents. As a result, earlier denoising computations receive no downstream feedback through the generated history on how to synthesize frames that facilitate subsequent generation, leading to visual drift and structural collapse as rollouts extend. To address this limitation, we propose Hindsight Forcing, which allows historical chunks to learn directly from future outcomes by decoupling forward generation from backward credit assignment via a latent straight-through bridge. In the forward pass, each chunk completes a full multi-step rollout to update the KV cache. In the backward pass, the bridge routes gradients from future losses back to a single selected denoising step per historical chunk, training both the context writer and historical denoiser on shared parameters without retaining the full trajectory graph. Remarkably, Hindsight Forcing requires no additional model parameters, architecture modifications, or separate trajectory replay. Extensive experiments on VBench demonstrate that Hindsight Forcing outperforms existing baselines in overall visual quality and dynamic motion, while ablation studies validate the benefit of supervising historical denoising. Code is available at https://github.com/haonanAN309/Hindsight-Forcing.",
+      "authors": [
+        "Haonan An",
+        "Yihang Tao",
+        "Yu Guo",
+        "Renlong Chen",
+        "Jiasheng Zhang",
+        "Yuguang Fang"
+      ],
+      "url": "http://arxiv.org/abs/2611.27074v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 84,
+      "priority": "must-read",
+      "summary_cn": "论文研究少步数自回归视频扩散中的长时生成退化问题。现有方法通常切断历史缓存或历史潜变量的梯度，使未来生成损失无法指导产生历史内容的早期去噪过程。作者提出 Hindsight Forcing：前向时使用完整多步 rollout 的最终结果构建历史上下文，反向时通过潜变量直通桥，将未来损失的梯度传递到每个历史块选定的去噪步骤。该方法同时优化历史内容生成和 KV 上下文写入，使用共享参数，不需要额外参数、架构改动或轨迹重放。基于 Wan2.1-T2V-1.3B 的实验显示，该方法在 VBench 总体质量、视觉质量、动态程度和一致性方面取得较好结果，并且推理阶段保持标准的 KV 缓存自回归生成流程。其训练显存随块数线性增长，仍未完全消除长序列训练的成本。",
+      "contribution_cn": "1. 指出自回归视频扩散中“历史潜变量脱离计算图”的问题：未来损失只能监督历史上下文编码，不能反馈给生成历史内容的早期去噪计算。 2. 提出 Hindsight Forcing，通过潜变量直通桥在前向生成完整 rollout 与反向信用分配之间建立解耦，使未来损失同时监督上下文写入器和历史去噪器。 3. 在不增加学生模型参数、不修改网络架构且不进行独立轨迹重放的情况下，实现跨块信用分配。 4. 在 VBench 上进行系统实验、消融实验和梯度分析，验证监督历史去噪对视觉质量、动态运动和长期结构连贯性的作用。 5. 证明该方法不改变标准多步自回归推理流程，也不引入额外推理计算。",
+      "relevance_cn": "论文与研究重点高度相关。它直接针对少步数、因果、自回归和流式视频生成，目标是改善 KV 缓存驱动的长视频连续生成。潜变量直通桥让未来块的损失反馈到历史块的去噪过程，属于面向闭环式序列生成的跨时间信用分配机制，有助于减少视觉漂移、结构崩溃并维持动态运动。方法使用 KV 缓存和固定步数去噪，推理时不增加计算，因此也与实时生成、缓存复用和低延迟部署密切相关。论文还讨论了短 rollout 与有界历史上下文对持续流式生成的意义，但未直接研究动作条件控制或完整的交互式世界模型闭环评测。",
+      "limitations_cn": "论文明确指出：梯度尺度 α 采用在所有块和去噪步骤间共享的固定值，如何自适应调整仍有待研究；即使每个块只保留一个去噪计算图，训练图数量仍会随 rollout 块数线性增长；短 rollout 在有界 KV 上下文下训练能否泛化到持续的长时流式生成仍需进一步验证。实验主要使用约 5 秒、81 帧的视频和固定的七块训练序列，论文未明确说明在更长部署时长、更多样的交互环境或动作条件任务上的表现。论文未明确说明 Hindsight Forcing 对动作条件控制和完整闭环世界模拟的效果。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "少步数自回归视频扩散能够实现实时流式生成，其中每个生成的视频块都会作为后续生成的历史上下文。为避免时间反向传播带来的内存爆炸，过去的自 rollout 方法通常会截断跨块梯度，或将历史潜变量从计算图中分离。因此，早期去噪计算无法通过生成的历史获得下游反馈，也就无法学习如何合成有利于后续生成的帧，导致随着 rollout 延长出现视觉漂移和结构崩溃。为解决这一局限，我们提出 Hindsight Forcing，通过潜变量直通桥将前向生成与反向信用分配解耦，使历史块能够直接从未来结果中学习。在前向过程中，每个块完成完整的多步 rollout 以更新 KV 缓存；在反向过程中，直通桥将未来损失的梯度传回每个历史块中选定的单个去噪步骤，使上下文写入器和历史去噪器能够基于共享参数进行训练，同时无需保留完整的轨迹计算图。值得注意的是，Hindsight Forcing 不需要额外模型参数、架构修改或独立的轨迹重放。在 VBench 上的大量实验表明，Hindsight Forcing 在总体视觉质量和动态运动方面优于现有基线；消融实验也验证了监督历史去噪的益处。代码已发布于 https://github.com/haonanAN309/Hindsight-Forcing。",
+      "note_path": "2026-11-23/2611.27074-hindsight-forcing-learning-better-history-from-t.md"
+    },
+    {
+      "id": "2611.25838",
+      "date": "2026-11-19",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "ContextRenderer: Dynamic-Context Video Generation for Interactive Game Worlds",
+      "abstract": "Interactive game world models separate executable world evolution from visual generation, using video models to render engine-provided scene representations into detailed observations. During sustained gameplay, however, existing generative renderers struggle to follow changing conditions while preserving visual continuity across diverse proxies and target styles. We therefore introduce ContextRenderer, an autoregressive video diffusion framework designed for both dynamic conditioning and cross-proxy generalization. It couples Dynamic-Context Learning (DCL) for chunk-level interaction supervision with Recurrent History Compression (RHC) to follow condition updates while preserving visual continuity within a bounded token budget. Across proxy representations, Cross-Representation Flow Alignment (CRFA) connects proxy reconstruction with appearance and interaction variation through a shared high-fidelity reconstruction. WorldPrism, our interaction-centric dataset constructed from agent-built worlds, AAA gameplay, and open-source videos, supplies the corresponding renderings and chunk-level annotations for these learning tasks. Experiments on GWM-Bench and Solar-Bench show improved reconstruction and visual quality, while qualitative results demonstrate minute-long interactive rendering under changing prompts and subject references. Project page: https://rainzor.github.io/contextrenderer/",
+      "authors": [
+        "Runze Wang",
+        "Fei Zha",
+        "Bing He",
+        "Ke Xu",
+        "Zhongyuan Wu",
+        "Yuxuan Xie",
+        "Wenzheng Wu",
+        "Zhongyuan Liu",
+        "Youcheng Cai",
+        "Ligang Liu"
+      ],
+      "url": "http://arxiv.org/abs/2611.25838v1",
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "comment": "10 pages, 7 figures, 3 tables",
+      "score": 83,
+      "priority": "must-read",
+      "summary_cn": "Interactive game world models separate executable world evolution from visual generation, using video models to render engine-provided scene representations into detailed observations.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, interactive, autoregressive, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.27639",
+      "date": "2026-11-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "SOAR: Training-Free Rank-Consistent Rollout Compression for Latent World Model Planning",
+      "abstract": "Latent world models plan by rolling out hundreds of candidate action sequences through a transformer predictor, so a single decision can take tens of seconds. Existing accelerations prune spatial tokens as in vision-language models, yet a sampling-based planner uses predicted costs only to rank candidates, so a rollout can be compressed freely as long as the ranking survives. We propose SOAR, a training-free method that adapts rollout compression to each planning decision. At every decision, SOAR probes a few candidates under several token budgets and keeps the smallest budget that preserves their ranking, so it compresses as far as the current decision allows, without task labels. A closed-loop study of more than 80,000 episodes fixes the rest of the rollout: the first step, which alone reads a real observation, stays exact, and the context frame is cached rather than recomputed. On seven navigation and manipulation tasks with frozen checkpoints, SOAR matches dense-level planning success at 2.3x speedup and retains 98% at 2.5x. Our code is available at https://github.com/starrywiki/SOAR.",
+      "authors": [
+        "Anqi Li",
+        "Kai Liu",
+        "Linghe Kong",
+        "Yulun Zhang"
+      ],
+      "url": "http://arxiv.org/abs/2611.27639v1",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "comment": "16 pages, including supplementary material. Anqi Li and Kai Liu contributed equally",
+      "score": 73,
+      "priority": "must-read",
+      "summary_cn": "本文研究潜在世界模型在闭环规划中的滚动预测压缩问题。作者指出，CEM 规划器主要依赖候选代价的排序和精英集合，而不是精确重建预测特征，因此压缩的核心标准应是保持候选排序。通过在七个导航和操作任务上的超过 80,000 个闭环回合实验，论文发现：空间标记选择本身收益有限；读取真实观测的第一步对后续排序最关键；上下文帧对部分任务不可或缺，但可以通过键值缓存避免重复计算。基于这些发现，SOAR 保持第一步精确、缓存上下文帧，并在每次决策中用少量候选估计不同标记预算下的 Spearman 排名一致性，在线选择最小可用预算。SOAR 在冻结世界模型上以 2.3 倍速度达到稠密模型的规划成功率，并在更激进的设置下实现 2.54 倍加速和 98% 的相对成功率。",
+      "contribution_cn": "1. 提出一种面向采样式规划的压缩标准：关注候选精英排序是否保持，而不是预测特征或代价数值是否精确。论文通过命题说明，只要代价经过严格单调变换，CEM 的精英集合、采样分布和最终动作都不变。\n2. 系统分析滚动预测中的冗余来源，比较空间、上下文帧、滚动步骤和网络深度四个压缩轴，发现计算发生的时机比具体保留哪些空间标记更重要。\n3. 提出 SOAR，一种无需训练、无需任务标签的在线自适应压缩方法。它保持第一步的完整计算，使用缓存的上下文键值，并根据少量候选在多个嵌套标记预算下的排名一致性选择当前决策的预算。\n4. 在七个导航和操作任务、冻结的 JEPA-WM 检查点及超过 80,000 个闭环回合上验证方法，在保持接近稠密模型成功率的同时获得 2.3 倍加速，2.5 倍加速时保留 98% 的性能。",
+      "relevance_cn": "本文与研究重点高度相关。它直接面向动作条件潜在世界模型和闭环规划，通过 CEM 在世界模型中滚动预测候选动作序列，并研究如何降低长滚动预测的计算开销。方法涉及自回归和因果式世界模型的流式滚动、历史上下文的 KV 缓存、按决策在线调整计算量，以及空间标记稀疏化。其关键发现是：保持候选动作排序比保持视觉特征重建更重要；精确计算首个观测条件步骤、缓存历史上下文并压缩后续步骤，能够在不训练新模型的情况下显著加速规划。这与实时生成、缓存复用、稀疏计算和闭环模拟直接相关，但论文主要研究规划时的潜在特征滚动，而不是生成可视化视频。",
+      "limitations_cn": "论文明确指出，实验主要基于采用双帧预测器的已发布 JEPA-WM 检查点，结论对更长上下文预测器的适用性仍需验证。其理论命题适用于依据候选排序选择动作的规划器，但不直接适用于 MPPI 等使用代价权重的规划器。SOAR 只在 CEM 第一轮候选上探测排名一致性；由于后续精英候选分布可能不同，在后续迭代中进行探测或许还能获得更高压缩率。论文还将基于前 K 名重叠的探测标准和更细粒度的预算集合留作未来工作。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "潜在世界模型通过变换器预测器对数百条候选动作序列进行滚动预测来规划，因此一次决策可能需要数十秒。现有加速方法借鉴视觉语言模型裁剪空间标记；然而，基于采样的规划器只使用预测代价对候选进行排序，因此只要排序保持不变，滚动预测就可以自由压缩。我们提出 SOAR，一种无需训练的方法，可根据每次规划决策自适应地压缩滚动预测。在每次决策中，SOAR 在多个标记预算下对少量候选进行探测，并保留能够维持候选排序的最小预算，从而在不需要任务标签的情况下，将压缩程度推进到当前决策所允许的最大程度。我们通过超过 80,000 个闭环回合的研究确定了滚动预测的其余部分：唯一读取真实观测的第一步保持精确计算，而上下文帧则通过缓存避免重复计算。在七个导航与操作任务、使用冻结检查点的实验中，SOAR 以 2.3 倍加速达到与稠密级规划相当的成功率，并在 2.5 倍加速下保留 98% 的性能。代码发布于 https://github.com/starrywiki/SOAR。",
+      "note_path": "2026-11-23/2611.27639-soar-training-free-rank-consistent-rollout-compr.md"
+    },
+    {
+      "id": "2611.26615",
+      "date": "2026-11-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ScaleWorld: High-Resolution World Generation through Shared Prediction and Refinement",
+      "abstract": "High-resolution generation enables video world models to render fine-grained scene structures and textures, but directly generating high-resolution video incurs substantial computational and memory costs. We present ScaleWorld, a causal video model that unifies low-resolution world prediction and high-resolution refinement within a single shared backbone. By refining its own predictions, ScaleWorld produces high-resolution world videos without requiring a separate refinement model. For each video chunk, the shared backbone first completes a low-resolution prediction and then performs one-step high-resolution refinement conditioned on that prediction. To support efficient streaming generation, we maintain separate causal states with a long low-resolution history for prediction and a short high-resolution history for refinement. To address task interference during distillation, we separate specialist optimization from capability consolidation and introduce task-asymmetric on-policy distillation (TA-OPD). This procedure transfers prediction and refinement behaviors from specialized teachers into a shared student through local velocity matching under their respective sampling and history policies. {Extensive experiments demonstrate that ScaleWorld achieves high-quality world generation with improved computational and memory efficiency.",
+      "authors": [
+        "Yansong Qu",
+        "Wesker Zheng",
+        "Quanjian Song",
+        "Zhiyuan Zhang",
+        "Xiao Cao",
+        "Shengchuan Zhang",
+        "Liujuan Cao"
+      ],
+      "url": "http://arxiv.org/abs/2611.26615v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "High-resolution generation enables video world models to render fine-grained scene structures and textures, but directly generating high-resolution video incurs substantial computational and memory costs.",
+      "contribution_cn": "We present ScaleWorld, a causal video model that unifies low-resolution world prediction and high-resolution refinement within a single shared backbone.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, causal video, streaming, distillation, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.26040",
+      "date": "2026-11-20",
+      "topics": [
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "Streaming-AAA: Streaming AAA Game Video Generation at High Resolution, High Frame Rate, and Low Latency",
+      "abstract": "Controllable streaming video generation offers a promising route toward interactive game simulation, yet existing methods remain far from practical gameplay. They often fail to jointly achieve high visual fidelity, high frame rates, and low interaction latency, resulting in poor responsiveness and degraded user experience. We present Streaming-AAA, a new paradigm for controllable infinite generation of AAA-quality game videos. Our system generates 1080p gameplay videos at 43 FPS with 198 ms end-to-end latency interaction on merely NVIDIA A800 GPUs, while supporting long-horizon play without severe temporal degradation or collapse. Streaming-AAA is built upon three key designs. First, we redesign the VAE architecture for efficient high-resolution decoding, enabling real-time synthesis at 1080p. Second, we pretrain the diffusion model using diffusion forcing and significantly extend the temporal training horizon, allowing the model to capture long-term dependencies and maintain persistent memory. Third, we perform post-training distillation and memory compression to improve inference efficiency while retaining visual quality and temporal consistency. Experiments show that Streaming-AAA substantially improves visual fidelity, frame rate, latency, and long-term stability over prior controllable video generation approaches, enabling a significantly more playable experience for interactive AAA game video generation.",
+      "authors": [
+        "Zhihao Hu",
+        "Jianqi Ma",
+        "Jun Zhang",
+        "Jiayang Bai",
+        "Haifeng Shi",
+        "Yanxiang Zhuang",
+        "Zhongqian Sun",
+        "Weidong Zhang",
+        "Wei Yang"
+      ],
+      "url": "http://arxiv.org/abs/2611.26040v2",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Controllable streaming video generation offers a promising route toward interactive game simulation, yet existing methods remain far from practical gameplay.",
+      "contribution_cn": "We present Streaming-AAA, a new paradigm for controllable infinite generation of AAA-quality game videos.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：interactive, simulation, streaming, diffusion forcing, temporal consistency, real-time",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.27344",
+      "date": "2026-11-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Learning Interaction Dynamics via Motion-Region Guidance for Robotic Video World Models",
+      "abstract": "Action-conditioned video world models imagine future observations under candidate robot actions, providing a promising visual tool for robot policy evaluation and interaction simulation. However, existing video world models often optimize global reconstruction errors instead of emphasizing interaction-relevant regions. As a result, they may preserve overall scene appearance but overlook local interaction details, leading to physically implausible outcomes such as hallucinated contact effects and inconsistent robot-object interactions. We introduce MoReWorld, a unified motion-region-guided framework that uses a shared motion region, the part of the environment that moves in response to the robot's actions, to focus dynamics learning and video generation on interaction-relevant regions. The same motion region guides local motion prediction, region-aware supervision, and motion-gated future-feature conditioning. At inference time, the motion region is predicted as a motion probability map from visual history and robot actions, without requiring future observations or ground-truth motion labels. On WorldSimProbe, MoReWorld achieves the highest overall simulator-faithfulness score, with the strongest performance on local consistency, global consistency, and interaction dynamics. These results indicate that motion-region guidance helps the model preserve scene-level consistency while more faithfully predicting action-conditioned interaction dynamics.",
+      "authors": [
+        "Yongkang He",
+        "Xiaofen Xing",
+        "Xiangmin Xu"
+      ],
+      "url": "http://arxiv.org/abs/2611.27344v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Action-conditioned video world models imagine future observations under candidate robot actions, providing a promising visual tool for robot policy evaluation and interaction simulation.",
+      "contribution_cn": "We introduce MoReWorld, a unified motion-region-guided framework that uses a shared motion region, the part of the environment that moves in response to the robot's actions, to focus dynamics learning and video generation on interaction-relevant regions.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, action-conditioned, simulation, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.26540",
+      "date": "2026-11-19",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "AURA: AUdio-dRiven streaming Avatar",
+      "abstract": "Current audio-driven video diffusion models can synthesize realistic talking-head videos but generally require dozens of diffusion denoising steps over multi-second video chunks, making them unsuitable for streaming applications such as voice assistants and virtual avatars, where low-latency and online causal generation are required properties. AURA generates video chunk by chunk with a rolling KV cache, requiring only the audio of the current chunk to start generating, rather than a multi-second audio look-ahead like bidirectional models. It comes in two sizes: AURA 1.3B streams 576p video in real time on a single GPU (20.7 fps for a 16 Hz playback rate), making it suited to interactive avatar applications, and AURA 5B streams 720p video at 9.7 fps. Our two-stage distillation pipeline first aligns the causal student with the teacher, by training it to match the teacher's trajectories with fewer diffusion steps and a chunk-wise sliding window causal attention mask, then applies Distribution Matching Distillation (DMD) with backward simulation to close the remaining quality gap. On standard talking-head benchmarks, AURA 1.3B runs 23x faster than its own bidirectional teacher and reaches a quality comparable to TalkVerse at a lower resolution, and AURA 5B matches its TalkVerse teacher at 720p while running 17x faster. To support reproducibility and further research on streaming avatar generation, we release the weights of both models along with a dataset of 30K synthetic videos and their precomputed teacher trajectories.",
+      "authors": [
+        "Nathaniel Cohen",
+        "Nicolas Dufour",
+        "Amélie Royer",
+        "Alasdair Newson",
+        "Patrick Pérez"
+      ],
+      "url": "http://arxiv.org/abs/2611.26540v1",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "comment": "BMVC 2026. Project page: https://kyutai.org/aura",
+      "score": 72,
+      "priority": "skim",
+      "summary_cn": "Current audio-driven video diffusion models can synthesize realistic talking-head videos but generally require dozens of diffusion denoising steps over multi-second video chunks, making them unsuitable for streaming applications such as voice assistants and virtual avatars, where low-latency and online causal generation are required properties.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, world model；关键词：interactive, simulation, streaming, distillation, cache, kv cache",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.26981",
+      "date": "2026-11-20",
+      "topics": [
+        "Video Generation",
+        "World Models"
+      ],
+      "title": "ViewDreamer: A Robot World Model beyond Fixed Camera Setups",
+      "abstract": "Video generation models are increasingly important for robot learning, yet most generate each camera view separately or tile all views in a fixed layout. Robot demonstrations, however, are captured by synchronized cameras whose number, placement, and order vary across embodiments. We present ViewDreamer, a single world model that handles variable sets of cameras by disentangling per-view generation from cross-view interaction. Each view follows the generation path of a pretrained single-view model, and views interact only through shared slot tokens. We stabilize multi-view training with a curriculum that gradually increases the number of views. Cross-View Slot Agreement uses visual foundation models to group geometrically and semantically similar regions across views into shared slots. On RoboView-Bench, which covers one to four cameras, ViewDreamer achieves the best generation quality among the models evaluated and improves cross-view consistency over independent per-view generation. These gains carry over to our world-action model (WAM) and action-conditioned world model (AC-WM). Our WAM outperforms the FastWAM-Joint baseline on LIBERO-Plus, RoboTwin 2.0, and RoboDojo, and on a real Franka robot. Both variants improve out-of-domain generalization to various camera settings and scenes.",
+      "authors": [
+        "Ye Mao",
+        "Jinhui Xiong",
+        "Egor Larionov",
+        "Shiyang Lu",
+        "Krystian Mikolajczyk",
+        "Wei Ye"
+      ],
+      "url": "http://arxiv.org/abs/2611.26981v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "29 pages, 13 figures, 21 tables. Project page: https://matchlab-imperial.github.io/ViewDreamer/",
+      "score": 68,
+      "priority": "skim",
+      "summary_cn": "Video generation models are increasingly important for robot learning, yet most generate each camera view separately or tile all views in a fixed layout.",
+      "contribution_cn": "We present ViewDreamer, a single world model that handles variable sets of cameras by disentangling per-view generation from cross-view interaction.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, action-conditioned, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.26867",
+      "date": "2026-11-19",
+      "topics": [
+        "World Models"
+      ],
+      "title": "SonoAtlasWorld: Anatomy-Grounded Ultrasound World Models for Wide-Range Scanning",
+      "abstract": "Learning robotic ultrasound policies requires interactive environments for scalable data generation and repeatable evaluation, while exploration on real patients is limited by acquisition costs and safety constraints. Generative world models offer an alternative, but image history and probe actions alone do not ensure anatomical consistency across wide-range scans and changing acoustic windows. We introduce SonoAtlasWorld, an ultrasound world model built on anatomy as state. A persistent 3D anatomical asset extracted from computed tomography (CT) anchors each scan to a specific anatomy. Probe actions determine anatomical and acoustic visibility conditions for a causal ultrasound generator trained on clinical videos. Our three-stage pipeline combines anatomy-conditioned pretraining, causal conversion and long-rollout alignment. Inference optimizations achieve pose-to-ultrasound throughput of 81.2 FPS. To evaluate anatomical control beyond image similarity, we introduce the Action-Following Index (AFI), which measures normalized reconstruction gain over a static-prefix baseline. On 40 held-out 3D volumes, SonoAtlasWorld achieves liver and macro-organ AFI of 0.428 and 0.262, compared with at most 0.117 and 0.038 for the tested action- and geometry-conditioned methods. Long-rollout alignment reduces brightness drift by 3.46x at the end of 40 repeated scan cycles. SonoAtlasWorld also generates offline policy-training demonstrations and supports anatomically grounded closed-loop evaluation. Scaling the generated training data improves key-plane acquisition success from 48.2% to 81.2% on unseen anatomies in simulation, demonstrating its utility for robotic ultrasound policy learning.",
+      "authors": [
+        "Zheyuan Zhang",
+        "Boris Mailhe",
+        "Hang Yu",
+        "Yikang Liu",
+        "Xiao Chen",
+        "Ankush Mukherjee",
+        "Terrence Chen",
+        "Shanhui Sun"
+      ],
+      "url": "http://arxiv.org/abs/2611.26867v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Interactive video demonstrations are available at: https://sonoatlasworld.github.io/SonoAtlasWorld",
+      "score": 65,
+      "priority": "skim",
+      "summary_cn": "Learning robotic ultrasound policies requires interactive environments for scalable data generation and repeatable evaluation, while exploration on real patients is limited by acquisition costs and safety constraints.",
+      "contribution_cn": "We introduce SonoAtlasWorld, an ultrasound world model built on anatomy as state.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, interactive, closed-loop, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.27645",
+      "date": "2026-11-20",
+      "topics": [
+        "World Models"
+      ],
+      "title": "Efficient VLA Reinforcement Learning via Subchunk Rollouts in Latent World Models",
+      "abstract": "Model-based reinforcement learning (MBRL) can improve pretrained vision-language-action (VLA) policies through imagined experiences. However, existing VLA-MBRL methods primarily rely on large-scale image or video generation world models, incurring large computational overhead. Latent world models offer a more efficient alternative but face two challenges: compounding errors during recursive prediction and incompatibility with VLAs' visual input interfaces. In this work, we propose LS-MBPO, a lightweight residual MBRL framework that leverages latent world models to improve upon pretrained VLAs. LS-MBPO introduces two key techniques: (1) Hierarchical Forcing, which combines dense causal supervision with autoregressive feedback to mitigate compounding prediction errors; and (2) Latent Subchunk Rollouts, which leverage action chunks from a frozen VLA policy and a latent residual policy for successive subchunk refinement, bridging the gap between latent imagination and VLA policy execution. We further introduce a Progress-Conditioned Branch-Start Curriculum that progressively shifts rollout starting points from later to earlier task stages, enabling effective policy learning from short imagined rollouts. Extensive experiments on LIBERO, RoboTwin, and a real-world ALOHA robot show that LS-MBPO achieves superior task performance and training efficiency compared to existing methods.",
+      "authors": [
+        "Nan Tang",
+        "Han-Tao Zhang",
+        "Jing-Cheng Pang",
+        "Hao-Nan Wang",
+        "Hao-Xiang Ren",
+        "Yi-Fei Sheng",
+        "Jun-Yin Ye",
+        "Tian Xu",
+        "Fan-Ming Luo",
+        "Hao-Xin Lin",
+        "Yang Yu"
+      ],
+      "url": "http://arxiv.org/abs/2611.27645v1",
+      "categories": [
+        "cs.LG"
+      ],
+      "comment": "",
+      "score": 64,
+      "priority": "skim",
+      "summary_cn": "Model-based reinforcement learning (MBRL) can improve pretrained vision-language-action (VLA) policies through imagined experiences.",
+      "contribution_cn": "In this work, we propose LS-MBPO, a lightweight residual MBRL framework that leverages latent world models to improve upon pretrained VLAs.",
+      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, autoregressive, efficient, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 2
+}

@@ -1,11 +1,19 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-22T18:43:02+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-23T04:09:04+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
 
-### 1. [ContextRenderer: Dynamic-Context Video Generation for Interactive Game Worlds](http://arxiv.org/abs/2611.25838v1)
+### 1. [Hindsight Forcing: Learning Better History from the Future in Autoregressive Video Diffusion](http://arxiv.org/abs/2611.27074v1)
+
+- **评分**：84/100
+- **作者**：Haonan An, Yihang Tao, Yu Guo et al.
+- **方向**：Autoregressive and Streaming Video
+- **一句话**：论文研究少步数自回归视频扩散中的长时生成退化问题。现有方法通常切断历史缓存或历史潜变量的梯度，使未来生成损失无法指导产生历史内容的早期去噪过程。作者提出 Hindsight Forcing：前向时使用完整多步 rollout 的最终结果构建历史上下文，反向时通过潜变量直通桥，将未来损失的梯度传递到每个历史块选定的去噪步骤。该方法同时优化历史内容生成和 KV…
+- **精读笔记**：[打开笔记](../notes/2026-11-23/2611.27074-hindsight-forcing-learning-better-history-from-t.md)
+
+### 2. [ContextRenderer: Dynamic-Context Video Generation for Interactive Game Worlds](http://arxiv.org/abs/2611.25838v1)
 
 - **评分**：83/100
 - **作者**：Runze Wang, Fei Zha, Bing He et al.
@@ -13,69 +21,61 @@
 - **一句话**：Interactive game world models separate executable world evolution from visual generation, using video models to render engine-provided scene representations into detailed observat…
 - **精读笔记**：待 Cursor 读完全文后写入 `docs/notes/`
 
-### 2. [ScaleWorld: High-Resolution World Generation through Shared Prediction and Refinement](http://arxiv.org/abs/2611.26615v1)
+### 3. [SOAR: Training-Free Rank-Consistent Rollout Compression for Latent World Model Planning](http://arxiv.org/abs/2611.27639v1)
+
+- **评分**：73/100
+- **作者**：Anqi Li, Kai Liu, Linghe Kong et al.
+- **方向**：World Models
+- **一句话**：本文研究潜在世界模型在闭环规划中的滚动预测压缩问题。作者指出，CEM 规划器主要依赖候选代价的排序和精英集合，而不是精确重建预测特征，因此压缩的核心标准应是保持候选排序。通过在七个导航和操作任务上的超过 80,000 个闭环回合实验，论文发现：空间标记选择本身收益有限；读取真实观测的第一步对后续排序最关键；上下文帧对部分任务不可或缺，但可以通过键值缓存避免…
+- **精读笔记**：[打开笔记](../notes/2026-11-23/2611.27639-soar-training-free-rank-consistent-rollout-compr.md)
+
+## 快速浏览
+
+### 1. [ScaleWorld: High-Resolution World Generation through Shared Prediction and Refinement](http://arxiv.org/abs/2611.26615v1)
 
 - **评分**：72/100
 - **作者**：Yansong Qu, Wesker Zheng, Quanjian Song et al.
 - **方向**：World Models
-- **一句话**：ScaleWorld 面向相机控制的流式世界生成，将低分辨率因果世界预测和高分辨率视频细化整合到同一个共享骨干网络中。模型按块先生成可独立使用的低分辨率预测，再利用该预测执行一步高分辨率细化；高分辨率结果不会反馈到低分辨率预测历史。为适应两项任务不同的时序需求，模型为预测保留较长的干净低分辨率 KV 历史，为细化保留较短的噪声前向高分辨率 KV 历史。训练…
-- **精读笔记**：[打开笔记](../notes/2026-11-22/2611.26615-scaleworld-high-resolution-world-generation-thro.md)
+- **一句话**：High-resolution generation enables video world models to render fine-grained scene structures and textures, but directly generating high-resolution video incurs substantial comput…
 
-### 3. [Streaming-AAA: Streaming AAA Game Video Generation at High Resolution, High Frame Rate, and Low Latency](http://arxiv.org/abs/2611.26040v1)
+### 2. [Streaming-AAA: Streaming AAA Game Video Generation at High Resolution, High Frame Rate, and Low Latency](http://arxiv.org/abs/2611.26040v2)
 
 - **评分**：72/100
 - **作者**：Zhihao Hu, Jianqi Ma, Jun Zhang et al.
 - **方向**：Autoregressive and Streaming Video
-- **一句话**：论文提出 Streaming-AAA，用于根据玩家动作、天气和时间等条件，以流式方式生成可持续交互的 AAA 游戏视频。系统针对《原神》构建了自动化数据采集系统，收集约 2.2 万段 1080p 游戏视频和约 4000 万帧数据。方法采用高分辨率因果视频 VAE、因子化 3D UNet 潜空间扩散模型、Diffusion Forcing 长上下文预训练、D…
-- **精读笔记**：[打开笔记](../notes/2026-11-22/2611.26040-streaming-aaa-streaming-aaa-game-video-generatio.md)
+- **一句话**：Controllable streaming video generation offers a promising route toward interactive game simulation, yet existing methods remain far from practical gameplay.
 
-## 快速浏览
+### 3. [Learning Interaction Dynamics via Motion-Region Guidance for Robotic Video World Models](http://arxiv.org/abs/2611.27344v1)
 
-### 1. [AURA: AUdio-dRiven streaming Avatar](http://arxiv.org/abs/2611.26540v1)
+- **评分**：72/100
+- **作者**：Yongkang He, Xiaofen Xing, Xiangmin Xu
+- **方向**：World Models
+- **一句话**：Action-conditioned video world models imagine future observations under candidate robot actions, providing a promising visual tool for robot policy evaluation and interaction simu…
+
+### 4. [AURA: AUdio-dRiven streaming Avatar](http://arxiv.org/abs/2611.26540v1)
 
 - **评分**：72/100
 - **作者**：Nathaniel Cohen, Nicolas Dufour, Amélie Royer et al.
 - **方向**：Video Generation
 - **一句话**：Current audio-driven video diffusion models can synthesize realistic talking-head videos but generally require dozens of diffusion denoising steps over multi-second video chunks,…
 
-### 2. [Risk-Triggered Search: Behavior-Preserving Safe Control](http://arxiv.org/abs/2611.24409v1)
+### 5. [ViewDreamer: A Robot World Model beyond Fixed Camera Setups](http://arxiv.org/abs/2611.26981v1)
+
+- **评分**：68/100
+- **作者**：Ye Mao, Jinhui Xiong, Egor Larionov et al.
+- **方向**：Video Generation, World Models
+- **一句话**：Video generation models are increasingly important for robot learning, yet most generate each camera view separately or tile all views in a fixed layout.
+
+### 6. [SonoAtlasWorld: Anatomy-Grounded Ultrasound World Models for Wide-Range Scanning](http://arxiv.org/abs/2611.26867v1)
+
+- **评分**：65/100
+- **作者**：Zheyuan Zhang, Boris Mailhe, Hang Yu et al.
+- **方向**：World Models
+- **一句话**：Learning robotic ultrasound policies requires interactive environments for scalable data generation and repeatable evaluation, while exploration on real patients is limited by acq…
+
+### 7. [Efficient VLA Reinforcement Learning via Subchunk Rollouts in Latent World Models](http://arxiv.org/abs/2611.27645v1)
 
 - **评分**：64/100
-- **作者**：Xinyu Deng, Bohao Lan, Kunpeng Li et al.
+- **作者**：Nan Tang, Han-Tao Zhang, Jing-Cheng Pang et al.
 - **方向**：World Models
-- **一句话**：Pre-trained visual world models generate multi-step action plans from current and goal observations, yet terminal-proximity objectives fail to prevent forbidden-zone traversal or…
-
-### 3. [SpecWM: Turning Verification into Refinement for Streaming World Models](http://arxiv.org/abs/2611.26211v1)
-
-- **评分**：64/100
-- **作者**：Jiaming Li, Lingzhen Li, Xiaze Yang et al.
-- **方向**：World Models
-- **一句话**：Recently, video world models have advanced interactive generation, with large models offering higher quality and smaller models enabling faster inference.
-
-### 4. [FlexVSR: Continuous-Scale Super-Resolution for Streaming Video Generation](http://arxiv.org/abs/2611.26178v1)
-
-- **评分**：63/100
-- **作者**：Ji Wang, Haonan An, Jiasheng Zhang et al.
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Real-time streaming video generation has gained rapid momentum in live content creation and interactive media.
-
-### 5. [CauSyncVLA: Causal Latent World Modeling for Asynchronous Robot Control](http://arxiv.org/abs/2611.25667v1)
-
-- **评分**：58/100
-- **作者**：Xu Pan, Chubin Zhang, Xingrui Yu et al.
-- **方向**：World Models
-- **一句话**：Vision-Language-Action (VLA) policies must react while visual inference is still running.
-
-### 6. [WorldRuler: Interactive World Modeling under Configurable Rules](http://arxiv.org/abs/2611.24869v2)
-
-- **评分**：57/100
-- **作者**：Mingliang Zhai, Chuanhao Li, Jiaming Tan et al.
-- **方向**：World Models
-- **一句话**：Rules govern how player actions change interactive worlds.
-
-### 7. [Online Temporal Rotations for 2 Bit KV-Cache Quantization in Video Diffusion Transformers](http://arxiv.org/abs/2611.26334v1)
-
-- **评分**：56/100
-- **作者**：Ryan Lucas, Petros Prastakos, Rahul Mazumder
-- **方向**：Autoregressive and Streaming Video
-- **一句话**：Video diffusion transformers reuse key--value (KV) caches across denoising steps, which quickly becomes a bottleneck for long video generation.
+- **一句话**：Model-based reinforcement learning (MBRL) can improve pretrained vision-language-action (VLA) policies through imagined experiences.
