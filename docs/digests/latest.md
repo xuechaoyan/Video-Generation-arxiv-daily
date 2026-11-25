@@ -1,6 +1,6 @@
 # Generation Research Daily Digest
 
-> 生成时间：2026-11-25T05:44:29+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
+> 生成时间：2026-11-25T20:43:50+00:00 · 筛选方式：规则评分 + Cursor 全文阅读
 > 精读只保留短目录；详细笔记按日期放在 [docs/notes](../notes/index.md)。
 
 ## 优先精读
@@ -10,7 +10,7 @@
 - **评分**：81/100
 - **作者**：Zhilu Zhang, Xiaoyu Liu, Wenxi Liu et al.
 - **方向**：Video Generation, World Models
-- **一句话**：论文针对摄像机转离后再返回时，世界模型中的动态物体容易突变、消失或运动不连续的问题，提出 OmniPersist。该方法在共享的视频扩散模型中联合生成高帧率透视视频和低帧率全景视频，使全景空间持续记录视野外实体的运动状态；GeoAnch 负责同步时刻的跨视图几何特征对齐，TemComp 负责利用邻近时间的特征弥补全景流的时间稀疏。方法无需辅助模型或初始全景…
+- **一句话**：论文针对摄像机转离后再返回时，动态物体容易变形、消失或运动不连续的问题，提出 OmniPersist。该方法在同一个视频扩散模型中联合生成高帧率透视视频和低帧率全景视频，使全景流持续记录视野外实体的运动状态。GeoAnch 在同步时刻进行跨视图几何特征交换，TemComp 则利用邻近时间帧补偿全景流的稀疏采样。模型无需辅助模型、初始全景图或额外深度输入，并…
 - **精读笔记**：[打开笔记](../notes/2026-11-25/2611.32473-omnipersist-persistent-dynamic-world-modeling-vi.md)
 
 ### 2. [LiveAudio: From Bidirectional to Autoregressive Diffusion for Real-Time Streaming Video-to-Audio Generation](http://arxiv.org/abs/2611.30714v1)
@@ -18,7 +18,7 @@
 - **评分**：78/100
 - **作者**：Yuxuan Jiang, Zehua Chen, Yusheng Dai et al.
 - **方向**：World Models
-- **一句话**：LiveAudio 将离线双向视频到音频扩散模型转换为因果、自回归、实时流式生成器。模型采用因果音频 VAE、块因果 DiT、无前视的同步对齐视频条件和块级 KV 缓存，按块生成并立即播放音频。训练分为双向预训练、块因果微调、ODE 少步蒸馏和非对称 DMD 四个阶段，其中 DMD 使用双向教师恢复因果化造成的同步损失。VGGSound 实验显示，Live…
+- **一句话**：本文提出 LiveAudio，将离线双向视频到音频扩散模型逐步转换为实时自回归流式生成器。模型采用因果音频 VAE、块因果 DiT、同步对齐的视频条件和块级 KV 缓存，使每个音频块只依赖已播放的视频及历史音频，并能生成后立即解码播放。训练分为双向模型预训练、块因果微调、因果 ODE 蒸馏和非对称 DMD 四个阶段，分别解决模型初始化、因果性、采样效率和因…
 - **精读笔记**：[打开笔记](../notes/2026-11-25/2611.30714-liveaudio-from-bidirectional-to-autoregressive-d.md)
 
 ### 3. [A Mesh to Remember: Persistent Appearance for Interactive Video Worlds](http://arxiv.org/abs/2611.32445v1)
