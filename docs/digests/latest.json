@@ -1,161 +1,193 @@
 {
-  "generated_at": "2026-11-25T20:43:50+00:00",
+  "generated_at": "2026-11-26T05:33:59+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
-      "id": "2611.32473",
-      "date": "2026-11-24",
+      "id": "2611.34730",
+      "date": "2026-11-25",
       "topics": [
-        "Video Generation",
-        "World Models"
+        "World Models",
+        "Autoregressive and Streaming Video"
       ],
-      "title": "OmniPersist: Persistent Dynamic World Modeling via Coupled Panoramic Evolution",
-      "abstract": "Action-conditioned world models play a vital role in robotics and autonomous driving, yet existing video diffusion models struggle to maintain dynamic object persistence. When the camera turns away and returns, out-of-view moving entities fail to evolve plausibly in latent space, often mutating or vanishing entirely due to bounded perspective views. To resolve this issue, we propose OmniPersist, a unified framework that couples perspective video generation with panoramic evolution within a single-stage diffusion model, without relying on auxiliary models or initial panoramic inputs. To maintain efficiency, we model the panoramic stream at a lower frame rate, bridging both views across space and time via Geometric Anchoring (GeoAnch) for spatial correspondence and Temporal Compensation (TemComp) for temporal aggregation. OmniPersist is agnostic to camera-control architectures, supporting both latent-level and attention-level conditioning. Extensive experiments on a newly constructed dynamic benchmark across image-to-video and video continuation tasks demonstrate consistent gains in visual quality, camera controllability, revisit consistency, and dynamic persistence.",
+      "title": "WorldInteract: Controllable Streaming Video Generation for Multi-Material Interactions",
+      "abstract": "Video world models aim to create interactive physical worlds that capture how diverse materials move and interact. Yet material-dependent dynamics remain underexplored in controllable video generation, limiting reliable control in scenes with different materials. We present WorldInteract, a streaming video generation framework that decomposes cross-material interaction into material-dependent behavior generation and contact response computation. External pushes and contact impulses are expressed through a shared velocity-increment interface, allowing material behaviors learned from interaction-free videos to be reused in interacting scenes. A physics controller predicts contacts and computes velocity increments from estimated masses and restitution coefficients, while a causal generator executes these increments using learned material behaviors. This separation enables cross-material interaction without supervised contact videos spanning diverse material pairings and contact configurations. We train the generator on 30k simulated interaction-free videos spanning 22 material classes and introduce Material-Aware RL, using verifiable physical rewards to refine material behavior and control execution. WorldInteract substantially outperforms state-of-the-art methods on Physics-IQ and delivers more reliable push control on real-world images.",
       "authors": [
-        "Zhilu Zhang",
-        "Xiaoyu Liu",
-        "Wenxi Liu",
-        "Shengfeng He"
+        "Ahmed Hatem",
+        "Caoliwen Wang",
+        "Robert Hoang",
+        "Siyuan Chen",
+        "Spencer Szabados",
+        "Zike Wu",
+        "Xiyang Tan",
+        "Shenyifan Lu",
+        "Rafael Bischof",
+        "Bernd Bickel",
+        "Renjie Liao",
+        "Peter Yichen Chen"
       ],
-      "url": "http://arxiv.org/abs/2611.32473v1",
+      "url": "http://arxiv.org/abs/2611.34730v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project: https://omnipersist.github.io Code: https://github.com/cszhilu1998/OmniPersist",
-      "score": 81,
+      "comment": "",
+      "score": 77,
       "priority": "must-read",
-      "summary_cn": "论文针对摄像机转离后再返回时，动态物体容易变形、消失或运动不连续的问题，提出 OmniPersist。该方法在同一个视频扩散模型中联合生成高帧率透视视频和低帧率全景视频，使全景流持续记录视野外实体的运动状态。GeoAnch 在同步时刻进行跨视图几何特征交换，TemComp 则利用邻近时间帧补偿全景流的稀疏采样。模型无需辅助模型、初始全景图或额外深度输入，并可接入 CameraCtrl 和 UCPE 两类摄像机控制方式。作者基于约12.5万个训练片段和300个测试视频构建动态数据集，在图像到视频和视频延续任务中评估了视觉质量、摄像机控制、背景重访一致性及动态主体持续性。实验和消融结果显示，全景演化与两种跨视图耦合模块能显著改善重返身份、运动轨迹、可见性和整体生成质量；稀疏全景采样还能以有限计算开销取得较好的效果。",
-      "contribution_cn": "1. 提出 OmniPersist 单阶段统一扩散框架，联合生成透视视频与时间稀疏的全景演化，以维持视野外动态实体的持续性。2. 提出 GeoAnch，通过同步时刻的几何对应关系交换透视流和全景流特征；提出 TemComp，通过跨时间特征聚合弥补两种流不同帧率造成的时间间隔。3. 构建包含物体跟踪、单次重访、双重重访和近360度旋转的全景—透视动态数据集。4. 在潜变量级和注意力级摄像机控制架构、图像到视频及视频延续任务上进行系统实验，证明方法在视觉质量、摄像机可控性、背景重访一致性和动态主体持续性方面的改进。",
-      "relevance_cn": "该工作直接对应动作条件视觉世界模型和闭环模拟中的状态持续性问题：它让摄像机视野外的移动对象仍在全景空间中持续演化，并在摄像机重访时恢复其身份和运动，而不是仅依赖历史帧记忆。其核心是视频扩散模型中的联合透视—全景建模、稀疏全景采样、跨视图几何对齐和时间特征补偿，适用于摄像机控制的视频生成与动态场景模拟。低帧率全景流和较小的跨视图模块开销与高效生成、稀疏计算及潜在的缓存复用方向相关；论文也明确将实时流式生成和长时视频生成列为未来工作，但尚未实现这些能力。",
-      "limitations_cn": "论文明确指出，OmniPersist 的推理阶段不需要全景输入，但训练仍依赖全景视频数据，这类数据的获取和规模扩展可能受限。实验数据主要由全景视频通过轨迹模拟渲染出透视片段，测试集规模为300个视频，因此对更广泛真实环境、复杂交互和长时范围的泛化能力仍需验证。全景流虽然采用低帧率以降低成本，但采样间隔增大时不同指标表现并不单调，存在视觉质量、动态持续性与计算量之间的权衡。论文未明确说明在真实机器人闭环控制、实时流式生成或超长视频上的性能，因为这些内容被列为未来工作。",
+      "summary_cn": "WorldInteract提出了一种面向多材料物理交互的可控流式视频生成框架。其核心思想是将材料行为与接触响应分离：生成器从无物体接触的视频中学习不同材料在速度变化后的运动方式，物理控制器则根据视觉语言模型估计的质量和恢复系数预测碰撞并计算速度增量，二者通过统一接口连接。模型采用三阶段训练，包括全注意力下的材料行为学习、结合场景记忆和物理图的因果状态传播，以及基于物理奖励的Material-Aware RL。推理时，模型以4帧块因果生成，结合对象位置、身份和控制信息，并通过DMD蒸馏实现单张H100上8帧/秒的交互式生成。在Physics-IQ和真实图像测试中，模型取得更高的物理一致性、推动成功率和方向控制精度；消融实验显示，因果状态传播、强化学习和显式物理控制器均有贡献。",
+      "contribution_cn": "1. 提出跨材料交互的组合式框架，将材料相关行为生成与接触响应计算解耦，并通过共享速度增量接口在推理时组合二者。2. 提出Material-Aware RL，使用位移准确性、速度增量一致性、成对相对行为和事件时序等可验证物理奖励，优化材料行为及跨材料交互中的控制执行。3. 构建涵盖22类材料的3万段模拟无交互视频数据集，使模型能够学习单个材料的行为，而不必穷举材料配对和接触配置。4. 引入因果生成、场景记忆、对象跟踪和物理图，以支持持续更新控制的流式生成，并通过四步DMD蒸馏达到8帧/秒。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频扩散世界模型、动作条件视觉世界模型和闭环物理模拟：用户推动被转换为速度增量，物理控制器根据生成场景的对象状态预测接触并反馈新的控制，生成器再执行这些控制。方法采用因果、流式、分块自回归生成，使用键值缓存、场景记忆和对象身份跟踪维持长时状态；同时通过因果蒸馏、四步采样和VLM查询缓存提升实时生成效率。其显式物理控制器与生成器交替工作的方式也构成了面向多对象、多材料交互的闭环控制机制。",
+      "limitations_cn": "论文明确指出，当前物理控制器依赖近似几何，并采用无摩擦的中心碰撞模型，尚未覆盖更丰富的接触模型。对象质量和恢复系数由视觉语言模型从图像裁剪和近似尺寸中估计，存在估计误差。训练数据主要是模拟的无物体接触视频，接触场景通过控制器生成的轨迹和强化学习间接引入，而非广泛的真实接触视频监督。真实图像评测使用视觉语言模型评分，缺少真实世界视频的逐帧物理真值。论文未明确说明在更长时间跨度、更复杂遮挡、复杂摩擦、同时多点接触及更多未见材料上的性能。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "动作条件世界模型在机器人和自动驾驶中发挥着重要作用，但现有视频扩散模型难以维持动态物体的持续性。当摄像机转离并再次返回时，视野外移动实体无法在潜空间中进行合理演化，通常会因透视视图的有限范围而发生突变或完全消失。为解决这一问题，我们提出 OmniPersist：一种统一框架，在单阶段扩散模型中将透视视频生成与全景演化耦合起来，无需辅助模型或初始全景输入。为保持效率，我们以更低的帧率建模全景流，并通过几何锚定（GeoAnch）建立空间对应关系、通过时间补偿（TemComp）进行时间聚合，从而在空间和时间上连接两种视图。OmniPersist 与摄像机控制架构无关，既支持潜变量级条件控制，也支持注意力级条件控制。在新构建的动态基准上进行的大量图像到视频和视频延续实验表明，该方法在视觉质量、摄像机可控性、重访一致性和动态持续性方面均取得了稳定提升。",
-      "note_path": "2026-11-25/2611.32473-omnipersist-persistent-dynamic-world-modeling-vi.md"
+      "abstract_cn": "视频世界模型旨在创建能够体现多种材料运动与相互作用方式的交互式物理世界。然而，材料相关的动力学在可控视频生成中仍未得到充分研究，限制了模型在不同材料场景中的可靠控制。我们提出WorldInteract，一种流式视频生成框架，将跨材料交互分解为材料相关行为生成和接触响应计算。外部推动与接触冲量通过共享的速度增量接口表示，使得从无交互视频中学习到的材料行为能够复用于交互场景。物理控制器根据估计的质量和恢复系数预测接触并计算速度增量，而因果生成器利用学习到的材料行为执行这些增量。这种分离无需覆盖多种材料组合和接触配置的接触视频监督，即可实现跨材料交互。我们在涵盖22类材料的3万段模拟无交互视频上训练生成器，并提出Material-Aware RL，利用可验证的物理奖励来优化材料行为和控制执行。WorldInteract在Physics-IQ上显著优于现有最先进方法，并在真实世界图像上实现了更可靠的推动控制。",
+      "note_path": "2026-11-26/2611.34730-worldinteract-controllable-streaming-video-gener.md"
     },
     {
-      "id": "2611.30714",
-      "date": "2026-11-23",
+      "id": "2611.34693",
+      "date": "2026-11-25",
       "topics": [
         "World Models"
       ],
-      "title": "LiveAudio: From Bidirectional to Autoregressive Diffusion for Real-Time Streaming Video-to-Audio Generation",
-      "abstract": "Video-to-audio generation synthesizes sound that matches a video in content and timing, with applications ranging from film post-production to live streaming, games and interactive world models. Interactive applications receive video continuously and need the sound to follow it in real time, yet most existing video-to-audio models are bidirectional and must observe an entire clip before producing any sound. We propose LiveAudio, a streaming video-to-audio framework that generates high-quality and synchronized audio in real time while the video is playing. In contrast to prior streaming models trained from scratch, LiveAudio converts a bidirectional model into a streaming generator so as to build on its audio quality and synchronization. LiveAudio generates audio block by block, and each block depends only on the video that has already been played. The streaming generator is obtained from the bidirectional model through progressive causal fine-tuning and distillation, so that each block needs only a few sampling steps. Experiments on VGGSound show that LiveAudio outperforms existing streaming models in audio quality and synchronization, and surpasses the bidirectional model it starts from in synchronization. On a single A100 GPU, it runs in real time with a real-time factor of 0.79 and a time to first frame of 143 ms. Audio samples are available at https://streamaudio.github.io.",
+      "title": "ShowNow: Fine-Grained Speculative Streaming for Responsive World Models",
+      "abstract": "Interactive world models must generate video continuously while responding promptly to user actions. Real-time throughput alone leaves input latency unresolved: coarse generation blocks delay action updates, and generation after input adds work to the response path. We introduce ShowNow, a fine-grained speculative streaming framework that uses computation available during playback to prepare action-conditioned futures before input arrives. Single-latent commitment enables frequent decisions, while configurable preparation covers one to eight actions. We construct a matched multi-future dataset to train alternative continuations from a common state; shared-history tree execution and fused commitment make their preparation efficient. On a single H100, our 5B model sustains 480p generation at 16 fps with eight prepared futures. In ViZDoom, the complete ShowNow deployment reduces median input-to-display latency from 620 to 208 ms relative to the native-block SolarWM-FT deployment. Matched-policy experiments reduce restart empty ticks from 1.56% to 0.09% (94%) and improve on-time responses to action changes. These results establish complementary roles for fine-grained commitment and advance preparation, with measured trade-offs in visual fidelity and long-horizon consistency. ShowNow turns playback-time computation into responsive visual interaction. Project: https://github.com/showlab/ShowNow.",
       "authors": [
-        "Yuxuan Jiang",
-        "Zehua Chen",
-        "Yusheng Dai",
-        "Andong Wang",
-        "Weibei Dou",
-        "Jun Zhu"
+        "Yiren Song",
+        "Guian Fang",
+        "Mike Zheng Shou"
       ],
-      "url": "http://arxiv.org/abs/2611.30714v1",
-      "categories": [
-        "cs.SD",
-        "cs.CV",
-        "cs.MM",
-        "eess.AS"
-      ],
-      "comment": "23 pages, 12 tables, 14 figures",
-      "score": 78,
-      "priority": "must-read",
-      "summary_cn": "本文提出 LiveAudio，将离线双向视频到音频扩散模型逐步转换为实时自回归流式生成器。模型采用因果音频 VAE、块因果 DiT、同步对齐的视频条件和块级 KV 缓存，使每个音频块只依赖已播放的视频及历史音频，并能生成后立即解码播放。训练分为双向模型预训练、块因果微调、因果 ODE 蒸馏和非对称 DMD 四个阶段，分别解决模型初始化、因果性、采样效率和因果化导致的同步损失。在 VGGSound 上，LiveAudio 的同步性优于比较的离线和流式模型，音频质量具有竞争力；在单张 A100 上实时因子为 0.79、首帧时间为 143 毫秒，并可扩展到流式视频文本到音频和文本到音频生成。",
-      "contribution_cn": "1. 提出 LiveAudio，将已有双向视频到音频模型转换为自回归扩散式实时流式生成器，而不是从头训练流式模型。2. 设计渐进式离线到在线训练流程：通过同步对齐条件和块因果微调实现因果生成，通过 ODE 蒸馏将采样压缩为四步且无需分类器自由引导，再通过非对称 DMD 恢复并提升音视频同步性。3. 采用因果音频 VAE、块因果 DiT 和块级 KV 缓存，实现音频逐块生成、即时播放以及有界的实时计算开销。4. 在 VGGSound 上验证了较好的音频质量、语义和时间对齐效果，并展示了单 GPU 实时运行能力及对流式 VT2A、T2A 的支持。",
-      "relevance_cn": "该工作与实时生成、视频扩散、因果/自回归生成、长时流式生成和缓存复用高度相关。它把双向扩散模型转换为只使用已到达视频的自回归模型，解决了视频条件随时间到达时的因果约束；通过四步 ODE 蒸馏和无需 CFG 降低推理成本，通过块因果注意力和 KV 缓存避免重复计算历史上下文，并在单张 A100 上达到实时运行。其同步对齐视频条件也适用于交互式世界模型、游戏和直播等闭环或持续输入场景，尽管本文生成的是音频而非视频。",
-      "limitations_cn": "论文的实验主要基于 VGGSound 测试集，实时性能是在单张 NVIDIA A100、批大小为 1 的条件下测得，其他硬件和更复杂部署环境下的表现未明确说明。模型主要在 10 秒片段上训练，论文仅说明进行了无需额外训练的长时生成研究，但未在正文中给出详细结果。因果化会导致音频质量和同步性下降，最终性能依赖非对称 DMD；DMD 还表现出模式寻求行为，使部分分布匹配指标变差。模型规模约为 12 亿参数，训练流程包含多个阶段和较高训练成本。论文未明确说明在更长视频、更复杂场景、不同视频帧率或真实网络抖动条件下的稳健性。",
-      "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频到音频生成旨在合成与视频内容和时间相匹配的声音，应用范围从电影后期制作到直播、游戏和交互式世界模型。交互式应用会持续接收视频，并需要声音实时跟随视频播放；然而，大多数现有视频到音频模型都是双向的，必须观察完整视频片段后才能生成声音。我们提出 LiveAudio，一种流式视频到音频框架，可在视频播放过程中实时生成高质量且同步的音频。不同于从头训练的以往流式模型，LiveAudio 将双向模型转换为流式生成器，从而继承其音频质量和同步能力。LiveAudio 按音频块逐块生成，每个音频块仅依赖已经播放的视频。该流式生成器通过渐进式因果微调和蒸馏从双向模型获得，因此每个音频块只需少量采样步骤。在 VGGSound 上的实验表明，LiveAudio 在音频质量和同步性方面优于现有流式模型，并且在同步性方面超过了作为其起点的双向模型。在单张 A100 GPU 上，它能够实时运行，实时因子为 0.79，首帧时间为 143 毫秒。音频样例见 https://streamaudio.github.io。",
-      "note_path": "2026-11-25/2611.30714-liveaudio-from-bidirectional-to-autoregressive-d.md"
-    },
-    {
-      "id": "2611.32445",
-      "date": "2026-11-24",
-      "topics": [
-        "World Models"
-      ],
-      "title": "A Mesh to Remember: Persistent Appearance for Interactive Video Worlds",
-      "abstract": "Video world models synthesize photorealistic observations in response to user actions but struggle to remain consistent over long interactions. Coding agents and text-to-3D models instead generate explicit 3D worlds whose geometry and state persist by construction, but whose appearance falls far short of photorealism. Recent methods combine the strengths of both by rendering such worlds into coarse proxies that guide a video model. However, since these proxies only specify where things are, the renderer must invent what they look like as the world is explored, and anything it forgets is reinvented when a surface reappears. Our key insight is that a mesh identifies which surface each pixel shows, across frames and views, even as objects move, allowing it to serve as an address for what the renderer generates. We propose M2R (Mesh to Remember), a few-step causal video renderer that stores its own features on the surfaces they depict, in each object's frame, and retrieves them by rasterizing the mesh whenever those surfaces come back into view. Appearance thus travels with objects wherever they move, persists across revisits, and is shared by every agent that observes it, while memory grows with the surfaces seen instead of the number of frames. Trained only on synthetic data, M2R transfers zero-shot to real indoor scans and to worlds authored by coding agents. It outperforms state-of-the-art methods in consistency across static, dynamic, and multi-agent benchmarks, more than doubling object permanence and nearly doubling cross-agent consistency, while rendering 720p video in real time (40 FPS).",
-      "authors": [
-        "Joonghyuk Shin",
-        "Alex Trevithick",
-        "Katarína Tóthová",
-        "Liyuan Zhu",
-        "Shengyu Huang",
-        "Jaesik Park",
-        "Shalini De Mello",
-        "Laura Leal-Taixé",
-        "Riccardo de Lutio",
-        "Haithem Turki"
-      ],
-      "url": "http://arxiv.org/abs/2611.32445v1",
+      "url": "http://arxiv.org/abs/2611.34693v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project page: https://research.nvidia.com/labs/sil/projects/m2r/",
+      "comment": "23 pages, including appendix. Video examples provided as ancillary files",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "Video world models synthesize photorealistic observations in response to user actions but struggle to remain consistent over long interactions.",
-      "contribution_cn": "We propose M2R (Mesh to Remember), a few-step causal video renderer that stores its own features on the surfaces they depict, in each object's frame, and retrieves them by rasterizing the mesh whenever those surfaces come back into view.",
-      "relevance_cn": "匹配研究线：world model, streaming video；关键词：world model, video world model, interactive, causal video, few-step",
+      "summary_cn": "ShowNow 面向需要连续视频生成和即时动作响应的交互式世界模型，提出“准备未来—选择—提交”的推测式流式机制。在播放当前内容时，系统根据同一已提交状态预先生成多个动作条件化的候选未来，用户输入到达后直接选择对应分支。方法采用单潜变量细粒度提交、匹配的多未来 ViZDoom 数据集、共享历史的树形注意力与缓存、分区注意力及融合提交。在单张 H100 上，5B 模型可在 480p、16 fps 下准备八个未来；完整部署将输入到显示的中位延迟从 620 ms 降至 208 ms，并显著减少重启时的空显示帧。实验显示，多未来准备尤其能改善临近显示截止时间的响应和连续性，但更细粒度的自回归生成及部署优化会带来视觉质量和长时一致性下降。",
+      "contribution_cn": "1. 提出 ShowNow 细粒度推测式流式框架，将播放期间的计算用于提前准备动作条件化未来，并统一单未来与多未来准备，以调节计算开销和响应速度之间的权衡。2. 构建并发布匹配的多未来数据集和训练流程：从相同世界状态生成八种动作条件化延续，覆盖持续动作与动作切换，并结合多未来训练、因果蒸馏和自回归自训练。3. 提出共享历史树形执行、分区注意力、历史缓存和融合提交等推理优化，使 5B 模型能够在单张 H100 上以 480p、16 fps 实时准备八个未来。4. 通过连续流、受控动作切换、播放队列和更高播放速率实验，量化细粒度提交与提前准备对输入到显示延迟、空显示帧、截止时间命中率、控制效果和生成质量的影响。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件化视觉世界模型和闭环交互：用户动作选择生成分支，选中的视觉未来又成为下一轮生成的共同历史。它采用因果、自回归、单潜变量的细粒度生成，并通过三步采样、AnyFlow 蒸馏、Self-Forcing、共享前缀缓存、树形注意力和融合提交实现实时及流式生成。论文的核心贡献是把 speculative generation 从语言模型式候选验证扩展到视频世界模型，在动作真正到达之前准备多个未来，从而降低输入延迟、改善长连续流中的动作响应。共享历史执行将八候选生成时间相较独立批处理降低约 10%，峰值显存降低约 48%；在 ViZDoom 中八未来准备将重启空显示帧比例从 1.56% 降至 0.09%，并将统一相位的目标按时到达率从 83.8% 提高到 96.8%。这些结果也直接涉及实时生成、推理加速、稀疏或结构化注意力、缓存复用和播放时计算调度。",
+      "limitations_cn": "论文明确显示，ShowNow 存在视觉保真度和长时一致性权衡。ShowNow 在短时动作切换后的准确率优于 SolarWM-FT，但稳定后的准确率较低（0.901 对 0.969）；其 LPIPS 也高于普通推理结果。部署路径的长视频 FD 和关键帧准确率劣于普通推理及 SolarWM-FT，且部署融合和更长的自回归历史都会影响 rollout 质量。多未来准备需要额外 GPU 计算和显存，收益取决于动作覆盖率、输入到达时机、播放队列和显示截止时间；未覆盖动作仍需重新生成。32 fps 实验是以 16 fps 训练内容进行的 2 倍播放压力测试，并非原生 32 fps 训练设置。高分辨率 33B 实验还依赖多张 B300 GPU 的序列并行和专用解码 GPU。论文主要在 ViZDoom 及有限场景、动作集合和测量协议上验证，尚未证明对更广泛真实世界交互环境的泛化能力；对于论文未报告的其他限制，论文未明确说明。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "交互式世界模型必须持续生成视频，同时迅速响应用户操作。仅有实时吞吐率并不能解决输入延迟问题：粗粒度生成会阻塞并延迟动作更新，而在输入之后才开始生成又会增加响应路径上的工作量。我们提出 ShowNow，一种细粒度推测式流式框架，利用播放期间可用的计算资源，在输入到达之前准备动作条件化的未来。单潜变量提交支持频繁决策，可配置的准备机制覆盖一到八个动作。我们构建了匹配的多未来数据集，用于从同一状态训练不同的延续；共享历史的树形执行与融合提交机制提高了未来准备的效率。在单张 H100 上，我们的 5B 模型能够在准备八个未来的情况下，以 16 fps 生成 480p 视频。在 ViZDoom 中，与原生阻塞式 SolarWM-FT 部署相比，完整的 ShowNow 部署将输入到显示的中位延迟从 620 毫秒降低至 208 毫秒。匹配策略实验将重启空显示帧比例从 1.56% 降低至 0.09%（降低 94%），并提高了对动作变化的按时响应率。这些结果表明，细粒度提交和提前准备具有互补作用，但在视觉保真度和长时一致性方面存在经测量的权衡。ShowNow 将播放时计算转化为响应迅速的视觉交互。",
+      "note_path": "2026-11-26/2611.34693-shownow-fine-grained-speculative-streaming-for-r.md"
+    },
+    {
+      "id": "2611.34912",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "LiveVAE: Causal Window Attention Makes Efficient Streaming Video VAE",
+      "abstract": "While video diffusion models have grown faster and increasingly streamable, the video VAE remains a primary latency bottleneck across interactive generation and editing pipelines. Existing VAEs and their acceleration methods rely mainly on heavy convolutions or full frame attention, and most focus only on decoding, leaving encoding costly for streaming conditional generation and editing. This raises a natural question: Do video VAE encoding and decoding actually require such global spatiotemporal modeling? By analyzing the effective receptive fields of pretrained video VAEs, we find that both encoding and decoding a patch rely almost entirely on its spatial and temporal neighbors. To exploit this strong locality, we introduce LiveVAE, a streaming encoder and decoder built on causal window attention, which cuts per frame compute while keeping the temporal KV cache bounded for streaming. Decoupled encoder/decoder distillation followed by joint finetuning preserves the pretrained latent space, making LiveVAE a drop-in replacement for the original VAE. On MiniMax-H3, LiveVAE achieves 5.2-6.2x faster encoding and 3.0-3.3x faster decoding than the official VAE with higher PSNR. Paired with our dedicated inference infrastructure, LiveVAE pushes the speedup to 13.4x with almost no quality loss. Code and models will be released.",
+      "authors": [
+        "Jiachen An",
+        "Sijie Zhao",
+        "Le Li",
+        "Hongyu Liu",
+        "Zhiyuan Li",
+        "Tianyu Yang",
+        "Xiaoyu Kong",
+        "Xunliang Cai",
+        "Yong Zhang",
+        "Chi-Man Pun",
+        "Xiaoming Wei",
+        "Xiaodong Cun"
+      ],
+      "url": "http://arxiv.org/abs/2611.34912v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://livevae.github.io/ Code: https://github.com/MeiGen-AI/LiveVAE",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文提出 LiveVAE，用因果窗口注意力替代视频 VAE 中计算昂贵的全局时空建模。作者通过有效感受野和扰动分析发现，预训练视频 VAE 的编码与解码主要依赖局部空间邻域和短时间邻域，因此采用固定大小的空间窗口及因果时间窗口，实现逐潜帧流式处理和有界 KV 缓存。三阶段蒸馏分别对齐编码器潜表示、解码器重建结果，并通过联合微调使两者协同工作，同时保持与原有 DiT 的潜空间兼容。在 MiniMax-H3 和 Wan2.2 上，方法显著降低编码、解码延迟和显存占用，并可从低分辨率训练直接扩展到 2160p 推理；算子融合、分区域编译和带量化感知训练的 FP8 进一步提升速度。生成任务质量总体接近官方 VAE，但在细节、人物保真度和物理一致性方面仍存在差距。",
+      "contribution_cn": "1. 通过有效感受野分析和输入扰动实验，证明视频 VAE 的编码与解码主要依赖局部空间邻域及短因果时间邻域。 2. 提出 LiveVAE，一种基于因果窗口注意力的 Transformer 流式视频编码器和解码器，计算复杂度随 token 数量线性增长，并将时间 KV 缓存限制在固定窗口内。 3. 设计三阶段渐进式蒸馏框架，分别蒸馏编码器和解码器，再进行端到端联合微调，从而保留预训练 VAE 的潜空间并实现即插即用替换。 4. 设计专用推理优化，包括注意力算子融合、分区域编译以及带量化感知训练的 FFN FP8 量化，在 MiniMax-H3 上实现最高 13.4 倍的端到端加速，同时保持近乎不变的质量。 5. 在编码和解码加速、长视频、分辨率外推以及文本到视频和参考图到视频生成任务上进行了系统评估。",
+      "relevance_cn": "该工作直接面向视频生成和视频扩散系统的实时化与流式化瓶颈。它针对因果扩散、少步自回归生成和在线视频编辑中逐帧处理的 VAE 编码与解码延迟，提供了同时加速两者的方案，而非只优化解码器。因果窗口注意力和固定长度 KV 缓存与自回归、因果和长视频生成高度契合：单帧或单潜帧到达后即可处理，缓存大小不随视频时长增长。局部注意力还降低了高分辨率推理的计算和显存成本，并支持从 480p/720p 训练外推到 1080p 和 2160p。通过保持原有潜空间，LiveVAE 可与冻结的 DiT 直接配合，适合作为实时视频生成、流式编辑和参考视频生成系统中的基础设施组件。论文主要关注 VAE 加速，并未直接提出动作条件建模、闭环视觉世界模型或环境交互机制。",
+      "limitations_cn": "论文明确指出，LiveVAE 仍存在感知质量差距，细节可能变得模糊；在 MiniMax-H3 上，VBench-2.0 的人物保真度和物理一致性低于官方解码器。对于密集纹理、小字体、小脸和快速运动等困难案例，重建质量仍会下降。作者认为，部分差距源于其潜空间最初由卷积式 VAE 学习得到。长视频实验中，Wan2.2 上 LiveVAE 的 PSNR 比官方 VAE 低 1.4–2.2 dB，且其 LPIPS 仍可能较高。FP8 优化在低分辨率下收益有限，可能因固定开销导致速度下降，并会增加部分显存；直接量化还会明显损失 PSNR，需要量化感知训练恢复质量。实验主要基于 MiniMax-H3 和 Wan2.2、内部训练数据以及 NVIDIA H100，跨模型和硬件的普适性仍需进一步验证。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "尽管视频扩散模型变得更快速且越来越适合流式处理，视频 VAE 仍是交互式生成和编辑流程中的主要延迟瓶颈。现有 VAE 及其加速方法主要依赖计算量较大的卷积或全帧注意力，而且大多只关注解码，导致流式条件生成和编辑中的编码成本仍然很高。这引出了一个自然问题：视频 VAE 的编码和解码是否真的需要全局时空建模？通过分析预训练视频 VAE 的有效感受野，我们发现，编码或解码一个图像块几乎完全依赖其空间和时间邻域。为利用这种强局部性，我们提出 LiveVAE，一种基于因果窗口注意力的流式编码器和解码器。该方法降低了每帧计算量，同时使流式处理中的时间 KV 缓存保持有界。通过解耦的编码器/解码器蒸馏和后续联合微调，LiveVAE 保留了预训练潜空间，因此可以直接替换原始 VAE。在 MiniMax-H3 上，LiveVAE 的编码速度比官方 VAE 快 5.2–6.2 倍，解码速度快 3.0–3.3 倍，同时具有更高的 PSNR。结合专用推理基础设施后，LiveVAE 可将加速比提升至 13.4 倍，且几乎没有质量损失。代码和模型将公开发布。",
+      "note_path": "2026-11-26/2611.34912-livevae-causal-window-attention-makes-efficient.md"
+    },
+    {
+      "id": "2611.34907",
+      "date": "2026-11-25",
+      "topics": [
+        "Autoregressive and Streaming Video",
+        "Efficient Video Diffusion"
+      ],
+      "title": "Agentic LongLive: Asynchronous Agentic Memory for Long Video Generation",
+      "abstract": "Real-time autoregressive video generators stream minutes of video and accept new prompts on the fly, but struggle to keep people, objects, and places consistent over a long interactive story. Agent systems provide such memory for offline multi-shot generation, yet they read the whole script in advance, plan each shot before generating it, and regenerate failed shots, which a live stream does not allow. We present Agentic LongLive, an asynchronous agentic memory for long video generation. A memory agent on separate GPUs reads only the prompts revealed so far, never the generated video, and keeps a text state and evolving images for every person, object, and scene. From this entity memory it composes a global image and a per-shot memory image, which an auxiliary GPU prefills into the generator's attention sink before the next shot starts, and writes entity cards for the prompts that name them, so the video never waits for memory and video errors are not written back. A small language model, trained with reinforcement learning and an image reward calibrated using downstream video outcomes, decides what to remember before the next prompt is known. On LongStory-Online, a new benchmark of 25 stories (857 shots) revealed one shot at a time, Agentic LongLive improves persistent-state accuracy of LongLive-2.0, its base generator, by 26.3 points, protagonist identity by 44.9, and revisited-place consistency by 40.4, at about 1% extra generation time on H100. The full system streams faster than real time on one 8xB200 node with the generator in BF16 (34.3 FPS), keeps image quality stable over 14-minute stories, and improves identity on two MiniMax-H3 generators, one of which, LongLive-H3, also runs in real time with it. To our knowledge, it is the first real-time video generator with text and image memory kept by an LLM agent.",
+      "authors": [
+        "Shaoteng Liu",
+        "Shuai Yang",
+        "Wei Huang",
+        "Luozhou Wang",
+        "Song Han",
+        "Yukang Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.34907v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "28 pages, 12 figures. Project page: https://nvlabs.github.io/LongLive/Agentic-LongLive/",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Real-time autoregressive video generators stream minutes of video and accept new prompts on the fly, but struggle to keep people, objects, and places consistent over a long interactive story.",
+      "contribution_cn": "We present Agentic LongLive, an asynchronous agentic memory for long video generation.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：interactive, autoregressive, long video, real-time, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.31944",
-      "date": "2026-11-24",
+      "id": "2611.34056",
+      "date": "2026-11-25",
       "topics": [
         "Video Generation"
       ],
-      "title": "DraftKV: Protecting Persistent Worlds through Hierarchical Streaming Retrieval",
-      "abstract": "Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain consistent spatial geometry and appearance when revisiting previously explored locations. Historical KV caches help auto-regressive video diffusion models maintain long-term consistency, but their retrieval and attention computation introduce substantial latency as history grows. We propose DraftKV, a training-free framework that retrieves historical KV caches based on geometric grounding and query-conditioned relevance, while combining CPU offloading with tile-wise streaming attention to reduce GPU memory usage and inference latency. Theoretically, we show that draft relevance reproduces the mean branch of full-resolution block relevance exactly, so its deviation is confined to the $β$-weighted max branch, and we bound retrieval utility loss in terms of the measured Top-K selection overlap. We further show that draft relevance cannot distinguish blocks with similar pooled descriptors regardless of camera pose, motivating geometric grounding before refinement. Then, we introduce streaming CG-Attention, which overlaps CPU-to-GPU KV transfers with attention computation through tile-wise streaming, hiding transfer latency while maintaining bounded GPU memory usage. Experiments across diverse model families show that DraftKV achieves superior generation quality and consistency while achieving $3.27\\times$ end-to-end speedup and 42.2% peak GPU memory reduction over other CPU-offloaded KV cache retrieval methods. Notably, DraftKV enables high-quality interactive world generation with historical KV retrieval on a single H100 GPU using SolarWM-33B.",
+      "title": "Understanding Diffusion Acceleration: Methods, Trade-Offs, and Open Questions",
+      "abstract": "Diffusion and flow-based generative models support high-quality image, audio, and video synthesis. Sampling can require dozens to hundreds of denoiser evaluations, with each pass becoming more expensive as resolution, video length, or model size increases. This cost affects latency and energy use in interactive and edge applications. We examine four approaches to accelerating inference: distillation, consistency training, sampling methods, and denoiser design. We express training objectives, transition maps, and numerical updates in a common notation to compare changes to the learning target, the sampling trajectory, and the work performed within each denoiser pass. Published image and video benchmarks illustrate the quality--cost trade-offs of one- and few-step generation, the interaction between solvers and timestep schedules, the effect of feature caching, and the difference between first-frame latency and sustained streaming throughput. We close with open problems in visual-native architectures and post-compression distillation, solver-aware few-step training, and semantic trajectory alignment with factorized distribution matching.",
       "authors": [
-        "Xiaoling Zhou",
-        "Haopeng Li",
-        "Yufa Zhou",
-        "Rui Ding",
-        "Yu Li",
-        "Jun Lin",
-        "Enze Xie",
-        "Chunhua Shen",
-        "Xuan Shen"
+        "Xiaofeng Mao",
+        "Fu-yun Wang",
+        "Le Zhuo",
+        "Zhengkai Jiang",
+        "Shaohao Rui",
+        "Weijie Ma"
       ],
-      "url": "http://arxiv.org/abs/2611.31944v1",
+      "url": "http://arxiv.org/abs/2611.34056v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Includes supplementary material. Code and project page are available online",
-      "score": 72,
+      "comment": "",
+      "score": 74,
       "priority": "skim",
-      "summary_cn": "Interactive video world models enable action- and camera-controlled exploration, yet struggle to maintain consistent spatial geometry and appearance when revisiting previously explored locations.",
-      "contribution_cn": "We propose DraftKV, a training-free framework that retrieves historical KV caches based on geometric grounding and query-conditioned relevance, while combining CPU offloading with tile-wise streaming attention to reduce GPU memory usage and inference latency.",
-      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, video world model, interactive, streaming, cache, kv cache",
+      "summary_cn": "Diffusion and flow-based generative models support high-quality image, audio, and video synthesis.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, streaming, acceleration, few-step, distillation, video synthesis",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.31184",
-      "date": "2026-11-23",
+      "id": "2611.33591",
+      "date": "2026-11-25",
       "topics": [
         "Video Generation"
       ],
-      "title": "On-Policy Codec Distillation for Efficient All-in-One Video Generation",
-      "abstract": "Modern visual generative models operate on tokens, and every visual asset they receive, whether an identity, a scribble, a depth map, or a motion video, is tokenized and appended to the input token sequence. Consequently, conditioning quickly dominates the computation cost. Yet most of these tokens carry redundant spatiotemporal information. Our key insight is that identifying what is genuinely new is exactly the problem that classical video codecs have long solved. Thus, we first introduce a codec-based token pruning method that discards redundant tokens. Then, we propose an on-policy self-distillation (OPSD) strategy to train a DiT adapter capable of learning the codec pruning pattern well without quality degradation. Together, they form On-Policy Codec Distillation (CodecOPSD). We scale CodecOPSD to 16 condition modalities on our own video diffusion model, where it prunes 66% of the condition tokens on average with almost no quality drop. Therefore, denoising becomes 2x faster, and the cache memory shrinks by up to 73% in KV cache mode. CodecOPSD also extends to other state-of-the-art pretrained image and video generative models, where its benefit grows further with more conditions, longer frames, and higher resolution.",
+      "title": "VivaWorld: Long-Horizon Video World Model With Compositional 3D Priors",
+      "abstract": "Long-horizon video generation is key to interactive world modeling, physical intelligence, and spatial reasoning, yet maintaining geometric consistency and accurate camera control remains challenging without 3D grounding. We introduce \\textbf{VivaWorld}, a framework for generating geometry- and view-consistent long videos from an image. We first construct a compositional hybrid 3D representation that combines reconstructed point clouds, which preserve observed scene geometry and appearance, with generated textured meshes, which provide complete object geometry across $360^\\circ$ novel views. We also introduce a connected-region filter removing inconsistent floating components for robust cross-view reconstruction and propose a hybrid camera embedding that combines global and object-anchored Plücker rays to capture both scene-level camera motion and camera-object relationships, and inject it together with the visual guidance into a video generation model via a control adapter. Extensive experiments show VivaWorld achieves state-of-the-art visual quality and camera control, while supporting controllable novel-view synthesis, long-horizon scene exploration, and physical AI. Project page is available at: https://research.nvidia.com/labs/sil/projects/vivaworld/",
       "authors": [
-        "Boyang Wang",
-        "Kevin Blackburn-Matzen",
-        "Oindrila Saha",
-        "Matheus Gadelha",
-        "Zezhou Cheng"
+        "Ying Jiang",
+        "Donglai Xiang",
+        "Anita Hu",
+        "Masha Shugrina"
       ],
-      "url": "http://arxiv.org/abs/2611.31184v1",
+      "url": "http://arxiv.org/abs/2611.33591v1",
       "categories": [
         "cs.CV"
       ],
-      "comment": "Project page: https://kiteretsu77.github.io/CodecOPSD_website/",
-      "score": 71,
+      "comment": "17 figures, 10 tables, 26 pages",
+      "score": 70,
       "priority": "skim",
-      "summary_cn": "Modern visual generative models operate on tokens, and every visual asset they receive, whether an identity, a scribble, a depth map, or a motion video, is tokenized and appended to the input token sequence.",
-      "contribution_cn": "Then, we propose an on-policy self-distillation (OPSD) strategy to train a DiT adapter capable of learning the codec pruning pattern well without quality degradation.",
-      "relevance_cn": "匹配研究线：efficient generation, video generation；关键词：distillation, cache, kv cache, efficient, video generation, video diffusion",
+      "summary_cn": "Long-horizon video generation is key to interactive world modeling, physical intelligence, and spatial reasoning, yet maintaining geometric consistency and accurate camera control remains challenging without 3D grounding.",
+      "contribution_cn": "We introduce \\textbf{VivaWorld}, a framework for generating geometry- and view-consistent long videos from an image.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, long video, video generation",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -204,7 +236,7 @@
         "Bike Zhu",
         "Hesheng Wang"
       ],
-      "url": "http://arxiv.org/abs/2611.32665v1",
+      "url": "http://arxiv.org/abs/2611.32665v2",
       "categories": [
         "cs.RO"
       ],
@@ -218,34 +250,29 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.31164",
-      "date": "2026-11-23",
+      "id": "2611.34944",
+      "date": "2026-11-25",
       "topics": [
-        "Autoregressive and Streaming Video"
+        "Video Generation"
       ],
-      "title": "Analyzing and Improving FlowMap Distillation of Autoregressive Video Models",
-      "abstract": "FlowMap distillation offers a natural route to few-step generative modeling by directly learning a teacher's denoising trajectories. Yet for autoregressive (AR) video generation, existing few-step models still rely on distribution matching distillation (DMD) to remain competitive, sacrificing sample diversity and requiring a large bidirectional teacher. In this work, we analyze what limits standalone AR FlowMap distillation and introduce two complementary guidance mechanisms to close this gap: (1) anti-drifting guidance, which helps the AR teacher correct drifted student rollouts by training an auxiliary model to mimic student drift and using it as a negative guidance branch; and (2) motion-aware guidance, which makes motion easier for a FlowMap student to learn by locating motion patches and selectively applying skip-layer guidance. Empirically, our approach applies to $π$-Flow, MeanFlow, and consistency distillation with 1.3B AR teachers, improving generation quality and reducing drift over 30 s rollouts. Notably, our 4-step $π$-Flow students match DMD students distilled from 14B teachers on VBench while preserving the sample diversity of their AR teachers, demonstrating that pure FlowMap distillation is effective for few-step autoregressive video generation.",
+      "title": "AnyCam: Anything Can Represent Camera for Video Generation",
+      "abstract": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult. Existing methods condition either on camera parameters, which are scale-ambiguous in monocular video, or on explicit geometry such as warped point clouds or depth, which breaks down under large viewpoint changes. We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object. A video diffusion model transfers the content and dynamics of the source video to the new viewpoint. Its H-Concat layout aligns source and target frames in time, so the model can be distilled into AnyCam-AR, a streaming few-step generator for on-the-fly camera control. Both models are trained on paired videos with pixel-aligned anchor renderings from multi-camera videos and static-scene captures. Experiments on diverse datasets and trajectories show that AnyCam performs favorably against camera-controlled video generation and 3D reconstruction methods in camera control and visual quality.",
       "authors": [
-        "Yong-Hyun Park",
-        "Guande He",
-        "Joon Hyeok Kim",
-        "Hansheng Chen",
-        "Kaifan Yu",
-        "Chaoqi Luo",
-        "Xun Huang",
-        "Jiatao Gu"
+        "Weijie Lyu",
+        "Zhixin Shu",
+        "Yuntian Ke",
+        "Ming-Hsuan Yang"
       ],
-      "url": "http://arxiv.org/abs/2611.31164v1",
+      "url": "http://arxiv.org/abs/2611.34944v1",
       "categories": [
-        "cs.CV",
-        "cs.LG"
+        "cs.CV"
       ],
-      "comment": "Preprint, Project Page: https://enkeejunior1.github.io/ar-video-flowmap/",
-      "score": 65,
+      "comment": "Project page: https://weijielyu.github.io/AnyCam/",
+      "score": 62,
       "priority": "skim",
-      "summary_cn": "FlowMap distillation offers a natural route to few-step generative modeling by directly learning a teacher's denoising trajectories.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：autoregressive, few-step, distillation, video generation",
+      "summary_cn": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult.",
+      "contribution_cn": "We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：streaming, few-step, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     },
@@ -280,35 +307,7 @@
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, efficient",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
-    },
-    {
-      "id": "2611.32811",
-      "date": "2026-11-24",
-      "topics": [
-        "World Models"
-      ],
-      "title": "Interactive Neural Computers",
-      "abstract": "Computers and their interfaces are usually treated as fixed, so a person, or increasingly an AI agent, must adapt to whatever the operating system presents. This is limiting when someone needs a different workflow, or an interface suited to hands-free use or a disability. We explore an overlooked alternative. Rather than training an agent to operate an existing computer, we train a generative model to be the computer, predicting each next screen from past screens and the user's mouse and keyboard actions. Treating a desktop as an interactive world model raises problems that natural-video world models largely avoid. Without a camera pose to index memory, the model must remember content that has left the screen without any geometric cues. Arithmetic in a terminal has to be exactly right, not merely plausible. Small interface text must also stay legible at interactive frame rates. Our Interactive Neural Computer is structured like a Neural Turing Machine and starts to address these problems with three modules trained end to end from pixels and actions. A surprise-gated slot memory, supervised by latent next-frame prediction (MEMORY-JEPA), stores what is off screen. An exploratory query bridge brings in the reasoning of a pretrained VLM, and a residual renderer predicts only the latent changes between frames. In long closed-loop rollouts, our model recalls occluded files in 64.2% of trials (chance is 33.3%), compared with at most 56.0% for recurrent and sliding-window baselines. It also raises terminal-text OCR accuracy from 1.3% to 50.1%. Finally, because the memory is explicit, it can be transplanted at test time to causally change what the model renders.",
-      "authors": [
-        "Ross Murphy",
-        "Marcel Hedman",
-        "Gabriel Brostow"
-      ],
-      "url": "http://arxiv.org/abs/2611.32811v1",
-      "categories": [
-        "cs.AI",
-        "cs.NE",
-        "cs.SC"
-      ],
-      "comment": "",
-      "score": 62,
-      "priority": "skim",
-      "summary_cn": "Computers and their interfaces are usually treated as fixed, so a person, or increasingly an AI agent, must adapt to whatever the operating system presents.",
-      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
-      "relevance_cn": "匹配研究线：world model；关键词：world model, video world model, interactive, closed-loop",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
     }
   ],
-  "cursor_summaries_completed": 2
+  "cursor_summaries_completed": 3
 }
