@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T05:28:09+00:00",
+  "generated_at": "2026-11-27T20:22:02+00:00",
   "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
   "papers": [
     {
@@ -32,12 +32,12 @@
       "comment": "",
       "score": 77,
       "priority": "must-read",
-      "summary_cn": "WorldInteract 面向多材料物理交互的流式视频生成，将材料本身在速度变化下的行为学习与物体接触时的动量交换计算分开处理。模型通过共享速度增量接口，把外部推动和物理控制器预测的接触冲量统一输入因果视频生成器；场景记忆、深度位置图和目标跟踪图用于维持长时间生成中的物体状态与身份。训练分为无交互材料行为学习、因果状态传播和材料感知强化学习三阶段，并通过四步 DMD 蒸馏实现单张 H100 上约8 fps 的交互式流式生成。实验表明，该方法在 Physics-IQ 和真实图像推动控制上均优于多个基线，并能体现推动强度、方向、材料和形状带来的行为差异。",
-      "contribution_cn": "1. 提出将材料相关行为生成与接触响应计算解耦的跨材料交互框架，通过共享速度增量接口在推理时组合二者。2. 提出材料感知强化学习，使用位移准确性、速度增量一致性、成对行为关系和事件时序等可验证物理奖励，改进材料行为及接触控制执行。3. 构建涵盖22类材料的3万个模拟无交互视频数据集，使模型能够学习单材料行为而无需穷举材料配对和接触配置。4. 引入场景记忆、物体跟踪与位置图支持因果流式生成，并通过因果模型蒸馏实现约8 fps 的交互式生成。",
-      "relevance_cn": "该工作与研究重点高度相关：它直接研究视频扩散世界模型、动作条件控制、因果与流式生成以及闭环物理模拟。用户推动被编码为速度增量，接触响应由物理控制器根据生成视频中的跟踪、深度和物体属性预测，再反馈给下一视频块，形成控制器与生成器交替执行的闭环过程。方法采用因果注意力、键值缓存、场景状态记忆和四步 DMD 蒸馏，涉及长视频一致性、实时生成、缓存复用和加速。其重点不是通用轨迹跟随，而是让同一控制接口适应刚体、弹性体、流体和沙等材料的不同动力学。",
-      "limitations_cn": "论文明确指出，当前物理控制器使用近似几何和无摩擦的中心碰撞模型，尚未覆盖更丰富的接触模型。物体质量和恢复系数依赖视觉语言模型从图像估计，存在估计误差。训练数据主要是模拟的无物体间接触视频，真实接触场景通过控制器生成的轨迹和强化学习间接学习。真实图像评测使用200张图像，语义遵循性和物理常识部分依赖视觉语言模型评分，缺少真实世界接触视频的全面定量真值。论文未明确说明在更长时间跨度、更复杂遮挡、多物体密集接触或更高分辨率下的性能。",
+      "summary_cn": "WorldInteract 提出一种可控流式视频生成框架，将材料自身在速度变化下的行为学习与物体接触时的动量交换计算分离。模型使用共享速度增量接口，把外部推动和接触冲量统一起来；因果视频生成器负责生成材料行为，物理控制器则根据视觉估计的质量、恢复系数和场景状态计算接触响应。方法通过3万段覆盖22类材料的无物交互模拟视频进行训练，并结合场景记忆、物体跟踪、位置图、物理图以及 Material-Aware RL 改善长时流式控制。实验显示，该方法在 Physics-IQ 和真实图像推动控制上均优于基线，并支持单张 H100 上约8 fps的交互式生成。",
+      "contribution_cn": "1. 提出跨材料交互的组合式框架，将材料相关行为生成与物理控制器的接触响应计算解耦，并通过共享速度增量接口在推理时组合二者。2. 提出 Material-Aware RL，使用位移准确性、速度增量一致性、成对输入的相对行为和事件时序等可验证物理奖励，优化材料行为及跨材料交互的控制执行。3. 构建包含3万段模拟无交互视频、覆盖22类材料的数据集，使模型能够学习单个材料的行为，而无需穷举材料配对和接触配置。4. 引入因果生成、场景记忆、对象持久身份跟踪和物理图，以支持在场景持续演化过程中更新控制。5. 使用四步 DMD 蒸馏和缓存的视觉语言模型查询，实现约8 fps的流式生成。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究视频扩散世界模型、可控流式视频生成和多材料物理交互；通过因果 DiT、分块生成和键值缓存支持自回归、流式和长时场景延续；通过物理控制器与生成器交替闭环运行，实现基于用户推动和预测接触的动作条件视觉世界模型；通过四步 DMD 蒸馏、因果初始化和 VLM 查询缓存提升实时生成效率。其共享速度增量接口还为将外部动作控制、接触响应和材料行为统一到同一生成接口提供了思路。",
+      "limitations_cn": "论文明确指出，当前物理控制器使用近似几何信息和无摩擦的中心碰撞模型，尚未覆盖更丰富的接触模型。质量和恢复系数由视觉语言模型根据图像裁剪和近似尺度估计，存在估计误差。训练数据主要是模拟的无物体接触视频，真实世界和复杂接触配置的覆盖有限。真实图像评估依赖 VLM 对语义遵循和物理常识进行评分，而非完整的真实视频真值。论文未明确说明模型在更长时间跨度、更复杂摩擦、非中心碰撞或大规模多物体场景中的性能。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "视频世界模型旨在创建能够捕捉多种材料运动与相互作用的可交互物理世界。然而，材料相关动力学在可控视频生成中仍未得到充分研究，这限制了模型在不同材料场景中的可靠控制。我们提出 WorldInteract，一种流式视频生成框架，将跨材料交互分解为材料相关行为生成和接触响应计算。外部推动和接触冲量通过共享的速度增量接口表示，使得从无交互视频中学习的材料行为能够复用于交互场景。物理控制器根据估计的质量和恢复系数预测接触并计算速度增量，而因果生成器利用学习到的材料行为执行这些增量。这种分离使模型无需覆盖多种材料组合和接触配置的监督接触视频，即可实现跨材料交互。我们在涵盖22类材料的3万个模拟无交互视频上训练生成器，并提出材料感知强化学习，利用可验证的物理奖励来改进材料行为和控制执行。WorldInteract 在 Physics-IQ 上显著优于现有先进方法，并在真实世界图像上实现了更可靠的推动控制。",
+      "abstract_cn": "视频世界模型旨在创建能够捕捉多样材料运动与相互作用的交互式物理世界。然而，材料相关的动力学在可控视频生成中仍未得到充分研究，限制了模型在不同材料场景中的可靠控制。我们提出 WorldInteract，一种流式视频生成框架，将跨材料交互分解为材料相关行为生成和接触响应计算。外部推动力与接触冲量通过共享的速度增量接口表示，使得从无交互视频中学习的材料行为能够复用于交互场景。物理控制器根据估计的质量和恢复系数预测接触并计算速度增量，因果生成器则利用学习到的材料行为执行这些增量。这种分离使模型无需覆盖多种材料配对和接触配置的有监督接触视频，即可实现跨材料交互。我们在涵盖22类材料的3万段模拟无交互视频上训练生成器，并提出 Material-Aware RL，利用可验证的物理奖励优化材料行为和控制执行。WorldInteract 在 Physics-IQ 上显著优于现有最先进方法，并能在真实世界图像上实现更可靠的推动控制。",
       "note_path": "2026-11-27/2611.34730-worldinteract-controllable-streaming-video-gener.md"
     },
     {
@@ -60,12 +60,12 @@
       "comment": "23 pages, including appendix. Video examples provided as ancillary files",
       "score": 76,
       "priority": "must-read",
-      "summary_cn": "论文提出 ShowNow，用于降低交互式世界模型的视频输入响应延迟。系统以单潜变量进行更频繁的提交，并在播放期间从同一历史状态并行准备多个动作条件化未来；用户输入到达后直接选择匹配分支，再将其作为下一轮生成的共同历史。作者构建了匹配的八动作多未来 ViZDoom 数据集，并结合因果蒸馏、自强制训练、分支树注意力、共享历史缓存和融合提交实现实时推理。在单张 H100 上，5B 模型可在 480p、16 fps 下准备八个未来；完整部署将中位输入到显示延迟从 620 ms 降至 208 ms，并显著减少重启空帧。实验还显示，提前准备可提高临近显示截止时间时的按时响应和播放连续性，但细粒度自回归及部署优化会带来视觉质量和长时一致性下降。",
-      "contribution_cn": "1. 提出 ShowNow 细粒度推测式流式框架，将播放期间的计算用于提前准备动作条件化未来，并统一单未来和多未来准备，在计算开销与响应速度之间提供可配置权衡。 2. 构建并发布从相同世界状态分叉的匹配多未来数据集，包含八种动作、持续动作和动作切换，用于训练不同动作下的一致历史与差异化后续。 3. 提出共享历史的分支树注意力、历史缓存、分区注意力和融合提交机制，避免重复计算并降低多分支推理的时间和显存开销。 4. 结合教师适配、AnyFlow 因果蒸馏和 Self-Forcing，训练三步去噪、单潜变量更新的实时生成模型。 5. 在单张 H100 上实现 5B 模型以 480p、16 fps 准备八个未来，并通过实验证明其在输入到显示延迟、空帧比例、截止时间内响应和高分辨率 33B 扩展方面的效果。",
-      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件化视觉世界模型的闭环交互，将用户动作作为条件，并通过 prepare–select–commit 循环持续生成和更新视频。其单潜变量提交、因果自回归生成和播放期间提前推测未来，分别对应细粒度决策、流式/长视频生成和降低输入响应延迟。共享历史树执行、滚动缓存、分区注意力与融合提交直接涉及稀疏或复用历史计算、缓存复用和实时推理优化。AnyFlow 蒸馏与三步采样则对应生成加速和蒸馏。实验还量化了 16 fps 实时生成、32 fps 加速播放、动作切换响应以及输入到显示延迟，体现了面向闭环模拟的实际交互性能。",
-      "limitations_cn": "论文报告了若干局限和权衡：ShowNow 的细粒度自回归生成相较于基线具有更低的短期动作切换延迟，但其整体动作准确率和稳定后的准确率并不全面占优，视觉指标也出现下降；长时一刻钟级滚动中，部署路径和更长的自回归历史会降低生成质量与一致性。多未来准备需要显著的 GPU 计算资源，八未来配置占用约 80% GPU 忙碌时间，并依赖单张 H100 才能达到报告的实时点。覆盖动作之外的输入仍需重新生成，无法直接享受预准备分支的收益。实验主要基于 ViZDoom 和有限的动作集合，跨环境、跨任务及真实机器人闭环控制的泛化能力未被充分验证。33B 结果使用八路序列并行、B300 GPU 和额外 GPU 解码的建模设置，不等同于单 GPU 实时部署。论文未明确说明更复杂动作空间、长期用户策略变化和极端负载下的性能上限。",
+      "summary_cn": "论文提出 ShowNow，用于解决交互式世界模型中实时播放与低输入延迟难以兼顾的问题。系统在播放当前视频时，提前生成多个动作条件下的未来，输入到达后选择对应分支并提交为后续历史；同时采用单潜变量细粒度提交、匹配多未来数据、共享历史树状注意力、缓存复用和融合提交来降低开销。基于 ViZDoom 的实验显示，5B 模型在单张 H100 上可于 480p、16 fps 下准备八个未来，将输入到显示延迟中位数降至 208 ms，并显著减少重启空帧和错过显示期限的情况。实验也发现，细粒度自回归和部署优化会带来视觉质量及长时一致性下降的权衡。",
+      "contribution_cn": "1. 提出 ShowNow 细粒度推测式流式框架，将播放期间的计算用于输入到达前的动作条件未来准备，并统一单未来和多未来策略，提供计算量与响应速度之间的可配置权衡。 2. 构建并发布匹配的多未来数据集：从相同的 ViZDoom 世界状态生成八种动作条件下的后续轨迹，覆盖持续动作和动作切换，并结合多未来训练、因果蒸馏和 Self-Forcing 优化模型。 3. 提出共享历史的分支树执行、分区注意力、历史缓存复用和融合提交机制，避免重复计算，使 5B 模型能够在单张 H100 上以 480p、16 fps 准备八个未来。 4. 通过连续流、控制切换、播放调度和长视频实验，量化细粒度提交、动作覆盖、候选就绪程度及缓冲策略对延迟、连续性和按时响应的影响。",
+      "relevance_cn": "与视频生成和视频扩散相关：系统以 Wan2.2/SolarWM 5B 为骨干，结合 AnyFlow 因果蒸馏、Self-Forcing 和少步采样实现实时视频生成。与动作条件视觉世界模型和闭环仿真直接相关：模型从 ViZDoom 状态及 W/A/S/D、转向、开火、跳跃等动作生成多个可交互未来，用户输入选择分支后该分支成为下一轮共同历史。与自回归、因果、流式和长视频生成相关：采用单潜变量、块因果注意力、滚动历史缓存和持续的准备—选择—提交循环，并评估一分钟场景。与实时生成、蒸馏、稀疏或共享注意力及缓存复用相关：三步生成、因果蒸馏、分支隔离的共享前缀执行、FastTree 缓存、分区注意力和融合提交共同降低响应路径开销；八未来执行相较独立批处理将生成时间降低约 10%，峰值显存降低 48%。",
+      "limitations_cn": "论文明确报告了视觉保真度和长时一致性方面的权衡：ShowNow 的 LPIPS 和长视频 FD 相比部分基线更差，部署融合与较长自回归历史也会影响质量。其已测得的动作准确率和稳定后的准确率低于教师模型，稳定准确率也低于 SolarWM-FT；细粒度提交虽改善切换初期响应，却可能损害后续稳定性。多未来数据和主要交互实验基于 ViZDoom，动作集合为八种预定义动作，因此对更复杂动作空间、真实机器人环境或开放世界的泛化仍未得到充分验证。32 fps 结果是对 16 fps 训练内容的加速播放测试，并非完整的原生 32 fps 训练与生成评估。33B 实验使用多 GPU 和建模的解码时间，硬件与部署条件不同于单 H100 的主要结果。论文未明确说明更大规模用户交互、长期世界状态漂移及连续新颖动作分布下的性能。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "交互式世界模型必须在持续生成视频的同时，及时响应用户操作。仅有实时吞吐率并不能解决输入延迟：粗粒度生成会延迟动作更新，而在输入到达后才开始生成又会增加响应路径上的工作量。我们提出 ShowNow，一种细粒度推测式流式框架，利用播放期间可用的计算资源，在输入到达前准备动作条件化的未来。单潜变量提交支持高频决策，可配置的准备机制覆盖一到八个动作。我们构建了匹配的多未来数据集，用于从共同状态训练不同的后续轨迹；共享历史的树执行和融合提交机制提高了准备效率。在单张 H100 上，我们的 5B 模型在准备八个未来的情况下，能够以 16 fps 持续生成 480p 视频。在 ViZDoom 中，与原生阻塞式 SolarWM-FT 部署相比，完整的 ShowNow 部署将输入到显示的中位延迟从 620 毫秒降低至 208 毫秒。匹配策略实验将重启空帧比例从 1.56% 降低至 0.09%（降低 94%），并改善了对动作变化的按时响应。这些结果表明，细粒度提交与提前准备具有互补作用，同时也存在已测量的视觉保真度和长时一致性权衡。ShowNow 将播放期间的计算转化为响应迅速的视觉交互。",
+      "abstract_cn": "交互式世界模型必须在连续生成视频的同时，及时响应用户操作。仅有实时吞吐率并不能解决输入延迟问题：粗粒度生成会延迟动作更新，而在输入之后才开始生成又会增加响应路径上的工作量。我们提出 ShowNow，一种细粒度推测式流式框架，利用播放期间可用的计算资源，在输入到达前准备带有动作条件的未来。单潜变量提交支持频繁决策，可配置的准备机制覆盖一至八个动作。我们构建了匹配的多未来数据集，用于从同一状态训练不同的后续轨迹；共享历史的树状执行和融合提交使这些未来的准备更加高效。在单张 H100 上，我们的 5B 模型能够以 16 fps 持续生成 480p 视频，同时准备八个未来。在 ViZDoom 中，与原生阻塞式 SolarWM-FT 部署相比，完整的 ShowNow 部署将输入到显示延迟的中位数从 620 ms 降至 208 ms。匹配策略实验将重启空显示帧比例从 1.56% 降至 0.09%（下降 94%），并提高了对动作变化的按时响应率。这些结果表明，细粒度提交和提前准备具有互补作用，同时也存在经过测量的视觉保真度和长时一致性权衡。ShowNow 将播放期间的计算转化为响应迅速的视觉交互。项目地址：https://github.com/showlab/ShowNow。",
       "note_path": "2026-11-27/2611.34693-shownow-fine-grained-speculative-streaming-for-r.md"
     },
     {
@@ -97,12 +97,12 @@
       "comment": "Project page: https://livevae.github.io/ Code: https://github.com/MeiGen-AI/LiveVAE",
       "score": 74,
       "priority": "must-read",
-      "summary_cn": "论文针对实时视频生成、流式编辑和参考视频生成中的 VAE 延迟瓶颈，提出 LiveVAE。作者通过有效感受野和扰动实验发现，预训练视频 VAE 的编码与解码主要依赖局部空间邻域和短时因果邻域，因此使用固定大小的因果窗口注意力替代全局时空建模。LiveVAE 在 latent 网格上采用流式 Transformer 编码器和解码器，并通过滚动 KV 缓存实现与视频长度无关的有界缓存。为保持已有扩散 Transformer 的潜空间兼容性，论文采用编码器蒸馏、解码器蒸馏和联合微调三阶段训练，并结合注意力算子融合、区域编译和带量化感知训练的 FP8 FFN。基于 MiniMax-H3 和 Wan2.2 的实验表明，该方法在编码、解码速度、显存占用和高分辨率外推方面具有优势；在生成任务中总体质量接近官方 VAE，但在部分人类保真度、物理一致性和感知细节上仍存在差距。",
-      "contribution_cn": "1. 通过有效感受野分析和扰动实验，证明视频 VAE 的编码与解码主要依赖局部空间邻域及当前和近期时间步，而不需要完整的全局时空建模。\n2. 提出基于因果窗口注意力的 LiveVAE 流式编码器和解码器，使计算复杂度随 token 数量线性增长，并将时间 KV 缓存限制在固定数量的 latent 帧内。\n3. 提出三阶段渐进式蒸馏框架，包括独立的编码器蒸馏、解码器蒸馏和端到端联合微调，以保留预训练 VAE 的 latent 空间并实现即插即用替换。\n4. 设计专用推理优化方案，包括注意力算子融合、区域级编译和带 QAT 的 FP8 前馈层，在较小质量损失下进一步降低端到端延迟。\n5. 在 MiniMax-H3 和 Wan2.2 上验证了方法的速度、重建质量、显存效率、高分辨率外推和下游视频生成兼容性。",
-      "relevance_cn": "与研究重点高度相关。LiveVAE 直接服务于视频扩散和实时视频生成，将视频 VAE 从生成流程中的主要延迟瓶颈转化为可流式处理的组件。其因果窗口注意力和滚动 KV 缓存与因果、流式、长视频生成的设计目标一致：每次处理一个视频块，缓存大小不随视频时长增长。方法同时加速编码和解码，因此适用于需要在线压缩输入帧或参考视频的流式编辑、条件生成和参考视频生成，而不只是生成端解码。局部窗口注意力降低了高分辨率下的空间注意力开销，FP8、算子融合和编译优化则进一步对应实时推理和系统级加速。论文不直接研究动作条件视觉世界模型或闭环模拟，但其低延迟、因果视频编码解码组件可作为此类交互式世界模型的实时视觉输入输出模块。",
-      "limitations_cn": "论文明确指出，LiveVAE 仍存在感知质量差距，细节可能变得模糊，尤其是在密集纹理、小文字、小人脸和快速运动等场景；在 MiniMax-H3 上，VBench-2.0 的 Human Fidelity 和 Physics 指标低于官方解码器。作者认为，部分差距源于其继承的卷积式 VAE 潜空间。Wan2.2 和较长视频实验中，LiveVAE 在部分设置下的 PSNR 低于官方 VAE，且 LPIPS 仍可能更高。FP8 优化在低分辨率下收益有限，甚至可能因固定开销而降低速度，并增加显存占用，因此主要建议用于 1080p 及以上分辨率。实验主要基于 MiniMax-H3 和 Wan2.2、内部训练数据及 NVIDIA H100，外部数据集和硬件上的泛化情况论文未明确说明。论文也未直接评估动作条件视觉世界模型或闭环模拟任务。",
+      "summary_cn": "论文针对实时视频生成、流式编辑和参考视频生成中视频 VAE 成为延迟瓶颈的问题，提出了 LiveVAE。作者通过有效感受野和扰动实验发现，预训练视频 VAE 的编码与解码主要依赖局部空间邻域及当前和短历史时间邻域。LiveVAE 使用因果窗口注意力，以固定的空间窗口和有限时间窗口处理视频帧，并通过滚动 KV 缓存实现流式推理。其三阶段蒸馏流程分别对编码器、解码器进行蒸馏，随后联合微调，从而保持与原始 DiT 潜空间的兼容性。基于 MiniMax-H3 和 Wan2.2 的实验表明，该方法在较低显存和相近或更高重建质量下显著提升编码、解码速度，并可从 720p 训练直接扩展到 2160p 推理。算子融合、区域编译以及带量化感知训练的 FP8 FFN 进一步提高了端到端速度，但在细节感知和部分生成质量指标上仍存在差距。",
+      "contribution_cn": "1. 通过有效感受野分析和输入扰动实验，证明视频 VAE 的编码与解码主要依赖局部空间和短时因果邻域。 2. 提出 LiveVAE，一种基于因果窗口注意力的流式视频编码器和解码器，将注意力计算限制在局部窗口，并使时间 KV 缓存保持有界。 3. 设计三阶段渐进式蒸馏框架，分别蒸馏编码器和解码器，再进行端到端联合微调，以保留预训练 VAE 的潜空间并实现直接替换。 4. 提出帧间二维分解的窗口注意力实现，以及注意力算子融合、区域级编译和 FP8 量化感知训练等推理优化。 5. 在 MiniMax-H3 和 Wan2.2 上验证了速度、显存、重建质量、分辨率外推和下游视频生成兼容性；MiniMax-H3 上编码最高约提升 18.7 倍、解码最高约提升 11.9 倍，具体取决于基础设施优化和测试设置。",
+      "relevance_cn": "论文与研究重点高度相关。它直接面向视频生成和视频扩散系统中的 VAE 延迟瓶颈，尤其服务于因果、流式、实时和长视频生成。因果窗口注意力按帧处理输入，仅保留有限历史帧的 KV 缓存，因此适合在线编码、流式解码和闭环交互式视频系统。该方法不改变 DiT 使用的潜空间，可作为现有视频扩散模型的即插即用 VAE 替代组件，减少实时生成和编辑中的编码、解码开销。局部窗口使注意力复杂度从全空间注意力的高成本形式降为与窗口大小线性相关的计算，并支持从低分辨率训练向高分辨率推理外推。论文没有提出动作条件建模或闭环世界模型本身，但其低延迟流式 VAE 可作为动作条件视觉世界模型和实时模拟系统的底层视频表示与渲染模块。",
+      "limitations_cn": "论文明确指出，LiveVAE 仍存在感知质量差距，细节可能变得模糊，尤其是在密集纹理、小文字、小脸和快速运动场景中。MiniMax-H3 上的 VBench-2.0 人类保真度和物理合理性低于官方解码器。作者认为，部分差距源于其继承的卷积 VAE 潜空间。较长视频上，Wan2.2 的重建 PSNR 比官方 VAE 低约 1.4–2.2 dB，且 LPIPS 仍可能更高。FP8 优化在低分辨率下收益有限，并会增加约 1.4–1.7 GB 端到端峰值显存；直接使用 FP8 会明显降低 PSNR，需要量化感知训练恢复质量。实验主要在 MiniMax-H3 和 Wan2.2、NVIDIA H100 及作者内部数据集上进行，跨更多 VAE、硬件和数据分布的泛化仍未充分验证。论文未报告对动作条件控制或闭环世界模型任务的直接评测。",
       "assessment_source": "cursor:gpt-5.6-luna",
-      "abstract_cn": "尽管视频扩散模型变得更快速且越来越具备流式处理能力，视频 VAE 仍是交互式生成和编辑流程中的主要延迟瓶颈。现有 VAE 及其加速方法主要依赖计算量较大的卷积或全帧注意力，并且大多只关注解码，导致流式条件生成和编辑中的编码成本依然很高。这引出了一个自然问题：视频 VAE 的编码和解码是否真的需要全局时空建模？通过分析预训练视频 VAE 的有效感受野，我们发现，编码和解码一个局部块时，几乎完全依赖其空间和时间邻域。为利用这一强局部性，我们提出 LiveVAE：一种基于因果窗口注意力的流式编码器和解码器，在降低每帧计算量的同时，使流式处理中的时间 KV 缓存保持有界。通过解耦的编码器/解码器蒸馏以及后续联合微调，LiveVAE 保留了预训练潜空间，因此可以直接替换原始 VAE。在 MiniMax-H3 上，与官方 VAE 相比，LiveVAE 的编码速度提升 5.2–6.2 倍，解码速度提升 3.0–3.3 倍，同时获得更高的 PSNR。结合专用推理基础设施后，LiveVAE 可将加速提升至 13.4 倍，并且几乎没有质量损失。代码和模型将会发布。",
+      "abstract_cn": "尽管视频扩散模型变得更快速且越来越具备流式处理能力，视频 VAE 仍是交互式生成和编辑流程中的主要延迟瓶颈。现有 VAE 及其加速方法主要依赖繁重的卷积或全帧注意力，而且大多只关注解码，导致流式条件生成和编辑中的编码仍然成本高昂。这引出了一个自然问题：视频 VAE 的编码和解码是否真的需要全局时空建模？通过分析预训练视频 VAE 的有效感受野，我们发现，编码或解码一个图像块几乎完全依赖其空间和时间邻域。为利用这一强局部性，我们提出 LiveVAE：一种基于因果窗口注意力的流式编码器和解码器，在降低每帧计算量的同时，将流式处理中的时间 KV 缓存限制在有界范围内。通过先进行编码器和解码器的解耦蒸馏，再进行联合微调，LiveVAE 保留了预训练潜空间，因此可以直接替换原始 VAE。在 MiniMax-H3 上，相比官方 VAE，LiveVAE 的编码速度提升 5.2–6.2 倍，解码速度提升 3.0–3.3 倍，同时获得更高的 PSNR。结合专用推理基础设施后，LiveVAE 可将加速提升至 13.4 倍，且几乎没有质量损失。代码和模型将会发布。",
       "note_path": "2026-11-27/2611.34912-livevae-causal-window-attention-makes-efficient.md"
     },
     {
@@ -250,33 +250,6 @@
       "assessment_source": "heuristic"
     },
     {
-      "id": "2611.34944",
-      "date": "2026-11-25",
-      "topics": [
-        "Video Generation"
-      ],
-      "title": "AnyCam: Anything Can Represent Camera for Video Generation",
-      "abstract": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult. Existing methods condition either on camera parameters, which are scale-ambiguous in monocular video, or on explicit geometry such as warped point clouds or depth, which breaks down under large viewpoint changes. We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object. A video diffusion model transfers the content and dynamics of the source video to the new viewpoint. Its H-Concat layout aligns source and target frames in time, so the model can be distilled into AnyCam-AR, a streaming few-step generator for on-the-fly camera control. Both models are trained on paired videos with pixel-aligned anchor renderings from multi-camera videos and static-scene captures. Experiments on diverse datasets and trajectories show that AnyCam performs favorably against camera-controlled video generation and 3D reconstruction methods in camera control and visual quality.",
-      "authors": [
-        "Weijie Lyu",
-        "Zhixin Shu",
-        "Yuntian Ke",
-        "Ming-Hsuan Yang"
-      ],
-      "url": "http://arxiv.org/abs/2611.34944v1",
-      "categories": [
-        "cs.CV"
-      ],
-      "comment": "Project page: https://weijielyu.github.io/AnyCam/",
-      "score": 62,
-      "priority": "skim",
-      "summary_cn": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult.",
-      "contribution_cn": "We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object.",
-      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：streaming, few-step, video generation, video diffusion",
-      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
-      "assessment_source": "heuristic"
-    },
-    {
       "id": "2611.32654",
       "date": "2026-11-24",
       "topics": [
@@ -305,6 +278,33 @@
       "summary_cn": "Robot demonstrations provide more than actions to imitate: they reveal how actions change the world and how those changes contribute to task success.",
       "contribution_cn": "We introduce DexWAC, a unified world-actor-critic model that jointly learns an actor, an action-conditioned world model, and a bootstrapped critic in a single robot pretraining stage.",
       "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.34944",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "AnyCam: Anything Can Represent Camera for Video Generation",
+      "abstract": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult. Existing methods condition either on camera parameters, which are scale-ambiguous in monocular video, or on explicit geometry such as warped point clouds or depth, which breaks down under large viewpoint changes. We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object. A video diffusion model transfers the content and dynamics of the source video to the new viewpoint. Its H-Concat layout aligns source and target frames in time, so the model can be distilled into AnyCam-AR, a streaming few-step generator for on-the-fly camera control. Both models are trained on paired videos with pixel-aligned anchor renderings from multi-camera videos and static-scene captures. Experiments on diverse datasets and trajectories show that AnyCam performs favorably against camera-controlled video generation and 3D reconstruction methods in camera control and visual quality.",
+      "authors": [
+        "Weijie Lyu",
+        "Zhixin Shu",
+        "Yuntian Ke",
+        "Ming-Hsuan Yang"
+      ],
+      "url": "http://arxiv.org/abs/2611.34944v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://weijielyu.github.io/AnyCam/",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult.",
+      "contribution_cn": "We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：streaming, few-step, video generation, video diffusion",
       "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
       "assessment_source": "heuristic"
     }
