@@ -1,0 +1,313 @@
+{
+  "generated_at": "2026-11-28T05:03:23+00:00",
+  "assessment_mode": "heuristic+cursor:gpt-5.6-luna",
+  "papers": [
+    {
+      "id": "2611.34730",
+      "date": "2026-11-25",
+      "topics": [
+        "World Models",
+        "Autoregressive and Streaming Video"
+      ],
+      "title": "WorldInteract: Controllable Streaming Video Generation for Multi-Material Interactions",
+      "abstract": "Video world models aim to create interactive physical worlds that capture how diverse materials move and interact. Yet material-dependent dynamics remain underexplored in controllable video generation, limiting reliable control in scenes with different materials. We present WorldInteract, a streaming video generation framework that decomposes cross-material interaction into material-dependent behavior generation and contact response computation. External pushes and contact impulses are expressed through a shared velocity-increment interface, allowing material behaviors learned from interaction-free videos to be reused in interacting scenes. A physics controller predicts contacts and computes velocity increments from estimated masses and restitution coefficients, while a causal generator executes these increments using learned material behaviors. This separation enables cross-material interaction without supervised contact videos spanning diverse material pairings and contact configurations. We train the generator on 30k simulated interaction-free videos spanning 22 material classes and introduce Material-Aware RL, using verifiable physical rewards to refine material behavior and control execution. WorldInteract substantially outperforms state-of-the-art methods on Physics-IQ and delivers more reliable push control on real-world images.",
+      "authors": [
+        "Ahmed Hatem",
+        "Caoliwen Wang",
+        "Robert Hoang",
+        "Siyuan Chen",
+        "Spencer Szabados",
+        "Zike Wu",
+        "Xiyang Tan",
+        "Shenyifan Lu",
+        "Rafael Bischof",
+        "Bernd Bickel",
+        "Renjie Liao",
+        "Peter Yichen Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.34730v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 77,
+      "priority": "must-read",
+      "summary_cn": "WorldInteract 面向具有多种材料和物体接触的可控流式视频生成，将材料在速度变化下的行为学习与碰撞接触响应计算分开处理。模型通过速度增量接口连接因果视频生成器和物理控制器：生成器从3万个涵盖22类材料的无物体接触模拟视频中学习材料行为，控制器则依据视觉语言模型估计的质量、恢复系数以及场景中的深度和跟踪信息计算接触冲量。场景记忆、对象跟踪和物理图使模型能够在生成过程中持续接受新控制。材料感知强化学习利用位移、速度增量一致性、相对行为和事件时序等物理奖励优化生成结果，并通过蒸馏实现单张H100上8帧每秒的流式生成。实验显示，该方法在 Physics-IQ 和真实图像推动控制上均优于基线，并能表现出材料、形状、推动强度和方向导致的不同运动。",
+      "contribution_cn": "1. 提出一种跨材料交互的组合式框架，将材料相关行为生成与接触响应计算解耦，并通过共享速度增量接口在推理时组合二者。2. 提出材料感知强化学习，利用生成轨迹中的可验证物理奖励改进材料行为和跨材料交互中的控制执行。3. 构建涵盖22类材料的3万个模拟无交互视频数据集，使模型能够学习单个材料行为，避免穷举材料配对和接触配置。4. 引入因果生成、场景记忆、对象跟踪和物理图，以支持持续更新控制的流式生成，并将模型蒸馏为四步因果模型。",
+      "relevance_cn": "该工作直接涉及视频生成、视频扩散、可控流式生成和物理世界模型。其因果 DiT、分块因果注意力、键值缓存、场景记忆以及四步 DMD 蒸馏，分别对应自回归/因果生成、长时序状态维护、缓存复用和实时生成。物理控制器与生成器的闭环交替过程支持用户在生成期间施加新的推动，并根据生成帧更新对象位置、速度、接触预测和后续控制，因此与动作条件视觉世界模型和闭环模拟高度相关。论文还展示了跨材料接触、碰撞传播以及不同控制强度和方向下的物理响应。",
+      "limitations_cn": "论文明确指出，当前物理控制器使用近似几何信息和无摩擦中心碰撞模型，尚未覆盖更丰富的接触模型。控制器依赖视觉语言模型估计物体质量和恢复系数，并依赖深度、分割和点跟踪结果，因此这些估计和感知误差可能影响接触预测与控制。训练数据主要是模拟的无物体接触视频，真实世界接触行为的覆盖有限；真实图像评估使用200张图像和基于视觉语言模型的评分，而非全面的真实视频真值。Physics-IQ 实验使用固体力学子集，材料对比有限。模型在单张 H100 上达到8帧每秒，但论文未明确说明端到端系统在不同硬件上的实时性能。论文未明确说明对复杂摩擦、非中心碰撞、遮挡严重场景和更长时间跨度的稳定性。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "视频世界模型旨在构建能够体现多种材料运动与相互作用方式的交互式物理世界。然而，可控视频生成中对材料相关动力学的研究仍然不足，限制了模型在不同材料场景中的可靠控制。我们提出 WorldInteract，一种流式视频生成框架，将跨材料交互分解为材料相关行为生成和接触响应计算。外部推动与接触冲量通过共享的速度增量接口表示，使得从无交互视频中学习到的材料行为能够复用于交互场景。物理控制器根据估计的质量和恢复系数预测接触并计算速度增量，而因果生成器利用学习到的材料行为执行这些增量。这种分离方式无需覆盖多种材料组合与接触配置的接触视频监督，即可实现跨材料交互。我们在涵盖22类材料的3万个模拟无交互视频上训练生成器，并提出材料感知强化学习，利用可验证的物理奖励来改进材料行为和控制执行。WorldInteract 在 Physics-IQ 上显著优于现有最先进方法，并能在真实世界图像上实现更可靠的推动控制。",
+      "note_path": "2026-11-28/2611.34730-worldinteract-controllable-streaming-video-gener.md"
+    },
+    {
+      "id": "2611.34693",
+      "date": "2026-11-25",
+      "topics": [
+        "World Models"
+      ],
+      "title": "ShowNow: Fine-Grained Speculative Streaming for Responsive World Models",
+      "abstract": "Interactive world models must generate video continuously while responding promptly to user actions. Real-time throughput alone leaves input latency unresolved: coarse generation blocks delay action updates, and generation after input adds work to the response path. We introduce ShowNow, a fine-grained speculative streaming framework that uses computation available during playback to prepare action-conditioned futures before input arrives. Single-latent commitment enables frequent decisions, while configurable preparation covers one to eight actions. We construct a matched multi-future dataset to train alternative continuations from a common state; shared-history tree execution and fused commitment make their preparation efficient. On a single H100, our 5B model sustains 480p generation at 16 fps with eight prepared futures. In ViZDoom, the complete ShowNow deployment reduces median input-to-display latency from 620 to 208 ms relative to the native-block SolarWM-FT deployment. Matched-policy experiments reduce restart empty ticks from 1.56% to 0.09% (94%) and improve on-time responses to action changes. These results establish complementary roles for fine-grained commitment and advance preparation, with measured trade-offs in visual fidelity and long-horizon consistency. ShowNow turns playback-time computation into responsive visual interaction. Project: https://github.com/showlab/ShowNow.",
+      "authors": [
+        "Yiren Song",
+        "Guian Fang",
+        "Mike Zheng Shou"
+      ],
+      "url": "http://arxiv.org/abs/2611.34693v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "23 pages, including appendix. Video examples provided as ancillary files",
+      "score": 76,
+      "priority": "must-read",
+      "summary_cn": "论文提出 ShowNow，用于降低交互式世界模型中的动作响应延迟。系统在播放已生成视频时，利用空闲计算提前生成多个动作条件化的未来，并在用户输入到达后选择相应分支继续生成。其核心包括单潜变量的细粒度提交、匹配多未来数据集、共享历史的分支树注意力、缓存复用和融合提交。在 ViZDoom 上，5B 模型可在单张 H100 以 480p、16 fps 生成并准备八个未来，将输入到显示的中位延迟从 620 ms 降至 208 ms，并显著减少重启空帧和提高截止时间内的响应率。实验同时显示，细粒度自回归和部署优化会带来视觉质量及长时一致性下降。",
+      "contribution_cn": "1. 提出 ShowNow 细粒度推测式流式框架，将播放期间的计算用于提前准备动作条件化未来，并统一单未来与多未来策略，在计算开销和响应速度之间提供可配置权衡。 2. 构建并发布匹配的多未来数据集：从相同 ViZDoom 状态生成八种动作条件化后续轨迹，覆盖持续动作和动作切换。 3. 提出结合多未来训练、AnyFlow 因果蒸馏和 Self-Forcing 的训练流程，使模型能够从共享历史生成不同动作分支。 4. 设计共享历史的分支树执行、分区注意力、历史缓存和融合提交，降低多分支生成的时间与显存开销。 5. 在单张 H100 上实现 5B 模型以 480p、16 fps 准备八个未来的实时流式生成，并通过系统和匹配策略实验验证延迟、连续性及按时响应方面的收益。",
+      "relevance_cn": "论文与研究重点高度相关。它直接研究动作条件化视觉世界模型和闭环交互仿真：用户动作选择模型预先生成的未来分支，选中的分支再作为下一轮生成的共同历史。方法属于因果、自回归和流式长视频生成范畴，通过单潜变量更新缩短决策间隔，并通过共享历史树执行、缓存复用和融合提交降低重复计算。它还利用 AnyFlow、Self-Forcing 等蒸馏方法减少采样步数，并将推测式生成、提前计算和候选分支覆盖用于实时响应。在 ViZDoom 中，系统以 16 fps 连续运行，八未来部署将中位输入到显示延迟降至 208 ms，并将重启空帧比例降至 0.09%，体现了对实时生成、动作响应和闭环模拟的直接价值。",
+      "limitations_cn": "论文明确显示，ShowNow 存在视觉保真度和长时一致性权衡：ShowNow 的 LPIPS、PSNR 和 SSIM 均劣于教师或部分基线，长视频部署路径的 FD 也更高；更长的自回归历史和部署执行会进一步影响滚动质量。细粒度单潜变量提交虽然提高了短期动作切换响应，但其稳定后的动作准确率低于 SolarWM-FT。多未来准备需要额外计算资源，收益取决于输入时机、候选覆盖率、播放队列和截止时间；未覆盖的动作仍需重新生成。实验主要基于 ViZDoom、有限的八种离散动作和特定 H100/B300 部署配置，论文未明确说明其对更广泛环境、动作空间及硬件平台的泛化程度。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "交互式世界模型必须在持续生成视频的同时及时响应用户动作。仅具备实时吞吐率并不能解决输入延迟问题：粗粒度生成会延迟动作更新，而输入到达后再开始生成又会增加响应路径上的工作量。我们提出 ShowNow，一种细粒度推测式流式框架，利用播放期间可用的计算资源，在输入到达前准备动作条件化的未来。单潜变量提交支持高频决策，可配置的准备机制覆盖一至八个动作。我们构建了匹配的多未来数据集，用于从同一状态训练不同的后续演化；共享历史的树执行和融合提交提高了准备效率。在单张 H100 上，我们的 5B 模型在准备八个未来时能够以 16 fps 持续生成 480p 视频。在 ViZDoom 中，与原生阻塞式 SolarWM-FT 部署相比，完整的 ShowNow 部署将输入到显示的中位延迟从 620 ms 降至 208 ms。匹配策略实验将重启阶段的空显示帧比例从 1.56% 降至 0.09%（降低 94%），并改善了动作变化时的按时响应。这些结果表明，细粒度提交与提前准备具有互补作用，同时也揭示了视觉保真度和长时一致性方面经过测量的权衡。ShowNow 将播放时计算转化为响应迅速的视觉交互。项目地址：https://github.com/showlab/ShowNow。",
+      "note_path": "2026-11-28/2611.34693-shownow-fine-grained-speculative-streaming-for-r.md"
+    },
+    {
+      "id": "2611.34912",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "LiveVAE: Causal Window Attention Makes Efficient Streaming Video VAE",
+      "abstract": "While video diffusion models have grown faster and increasingly streamable, the video VAE remains a primary latency bottleneck across interactive generation and editing pipelines. Existing VAEs and their acceleration methods rely mainly on heavy convolutions or full frame attention, and most focus only on decoding, leaving encoding costly for streaming conditional generation and editing. This raises a natural question: Do video VAE encoding and decoding actually require such global spatiotemporal modeling? By analyzing the effective receptive fields of pretrained video VAEs, we find that both encoding and decoding a patch rely almost entirely on its spatial and temporal neighbors. To exploit this strong locality, we introduce LiveVAE, a streaming encoder and decoder built on causal window attention, which cuts per frame compute while keeping the temporal KV cache bounded for streaming. Decoupled encoder/decoder distillation followed by joint finetuning preserves the pretrained latent space, making LiveVAE a drop-in replacement for the original VAE. On MiniMax-H3, LiveVAE achieves 5.2-6.2x faster encoding and 3.0-3.3x faster decoding than the official VAE with higher PSNR. Paired with our dedicated inference infrastructure, LiveVAE pushes the speedup to 13.4x with almost no quality loss. Code and models will be released.",
+      "authors": [
+        "Jiachen An",
+        "Sijie Zhao",
+        "Le Li",
+        "Hongyu Liu",
+        "Zhiyuan Li",
+        "Tianyu Yang",
+        "Xiaoyu Kong",
+        "Xunliang Cai",
+        "Yong Zhang",
+        "Chi-Man Pun",
+        "Xiaoming Wei",
+        "Xiaodong Cun"
+      ],
+      "url": "http://arxiv.org/abs/2611.34912v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://livevae.github.io/ Code: https://github.com/MeiGen-AI/LiveVAE",
+      "score": 74,
+      "priority": "must-read",
+      "summary_cn": "论文指出，视频 VAE 的编码和解码主要依赖局部空间邻域及短时因果邻域，而不需要全局时空建模。LiveVAE 使用固定大小的因果窗口注意力构建流式编码器和解码器，并通过滚动 KV 缓存支持长视频持续处理。三阶段蒸馏和联合微调使其保持与原 VAE 及现有扩散 Transformer 的潜空间兼容；算子融合、区域编译和 FP8 量化感知训练进一步降低推理开销。在 MiniMax-H3 上，LiveVAE 编码提速 5.2–6.2 倍、解码提速 3.0–3.3 倍，优化推理版本最高达到约 18.7 倍编码和 9.5 倍解码加速，并能从低分辨率训练直接外推到 2160p。",
+      "contribution_cn": "1. 通过有效感受野和扰动实验，证明预训练视频 VAE 的编码与解码主要依赖局部空间和时间邻域。2. 提出基于因果窗口注意力的流式视频 VAE，在固定空间窗口和有限时间窗口内计算，使计算量随 token 数线性增长并限制 KV 缓存大小。3. 提出三阶段渐进式蒸馏框架，分别蒸馏编码器和解码器，再进行联合微调，以保持预训练潜空间和扩散模型兼容性。4. 设计专用推理优化，包括注意力算子融合、区域级编译以及带量化感知训练的 FFN FP8 量化。5. 在 MiniMax-H3 和 Wan2.2 上验证了编码、解码速度、显存占用、重建质量及文本到视频和参考图到视频生成效果。",
+      "relevance_cn": "LiveVAE 直接针对实时视频生成和流式视频编辑中的 VAE 延迟瓶颈，同时加速编码与解码，适用于输入视频或视觉参考在线压缩、因果视频生成及闭环交互式视频管线。因果窗口注意力和有界 KV 缓存与自回归、流式和长视频生成高度相关；局部注意力使高分辨率推理具有较好的扩展性，FP8、算子融合和编译则对应实时推理优化。它不改变 DiT 使用的潜空间，因此可作为现有视频扩散模型的 VAE 替换组件，而无需重新训练生成器。",
+      "limitations_cn": "论文明确指出，LiveVAE 仍存在感知质量差距，细节可能变得模糊；在 MiniMax-H3 上，VBench-2.0 的 Human Fidelity 和 Physics 指标低于官方解码器。论文还指出，这部分差距可能源于其继承的卷积式 VAE 潜空间。较长视频上，Wan2.2 的 PSNR 比官方 VAE 低 1.4–2.2 dB，且 LPIPS 仍可能更高。实验主要基于 MiniMax-H3 和 Wan2.2、内部训练数据以及 NVIDIA H100，方法在更广泛模型、硬件和真实交互场景中的表现未充分验证。",
+      "assessment_source": "cursor:gpt-5.6-luna",
+      "abstract_cn": "尽管视频扩散模型变得更快且日益支持流式处理，视频 VAE 仍是交互式生成和编辑流程中的主要延迟瓶颈。现有 VAE 及其加速方法主要依赖大量卷积或全帧注意力，并且大多只关注解码，导致流式条件生成和编辑中的编码仍然成本高昂。这引出了一个自然问题：视频 VAE 的编码和解码是否真的需要全局时空建模？通过分析预训练视频 VAE 的有效感受野，我们发现，编码和解码一个图像块时，几乎完全依赖其空间和时间邻域。为利用这一强局部性，我们提出 LiveVAE：一种基于因果窗口注意力的流式编码器和解码器。该方法降低了逐帧计算量，同时使流式处理中的时间 KV 缓存保持有界。通过解耦的编码器/解码器蒸馏以及后续联合微调，LiveVAE 保留了预训练潜空间，可直接替换原始 VAE。在 MiniMax-H3 上，与官方 VAE 相比，LiveVAE 的编码速度提升 5.2–6.2 倍，解码速度提升 3.0–3.3 倍，同时获得更高的 PSNR。结合专用推理基础设施后，在几乎没有质量损失的情况下，LiveVAE 可将加速比提升至 13.4 倍。代码和模型将会发布。",
+      "note_path": "2026-11-28/2611.34912-livevae-causal-window-attention-makes-efficient.md"
+    },
+    {
+      "id": "2611.34907",
+      "date": "2026-11-25",
+      "topics": [
+        "Autoregressive and Streaming Video",
+        "Efficient Video Diffusion"
+      ],
+      "title": "Agentic LongLive: Asynchronous Agentic Memory for Long Video Generation",
+      "abstract": "Real-time autoregressive video generators stream minutes of video and accept new prompts on the fly, but struggle to keep people, objects, and places consistent over a long interactive story. Agent systems provide such memory for offline multi-shot generation, yet they read the whole script in advance, plan each shot before generating it, and regenerate failed shots, which a live stream does not allow. We present Agentic LongLive, an asynchronous agentic memory for long video generation. A memory agent on separate GPUs reads only the prompts revealed so far, never the generated video, and keeps a text state and evolving images for every person, object, and scene. From this entity memory it composes a global image and a per-shot memory image, which an auxiliary GPU prefills into the generator's attention sink before the next shot starts, and writes entity cards for the prompts that name them, so the video never waits for memory and video errors are not written back. A small language model, trained with reinforcement learning and an image reward calibrated using downstream video outcomes, decides what to remember before the next prompt is known. On LongStory-Online, a new benchmark of 25 stories (857 shots) revealed one shot at a time, Agentic LongLive improves persistent-state accuracy of LongLive-2.0, its base generator, by 26.3 points, protagonist identity by 44.9, and revisited-place consistency by 40.4, at about 1% extra generation time on H100. The full system streams faster than real time on one 8xB200 node with the generator in BF16 (34.3 FPS), keeps image quality stable over 14-minute stories, and improves identity on two MiniMax-H3 generators, one of which, LongLive-H3, also runs in real time with it. To our knowledge, it is the first real-time video generator with text and image memory kept by an LLM agent.",
+      "authors": [
+        "Shaoteng Liu",
+        "Shuai Yang",
+        "Wei Huang",
+        "Luozhou Wang",
+        "Song Han",
+        "Yukang Chen"
+      ],
+      "url": "http://arxiv.org/abs/2611.34907v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "28 pages, 12 figures. Project page: https://nvlabs.github.io/LongLive/Agentic-LongLive/",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Real-time autoregressive video generators stream minutes of video and accept new prompts on the fly, but struggle to keep people, objects, and places consistent over a long interactive story.",
+      "contribution_cn": "We present Agentic LongLive, an asynchronous agentic memory for long video generation.",
+      "relevance_cn": "匹配研究线：streaming video, efficient generation；关键词：interactive, autoregressive, long video, real-time, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.34056",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "Understanding Diffusion Acceleration: Methods, Trade-Offs, and Open Questions",
+      "abstract": "Diffusion and flow-based generative models support high-quality image, audio, and video synthesis. Sampling can require dozens to hundreds of denoiser evaluations, with each pass becoming more expensive as resolution, video length, or model size increases. This cost affects latency and energy use in interactive and edge applications. We examine four approaches to accelerating inference: distillation, consistency training, sampling methods, and denoiser design. We express training objectives, transition maps, and numerical updates in a common notation to compare changes to the learning target, the sampling trajectory, and the work performed within each denoiser pass. Published image and video benchmarks illustrate the quality--cost trade-offs of one- and few-step generation, the interaction between solvers and timestep schedules, the effect of feature caching, and the difference between first-frame latency and sustained streaming throughput. We close with open problems in visual-native architectures and post-compression distillation, solver-aware few-step training, and semantic trajectory alignment with factorized distribution matching.",
+      "authors": [
+        "Xiaofeng Mao",
+        "Fu-yun Wang",
+        "Le Zhuo",
+        "Zhengkai Jiang",
+        "Shaohao Rui",
+        "Weijie Ma"
+      ],
+      "url": "http://arxiv.org/abs/2611.34056v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "",
+      "score": 74,
+      "priority": "skim",
+      "summary_cn": "Diffusion and flow-based generative models support high-quality image, audio, and video synthesis.",
+      "contribution_cn": "请快速查看方法图和主要实验表确认具体贡献。",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, streaming, acceleration, few-step, distillation, video synthesis",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.33591",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "VivaWorld: Long-Horizon Video World Model With Compositional 3D Priors",
+      "abstract": "Long-horizon video generation is key to interactive world modeling, physical intelligence, and spatial reasoning, yet maintaining geometric consistency and accurate camera control remains challenging without 3D grounding. We introduce \\textbf{VivaWorld}, a framework for generating geometry- and view-consistent long videos from an image. We first construct a compositional hybrid 3D representation that combines reconstructed point clouds, which preserve observed scene geometry and appearance, with generated textured meshes, which provide complete object geometry across $360^\\circ$ novel views. We also introduce a connected-region filter removing inconsistent floating components for robust cross-view reconstruction and propose a hybrid camera embedding that combines global and object-anchored Plücker rays to capture both scene-level camera motion and camera-object relationships, and inject it together with the visual guidance into a video generation model via a control adapter. Extensive experiments show VivaWorld achieves state-of-the-art visual quality and camera control, while supporting controllable novel-view synthesis, long-horizon scene exploration, and physical AI. Project page is available at: https://research.nvidia.com/labs/sil/projects/vivaworld/",
+      "authors": [
+        "Ying Jiang",
+        "Donglai Xiang",
+        "Anita Hu",
+        "Masha Shugrina"
+      ],
+      "url": "http://arxiv.org/abs/2611.33591v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "17 figures, 10 tables, 26 pages",
+      "score": 70,
+      "priority": "skim",
+      "summary_cn": "Long-horizon video generation is key to interactive world modeling, physical intelligence, and spatial reasoning, yet maintaining geometric consistency and accurate camera control remains challenging without 3D grounding.",
+      "contribution_cn": "We introduce \\textbf{VivaWorld}, a framework for generating geometry- and view-consistent long videos from an image.",
+      "relevance_cn": "匹配研究线：world model, video generation；关键词：world model, video world model, interactive, long video, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.32820",
+      "date": "2026-11-24",
+      "topics": [
+        "Efficient Video Diffusion"
+      ],
+      "title": "Residual Guidance for Real-Time Interactive Video Generation",
+      "abstract": "Real-time interactive video generation allows users to change the prompt during generation to steer the evolving video. However, existing streaming models, which generate videos chunk by chunk, often keep following the previous prompt after a switch. We trace this failure to context inertia, where the previous chunk acts as a strong prior that suppresses the new prompt. Furthermore, we find that this inertia persists even when the cache retains only the previous chunk, yet discarding the context breaks visual continuity, which limits approaches that edit the cache. Rather than editing the cache, we propose Residual Guidance (RG), a simple, training-free method that counteracts context inertia with a correction measured outside the cache. Specifically, RG denoises the re-noised previous chunk once under the new prompt without the cache and adds the resulting residual to the early denoising steps of the next chunk, where its content is largely decided and the new prompt is most suppressed. Across settings ranging from a single switch to long multi-switch generation, RG substantially improves prompt switching capability on existing streaming models, including those with dedicated switching mechanisms, while largely retaining visual quality. As it requires no training or per-model tuning and adds only one forward pass per chunk, RG can be easily integrated into existing real-time video generation pipelines.",
+      "authors": [
+        "NaHyeon Park",
+        "Kyeong-Hwan Moon",
+        "Youjin Jeon",
+        "Hyunjung Shim"
+      ],
+      "url": "http://arxiv.org/abs/2611.32820v1",
+      "categories": [
+        "cs.MM",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "comment": "Project page: https://residual-guidance.github.io",
+      "score": 68,
+      "priority": "skim",
+      "summary_cn": "Real-time interactive video generation allows users to change the prompt during generation to steer the evolving video.",
+      "contribution_cn": "Rather than editing the cache, we propose Residual Guidance (RG), a simple, training-free method that counteracts context inertia with a correction measured outside the cache.",
+      "relevance_cn": "匹配研究线：efficient generation, streaming video；关键词：interactive, streaming, real-time, cache, video generation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.32665",
+      "date": "2026-11-24",
+      "topics": [
+        "World Models"
+      ],
+      "title": "DiffGR00T: Execution-Aware Differentiable Training for Humanoid Whole-Body Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have achieved strong results in arm-centric manipulation, yet humanoid whole-body control (WBC) requires dynamic balance and tightly coupled full-body coordination. Existing hierarchical humanoid VLAs typically decouple motion generation from physical execution, leaving tracking and balance errors unable to directly optimize the VLA generator. We propose DiffGR00T, an end-to-end differentiable training framework that couples GR00T N1.7 with SONIC, a pretrained whole-body behavior foundation model. To enable execution-aware differentiable training, we replace the non-differentiable simulator with a learned, action-conditioned world model, allowing multi-step body-execution losses to backpropagate through the frozen whole-body controller and the flow-matching sampler directly into the VLA action head. On four HumanoidArena simulation tasks, DiffGR00T improves average task success by 12.5 percentage points over the supervised base VLA (59.2% to 71.7%), demonstrating that execution-aware gradients effectively align high-level motion generation with closed-loop whole-body dynamics.",
+      "authors": [
+        "Sichen Wu",
+        "Qian Sun",
+        "Mengfan Liu",
+        "Weikai Qin",
+        "Bike Zhu",
+        "Hesheng Wang"
+      ],
+      "url": "http://arxiv.org/abs/2611.32665v2",
+      "categories": [
+        "cs.RO"
+      ],
+      "comment": "14 pages, 6 figures, 8 tables. Conference preprint. Corresponding author: Hesheng Wang",
+      "score": 67,
+      "priority": "skim",
+      "summary_cn": "Vision-language-action (VLA) models have achieved strong results in arm-centric manipulation, yet humanoid whole-body control (WBC) requires dynamic balance and tightly coupled full-body coordination.",
+      "contribution_cn": "We propose DiffGR00T, an end-to-end differentiable training framework that couples GR00T N1.7 with SONIC, a pretrained whole-body behavior foundation model.",
+      "relevance_cn": "匹配研究线：world model；关键词：world model, action-conditioned, closed-loop, simulation",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.32654",
+      "date": "2026-11-24",
+      "topics": [
+        "World Models"
+      ],
+      "title": "DexWAC: A Unified World-Actor-Critic Model for Dexterous Robot Manipulation",
+      "abstract": "Robot demonstrations provide more than actions to imitate: they reveal how actions change the world and how those changes contribute to task success. Recent world-action models (WAMs) extend vision-language-action (VLA) models with the first signal by jointly predicting actions and future observations, yet this predictive ability serves only as an auxiliary loss for policy learning. Meanwhile, most policy improvement methods learn dynamics and values in separate models, increasing training overhead and limiting representation sharing between these complementary objectives. We introduce DexWAC, a unified world-actor-critic model that jointly learns an actor, an action-conditioned world model, and a bootstrapped critic in a single robot pretraining stage. Our key insight is that visual prediction encourages control-relevant features, while value supervision promotes task-relevant representations; together, they shape a representation suited to policy learning. Built on an image-editing backbone, DexWAC predicts, for each action chunk, the visual latent and proprioception at its endpoint together with its reward and continuation, so the world model alone efficiently yields complete imagined transitions without generating intermediate video frames. After adapting the world model and critic on real rollouts, we improve the pretrained actor through either PPO on imagined rollouts or critic-guided best-of-$N$ selection. DexWAC surpasses the large-scale pretrained VLA and WAM baselines in simulation and achieves 75% average success on two real-world tasks, compared with 45% for $π_{0.5}$. Its world model is more accurate and faster than video-based baselines, and ablations confirm that learning dynamics and value together improves the policy.",
+      "authors": [
+        "Hongjia Liu",
+        "Dacheng Zhou",
+        "Minghao Fu",
+        "Chuanjun Guo",
+        "Tianze Wang",
+        "Qingtao Liu",
+        "He Wang",
+        "Li Yi"
+      ],
+      "url": "http://arxiv.org/abs/2611.32654v1",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "comment": "",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Robot demonstrations provide more than actions to imitate: they reveal how actions change the world and how those changes contribute to task success.",
+      "contribution_cn": "We introduce DexWAC, a unified world-actor-critic model that jointly learns an actor, an action-conditioned world model, and a bootstrapped critic in a single robot pretraining stage.",
+      "relevance_cn": "匹配研究线：world model, efficient generation；关键词：world model, action-conditioned, simulation, efficient",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    },
+    {
+      "id": "2611.34944",
+      "date": "2026-11-25",
+      "topics": [
+        "Video Generation"
+      ],
+      "title": "AnyCam: Anything Can Represent Camera for Video Generation",
+      "abstract": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult. Existing methods condition either on camera parameters, which are scale-ambiguous in monocular video, or on explicit geometry such as warped point clouds or depth, which breaks down under large viewpoint changes. We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object. A video diffusion model transfers the content and dynamics of the source video to the new viewpoint. Its H-Concat layout aligns source and target frames in time, so the model can be distilled into AnyCam-AR, a streaming few-step generator for on-the-fly camera control. Both models are trained on paired videos with pixel-aligned anchor renderings from multi-camera videos and static-scene captures. Experiments on diverse datasets and trajectories show that AnyCam performs favorably against camera-controlled video generation and 3D reconstruction methods in camera control and visual quality.",
+      "authors": [
+        "Weijie Lyu",
+        "Zhixin Shu",
+        "Yuntian Ke",
+        "Ming-Hsuan Yang"
+      ],
+      "url": "http://arxiv.org/abs/2611.34944v1",
+      "categories": [
+        "cs.CV"
+      ],
+      "comment": "Project page: https://weijielyu.github.io/AnyCam/",
+      "score": 62,
+      "priority": "skim",
+      "summary_cn": "Camera-controlled video generation re-renders a video along a target camera trajectory, yet moving the camera around an object, the most natural way to change the viewpoint of an object-centric scene, remains difficult.",
+      "contribution_cn": "We present AnyCam, a method that represents the camera with an anchor object in the scene: we reconstruct it in 3D and render it along the target trajectory, a camera signal that is scale-aware, view-complete and easy to specify relative to the object.",
+      "relevance_cn": "匹配研究线：video generation, efficient generation；关键词：streaming, few-step, video generation, video diffusion",
+      "limitations_cn": "规则模式无法可靠判断实验质量与论文局限。",
+      "assessment_source": "heuristic"
+    }
+  ],
+  "cursor_summaries_completed": 3
+}
